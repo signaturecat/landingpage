@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="g" cx="80%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#f2a8ff" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#fff7ed" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#fff7ed"/>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <g transform="translate(90,150)">
+    <rect width="64" height="64" rx="16" fill="#292524"/>
+    <g fill="none" stroke="#f2a8ff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" transform="translate(0,0)">
+      <path d="M16 50c4-8 10-13 16-13s12 5 16 13"/>
+      <path d="M22 24l-5-10m25 10l5-10"/>
+    </g>
+    <circle cx="26" cy="30" r="2.8" fill="#faf5ef"/>
+    <circle cx="38" cy="30" r="2.8" fill="#faf5ef"/>
+    <text x="86" y="44" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="34" font-weight="700" fill="#292524">SignatureCat</text>
+  </g>
+  <text x="90" y="330" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="58" font-weight="800" fill="#292524" letter-spacing="-1.5">Centrally manage Gmail signatures</text>
+  <text x="90" y="400" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="58" font-weight="800" fill="#292524" letter-spacing="-1.5">in your Google Workspace.</text>
+  <text x="90" y="470" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="28" font-weight="400" fill="#6b6660">Personalized · always up to date · EU-hosted (RODO/GDPR)</text>
+  <rect x="90" y="515" width="270" height="58" rx="29" fill="#292524"/>
+  <text x="225" y="552" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="24" font-weight="600" fill="#fff7ed">Get started — 1 user free</text>
+</svg>
