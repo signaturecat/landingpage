@@ -20,7 +20,7 @@ Centrally manage Gmail signatures across a Google Workspace.
 │   ├── css/style.css        # design tokens + all styles (Light/Dark)
 │   ├── js/i18n.js           # translation dictionary (en, pl, de, fr)
 │   ├── js/app.js            # locale resolution, pricing calculator, UI
-│   └── img/                 # favicon.svg, og-cover.svg (placeholders)
+│   └── img/                 # logo-mark.png, favicon.png, apple-touch-icon.png, anna.jpg, og-cover.svg
 ├── CNAME                    # signature.cat
 ├── .nojekyll                # serve assets/ as-is on GitHub Pages
 ├── robots.txt
@@ -54,6 +54,7 @@ The calculator applies a **single flat tier rate to the whole headcount** (rate 
 ## Placeholders to replace
 
 - `assets/img/og-cover.svg` — social share cover (SVG placeholder; swap for a real product shot if desired).
+- Brand assets are real: `logo-mark.png` (header/footer), `favicon.png` + `apple-touch-icon.png` (site icon), `anna.jpg` (animated signature-preview avatar).
 - Hero visual is a CSS/SVG glass mock of a signature preview — replace with a real product screenshot (`<img loading="lazy" width height>`) when available.
 
 ## Local preview

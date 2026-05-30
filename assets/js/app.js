@@ -214,13 +214,16 @@
   }
 
   // -------- Animated signature preview -------------------------------------
-  // Cycles: placeholders -> fill real values one variable at a time ->
-  // hold the completed signature 3s -> revert to placeholders one by one -> repeat.
+  // Cycles: placeholders -> fill real values one variable at a time (incl. the
+  // avatar photo) -> hold the completed signature 3s -> reset all at once back
+  // to placeholders -> short pause -> repeat.
   function initSignatureDemo() {
     var card = document.getElementById('sig-demo');
     if (!card) return;
     var fields = Array.prototype.slice.call(card.querySelectorAll('.var[data-var]'));
     if (!fields.length) return;
+    var avatar = document.getElementById('sig-avatar');
+    var PHOTO = 'assets/img/anna.jpg';
 
     // Real demo data tied to signature.cat
     var DATA = {
@@ -246,41 +249,55 @@
 
     function placeholderText(el) { return '{{' + el.getAttribute('data-var') + '}}'; }
 
-    // Swap one element's content with a fade/blur transition
+    // Swap one variable's content with a fade/blur transition
     function swap(el, text, asValue) {
       el.classList.add('swapping');
       later(function () {
         el.textContent = text;
         el.classList.toggle('is-value', !!asValue);
-        // next frame -> remove swapping to fade back in
         requestAnimationFrame(function () {
           requestAnimationFrame(function () { el.classList.remove('swapping'); });
         });
       }, SWAP);
     }
 
-    function setPlaceholders(animated) {
-      fields.forEach(function (el) {
-        if (animated) { swap(el, placeholderText(el), false); }
-        else { el.textContent = placeholderText(el); el.classList.remove('is-value', 'swapping'); }
-      });
+    // Swap the avatar between the gradient placeholder and the real photo
+    function swapAvatar(showPhoto) {
+      if (!avatar) return;
+      avatar.classList.add('swapping');
+      later(function () {
+        avatar.style.backgroundImage = showPhoto ? 'url(' + PHOTO + ')' : '';
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { avatar.classList.remove('swapping'); });
+        });
+      }, SWAP);
+    }
+
+    function resetAll(animated) {
+      // Revert every variable AND the avatar back to the placeholder state at once
+      if (animated) {
+        fields.forEach(function (el) { swap(el, placeholderText(el), false); });
+        swapAvatar(false);
+      } else {
+        fields.forEach(function (el) { el.textContent = placeholderText(el); el.classList.remove('is-value', 'swapping'); });
+        if (avatar) { avatar.style.backgroundImage = ''; avatar.classList.remove('swapping'); }
+      }
     }
 
     function cycle() {
       if (!running) return;
       var t = 0;
-      // 1) Fill each field, one variable at a time
-      fields.forEach(function (el, i) {
+      // 1) Reveal the avatar photo first, then fill each field one variable at a time
+      later(function () { swapAvatar(true); }, t);
+      t += STEP;
+      fields.forEach(function (el) {
         later(function () { swap(el, DATA[el.getAttribute('data-var')], true); }, t);
         t += STEP;
       });
-      // 2) Hold completed signature, then revert one by one
+      // 2) Hold the completed signature, then reset everything at once
       t += HOLD_FILLED;
-      fields.forEach(function (el) {
-        later(function () { swap(el, placeholderText(el), false); }, t);
-        t += STEP;
-      });
-      // 3) Short hold on placeholders, then repeat
+      later(function () { resetAll(true); }, t);
+      // 3) Short pause on placeholders, then repeat
       t += HOLD_VARS;
       later(cycle, t);
     }
@@ -288,13 +305,14 @@
     function start() {
       if (running) return;
       running = true;
-      setPlaceholders(false);
+      resetAll(false);
       // reduced motion: show the filled version statically, no looping
       if (reduce) {
         fields.forEach(function (el) {
           el.textContent = DATA[el.getAttribute('data-var')];
           el.classList.add('is-value');
         });
+        if (avatar) avatar.style.backgroundImage = 'url(' + PHOTO + ')';
         running = false;
         return;
       }
