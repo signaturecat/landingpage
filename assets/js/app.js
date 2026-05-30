@@ -83,18 +83,16 @@
     return { label: '121+', index: 3 };
   }
 
-  function computeGraduated(n) {
-    // Sum cost across graduated tiers
-    var remaining = n, total = 0, prevBound = 0;
-    for (var i = 0; i < TIERS.length; i++) {
-      var span = TIERS[i].upTo - prevBound;
-      var inThis = Math.max(0, Math.min(remaining, span));
-      total += inThis * TIERS[i].rate;
-      remaining -= inThis;
-      prevBound = TIERS[i].upTo;
-      if (remaining <= 0) break;
-    }
-    return total;
+  function rateForCount(n) {
+    // Flat tier rate that applies to the whole headcount
+    if (n <= 1) return 0;
+    if (n <= 50) return 0.8;
+    if (n <= 120) return 0.7;
+    return 0.6;
+  }
+  function computeTotal(n) {
+    // Single tier rate times the number of users (no graduated summing)
+    return rateForCount(n) * n;
   }
 
   function fmtCurrency(v) {
@@ -122,8 +120,8 @@
     if (isNaN(n) || n < 1) n = 1;
     if (n > 100000) n = 100000;
 
-    var total = computeGraduated(n);
-    var effective = n > 0 ? total / n : 0;
+    var total = computeTotal(n);
+    var rate = rateForCount(n);
     var tier = tierForCount(n);
 
     var amountEl = document.getElementById('calc-amount');
@@ -137,11 +135,9 @@
     } else {
       amountEl.textContent = fmtCurrency(total);
       var word = n === 1 ? t('pricing.user') : t('pricing.users');
-      subEl.textContent = t('pricing.estimate') + ' ' + fmtNum(n) + ' ' + word
-        + ' · ' + fmtRate(effective) + ' ' + t('pricing.perUser').replace(/\/ ?/, '≈ ').trim();
-      // simpler effective rate line:
-      subEl.textContent = t('pricing.estimate') + ' ' + fmtNum(n) + ' ' + word + '.';
-      tierEl.textContent = t('pricing.tierLabel') + ': ' + fmtRate(effective) + ' ' + t('pricing.perUser');
+      // e.g. "50 users × $0.80 / user / mo"
+      subEl.textContent = fmtNum(n) + ' ' + word + ' × ' + fmtRate(rate) + ' ' + t('pricing.perUser');
+      tierEl.textContent = t('pricing.estimate') + ' ' + fmtNum(n) + ' ' + word + '.';
     }
 
     // sync slider
@@ -212,6 +208,116 @@
       document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
     } else {
       document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    }
+
+    initSignatureDemo();
+  }
+
+  // -------- Animated signature preview -------------------------------------
+  // Cycles: placeholders -> fill real values one variable at a time ->
+  // hold the completed signature 3s -> revert to placeholders one by one -> repeat.
+  function initSignatureDemo() {
+    var card = document.getElementById('sig-demo');
+    if (!card) return;
+    var fields = Array.prototype.slice.call(card.querySelectorAll('.var[data-var]'));
+    if (!fields.length) return;
+
+    // Real demo data tied to signature.cat
+    var DATA = {
+      firstname: 'Anna',
+      lastname: 'Kowalska',
+      jobtitle: 'Head of Marketing',
+      email: 'anna@signature.cat',
+      phone: '+48 797 891 447',
+      department: 'Marketing',
+      domain: 'signature.cat'
+    };
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var STEP = 520;     // ms between consecutive variable swaps
+    var SWAP = 280;     // ms for the fade/blur swap transition (matches CSS)
+    var HOLD_FILLED = 3000;
+    var HOLD_VARS = 1100;
+    var timers = [];
+    var running = false;
+
+    function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+    function later(fn, ms) { var id = setTimeout(fn, ms); timers.push(id); return id; }
+
+    function placeholderText(el) { return '{{' + el.getAttribute('data-var') + '}}'; }
+
+    // Swap one element's content with a fade/blur transition
+    function swap(el, text, asValue) {
+      el.classList.add('swapping');
+      later(function () {
+        el.textContent = text;
+        el.classList.toggle('is-value', !!asValue);
+        // next frame -> remove swapping to fade back in
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { el.classList.remove('swapping'); });
+        });
+      }, SWAP);
+    }
+
+    function setPlaceholders(animated) {
+      fields.forEach(function (el) {
+        if (animated) { swap(el, placeholderText(el), false); }
+        else { el.textContent = placeholderText(el); el.classList.remove('is-value', 'swapping'); }
+      });
+    }
+
+    function cycle() {
+      if (!running) return;
+      var t = 0;
+      // 1) Fill each field, one variable at a time
+      fields.forEach(function (el, i) {
+        later(function () { swap(el, DATA[el.getAttribute('data-var')], true); }, t);
+        t += STEP;
+      });
+      // 2) Hold completed signature, then revert one by one
+      t += HOLD_FILLED;
+      fields.forEach(function (el) {
+        later(function () { swap(el, placeholderText(el), false); }, t);
+        t += STEP;
+      });
+      // 3) Short hold on placeholders, then repeat
+      t += HOLD_VARS;
+      later(cycle, t);
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      setPlaceholders(false);
+      // reduced motion: show the filled version statically, no looping
+      if (reduce) {
+        fields.forEach(function (el) {
+          el.textContent = DATA[el.getAttribute('data-var')];
+          el.classList.add('is-value');
+        });
+        running = false;
+        return;
+      }
+      later(cycle, 700);
+    }
+    function stop() { running = false; clearTimers(); }
+
+    // Only animate while the card is on screen and the tab is visible
+    var visible = true, onscreen = true;
+    function evaluate() {
+      if (visible && onscreen) start();
+      else stop();
+    }
+    document.addEventListener('visibilitychange', function () {
+      visible = !document.hidden; evaluate();
+    });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        onscreen = entries[0].isIntersecting; evaluate();
+      }, { threshold: 0.25 });
+      io.observe(card);
+    } else {
+      evaluate();
     }
   }
 

@@ -102,7 +102,6 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <span class="eyebrow"><span class="dot" aria-hidden="true"></span><span data-i18n="hero.eyebrow">Gmail signatures for Google Workspace</span></span>
           <h1 data-i18n="hero.title">Centrally manage Gmail signatures in your Google Workspace.</h1>
           <p class="lede" data-i18n="hero.lede">Design one signature template, target users, groups or org units, and let SignatureCat keep every Gmail signature personalized and always up to date — automatically.</p>
           <div class="hero-cta">
@@ -123,19 +122,22 @@
               <div class="glass-dots"><i></i><i></i><i></i></div>
               <span class="glass-title" data-i18n="hero.glassTitle">signature preview</span>
             </div>
-            <div class="sig-card">
+            <div class="sig-card" id="sig-demo">
               <div class="sig-row">
                 <div class="sig-avatar"></div>
                 <div>
-                  <div class="sig-name" data-i18n="hero.sigName">Anna Kowalska</div>
-                  <div class="sig-role" data-i18n="hero.sigRole">Head of Marketing</div>
+                  <div class="sig-name">
+                    <span class="var" data-var="firstname">{{firstname}}</span>
+                    <span class="var" data-var="lastname">{{lastname}}</span>
+                  </div>
+                  <div class="sig-role"><span class="var" data-var="jobtitle">{{jobtitle}}</span></div>
                 </div>
               </div>
               <div class="sig-divider"></div>
               <div class="sig-lines">
-                <div>✉︎ <span class="var">{{email}}</span></div>
-                <div>☎︎ <span class="var">{{phone}}</span></div>
-                <div>⌂ <span class="var">{{department}}</span> · <span class="var">{{domain}}</span></div>
+                <div class="sig-field"><span class="sig-ico" aria-hidden="true">✉︎</span><span class="var" data-var="email">{{email}}</span><span class="sig-hint" data-i18n="hero.hint.email">e-mail address</span></div>
+                <div class="sig-field"><span class="sig-ico" aria-hidden="true">☎︎</span><span class="var" data-var="phone">{{phone}}</span><span class="sig-hint" data-i18n="hero.hint.phone">phone number</span></div>
+                <div class="sig-field"><span class="sig-ico" aria-hidden="true">⌂</span><span class="var" data-var="department">{{department}}</span><span class="sig-sep">·</span><span class="var" data-var="domain">{{domain}}</span><span class="sig-hint" data-i18n="hero.hint.dept">department · domain</span></div>
               </div>
             </div>
             <span class="glass-chip" data-i18n="hero.sigChip">Auto-synced</span>

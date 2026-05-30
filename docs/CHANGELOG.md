@@ -2,6 +2,16 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-05-30 — Hero animation + pricing model update
+
+- **What:** (1) Removed the hero `.eyebrow` badge. (2) Turned the signature preview into an animated demo: name/last name/job title and all body fields are now variables (`{{firstname}}`, `{{lastname}}`, `{{jobtitle}}`, `{{email}}`, `{{phone}}`, `{{department}}`, `{{domain}}`). They resolve to real signature.cat data **one variable at a time** (Anna, Kowalska, Head of Marketing, anna@signature.cat, +48 797 891 447, Marketing, signature.cat), hold the completed signature for 3s, then revert to placeholders one by one — looping forever. Each field carries an uppercase hint label explaining what the variable is for. (3) Reworked the pricing calculator.
+- **Why:** The eyebrow was redundant with the H1. The animation makes the variable → real-value concept self-explanatory at a glance. The pricing change aligns the calculator with the requested flat-per-tier model.
+- **Scope:** landingpage.
+- **Pricing model change:** Switched from graduated (summing each seat at its tier rate) to **flat tier rate × headcount** — the whole headcount is billed at the single tier its size falls into. Examples: 50 users = $40.00 (0.80×50); 80 users = $56.00 (0.70×80); 121 users = $72.60 (0.60×121); 1 user = Free. Removed the "effective rate" line; the calculator now shows `N users × $rate / user / mo` and the monthly total. `rateForCount()` / `computeTotal()` in `assets/js/app.js` are the source of truth — keep tier boundaries in sync with the tier table.
+  - NOTE: this intentionally diverges from `signaturecat/app` → `docs/06_stripe_billing.md`, which describes graduated billing. If the marketing estimate must match real Stripe invoices, reconcile the two models (decide whether billing or the landing estimate changes).
+- **Design impact:** New states for `.var` (monospace pink placeholder vs resolved value `.is-value`) and a `.swapping` fade/blur transition; `.sig-hint` label chips; `.sig-field` flex layout. Consistent with the existing design system, both Light and Dark.
+- **Performance / a11y:** Animation is pure class/text swaps (no layout thrash), pauses when the card is offscreen (IntersectionObserver) or the tab is hidden (visibilitychange), and fully respects `prefers-reduced-motion` (shows the filled signature statically, no loop). i18n: added `hero.hint.email|phone|dept` in en/pl/de/fr; removed obsolete `hero.eyebrow|sigName|sigRole`.
+
 ## 2026-05-29 — Initial landing page
 
 - **What:** Built the first static landing page for SignatureCat (https://signature.cat), hosted on GitHub Pages. Single-page site with sections: hero, platform trust strip, features, how-it-works, security, pricing (with live calculator), docs CTA band, FAQ, footer. Added SEO (meta, OG/Twitter, hreflang en/pl/de/fr + x-default, JSON-LD `SoftwareApplication`, `sitemap.xml`, `robots.txt`), `CNAME` (signature.cat), `.nojekyll`, and placeholder SVG assets (favicon, OG cover).

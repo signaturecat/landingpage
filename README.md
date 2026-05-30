@@ -46,9 +46,10 @@ Mirrors the **graduated** per-seat model from `signaturecat/app` → `docs/06_st
 | 51 – 120 | $0.70 |
 | 121+ | $0.60 |
 
-The calculator sums each seat at its tier's rate (graduated, not volume) and shows the estimated monthly total + effective per-seat rate. Currency is formatted with `Intl.NumberFormat(locale, { currency: 'USD' })`. Totals are estimates excluding tax; real billing is handled by Stripe in the app.
+The calculator applies a **single flat tier rate to the whole headcount** (rate for the size band × number of users) — it does NOT sum seats across tiers. Examples: 50 users = $40.00 (0.80×50), 80 users = $56.00 (0.70×80), 121 users = $72.60 (0.60×121), 1 user = Free. It shows `N users × $rate / user / mo` and the monthly total. Currency via `Intl.NumberFormat(locale, { currency: 'USD' })`. Totals are estimates excluding tax.
 
-> If the pricing in `06_stripe_billing.md` changes, update `TIERS` in `assets/js/app.js` **and** the tier table + this README.
+> Source of truth: `rateForCount()` / `computeTotal()` in `assets/js/app.js`. If tiers change, update those **and** the tier table + this README.
+> NOTE: this flat-per-tier estimate intentionally differs from `signaturecat/app` → `docs/06_stripe_billing.md` (graduated). Reconcile if the landing estimate must match real Stripe invoices.
 
 ## Placeholders to replace
 
