@@ -2,6 +2,15 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-05-30 — New logo, removed band glow, masked signature icons
+
+- **What:** (1) Replaced the brand logo and site favicon/apple-touch with the newly supplied rounded app-icon (`logo-singaturecat.jpg` -> overwrote `logo-mark.png`, `favicon.png`, `apple-touch-icon.png`). (2) Removed the decorative `.band::after` radial glow circle in the docs CTA band. (3) Replaced the emoji icons in the signature preview body (envelope / phone / house) with the supplied glyph icons (`mail.jpg`, `phone-5.jpg`, `office.jpg`).
+- **Why:** Use the latest brand mark, drop the band glow per request, and use proper branded line icons in the preview.
+- **Scope:** landingpage.
+- **Icon technique:** The three glyph JPGs (black-on-white) were converted to alpha PNG masks (`ico-mail.png`, `ico-phone.png`, `ico-office.png`, 64px). `.sig-ico` now renders them via CSS `mask-image` with `background-color: currentColor`, so they keep the exact same color modulation as the previous emoji (inherits the signature line color at `opacity: .55`). Fixed 16x16 size as requested.
+- **Cleanup:** Dropped the `.band > *` z-index helper that only existed to sit above the now-removed glow (band buttons remain fully clickable).
+- **Design impact:** Header/footer logo and favicon updated; docs band is now flat (no glow); preview icons are crisp branded glyphs that recolor with the theme.
+
 ## 2026-05-30 — Revert button hover + fix docs-band click blocking
 
 - **What:** (1) Reverted the button hover effect back to the original (color/border change only) — removed the translateY lift, box-shadow and focus-visible ring added earlier today. (2) Fixed the docs CTA band where the "Zacznij teraz" (`.btn-ghost`) button could not be clicked on desktop: the decorative `.band::after` glow circle (top-right) overlapped the right-aligned button and intercepted pointer events.

@@ -165,7 +165,14 @@ img,svg { display: block; max-width: 100%; }
 .sig-divider { height: 1px; background: var(--glass-border); margin: 14px 0; }
 .sig-lines { display: grid; gap: 11px; font-size: 13px; color: rgba(250,245,239,.78); }
 .sig-field { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 19px; }
-.sig-ico { opacity: .55; flex: none; width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; line-height: 1; text-align: center; }
+.sig-ico { opacity: .55; flex: none; width: 16px; height: 16px; display: inline-block;
+  background-color: currentColor; /* same color-modulation as before */
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: 16px 16px; mask-size: 16px 16px; }
+.sig-ico.ico-mail { -webkit-mask-image: url(../img/ico-mail.png); mask-image: url(../img/ico-mail.png); }
+.sig-ico.ico-phone { -webkit-mask-image: url(../img/ico-phone.png); mask-image: url(../img/ico-phone.png); }
+.sig-ico.ico-office { -webkit-mask-image: url(../img/ico-office.png); mask-image: url(../img/ico-office.png); }
 .sig-sep { opacity: .45; }
 
 /* Animated variables: monospace placeholder vs resolved real value */
@@ -317,9 +324,6 @@ section[id] { scroll-margin-top: 88px; }
   padding: 48px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 26px;
   position: relative; overflow: hidden;
 }
-.band::after { content:""; position:absolute; right:-40px; top:-40px; width:240px; height:240px; border-radius:50%; pointer-events: none; z-index: 0;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 42%, transparent), transparent 70%); }
-.band > * { position: relative; z-index: 1; }
 .band h2 { font-size: 1.7rem; margin-bottom: 8px; }
 .band p { color: rgba(250,245,239,.72); max-width: 48ch; }
 .band .btn-primary { background: var(--accent); color: #1c1917; }
