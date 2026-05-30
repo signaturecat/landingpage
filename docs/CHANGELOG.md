@@ -2,6 +2,14 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-05-30 — Revert button hover + fix docs-band click blocking
+
+- **What:** (1) Reverted the button hover effect back to the original (color/border change only) — removed the translateY lift, box-shadow and focus-visible ring added earlier today. (2) Fixed the docs CTA band where the "Zacznij teraz" (`.btn-ghost`) button could not be clicked on desktop: the decorative `.band::after` glow circle (top-right) overlapped the right-aligned button and intercepted pointer events.
+- **Why:** Restore the preferred, calmer button interaction; make both docs-band CTAs clickable.
+- **Scope:** landingpage.
+- **Fix detail:** Added `pointer-events: none` + `z-index: 0` to `.band::after`, and `position: relative; z-index: 1` to `.band > *` so the heading and CTA links sit above the decoration. Verified via hit-testing that the topmost element at each band button's center is the link itself.
+- **Design impact:** Button hover matches the original design system again; docs band visual unchanged.
+
 ## 2026-05-30 — Brand assets, button polish, avatar animation, copy updates
 
 - **What:** (1) Replaced the inline-SVG logo mark with the real brand logo (`signaturecat_logo.jpg` -> `assets/img/logo-mark.png`) in header and footer; replaced the site favicon/apple-touch with `signaturecat-ico-3.jpg` (`favicon.png` 96px + `apple-touch-icon.png` 180px). (2) Buttons (`.btn-primary`, `.btn-ghost`, `.btn-lg`) now have a clear hover animation (translateY lift + shadow) and a focus-visible ring; both hero CTAs link out (docs -> https://signature.cat/docs). (3) On mobile the language-switcher globe icon is hidden and the button is tightened so it no longer stretches the nav. (4) Signature-preview animation: the avatar now swaps from a gradient placeholder to Anna's real photo (`anna.jpg`) as part of the staggered fill; once everything is filled and the 3s hold passes, all variables + the photo reset to placeholders at once (instead of one-by-one). (5) Equalized `.sig-ico` emoji sizes (fixed 16x16 box, centered). (6) Copy updates (see below).
