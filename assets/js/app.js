@@ -61,7 +61,7 @@
     var label = document.getElementById('lang-current');
     if (label) label.textContent = LANG_FLAGS[currentLocale] + ' ' + currentLocale.toUpperCase();
 
-    document.querySelectorAll('.lang-menu button').forEach(function (b) {
+    document.querySelectorAll('.lang-menu button, .nav-lang-opts button').forEach(function (b) {
       b.setAttribute('aria-current', b.getAttribute('data-lang') === currentLocale ? 'true' : 'false');
     });
 
@@ -195,6 +195,14 @@
       });
       links.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () { links.classList.remove('mobile-open'); });
+      });
+      // In-menu language buttons (mobile): switch locale and close the menu
+      links.querySelectorAll('.nav-lang-opts button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          setLocale(b.getAttribute('data-lang'));
+          links.classList.remove('mobile-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
       });
     }
 

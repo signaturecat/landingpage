@@ -102,6 +102,18 @@ img,svg { display: block; max-width: 100%; }
 .nav-links a:hover { color: var(--ink); }
 .nav-right { display: flex; align-items: center; gap: 12px; }
 
+/* In-menu language selector (shown only inside the mobile hamburger menu) */
+.nav-lang { display: none; }
+.nav-lang-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 10px; }
+.nav-lang-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.nav-lang-opts button {
+  display: flex; align-items: center; gap: 8px; padding: 11px 12px; font: inherit; font-size: 15px;
+  color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; cursor: pointer;
+  transition: border-color .18s, background .18s;
+}
+.nav-lang-opts button:hover { border-color: var(--accent); }
+.nav-lang-opts button[aria-current="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, var(--surface)); font-weight: 600; }
+
 /* Language switcher */
 .lang { position: relative; }
 .lang-btn {
@@ -373,8 +385,8 @@ section[id] { scroll-margin-top: 88px; }
   .band { padding: 32px; }
   .hero { padding: 56px 0 40px; }
   .section { padding: 56px 0; }
-  /* keep the language button compact so it doesn't stretch the nav */
-  .lang-globe { display: none; }
-  .lang-btn { gap: 0; padding: 8px 11px; }
+  /* Move language selection into the hamburger menu on mobile */
+  .nav-right .lang { display: none; }
+  .nav-lang { display: block; border-top: 1px solid var(--border); padding-top: 14px; margin-top: 2px; }
   .footer-loc { flex-direction: column; align-items: flex-end; gap: 4px; }
 }

@@ -2,6 +2,14 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-05-31 — Mobile navbar: move language switcher into hamburger menu
+
+- **What:** On mobile (<=680px) the navbar language switcher is now hidden and language selection lives inside the hamburger menu instead. Fixes overlapping navbar elements on iPhone 13 / Safari, where the brand wordmark collided with the language switcher and pushed the layout.
+- **Why:** The compact in-navbar language button still took horizontal space and, combined with the brand + CTA, overflowed on narrow screens.
+- **Scope:** landingpage.
+- **Implementation:** Added a `.nav-lang` block at the end of `#nav-links` (hidden on desktop, shown only inside the open mobile menu) with a localized "Language" label and a 2x2 grid of locale buttons. They reuse the existing `data-lang` switching logic; the active locale is marked with `aria-current="true"`. Selecting a language closes the menu. Desktop keeps the existing dropdown switcher unchanged. Added i18n key `nav.language` (en: Language, pl: Jezyk, de: Sprache, fr: Langue).
+- **Verified:** iPhone 13 viewport (390x844) — no horizontal overflow (scrollWidth == 390), hamburger visible, navbar language switcher hidden; opening the menu shows the language grid; switching locale works and closes the menu. Desktop unchanged (dropdown visible, in-menu block hidden).
+
 ## 2026-05-31 — favicon.ico + footer legal links
 
 - **What:** (1) Set the site favicon to the newly added `assets/img/favicon.ico` (declared with `sizes="any"`, PNG kept as a secondary modern fallback). (2) Repointed the footer legal links from `app.signature.cat/legal/*` to the public site paths: Privacy -> `https://signature.cat/privacy`, Terms -> `/terms`, DPA -> `/dpa`, Sub-processors -> `/subprocessors`.
