@@ -2,6 +2,13 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-05-31 — favicon.ico + footer legal links
+
+- **What:** (1) Set the site favicon to the newly added `assets/img/favicon.ico` (declared with `sizes="any"`, PNG kept as a secondary modern fallback). (2) Repointed the footer legal links from `app.signature.cat/legal/*` to the public site paths: Privacy -> `https://signature.cat/privacy`, Terms -> `/terms`, DPA -> `/dpa`, Sub-processors -> `/subprocessors`.
+- **Why:** Use the supplied .ico favicon and host legal pages on the apex marketing domain rather than the app subdomain.
+- **Scope:** landingpage.
+- **Note:** Verified `favicon.ico` exists, is git-tracked, and resolves live at https://signature.cat/assets/img/favicon.ico (HTTP 200). A `favicon-reversed.ico` is also present in the repo but the standard `favicon.ico` (cat on pink, matching the logo) is the one referenced.
+
 ## 2026-05-30 — New logo, removed band glow, masked signature icons
 
 - **What:** (1) Replaced the brand logo and site favicon/apple-touch with the newly supplied rounded app-icon (`logo-singaturecat.jpg` -> overwrote `logo-mark.png`, `favicon.png`, `apple-touch-icon.png`). (2) Removed the decorative `.band::after` radial glow circle in the docs CTA band. (3) Replaced the emoji icons in the signature preview body (envelope / phone / house) with the supplied glyph icons (`mail.jpg`, `phone-5.jpg`, `office.jpg`).
