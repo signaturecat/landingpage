@@ -37,6 +37,8 @@
     if (dict[key] != null) return dict[key];
     return window.I18N[FALLBACK][key] != null ? window.I18N[FALLBACK][key] : key;
   }
+  // Expose translator so dynamic demos (e.g. conditional card status) can localize
+  window.I18N_T = t;
 
   // -------- Apply translations to DOM --------------------------------------
   function applyTranslations() {
@@ -219,6 +221,117 @@
     }
 
     initSignatureDemo();
+    initPersonalizeCard();
+    initConditionalCard();
+    initAdBanner();
+  }
+
+  // -------- Card 2: {{firstname}} {{lastname}} auto-fill on hover ----------
+  function initPersonalizeCard() {
+    var card = document.querySelector('.card-personalize');
+    if (!card) return;
+    var vars = Array.prototype.slice.call(card.querySelectorAll('.pers-var'));
+    if (!vars.length) return;
+    var VALUES = { firstname: 'Anna', lastname: 'Kowalska' };
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function fill() {
+      vars.forEach(function (el, i) {
+        var key = el.getAttribute('data-var');
+        if (reduce) { el.textContent = VALUES[key]; el.classList.add('filled'); return; }
+        setTimeout(function () {
+          el.textContent = VALUES[key];
+          el.classList.add('filled');
+        }, i * 220);
+      });
+    }
+    function clear() {
+      vars.forEach(function (el) {
+        el.textContent = '{{' + el.getAttribute('data-var') + '}}';
+        el.classList.remove('filled');
+      });
+    }
+    card.addEventListener('mouseenter', fill);
+    card.addEventListener('mouseleave', clear);
+    card.addEventListener('focusin', fill);
+    card.addEventListener('focusout', clear);
+  }
+
+  // -------- Card 3: {{del}} conditional block removal animation -----------
+  // Loops: value present -> value missing in Directory (block collapses) ->
+  // value back -> repeat. Demonstrates that {{del}} removes a footer section
+  // when the underlying Directory value is empty.
+  function initConditionalCard() {
+    var block = document.getElementById('cond-block');
+    var status = document.getElementById('cond-status');
+    if (!block || !status) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    var card = block.closest('.card-conditional');
+    var timers = [];
+    var running = false;
+    function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+    function later(fn, ms) { var id = setTimeout(fn, ms); timers.push(id); return id; }
+
+    function setStatus(missing) {
+      status.classList.toggle('missing', missing);
+      status.textContent = missing
+        ? (window.I18N_T ? window.I18N_T('feat.c3.statusMissing') : 'Phone missing — section removed')
+        : (window.I18N_T ? window.I18N_T('feat.c3.statusPresent') : 'Phone present in Directory');
+    }
+
+    function loop() {
+      if (!running) return;
+      // start: present
+      block.classList.remove('removed'); setStatus(false);
+      later(function () {
+        // value missing -> {{del}} collapses the block
+        block.classList.add('removed'); setStatus(true);
+      }, 2200);
+      later(function () {
+        block.classList.remove('removed'); setStatus(false);
+      }, 4600);
+      later(loop, 6800);
+    }
+    function start() { if (running) return; running = true; loop(); }
+    function stop() { running = false; clearTimers(); }
+
+    var onscreen = true, visible = true;
+    function evaluate() { if (onscreen && visible) start(); else stop(); }
+    document.addEventListener('visibilitychange', function () { visible = !document.hidden; evaluate(); });
+    if ('IntersectionObserver' in window && card) {
+      var io = new IntersectionObserver(function (e) { onscreen = e[0].isIntersecting; evaluate(); }, { threshold: 0.3 });
+      io.observe(card);
+    } else { evaluate(); }
+  }
+
+  // -------- Rotating marketing banner (employer branding section) ---------
+  // Cycles the campaign banner every 3s with a fade/scale swap.
+  function initAdBanner() {
+    var banner = document.getElementById('ad-banner');
+    if (!banner) return;
+    var slides = Array.prototype.slice.call(banner.querySelectorAll('.ad-slide'));
+    if (slides.length < 2) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    var idx = 0, timer = null, onscreen = true, visible = true;
+    function show(i) {
+      slides.forEach(function (s, n) { s.classList.toggle('is-active', n === i); });
+    }
+    function tick() { idx = (idx + 1) % slides.length; show(idx); }
+    function start() { if (timer) return; timer = setInterval(function () { if (onscreen && visible) tick(); }, 3000); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+    document.addEventListener('visibilitychange', function () { visible = !document.hidden; });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (e) {
+        onscreen = e[0].isIntersecting;
+        if (onscreen) start(); else stop();
+      }, { threshold: 0.25 });
+      io.observe(banner);
+    } else { start(); }
   }
 
   // -------- Animated signature preview -------------------------------------

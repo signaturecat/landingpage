@@ -2,6 +2,22 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-06-13 — Interactive feature cards, Employer-branding & Workspace-Admin sections, language button, security permissions
+
+- **What:**
+  1. **Language switcher:** removed the `lang-globe` SVG from the desktop language button — it now shows only the flag + locale code (e.g. `🇬🇧 EN`).
+  2. **Features section ("Everything you need…"):** reduced the height of the three top cards (`.card-compact`). Card 1 (Smart variables) now shows the variables in an auto-scrolling carousel that, on hover, flips each `{{variable}}` chip to its example resolved value (`{{firstname}}`→Anna, `{{jobtitle}}`→Head of Marketing, etc.). Card 2 (Personalized per user) shows `{{firstname}}` and `{{lastname}}` auto-filling on hover, and the copy now says signatures are rendered from "the template you created" instead of "a single template". Card 3 (Conditional blocks) demonstrates the `{{del}}` block live: it collapses the phone section and shows "Phone missing — section removed" when the value is absent in the Directory, then restores it on loop.
+  3. **New section `#branding` — Employer branding in every email:** an example signature for Tomasz Piasecki (IT Administrator) with a rotating marketing banner inside the footer that swaps to a different campaign every 3s with a fade/scale animation (justjoin.it "What about that Eldorado? IT Salary Report 2025/2026", a Rocket Jobs slide, and an event slide). Copy frames every employee signature as an always-on marketing channel changeable for everyone at once. Added nav link `nav.branding`.
+  4. **New section `#admin` — Designed by a Google Workspace Admin:** three cards (Group management, Departments, Organizational Units) framing the product around real Workspace structures so rollout is easier.
+  5. **Security section:** added two items — `User permission levels` (granular access for admins/editors/viewers) and `Audit-ready accountability`.
+- **Why:** Tomasz's landing-page improvement request — make the feature cards more illustrative/compact, demonstrate the conditional-block value visually, surface the employer-branding banner use case, position the product as Admin-designed, and make the user-permission management explicit in Security.
+- **Scope:** landingpage only. No backend/DevOps changes. No inter-team message required.
+- **Implementation:** `index.html` (button markup, 3 card demos, 2 new `<section>`s, 2 security items, nav link); `assets/css/style.css` (~150 lines appended: `.card-compact` with `min-width:0` to keep the 3-up grid columns equal, `.var-carousel`/`.var-track`/`.var-chip` hover-flip, `.pers-*`, `.cond-*` collapse, `.brand-*`, `.ad-banner`/`.ad-slide` gradient banners, responsive + dark + reduced-motion overrides); `assets/js/app.js` (`initPersonalizeCard`, `initConditionalCard`, `initAdBanner`, all IntersectionObserver-gated and reduced-motion-aware); `assets/js/i18n.js` (new keys in en/pl/de/fr, updated `feat.c2.d`). Added `assets/img/footer-example.jpg` (reference only — the live banners are CSS gradients, not raster).
+- **Design impact (Light + Dark):** Verified both themes. Feature cards are shorter and equal-width; carousel masked with a fade edge; banner uses white text on dark gradients (contrast OK in both modes); all new sections follow the achromatic + single-pink-accent system.
+- **Performance:** No new fonts or libraries; banners are pure CSS gradients (no images); all animations are `transform`/`opacity` only and gated by IntersectionObserver so off-screen sections don't animate. No layout-thrash.
+- **A11y:** All motion (carousel, hover flips, `{{del}}` loop, 3s banner rotation) is disabled under `prefers-reduced-motion: reduce`. Text contrast meets WCAG AA in Light and Dark. No horizontal overflow at 390px.
+- **Verified:** No console/page errors; 3-up feature grid renders equal columns (was a grid-blowout bug from the wide carousel, fixed with `min-width:0`); card hover-flip, firstname/lastname auto-fill, `{{del}}` collapse loop, and 3s banner rotation all confirmed working; Light + Dark + mobile (390px, no overflow) screenshots reviewed.
+
 ## 2026-05-31 — Mobile navbar: move language switcher into hamburger menu
 
 - **What:** On mobile (<=680px) the navbar language switcher is now hidden and language selection lives inside the hamburger menu instead. Fixes overlapping navbar elements on iPhone 13 / Safari, where the brand wordmark collided with the language switcher and pushed the layout.
