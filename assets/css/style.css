@@ -12,6 +12,8 @@
   --muted-2: #888380;
   --accent: #f2a8ff;       /* pink accent */
   --accent-soft: #e89bf5;
+  --ok: #1f9d57;           /* status dot: present (green) */
+  --bad: #d6453d;          /* status dot: absent (red) */
   --panel: #292524;        /* dark glass panel in hero */
   --panel-text: #faf5ef;
   --border: #e7ddd0;       /* warm light border */
@@ -33,6 +35,8 @@
     --muted-2: #908a85;
     --accent: #f2a8ff;
     --accent-soft: #e89bf5;
+    --ok: #34d17e;           /* brighter green for dark bg */
+    --bad: #ff6b61;          /* brighter red for dark bg */
     --panel: #292524;
     --panel-text: #faf5ef;
     --border: #3f3a37;
@@ -420,6 +424,13 @@ section[id] { scroll-margin-top: 88px; }
   max-width: 220px; opacity: 1; padding: 6px 11px;
   border-left: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
 }
+/* Touch / no-hover devices (mobile): reveal the resolved values automatically, since there is no hover */
+@media (hover: none) {
+  .card-vars .var-chip .var-val {
+    max-width: 220px; opacity: 1; padding: 6px 11px;
+    border-left: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+}
 @media (prefers-reduced-motion: reduce){ .var-chip .var-val { transition: none; } }
 
 /* Card 2 - {{firstname}} {{lastname}} auto-filling on hover */
@@ -457,26 +468,41 @@ section[id] { scroll-margin-top: 88px; }
 .cond-line .cond-text { flex: 0 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cond-name { font-weight: 700; }
 .cond-muted { color: var(--muted); font-size: .85rem; }
+/* Tag chips: padding (incl. vertical) so the rounded border is never clipped; max-width animates to 0 when hidden */
 .cond-tag {
-  display: inline-flex; overflow: hidden;
-  max-width: 80px; opacity: 1; transform: scale(1);
+  display: inline-flex; align-items: center; overflow: hidden;
+  max-width: 80px; opacity: 1; transform: scale(1); padding: 1px 0;
   transition: max-width .4s var(--ease), opacity .35s var(--ease), transform .35s var(--ease), margin .4s var(--ease);
 }
 .cond-line.tags-hidden .cond-tag { max-width: 0; opacity: 0; transform: scale(.85); margin: 0 -3px; }
 .cond-tag code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; line-height: 1.4; white-space: nowrap;
   background: color-mix(in srgb, var(--accent) 16%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  color: var(--ink); padding: 1px 4px; border-radius: 6px;
+  color: var(--ink); padding: 2px 5px; border-radius: 6px;
 }
 .cond-text { font-size: .85rem; }
+/* Absent case: the whole conditional line collapses away (section znika) */
+.cond-line {
+  max-height: 32px; opacity: 1;
+  transition: max-height .45s var(--ease), opacity .35s var(--ease), margin .45s var(--ease);
+}
+.cond-line.line-gone { max-height: 0; opacity: 0; margin: 0; padding: 0; overflow: hidden; }
 .cond-status {
   margin-top: 10px; font-size: 12px; font-weight: 600;
   display: inline-flex; align-items: center; gap: 6px;
   color: var(--muted-2); transition: color .3s var(--ease);
 }
-.cond-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-soft); flex: none; }
-@media (prefers-reduced-motion: reduce){ .cond-tag { transition: none; } }
+.cond-status::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%; flex: none;
+  background: var(--accent-soft); transition: background .3s var(--ease), box-shadow .3s var(--ease);
+}
+/* Status dot colors: present -> green, absent -> red */
+.cond-status.present { color: var(--ok, #1f9d57); }
+.cond-status.present::before { background: var(--ok, #1f9d57); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok, #1f9d57) 18%, transparent); }
+.cond-status.absent { color: var(--bad, #d6453d); }
+.cond-status.absent::before { background: var(--bad, #d6453d); box-shadow: 0 0 0 3px color-mix(in srgb, var(--bad, #d6453d) 18%, transparent); }
+@media (prefers-reduced-motion: reduce){ .cond-tag, .cond-line { transition: none; } }
 /* Employer branding section ----------------------------------------------- */
 .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 54px; align-items: center; }
 .brand-copy .kicker { display: block; margin-bottom: 12px; }

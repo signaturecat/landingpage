@@ -265,6 +265,24 @@
     card.addEventListener('mouseleave', clear);
     card.addEventListener('focusin', fill);
     card.addEventListener('focusout', clear);
+
+    // Touch / no-hover devices (mobile): auto-cycle fill <-> clear while on screen,
+    // since there is no hover to trigger the swap.
+    var noHover = window.matchMedia('(hover: none)').matches;
+    if (noHover && !reduce && 'IntersectionObserver' in window) {
+      var timer = null, filled = false, onscreen = false;
+      function tick() { if (filled) clear(); else fill(); filled = !filled; }
+      function run() { if (timer) return; tick(); timer = setInterval(tick, 2600); }
+      function halt() { if (timer) { clearInterval(timer); timer = null; } }
+      var io2 = new IntersectionObserver(function (e) {
+        onscreen = e[0].isIntersecting;
+        if (onscreen && !document.hidden) run(); else halt();
+      }, { threshold: 0.4 });
+      io2.observe(card);
+      document.addEventListener('visibilitychange', function () {
+        if (onscreen && !document.hidden) run(); else halt();
+      });
+    }
   }
 
   // -------- Card 3: {{del}} conditional block animation -------------------
@@ -279,14 +297,26 @@
     var line = block.querySelector('.cond-line');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function setStatus(rendered) {
-      status.classList.toggle('missing', false);
-      status.textContent = rendered
-        ? (window.I18N_T ? window.I18N_T('feat.c3.statusPresent') : 'Phone present — section kept')
-        : (window.I18N_T ? window.I18N_T('feat.c3.statusRaw') : 'Template with conditional tags');
+    // state: 'raw' = template with visible tags, 'present' = value exists (tags stripped,
+    // section stays, green dot), 'absent' = value missing (whole section removed, red dot)
+    function t(key, fallback) { return window.I18N_T ? window.I18N_T(key) : fallback; }
+    function setStatus(state) {
+      status.classList.remove('present', 'absent');
+      if (state === 'present') {
+        status.classList.add('present');
+        status.textContent = t('feat.c3.statusPresent', 'Phone present — section kept');
+      } else if (state === 'absent') {
+        status.classList.add('absent');
+        status.textContent = t('feat.c3.statusAbsent', 'Phone missing — section removed');
+      } else {
+        status.textContent = t('feat.c3.statusRaw', 'Template with conditional tags');
+      }
     }
+    function showRaw() { if (line) line.classList.remove('tags-hidden', 'line-gone'); setStatus('raw'); }
+    function showPresent() { if (line) { line.classList.remove('line-gone'); line.classList.add('tags-hidden'); } setStatus('present'); }
+    function showAbsent() { if (line) line.classList.add('line-gone'); setStatus('absent'); }
 
-    if (reduce) { if (line) line.classList.add('tags-hidden'); setStatus(true); return; }
+    if (reduce) { showPresent(); return; }
 
     var card = block.closest('.card-conditional');
     var timers = [];
@@ -294,14 +324,14 @@
     function clearTimers() { timers.forEach(clearTimeout); timers = []; }
     function later(fn, ms) { var id = setTimeout(fn, ms); timers.push(id); return id; }
 
+    // Four-phase loop (no hover needed — works on mobile/touch via IntersectionObserver):
+    //  0s raw -> 2.5s value present (tags fade, green) -> 5s raw again -> 7.5s value absent (section gone, red) -> 10s repeat
     function loop() {
       if (!running) return;
-      // start: raw template with visible {{del}} / {{/del}} tags
-      if (line) line.classList.remove('tags-hidden'); setStatus(false);
-      later(function () {
-        // value present -> only the tags fade out, the phone section stays
-        if (line) line.classList.add('tags-hidden'); setStatus(true);
-      }, 5000);
+      showRaw();
+      later(showPresent, 2500);
+      later(showRaw, 5000);
+      later(showAbsent, 7500);
       later(loop, 10000);
     }
     function start() { if (running) return; running = true; loop(); }

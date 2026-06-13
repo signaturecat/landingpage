@@ -2,6 +2,21 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-06-13 — Conditional card: add "section removed" case, colored status dots, unclipped tag borders, mobile auto-play
+
+- **What:**
+  1. **Card 3 (Conditional blocks) — added the "value absent" case:** the loop now demonstrates BOTH outcomes. The phone line still collapses its `{{del}}`/`{{/del}}` tags when the value is present (section stays), and now also fully removes the whole conditional line when the value is missing (section znika — no empty gap). New 4-phase IntersectionObserver loop: `raw template → value present → raw template → value absent → repeat` (2.5s per phase, 10s cycle).
+  2. **Unclipped tag borders:** the `{{del}}`/`{{/del}}` chip borders were being cut off by `.cond-tag { overflow:hidden }` with no vertical padding. Added `align-items:center` + vertical padding to `.cond-tag` and bumped `.cond-tag code` padding (`1px 4px` → `2px 5px`) with `line-height:1.4`, so the rounded border renders fully on all four sides.
+  3. **Colored status dots:** the status line dot + text now turn **green** for "Telefon obecny — sekcja zostaje" (`.cond-status.present`) and **red** for the new "Telefon nieobecny — sekcja znika" (`.cond-status.absent`). The raw-template state keeps the neutral pink-accent dot. Added theme-aware `--ok`/`--bad` tokens (Light: `#1f9d57`/`#d6453d`; Dark: brighter `#34d17e`/`#ff6b61` for contrast).
+  4. **Mobile (no-hover) auto-play:** Card 1 (Smart variables) and Card 2 (Personalized per user) previously only animated on hover/focus, so nothing moved on touch devices. On `(hover: none)` devices the resolved values in Card 1 are now revealed via CSS, and Card 2 auto-cycles `{{firstname}}/{{lastname}}` ↔ "Anna Kowalska" every 2.6s while on screen (IntersectionObserver-gated). Card 3 was already IO-driven and works on mobile unchanged.
+- **Why:** Tomasz's fourth round of conditional-card refinements.
+- **Scope:** landingpage only. No backend/DevOps changes. No inter-team message required.
+- **Implementation:** `assets/css/style.css` (`--ok`/`--bad` tokens in `:root` + dark block; `.cond-tag` padding/align fix; `.cond-line` collapse via `max-height`/`opacity` + `.line-gone`; `.cond-status.present`/`.absent` dot+text colors; `@media (hover:none)` reveal for `.card-vars .var-val`; reduced-motion override extended to `.cond-line`); `assets/js/app.js` (`initConditionalCard` tri-state `setStatus` + `showRaw`/`showPresent`/`showAbsent` + 4-phase loop; `initPersonalizeCard` `(hover:none)` IO auto-cycle); `assets/js/i18n.js` (new `feat.c3.statusAbsent` in en/pl/de/fr).
+- **Design impact (Light + Dark):** Verified both themes. Present state: green dot + green label, tags faded, phone row stays. Absent state: red dot + red label, entire phone row removed with no orphaned gap, card height stays stable. Tag chip borders fully visible in the raw state. Achromatic + single-pink-accent system preserved for the raw/template state.
+- **Performance:** No new fonts/libraries. All animations remain `transform`/`opacity`/`max-height` and IntersectionObserver-gated (Card 1/2 mobile cycles and Card 3 loop pause when off-screen or tab hidden).
+- **A11y:** All motion stays disabled under `prefers-reduced-motion: reduce` (Card 3 settles on the present state; Card 1/2 mobile auto-cycle is skipped). Green/red status colors meet WCAG AA contrast in Light + Dark; the cue is carried by both color AND text, not color alone. No horizontal overflow at 390px.
+- **Verified:** Playwright QA in Light + Dark + mobile (390px, `hover:none`). Card 3 loop sampled across 10s — raw (pink dot) → present (green `rgb(31,157,87)`, tags hidden, line kept) → raw → absent (red `rgb(214,69,61)`, `line-gone`, max-height 0) → repeat. Tag borders render fully (vertical padding applied). Mobile: Card 1 `.var-val` revealed (max-width 220px, opacity 1, "Anna"); Card 2 auto-cycles "Anna Kowalska" ↔ "{{firstname}} {{lastname}}"; Card 3 cycles all three states once on screen. 0 console/page errors; no horizontal overflow.
+
 ## 2026-06-13 — Card demo polish (marquee on hover, smooth swap, single-line conditional), copy & i18n updates
 
 - **What:**
