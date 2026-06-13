@@ -396,7 +396,7 @@ section[id] { scroll-margin-top: 88px; }
   align-items: center;
   animation: varScroll 26s linear infinite;
 }
-.card-vars:hover .var-track { animation-play-state: paused; }
+/* Card 1: marquee keeps scrolling on hover (values still slide sideways) */
 @keyframes varScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 /* Each chip shows the {{token}} and, on hover, expands to also show the value */
 .var-chip {
@@ -431,13 +431,19 @@ section[id] { scroll-margin-top: 88px; }
 .pers-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
 .pers-var {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 600; font-size: 1rem;
-  line-height: 1.3; color: var(--accent-soft); transition: color .3s var(--ease);
+  line-height: 1.3; color: var(--accent-soft); display: inline-block;
+  /* Smooth fade + slide + blur swap, matching the hero signature preview */
+  transition: color .3s var(--ease), opacity .28s var(--ease), transform .28s var(--ease), filter .28s var(--ease);
 }
 @media (prefers-color-scheme: dark){ .pers-var { color: var(--accent); } }
 .pers-var.filled {
   font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 1rem; color: var(--ink);
 }
-@media (prefers-reduced-motion: reduce){ .pers-var { transition: none; } }
+.pers-var.swapping { opacity: 0; transform: translateY(-4px); filter: blur(2px); }
+@media (prefers-reduced-motion: reduce){
+  .pers-var { transition: none; }
+  .pers-var.swapping { opacity: 1; transform: none; filter: none; }
+}
 
 /* Card 3 - conditional {{del}} block animation (tags fade, section stays) */
 .cond-demo { margin-top: 14px; }
@@ -446,6 +452,9 @@ section[id] { scroll-margin-top: 88px; }
   padding: 12px 14px; font-size: .9rem;
 }
 .cond-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 3px 0; }
+/* Conditional line: keep {{del}} + phone + {{/del}} on ONE line so the closing tag never wraps and the card never grows */
+.cond-line { flex-wrap: nowrap; min-width: 0; gap: 4px; }
+.cond-line .cond-text { flex: 0 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cond-name { font-weight: 700; }
 .cond-muted { color: var(--muted); font-size: .85rem; }
 .cond-tag {
@@ -455,10 +464,10 @@ section[id] { scroll-margin-top: 88px; }
 }
 .cond-line.tags-hidden .cond-tag { max-width: 0; opacity: 0; transform: scale(.85); margin: 0 -3px; }
 .cond-tag code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; white-space: nowrap;
   background: color-mix(in srgb, var(--accent) 16%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  color: var(--ink); padding: 1px 6px; border-radius: 6px;
+  color: var(--ink); padding: 1px 4px; border-radius: 6px;
 }
 .cond-text { font-size: .85rem; }
 .cond-status {

@@ -2,6 +2,25 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-06-13 — Card demo polish (marquee on hover, smooth swap, single-line conditional), copy & i18n updates
+
+- **What:**
+  1. **Card 1 (Smart variables) — values keep scrolling on hover:** removed the `animation-play-state: paused` rule on `.card-vars:hover .var-track`, so the resolved-value marquee keeps moving sideways while the user hovers (it no longer freezes).
+  2. **Card 2 (Personalized per user) — smoother variable→name transition:** the `{{firstname}}`/`{{lastname}}` chips now swap to "Anna"/"Kowalska" with the same fade/lift/blur transition used by the hero footer-preview (`.sig-card .var.swapping`). Added `display:inline-block` + a `.28s` transition on `opacity/transform/filter` to `.pers-var`, a `.pers-var.swapping` state (`opacity:0; translateY(-4px); blur(2px)`), and a reduced-motion override. `initPersonalizeCard()` now uses a `swapVar()` helper (add `.swapping` → wait 280ms → change text → double-rAF removes the class) with a 260ms stagger between the two fields.
+  3. **Card 3 (Conditional blocks) — single line, slower, simpler status:** the `{{del}}`/`{{/del}}` tags and the phone line now stay on **one line** so the card no longer stretches when the closing tag appears. `.cond-line` is `flex-wrap:nowrap; gap:4px; min-width:0`; `.cond-text` truncates with ellipsis if needed; `.cond-tag code` shrunk (11px→10px, padding `1px 6px`→`1px 4px`). The fade loop was slowed to **every 5s** (tags fade at 5000ms, loop at 10000ms; was 2200/5200ms). Status copy simplified to `feat.c3.statusPresent` = "Telefon obecny — sekcja zostaje" (and EN/DE/FR equivalents).
+  4. **Admin kicker:** `admin.kicker` shortened from "Stworzone przez Administratora Google Workspace" to "Stworzone przez" (EN "Built by", DE "Entwickelt von", FR "Conçu par"). `admin.title` left unchanged per request.
+  5. **Branding chip:** `brand.chip` changed to "Real-time marketing" in all four locales (was PL "Taki sam u wszystkich" / EN "Same for everyone" / etc.).
+  6. **Pricing title:** `pricing.title` → PL "Proste rozliczenie, które wspiera rozwój Twojej firmy" (EN "Simple pricing that supports your company's growth", DE/FR equivalents).
+  7. **Pricing sub:** `pricing.sub` tail changed to PL "…niższa stawka za miejsce. Nie musisz obawiać się wzrostu cennika wraz ze wzrostem działalności." (was "…niższa stawka za miejsce — rozliczenie miesięczne w USD."); EN/DE/FR updated to match.
+  8. **Pricing note — removed "(graduated)":** the `(graduated)` parenthetical was dropped from `pricing.note` in all four locales.
+- **Why:** Tomasz's third round of landing-page refinements.
+- **Scope:** landingpage only. No backend/DevOps changes. No inter-team message required.
+- **Implementation:** `assets/css/style.css` (Card 1 marquee no-pause-on-hover; `.pers-var` + `.pers-var.swapping` transition; `.cond-line` nowrap/`.cond-text` ellipsis/smaller `.cond-tag code`); `assets/js/app.js` (`initPersonalizeCard` `swapVar()` helper + stagger; `initConditionalCard` 5s/10s timings; updated fallback status string); `assets/js/i18n.js` (en/pl/de/fr: `feat.c3.statusPresent`, `admin.kicker`, `brand.chip`, `pricing.title`, `pricing.sub`, `pricing.note`); `index.html` (static fallback text for `admin.kicker`, `brand.chip`, `pricing.sub`).
+- **Design impact (Light + Dark):** Verified both themes. Card 1 marquee animates continuously under hover; Card 2 name swap matches the hero preview's motion; Card 3 holds a constant height (cond-line locked to one 28px line — `{{del}} Phone/Telefon: +48 797 891 447 {{/del}}`), no more stretch. All copy renders within the existing achromatic + single-pink-accent system.
+- **Performance:** No new fonts/libraries; all animations remain `transform`/`opacity`/`filter` and IntersectionObserver-gated. Slowing Card 3 to a 10s cycle reduces repaint frequency.
+- **A11y:** All motion (marquee, Card 2 swap, Card 3 fade) stays disabled under `prefers-reduced-motion: reduce` via overrides. Text contrast meets WCAG AA in Light + Dark. No horizontal overflow at 390px.
+- **Verified:** Playwright QA in Light + Dark + mobile (390px), EN + PL. Card 1 marquee `translateX` keeps advancing during hover; Card 2 mid-swap shows `.swapping` then resolves to "Anna Kowalska"; Card 3 `cond-line` height 28px / `flex-wrap:nowrap` with both `{{del}}`/`{{/del}}` on one line; admin kicker "STWORZONE PRZEZ" / brand chip "Real-time marketing" / pricing title+sub+note updated with no "graduated" (`hasGraduated:false`); 0 console/page errors; no horizontal overflow at 390px.
+
 ## 2026-06-13 — Feature-card height lock, Card 1/3 demo fixes, section reorder, Admin & Branding refinements
 
 - **What:**

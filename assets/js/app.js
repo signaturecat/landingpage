@@ -234,21 +234,31 @@
     if (!vars.length) return;
     var VALUES = { firstname: 'Anna', lastname: 'Kowalska' };
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var SWAP = 280; // ms — matches the .pers-var fade/blur transition (same as hero preview)
+
+    // Smooth swap of one variable's content (fade out -> change text -> fade in)
+    function swapVar(el, text, asValue) {
+      if (reduce) { el.textContent = text; el.classList.toggle('filled', !!asValue); return; }
+      el.classList.add('swapping');
+      setTimeout(function () {
+        el.textContent = text;
+        el.classList.toggle('filled', !!asValue);
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { el.classList.remove('swapping'); });
+        });
+      }, SWAP);
+    }
 
     function fill() {
       vars.forEach(function (el, i) {
         var key = el.getAttribute('data-var');
-        if (reduce) { el.textContent = VALUES[key]; el.classList.add('filled'); return; }
-        setTimeout(function () {
-          el.textContent = VALUES[key];
-          el.classList.add('filled');
-        }, i * 220);
+        if (reduce) { swapVar(el, VALUES[key], true); return; }
+        setTimeout(function () { swapVar(el, VALUES[key], true); }, i * 260);
       });
     }
     function clear() {
       vars.forEach(function (el) {
-        el.textContent = '{{' + el.getAttribute('data-var') + '}}';
-        el.classList.remove('filled');
+        swapVar(el, '{{' + el.getAttribute('data-var') + '}}', false);
       });
     }
     card.addEventListener('mouseenter', fill);
@@ -272,7 +282,7 @@
     function setStatus(rendered) {
       status.classList.toggle('missing', false);
       status.textContent = rendered
-        ? (window.I18N_T ? window.I18N_T('feat.c3.statusPresent') : 'Phone present — section kept, tags removed')
+        ? (window.I18N_T ? window.I18N_T('feat.c3.statusPresent') : 'Phone present — section kept')
         : (window.I18N_T ? window.I18N_T('feat.c3.statusRaw') : 'Template with conditional tags');
     }
 
@@ -291,8 +301,8 @@
       later(function () {
         // value present -> only the tags fade out, the phone section stays
         if (line) line.classList.add('tags-hidden'); setStatus(true);
-      }, 2200);
-      later(loop, 5200);
+      }, 5000);
+      later(loop, 10000);
     }
     function start() { if (running) return; running = true; loop(); }
     function stop() { running = false; clearTimers(); }
