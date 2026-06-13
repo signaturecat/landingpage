@@ -257,16 +257,26 @@
     card.addEventListener('focusout', clear);
   }
 
-  // -------- Card 3: {{del}} conditional block removal animation -----------
-  // Loops: value present -> value missing in Directory (block collapses) ->
-  // value back -> repeat. Demonstrates that {{del}} removes a footer section
-  // when the underlying Directory value is empty.
+  // -------- Card 3: {{del}} conditional block animation -------------------
+  // The phone value IS present in Directory, so the {{del}} / {{/del}} tags
+  // are stripped on render and the phone section stays. The loop shows the raw
+  // template tags, then fades only the tags away (section kept) to demonstrate
+  // what {{del}} does when the value exists.
   function initConditionalCard() {
     var block = document.getElementById('cond-block');
     var status = document.getElementById('cond-status');
     if (!block || !status) return;
+    var line = block.querySelector('.cond-line');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return;
+
+    function setStatus(rendered) {
+      status.classList.toggle('missing', false);
+      status.textContent = rendered
+        ? (window.I18N_T ? window.I18N_T('feat.c3.statusPresent') : 'Phone present — section kept, tags removed')
+        : (window.I18N_T ? window.I18N_T('feat.c3.statusRaw') : 'Template with conditional tags');
+    }
+
+    if (reduce) { if (line) line.classList.add('tags-hidden'); setStatus(true); return; }
 
     var card = block.closest('.card-conditional');
     var timers = [];
@@ -274,25 +284,15 @@
     function clearTimers() { timers.forEach(clearTimeout); timers = []; }
     function later(fn, ms) { var id = setTimeout(fn, ms); timers.push(id); return id; }
 
-    function setStatus(missing) {
-      status.classList.toggle('missing', missing);
-      status.textContent = missing
-        ? (window.I18N_T ? window.I18N_T('feat.c3.statusMissing') : 'Phone missing — section removed')
-        : (window.I18N_T ? window.I18N_T('feat.c3.statusPresent') : 'Phone present in Directory');
-    }
-
     function loop() {
       if (!running) return;
-      // start: present
-      block.classList.remove('removed'); setStatus(false);
+      // start: raw template with visible {{del}} / {{/del}} tags
+      if (line) line.classList.remove('tags-hidden'); setStatus(false);
       later(function () {
-        // value missing -> {{del}} collapses the block
-        block.classList.add('removed'); setStatus(true);
+        // value present -> only the tags fade out, the phone section stays
+        if (line) line.classList.add('tags-hidden'); setStatus(true);
       }, 2200);
-      later(function () {
-        block.classList.remove('removed'); setStatus(false);
-      }, 4600);
-      later(loop, 6800);
+      later(loop, 5200);
     }
     function start() { if (running) return; running = true; loop(); }
     function stop() { running = false; clearTimers(); }
