@@ -1,0 +1,16 @@
+# Cloudflare Worker config for the signature.cat language router.
+# Deploy:  cd cloudflare && wrangler deploy
+# Requires: the signature.cat zone on this Cloudflare account, proxied (orange
+# cloud), with the static origin (GitHub Pages) reachable. See ./README.md.
+
+name = "signaturecat-landing-router"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# Bind to the whole apex so the root redirect applies; the Worker passes through
+# every non-root request to the origin.
+routes = [
+  { pattern = "signature.cat/*", zone_name = "signature.cat" }
+]
+
+# account_id is taken from `wrangler login` / CLOUDFLARE_ACCOUNT_ID; do not hardcode.

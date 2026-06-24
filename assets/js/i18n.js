@@ -119,8 +119,8 @@ window.I18N = {
     "feat.c3.name": "Anna Kowalska",
     "feat.c3.phone": "Phone: +48 797 891 447",
     "feat.c3.dept": "Marketing · signature.cat",
-    "feat.c3.statusPresent": "Phone present \u2014 section kept",
-    "feat.c3.statusAbsent": "Phone missing \u2014 section removed",
+    "feat.c3.statusPresent": "Phone present - section kept",
+    "feat.c3.statusAbsent": "Phone missing - section removed",
     "feat.c3.statusRaw": "Template with conditional tags",
 
     "brand.kicker": "Employer branding",
@@ -290,8 +290,8 @@ window.I18N = {
     "feat.c3.name": "Anna Kowalska",
     "feat.c3.phone": "Telefon: +48 797 891 447",
     "feat.c3.dept": "Marketing · signature.cat",
-    "feat.c3.statusPresent": "Telefon obecny \u2014 sekcja zostaje",
-    "feat.c3.statusAbsent": "Telefon nieobecny \u2014 sekcja znika",
+    "feat.c3.statusPresent": "Telefon obecny - sekcja zostaje",
+    "feat.c3.statusAbsent": "Telefon nieobecny - sekcja znika",
     "feat.c3.statusRaw": "Szablon ze znacznikami warunkowymi",
 
     "brand.kicker": "Employer branding",
@@ -461,8 +461,8 @@ window.I18N = {
     "feat.c3.name": "Anna Kowalska",
     "feat.c3.phone": "Telefon: +48 797 891 447",
     "feat.c3.dept": "Marketing · signature.cat",
-    "feat.c3.statusPresent": "Telefon vorhanden \u2014 Abschnitt bleibt",
-    "feat.c3.statusAbsent": "Telefon fehlt \u2014 Abschnitt entfällt",
+    "feat.c3.statusPresent": "Telefon vorhanden - Abschnitt bleibt",
+    "feat.c3.statusAbsent": "Telefon fehlt - Abschnitt entfällt",
     "feat.c3.statusRaw": "Vorlage mit bedingten Tags",
 
     "brand.kicker": "Employer Branding",
@@ -632,8 +632,8 @@ window.I18N = {
     "feat.c3.name": "Anna Kowalska",
     "feat.c3.phone": "Téléphone : +48 797 891 447",
     "feat.c3.dept": "Marketing · signature.cat",
-    "feat.c3.statusPresent": "Téléphone présent \u2014 section conservée",
-    "feat.c3.statusAbsent": "Téléphone absent \u2014 section supprimée",
+    "feat.c3.statusPresent": "Téléphone présent - section conservée",
+    "feat.c3.statusAbsent": "Téléphone absent - section supprimée",
     "feat.c3.statusRaw": "Modèle avec balises conditionnelles",
 
     "brand.kicker": "Marque employeur",

@@ -16,17 +16,15 @@
     { upTo: Infinity, rate: 0.6 }
   ];
 
-  // -------- Locale resolution: stored -> browser -> fallback ----------------
+  // -------- Locale resolution: the URL PATH is the source of truth ----------
+  // Each locale is its own pre-rendered page (/pl/, /de/, /fr/; English at /).
+  // The client must match the page it was served, so locale is derived from the
+  // path - NOT from navigator/cookie. Browser-language routing is a server-side
+  // concern (the Cloudflare Worker), so the client never swaps the root to a
+  // different language (which would fight the per-URL SEO).
   function detectLocale() {
-    try {
-      var stored = localStorage.getItem('sigcat_locale');
-      if (stored && SUPPORTED.indexOf(stored) !== -1) return stored;
-    } catch (e) {}
-    var langs = navigator.languages || [navigator.language || navigator.userLanguage || FALLBACK];
-    for (var i = 0; i < langs.length; i++) {
-      var primary = String(langs[i]).toLowerCase().split('-')[0];
-      if (SUPPORTED.indexOf(primary) !== -1) return primary;
-    }
+    var seg = (location.pathname.split('/')[1] || '').toLowerCase();
+    if (seg !== 'en' && SUPPORTED.indexOf(seg) !== -1) return seg;
     return FALLBACK;
   }
 
@@ -72,9 +70,14 @@
 
   function setLocale(loc) {
     if (SUPPORTED.indexOf(loc) === -1) return;
-    currentLocale = loc;
+    // Persist the MANUAL choice (cookie) so the edge Worker - and return visits -
+    // honor it over the browser's Accept-Language, then navigate to that
+    // locale's page (each locale is a real, crawlable URL).
     try { localStorage.setItem('sigcat_locale', loc); } catch (e) {}
-    applyTranslations();
+    document.cookie = 'sigcat_locale=' + loc + ';path=/;max-age=31536000;SameSite=Lax';
+    var dest = loc === FALLBACK ? '/' : '/' + loc + '/';
+    if (location.pathname === dest) applyTranslations();
+    else location.assign(dest);
   }
 
   // -------- Pricing calculator (graduated) ---------------------------------
@@ -384,7 +387,7 @@
     var fields = Array.prototype.slice.call(card.querySelectorAll('.var[data-var]'));
     if (!fields.length) return;
     var avatar = document.getElementById('sig-avatar');
-    var PHOTO = 'assets/img/anna.jpg';
+    var PHOTO = '/assets/img/anna.jpg';
 
     // Real demo data tied to signature.cat
     var DATA = {

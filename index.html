@@ -13,9 +13,9 @@
 
   <!-- hreflang -->
   <link rel="alternate" hreflang="en" href="https://signature.cat/" />
-  <link rel="alternate" hreflang="pl" href="https://signature.cat/" />
-  <link rel="alternate" hreflang="de" href="https://signature.cat/" />
-  <link rel="alternate" hreflang="fr" href="https://signature.cat/" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/" />
   <link rel="alternate" hreflang="x-default" href="https://signature.cat/" />
 
   <!-- Open Graph / Twitter -->
@@ -24,17 +24,21 @@
   <meta property="og:title" content="SignatureCat - Centrally manage Gmail signatures in your Google Workspace" />
   <meta property="og:description" content="Personalized, always up-to-date Gmail signatures for your whole Google Workspace. EU-hosted, RODO/GDPR-ready." />
   <meta property="og:url" content="https://signature.cat/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
   <meta property="og:image" content="https://signature.cat/assets/img/og-cover.svg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="SignatureCat - Gmail signatures for Google Workspace" />
   <meta name="twitter:description" content="Personalized, always up-to-date Gmail signatures for your whole Google Workspace." />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-cover.svg" />
 
-  <link rel="icon" href="assets/img/favicon.ico" sizes="any" />
-  <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="96x96" />
-  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
-  <link rel="preload" href="assets/css/style.css" as="style" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <link rel="preload" href="/assets/css/style.css" as="style" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
 
   <!-- SEO structured data -->
   <script type="application/ld+json">
@@ -62,7 +66,7 @@
   <header class="site-header">
     <div class="container nav">
       <a href="#top" class="brand" aria-label="SignatureCat home">
-        <img class="logo-mark" src="assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+        <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
         SignatureCat
       </a>
 
@@ -157,7 +161,7 @@
     <!-- ============================== TRUST ============================== -->
     <section class="trust">
       <div class="container">
-        <p data-i18n="trust.label">Built on the Google Workspace platform</p>
+        <p data-i18n="trust.label">Built for the Google Workspace environment</p>
         <div class="trust-row">
           <span class="pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n="trust.t1">Gmail API</span></span>
           <span class="pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg><span data-i18n="trust.t2">Admin SDK Directory</span></span>
@@ -180,7 +184,7 @@
           <article class="card card-compact card-vars reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v2M16 21h2a2 2 0 0 0 2-2v-2"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg></span>
             <h3 data-i18n="feat.c1.t">Smart variables</h3>
-            <p data-i18n="feat.c1.d"></p>
+            <p data-i18n="feat.c1.d">Drop in placeholders that resolve live from your Directory - name, title, department, phone, photo and more. No manual editing per person.</p>
             <!-- Carousel: variable tokens that flip to a sample value on hover -->
             <div class="var-carousel" aria-hidden="true">
               <div class="var-track">
@@ -209,7 +213,7 @@
           <article class="card card-compact card-personalize reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/><path d="m17 11 2 2 4-4"/></svg></span>
             <h3 data-i18n="feat.c2.t">Personalized per user</h3>
-            <p data-i18n="feat.c2.d"></p>
+            <p data-i18n="feat.c2.d">Every signature is rendered individually from live Directory data, so each employee gets their own correct details - all from the template you created.</p>
             <!-- {{firstname}} {{lastname}} auto-fill demo from a created template -->
             <div class="pers-demo" aria-hidden="true">
               <div class="pers-line">
@@ -222,7 +226,7 @@
           <article class="card card-compact card-conditional reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M7 8h10M7 12h6"/><path d="M5 4h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-4 4z"/></svg></span>
             <h3 data-i18n="feat.c3.t">Conditional blocks</h3>
-            <p data-i18n="feat.c3.d"></p>
+            <p data-i18n="feat.c3.d">Use {{del}} and {{delete}} to gracefully hide blocks when a field is missing - no empty lines, no orphaned labels, ever.</p>
             <!-- {{del}} animation: when the value is present only the {{del}}/{{/del}} tags disappear and the section stays -->
             <div class="cond-demo" aria-hidden="true">
               <div class="cond-sig" id="cond-block">
@@ -242,19 +246,19 @@
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
             <h3 data-i18n="feat.c4.t">Precise targeting</h3>
-            <p data-i18n="feat.c4.d"></p>
+            <p data-i18n="feat.c4.d">Apply to specific users, whole Groups or Organizational Units. Targets expand to the right people at apply time.</p>
           </article>
 
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
             <h3 data-i18n="feat.c5.t">Automated rollout</h3>
-            <p data-i18n="feat.c5.d"></p>
+            <p data-i18n="feat.c5.d">A daily reconciliation keeps signatures in sync as people join, move teams or update their details - set it once.</p>
           </article>
 
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
             <h3 data-i18n="feat.c6.t">Always up to date</h3>
-            <p data-i18n="feat.c6.d"></p>
+            <p data-i18n="feat.c6.d">Because values are pulled live from the Directory, signatures never go stale. Change a title once and it propagates everywhere.</p>
           </article>
         </div>
       </div>
@@ -272,7 +276,7 @@
               <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p1">Promote campaigns, events, reports or hiring across thousands of outgoing emails.</span></li>
               <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p2">Change the banner once - it updates in every targeted employee's signature.</span></li>
               <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p3">A free, always-on channel that reaches every recipient you already write to.</span></li>
-              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p4">React in real time: launch a promo, event or announcement and have it live in everyone's signature within minutes.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p4">React in real time: launch a promo, event or announcement and have it live in everyone’s signature within minutes.</span></li>
             </ul>
           </div>
 
@@ -308,7 +312,7 @@
                     <span class="ad-eyebrow" data-i18n="brand.ad2.e">New release</span>
                     <span class="ad-head" data-i18n="brand.ad2.h">Meet our 2.0 platform</span>
                     <span class="ad-sub" data-i18n="brand.ad2.s">Faster, simpler, built for teams.</span>
-                    <span class="ad-cta" data-i18n="brand.ad2.c">Discover what's new</span>
+                    <span class="ad-cta" data-i18n="brand.ad2.c">Discover what’s new</span>
                   </div>
                   <div class="ad-slide" data-brand="event">
                     <span class="ad-eyebrow" data-i18n="brand.ad3.e">webinar · free</span>
@@ -337,17 +341,17 @@
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
             <h3 data-i18n="admin.c1.t">Group management</h3>
-            <p data-i18n="admin.c1.d"></p>
+            <p data-i18n="admin.c1.d">Target whole Google Groups. People joining or leaving a group are picked up automatically - no list to maintain by hand.</p>
           </article>
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg></span>
             <h3 data-i18n="admin.c2.t">Per-locale signature languages</h3>
-            <p data-i18n="admin.c2.d"></p>
+            <p data-i18n="admin.c2.d">Give foreign branches signatures in their own language. Set a different footer language per group, department or Organizational Unit - each office gets a native-language signature.</p>
           </article>
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 8h18"/></svg></span>
             <h3 data-i18n="admin.c3.t">Organizational Units</h3>
-            <p data-i18n="admin.c3.d"></p>
+            <p data-i18n="admin.c3.d">Apply by Organizational Unit and inherit your existing Workspace structure - rollout maps onto how your org is already set up.</p>
           </article>
         </div>
       </div>
@@ -363,14 +367,14 @@
         </div>
 
         <div class="sec-list reveal">
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i1.t">Keys in GCP Secret Manager</h4><p data-i18n="sec.i1.d"></p></div></div>
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i2.t">Encrypted at rest</h4><p data-i18n="sec.i2.d"></p></div></div>
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i3.t">Strict tenant isolation</h4><p data-i18n="sec.i3.d"></p></div></div>
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i4.t">We don't store your people's data</h4><p data-i18n="sec.i4.d"></p></div></div>
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i5.t">EU data residency</h4><p data-i18n="sec.i5.d"></p></div></div>
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i6.t">Injection-safe rendering</h4><p data-i18n="sec.i6.d"></p></div></div>
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i7.t">User permission levels</h4><p data-i18n="sec.i7.d"></p></div></div>
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i8.t">Audit-ready accountability</h4><p data-i18n="sec.i8.d"></p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i1.t">Keys in GCP Secret Manager</h4><p data-i18n="sec.i1.d">Service-account private keys live only in GCP Secret Manager - never in our database, logs or responses.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i2.t">Encrypted at rest</h4><p data-i18n="sec.i2.d">OAuth tokens are encrypted with AES-256-GCM. In-memory key cache expires in ≤ 5 minutes and never touches disk.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i3.t">Organization data isolation</h4><p data-i18n="sec.i3.d">Every operation is scoped to your Workspace and fully isolated for security.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i4.t">We don't store your employees' data</h4><p data-i18n="sec.i4.d">Names, phones and photos are fetched live at apply time and deleted - we keep only what's needed for job history and audit.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i5.t">EU data residency</h4><p data-i18n="sec.i5.d">Database, secrets and hosting all run in EU regions (Frankfurt / Amsterdam) to keep your data inside the EU.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i6.t">Resistant to code injection</h4><p data-i18n="sec.i6.d">Signature templates are sanitized on save to resist any attempt to inject malicious code.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i7.t">User permission levels</h4><p data-i18n="sec.i7.d">Manage who can do what in signature.cat - granular access levels so admins, editors and viewers each get only the rights they need.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i8.t">Audit-ready accountability</h4><p data-i18n="sec.i8.d">Every action is tied to a permission level and recorded in an append-only audit log, so changes are always traceable.</p></div></div>
         </div>
 
         <div class="sec-badges reveal">
@@ -392,15 +396,15 @@
         <div class="steps">
           <div class="step reveal">
             <h3 data-i18n="how.s1.t">Connect your Workspace</h3>
-            <p data-i18n="how.s1.d"></p>
+            <p data-i18n="how.s1.d">Authorize Domain-Wide Delegation once. SignatureCat impersonates only the scopes it needs to write signatures.</p>
           </div>
           <div class="step reveal">
             <h3 data-i18n="how.s2.t">Design your template</h3>
-            <p data-i18n="how.s2.d"></p>
+            <p data-i18n="how.s2.d">Build one signature with variables and conditional blocks. Preview it against a real user before you ship.</p>
           </div>
           <div class="step reveal">
             <h3 data-i18n="how.s3.t">Target &amp; apply</h3>
-            <p data-i18n="how.s3.d"></p>
+            <p data-i18n="how.s3.d">Pick users, groups or org units. SignatureCat renders and applies each personalized signature - and keeps them current.</p>
           </div>
         </div>
       </div>
@@ -435,7 +439,7 @@
               </div>
               <p class="calc-sub" id="calc-sub">Estimated monthly total for 25 users.</p>
               <span class="calc-tier" id="calc-tier">Your effective rate: $0.80 / user / mo</span>
-              <p class="calc-note" data-i18n="pricing.note">Graduated pricing: each seat is billed at its tier's rate. Totals are estimates excluding tax; final billing is handled by Stripe.</p>
+              <p class="calc-note" data-i18n="pricing.note">Progressive pricing: each seat is billed at its tier's rate. Totals are estimates excluding tax; final billing is handled by Stripe.</p>
             </div>
           </div>
 
@@ -487,11 +491,11 @@
           <h2 data-i18n="faq.title">Frequently asked questions</h2>
         </div>
         <div class="faq reveal">
-          <details><summary data-i18n="faq.q1">How does SignatureCat update Gmail signatures?</summary><p data-i18n="faq.a1"></p></details>
-          <details><summary data-i18n="faq.q2">Is it really free for a single user?</summary><p data-i18n="faq.a2"></p></details>
-          <details><summary data-i18n="faq.q3">Where is my data stored?</summary><p data-i18n="faq.a3"></p></details>
-          <details><summary data-i18n="faq.q4">Can I target only some users?</summary><p data-i18n="faq.a4"></p></details>
-          <details><summary data-i18n="faq.q5">What happens when someone changes their job title?</summary><p data-i18n="faq.a5"></p></details>
+          <details><summary data-i18n="faq.q1">How does SignatureCat update Gmail signatures?</summary><p data-i18n="faq.a1">It uses the Gmail API with Domain-Wide Delegation to set each user's primary sendAs signature. Values come live from your Workspace Directory, so signatures are always accurate.</p></details>
+          <details><summary data-i18n="faq.q2">Is it really free for a single user?</summary><p data-i18n="faq.a2">Yes. A Workspace with one user is free forever - no Stripe subscription is created. You only pay once you have two or more users.</p></details>
+          <details><summary data-i18n="faq.q3">Where is my data stored?</summary><p data-i18n="faq.a3">All data lives in EU regions. We don't store your end-users' personal attributes - names, phones and photos are fetched live at apply time and discarded.</p></details>
+          <details><summary data-i18n="faq.q4">Can I target only some users?</summary><p data-i18n="faq.a4">Yes. You can target specific users, entire Groups or Organizational Units. Targets are expanded to the right people at apply time.</p></details>
+          <details><summary data-i18n="faq.q5">What happens when someone changes their job title?</summary><p data-i18n="faq.a5">Because variables resolve live from the Directory, a daily reconciliation keeps signatures current automatically. Update the title once in Workspace and it propagates everywhere.</p></details>
         </div>
       </div>
     </section>
@@ -503,7 +507,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="#top" class="brand">
-          <img class="logo-mark" src="assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
           SignatureCat
         </a>
         <p data-i18n="footer.tagline">Centrally manage Gmail signatures across your entire Google Workspace.</p>
@@ -540,8 +544,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/i18n.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/app.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
