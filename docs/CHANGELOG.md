@@ -2,6 +2,15 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-06-24 - SEO max-out: Content-Language header + crawlable `<a>` language switcher
+
+- **What:** Two SEO/a11y improvements on top of the per-locale routing.
+  - **`cloudflare/worker.js`:** sets `Content-Language: <locale>` on HTML responses (`/` -> en, `/pl/` -> pl, ...) - GitHub Pages cannot set it, the edge can. Assets pass through untouched. (Redeploy the Worker to apply: `cd cloudflare && wrangler deploy`.)
+  - **Language switcher -> crawlable links:** the desktop dropdown + mobile language options are now `<a href="/pl/">` (etc.) instead of `<button>` - a real, indexable link path between locales that works without JS. `app.js` `setLocale` (which navigated) became `rememberLocale` (records the `sigcat_locale` cookie only); the `<a href>` does the navigation. `style.css` switcher selectors updated `button` -> `a` (+ `text-decoration:none`). Regenerated all per-locale pages.
+- **Why:** Maximize SEO signals (Content-Language header; crawlable inter-locale links reinforcing hreflang) and improve a11y (a language switch is navigation, so a link, not a button). hreflang/canonical were already correct; these are additive.
+- **Scope:** landingpage only. Redeploy the Cloudflare Worker for `Content-Language`. Remaining SEO step is on the PM: Google Search Console (verify domain, submit sitemap, watch the hreflang report).
+- **Note (non-SEO edge):** without JS, a pl/de/fr-browser user clicking "English" (`<a href="/">`) is re-redirected to their language by the Worker (no cookie set without JS); with JS the cookie makes English stick. Crawlers (Accept-Language: en) always get `/` as English.
+
 ## 2026-06-24 - SEO: per-locale URLs (/pl/ /de/ /fr/) + zero-dep pre-render build + Cloudflare language router
 
 - **What:** Each language is now its own indexable URL instead of one client-swapped page. Previously every `hreflang`/`canonical` pointed at `https://signature.cat/`, so pl/de/fr could never be indexed - the core SEO bug this fixes.

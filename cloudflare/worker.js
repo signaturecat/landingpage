@@ -37,8 +37,17 @@ export default {
       }
     }
 
-    // Everything else: serve the origin unchanged.
-    return fetch(request);
+    // Pass through to origin; tag localized HTML documents with Content-Language
+    // (a secondary locale signal; GitHub Pages can't set it, the Worker can).
+    const res = await fetch(request);
+    if ((res.headers.get('content-type') || '').includes('text/html')) {
+      const seg = url.pathname.split('/')[1];
+      const lang = SUPPORTED.includes(seg) ? seg : 'en';
+      const tagged = new Response(res.body, res);
+      tagged.headers.set('Content-Language', lang);
+      return tagged;
+    }
+    return res;
   },
 };
 
