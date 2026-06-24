@@ -61,23 +61,21 @@
     var label = document.getElementById('lang-current');
     if (label) label.textContent = LANG_FLAGS[currentLocale] + ' ' + currentLocale.toUpperCase();
 
-    document.querySelectorAll('.lang-menu button, .nav-lang-opts button').forEach(function (b) {
+    document.querySelectorAll('.lang-menu [data-lang], .nav-lang-opts [data-lang]').forEach(function (b) {
       b.setAttribute('aria-current', b.getAttribute('data-lang') === currentLocale ? 'true' : 'false');
     });
 
     renderPricing();
   }
 
-  function setLocale(loc) {
+  // Record the MANUAL choice (cookie) so the edge Worker - and return visits -
+  // honor it over the browser's Accept-Language. Navigation itself is the
+  // switcher's <a href> (a real, crawlable URL that works without JS), so this
+  // does NOT navigate.
+  function rememberLocale(loc) {
     if (SUPPORTED.indexOf(loc) === -1) return;
-    // Persist the MANUAL choice (cookie) so the edge Worker - and return visits -
-    // honor it over the browser's Accept-Language, then navigate to that
-    // locale's page (each locale is a real, crawlable URL).
     try { localStorage.setItem('sigcat_locale', loc); } catch (e) {}
     document.cookie = 'sigcat_locale=' + loc + ';path=/;max-age=31536000;SameSite=Lax';
-    var dest = loc === FALLBACK ? '/' : '/' + loc + '/';
-    if (location.pathname === dest) applyTranslations();
-    else location.assign(dest);
   }
 
   // -------- Pricing calculator (graduated) ---------------------------------
@@ -170,11 +168,12 @@
         langMenu.classList.toggle('open');
         langBtn.setAttribute('aria-expanded', langMenu.classList.contains('open'));
       });
-      langMenu.querySelectorAll('button').forEach(function (b) {
-        b.addEventListener('click', function () {
-          setLocale(b.getAttribute('data-lang'));
+      langMenu.querySelectorAll('[data-lang]').forEach(function (a) {
+        a.addEventListener('click', function () {
+          rememberLocale(a.getAttribute('data-lang'));
           langMenu.classList.remove('open');
           langBtn.setAttribute('aria-expanded', 'false');
+          // navigation proceeds via the <a href>
         });
       });
       document.addEventListener('click', function () { langMenu.classList.remove('open'); });
@@ -201,12 +200,11 @@
       links.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () { links.classList.remove('mobile-open'); });
       });
-      // In-menu language buttons (mobile): switch locale and close the menu
-      links.querySelectorAll('.nav-lang-opts button').forEach(function (b) {
-        b.addEventListener('click', function () {
-          setLocale(b.getAttribute('data-lang'));
-          links.classList.remove('mobile-open');
-          toggle.setAttribute('aria-expanded', 'false');
+      // In-menu language links (mobile): record the choice (cookie); the <a href>
+      // navigates and the generic link handler above closes the menu.
+      links.querySelectorAll('.nav-lang-opts [data-lang]').forEach(function (a) {
+        a.addEventListener('click', function () {
+          rememberLocale(a.getAttribute('data-lang'));
         });
       });
     }

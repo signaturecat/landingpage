@@ -51,14 +51,16 @@ index every language (the old single-URL setup could not).
   it asserts so). Commit the regenerated `/`, `/pl/`, `/de/`, `/fr/`, `sitemap.xml`.
   The `/pl/` etc. files are generated - never edit them by hand.
 - **Client (`app.js`):** locale comes from the **URL path** (the page it was
-  served), so the client matches the pre-rendered HTML. The language switcher
-  sets a `sigcat_locale` cookie (manual override) and navigates to `/pl/` etc.
+  served), so the client matches the pre-rendered HTML. The language switcher is
+  **crawlable `<a href="/pl/">` links** (work without JS); on click, JS records a
+  `sigcat_locale` cookie (manual override) and the `<a>` handles navigation.
 - **Browser-language redirect:** done **server-side** by the Cloudflare Worker
   (`cloudflare/`), not a client redirect (which would risk SEO). On `/` it reads
   the cookie (manual choice wins) else `Accept-Language` and 302s to the locale;
-  English/crawlers stay on `/`. See `cloudflare/README.md`. Until the Worker is
+  English/crawlers stay on `/`. The Worker also sets `Content-Language` per
+  locale on HTML responses. See `cloudflare/README.md`. Until the Worker is
   deployed the per-locale pages + `hreflang` already work; only the auto-redirect
-  is absent.
+  + `Content-Language` are absent.
 - Proper names are never translated: SignatureCat, Google, Workspace, Gmail, Stripe, GCP, Secret Manager, Directory API, Domain-Wide Delegation, RODO/GDPR.
 - **No "AI-tell" typography** in copy: plain ASCII `-`, no em/en dashes or invisible characters (locale curly quotes `„ "`, `« »` are fine - correct per-language typography).
 

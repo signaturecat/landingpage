@@ -14,6 +14,9 @@ and served by the origin; this Worker only redirects the bare root.
   - Redirect is `302` + `Vary: Cookie, Accept-Language` + `Cache-Control: no-store`.
 - Every other path (`/pl/`, `/de/`, `/assets/*`, `/docs`, ...) passes straight
   through to the origin.
+- HTML responses are tagged with a `Content-Language` header per locale (`/` ->
+  `en`, `/pl/` -> `pl`, ...), since GitHub Pages cannot set it. Assets pass
+  through untouched.
 
 Googlebot crawls with `Accept-Language: en` (or none), so it is never redirected
 off `/` and the English homepage indexes as x-default. The reciprocal `hreflang`
@@ -44,8 +47,8 @@ curl -sI -H 'Accept-Language: pl-PL,pl;q=0.9' https://signature.cat/ | grep -i '
 curl -sI -H 'Accept-Language: en-US,en;q=0.9' https://signature.cat/ | grep -i '^HTTP'
 # Manual override cookie wins
 curl -sI -H 'Cookie: sigcat_locale=de' https://signature.cat/ | grep -i '^location'
-# A locale page is never redirected (passes through)
-curl -sI https://signature.cat/pl/ | grep -i '^HTTP'
+# A locale page is never redirected (passes through) + carries Content-Language
+curl -sI https://signature.cat/pl/ | grep -iE '^HTTP|^content-language'   # -> 200, content-language: pl
 ```
 
 ## Rollback
