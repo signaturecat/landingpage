@@ -2,6 +2,17 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-06-24 - SEO: per-locale URLs (/pl/ /de/ /fr/) + zero-dep pre-render build + Cloudflare language router
+
+- **What:** Each language is now its own indexable URL instead of one client-swapped page. Previously every `hreflang`/`canonical` pointed at `https://signature.cat/`, so pl/de/fr could never be indexed - the core SEO bug this fixes.
+  - **`build.mjs` (new, zero-dep Node):** pre-renders `/` (en, x-default), `/pl/`, `/de/`, `/fr/` from the single `index.html` + `assets/js/i18n.js`. Per page it sets `<html lang>`, localized `<title>`/meta-description/Open Graph/Twitter/JSON-LD, `og:locale` (+alternates), self-canonical, an identical reciprocal `hreflang` block (en/pl/de/fr/x-default, trailing-slash form), fills the JS-only `data-i18n` placeholders so crawlers get real content, and rewrites page-level asset refs to root-absolute (`/assets/...`). Also regenerates `sitemap.xml` (4 URLs, reciprocal hreflang). HTML-escapes all injected copy (`&` etc.), preserves `{{del}}` literals, asserts idempotency + child-element-free `[data-i18n]` + slash-terminated URLs.
+  - **`app.js`:** locale is now derived from the URL **path** (the served page), not navigator/cookie - so the client matches the pre-rendered HTML and never swaps the root. The language switcher sets a `sigcat_locale` cookie (manual override) and navigates to `/pl/` etc. Fixed `PHOTO` to root-absolute (`/assets/img/anna.jpg`) so the hero avatar resolves under `/pl/`.
+  - **`cloudflare/` (new):** a Cloudflare Worker (`worker.js` + `wrangler.toml` + `README.md`) for `signature.cat/*` that does the **server-side** browser-language redirect on `/` only - cookie (manual choice) wins, else `Accept-Language`; English/crawlers stay on `/`. 302 + `Vary` + `no-store`; everything else passes through to the origin. Deployed separately (DevOps owns the zone/route/DNS); the site works without it.
+  - **`404.html` (new):** static `noindex` fallback.
+- **Why:** Get pl/de/fr indexed (distinct URLs + valid reciprocal hreflang), and give visitors a browser-language redirect with a manual override - without the SEO hazard of a client-side root redirect (validated against Google's i18n guidance).
+- **Scope:** landingpage only. **Cross-team (DevOps):** create/confirm the `signature.cat` Cloudflare zone (proxied, SSL Full) + deploy the Worker + bind the `signature.cat/*` route. The per-locale pages + hreflang ship on GitHub Pages independently and work meanwhile.
+- **Build note:** run `node build.mjs` after editing `index.html` or `i18n.js`, and commit the regenerated `/ /pl/ /de/ /fr/ sitemap.xml`. Generated files carry a "do not edit" banner.
+
 ## 2026-06-13 — Conditional card: add "section removed" case, colored status dots, unclipped tag borders, mobile auto-play
 
 - **What:**
