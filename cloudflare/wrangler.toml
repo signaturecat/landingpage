@@ -3,7 +3,7 @@
 # Requires: the signature.cat zone on this Cloudflare account, proxied (orange
 # cloud), with the static origin (GitHub Pages) reachable. See ./README.md.
 
-name = "signaturecat-landing-router"
+name = "landingpage"
 main = "worker.js"
 compatibility_date = "2024-11-01"
 
