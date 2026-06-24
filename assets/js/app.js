@@ -1,4 +1,4 @@
-/* Signature.Cat — app logic: i18n, pricing calculator, UI interactions */
+/* Signature.Cat - app logic: i18n, pricing calculator, UI interactions */
 (function () {
   'use strict';
 
@@ -234,7 +234,7 @@
     if (!vars.length) return;
     var VALUES = { firstname: 'Anna', lastname: 'Kowalska' };
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var SWAP = 280; // ms — matches the .pers-var fade/blur transition (same as hero preview)
+    var SWAP = 280; // ms - matches the .pers-var fade/blur transition (same as hero preview)
 
     // Smooth swap of one variable's content (fade out -> change text -> fade in)
     function swapVar(el, text, asValue) {
@@ -304,10 +304,10 @@
       status.classList.remove('present', 'absent');
       if (state === 'present') {
         status.classList.add('present');
-        status.textContent = t('feat.c3.statusPresent', 'Phone present — section kept');
+        status.textContent = t('feat.c3.statusPresent', 'Phone present - section kept');
       } else if (state === 'absent') {
         status.classList.add('absent');
-        status.textContent = t('feat.c3.statusAbsent', 'Phone missing — section removed');
+        status.textContent = t('feat.c3.statusAbsent', 'Phone missing - section removed');
       } else {
         status.textContent = t('feat.c3.statusRaw', 'Template with conditional tags');
       }
@@ -324,7 +324,7 @@
     function clearTimers() { timers.forEach(clearTimeout); timers = []; }
     function later(fn, ms) { var id = setTimeout(fn, ms); timers.push(id); return id; }
 
-    // Four-phase loop (no hover needed — works on mobile/touch via IntersectionObserver):
+    // Four-phase loop (no hover needed - works on mobile/touch via IntersectionObserver):
     //  0s raw -> 2.5s value present (tags fade, green) -> 5s raw again -> 7.5s value absent (section gone, red) -> 10s repeat
     function loop() {
       if (!running) return;

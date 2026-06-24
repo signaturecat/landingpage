@@ -21,5 +21,5 @@
   <text x="90" y="400" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="58" font-weight="800" fill="#292524" letter-spacing="-1.5">in your Google Workspace.</text>
   <text x="90" y="470" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="28" font-weight="400" fill="#6b6660">Personalized · always up to date · servers in the EU · made in Poland</text>
   <rect x="90" y="515" width="270" height="58" rx="29" fill="#292524"/>
-  <text x="225" y="552" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="24" font-weight="600" fill="#fff7ed">Get started — 1 user free</text>
+  <text x="225" y="552" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="24" font-weight="600" fill="#fff7ed">Get started - 1 user free</text>
 </svg>
