@@ -2,6 +2,25 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-06-25 - Rename product term to "signature" (PL "stopka" -> "podpis")
+
+- **What:** Unified the product term across the landing copy. Polish `stopka`
+  and all inflected forms (`stopki`, `stopkę`, `stopką`, `stopce`, `stopek`,
+  `stopkach`, `stopkami`) -> `podpis`/`podpisy`/... in `assets/js/i18n.js` (25
+  strings), applying the correct masculine declension, pronoun (ja -> go) and
+  adjective agreement (e.g. "każdą spersonalizowaną stopkę ... utrzymuje ją
+  aktualną" -> "każdy spersonalizowany podpis ... utrzymuje go aktualnym"). Also
+  fixed one stray English "footer language" -> "signature language"
+  (`admin.c2.d`). Regenerated `/`, `/pl/`, `/de/`, `/fr/` and `sitemap.xml` via
+  `node build.mjs`.
+- **Why:** Consistency with the app, where the product is "signature" / "podpis";
+  "stopka" (footer) was an inconsistent synonym. PM request.
+- **Scope:** landingpage only. No DNS/Worker action needed.
+- **i18n:** PL dictionary reworded; EN had one stray "footer" fixed; DE/FR already
+  used "Signatur"/"signature" (unchanged). All copy stays ASCII-clean per the
+  no-AI-tell typography rule (verified on the served `pl/index.html`).
+- **Build:** `node build.mjs` re-run (idempotent); committed regenerated output.
+
 ## 2026-06-24 - SEO max-out: Content-Language header + crawlable `<a>` language switcher
 
 - **What:** Two SEO/a11y improvements on top of the per-locale routing.
