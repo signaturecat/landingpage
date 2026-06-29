@@ -2,6 +2,34 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-06-29 - Pricing model: 7-day free trial, drop "free for 1 user"
+
+- **What:** Aligned the landing with the new billing model in `signaturecat/app`
+  PR #74 (7-day trial + card at registration, no free seat).
+  - **Hero trust badges** (`hero.meta1`/`hero.meta2`): "1 user free forever" ->
+    "7-day free trial"; "No credit card to start" -> "No charge during the trial"
+    (a card is now collected up front, so the old claim was false).
+  - **Pricing tiers:** removed the "1 user - Free" row. The table is now 3 tiers
+    (1-50 $0.80, 51-120 $0.70, 121+ $0.60), matching the app `/billing` page.
+  - **Calculator** (`assets/js/app.js`): dropped the free tier and the `n === 1`
+    special-case; 1 user now resolves to $0.80 (small tier). `TIERS`,
+    `tierForCount`, `rateForCount` re-indexed to 3 tiers.
+  - **CTA** `pricing.cta`: "Start free" -> "Start free trial".
+  - **FAQ** `faq.q2`/`faq.a2`: "Is it really free for a single user?" reframed to
+    "Do you offer a free trial?" (7 days, card at sign-up, no charge during trial,
+    cancel anytime, then per-active-user from $0.80).
+  - **JSON-LD** `AggregateOffer`: `lowPrice` "0" -> "0.60", `offerCount` "4" -> "3".
+  - Removed now-unused `pricing.free`, `pricing.row4`, `pricing.row4sub`,
+    `pricing.tierFree` keys.
+- **Why:** The free-for-1-user copy contradicted the new model (docs/06) and would
+  flag a drift; the app now charges every tenant after the trial.
+- **Scope:** landingpage only (en + pl + de + fr). No DNS/Worker action needed.
+- **i18n:** all 4 dictionaries updated; copy stays ASCII-clean per the no-AI-tell
+  rule (German umlauts / French accents kept; no em/en dashes, no nbsp).
+- **Build:** `node build.mjs` re-run; regenerated `/`, `/pl/`, `/de/`, `/fr/` and
+  `sitemap.xml`. Calculator verified via headless DOM dump (1 user -> $0.80).
+- **Deploy note:** land close to the app deploy + DevOps Stripe `STRIPE_PRICE_ID`
+  switch so the public pricing and the signup flow agree.
 ## 2026-06-25 - Rename product term to "signature" (PL "stopka" -> "podpis")
 
 - **What:** Unified the product term across the landing copy. Polish `stopka`

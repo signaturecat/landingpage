@@ -54,9 +54,9 @@
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "USD",
-      "lowPrice": "0",
+      "lowPrice": "0.60",
       "highPrice": "0.80",
-      "offerCount": "4"
+      "offerCount": "3"
     }
   }
   </script>
@@ -122,8 +122,8 @@
             <a href="https://signature.cat/docs" class="btn btn-ghost btn-lg" data-i18n="hero.cta2">Dokumentation lesen</a>
           </div>
           <div class="hero-meta">
-            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta1">1 Nutzer dauerhaft kostenlos</span></span>
-            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta2">Keine Karte zum Start</span></span>
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta1">7 Tage kostenlos testen</span></span>
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta2">Keine Kosten in der Testphase</span></span>
             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta3">Server in der EU</span></span>
           </div>
         </div>
@@ -446,23 +446,19 @@
 
           <!-- Tier table -->
           <div class="tiers reveal" aria-label="Pricing tiers">
-            <div class="tier-row free">
-              <div class="range"><span data-i18n="pricing.row1">1 Nutzer</span><small data-i18n="pricing.row1sub">Einzel-Workspace</small></div>
-              <div class="price"><span data-i18n="pricing.free">Kostenlos</span></div>
-            </div>
             <div class="tier-row">
-              <div class="range"><span data-i18n="pricing.row2">2 - 50 Nutzer</span><small data-i18n="pricing.row2sub">Kleine Teams</small></div>
+              <div class="range"><span data-i18n="pricing.row1">1 - 50 Nutzer</span><small data-i18n="pricing.row1sub">Kleine Teams</small></div>
               <div class="price">$0.80 <small data-i18n="pricing.perUser">/ Nutzer / Mon.</small></div>
             </div>
             <div class="tier-row">
-              <div class="range"><span data-i18n="pricing.row3">51 - 120 Nutzer</span><small data-i18n="pricing.row3sub">Wachsende Unternehmen</small></div>
+              <div class="range"><span data-i18n="pricing.row2">51 - 120 Nutzer</span><small data-i18n="pricing.row2sub">Wachsende Unternehmen</small></div>
               <div class="price">$0.70 <small data-i18n="pricing.perUser">/ Nutzer / Mon.</small></div>
             </div>
             <div class="tier-row">
-              <div class="range"><span data-i18n="pricing.row4">121+ Nutzer</span><small data-i18n="pricing.row4sub">Große Organisationen</small></div>
+              <div class="range"><span data-i18n="pricing.row3">121+ Nutzer</span><small data-i18n="pricing.row3sub">Große Organisationen</small></div>
               <div class="price">$0.60 <small data-i18n="pricing.perUser">/ Nutzer / Mon.</small></div>
             </div>
-            <a href="https://app.signature.cat" class="btn btn-primary btn-lg" style="justify-content:center;margin-top:6px" data-i18n="pricing.cta">Kostenlos starten</a>
+            <a href="https://app.signature.cat" class="btn btn-primary btn-lg" style="justify-content:center;margin-top:6px" data-i18n="pricing.cta">Testphase starten</a>
           </div>
         </div>
       </div>
@@ -493,7 +489,7 @@
         </div>
         <div class="faq reveal">
           <details><summary data-i18n="faq.q1">Wie aktualisiert SignatureCat Gmail-Signaturen?</summary><p data-i18n="faq.a1">Es nutzt die Gmail API mit Domain-Wide Delegation, um die primäre sendAs-Signatur jedes Nutzers zu setzen. Werte stammen live aus dem Directory Ihres Workspace, sodass Signaturen stets korrekt sind.</p></details>
-          <details><summary data-i18n="faq.q2">Ist es für einen Einzelnutzer wirklich kostenlos?</summary><p data-i18n="faq.a2">Ja. Ein Workspace mit einem Nutzer ist dauerhaft kostenlos - es wird kein Stripe-Abo erstellt. Sie zahlen erst ab zwei oder mehr Nutzern.</p></details>
+          <details><summary data-i18n="faq.q2">Bieten Sie eine kostenlose Testphase an?</summary><p data-i18n="faq.a2">Ja. Jeder neue Workspace startet mit einer 7-tägigen kostenlosen Testphase mit vollem Zugriff. Wir hinterlegen bei der Anmeldung eine Karte, berechnen aber während der Testphase nichts - kündigen Sie vor dem Ende, und es wird nichts berechnet. Nach der Testphase wird pro aktivem Nutzer abgerechnet, ab 0,80 $ / Nutzer / Monat.</p></details>
           <details><summary data-i18n="faq.q3">Wo werden meine Daten gespeichert?</summary><p data-i18n="faq.a3">Alle Daten liegen in EU-Regionen. Wir speichern keine personenbezogenen Attribute Ihrer Endnutzer - Namen, Telefonnummern und Fotos werden zur Anwendungszeit live abgerufen und verworfen.</p></details>
           <details><summary data-i18n="faq.q4">Kann ich nur bestimmte Nutzer ansprechen?</summary><p data-i18n="faq.a4">Ja. Sie können bestimmte Nutzer, ganze Gruppen oder Organisationseinheiten ansprechen. Ziele werden zur Anwendungszeit auf die richtigen Personen erweitert.</p></details>
           <details><summary data-i18n="faq.q5">Was passiert, wenn jemand seinen Titel ändert?</summary><p data-i18n="faq.a5">Da Variablen live aus dem Directory aufgelöst werden, hält ein täglicher Abgleich die Signaturen automatisch aktuell. Ändern Sie den Titel einmal im Workspace, und er wird überall übernommen.</p></details>
