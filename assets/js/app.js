@@ -9,11 +9,12 @@
 
   // Graduated tiers (from app/docs 06_stripe_billing.md). No free tier: every
   // Workspace pays after the 7-day trial, the 1st seat included.
-  // 1-50 => $0.80 ; 51-120 => $0.70 ; 121+ => $0.60
+  // 1-50 => $0.80 ; 51-120 => $0.70 ; 121-300 => $0.60 ; 301+ => $0.55
   var TIERS = [
     { upTo: 50, rate: 0.8 },
     { upTo: 120, rate: 0.7 },
-    { upTo: Infinity, rate: 0.6 }
+    { upTo: 300, rate: 0.6 },
+    { upTo: Infinity, rate: 0.55 }
   ];
 
   // -------- Locale resolution: the URL PATH is the source of truth ----------
@@ -82,14 +83,16 @@
   function tierForCount(n) {
     if (n <= 50) return { label: '1-50', index: 0 };
     if (n <= 120) return { label: '51-120', index: 1 };
-    return { label: '121+', index: 2 };
+    if (n <= 300) return { label: '121-300', index: 2 };
+    return { label: '301+', index: 3 };
   }
 
   function rateForCount(n) {
     // Flat tier rate that applies to the whole headcount
     if (n <= 50) return 0.8;
     if (n <= 120) return 0.7;
-    return 0.6;
+    if (n <= 300) return 0.6;
+    return 0.55;
   }
   function computeTotal(n) {
     // Single tier rate times the number of users (no graduated summing)
