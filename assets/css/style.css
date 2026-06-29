@@ -331,8 +331,6 @@ section[id] { scroll-margin-top: 88px; }
 .tier-row .range small { display: block; color: var(--muted); font-weight: 400; font-size: .82rem; }
 .tier-row .price { font-weight: 800; font-size: 1.15rem; }
 .tier-row .price small { font-weight: 400; color: var(--muted); font-size: .8rem; }
-.tier-row.free .price { color: var(--accent-soft); }
-@media (prefers-color-scheme: dark){ .tier-row.free .price { color: var(--accent); } }
 
 /* Docs CTA band ----------------------------------------------------------- */
 .band {

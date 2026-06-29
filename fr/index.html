@@ -54,9 +54,9 @@
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "USD",
-      "lowPrice": "0",
+      "lowPrice": "0.60",
       "highPrice": "0.80",
-      "offerCount": "4"
+      "offerCount": "3"
     }
   }
   </script>
@@ -122,8 +122,8 @@
             <a href="https://signature.cat/docs" class="btn btn-ghost btn-lg" data-i18n="hero.cta2">Lire la documentation</a>
           </div>
           <div class="hero-meta">
-            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta1">1 utilisateur gratuit à vie</span></span>
-            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta2">Sans carte au démarrage</span></span>
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta1">Essai gratuit de 7 jours</span></span>
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta2">Aucun débit pendant l'essai</span></span>
             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta3">Serveurs dans l'UE</span></span>
           </div>
         </div>
@@ -446,23 +446,19 @@
 
           <!-- Tier table -->
           <div class="tiers reveal" aria-label="Pricing tiers">
-            <div class="tier-row free">
-              <div class="range"><span data-i18n="pricing.row1">1 utilisateur</span><small data-i18n="pricing.row1sub">Workspace individuel</small></div>
-              <div class="price"><span data-i18n="pricing.free">Gratuit</span></div>
-            </div>
             <div class="tier-row">
-              <div class="range"><span data-i18n="pricing.row2">2 - 50 utilisateurs</span><small data-i18n="pricing.row2sub">Petites équipes</small></div>
+              <div class="range"><span data-i18n="pricing.row1">1 - 50 utilisateurs</span><small data-i18n="pricing.row1sub">Petites équipes</small></div>
               <div class="price">$0.80 <small data-i18n="pricing.perUser">/ utilis. / mois</small></div>
             </div>
             <div class="tier-row">
-              <div class="range"><span data-i18n="pricing.row3">51 - 120 utilisateurs</span><small data-i18n="pricing.row3sub">Entreprises en croissance</small></div>
+              <div class="range"><span data-i18n="pricing.row2">51 - 120 utilisateurs</span><small data-i18n="pricing.row2sub">Entreprises en croissance</small></div>
               <div class="price">$0.70 <small data-i18n="pricing.perUser">/ utilis. / mois</small></div>
             </div>
             <div class="tier-row">
-              <div class="range"><span data-i18n="pricing.row4">121+ utilisateurs</span><small data-i18n="pricing.row4sub">Grandes organisations</small></div>
+              <div class="range"><span data-i18n="pricing.row3">121+ utilisateurs</span><small data-i18n="pricing.row3sub">Grandes organisations</small></div>
               <div class="price">$0.60 <small data-i18n="pricing.perUser">/ utilis. / mois</small></div>
             </div>
-            <a href="https://app.signature.cat" class="btn btn-primary btn-lg" style="justify-content:center;margin-top:6px" data-i18n="pricing.cta">Démarrer gratuitement</a>
+            <a href="https://app.signature.cat" class="btn btn-primary btn-lg" style="justify-content:center;margin-top:6px" data-i18n="pricing.cta">Démarrer l'essai gratuit</a>
           </div>
         </div>
       </div>
@@ -493,7 +489,7 @@
         </div>
         <div class="faq reveal">
           <details><summary data-i18n="faq.q1">Comment SignatureCat met-il à jour les signatures Gmail ?</summary><p data-i18n="faq.a1">Il utilise l'API Gmail avec Domain-Wide Delegation pour définir la signature sendAs principale de chaque utilisateur. Les valeurs proviennent en direct du Directory de votre Workspace, donc les signatures sont toujours exactes.</p></details>
-          <details><summary data-i18n="faq.q2">Est-ce vraiment gratuit pour un seul utilisateur ?</summary><p data-i18n="faq.a2">Oui. Un Workspace avec un seul utilisateur est gratuit à vie - aucun abonnement Stripe n'est créé. Vous ne payez qu'à partir de deux utilisateurs.</p></details>
+          <details><summary data-i18n="faq.q2">Proposez-vous un essai gratuit ?</summary><p data-i18n="faq.a2">Oui. Chaque nouveau Workspace démarre par un essai gratuit de 7 jours avec un accès complet. Nous enregistrons une carte à l'inscription mais ne débitons rien pendant l'essai - annulez avant la fin et vous ne serez pas facturé. Après l'essai, la facturation se fait par utilisateur actif, à partir de 0,80 $ / utilisateur / mois.</p></details>
           <details><summary data-i18n="faq.q3">Où sont stockées mes données ?</summary><p data-i18n="faq.a3">Toutes les données résident dans des régions de l'UE. Nous ne stockons pas les attributs personnels de vos utilisateurs finaux - noms, téléphones et photos sont récupérés en direct au moment de l'application puis supprimés.</p></details>
           <details><summary data-i18n="faq.q4">Puis-je cibler seulement certains utilisateurs ?</summary><p data-i18n="faq.a4">Oui. Vous pouvez cibler des utilisateurs précis, des groupes entiers ou des unités organisationnelles. Les cibles se développent vers les bonnes personnes au moment de l'application.</p></details>
           <details><summary data-i18n="faq.q5">Que se passe-t-il quand quelqu'un change de titre ?</summary><p data-i18n="faq.a5">Comme les variables sont résolues en direct depuis le Directory, une réconciliation quotidienne maintient les signatures à jour automatiquement. Modifiez le titre une fois dans Workspace et il se propage partout.</p></details>

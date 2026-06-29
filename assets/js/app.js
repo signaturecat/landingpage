@@ -7,10 +7,10 @@
   var LANG_NAMES = { en: 'English', pl: 'Polski', de: 'Deutsch', fr: 'Français' };
   var LANG_FLAGS = { en: '🇬🇧', pl: '🇵🇱', de: '🇩🇪', fr: '🇫🇷' };
 
-  // Graduated tiers (from app/docs 06_stripe_billing.md)
-  // up_to:1 => $0 ; 2-50 => $0.80 ; 51-120 => $0.70 ; 121+ => $0.60
+  // Graduated tiers (from app/docs 06_stripe_billing.md). No free tier: every
+  // Workspace pays after the 7-day trial, the 1st seat included.
+  // 1-50 => $0.80 ; 51-120 => $0.70 ; 121+ => $0.60
   var TIERS = [
-    { upTo: 1, rate: 0.0 },
     { upTo: 50, rate: 0.8 },
     { upTo: 120, rate: 0.7 },
     { upTo: Infinity, rate: 0.6 }
@@ -80,15 +80,13 @@
 
   // -------- Pricing calculator (graduated) ---------------------------------
   function tierForCount(n) {
-    if (n <= 1) return { label: 'free', index: 0 };
-    if (n <= 50) return { label: '2-50', index: 1 };
-    if (n <= 120) return { label: '51-120', index: 2 };
-    return { label: '121+', index: 3 };
+    if (n <= 50) return { label: '1-50', index: 0 };
+    if (n <= 120) return { label: '51-120', index: 1 };
+    return { label: '121+', index: 2 };
   }
 
   function rateForCount(n) {
     // Flat tier rate that applies to the whole headcount
-    if (n <= 1) return 0;
     if (n <= 50) return 0.8;
     if (n <= 120) return 0.7;
     return 0.6;
@@ -131,17 +129,11 @@
     var subEl = document.getElementById('calc-sub');
     var tierEl = document.getElementById('calc-tier');
 
-    if (n === 1) {
-      amountEl.textContent = t('pricing.free');
-      subEl.textContent = t('pricing.tierFree');
-      tierEl.textContent = '🎉 ' + t('pricing.tierFree');
-    } else {
-      amountEl.textContent = fmtCurrency(total);
-      var word = n === 1 ? t('pricing.user') : t('pricing.users');
-      // e.g. "50 users × $0.80 / user / mo"
-      subEl.textContent = fmtNum(n) + ' ' + word + ' × ' + fmtRate(rate) + ' ' + t('pricing.perUser');
-      tierEl.textContent = t('pricing.estimate') + ' ' + fmtNum(n) + ' ' + word + '.';
-    }
+    amountEl.textContent = fmtCurrency(total);
+    var word = n === 1 ? t('pricing.user') : t('pricing.users');
+    // e.g. "1 user × $0.80 / user / mo" or "50 users × $0.80 / user / mo"
+    subEl.textContent = fmtNum(n) + ' ' + word + ' × ' + fmtRate(rate) + ' ' + t('pricing.perUser');
+    tierEl.textContent = t('pricing.estimate') + ' ' + fmtNum(n) + ' ' + word + '.';
 
     // sync slider
     var slider = document.getElementById('seat-slider');
