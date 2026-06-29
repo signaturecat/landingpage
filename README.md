@@ -72,11 +72,12 @@ Mirrors the **graduated** per-seat model from `signaturecat/app` → `docs/06_st
 |---|---|
 | 1 - 50 | $0.80 |
 | 51 - 120 | $0.70 |
-| 121+ | $0.60 |
+| 121 - 300 | $0.60 |
+| 301+ | $0.55 |
 
 No free tier: every Workspace starts with a **7-day free trial** (card collected at sign-up, charged when the trial ends), then pays per active user from the 1st seat.
 
-The calculator applies a **single flat tier rate to the whole headcount** (rate for the size band × number of users) — it does NOT sum seats across tiers. Examples: 1 user = $0.80 (0.80×1), 50 users = $40.00 (0.80×50), 80 users = $56.00 (0.70×80), 121 users = $72.60 (0.60×121). It shows `N users × $rate / user / mo` and the monthly total. Currency via `Intl.NumberFormat(locale, { currency: 'USD' })`. Totals are estimates excluding tax.
+The calculator applies a **single flat tier rate to the whole headcount** (rate for the size band × number of users) — it does NOT sum seats across tiers. Examples: 1 user = $0.80 (0.80×1), 50 users = $40.00 (0.80×50), 80 users = $56.00 (0.70×80), 121 users = $72.60 (0.60×121), 400 users = $220.00 (0.55×400). It shows `N users × $rate / user / mo` and the monthly total. Currency via `Intl.NumberFormat(locale, { currency: 'USD' })`. Totals are estimates excluding tax.
 
 > Source of truth: `rateForCount()` / `computeTotal()` in `assets/js/app.js`. If tiers change, update those **and** the tier table + this README.
 > NOTE: this flat-per-tier estimate intentionally differs from `signaturecat/app` → `docs/06_stripe_billing.md` (graduated). Reconcile if the landing estimate must match real Stripe invoices.

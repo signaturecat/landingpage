@@ -2,6 +2,23 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-06-29 - Pricing: add the 301+ tier ($0.55)
+
+- **What:** New top volume tier. The table is now four tiers: 1-50 $0.80,
+  51-120 $0.70, 121-300 $0.60, 301+ $0.55 (the old open-ended "121+ $0.60" is now
+  bounded at 300; 301+ gets the new $0.55 rate). Updated the calculator
+  (assets/js/app.js: TIERS / tierForCount / rateForCount re-indexed to 4 tiers),
+  i18n tier labels (pricing.row3 -> "121 - 300", new pricing.row4 "301+" +
+  pricing.row4sub), the tier table in index.html (new 4th row, $0.55), and
+  JSON-LD AggregateOffer (lowPrice 0.60 -> 0.55, offerCount 3 -> 4). Regenerated
+  /pl /de /fr + sitemap.xml via build.mjs.
+- **Why:** PM introduced a volume tier for 301+ seats.
+- **Scope:** landingpage only (en/pl/de/fr). ASCII-clean copy.
+- **Verify:** calculator DOM-dump (400 users -> $220.00, 301+ row highlighted); build.mjs idempotent.
+- **Cross-team:** the APP /billing tier display + packages/billing/tiers.ts + the
+  Stripe Price still show 3 tiers (121+ $0.60); they need the 301+ split too
+  (Backend + DevOps) so app and landing pricing agree.
+
 ## 2026-06-29 - Pricing model: 7-day free trial, drop "free for 1 user"
 
 - **What:** Aligned the landing with the new billing model in `signaturecat/app`
