@@ -43,20 +43,30 @@
   function applyTranslations() {
     document.documentElement.lang = currentLocale;
 
-    // text content
+    // text content. If a key is missing (e.g. a stale cached i18n.js served
+    // during a deploy), t() returns the key itself - keep the build-time baked
+    // text instead of flashing the raw key (e.g. "pricing.row4") at the user.
     var nodes = document.querySelectorAll('[data-i18n]');
-    nodes.forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
+    nodes.forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      var val = t(key);
+      if (val !== key) el.textContent = val;
+    });
 
     // attributes: data-i18n-attr="content:meta.desc;aria-label:nav.cta"
     document.querySelectorAll('[data-i18n-attr]').forEach(function (el) {
       el.getAttribute('data-i18n-attr').split(';').forEach(function (pair) {
         var parts = pair.split(':');
-        if (parts.length === 2) el.setAttribute(parts[0].trim(), t(parts[1].trim()));
+        if (parts.length !== 2) return;
+        var key = parts[1].trim();
+        var val = t(key);
+        if (val !== key) el.setAttribute(parts[0].trim(), val);
       });
     });
 
-    // <title>
-    document.title = t('meta.title');
+    // <title> (keep the baked title if the key is unresolved)
+    var title = t('meta.title');
+    if (title !== 'meta.title') document.title = title;
 
     // language switcher label
     var label = document.getElementById('lang-current');
