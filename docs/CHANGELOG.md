@@ -2,6 +2,39 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-01 - Pricing calculator: true graduated total + slider reaches 400
+
+- **What:** The calculator now computes the monthly total the GRADUATED
+  (marginal) way - each seat is billed at its OWN tier's rate and the brackets
+  are summed - matching the tier table and the "each seat is billed at its
+  tier's rate" note. Previously `computeTotal` applied a single flat tier rate to
+  the whole headcount (e.g. 400 users -> $220.00 = 400 x $0.55). It now sums the
+  brackets: 400 users -> $252.00 = 50x0.80 + 70x0.70 + 180x0.60 + 100x0.55.
+  Driven off the existing `TIERS` array; the flat `rateForCount` helper is
+  removed. The result line now shows the headcount estimate (`pricing.estimate`)
+  plus the blended effective rate (`pricing.tierLabel` + total/n), since there is
+  no single per-seat rate once the headcount spans tiers.
+- **What (slider):** `#seat-slider` `max` 300 -> 400 so dragging to the end
+  reaches the 301+ tier (it was capped at 300, so the top bracket was never
+  reachable by the slider). The number input `max` (100000) is unchanged.
+- **Why:** PM: the calculator must use the graduated method (sum of tier rates),
+  and the slider at max must reach into the higher (301+) tier.
+- **Scope:** landingpage only (en/pl/de/fr). No new i18n keys (reuses
+  `pricing.estimate` / `pricing.tierLabel` / `pricing.perUser` /
+  `pricing.user(s)`). Tier rates and JSON-LD AggregateOffer unchanged. ASCII-clean.
+- **Verify:** graduated math + per-locale result strings simulated against the
+  real `i18n.js` dict (400 -> $252.00, eff $0.63; 100 -> $75.00, eff $0.75; 51 ->
+  $40.70; en/pl/de/fr). Regenerated /pl /de /fr + sitemap.xml via `build.mjs`
+  (idempotent).
+- **Cross-team (Backend/DevOps):** the landing now estimates GRADUATED, which
+  matches `packages/billing/src/tiers.ts` ("marginal price per seat"). Two things
+  must hold for the app `/billing` and the Stripe charge to agree with this
+  estimate: (1) the Stripe tiered Price is `graduated` billing_scheme (not
+  `volume`); (2) the still-open 301+ split (landing has 4 tiers incl. 301+ $0.55;
+  app `tiers.ts` is still 3 tiers, 121+ $0.60 unbounded - flagged in the
+  2026-06-29 301+ entry below). The slider now reaching 400 makes that gap more
+  visible, so it is worth closing app-side.
+
 ## 2026-06-29 - Pricing: add the 301+ tier ($0.55)
 
 - **What:** New top volume tier. The table is now four tiers: 1-50 $0.80,

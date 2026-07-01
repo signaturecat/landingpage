@@ -97,16 +97,20 @@
     return { label: '301+', index: 3 };
   }
 
-  function rateForCount(n) {
-    // Flat tier rate that applies to the whole headcount
-    if (n <= 50) return 0.8;
-    if (n <= 120) return 0.7;
-    if (n <= 300) return 0.6;
-    return 0.55;
-  }
   function computeTotal(n) {
-    // Single tier rate times the number of users (no graduated summing)
-    return rateForCount(n) * n;
+    // Graduated (marginal): each seat is billed at ITS tier's rate, then summed
+    // across brackets - not one flat rate applied to the whole headcount. This
+    // is the model the tier table + the "each seat is billed at its tier's rate"
+    // note describe. Driven off TIERS so the rates live in one place.
+    var total = 0;
+    var prev = 0;
+    for (var i = 0; i < TIERS.length; i++) {
+      var seatsInTier = Math.min(n, TIERS[i].upTo) - prev;
+      if (seatsInTier > 0) total += seatsInTier * TIERS[i].rate;
+      if (n <= TIERS[i].upTo) break;
+      prev = TIERS[i].upTo;
+    }
+    return total;
   }
 
   function fmtCurrency(v) {
@@ -135,7 +139,9 @@
     if (n > 100000) n = 100000;
 
     var total = computeTotal(n);
-    var rate = rateForCount(n);
+    // Blended $/user across the graduated brackets (there is no single per-seat
+    // rate once the headcount spans more than one tier).
+    var effectiveRate = total / n;
     var tier = tierForCount(n);
 
     var amountEl = document.getElementById('calc-amount');
@@ -144,9 +150,10 @@
 
     amountEl.textContent = fmtCurrency(total);
     var word = n === 1 ? t('pricing.user') : t('pricing.users');
-    // e.g. "1 user × $0.80 / user / mo" or "50 users × $0.80 / user / mo"
-    subEl.textContent = fmtNum(n) + ' ' + word + ' × ' + fmtRate(rate) + ' ' + t('pricing.perUser');
-    tierEl.textContent = t('pricing.estimate') + ' ' + fmtNum(n) + ' ' + word + '.';
+    // Total is a graduated sum, so we show the headcount estimate + the blended
+    // effective rate, not a single "N x rate" (which would misrepresent it).
+    subEl.textContent = t('pricing.estimate') + ' ' + fmtNum(n) + ' ' + word + '.';
+    tierEl.textContent = t('pricing.tierLabel') + ': ' + fmtRate(effectiveRate) + ' ' + t('pricing.perUser');
 
     // sync slider
     var slider = document.getElementById('seat-slider');
