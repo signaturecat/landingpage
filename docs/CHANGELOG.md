@@ -2,6 +2,29 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-16 - Google Analytics 4 wired through the consent banner (basic consent mode)
+
+- **What:** The Worker-injected consent script now carries the GA4 loader
+  (`GA_MEASUREMENT_ID = G-8M16LHQXQP` in `cloudflare/worker.js`; empty string
+  disables). `gtag.js` is appended to `<head>` ONLY after analytics opt-in
+  (stored cookie `a1` on load, or the moment of acceptance), preceded by
+  `gtag('consent','default')` with all ad signals denied. Withdrawing consent
+  fires `gtag('consent','update')` to denied and deletes `_ga` / `_ga_*`
+  cookies. No page/static-file changes - GA ships via the same injection as
+  the banner, on the landing and all legal subpages.
+- **Why:** PM request 2026-07-16 (GA property ready). Basic - not "advanced" -
+  consent mode on purpose: advanced loads gtag before consent and sends
+  cookieless pings to Google for behavioral modeling, which contradicts the
+  Privacy Policy ("analytics runs only after consent") and is legally
+  contested under ePrivacy/GDPR in the EU. Trade-off accepted: no modeled
+  data for declining visitors.
+- **Scope:** cf-worker.
+- **Privacy:** consistent with the published Privacy Policy (GA listed as
+  consent-based, 14-month event retention to be set in the GA4 property).
+- **CSP:** no changes needed - GA hosts were pre-allowlisted in `buildCsp()`.
+- **Deploy:** automatic via Workers Builds on merge; verify-worker smoke check
+  unaffected (banner/nonce assertions unchanged).
+
 ## 2026-07-16 - Fix: banner delivery (304 revalidation), [hidden] override; deploy docs
 
 - **What:**

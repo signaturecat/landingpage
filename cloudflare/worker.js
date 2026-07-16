@@ -36,10 +36,15 @@
  *    banner for good; any element with class `js-cookie-settings` (the
  *    "Cookie settings" footer links) re-opens it. The script exposes
  *    `window.sigcatConsent.analytics` (true/false/null) and dispatches a
- *    `sigcat-consent` CustomEvent. The future GA loader MUST check
- *    `window.sigcatConsent.analytics === true` before injecting gtag.js;
- *    when `window.gtag` exists a `gtag('consent','update',...)` bridge fires
- *    on every choice.
+ *    `sigcat-consent` CustomEvent.
+ *
+ * 4. GOOGLE ANALYTICS 4 (GA_MEASUREMENT_ID below), loaded by the same
+ *    injected script in BASIC consent mode: gtag.js is appended to <head>
+ *    ONLY once the visitor has opted in (cookie a1 on load, or the moment
+ *    they accept), preceded by gtag('consent','default') with ad signals
+ *    denied. Withdrawing consent fires gtag('consent','update') to denied
+ *    AND removes the _ga / _ga_* cookies. No requests reach Google before
+ *    opt-in (we deliberately do NOT use "advanced" consent mode pings).
  *
  * Rollback: remove the route / `wrangler delete`. Per-locale pages, hreflang
  * and legal pages keep working; you lose the auto-redirect, the security
@@ -48,6 +53,13 @@
 const SUPPORTED = ['en', 'pl', 'de', 'fr'];
 const CONSENT_COOKIE = 'sigcat_consent';
 const CONSENT_MAX_AGE = 31536000; // 12 months
+
+// Google Analytics 4. BASIC consent mode by design: gtag.js is injected ONLY
+// after the visitor opts in (window.sigcatConsent.analytics === true) - no
+// cookieless pings before consent (that would be "advanced" consent mode,
+// which contradicts our Privacy Policy statement that the tool runs only
+// after consent and is legally riskier in the EU). Empty string disables GA.
+const GA_MEASUREMENT_ID = 'G-8M16LHQXQP';
 
 // ---- consent banner copy --------------------------------------------------
 export const BANNER_I18N = {
@@ -177,12 +189,43 @@ export function bannerHtml(lang, nonce) {
   var box = document.getElementById('sigcat-cookies');
   if (!box) return;
   var toggle = document.getElementById('scc-analytics');
+  var GA_ID = '${GA_MEASUREMENT_ID}';
+  var gaLoaded = false;
+  function loadGA() {
+    if (gaLoaded || !GA_ID) return;
+    gaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID);
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+  }
+  function clearGaCookies() {
+    var parts = document.cookie.split(';');
+    for (var i = 0; i < parts.length; i++) {
+      var name = parts[i].split('=')[0].replace(/^\\s+/, '');
+      if (name === '_ga' || name.indexOf('_ga_') === 0) {
+        document.cookie = name + '=; Max-Age=0; Path=/; Domain=.signature.cat; SameSite=Lax; Secure';
+        document.cookie = name + '=; Max-Age=0; Path=/; SameSite=Lax; Secure';
+      }
+    }
+  }
   function read() {
     var m = document.cookie.match(/(?:^|;\\s*)${CONSENT_COOKIE}=v1:a([01])(?:;|$)/);
     return m ? m[1] === '1' : null;
   }
   function expose(v) {
     window.sigcatConsent = { analytics: v };
+    if (v === true) loadGA();
     if (typeof window.gtag === 'function' && v !== null) {
       window.gtag('consent', 'update', { analytics_storage: v ? 'granted' : 'denied', ad_storage: 'denied' });
     }
@@ -193,6 +236,7 @@ export function bannerHtml(lang, nonce) {
   function write(v) {
     document.cookie = '${CONSENT_COOKIE}=v1:a' + (v ? '1' : '0') +
       '; Max-Age=${CONSENT_MAX_AGE}; Path=/; SameSite=Lax; Secure';
+    if (!v) clearGaCookies();
     expose(v);
     box.hidden = true;
   }

@@ -62,12 +62,29 @@ Worker change.
   SameSite=Lax; Secure` and exposes `window.sigcatConsent.analytics`
   (true / false / null=no choice yet) + dispatches a `sigcat-consent`
   CustomEvent on every explicit choice.
-- **GA integration contract:** the future gtag.js loader must run ONLY when
-  `window.sigcatConsent.analytics === true` (listen for the `sigcat-consent`
-  event to start after a late opt-in). A `gtag('consent','update',...)` bridge
-  already fires when `window.gtag` exists.
 - Banner copy lives in `BANNER_I18N` in `worker.js` (en/pl/de/fr) and links to
   `/{locale}/policy/` + `/legal/`; keep it in sync with the Privacy Policy.
+
+## Google Analytics 4 (built into the injected script)
+
+- Measurement ID: `GA_MEASUREMENT_ID` in `worker.js` (empty string disables
+  GA entirely).
+- **BASIC consent mode, by design:** `gtag.js` is appended to `<head>` ONLY
+  after the visitor opts in - immediately on page load when the stored cookie
+  is `a1`, or the moment they click accept. Before the config call the loader
+  fires `gtag('consent','default')` with `analytics_storage: granted` and all
+  ad signals (`ad_storage`, `ad_user_data`, `ad_personalization`) denied.
+- **No traffic reaches Google before opt-in.** We deliberately do NOT use
+  "advanced" consent mode (gtag loaded pre-consent sending cookieless pings
+  for behavioral modeling): it would contradict the Privacy Policy statement
+  that analytics runs only after consent, and pre-consent pings to a US
+  provider are legally contested under ePrivacy/GDPR in the EU. Trade-off: no
+  GA modeled data for visitors who decline - acceptable.
+- **Withdrawal:** choosing "necessary only" after a prior opt-in fires
+  `gtag('consent','update')` to denied AND deletes the `_ga` / `_ga_*`
+  cookies (both host and `.signature.cat` domain variants).
+- CSP already allowlists the GA hosts (loader: `www.googletagmanager.com`;
+  beacons: `*.google-analytics.com`, `*.analytics.google.com`).
 
 Googlebot crawls with `Accept-Language: en` (or none), so it is never redirected
 off `/` and the English homepage indexes as x-default. The reciprocal `hreflang`
