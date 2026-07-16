@@ -1,11 +1,20 @@
-# Cloudflare language router (signature.cat)
+# Cloudflare edge Worker (signature.cat)
 
-Server-side, SEO-safe browser-language redirect for the landing page. It sits in
-front of the existing static host (GitHub Pages) - **no hosting migration
-needed**. The per-locale pages it redirects to are produced by `../build.mjs`
-and served by the origin; this Worker only redirects the bare root.
+One Worker on the `signature.cat/*` route, in front of the existing static host
+(GitHub Pages) - **no hosting migration needed**. It has three jobs:
 
-## What it does
+1. **Language router** - server-side, SEO-safe browser-language redirect for
+   the bare root only (unchanged behaviour).
+2. **Security headers** - HSTS, nosniff, X-Frame-Options, Referrer-Policy,
+   Permissions-Policy, COOP on every response, plus an ENFORCED
+   Content-Security-Policy with a per-request nonce on HTML documents
+   (HTMLRewriter stamps the nonce on every `<script>`).
+3. **Cookie consent banner** - injected into every HTML page (landing + legal
+   subpages), localized from the first path segment, shown only until a choice
+   is stored in the `sigcat_consent` cookie (12 months). Re-opened by any
+   `.js-cookie-settings` element (the "Cookie settings" footer links).
+
+## What it does (language router)
 
 - `GET /` (or `/index.html`):
   - cookie `sigcat_locale` set (manual choice in the on-page switcher) -> redirect to that locale;
@@ -16,7 +25,49 @@ and served by the origin; this Worker only redirects the bare root.
   through to the origin.
 - HTML responses are tagged with a `Content-Language` header per locale (`/` ->
   `en`, `/pl/` -> `pl`, ...), since GitHub Pages cannot set it. Assets pass
-  through untouched.
+  through with the base security headers only.
+
+## Security headers / CSP - READ BEFORE ADDING ANY EXTERNAL RESOURCE
+
+The CSP is **enforced** (not report-only) and allowlists only:
+
+- `'self'` for scripts, styles, images, fonts and XHR/fetch,
+- the Google Analytics 4 stack: `www.googletagmanager.com` (gtag.js loader,
+  script + img), `*.google-analytics.com` and `*.analytics.google.com`
+  (beacons, incl. EU regional endpoints; img + connect),
+- inline `<script>`s ONLY via the per-request nonce (added automatically to
+  every script tag by HTMLRewriter) - a hand-written inline handler attribute
+  (`onclick="..."`) is BLOCKED,
+- `frame-ancestors 'none'`, `object-src 'none'`, `base-uri 'self'`,
+  `form-action 'self'`.
+
+**Any new external origin (script, font, iframe, image CDN, fetch/XHR target)
+will be silently blocked by the browser until it is added to `buildCsp()` in
+`worker.js` and the Worker is redeployed.** Add the origin in the same PR that
+introduces the resource. Watch the browser console for `Refused to load...`
+messages when testing.
+
+`X-Frame-Options: DENY` + `frame-ancestors 'none'` also mean the landing can
+never be embedded in an iframe (including our own future embeds) without a
+Worker change.
+
+## Cookie consent banner
+
+- Injected before `</body>` of every HTML response; ships hidden and the
+  injected script shows it only when the `sigcat_consent` cookie is absent, so
+  it appears once until a choice is made.
+- Categories: necessary (always on, disabled checkbox) and analytics/marketing
+  (opt-in, default OFF). Buttons: accept all / necessary only / save choices.
+- The choice writes `sigcat_consent=v1:a1|a0; Max-Age=31536000; Path=/;
+  SameSite=Lax; Secure` and exposes `window.sigcatConsent.analytics`
+  (true / false / null=no choice yet) + dispatches a `sigcat-consent`
+  CustomEvent on every explicit choice.
+- **GA integration contract:** the future gtag.js loader must run ONLY when
+  `window.sigcatConsent.analytics === true` (listen for the `sigcat-consent`
+  event to start after a late opt-in). A `gtag('consent','update',...)` bridge
+  already fires when `window.gtag` exists.
+- Banner copy lives in `BANNER_I18N` in `worker.js` (en/pl/de/fr) and links to
+  `/{locale}/policy/` + `/legal/`; keep it in sync with the Privacy Policy.
 
 Googlebot crawls with `Accept-Language: en` (or none), so it is never redirected
 off `/` and the English homepage indexes as x-default. The reciprocal `hreflang`
@@ -49,13 +100,19 @@ curl -sI -H 'Accept-Language: en-US,en;q=0.9' https://signature.cat/ | grep -i '
 curl -sI -H 'Cookie: sigcat_locale=de' https://signature.cat/ | grep -i '^location'
 # A locale page is never redirected (passes through) + carries Content-Language
 curl -sI https://signature.cat/pl/ | grep -iE '^HTTP|^content-language'   # -> 200, content-language: pl
+# Security headers + CSP present on HTML
+curl -sI https://signature.cat/pl/ | grep -iE 'strict-transport|content-security|x-content-type|x-frame|referrer-policy|permissions-policy'
+# Consent banner injected (markup near </body>)
+curl -s https://signature.cat/pl/ | grep -c 'sigcat-cookies'   # -> 2 (container + script)
 ```
 
 ## Rollback
 
 Delete the route (or `wrangler delete`). The site falls back to plain static
-serving - the per-locale pages and `hreflang` keep working; only the automatic
-root redirect goes away.
+serving - the per-locale pages, legal pages and `hreflang` keep working; you
+lose the automatic root redirect, ALL security headers (incl. CSP) and the
+cookie consent banner (the "Cookie settings" footer links become inert - they
+point at `#cookie-settings` and are handled by the injected script).
 
 ## Notes
 

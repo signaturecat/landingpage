@@ -367,7 +367,7 @@
         </div>
 
         <div class="sec-list reveal">
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i1.t">Keys in GCP Secret Manager</h4><p data-i18n="sec.i1.d">Service-account private keys live only in GCP Secret Manager - never in our database, logs or responses.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i1.t">Keys in Secret Manager</h4><p data-i18n="sec.i1.d">Service-account private keys live only in Secret Manager - never in our database, logs or responses.</p></div></div>
           <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i2.t">Encrypted at rest</h4><p data-i18n="sec.i2.d">OAuth tokens are encrypted with AES-256-GCM. In-memory key cache expires in ≤ 5 minutes and never touches disk.</p></div></div>
           <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i3.t">Organization data isolation</h4><p data-i18n="sec.i3.d">Every operation is scoped to your Workspace and fully isolated for security.</p></div></div>
           <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i4.t">We don't store your employees' data</h4><p data-i18n="sec.i4.d">Names, phones and photos are fetched live at apply time and deleted - we keep only what's needed for job history and audit.</p></div></div>
@@ -380,7 +380,6 @@
         <div class="sec-badges reveal">
           <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg><span data-i18n="sec.b1">RODO / GDPR - DPA available</span></span>
           <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span data-i18n="sec.b2">Append-only audit log</span></span>
-          <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg><span data-i18n="sec.b3">No marketing cookies</span></span>
           <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg><span data-i18n="sec.b4">PITR disaster recovery</span></span>
         </div>
       </div>
@@ -491,11 +490,13 @@
           <h2 data-i18n="faq.title">Frequently asked questions</h2>
         </div>
         <div class="faq reveal">
-          <details><summary data-i18n="faq.q1">How does SignatureCat update Gmail signatures?</summary><p data-i18n="faq.a1">It uses the Gmail API with Domain-Wide Delegation to set each user's primary sendAs signature. Values come live from your Workspace Directory, so signatures are always accurate.</p></details>
+          <details><summary data-i18n="faq.q1">How does SignatureCat update Gmail signatures?</summary><p data-i18n="faq.a1">The tool connects to your Google Workspace via API, so the data is always up to date and comes straight from your Workspace Directory.</p></details>
           <details><summary data-i18n="faq.q2">Do you offer a free trial?</summary><p data-i18n="faq.a2">Yes. Every new Workspace starts with a 7-day free trial with full access. We collect a card at sign-up but do not charge during the trial - cancel any time before it ends and you are not billed. After the trial, billing is per active user, starting at $0.80 / user / month.</p></details>
           <details><summary data-i18n="faq.q3">Where is my data stored?</summary><p data-i18n="faq.a3">All data lives in EU regions. We don't store your end-users' personal attributes - names, phones and photos are fetched live at apply time and discarded.</p></details>
           <details><summary data-i18n="faq.q4">Can I target only some users?</summary><p data-i18n="faq.a4">Yes. You can target specific users, entire Groups or Organizational Units. Targets are expanded to the right people at apply time.</p></details>
           <details><summary data-i18n="faq.q5">What happens when someone changes their job title?</summary><p data-i18n="faq.a5">Because variables resolve live from the Directory, a daily reconciliation keeps signatures current automatically. Update the title once in Workspace and it propagates everywhere.</p></details>
+          <details><summary data-i18n="faq.q6">What if I need signatures in multiple languages?</summary><p data-i18n="faq.a6">You can set a separate signature language for each foreign branch - dedicated templates and assignments per branch. The tool is built for multilingual organizations.</p></details>
+          <details><summary data-i18n="faq.q7">Do you offer support with rolling the tool out in my company?</summary><p data-i18n="faq.a7">Yes. We provide professional support for implementing the tool in your company. Our experience as Google Workspace administrators makes the rollout quick and smooth. We also create custom signature templates on request - just write to contact@signature.cat.</p></details>
         </div>
       </div>
     </section>
@@ -531,6 +532,7 @@
           <a href="/legal/#privacy" data-i18n="footer.f.privacy">Privacy</a>
           <a href="/legal/#terms" data-i18n="footer.f.terms">Terms</a>
           <a href="/legal/#dpa" data-i18n="footer.f.dpa">DPA</a>
+          <a href="#cookie-settings" class="js-cookie-settings" data-i18n="footer.f.cookies">Cookie settings</a>
         </div>
       </div>
     </div>

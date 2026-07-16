@@ -218,12 +218,22 @@ ${extra}</head>
 `;
 }
 
-const FOOT = `
+// "Cookie settings" re-opens the consent banner injected by the Cloudflare
+// Worker (cloudflare/worker.js) - it targets elements with .js-cookie-settings.
+const COOKIE_SETTINGS_LABEL = {
+  en: 'Cookie settings',
+  pl: 'Ustawienia cookies',
+  de: 'Cookie-Einstellungen',
+  fr: 'Paramètres des cookies',
+};
+
+const foot = (lang) => `
 <footer class="legal-foot">
   <span>&copy; 2026 SignatureCat</span>
   <a href="/">signature.cat</a>
   <a href="mailto:contact@signature.cat">contact@signature.cat</a>
   <a href="/legal/">Legal</a>
+  <a href="#cookie-settings" class="js-cookie-settings">${COOKIE_SETTINGS_LABEL[lang] || COOKIE_SETTINGS_LABEL.en}</a>
 </footer>
 </body>
 </html>
@@ -235,7 +245,7 @@ function docPage(doc) {
   return (
     head({ lang: doc.lang, title: doc.title, desc: doc.desc, canonicalPath: `/${doc.out}/`, index: doc.index }) +
     `<main class="legal-doc">\n<article>\n${article}\n</article>\n</main>\n` +
-    FOOT
+    foot(doc.lang)
   );
 }
 
@@ -299,7 +309,7 @@ ${item('/fr/policy/', 'fr', 'Politique de confidentialité (français - traducti
       desc: 'Terms of Service and Privacy Policy of Signature.Cat in Polish (legally binding), English, German and French, plus DPA information.',
       canonicalPath: '/legal/',
       index: true,
-    }) + body + FOOT
+    }) + body + foot('en')
   );
 }
 

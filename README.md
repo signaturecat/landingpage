@@ -134,13 +134,23 @@ python3 -m http.server 8099  # then open http://localhost:8099 ( / /pl/ /de/ /fr
 3. Custom domain `signature.cat` is set via the `CNAME` file. DNS/infra is owned by the **DevOps Team**.
 4. `.nojekyll` ensures directories/assets are served verbatim.
 
-## Server-side language redirect (Cloudflare Worker)
+## Edge Worker: language redirect, security headers, cookie consent
 
-The browser-language redirect (with manual cookie override) is a **Cloudflare
-Worker** on `signature.cat/*`, in front of this static origin - see
-[`cloudflare/README.md`](cloudflare/README.md). The Worker code is owned here
-(frontend); the Cloudflare zone + route + DNS are owned by **DevOps**. The site
-is fully functional without it (just no auto-redirect).
+A single **Cloudflare Worker** on `signature.cat/*` (in front of this static
+origin) provides: the browser-language redirect (with manual cookie override),
+**security headers incl. an ENFORCED CSP with per-request script nonces**, and
+the injected **cookie consent banner** (necessary always-on; analytics opt-in;
+re-opened by the `.js-cookie-settings` footer links; consent stored 12 months
+in `sigcat_consent`) - see [`cloudflare/README.md`](cloudflare/README.md).
+The Worker code is owned here (frontend); the Cloudflare zone + route + DNS
+are owned by **DevOps**. Without the Worker the site still serves (no
+auto-redirect, no headers, no banner).
+
+> **CSP WARNING:** any new external resource (script, font, iframe, image
+> host, fetch/XHR target) is BLOCKED until added to `buildCsp()` in
+> `cloudflare/worker.js` and redeployed (`wrangler deploy`). Google Analytics
+> hosts are already allowlisted; the GA loader must run only when
+> `window.sigcatConsent.analytics === true`.
 
 ## Docs link
 
