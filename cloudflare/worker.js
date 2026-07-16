@@ -147,6 +147,8 @@ export function bannerHtml(lang, nonce) {
     #sigcat-cookies { --scc-bg: #292524; --scc-ink: #faf5ef; --scc-muted: #a8a29e; --scc-border: #3f3a37; }
   }
   #sigcat-cookies { position: fixed; z-index: 9999; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: center; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  /* the author display:flex above would defeat the UA [hidden] rule - re-assert it */
+  #sigcat-cookies[hidden] { display: none !important; }
   #sigcat-cookies .scc-card { max-width: 560px; width: 100%; background: var(--scc-bg); color: var(--scc-ink); border: 1px solid var(--scc-border); border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,.18); padding: 18px 20px; font-size: 14px; line-height: 1.5; }
   #sigcat-cookies h2 { margin: 0 0 6px; font-size: 15px; line-height: 1.3; }
   #sigcat-cookies p { margin: 0 0 10px; color: var(--scc-muted); }
@@ -232,7 +234,23 @@ export default {
       }
     }
 
-    const res = await fetch(request);
+    // Conditional-request guard for documents: if we forwarded If-None-Match /
+    // If-Modified-Since, the origin could answer 304 Not Modified (no body),
+    // the banner injection would have nothing to rewrite and the browser would
+    // keep reusing a cached body captured under an OLDER worker version -
+    // indefinitely, because the ETag keeps matching. Strip the validators for
+    // likely-HTML paths so documents always arrive as full 200 responses.
+    // Assets (paths with a non-.html extension) keep normal revalidation.
+    const likelyHtml =
+      url.pathname.endsWith('.html') || !/\.[a-z0-9]+$/i.test(url.pathname);
+    let originRequest = request;
+    if (likelyHtml) {
+      originRequest = new Request(request);
+      originRequest.headers.delete('If-None-Match');
+      originRequest.headers.delete('If-Modified-Since');
+    }
+
+    const res = await fetch(originRequest);
     const isHtml = (res.headers.get('content-type') || '').includes('text/html');
 
     if (!isHtml) {
@@ -262,6 +280,12 @@ export default {
     applyBaseHeaders(out.headers);
     out.headers.set('Content-Language', lang);
     out.headers.set('Content-Security-Policy', buildCsp(nonce));
+    // Documents must not be revalidated against origin validators (see the
+    // conditional-request guard above) and must be refetched once stale, so
+    // every page view carries the injected banner + a fresh CSP nonce.
+    out.headers.delete('ETag');
+    out.headers.delete('Last-Modified');
+    out.headers.set('Cache-Control', 'no-cache');
     return out;
   },
 };

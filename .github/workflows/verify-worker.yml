@@ -1,0 +1,39 @@
+# Post-deploy smoke check of the live edge Worker. VERIFICATION ONLY - the
+# Worker itself auto-deploys via Cloudflare Workers Builds (dashboard Git
+# integration; see cloudflare/README.md). This workflow never deploys, so it
+# cannot race Workers Builds; it polls the live site until the expected
+# Worker behaviour is visible (or fails after ~5 minutes).
+#
+# Catches: stale/failed Worker deploys (missing CSP header or consent banner),
+# and CSP nonce drift between the header and the injected <script>.
+name: Verify live Worker
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Poll https://signature.cat/pl/ for Worker behaviour
+        run: |
+          URL=https://signature.cat/pl/
+          for i in $(seq 1 10); do
+            H=$(mktemp); B=$(mktemp)
+            curl -s -D "$H" -o "$B" "$URL"
+            CSP=$(grep -ci 'content-security-policy' "$H" || true)
+            BANNER=$(grep -c 'sigcat-cookies' "$B" || true)
+            HN=$(grep -io 'nonce-[A-Za-z0-9+/=]*' "$H" | head -1 | cut -d- -f2- || true)
+            BN=$(grep -o 'nonce="[^"]*"' "$B" | head -1 | cut -d'"' -f2 || true)
+            if [ "$CSP" -ge 1 ] && [ "$BANNER" -ge 1 ] && [ -n "$HN" ] && [ "$HN" = "$BN" ]; then
+              echo "OK (attempt $i): CSP present, banner injected ($BANNER), nonce consistent."
+              exit 0
+            fi
+            echo "attempt $i: csp=$CSP banner=$BANNER header-nonce=${HN:-none} script-nonce=${BN:-none} - retrying in 30s"
+            sleep 30
+          done
+          echo 'FAILED: live Worker does not show the expected behaviour (stale deploy?).'
+          echo 'Check Cloudflare dashboard -> Workers -> landingpage -> Deployments/Builds.'
+          exit 1

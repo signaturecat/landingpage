@@ -2,6 +2,36 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-16 - Fix: banner delivery (304 revalidation), [hidden] override; deploy docs
+
+- **What:**
+  1. `cloudflare/worker.js`: documents are now fetched from the origin WITHOUT
+     `If-None-Match`/`If-Modified-Since`, and HTML responses drop
+     `ETag`/`Last-Modified` + get `Cache-Control: no-cache`. Root cause: a
+     browser that cached a page under an older Worker revalidated it, GitHub
+     Pages answered `304 Not Modified` (origin content unchanged), the edge
+     injection had no body to rewrite, and the stale cached body (no banner)
+     was reused indefinitely - the ETag kept matching.
+  2. Banner CSS: `#sigcat-cookies[hidden] { display: none !important; }` - the
+     author-level `display: flex` on the container silently defeated the UA
+     `[hidden]` rule, so the banner would never hide after a choice.
+  3. Deploy docs corrected: the Worker auto-deploys via **Cloudflare Workers
+     Builds** (dashboard Git integration, root `cloudflare/`) - the previous
+     changelog/README instruction to run `wrangler deploy` after merge was
+     wrong and caused the 2026-07-16 stale-deploy incident (manual deploy
+     overrides Git builds). Manual wrangler is documented as emergency-only.
+  4. New `.github/workflows/verify-worker.yml`: after each push to `main` it
+     polls the live site (up to ~5 min, waiting out the Workers Builds deploy)
+     and fails unless the CSP header is present, the banner markup is injected
+     and the CSP nonce matches the script nonce. Verification only - it never
+     deploys, so it cannot race Workers Builds.
+- **Why:** banner reported missing on prod with the correct Worker deployed
+  (PR #11); two stacked defects masked each other; deploy docs described a
+  manual flow that fights the existing Git integration.
+- **Scope:** cf-worker + CI + docs.
+- **Performance impact:** HTML loses 304 revalidation (full 200 each fetch) -
+  acceptable: documents are small, assets keep normal caching.
+
 ## 2026-07-16 - Cookie consent banner, security headers (CSP), FAQ & copy updates
 
 - **What:**

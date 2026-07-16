@@ -83,7 +83,21 @@ in each page (from `build.mjs`) is what exposes the alternates to search engines
 
 ## Deploy
 
+**Deploys are AUTOMATIC.** This repo is connected to the Worker via
+**Cloudflare Workers Builds** (dashboard-side Git integration; root directory
+`cloudflare/` - the config is NOT visible in the repo). Every push to `main`
+builds and deploys the Worker; check Cloudflare dashboard -> Workers ->
+`landingpage` -> Deployments/Builds for status. A `verify-worker` GitHub
+Action additionally smoke-checks the live site after each push to `main`
+(CSP header + injected banner + nonce consistency).
+
+**Manual `wrangler deploy` is an EMERGENCY path only.** It bypasses the Git
+integration and OVERRIDES whatever Workers Builds deployed - deploying from a
+stale checkout ships an old Worker on top of a newer one (this exact incident
+happened on 2026-07-16). If you must:
+
 ```bash
+git pull                # ALWAYS from a fresh checkout of main
 cd cloudflare
 wrangler login          # or set CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
 wrangler deploy
