@@ -83,7 +83,17 @@ in each page (from `build.mjs`) is what exposes the alternates to search engines
 
 ## Deploy
 
+**Automatic (preferred):** merging to `main` with changes under `cloudflare/`
+triggers `.github/workflows/deploy-worker.yml` (wrangler-action), which
+deploys AND verifies the live headers/banner. Requires the repo secrets
+`CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` (see the workflow header).
+Manual re-run: Actions -> "Deploy Cloudflare Worker" -> Run workflow.
+
+**Manual fallback:**
+
 ```bash
+git pull            # ALWAYS deploy from a fresh checkout of main -
+                    # deploying from a stale clone ships the OLD worker
 cd cloudflare
 wrangler login          # or set CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
 wrangler deploy

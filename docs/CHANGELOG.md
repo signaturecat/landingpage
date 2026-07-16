@@ -2,6 +2,22 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-16 - CI: auto-deploy of the edge Worker
+
+- **What:** New GitHub Action `.github/workflows/deploy-worker.yml`: every push
+  to `main` touching `cloudflare/**` runs `wrangler deploy` (via
+  cloudflare/wrangler-action@v3, workingDirectory `cloudflare`) and then
+  smoke-checks the live site (CSP header present + consent banner markup
+  injected on `/pl/`). Manual trigger via workflow_dispatch.
+- **Why:** GitHub Pages auto-deploys the static files, but the Worker required
+  a manual `wrangler deploy` - which allows deploying from a stale checkout
+  (this happened on 2026-07-16: pages updated, old Worker redeployed, banner
+  missing in prod). CI removes the drift.
+- **Scope:** landingpage (CI) + cf-worker.
+- **Action required (owner):** add repo secrets `CLOUDFLARE_API_TOKEN`
+  (Account / Workers Scripts / Edit + Zone signature.cat / Workers Routes /
+  Edit) and `CLOUDFLARE_ACCOUNT_ID` before the first run.
+
 ## 2026-07-16 - Cookie consent banner, security headers (CSP), FAQ & copy updates
 
 - **What:**

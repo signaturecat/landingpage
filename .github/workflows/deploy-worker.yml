@@ -1,0 +1,41 @@
+# Auto-deploy of the edge Worker (cloudflare/worker.js) to the
+# signature.cat/* route. GitHub Pages deploys the static files on every push
+# to main, but the Worker lives on Cloudflare and needs `wrangler deploy` -
+# this workflow closes that gap so the two never drift apart (deploying pages
+# without the Worker, or the Worker from a stale checkout).
+#
+# Required repository secrets (Settings -> Secrets and variables -> Actions):
+#   CLOUDFLARE_API_TOKEN   token with: Account / Workers Scripts / Edit
+#                          + Zone signature.cat / Workers Routes / Edit
+#   CLOUDFLARE_ACCOUNT_ID  the Cloudflare account id that owns the zone
+#
+# Manual run: Actions tab -> "Deploy Cloudflare Worker" -> Run workflow.
+name: Deploy Cloudflare Worker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'cloudflare/**'
+      - '.github/workflows/deploy-worker.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy with Wrangler
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: cloudflare
+      - name: Verify deployed Worker responds with new headers
+        run: |
+          sleep 10
+          H=$(curl -sI https://signature.cat/pl/)
+          echo "$H" | grep -i 'content-security-policy' || { echo 'CSP header missing after deploy!'; exit 1; }
+          B=$(curl -s https://signature.cat/pl/ | grep -c 'sigcat-cookies' || true)
+          [ "$B" -ge 1 ] || { echo 'Consent banner markup missing after deploy!'; exit 1; }
+          echo "OK: CSP present, banner injected ($B occurrences)."
