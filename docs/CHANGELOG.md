@@ -2,6 +2,38 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-16 - Legal pages: /legal hub, per-locale terms & privacy policy, SEO
+
+- **What:** Published the legal documents on the landing site. New zero-dep
+  generator `build-legal.mjs` renders `legal/src/*.md` (PL binding originals +
+  EN/DE/FR automatic translations with supremacy banners) into: `/legal/` hub
+  (all versions + DPA note), `/pl/terms/`, `/pl/policy/` (binding, indexable),
+  `/{en,de,fr}/{terms,policy}/` (noindex,follow), and `/terms/` + `/privacy/`
+  meta-refresh stubs to the Polish versions so the short URLs used inside the
+  documents keep working. Footer "Legal" column now points to `/legal/#terms`,
+  `/legal/#privacy`, `/legal/#dpa`; the dead `/subprocessors` link was removed
+  (the named sub-processor list is confidential under the DPA - only categories
+  are public, in the Privacy Policy). `build.mjs` sitemap now includes the three
+  indexable legal URLs (`LEGAL_URLS`).
+- **Why:** Terms of Service, Privacy Policy (PL binding + EN/DE/FR translations)
+  and the English-only DPA were finalized on 2026-07-16; the footer legal links
+  previously 404'd.
+- **Scope:** landingpage.
+- **Design impact:** New `assets/css/legal.css` document layout built on the
+  existing tokens (Light/Dark via `prefers-color-scheme`, warm minimalism, pink
+  accent for link underlines). No changes to landing components.
+- **Performance impact:** Static pre-rendered HTML, one extra small CSS file on
+  legal pages only; no JS on legal pages (except the redirect stubs' one-line
+  `location.replace`).
+- **A11y:** Semantic landmarks (`header`/`nav`/`main`/`article`/`footer`),
+  `scope="col"` table headers, per-item `lang` attributes on the hub list, AA
+  contrast in both schemes, no motion.
+- **SEO:** Only `/legal/` + Polish originals indexable (self-canonical, in
+  sitemap); machine translations `noindex,follow`; no hreflang cluster on legal
+  pages (alternates are not indexable); redirect stubs `noindex` with canonical
+  to their targets. Worker already tags `Content-Language` from the first path
+  segment, so `/pl/terms/` etc. are covered without Worker changes.
+
 ## 2026-07-01 - Pricing calculator: true graduated total + slider reaches 400
 
 - **What:** The calculator now computes the monthly total the GRADUATED

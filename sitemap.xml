@@ -41,4 +41,19 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/"/>
   </url>
+  <url>
+    <loc>https://signature.cat/legal/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://signature.cat/pl/terms/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://signature.cat/pl/policy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
