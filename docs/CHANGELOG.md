@@ -2,6 +2,50 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-16 - Cookie consent banner, security headers (CSP), FAQ & copy updates
+
+- **What:**
+  1. `cloudflare/worker.js` extended from a pure language router into the edge
+     layer: security headers on every response (HSTS 2y incl. subdomains,
+     nosniff, X-Frame-Options DENY, Referrer-Policy, Permissions-Policy, COOP)
+     plus an ENFORCED Content-Security-Policy with a per-request nonce stamped
+     on every `<script>` via HTMLRewriter; and a localized (en/pl/de/fr) cookie
+     consent banner injected before `</body>` on every HTML page. Necessary
+     cookies are always-on; analytics/marketing is an opt-in toggle (default
+     OFF). The choice is stored in `sigcat_consent` (12 months) so the banner
+     shows only once; `.js-cookie-settings` footer links re-open it. Exposes
+     `window.sigcatConsent.analytics` + `sigcat-consent` event + a
+     `gtag('consent','update')` bridge for the upcoming Google Analytics.
+  2. New "Cookie settings" footer link on the landing (all locales) and on
+     every legal page (`build-legal.mjs` footer).
+  3. Copy: FAQ a1 simplified (no Gmail API / DWD / sendAs jargon; plain "the
+     tool connects to your Workspace via API"); "GCP Secret Manager" renamed to
+     "Secret Manager" (sec.i1); the "No marketing cookies" security badge
+     removed (GA is coming, consent-gated); two new FAQ entries: multi-language
+     signatures per branch (q6) and implementation support + custom templates
+     via contact@signature.cat (q7). All four locales.
+- **Why:** GDPR/ePrivacy consent before Google Analytics goes live on the
+  landing; GitHub Pages cannot set security headers, the Worker can; marketing
+  copy asked to be less technical (PM request 2026-07-16).
+- **Scope:** landingpage + cf-worker.
+- **Design impact:** banner card styled with its own scoped tokens mirroring
+  the design system (cream/ink/pink accent, Light/Dark via
+  `prefers-color-scheme`); no changes to existing components.
+- **Performance impact:** banner adds ~4 KB inline HTML/CSS/JS per page (no
+  extra request); headers add no weight. CSP nonce disables no existing
+  functionality (all scripts nonce-stamped at the edge).
+- **A11y:** banner is `role="dialog"` (non-modal) with labelled controls,
+  visible focus states, AA contrast in both schemes; disabled checkbox
+  communicates the always-on necessary category.
+- **CSP allowlist warning:** any NEW external origin must be added to
+  `buildCsp()` in `cloudflare/worker.js` + `wrangler deploy`, or the browser
+  will block it (console `Refused to load...`). GA4 hosts
+  (googletagmanager.com, google-analytics.com, analytics.google.com) are
+  pre-allowlisted; the GA loader must check
+  `window.sigcatConsent.analytics === true`.
+- **Deploy note:** the Worker change requires `cd cloudflare && wrangler
+  deploy` after merge (page changes deploy with GitHub Pages as usual).
+
 ## 2026-07-16 - Legal pages: /legal hub, per-locale terms & privacy policy, SEO
 
 - **What:** Published the legal documents on the landing site. New zero-dep

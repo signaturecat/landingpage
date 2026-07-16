@@ -368,7 +368,7 @@
         </div>
 
         <div class="sec-list reveal">
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i1.t">Schlüssel im GCP Secret Manager</h4><p data-i18n="sec.i1.d">Private Service-Account-Schlüssel liegen ausschließlich im GCP Secret Manager - nie in unserer Datenbank, in Logs oder Antworten.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i1.t">Schlüssel im Secret Manager</h4><p data-i18n="sec.i1.d">Private Service-Account-Schlüssel liegen ausschließlich im Secret Manager - nie in unserer Datenbank, in Logs oder Antworten.</p></div></div>
           <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i2.t">Verschlüsselt at rest</h4><p data-i18n="sec.i2.d">OAuth-Tokens werden mit AES-256-GCM verschlüsselt. Der In-Memory-Schlüssel-Cache läuft in ≤ 5 Minuten ab und berührt nie die Festplatte.</p></div></div>
           <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i3.t">Isolation der Organisationsdaten</h4><p data-i18n="sec.i3.d">Jede Operation ist auf Ihren Workspace beschränkt und aus Sicherheitsgründen vollständig isoliert.</p></div></div>
           <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i4.t">Wir speichern keine Daten Ihrer Mitarbeiter</h4><p data-i18n="sec.i4.d">Namen, Telefonnummern und Fotos werden zur Anwendungszeit live abgerufen und gelöscht - wir behalten nur, was für Verlauf und Audit nötig ist.</p></div></div>
@@ -381,7 +381,6 @@
         <div class="sec-badges reveal">
           <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg><span data-i18n="sec.b1">RODO / GDPR - DPA verfügbar</span></span>
           <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span data-i18n="sec.b2">Append-only Audit-Log</span></span>
-          <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg><span data-i18n="sec.b3">Keine Marketing-Cookies</span></span>
           <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg><span data-i18n="sec.b4">Disaster Recovery (PITR)</span></span>
         </div>
       </div>
@@ -492,11 +491,13 @@
           <h2 data-i18n="faq.title">Häufig gestellte Fragen</h2>
         </div>
         <div class="faq reveal">
-          <details><summary data-i18n="faq.q1">Wie aktualisiert SignatureCat Gmail-Signaturen?</summary><p data-i18n="faq.a1">Es nutzt die Gmail API mit Domain-Wide Delegation, um die primäre sendAs-Signatur jedes Nutzers zu setzen. Werte stammen live aus dem Directory Ihres Workspace, sodass Signaturen stets korrekt sind.</p></details>
+          <details><summary data-i18n="faq.q1">Wie aktualisiert SignatureCat Gmail-Signaturen?</summary><p data-i18n="faq.a1">Das Tool verbindet sich per API mit Ihrem Google Workspace, sodass die Daten immer aktuell sind und direkt aus dem Workspace Directory stammen.</p></details>
           <details><summary data-i18n="faq.q2">Bieten Sie eine kostenlose Testphase an?</summary><p data-i18n="faq.a2">Ja. Jeder neue Workspace startet mit einer 7-tägigen kostenlosen Testphase mit vollem Zugriff. Wir hinterlegen bei der Anmeldung eine Karte, berechnen aber während der Testphase nichts - kündigen Sie vor dem Ende, und es wird nichts berechnet. Nach der Testphase wird pro aktivem Nutzer abgerechnet, ab 0,80 $ / Nutzer / Monat.</p></details>
           <details><summary data-i18n="faq.q3">Wo werden meine Daten gespeichert?</summary><p data-i18n="faq.a3">Alle Daten liegen in EU-Regionen. Wir speichern keine personenbezogenen Attribute Ihrer Endnutzer - Namen, Telefonnummern und Fotos werden zur Anwendungszeit live abgerufen und verworfen.</p></details>
           <details><summary data-i18n="faq.q4">Kann ich nur bestimmte Nutzer ansprechen?</summary><p data-i18n="faq.a4">Ja. Sie können bestimmte Nutzer, ganze Gruppen oder Organisationseinheiten ansprechen. Ziele werden zur Anwendungszeit auf die richtigen Personen erweitert.</p></details>
           <details><summary data-i18n="faq.q5">Was passiert, wenn jemand seinen Titel ändert?</summary><p data-i18n="faq.a5">Da Variablen live aus dem Directory aufgelöst werden, hält ein täglicher Abgleich die Signaturen automatisch aktuell. Ändern Sie den Titel einmal im Workspace, und er wird überall übernommen.</p></details>
+          <details><summary data-i18n="faq.q6">Was ist, wenn ich Signaturen in mehreren Sprachen brauche?</summary><p data-i18n="faq.a6">Für jede ausländische Niederlassung können Sie eine eigene Signatursprache festlegen - eigene Vorlagen und Zuweisungen pro Niederlassung. Das Tool ist dafür ausgelegt.</p></details>
+          <details><summary data-i18n="faq.q7">Bietet ihr Unterstützung bei der Einführung des Tools im Unternehmen?</summary><p data-i18n="faq.a7">Ja, wir unterstützen Sie professionell bei der Implementierung des Tools in Ihrem Unternehmen. Unsere Erfahrung als Google Workspace-Administratoren ermöglicht eine schnelle und reibungslose Einführung. Wir erstellen auch individuelle Signaturvorlagen auf Kundenwunsch - schreiben Sie einfach an contact@signature.cat.</p></details>
         </div>
       </div>
     </section>
@@ -532,6 +533,7 @@
           <a href="/legal/#privacy" data-i18n="footer.f.privacy">Datenschutz</a>
           <a href="/legal/#terms" data-i18n="footer.f.terms">AGB</a>
           <a href="/legal/#dpa" data-i18n="footer.f.dpa">DPA</a>
+          <a href="#cookie-settings" class="js-cookie-settings" data-i18n="footer.f.cookies">Cookie-Einstellungen</a>
         </div>
       </div>
     </div>
