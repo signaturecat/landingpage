@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Signature.Cat - legal document pages (/legal, /{loc}/terms, /{loc}/policy)
+   Uses the design tokens from style.css (loaded first). Light/Dark via the
+   same custom properties; system fonts; WCAG AA contrast.
+   ========================================================================== */
+
+.legal-body { background: var(--cream); }
+
+.legal-top {
+  max-width: 860px; margin: 0 auto;
+  padding: 18px 22px 6px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.legal-brand {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-weight: 700; letter-spacing: -0.01em;
+}
+.legal-brand img { border-radius: 7px; }
+.legal-hub-link {
+  font-size: 14px; font-weight: 600; color: var(--muted);
+  padding: 6px 14px; border: 1px solid var(--border); border-radius: 999px;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.legal-hub-link:hover { color: var(--ink); border-color: var(--muted-2); }
+
+.legal-doc {
+  max-width: 860px; margin: 0 auto;
+  padding: 8px 22px 56px;
+  overflow-wrap: break-word;
+}
+.legal-doc h1 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin: 22px 0 10px; }
+.legal-doc h2 { font-size: 1.28rem; margin: 34px 0 10px; }
+.legal-doc h3 { font-size: 1.08rem; margin: 24px 0 8px; }
+.legal-doc p { margin: 10px 0; }
+.legal-doc ol, .legal-doc ul { margin: 10px 0; padding-left: 1.5em; }
+.legal-doc li { margin: 6px 0; }
+.legal-doc li > ol, .legal-doc li > ul { margin: 6px 0; }
+.legal-doc li > p { margin: 6px 0; }
+.legal-doc hr { border: 0; border-top: 1px solid var(--border); margin: 28px 0; }
+.legal-doc strong { font-weight: 700; }
+.legal-doc a {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+.legal-doc a:hover { text-decoration-thickness: 2.5px; }
+.legal-doc code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1px 5px;
+  word-break: break-all;
+}
+
+/* tables (retention, pricing, cookies...) - scroll inside their own box */
+.legal-doc .tbl { overflow-x: auto; margin: 12px 0; }
+.legal-doc table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+.legal-doc th, .legal-doc td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.legal-doc th { background: var(--surface); font-weight: 600; }
+
+/* hub page list */
+.legal-list { list-style: none; padding-left: 0 !important; }
+.legal-list li { margin: 8px 0; }
+.legal-list a {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  font-weight: 600;
+  transition: border-color .2s var(--ease), transform .18s var(--ease);
+}
+.legal-list a:hover { border-color: var(--accent); transform: translateY(-1px); }
+@media (prefers-reduced-motion: reduce) {
+  .legal-list a:hover { transform: none; }
+}
+
+.legal-foot {
+  max-width: 860px; margin: 0 auto;
+  padding: 18px 22px 44px;
+  border-top: 1px solid var(--border);
+  color: var(--muted); font-size: .9rem;
+  display: flex; flex-wrap: wrap; gap: 8px 18px;
+}
+.legal-foot a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.legal-foot a:hover { color: var(--ink); }
