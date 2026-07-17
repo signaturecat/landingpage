@@ -1,6 +1,6 @@
 # Allgemeine Geschäftsbedingungen (AGB) für Signature.Cat
 
-Version 1.0 - gültig ab 16.07.2026
+Version 1.1 - gültig ab 17.07.2026
 
 **Diese Allgemeinen Geschäftsbedingungen sind in polnischer Sprache unter https://signature.cat/terms als rechtsverbindliche Fassung verfügbar. Dieses Dokument ist eine automatische Übersetzung des polnischen Originals, dient ausschließlich Informationszwecken und kann Fehler oder Ungenauigkeiten enthalten. Im Falle von Abweichungen ist die polnische Fassung maßgeblich.**
 
@@ -127,13 +127,14 @@ Diese AGB stellen ein Reglement für die Erbringung von Dienstleistungen auf ele
 ## § 9. Verfügbarkeit des Dienstes
 
 1. Der Anbieter bemüht sich mit der gebotenen Sorgfalt, eine Verfügbarkeit der Plattform von mindestens **99% pro Kalendermonat** zu gewährleisten. Dieses Ziel gilt nicht im Testzeitraum (§ 7 Abs. 8).
-2. Nicht als Nichtverfügbarkeit gelten Unterbrechungen infolge von:
-   1. geplanten Wartungsarbeiten, die im Voraus angekündigt wurden;
+2. Die Verfügbarkeit der Plattform wird auf der Statusseite des Anbieters unter **https://status.signature.cat/** (die „Statusseite") gemessen und veröffentlicht. Grundlage für die Ermittlung der Verfügbarkeit der Plattform in einem Kalendermonat, einschließlich der Erreichung des in Abs. 1 genannten Ziels, sind die Angaben der Statusseite - unter Ausschluss der in Abs. 3 genannten Unterbrechungen und Ereignisse.
+3. Nicht als Nichtverfügbarkeit gelten Unterbrechungen infolge von:
+   1. geplanten technischen Unterbrechungen und Wartungsarbeiten, die im Voraus auf der Statusseite unter **https://status.signature.cat/maintenance** angekündigt werden;
    2. Ausfällen oder Einschränkungen auf Seiten externer Infrastruktur- und Dienstanbieter, die die Plattform nutzt (u. a. Hosting, Content Delivery Network, Zahlungsdienstleister, Google-Dienste und Google-APIs);
    3. höherer Gewalt;
    4. Ursachen auf Seiten des Kunden, insbesondere des Widerrufs der DWD-Autorisierung, von Änderungen der Workspace-Konfiguration oder der Nichterfüllung der technischen Anforderungen aus § 5.
-3. Die Bereitstellung von Signaturen hängt von der Verfügbarkeit und den Funktionsregeln der Google-APIs ab; der Anbieter haftet weder für Änderungen, die Google an diesen Schnittstellen vornimmt, noch für Entscheidungen von Google bezüglich des Workspace des Kunden.
-4. Ausfälle und Unregelmäßigkeiten können an die Adresse contact@signature.cat gemeldet werden. Die AGB sehen keine Servicegutschriften vor; individuelle SLA-Garantien können in einem gesonderten Vertrag vereinbart werden.
+4. Die Bereitstellung von Signaturen hängt von der Verfügbarkeit und den Funktionsregeln der Google-APIs ab; der Anbieter haftet weder für Änderungen, die Google an diesen Schnittstellen vornimmt, noch für Entscheidungen von Google bezüglich des Workspace des Kunden.
+5. Aktuelle Informationen über Ausfälle, Vorfälle und geplante Wartungsarbeiten werden auf der Statusseite veröffentlicht. Ausfälle und Unregelmäßigkeiten können an die Adresse contact@signature.cat gemeldet werden. Die AGB sehen keine Servicegutschriften vor; individuelle SLA-Garantien können in einem gesonderten Vertrag vereinbart werden.
 
 ## § 10. Haftung
 
@@ -200,7 +201,7 @@ Diese AGB stellen ein Reglement für die Erbringung von Dienstleistungen auf ele
 1. Auf den Vertrag findet **polnisches Recht** Anwendung.
 2. Zuständig für Streitigkeiten aus dem Vertrag ist das ordentliche Gericht, das örtlich für den Sitz des Anbieters zuständig ist. Der vorstehende Satz berührt nicht die zwingenden Vorschriften über die gerichtliche Zuständigkeit.
 3. Sollten sich einzelne Bestimmungen der AGB als unwirksam oder undurchsetzbar erweisen, bleiben die übrigen Bestimmungen in Kraft, und an die Stelle der unwirksamen Bestimmung tritt eine wirksame Bestimmung, die ihrem wirtschaftlichen Zweck am nächsten kommt.
-4. Die AGB treten am **16.07.2026** in Kraft.
+4. Diese Fassung (1.1) der AGB tritt am **17.07.2026** in Kraft; die Fassung 1.0 galt ab dem 16.07.2026.
 
 ---
 

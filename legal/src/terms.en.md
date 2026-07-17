@@ -1,6 +1,6 @@
 # Signature.Cat Terms of Service
 
-Version 1.0 - effective as of 16.07.2026
+Version 1.1 - effective as of 17.07.2026
 
 **These Terms of Service are available in Polish at https://signature.cat/terms as the legally binding version. This document is an automatic translation of the Polish original, provided for informational purposes only, and may contain errors or inaccuracies. In case of any discrepancy, the Polish version shall prevail.**
 
@@ -127,13 +127,14 @@ These Terms constitute terms and conditions for the provision of services by ele
 ## § 9. Service availability
 
 1. The Provider exercises due care to ensure that Platform availability is at least **99% per calendar month**. This target does not apply during the Trial Period (§ 7(8)).
-2. Unavailability does not include interruptions resulting from:
-   1. planned maintenance work announced in advance;
+2. Platform availability is measured and published on the Provider's status page available at **https://status.signature.cat/** (the "Status Page"). The readings of the Status Page are the basis for determining Platform availability in a given calendar month, including achievement of the target referred to in paragraph 1 - excluding the interruptions and events indicated in paragraph 3.
+3. Unavailability does not include interruptions resulting from:
+   1. planned technical breaks and maintenance work, announced in advance on the Status Page at **https://status.signature.cat/maintenance**;
    2. failures or limitations on the part of external infrastructure and service providers used by the Platform (including hosting, content delivery network, payment operator, Google services and APIs);
    3. force majeure;
    4. causes attributable to the Customer, in particular revocation of the DWD authorization, changes in the Workspace configuration or failure to meet the technical requirements of § 5.
-3. Deployment of signatures depends on the availability and operating rules of Google APIs; the Provider is not liable for changes introduced by Google in those interfaces or for Google's decisions concerning the Customer's Workspace.
-4. Failures and irregularities may be reported to contact@signature.cat. The Terms do not provide for service credits; individual SLA guarantees may be agreed in a separate agreement.
+4. Deployment of signatures depends on the availability and operating rules of Google APIs; the Provider is not liable for changes introduced by Google in those interfaces or for Google's decisions concerning the Customer's Workspace.
+5. Current information about failures, incidents and planned maintenance work is published on the Status Page. Failures and irregularities may be reported to contact@signature.cat. The Terms do not provide for service credits; individual SLA guarantees may be agreed in a separate agreement.
 
 ## § 10. Liability
 
@@ -200,7 +201,7 @@ These Terms constitute terms and conditions for the provision of services by ele
 1. The Agreement is governed by **Polish law**.
 2. The court having jurisdiction over disputes arising from the Agreement is the common court with territorial jurisdiction over the Provider's registered office. The preceding sentence does not affect mandatory provisions on jurisdiction.
 3. If individual provisions of the Terms prove invalid or ineffective, the remaining provisions remain in force, and the invalid provision is replaced by a valid provision closest to its economic purpose.
-4. The Terms enter into force on **16.07.2026**.
+4. This version (1.1) of the Terms enters into force on **17.07.2026**; version 1.0 was effective from 16.07.2026.
 
 ---
 

@@ -1,6 +1,6 @@
 # Conditions d'utilisation de Signature.Cat
 
-Version 1.0 - en vigueur à compter du 16.07.2026
+Version 1.1 - en vigueur à compter du 17.07.2026
 
 **Les présentes Conditions d'utilisation sont disponibles en polonais à l'adresse https://signature.cat/terms en tant que version juridiquement contraignante. Le présent document est une traduction automatique de l'original polonais, fournie à titre purement informatif, et peut contenir des erreurs ou des inexactitudes. En cas de divergence, la version polonaise prévaut.**
 
@@ -127,13 +127,14 @@ Les présentes Conditions constituent un règlement de fourniture de services pa
 ## § 9. Disponibilité du Service
 
 1. Le Prestataire met en oeuvre la diligence requise pour que la disponibilité de la Plateforme soit d'au moins **99% par mois calendaire**. Cet objectif ne s'applique pas pendant la Période d'essai (§ 7, al. 8).
-2. Ne sont pas comptabilisées comme indisponibilité les interruptions résultant :
-   1. de travaux de maintenance planifiés, annoncés à l'avance ;
+2. La disponibilité de la Plateforme est mesurée et publiée sur la page de statut du Prestataire accessible à l'adresse **https://status.signature.cat/** (la « Page de Statut »). Les indications de la Page de Statut servent de base pour déterminer la disponibilité de la Plateforme au cours d'un mois calendaire donné, y compris la réalisation de l'objectif visé à l'al. 1 - à l'exclusion des interruptions et événements visés à l'al. 3.
+3. Ne sont pas comptabilisées comme indisponibilité les interruptions résultant :
+   1. d'interruptions techniques planifiées et de travaux de maintenance, annoncés à l'avance sur la Page de Statut à l'adresse **https://status.signature.cat/maintenance** ;
    2. de pannes ou de limitations du côté des fournisseurs externes d'infrastructure et de services utilisés par la Plateforme (notamment hébergement, réseau de diffusion de contenu, opérateur de paiement, services et interfaces API de Google) ;
    3. d'un cas de force majeure ;
    4. de causes imputables au Client, en particulier la révocation de l'autorisation DWD, des modifications de la configuration du Workspace ou le non-respect des exigences techniques du § 5.
-3. Le déploiement des signatures dépend de la disponibilité et des règles de fonctionnement des interfaces API de Google ; le Prestataire ne répond ni des modifications apportées par Google à ces interfaces ni des décisions de Google concernant le Workspace du Client.
-4. Les pannes et anomalies peuvent être signalées à l'adresse contact@signature.cat. Les Conditions ne prévoient pas de crédits de service ; des garanties SLA individuelles peuvent être convenues dans un contrat distinct.
+4. Le déploiement des signatures dépend de la disponibilité et des règles de fonctionnement des interfaces API de Google ; le Prestataire ne répond ni des modifications apportées par Google à ces interfaces ni des décisions de Google concernant le Workspace du Client.
+5. Les informations actuelles sur les pannes, incidents et travaux de maintenance planifiés sont publiées sur la Page de Statut. Les pannes et anomalies peuvent être signalées à l'adresse contact@signature.cat. Les Conditions ne prévoient pas de crédits de service ; des garanties SLA individuelles peuvent être convenues dans un contrat distinct.
 
 ## § 10. Responsabilité
 
@@ -200,7 +201,7 @@ Les présentes Conditions constituent un règlement de fourniture de services pa
 1. Le droit applicable au Contrat est **le droit polonais**.
 2. Le tribunal compétent pour les litiges découlant du Contrat est le tribunal de droit commun territorialement compétent pour le siège du Prestataire. La phrase précédente ne porte pas atteinte aux dispositions impératives en matière de compétence juridictionnelle.
 3. Si certaines dispositions des Conditions s'avèrent nulles ou inefficaces, les autres dispositions restent en vigueur et la disposition nulle est remplacée par une disposition valable la plus proche de son objectif économique.
-4. Les Conditions entrent en vigueur le **16.07.2026**.
+4. La présente version (1.1) des Conditions entre en vigueur le **17.07.2026** ; la version 1.0 était en vigueur à compter du 16.07.2026.
 
 ---
 
