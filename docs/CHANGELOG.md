@@ -2,6 +2,42 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-17 - Status page link in the footer; Terms v1.1 (status page as the SLA reference)
+
+- **What:**
+  - Footer "Resources" column gains a **Status** link to
+    `https://status.signature.cat/` (new i18n key `footer.f.status`:
+    en/pl/de "Status", fr "Statut"), baked into `/`, `/pl/`, `/de/`, `/fr/`
+    via `node build.mjs`.
+  - **Terms of Service bumped to v1.1 (effective 17.07.2026)** in all four
+    language versions (`legal/src/regulamin.md` + en/de/fr translations),
+    rebuilt with `node build-legal.mjs`. § 9 now states that availability is
+    measured and published on the provider's status page ("Strona Statusu" /
+    "Status Page") and that its readings are the basis for determining the
+    99% monthly availability target - excluding: (a) planned technical
+    breaks and maintenance announced in advance at
+    `https://status.signature.cat/maintenance`, (b) failures attributable to
+    external providers (hosting, CDN, payment operator, Google APIs),
+    (c) force majeure, (d) causes on the customer's side. Old § 9(3)-(4)
+    renumbered to (4)-(5); the only cross-reference in the documents
+    (§ 7 -> "§ 9(1)") is unaffected. Final § 15(4) records the version
+    history (1.1 from 17.07.2026, 1.0 from 16.07.2026).
+  - Cleanup: removed a stray `</script>` right after `<head>` in
+    `index.html` (slipped in with the ASCII-art easter-egg commit pushed
+    straight to main on 2026-07-16; the easter egg itself stays).
+- **Why:** PM request 2026-07-17: publish the status page and make it the
+  SLA reference in the Terms, with provider-fault incidents and pre-announced
+  maintenance windows excluded from the availability measure.
+- **Scope:** landingpage (footer + baked locale pages) + legal sources.
+- **Design impact:** none - the link reuses the existing footer link styles
+  (verified identical computed styles to sibling links in dark mode; same
+  tokens in light mode).
+- **A11y / typography:** plain text link, AA contrast inherited; content uses
+  ASCII hyphens only (build-legal.mjs AI-tell assertion passes).
+- **Deploy note:** the legally binding PL wording changed - per § 14(2)(2)
+  functional changes need 10 days' notice to existing customers; publication
+  timing/notification is a PM decision (see report).
+
 ## 2026-07-16 - Google Analytics 4 wired through the consent banner (basic consent mode)
 
 - **What:** The Worker-injected consent script now carries the GA4 loader

@@ -1,6 +1,6 @@
 # Regulamin świadczenia usług Signature.Cat
 
-Wersja 1.0 - obowiązuje od dnia 16.07.2026
+Wersja 1.1 - obowiązuje od dnia 17.07.2026
 
 Niniejszy Regulamin jest regulaminem świadczenia usług drogą elektroniczną w rozumieniu art. 8 ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną. Wersja polska Regulaminu jest wersją wiążącą prawnie. Wersje angielska, niemiecka i francuska są tłumaczeniami automatycznymi udostępnianymi wyłącznie w celach informacyjnych i mogą zawierać błędy; w przypadku rozbieżności rozstrzyga wersja polska.
 
@@ -125,13 +125,14 @@ Niniejszy Regulamin jest regulaminem świadczenia usług drogą elektroniczną w
 ## § 9. Dostępność Usługi
 
 1. Usługodawca dokłada należytej staranności, aby dostępność Platformy wynosiła co najmniej **99% w skali miesiąca kalendarzowego**. Cel ten nie obowiązuje w Okresie Próbnym (§ 7 ust. 8).
-2. Do niedostępności nie wlicza się przerw wynikających z:
-   1. planowanych prac utrzymaniowych, zapowiedzianych z wyprzedzeniem;
+2. Dostępność Platformy jest mierzona i publikowana na stronie statusu Usługodawcy dostępnej pod adresem **https://status.signature.cat/** (dalej: „Strona Statusu"). Podstawą ustalenia dostępności Platformy w danym miesiącu kalendarzowym, w tym realizacji celu, o którym mowa w ust. 1, są wskazania Strony Statusu - z wyłączeniem przerw i zdarzeń wskazanych w ust. 3.
+3. Do niedostępności nie wlicza się przerw wynikających z:
+   1. planowanych przerw technicznych i prac utrzymaniowych, zapowiadanych z wyprzedzeniem na Stronie Statusu pod adresem **https://status.signature.cat/maintenance**;
    2. awarii lub ograniczeń po stronie zewnętrznych dostawców infrastruktury i usług, z których korzysta Platforma (m.in. hosting, sieć dostarczania treści, operator płatności, usługi i interfejsy API Google);
    3. siły wyższej;
    4. przyczyn leżących po stronie Klienta, w szczególności cofnięcia autoryzacji DWD, zmian w konfiguracji Workspace lub braku spełnienia wymagań technicznych z § 5.
-3. Wdrażanie sygnatur jest zależne od dostępności i zasad działania interfejsów API Google; Usługodawca nie odpowiada za zmiany wprowadzane przez Google w tych interfejsach ani za decyzje Google dotyczące Workspace Klienta.
-4. Awarie i nieprawidłowości można zgłaszać na adres contact@signature.cat. Regulamin nie przewiduje kredytów serwisowych; indywidualne gwarancje SLA mogą zostać uzgodnione w odrębnej umowie.
+4. Wdrażanie sygnatur jest zależne od dostępności i zasad działania interfejsów API Google; Usługodawca nie odpowiada za zmiany wprowadzane przez Google w tych interfejsach ani za decyzje Google dotyczące Workspace Klienta.
+5. Aktualne informacje o awariach, incydentach i planowanych pracach utrzymaniowych publikowane są na Stronie Statusu. Awarie i nieprawidłowości można zgłaszać na adres contact@signature.cat. Regulamin nie przewiduje kredytów serwisowych; indywidualne gwarancje SLA mogą zostać uzgodnione w odrębnej umowie.
 
 ## § 10. Odpowiedzialność
 
@@ -198,7 +199,7 @@ Niniejszy Regulamin jest regulaminem świadczenia usług drogą elektroniczną w
 1. Prawem właściwym dla Umowy jest **prawo polskie**.
 2. Sądem właściwym dla sporów wynikających z Umowy jest sąd powszechny właściwy miejscowo dla siedziby Usługodawcy. Zdanie poprzednie nie narusza bezwzględnie obowiązujących przepisów o jurysdykcji.
 3. Jeżeli poszczególne postanowienia Regulaminu okażą się nieważne lub bezskuteczne, pozostałe postanowienia pozostają w mocy, a w miejsce postanowienia nieważnego stosuje się ważne postanowienie najbliższe jego celowi gospodarczemu.
-4. Regulamin wchodzi w życie z dniem **16.07.2026**.
+4. Regulamin w niniejszej wersji (1.1) wchodzi w życie z dniem **17.07.2026**; wersja 1.0 obowiązywała od dnia 16.07.2026.
 
 ---
 
