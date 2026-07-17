@@ -1,4 +1,22 @@
+# signature.cat - everything is crawlable, including /docs.
 User-agent: *
 Allow: /
 
+# AI crawlers are explicitly welcome (see also /llms.txt and /llms-full.txt).
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://signature.cat/sitemap.xml
+Sitemap: https://signature.cat/docs/sitemap.xml
