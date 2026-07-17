@@ -17,17 +17,27 @@
     @media (prefers-color-scheme: dark) { body { background: #1c1917; color: #faf5ef; } }
     h1 { font-size: 2.5rem; margin: 0 0 8px; letter-spacing: -0.03em; }
     p { color: #6b6660; margin: 0 0 20px; }
-    a {
+    @media (prefers-color-scheme: dark) { p { color: #a8a29e; } }
+    a.cta {
       display: inline-block; padding: 11px 18px; border-radius: 10px;
       background: #e89bf5; color: #292524; font-weight: 600; text-decoration: none;
     }
+    .popular { margin: 26px 0 0; padding: 0; list-style: none; font-size: 14.5px; }
+    .popular li { margin: 7px 0; }
+    .popular a { color: inherit; text-decoration: underline; text-decoration-color: #e89bf5; text-underline-offset: 3px; }
   </style>
 </head>
 <body>
   <main>
     <h1>404</h1>
     <p>That page does not exist.</p>
-    <a href="/">Back to SignatureCat</a>
+    <a class="cta" href="/">Back to SignatureCat</a>
+    <ul class="popular">
+      <li><a href="/docs/">Documentation</a></li>
+      <li><a href="/docs/connect-google-workspace/">Connect your Google Workspace</a></li>
+      <li><a href="/docs/template-variables/">Template variables</a></li>
+      <li><a href="/docs/get-help/">Get help</a></li>
+    </ul>
   </main>
 </body>
 </html>

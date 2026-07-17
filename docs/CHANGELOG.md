@@ -2,6 +2,61 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-17 - Public documentation at /docs (22 pages, EN)
+
+- **What:**
+  - New zero-dep static generator `build-docs.mjs` (same philosophy as
+    `build.mjs`/`build-legal.mjs`): Markdown sources in `docs-src/*.md`
+    (front matter: title/description/updated) render to `/docs/<slug>/`
+    pages. Railway-docs-like layout: left sidebar nav (active item gets a
+    pink dot + tinted background), right "On this page" scroll-spy TOC with
+    a sliding indicator, Previous/Next pager cards, breadcrumb.
+  - Top bar: brand + DOCS wordmark, search trigger (Ctrl/Cmd+K or `/`,
+    client-side index over generated `/docs/search-index.json`), the
+    Better Stack status badge iframe (theme-aware: `?theme=light|dark`
+    follows `prefers-color-scheme`; note the bare `/badge` redirect drops
+    the query - `/en/badge` is used), a Help button
+    (`mailto:contact@signature.cat`) and a distinct "Open app" CTA.
+  - Content: 22 English pages per the PM's structure (Getting started,
+    Advanced setup, Billing, Reference, Support), written from the app
+    repo's canonical docs + code-verified facts (exact UI labels, scopes,
+    limits). Deep links into `app.signature.cat/*` throughout. Warnings in
+    styled callouts (`> [!NOTE|TIP|IMPORTANT|WARNING|CAUTION]`).
+  - Headings h2-h4 get stable ids + hover anchor-link buttons (click
+    copies the deep link, "Link copied" tip).
+  - SEO: per-page `<title>TOPIC | SignatureCat Docs</title>`, meta
+    description, self-canonical, OG/Twitter, JSON-LD TechArticle +
+    BreadcrumbList; `/docs/sitemap.xml` (second `Sitemap:` line in
+    `robots.txt`); `llms.txt` + `llms-full.txt` at the root; explicit AI
+    crawler allows in `robots.txt`; 404.html links popular docs pages.
+    AI-tell character guard asserted at build time (docs are EN-only, no
+    hreflang cluster).
+  - `cloudflare/worker.js` CSP: added
+    `frame-src 'self' https://status.signature.cat` for the badge iframe
+    (auto-deploys with the merge; without it the badge is blocked).
+- **Why:** PM request 2026-07-17: publish real product documentation under
+  signature.cat/docs (the header/footer "Docs" links already pointed
+  there), SEO-first per the provided guidelines.
+- **Scope:** landingpage (new /docs generator + pages), cloudflare worker
+  (CSP one-liner).
+- **Design impact:** new `assets/css/docs.css` built entirely on the
+  existing style.css tokens (Light + Dark, warm minimalism, pink accent);
+  no changes to landing styles. New `assets/js/docs.js` (plain JS, no deps,
+  ~7 KB): search, scroll-spy, anchor copy, mobile drawer, badge theme.
+- **Performance impact:** system fonts, no external assets (CSP-safe), one
+  extra CSS + one deferred JS file on /docs only; search index fetched
+  on demand (first search open). Static HTML, zero client rendering.
+- **A11y:** semantic landmarks (nav/main/aside), skip-link, aria-current
+  on the active sidebar item, dialog semantics + keyboard support for
+  search (Esc/arrows/Enter), focus-visible states, `prefers-reduced-motion`
+  disables the TOC indicator animation and drawer transition, AA contrast
+  in both themes.
+- **Verification note:** checked locally (light/dark, desktop/mobile,
+  search, drawer, per-page metas). The status badge renders transparently
+  in light; dark-theme transparency should be spot-checked on production
+  after the Worker CSP deploy (the embedded preview browser could not
+  composite the cross-origin iframe reliably).
+
 ## 2026-07-17 - Status page link in the footer; Terms v1.1 (status page as the SLA reference)
 
 - **What:**

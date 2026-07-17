@@ -1,0 +1,1044 @@
+SignatureCat documentation (full content). Index: https://signature.cat/llms.txt
+
+========================================================================
+
+# Introduction
+URL: https://signature.cat/docs/
+Section: Getting started
+
+# SignatureCat documentation
+
+SignatureCat centrally manages Gmail signatures across your entire Google Workspace. You design one HTML signature template with variables, assign it to users through groups, organizational units or the whole workspace, and SignatureCat writes a personalized signature into every mailbox - and keeps it up to date automatically.
+
+The app runs at [app.signature.cat](https://app.signature.cat). This documentation covers everything from first setup to day-to-day reference.
+
+## How does SignatureCat work?
+
+1. **Connect your Google Workspace.** A Workspace super admin authorizes SignatureCat through [Domain-Wide Delegation](/docs/domain-wide-delegation/), so it can read your user directory and write Gmail signatures.
+2. **Create a template.** One HTML template with [variables](/docs/template-variables/) like `{{firstname}}` or `{{jobtitle}}` that resolve per user from your Google Directory.
+3. **Assign it.** Bind templates to groups, organizational units or everyone at once on the [Assignments](https://app.signature.cat/assignments) page.
+4. **Stay up to date.** A background sync re-applies assignments once a day, so new hires and team changes get the right signature without anyone lifting a finger.
+
+## What you need
+
+- A **Google Workspace** domain (personal Gmail accounts are not supported).
+- A **Workspace super admin** to register your company and complete the one-time authorization. Day-to-day work can then be delegated to non-admins through [user management](/docs/user-management/).
+- About **10 minutes** for the whole first setup.
+
+> [!NOTE]
+> Every workspace starts with a 7-day free trial. A card is collected at sign-up and first charged when the trial ends. See [Invoices](/docs/invoices/) for pricing and billing details.
+
+## First steps
+
+Follow the Getting started guides in order:
+
+1. [Connect your Google Workspace](/docs/connect-google-workspace/) - registration, provisioning and the Domain-Wide Delegation wizard.
+2. [Create your first template](/docs/create-your-first-template/) - the editor, variables, preview and testing on your own mailbox.
+3. [Assign templates](/docs/assign-templates/) - groups, OUs or the whole workspace.
+4. [Verify an assignment job](/docs/verify-assignments/) - confirm signatures landed where they should.
+
+## Where to look things up
+
+- [Templates](/docs/templates/) and [Template variables](/docs/template-variables/) - the full editor and variable reference.
+- [Assignments](/docs/assignments/) - precedence rules and alias modes.
+- [Apply jobs](/docs/apply-jobs/) and [Logs](/docs/logs/) - how signature rollout is tracked.
+- [Notifications](/docs/notifications/) - which alerts arrive by email and which appear in the app.
+- [Get help](/docs/get-help/) - support contact and [service status](/docs/service-status/).
+
+========================================================================
+
+# Connect your Google Workspace
+URL: https://signature.cat/docs/connect-google-workspace/
+Section: Getting started
+
+# Connect your Google Workspace
+
+To connect a Google Workspace to SignatureCat, a **Workspace super admin** signs in at [app.signature.cat](https://app.signature.cat), provisions a dedicated service account and authorizes it in the Google Admin console through Domain-Wide Delegation (DWD). The whole flow takes about 10 minutes and is required exactly once.
+
+> [!IMPORTANT]
+> The first registration of a company account must be performed by a **Google Workspace super admin**. Only a super admin can open the Domain-Wide Delegation page in the Google Admin console, and SignatureCat needs directory access to count your seats correctly. Regular users can be invited later - they do not need admin privileges. See [User management](/docs/user-management/).
+
+## Step 1: Sign in with Google
+
+Open [app.signature.cat](https://app.signature.cat) and click **Sign in with Google** using your company account. SignatureCat only requests the basic `openid email profile` sign-in scopes at this point - the Workspace permissions are granted separately in step 3, and only to your own isolated service account.
+
+Personal Gmail accounts are rejected: SignatureCat requires a Google Workspace account.
+
+## Step 2: Set up your workspace
+
+Right after the first sign-in you land on the **Set up your workspace** screen. Clicking **Set up workspace** creates a dedicated, isolated Google Cloud service account for your organization - this is the identity that will manage Gmail signatures on your behalf. It usually takes a few seconds (up to 15).
+
+> [!NOTE]
+> Each customer gets their **own** service account. Its credentials are stored in a secrets vault, never in the application database, and keys are rotated automatically. Rotation never changes the Client ID, so you will never have to re-authorize because of it.
+
+Only the administrator who created the organization can complete this step.
+
+## Step 3: Authorize Domain-Wide Delegation
+
+Next, the wizard **Authorize SignatureCat in your Workspace** at [app.signature.cat/onboarding/dwd](https://app.signature.cat/onboarding/dwd) walks you through the Google Admin console:
+
+1. **Open the Admin Console** - the wizard links straight to the [Domain-wide delegation page](https://admin.google.com/ac/owl/domainwidedelegation) (Security, API Controls, Domain-wide delegation). Sign in as a super admin.
+2. **Add new** - click **Add new** API client.
+3. **Paste the Client ID** - copy the numeric Client ID shown in the wizard (unique to your organization) and paste it into the Admin console form. Use the copy button; it must be the numeric ID, not an email address.
+4. **Paste the OAuth scopes** - copy the comma-separated scope string from the wizard and paste it into the OAuth scopes field:
+
+```
+https://www.googleapis.com/auth/gmail.settings.basic,https://www.googleapis.com/auth/admin.directory.user.readonly,https://www.googleapis.com/auth/admin.directory.group.member.readonly,https://www.googleapis.com/auth/admin.directory.customer.readonly,https://www.googleapis.com/auth/gmail.settings.sharing
+```
+
+5. **Authorize** - click **Authorize** in the Admin console.
+6. **Verify** - back in SignatureCat, click **Check**. The app runs a connectivity test against each scope and shows a per-scope OK / Failed result.
+
+The last scope, `gmail.settings.sharing`, is **optional**: it is only needed to write signatures on send-as aliases. You can skip it now and add it later - everything else works, and the wizard will show an "Alias signatures are off" notice. See [Assignments](/docs/assignments/#alias-modes) for what aliases unlock.
+
+> [!WARNING]
+> Paste the scope string exactly as copied. A missing or altered scope fails the check with a per-scope error such as "This scope wasn't authorized. Re-do step 4 with the exact scope string."
+
+### The check says access is still propagating
+
+Google needs a moment to propagate a fresh DWD grant - typically seconds, sometimes up to about 30 seconds. The **Check** button already waits out most of this window. If you still see the yellow "access may still be propagating" card, wait a moment and click **Check** again. This is not an error.
+
+## Step 4: Billing
+
+After DWD verifies, you are taken to [Billing](https://app.signature.cat/billing) to start the 7-day free trial (card collected up front, charged when the trial ends). See [Invoices](/docs/invoices/) for the pricing tiers.
+
+That's it - continue with [Create your first template](/docs/create-your-first-template/).
+
+## Renewing or re-granting Domain-Wide Delegation
+
+If the DWD entry or one of its scopes is later removed in the Google Admin console, SignatureCat detects it before the next sync: signature syncs pause, admins get an in-app notification and an email, and the app asks you to re-run the wizard.
+
+To re-run it at any time, open [Settings](https://app.signature.cat/settings), find the **Service Account** section and click **Re-run DWD wizard** (the Client ID is shown there too). Once the check passes, syncs resume automatically.
+
+> [!WARNING]
+> Removing the Domain-Wide Delegation entry in the Admin console immediately breaks signature management for your whole workspace. If you are deleting your SignatureCat account, remove the DWD entry afterwards - SignatureCat cannot remove it for you.
+
+========================================================================
+
+# Create your first template
+URL: https://signature.cat/docs/create-your-first-template/
+Section: Getting started
+
+# Create your first template
+
+A template is one HTML signature that SignatureCat personalizes per user with data from your Google Directory. You create templates on the [Signatures](https://app.signature.cat/signatures) page, and you can safely test the result on your own mailbox before rolling anything out.
+
+## Create the template
+
+1. Open [Signatures](https://app.signature.cat/signatures) and click **New template**.
+2. Pick a starting point:
+   - **Default** - Directory photo plus contact details.
+   - **With company logo** - your logo (115x115 px) instead of the personal photo, consistent across the company.
+   - **With banner** - the signature plus a campaign banner (450x100 px) below it.
+3. For the logo or banner starters, pick an image from your library or upload one - or skip and a placeholder is used until you choose one. See [Banners and logos](/docs/banners-and-logos/).
+
+The editor opens immediately. Everything from the starter can be adjusted later.
+
+## Personalize with variables
+
+Insert `{{variable}}` tokens with the **Insert variable** menu - for example `{{firstname}}`, `{{jobtitle}}` or `{{phone}}`. At apply time each token resolves from the user's Google Directory record, so one template produces a personal signature for everyone.
+
+Wrap optional lines in conditional tags so signatures stay clean when data is missing:
+
+- `{{del}} ... {{/del}}` removes the wrapped block only when **all** variables inside are empty.
+- `{{delete}} ... {{/delete}}` removes the block when **any** variable inside is empty.
+
+The complete list of variables, where each value comes from and the exact conditional rules are in the [Template variables](/docs/template-variables/) reference.
+
+> [!TIP]
+> Keep Directory data tidy before rolling out - job titles, departments and phone numbers come straight from Google Directory. Empty fields simply render as empty text unless you wrap them in `{{del}}` tags.
+
+## Preview as a real user
+
+The preview pane renders the resolved signature live as you type. Use the **Render as** control to substitute any real user's Directory record - by default it renders against your own. The preview tells you exactly which record it used: "Rendered against {email}'s Directory record."
+
+## Test it on your own mailbox
+
+Click **Set me a test signature** in the editor toolbar. SignatureCat renders the template against your own Directory record and writes it to your own Gmail signature - no one else is affected. Send yourself an email or check Gmail settings to see the real result.
+
+When you are happy with the template, continue to [Assign templates](/docs/assign-templates/).
+
+> [!NOTE]
+> Saving a template validates it: unknown `{{tokens}}` and unbalanced `{{del}}` / `{{delete}}` tags are rejected, and the HTML is sanitized (scripts, iframes and inline event handlers are stripped). See [Templates](/docs/templates/) for the full reference.
+
+========================================================================
+
+# Assign templates to groups, OUs or everyone
+URL: https://signature.cat/docs/assign-templates/
+Section: Getting started
+
+# Assign templates to groups, OUs or everyone
+
+Assignments bind a template to a target - a Google group, an organizational unit (OU) or every active user in your workspace - and keep it applied automatically. You manage them on the [Assignments](https://app.signature.cat/assignments) page (available to Editors and Admins).
+
+## Assign to a group
+
+1. On [Assignments](https://app.signature.cat/assignments), add an entry under **Group assignments**.
+2. Enter the **Group email** (for example `engineering@example.com`).
+3. Pick the **Template**.
+4. Optionally enable **+ sub-groups** to include members of nested groups.
+5. Optionally pick an alias mode under **Aliases** - see [alias modes](/docs/assignments/#alias-modes) for what "Addresses in the group" and "All aliases" do.
+
+## Assign to an organizational unit
+
+1. Add an entry under **OU assignments**.
+2. Enter the **OU path** starting with a slash, for example `/Engineering`.
+3. Pick the template, and optionally enable **+ sub-OUs** to cover the whole subtree.
+
+## Assign to the whole workspace
+
+The **Assign to everyone** section holds at most one entry per workspace. It covers every active (non-suspended) user and acts as the base layer: OU and group assignments still override it per user, so you can set a company-wide default and refine it for specific teams.
+
+Click **Assign to everyone**, pick the template and save the form.
+
+> [!IMPORTANT]
+> The everyone-assignment reaches every active user in your Workspace, and the daily sync will keep re-applying it without further confirmation. Review the template carefully before saving - ideally after a [test on your own mailbox](/docs/create-your-first-template/#test-it-on-your-own-mailbox).
+
+## When do signatures actually change?
+
+- Click **Sync now** on the Assignments page to apply everything immediately, or
+- wait for the **daily background sync**, which re-applies all assignments once a day and picks up new group members, OU moves and new hires automatically.
+
+If a user matches several assignments, exactly one wins: group beats OU, OU beats the everyone-assignment, and a user's own [self-service](/docs/self-service/) choice beats them all unless the assignment has **Override self-service** enabled. The precise rules are in the [Assignments reference](/docs/assignments/#how-precedence-works).
+
+Next: [verify the assignment job](/docs/verify-assignments/) to confirm everything landed.
+
+> [!NOTE]
+> Each target can hold only one assignment. Trying to create a second one for the same group or OU shows "This target already has an assignment. Edit the existing entry or choose a different target."
+
+========================================================================
+
+# Verify an assignment job
+URL: https://signature.cat/docs/verify-assignments/
+Section: Getting started
+
+# Verify an assignment job
+
+Every sync and manual apply runs as a job with a per-user result you can inspect. The quickest check is the [Task logs](https://app.signature.cat/assignments/logs) page; a live job also has its own detail view at `app.signature.cat/jobs/{id}` that updates in real time.
+
+## Check the task logs
+
+Open [Task logs](https://app.signature.cat/assignments/logs) (Editors and Admins). Each row is one finished job - an **Assignment sync** or a **Manual apply** - with its status, start and finish time, who triggered it ("Automatic" for the daily sync) and a summary like "42 succeeded, 1 failed, 2 skipped".
+
+Expand a row to see the per-user drill-down, or click **Open full job view** for the complete result table.
+
+> [!NOTE]
+> Task logs are kept for a limited time (by default the last 3 days) and older entries are removed automatically. Check jobs soon after large rollouts.
+
+## Job statuses
+
+| Status | Meaning |
+|---|---|
+| Queued | Waiting for the worker to pick it up. |
+| Running | In progress - the detail page live-updates. |
+| Succeeded | Every targeted user got the signature. |
+| Partial | Some users succeeded, some failed or were skipped - inspect the rows. |
+| Failed | The job did not complete. A job stuck in Running for over 30 minutes is marked Failed automatically. |
+| Cancelled | Cancelled before it ran (for example the template was deleted with pending jobs). |
+
+## What the per-user rows tell you
+
+Each row shows the address written (alias rows carry an "alias" badge), the status and an error code when something went wrong. The most common ones:
+
+- **TARGET_NOT_FOUND** - the assigned group or OU no longer exists in the Workspace (deleted or a wrong identifier). The target was skipped, admins get a notification, and the assignment row shows a "not found in Workspace" badge. Fix or remove the assignment on [Assignments](https://app.signature.cat/assignments).
+- **USER_NOT_FOUND** - the user no longer exists in the directory.
+- **ALIAS_SCOPE_MISSING** - alias signatures require the optional `gmail.settings.sharing` scope, which has not been granted. See [Connect your Google Workspace](/docs/connect-google-workspace/#step-3-authorize-domain-wide-delegation).
+- **DWD_NOT_CONFIGURED / DWD_SCOPE_MISSING** - Domain-Wide Delegation is broken or missing a scope. Re-run the wizard from [Settings](https://app.signature.cat/settings). See [Domain-Wide Delegation](/docs/domain-wide-delegation/).
+- **RATE_LIMITED** - Google throttled the requests; the worker retries automatically before surfacing this.
+
+A row can also note "overrode N other assignment(s) for this user" - the user matched several assignments and this one won. Precedence rules are in the [Assignments reference](/docs/assignments/#how-precedence-works).
+
+## Verify inside Gmail
+
+For a spot check, ask a covered user to open Gmail Settings and look at the signature, or send yourself a test message. Remember that a user's own [self-service](/docs/self-service/) signature wins over assignments unless the assignment overrides it.
+
+> [!TIP]
+> Failed rows on a finished job can be retried from the job detail view with **Re-run failed** - no need to re-apply to everyone.
+
+========================================================================
+
+# User management and access levels
+URL: https://signature.cat/docs/user-management/
+Section: Advanced setup
+
+# User management and access levels
+
+Only people you explicitly let in can sign in to SignatureCat: Workspace super admins (always allowed), users with a direct access grant, and members of groups you granted access to. Everyone else is turned away at login. Access is managed on the [User management](https://app.signature.cat/user-management) page (Admins only).
+
+## What does each access level allow?
+
+| Access level | What it allows |
+|---|---|
+| Self-service | Sets their own signature from organization templates only. |
+| Self-service + edit | Self-service plus their own custom HTML signature. |
+| Designer | Edits organization signature templates. |
+| Editor | Designer plus managing assignments and apply jobs, and in-app notifications. |
+| Admin | Full access, including billing, user management, image domains and the DWD wizard. |
+
+A few practical consequences:
+
+- **Templates** ([Signatures](https://app.signature.cat/signatures)): Designer, Editor, Admin.
+- **Assignments and Apply** ([Assignments](https://app.signature.cat/assignments), [Apply](https://app.signature.cat/apply)): Editor, Admin.
+- **Billing, user management, custom image domain**: Admin only.
+- Editors see in-app [notifications](/docs/notifications/); alert and billing **emails** go to admins only.
+
+> [!NOTE]
+> Workspace **super admins** always have the Admin level. It is enforced at every sign-in and cannot be revoked in SignatureCat - to change it, change their admin status in Google Workspace itself.
+
+## Who can sign in?
+
+Sign-in is Google-only and requires a Google Workspace account in your domain. When someone without access tries, they see: "Your account doesn't have access to SignatureCat yet. Ask a Workspace super admin to grant you access, then sign in again." - and nothing is changed in your workspace.
+
+Sessions last up to 7 days of inactivity with a hard cap of 14 days, then a one-click Google re-login is needed.
+
+## Grant access to a single user
+
+1. Open [User management](https://app.signature.cat/user-management) and click **Add access**.
+2. On the **User** tab, enter the email address (it must belong to your Workspace, secondary domains included).
+3. Pick an access level and click **Save access**.
+
+The user receives a "You now have access to signature.cat" email invitation.
+
+A direct user grant always **overrides** any group grant for that person - even if the group grant is stronger.
+
+## Grant access to a whole Google group
+
+1. In the same drawer, switch to the **Group** tab.
+2. Paste the group email (for example `engineering@example.com`), pick the level and save.
+
+> [!WARNING]
+> A group grant covers **everyone in the group, including people added to it in the future** - membership is checked live at each sign-in, with no per-person confirmation. Grant broad groups the lowest level that does the job (usually Self-service).
+
+> [!IMPORTANT]
+> Group membership is evaluated when the user signs in. Someone who is already signed in, or was just added to the group, may need to **sign in again** before the new access takes effect.
+
+## Removing and changing access
+
+- Edit or remove grants from the same page. Removing a grant blocks the next sign-in; it does not remove a signature that is already applied to the mailbox.
+- You cannot change or remove **your own** access - another admin has to do it (the UI shows a "You" badge instead of the controls).
+- Access levels only control the SignatureCat app. They have no effect on the user's Google account.
+
+## Letting users manage their own signature
+
+Grant users (or a group) the **Self-service** level and enable at least one template for self-service - the full flow is described in [Self-service](/docs/self-service/).
+
+========================================================================
+
+# Self-service signatures
+URL: https://signature.cat/docs/self-service/
+Section: Advanced setup
+
+# Self-service signatures
+
+Self-service lets each user pick their own signature from templates you approve, and apply it to their own mailbox immediately - without touching anyone else's. Users find it under **My signature** at [app.signature.cat/self-service](https://app.signature.cat/self-service).
+
+## What admins set up
+
+Two switches make self-service available:
+
+1. **Enable templates for self-service.** On [Signatures](https://app.signature.cat/signatures), toggle self-service on for each template users may pick. Only these templates are visible on the self-service page.
+2. **Grant users access.** On [User management](https://app.signature.cat/user-management), grant users or groups the **Self-service** level (or **Self-service + edit** to also allow their own custom HTML). See [User management](/docs/user-management/) - including the warning about group grants covering future members.
+
+> [!WARNING]
+> Disabling self-service on a template clears the choices of every user who picked it, and their pending jobs are cancelled. The app asks for confirmation first.
+
+## What the user does
+
+1. Sign in at [app.signature.cat](https://app.signature.cat) and open **My signature**.
+2. Pick an **Organization template** from the dropdown. A live preview renders against the user's own Directory record.
+3. Users with the edit level can switch to **Custom HTML** and adjust the markup, with the same [variables](/docs/template-variables/) available; **Reset to template** restores the original.
+4. Click **Save signature**. The signature is applied to the user's mailbox right away ("Saved - applied to your mailbox"), including their accepted send-as aliases.
+
+If the dropdown is empty, no template has self-service enabled yet: "Your organization hasn't published any self-service templates yet. Ask an admin to enable one."
+
+## How self-service interacts with assignments
+
+A user's self-service choice sits at the **top** of the precedence ladder: it wins over group, OU and everyone-assignments. The one exception is an assignment with **Override self-service** enabled, which inverts the rule for the users it covers. Details: [Assignments](/docs/assignments/#how-precedence-works).
+
+> [!NOTE]
+> Self-service users can only ever set their **own** signature. They see only the templates you enabled, never other users' data or admin pages.
+
+========================================================================
+
+# Serve images from your own domain
+URL: https://signature.cat/docs/custom-image-domain/
+Section: Advanced setup
+
+# Serve images from your own domain
+
+By default, logos and banners in your signatures are served from `images.signature.cat`. You can serve them from a subdomain of your own domain instead - for example `images.yourcompany.com`. Mail clients fetch images from the sender's own domain more readily, so deliverability improves, and the URLs carry your brand.
+
+Setup breaks nothing: until the domain is active, images keep loading from `images.signature.cat`, and after activation the switch happens automatically for newly rendered signatures. Templates stay unchanged.
+
+## Requirements
+
+- An **Admin** access level in SignatureCat.
+- Access to your domain's DNS settings.
+- A **subdomain** (like `images.yourcompany.com`). Apex domains (`yourcompany.com`) are not supported by design.
+
+## Set it up
+
+1. Open the image library from any template editor on [Signatures](https://app.signature.cat/signatures) (Logo or Banner button) and choose **Use your own domain** in the serving bar.
+2. **Enter a subdomain** - for example `images.yourcompany.com` - and click **Generate DNS records**.
+3. **Add two DNS records** at your DNS provider, exactly as shown:
+   - a **CNAME** record pointing the subdomain to `cdn.signature.cat` (points the subdomain to us),
+   - a **TXT** record proving domain ownership.
+4. **Wait for verification.** SignatureCat checks the records automatically every few minutes; you can also click **Check now**. Activation usually takes a few minutes, sometimes up to an hour while DNS refreshes. The TLS certificate is issued for you.
+
+The wizard shows one of three statuses: **Waiting for DNS records**, **Domain active** or **Verification failed**.
+
+Once active: "New emails fetch images from your domain. Templates stay unchanged - the switch happens automatically."
+
+> [!NOTE]
+> Emails that were already sent are not affected - they keep loading images from the URL they were rendered with.
+
+## Removing the domain
+
+Removing the domain in the wizard switches image serving back to `images.signature.cat` automatically for new emails. Nothing breaks.
+
+> [!WARNING]
+> The reverse is not monitored: if you delete the CNAME record at your DNS provider **while the domain is still active in SignatureCat**, images in newly sent signatures will silently stop loading. Always remove the domain in SignatureCat first, then clean up DNS.
+
+========================================================================
+
+# Upload and insert banners and logos
+URL: https://signature.cat/docs/banners-and-logos/
+Section: Advanced setup
+
+# Upload and insert banners and logos
+
+SignatureCat keeps two kinds of company images in a per-workspace library: **logos** (rendered 115x115 px) and **banners** (rendered 450x100 px, scaled down on small screens). Each template selects its own logo and banner, inserted with the `{{logo}}` and `{{banner}}` tokens.
+
+## Add an image to the library
+
+1. Open a template in the editor on [Signatures](https://app.signature.cat/signatures).
+2. Click **Logo** or **Banner** in the toolbar - each opens its own gallery (logos and banners never mix).
+3. Choose **Add to library**, then either:
+   - **I have a link** - paste a public HTTPS URL of an image you already host, or
+   - **Upload a file** - PNG or JPG, recommended up to 200 KB (5 MB hard limit).
+4. Optionally set a library label and a click-through link ("On click, leads to"), then save. The image is added to the library and selected for this template.
+
+> [!NOTE]
+> PNG and JPG only - SVG files are not accepted (poor mail-client support and security reasons). The library holds up to 200 images per kind.
+
+## Insert into a template
+
+Pick an image in the gallery and click **Use selected** - the editor can also insert the `{{logo}}` or `{{banner}}` token at the cursor for you. At render time the token becomes a proper image tag; if the image has a click-through link, it is wrapped in a link automatically.
+
+If a template uses `{{banner}}` without a selected banner, a neutral placeholder renders instead and the editor nudges you to pick one - the signature never breaks.
+
+## Click-through links
+
+The click link travels with the **library image**, not the template: update the link once and every template using that image picks it up on the next render. This is handy for rotating campaign banners - swap the target URL without touching templates.
+
+## Sizing recommendations
+
+| Kind | Rendered size | Recommendation |
+|---|---|---|
+| Logo | 115x115 px | Square image, PNG with transparency works best. |
+| Banner | 450x100 px (max-width 100%) | Export at 900x200 px for sharp HiDPI rendering, keep the file under 200 KB. |
+
+Large images slow down email rendering and can push messages into the "message clipped" territory in Gmail - keep files small.
+
+## Deleting images
+
+Deleting a library image detaches it from every template that selected it - those templates fall back to the placeholder. The app warns you first: "This image is used in N template(s). After deleting it will no longer show there - a placeholder appears instead."
+
+> [!NOTE]
+> Emails that were already sent keep their images - deletion only affects future renders.
+
+## Where images are served from
+
+Library images are hosted at `images.signature.cat` by default. To serve them from your own subdomain (better deliverability), see [Serve images from your own domain](/docs/custom-image-domain/). External URL images ("I have a link") are always fetched from wherever you host them - they must stay publicly reachable over HTTPS.
+
+========================================================================
+
+# Invoices
+URL: https://signature.cat/docs/invoices/
+Section: Billing
+
+# Invoices
+
+SignatureCat bills monthly per active Workspace user, through Stripe. Invoices and receipts are emailed to your **invoice email** address, which you can point at your accounting inbox independently of any admin account. Invoices for a given month are issued no later than the **10th day of the following month**.
+
+## Pricing
+
+Pricing is graduated per seat - each seat band has its own rate and larger workspaces blend down:
+
+| Workspace user count | Price per user / month |
+|---|---|
+| 1 - 50 | $0.80 |
+| 51 - 120 | $0.70 |
+| 121 - 300 | $0.60 |
+| 301+ | $0.55 |
+
+For example, 60 users cost 50 x $0.80 + 10 x $0.70 = $47.00 per month. Prices are in USD and exclude tax.
+
+**What counts as a billable user:** the number of active (non-suspended) users in your Google Workspace directory - not the number of SignatureCat logins. Seat increases are reflected immediately with prorations; when your headcount drops, the lower count takes effect from the next billing period.
+
+## The 7-day trial
+
+Every workspace starts with a 7-day free trial. A card is collected at sign-up and charged for the first time when the trial ends. In the last 3 days of the trial the app shows a reminder banner, and you also get a "Your signature.cat trial ends soon" email about 3 days before the end.
+
+> [!NOTE]
+> The trial is granted **once per Workspace domain**. Deleting the account and registering the same domain again does not start a new trial.
+
+## Set the invoice email
+
+1. Open [Settings](https://app.signature.cat/settings) (Admin only) and find the **Billing** section.
+2. Enter the address in **Invoice email** - "Stripe sends invoices and receipts to this address. It can be different from the admin account email." - and click **Save**.
+
+Use this to route paperwork straight to accounting (for example `invoices@yourcompany.com`). Billing-related product alerts (trial ending, payment failed) are separate and go to admin users - see [Notifications](/docs/notifications/).
+
+## Company details on the invoice
+
+Your legal company name, billing address and tax ID (VAT / NIP) are stored only in Stripe and printed on every invoice issued after you set them. You provide them at checkout and can edit them any time - see [Billing details](/docs/billing-details/). Changes apply to future invoices; already-issued invoices are immutable.
+
+## What happens if a payment fails?
+
+A failed charge does **not** cut access immediately. You get an "Action required - signature.cat payment failed" email and a red banner in the app, and you have a short grace window (up to 3 days) to update the card via **Manage billing** on [Billing](https://app.signature.cat/billing). If the window passes without a successful charge, signature management is paused until payment succeeds - your Gmail signatures stay as they are, but changes and syncs stop.
+
+========================================================================
+
+# Change billing info and payment details
+URL: https://signature.cat/docs/billing-details/
+Section: Billing
+
+# Change billing info and payment details
+
+Payment cards and invoice company data are managed in the **Stripe billing portal**, opened from inside SignatureCat. Only Admins can access billing.
+
+## Update the payment card
+
+1. Open [Billing](https://app.signature.cat/billing) and click **Manage billing** (or open [Settings](https://app.signature.cat/settings), Billing section, **Manage in Stripe Portal**).
+2. In the Stripe portal, add the new card and set it as default.
+
+The next charge uses the new card. If you are in a failed-payment grace window, a successful charge restores everything immediately.
+
+## Update company name, address or tax ID
+
+In the same Stripe portal you can edit the legal **company name**, **billing address** and **tax ID** (VAT / NIP - Polish companies use the `PL` prefixed VAT ID). These print on every invoice issued after the change; already-issued invoices stay as they are.
+
+> [!NOTE]
+> The **invoice email** is deliberately not editable in the Stripe portal - change it in [Settings](https://app.signature.cat/settings), Billing section, so the app and Stripe always agree. See [Invoices](/docs/invoices/#set-the-invoice-email).
+
+## Check your subscription status
+
+The Billing section on [Settings](https://app.signature.cat/settings) shows the subscription status (Active, Trialing, Past due, Canceled), the current number of active users, and the renewal date ("Active until ...").
+
+## Cancel the subscription
+
+In [Settings](https://app.signature.cat/settings), Billing section, click **Cancel subscription**. Access continues until the end of the current billing period, then signature management stops. Your Gmail signatures are not removed - they simply stop being managed and updated.
+
+> [!WARNING]
+> Cancelling does not delete your data or the Domain-Wide Delegation entry. If you are leaving for good, also delete the account in the Danger zone on [Settings](https://app.signature.cat/settings) and remove the DWD entry in the Google Admin console - see [Domain-Wide Delegation](/docs/domain-wide-delegation/#removing-signaturecat).
+
+========================================================================
+
+# Domain-Wide Delegation
+URL: https://signature.cat/docs/domain-wide-delegation/
+Section: Reference
+
+# Domain-Wide Delegation
+
+Domain-Wide Delegation (DWD) is the Google Workspace mechanism that lets SignatureCat's dedicated service account read your directory and write Gmail signatures - without ever knowing anyone's password. You grant it once in the Google Admin console; this page explains exactly what is granted and how it behaves over time.
+
+The step-by-step setup lives in [Connect your Google Workspace](/docs/connect-google-workspace/). This is the reference.
+
+## What exactly do I authorize?
+
+You add **one API client** on the Admin console's [Domain-wide delegation page](https://admin.google.com/ac/owl/domainwidedelegation), identified by a numeric **Client ID** that is unique to your organization (every SignatureCat customer has their own isolated service account). The Client ID is shown in the DWD wizard and later in [Settings](https://app.signature.cat/settings), Service Account section.
+
+The scopes and what each one is for:
+
+| Scope | Required | Used for |
+|---|---|---|
+| `gmail.settings.basic` | Yes | Writing the signature on each user's primary address. |
+| `admin.directory.user.readonly` | Yes | Reading user profiles - names, job titles, phones - for [template variables](/docs/template-variables/). |
+| `admin.directory.group.member.readonly` | Yes | Expanding group assignments into members. |
+| `admin.directory.customer.readonly` | Yes | Reading the workspace seat count for billing. |
+| `gmail.settings.sharing` | Optional | Writing signatures on send-as **aliases**. Skip it and alias features stay off. |
+
+SignatureCat never asks for mail content scopes - it cannot read or send anyone's email.
+
+## Is the Client ID stable?
+
+Yes. SignatureCat rotates its service-account keys automatically for security, but rotation mints a new key on the **same** service account - the numeric Client ID never changes. You will never need to re-authorize DWD because of key rotation.
+
+## How quickly does a new grant work?
+
+Google propagates DWD changes eventually - usually seconds, occasionally up to about 30 seconds. The wizard's **Check** button waits out this window before reporting failure, so a single click typically succeeds right after you authorize. A yellow "propagating" card means exactly that: wait a moment and check again.
+
+## What happens if DWD is removed or a scope revoked?
+
+SignatureCat verifies DWD health before every sync. When it breaks:
+
+- signature syncs **pause** immediately (nothing is half-applied),
+- admins get the in-app notification "Domain-Wide Delegation access lost" and an "Action required" email,
+- the app routes admins back to the DWD wizard.
+
+Re-granting the missing entry or scope and passing **Check** resumes everything - state self-heals, nothing needs to be rebuilt. To re-open the wizard at any time use **Re-run DWD wizard** in [Settings](https://app.signature.cat/settings), Service Account section.
+
+> [!WARNING]
+> The DWD grant applies organization-wide, and removing it stops signature management for the whole workspace at once. If you only want to drop alias support, remove just the `gmail.settings.sharing` scope and re-run **Check**.
+
+## Adding the optional alias scope later
+
+Add `https://www.googleapis.com/auth/gmail.settings.sharing` to the existing Admin console entry (keep the other four scopes), then **Re-run DWD wizard** and click **Check**. Alias features unlock automatically - see [alias modes](/docs/assignments/#alias-modes).
+
+## Removing SignatureCat
+
+When you delete your account, SignatureCat removes its own infrastructure, but it cannot edit your Admin console: **delete the API client entry yourself** on the [Domain-wide delegation page](https://admin.google.com/ac/owl/domainwidedelegation) after the account is gone.
+
+========================================================================
+
+# Templates
+URL: https://signature.cat/docs/templates/
+Section: Reference
+
+# Templates
+
+A template is a single HTML document with `{{variable}}` tokens that SignatureCat renders per user. Templates live on the [Signatures](https://app.signature.cat/signatures) page (Designers, Editors and Admins) and are edited in a code editor with live preview.
+
+For a guided first run, see [Create your first template](/docs/create-your-first-template/). The variable set has its own page: [Template variables](/docs/template-variables/).
+
+## The editor
+
+The editor at `app.signature.cat/signatures/{id}` is **HTML-first**: you edit the signature markup directly, with autocompletion for all `{{variable}}` tokens. Alongside the code pane you get:
+
+- **Preview** - live rendering of the resolved signature, in a sandbox. **Render as** substitutes any real user's Directory record so you can check edge cases (long names, missing phone numbers).
+- **Insert variable** - menu of all person variables, grouped with hints.
+- **Logo / Banner** - the per-kind image galleries; see [Banners and logos](/docs/banners-and-logos/).
+- **Wrap in {{del}} / Wrap in {{delete}}** - wraps the current selection in conditional tags.
+- **Set me a test signature** - renders against your own Directory record and applies to your own Gmail mailbox only.
+- **Name and icon** - a label, icon and color shown in template lists (never rendered into signatures).
+
+## Validation and sanitization
+
+Saving validates the template and rejects:
+
+- unknown tokens (anything that is not a known variable, asset token or conditional tag),
+- unbalanced `{{del}}` / `{{delete}}` pairs.
+
+The HTML is sanitized on save: scripts, iframes, event handlers (`onclick=` and friends) and `javascript:` URLs are stripped. Signatures are static HTML by nature - Gmail would strip active content anyway.
+
+> [!TIP]
+> Gmail signatures render best with table-based layouts and inline styles. Avoid external CSS files and web fonts; most mail clients ignore them.
+
+## The default template
+
+One template can be marked as **Default**. Users who are not covered by any [assignment](/docs/assignments/) or [self-service](/docs/self-service/) choice fall back to it - and so do users whose assignment was deleted.
+
+## Self-service toggle
+
+Each template has a self-service switch controlling whether end users can pick it on the [My signature](https://app.signature.cat/self-service) page. Disabling it clears the self-service choices that use it (with a confirmation). Details: [Self-service](/docs/self-service/).
+
+## Deleting a template
+
+Deleting an unused template just removes it. Deleting a template that is **in use** shows a cascade dialog first, spelling out exactly what goes with it:
+
+- its group and OU assignments,
+- self-service choices made by users,
+- queued apply jobs (cancelled).
+
+> [!WARNING]
+> Confirming with **Delete anyway** permanently removes the template together with its assignments and self-service choices. Users covered by them fall back to the default template on the next sync. This cannot be undone.
+
+========================================================================
+
+# Template variables
+URL: https://signature.cat/docs/template-variables/
+Section: Reference
+
+# Template variables
+
+SignatureCat templates use `{{variable}}` tokens that resolve per user at apply time. There are nine person variables (filled from Google Directory), two image tokens and two conditional tags. Token names are lowercase and matched case-insensitively - `{{Phone}}` works the same as `{{phone}}`. Unknown tokens are rejected when the template is saved.
+
+## Person variables (Google Directory)
+
+Values come from each user's record in your Google Workspace directory. Keep the directory tidy and every signature stays accurate automatically.
+
+| Token | Value | Notes |
+|---|---|---|
+| `{{firstname}}` | First name | |
+| `{{lastname}}` | Last name | |
+| `{{email}}` | Primary email address | When applying to an alias, resolves to the **alias** address instead. |
+| `{{domain}}` | Domain part of the email | Follows the alias when applying to an alias. |
+| `{{jobtitle}}` | Job title | From the user's primary organization entry in Directory. |
+| `{{department}}` | Department | From the same organization entry. |
+| `{{photo}}` | Profile photo URL | Auto-scaled to 400 px for crisp rendering; must be an HTTPS photo. |
+| `{{address}}` | Formatted address | The user's primary address entry. |
+| `{{phone}}` | Phone number | First non-empty of: work, then mobile, then home. |
+
+**Empty values render as empty text.** The signature never breaks, but you may be left with a dangling label like "Phone:" - that is what conditional blocks are for.
+
+## Image tokens
+
+| Token | Value |
+|---|---|
+| `{{logo}}` | The template's selected company logo, rendered 115x115 px. |
+| `{{banner}}` | The template's selected campaign banner, rendered 450x100 px, scaled down on narrow screens. |
+
+Images come from the per-workspace library and are selected per template; if nothing is selected, a neutral placeholder renders. If the library image has a click-through link, the image is wrapped in it automatically. See [Banners and logos](/docs/banners-and-logos/).
+
+> [!NOTE]
+> Image tokens always render something (image or placeholder), so they do not count as "empty" for the conditional blocks below.
+
+## Conditional blocks: del and delete
+
+Two wrapper tags remove whole fragments of the signature when data is missing:
+
+- `{{del}} ... {{/del}}` - **soft**: the block is removed only when **every** person variable inside is empty. If at least one is filled, the block stays (empty variables inside render as empty text).
+- `{{delete}} ... {{/delete}}` - **hard**: the block is removed when **any** person variable inside is empty. Use it when a fragment only makes sense complete.
+
+Example - a phone line that disappears for users without any phone number:
+
+```html
+{{del}}<tr><td>Tel: {{phone}}</td></tr>{{/del}}
+```
+
+Blocks can be nested; inner blocks are evaluated first. Unbalanced tags are rejected at save time, and the tags themselves are never written into the final Gmail signature.
+
+> [!TIP]
+> Rule of thumb: wrap every optional line (phone, address, department) in `{{del}}` tags. Signatures of users with sparse Directory records then shrink gracefully instead of showing empty labels.
+
+## Testing how variables resolve
+
+Use **Render as** in the [template editor](/docs/templates/#the-editor) to preview against any real user's record, and **Set me a test signature** to apply the result to your own mailbox. Both are described in [Create your first template](/docs/create-your-first-template/).
+
+========================================================================
+
+# Assignments
+URL: https://signature.cat/docs/assignments/
+Section: Reference
+
+# Assignments
+
+An assignment binds one template to one target and keeps it applied by the daily sync. This page is the reference for how targets, precedence and aliases behave; the how-to lives in [Assign templates](/docs/assign-templates/). Assignments are managed at [app.signature.cat/assignments](https://app.signature.cat/assignments) by Editors and Admins.
+
+## Target kinds
+
+| Target | Value | Scope option |
+|---|---|---|
+| Group | Group email address | **+ sub-groups** includes nested group members. |
+| OU | Path starting with `/`, for example `/Engineering` | **+ sub-OUs** covers the whole subtree. |
+| Everyone | All active users in the Workspace | At most **one** such assignment per workspace. |
+
+Each target can hold only one assignment - creating a duplicate is rejected with "This target already has an assignment." A target's kind is fixed after creation; to switch a group assignment to an OU, delete and recreate it.
+
+Individual users are deliberately not an assignment target - cover individuals with [self-service](/docs/self-service/) or a one-off [apply job](/docs/apply-jobs/).
+
+## How precedence works
+
+Users often match several assignments. Every sync computes exactly **one winner per user**, layer by layer, from bottom to top:
+
+1. **Everyone** - the base layer for every active user.
+2. **OU assignments** override the everyone-assignment for users in the OU.
+3. **Group assignments** override the OU template for their members. If a user belongs to multiple assigned groups, the **most recently updated** assignment wins.
+4. **Self-service** - a user's own choice wins over every assignment, **unless** the winning assignment has **Override self-service** enabled.
+
+When an assignment displaces others for a user, the job result row records it ("overrode N other assignment(s) for this user") so you can audit conflicts on the [logs](/docs/logs/) pages.
+
+> [!TIP]
+> Design pattern: one everyone-assignment as the company default, OU assignments per country or brand, group assignments for exceptions (sales campaign, executive team). The layering does the rest.
+
+## Alias modes
+
+Each assignment has an **Aliases** setting that controls which addresses get the signature. Alias writing requires the optional `gmail.settings.sharing` scope - see [Domain-Wide Delegation](/docs/domain-wide-delegation/#what-exactly-do-i-authorize).
+
+| Mode | Behavior |
+|---|---|
+| **Off** (default) | Only each user's primary address is signed. Send-as aliases are left untouched. |
+| **Addresses in the group** | Group assignments only. The signature goes to exactly the addresses the group lists: a member added by an alias gets it only on that alias, a member added by their primary address only on the primary. Aliases not in the group are never touched. |
+| **All aliases** | Every user gets the signature on their primary address and on every send-as alias they own. Owned aliases not yet set up as send-as entries are created first. |
+
+Notes on behavior:
+
+- With **All aliases**, external addresses and non-editable aliases are never auto-created; a newly created send-as entry that Gmail reports as pending verification is skipped until verified.
+- `{{email}}` and `{{domain}}` resolve to the **alias** being written, so alias signatures show the right address. All other variables come from the mailbox owner's record.
+- Each alias write gets its own row in the job results, so [verification](/docs/verify-assignments/) shows exactly which addresses were signed or skipped.
+- Self-service signatures are always applied to the user's accepted aliases as well.
+
+## Override self-service
+
+Per assignment, the **Override self-service** switch makes the assignment win over users' own self-service choices. The row shows an "overrides self-service" badge. Use it for compliance-critical signatures (legal disclaimers) where individual customization is not acceptable.
+
+## When targets disappear
+
+If an assigned group or OU is deleted in Google Workspace, the next sync marks the assignment with a "not found in Workspace" badge, skips the target, notifies admins (in-app + email, once per failing streak) and retries on subsequent syncs. Fix the target in the edit panel or remove the assignment. See [Verify an assignment job](/docs/verify-assignments/#what-the-per-user-rows-tell-you).
+
+## Editing and removing
+
+Rows are edited in place (template, target value, scope, alias mode, override). Removing an assignment stops managing those users - already-applied signatures remain in Gmail until something else (another assignment, self-service or the default template) overwrites them on a later sync.
+
+========================================================================
+
+# Apply jobs
+URL: https://signature.cat/docs/apply-jobs/
+Section: Reference
+
+# Apply jobs
+
+Every signature write happens inside a **job**: either the recurring **assignment sync** or a **manual apply** you dispatch yourself. Jobs run in the background, report per-user results, and can be watched live.
+
+## The assignment sync
+
+Once a day, SignatureCat re-resolves all [assignments](/docs/assignments/) and re-applies signatures across the workspace. That is what keeps signatures current when people join groups, move between OUs or get hired. You can trigger the same sync at any time with **Sync now** on [Assignments](https://app.signature.cat/assignments).
+
+## Manual applies: the Apply page
+
+The [Apply](https://app.signature.cat/apply) page (Editors and Admins) dispatches a **one-shot** job: pick a template, choose recipients, apply once. It is independent of assignments - useful for one-off rollouts, fixing individual mailboxes or covering people outside any assignment.
+
+Recipients can be mixed and matched (up to 50 entries):
+
+- **Everyone** - one click covers every active user in the Workspace at apply time.
+- **Users** - individual users, found by email search. This is the only place with individual-user targeting.
+- **Groups** - members are resolved at apply time. Note: nested groups are **not** expanded here (unlike assignments with **+ sub-groups**).
+- **OUs** - by path, with an **include sub-OUs** checkbox.
+- **Aliases** - specific send-as addresses (up to 50). Each is matched to its mailbox owner and only signed if it is an accepted send-as alias; `{{email}}` / `{{domain}}` render from the alias.
+
+Submitting redirects to the live job view.
+
+> [!NOTE]
+> A one-shot apply writes the signature **once**. If the user is covered by an assignment or self-service choice, the next daily sync will overwrite the one-shot result according to the [precedence rules](/docs/assignments/#how-precedence-works).
+
+## Watching a job
+
+The job view at `app.signature.cat/jobs/{id}` live-updates while the job runs: status, progress and a per-user result table with error codes. Finished jobs are also listed on [Task logs](https://app.signature.cat/assignments/logs). **Re-run failed** retries only the failed rows.
+
+Statuses and error codes are documented in [Verify an assignment job](/docs/verify-assignments/#job-statuses).
+
+## How fast are changes visible?
+
+Manual applies and self-service saves are near-instant (seconds to a couple of minutes for large targets). Assignment edits apply on the next daily sync unless you hit **Sync now**. Gmail shows the new signature on the next compose - already-sent emails never change.
+
+========================================================================
+
+# Logs
+URL: https://signature.cat/docs/logs/
+Section: Reference
+
+# Logs
+
+SignatureCat keeps an operational log of every signature job, per user and per address, so you can always answer "did it apply, and if not, why". The main entry point is [Task logs](https://app.signature.cat/assignments/logs).
+
+## Task logs
+
+[Task logs](https://app.signature.cat/assignments/logs) (Editors and Admins) lists recent finished jobs for your workspace, newest first:
+
+- **Kind** - Assignment sync (the daily job or **Sync now**) or Manual apply (from the [Apply](https://app.signature.cat/apply) page and self-service saves).
+- **Status** - Succeeded, Partial, Failed or Cancelled.
+- **Who** - the user who dispatched it, or "Automatic" for the scheduled sync.
+- **Counts** - "N succeeded, N failed, N skipped".
+
+Expanding a row shows the per-user results inline; **Open full job view** opens the complete result table at `app.signature.cat/jobs/{id}`.
+
+## What a result row contains
+
+One row per written address: the user (or alias, marked with an "alias" badge), the outcome and an error code for failures or skips. Common codes and their fixes are listed in [Verify an assignment job](/docs/verify-assignments/#what-the-per-user-rows-tell-you). Rows may also carry the note "overrode N other assignment(s) for this user" for [precedence](/docs/assignments/#how-precedence-works) audits.
+
+## Retention
+
+Job logs are retained for a limited window (by default **3 days** after a job finishes) and then removed automatically - the page states the current window. Export or review anything you need shortly after big rollouts.
+
+> [!NOTE]
+> The retention window applies to job execution logs. Your templates, assignments and settings are of course permanent.
+
+## Live jobs
+
+A running job is best watched on its own page, `app.signature.cat/jobs/{id}`, which polls for progress - see [Apply jobs](/docs/apply-jobs/#watching-a-job).
+
+========================================================================
+
+# Images
+URL: https://signature.cat/docs/images/
+Section: Reference
+
+# Images
+
+Signature images - company logos, campaign banners and profile photos - come from three sources in SignatureCat: the built-in **image library**, **external URLs** you host yourself, and Google Directory **profile photos**. This page is the reference; the practical guide is [Banners and logos](/docs/banners-and-logos/).
+
+## The image library
+
+Each workspace has one library with two kinds of entries:
+
+| Kind | Rendered size | Token | Library cap |
+|---|---|---|---|
+| Logo | 115x115 px | `{{logo}}` | 200 entries |
+| Banner | 450x100 px, max-width 100% | `{{banner}}` | 200 entries |
+
+Library entries carry an optional label and an optional **click-through link**. Each template selects its own logo and banner from the library; templates without a selection render a neutral placeholder. Uploads are PNG or JPG, up to 5 MB (200 KB recommended); SVG is not accepted.
+
+## Where images are served from
+
+- **Library uploads** are stored by SignatureCat and served from `https://images.signature.cat/...` over a CDN with long-lived caching.
+- With a verified [custom image domain](/docs/custom-image-domain/), newly rendered signatures serve library images from your subdomain (for example `images.yourcompany.com`) instead - better deliverability, same storage.
+- **External URL images** ("I have a link") are hot-linked from wherever you host them. They must be public and HTTPS; ideally host them on your own domain.
+
+> [!IMPORTANT]
+> Image URLs are baked into each rendered signature. Emails that are already in recipients' inboxes keep fetching the URL they were sent with - which is why SignatureCat never deletes the underlying files of removed library images, and why an external image you take offline will show as broken in old emails.
+
+## Profile photos
+
+The `{{photo}}` variable uses the user's Google profile photo from Directory (auto-scaled to 400 px). It is not part of the library - users and admins manage profile photos in Google Workspace. See [Template variables](/docs/template-variables/#person-variables-google-directory).
+
+## Lifecycle notes
+
+- **Replacing an image:** add the new file to the library and select it on the template - or keep the same library entry and only update its click-through link (picked up on the next render).
+- **Deleting a library entry** detaches it from templates that use it (they fall back to the placeholder) after a warning with the usage count.
+- **Already-sent emails** are never affected by library changes.
+
+## Deliverability tips
+
+- Keep files small (banners under 200 KB) - large images slow rendering and hurt spam scores.
+- Serve images from your own domain with a [custom image domain](/docs/custom-image-domain/) - mail clients trust the sender's domain more.
+- Gmail proxies images for recipients, so exotic hosting setups (IP allowlists, referer checks) will break rendering. Keep images plainly public.
+
+========================================================================
+
+# Notifications
+URL: https://signature.cat/docs/notifications/
+Section: Reference
+
+# Notifications
+
+SignatureCat notifies you through two channels: **email** for account-level events that need action, and the **in-app notification bell** for operational alerts. Emails go to admins (and the account owner); the bell is visible to Admins and Editors.
+
+## What arrives by email?
+
+| Email | When it is sent | Who receives it |
+|---|---|---|
+| Welcome to signature.cat | First sign-in of a new user | The new user |
+| You now have access to signature.cat | An admin grants a user access on [User management](https://app.signature.cat/user-management) | The granted user |
+| Your signature.cat trial has started | Trial begins | Admins + owner |
+| Your signature.cat trial ends soon | About 3 days before the trial ends | Admins + owner |
+| Your signature.cat plan is active | First successful charge after the trial | Admins + owner |
+| Action required - signature.cat payment failed | A charge fails (grace window starts) | Admins + owner |
+| A signature.cat assignment target no longer exists | An assigned group or OU was deleted in the Workspace | Admins + owner |
+| Action required - signature.cat lost Workspace access (DWD) | Domain-Wide Delegation broke or a required scope was revoked | Admins + owner |
+
+Alert emails are deduplicated (at most one per topic per day) and sent only on the transition into the failure, not on every retry.
+
+> [!NOTE]
+> These product emails are separate from Stripe's **invoices and receipts**, which go to the [invoice email](/docs/invoices/#set-the-invoice-email) address. Editors and Designers do not receive alert emails - only in-app notifications.
+
+## What appears in the app?
+
+The bell icon in the top navigation (Admins and Editors) collects operational notifications; unread ones show a badge, and each entry can be dismissed.
+
+| In-app notification | Severity | Trigger |
+|---|---|---|
+| Domain-Wide Delegation access lost | Error | DWD or a required scope broke; syncs are paused until an admin re-runs the [DWD wizard](/docs/domain-wide-delegation/#what-happens-if-dwd-is-removed-or-a-scope-revoked). |
+| Group / OU no longer exists | Warning | An [assignment target](/docs/assignments/#when-targets-disappear) went missing; the worker retries on the next sync. |
+| Users without a self-service signature | Warning | Self-service users who have not picked a template yet (at most once per 7 days). |
+| Your trial ends soon | Warning | About 3 days before the trial ends. |
+| Payment failed | Error | A charge failed; the grace window is running. |
+
+Besides the bell, two banners can appear across the app: the amber **trial banner** in the last days of the trial, and the red **payment banner** ("Update your card by {date} or signature management will be paused") during the payment grace window.
+
+## Recommended setup
+
+- Make sure at least one regularly-read mailbox has the **Admin** level - alert emails go only to admins and the owner. See [User management](/docs/user-management/).
+- Point the [invoice email](/docs/invoices/#set-the-invoice-email) at accounting so paperwork never depends on an admin inbox.
+- Watch [status.signature.cat](https://status.signature.cat/) for platform-level incidents - see [Service status](/docs/service-status/).
+
+========================================================================
+
+# Get help
+URL: https://signature.cat/docs/get-help/
+Section: Support
+
+# Get help
+
+Support is provided by email at [contact@signature.cat](mailto:contact@signature.cat). Before writing, a quick self-check often gets you an answer faster - most "signatures stopped applying" cases are one of three known causes.
+
+## Quick self-check
+
+1. **Is it a platform incident?** Check [status.signature.cat](https://status.signature.cat/) - incidents and maintenance are announced there. See [Service status](/docs/service-status/).
+2. **Did a job fail?** Open [Task logs](https://app.signature.cat/assignments/logs) and look at the per-user error codes - [Verify an assignment job](/docs/verify-assignments/#what-the-per-user-rows-tell-you) explains each one and its fix.
+3. **Is Domain-Wide Delegation healthy?** If syncs are paused, admins will have a "Domain-Wide Delegation access lost" notification - re-run the wizard from [Settings](https://app.signature.cat/settings). See [Domain-Wide Delegation](/docs/domain-wide-delegation/#what-happens-if-dwd-is-removed-or-a-scope-revoked).
+4. **Billing paused?** A red banner and "Past due" status on [Billing](https://app.signature.cat/billing) mean a failed payment ran out its grace window - updating the card restores everything. See [Billing details](/docs/billing-details/).
+
+## Writing to support
+
+Email [contact@signature.cat](mailto:contact@signature.cat) from an address at your Workspace domain if possible. Include:
+
+- your **Workspace domain** (for example `yourcompany.com`),
+- **what you expected vs what happened**, with timestamps and your timezone,
+- the **job link** (`app.signature.cat/jobs/...`) or a screenshot of the [Task logs](https://app.signature.cat/assignments/logs) row, if a job is involved,
+- any **error code** shown in the app (error notices can be expanded to reveal a code, HTTP status and request id - include all three).
+
+> [!TIP]
+> The request id from an expanded error notice lets support find your exact request in the server logs - it is the single most useful thing you can attach.
+
+## Response expectations
+
+Support is email-only. During the trial period there is no guaranteed response time; paying customers are answered with priority. Incidents affecting many customers are coordinated publicly on the [status page](https://status.signature.cat/).
+
+## Feature requests and feedback
+
+Send them to the same address - real usage reports shape the roadmap. Include your use case rather than just the feature name; it travels better.
+
+========================================================================
+
+# Service status and SLA
+URL: https://signature.cat/docs/service-status/
+Section: Support
+
+# Service status and SLA
+
+Live availability, incidents and maintenance windows are published at **[status.signature.cat](https://status.signature.cat/)**. The status page is the reference point for availability: what it reports is what counts, including for the SLA below. Its badge is also shown in the header of these docs.
+
+## Availability target
+
+SignatureCat targets **at least 99% availability per calendar month**, measured and published on the [status page](https://status.signature.cat/). The target does not apply during the free trial period.
+
+Not counted as downtime:
+
+- **planned maintenance**, announced in advance at [status.signature.cat/maintenance](https://status.signature.cat/maintenance),
+- failures of third-party providers the platform depends on (hosting, CDN, payment processing, Google APIs),
+- force majeure,
+- causes on the customer's side - in particular a revoked [Domain-Wide Delegation](/docs/domain-wide-delegation/) grant or Workspace configuration changes.
+
+Signature delivery depends on the availability and policies of Google's APIs; changes Google makes to those APIs or to your Workspace are outside SignatureCat's control.
+
+The full, binding wording lives in the [Terms of Service](https://signature.cat/legal/) - the terms do not provide service credits by default; individual SLA guarantees can be agreed in a separate contract.
+
+## During an incident
+
+- Current impact and updates are posted on the [status page](https://status.signature.cat/) as the incident progresses.
+- Signature **syncs are queued, not lost** - after recovery, the daily sync brings every mailbox back to its target state.
+- You can report outages or anomalies to [contact@signature.cat](mailto:contact@signature.cat) - see [Get help](/docs/get-help/).
+
+## Maintenance windows
+
+Planned technical breaks are announced in advance at [status.signature.cat/maintenance](https://status.signature.cat/maintenance). They are scheduled to minimize impact and do not count toward downtime.
+
+> [!TIP]
+> The status page offers subscription options - subscribe your ops or IT channel so incident updates reach you without checking manually.
+
+========================================================================
+
+# Legal
+URL: https://signature.cat/docs/legal/
+Section: Support
+
+# Legal
+
+All legal documents live at [signature.cat/legal](https://signature.cat/legal/). The Polish versions of the Terms of Service and the Privacy Policy are the legally binding ones; English, German and French translations are provided for convenience.
+
+## Documents
+
+- **[Terms of Service](https://signature.cat/legal/#terms)** - the service agreement, including the availability commitments described in [Service status and SLA](/docs/service-status/).
+- **[Privacy Policy](https://signature.cat/legal/#privacy)** - data categories, purposes, legal bases, retention periods and data subject rights.
+- **[Data Processing Agreement (DPA)](https://signature.cat/legal/#dpa)** - concluded under Art. 28 GDPR, in English, on request: email [contact@signature.cat](mailto:contact@signature.cat). Categories of sub-processors are listed in the Privacy Policy; the full named list is made available to customers under the DPA.
+
+## Privacy in short
+
+- SignatureCat is **EU-hosted** and built for GDPR (RODO) compliance.
+- The app reads only the directory fields needed for [template variables](/docs/template-variables/) and writes only Gmail signature settings - it has no access to email content.
+- Each customer runs on an **isolated service account**; credentials are stored in a secrets vault and rotated automatically. See [Domain-Wide Delegation](/docs/domain-wide-delegation/) for exactly what is authorized.
+- Cookie preferences on the websites can be changed any time via the "Cookie settings" link in the footer of [signature.cat](https://signature.cat/).
+
+> [!NOTE]
+> This page is a convenience overview, not legal advice, and does not replace the binding documents at [signature.cat/legal](https://signature.cat/legal/).
