@@ -2,6 +2,45 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-18 - Docs navbar polish: own status pill, wider centered search, "/" shortcut
+
+- **What:** (PM review feedback on PR #16, same branch)
+  - **Status badge replaced with an own status pill.** The Better Stack
+    badge iframe rendered an oversized opaque white box with invisible
+    light text on dark pages in production (cross-origin iframe canvas;
+    the vendor `color-scheme: normal` hint did not help). The iframe is
+    gone; `.status-pill` is our own component on design-system tokens
+    (surface/border/dot), fed by `fetch('https://status.signature.cat/en/index.json')`
+    -> `aggregate_state`, mapped to: operational "All services online"
+    (green), degraded (amber), downtime (red), maintenance (pink). It
+    links to the status page; without JS or on fetch failure it degrades
+    to a neutral "Status" link. GOTCHA: the bare `/index.json` answers
+    with a 302 that carries no CORS header and the fetch dies - the
+    `/en/`-prefixed URL must be used (same trap as `/badge`).
+  - CSP (`cloudflare/worker.js`): `frame-src` allowance dropped (no more
+    iframe), `https://status.signature.cat` added to `connect-src`.
+  - **Search trigger wider and centered** in the free navbar space
+    (`flex: 1 1 auto; max-width: 480px; margin-inline: auto`).
+  - **Search shortcut is now "/" only** (more intuitive; Ctrl/Cmd+K
+    removed, kbd hint shows "/", Esc still closes).
+  - **Mobile (<=860px): Help button hidden**, the search trigger docks to
+    the right edge next to "Open app".
+  - **Scroll-spy bottom fix:** at the very end of the page the last
+    heading can never cross the 25%-viewport reading line, so the TOC
+    indicator never reached it; when the page is scrolled to the bottom
+    and the last heading is on screen, it now becomes active.
+- **Why:** PM review of PR #16 (badge unreadable on prod dark mode +
+  four UX nits).
+- **Scope:** landingpage /docs (build-docs.mjs template, docs.css,
+  docs.js) + cloudflare worker (CSP).
+- **Design impact:** status pill uses existing tokens (Light/Dark OK);
+  navbar layout rebalanced around the centered search.
+- **Performance impact:** one small same-purpose fetch replaces a whole
+  iframe document (net win); no new dependencies.
+- **A11y:** pill is a regular link with visible text; dot is
+  `aria-hidden`; "/" shortcut ignores typing contexts and modifier
+  combos; kbd hint updated.
+
 ## 2026-07-17 - Public documentation at /docs (22 pages, EN)
 
 - **What:**

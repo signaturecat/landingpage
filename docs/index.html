@@ -90,10 +90,13 @@
       <button class="docs-search-btn" id="docs-search-btn" aria-label="Search documentation" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <span class="docs-search-text">Search docs</span>
-        <kbd class="docs-search-kbd" aria-hidden="true"><span data-mod>Ctrl</span> K</kbd>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
       </button>
       <div class="docs-topbar-right">
-        <iframe class="status-badge" id="status-badge" title="SignatureCat service status" src="https://status.signature.cat/en/badge?theme=light" width="250" height="30" loading="lazy" style="color-scheme: normal"></iframe>
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
         <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Help</span></a>
         <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Open app</a>
       </div>

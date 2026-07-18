@@ -116,10 +116,9 @@ export function buildCsp(nonce) {
     `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com",
-    "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
+    // status.signature.cat: the /docs status pill fetches /en/index.json
+    "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://status.signature.cat",
     "font-src 'self'",
-    // the /docs service-status badge iframe (status.signature.cat/badge)
-    "frame-src 'self' https://status.signature.cat",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",

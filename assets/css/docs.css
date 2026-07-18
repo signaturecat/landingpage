@@ -36,10 +36,10 @@
 }
 .docs-menu-btn svg { width: 20px; height: 20px; display: block; }
 
-/* Search trigger */
+/* Search trigger - grows into the free navbar space, centered within it */
 .docs-search-btn {
   display: inline-flex; align-items: center; gap: 9px;
-  margin-left: auto; min-width: 0; flex: 0 1 300px;
+  margin-inline: auto; min-width: 0; flex: 1 1 auto; max-width: 480px;
   padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px;
   background: var(--surface); color: var(--muted); font: inherit; font-size: 14px;
   cursor: pointer; transition: border-color .18s var(--ease), color .18s var(--ease);
@@ -54,7 +54,24 @@
 }
 
 .docs-topbar-right { display: flex; align-items: center; gap: 12px; flex: none; }
-.status-badge { border: 0; border-radius: 8px; flex: none; }
+
+/* Service-status pill (own component fed from status.signature.cat/index.json;
+   without JS it degrades to a plain "Status" link with a neutral dot) */
+.status-pill {
+  display: inline-flex; align-items: center; gap: 8px; flex: none;
+  padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--surface); color: var(--muted); font-size: 13.5px; font-weight: 600;
+  white-space: nowrap; transition: border-color .18s var(--ease), color .18s var(--ease);
+}
+.status-pill:hover, .status-pill:focus-visible { border-color: var(--accent); color: var(--ink); }
+.status-pill-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex: none;
+  background: var(--muted-2);
+}
+.status-pill[data-state="ok"] .status-pill-dot { background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 18%, transparent); }
+.status-pill[data-state="warn"] .status-pill-dot { background: #f59e0b; box-shadow: 0 0 0 3px color-mix(in srgb, #f59e0b 22%, transparent); }
+.status-pill[data-state="down"] .status-pill-dot { background: var(--bad); box-shadow: 0 0 0 3px color-mix(in srgb, var(--bad) 20%, transparent); }
+.status-pill[data-state="maint"] .status-pill-dot { background: var(--accent-soft); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
 .btn-help {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px;
@@ -331,13 +348,16 @@ h2:hover .h-anchor, h3:hover .h-anchor, h4:hover .h-anchor,
   .docs-toc { display: none; }
 }
 @media (max-width: 1020px) {
-  .status-badge { display: none; }
-  .docs-search-btn { flex: 0 1 220px; }
+  .status-pill { display: none; }
+  .docs-search-btn { max-width: 320px; }
 }
 @media (max-width: 860px) {
   .docs-shell { grid-template-columns: minmax(0, 1fr); }
   .docs-menu-btn { display: inline-flex; }
   .brand-name { display: none; }
+  /* the Help button gives way; the search trigger docks to the right */
+  .btn-help { display: none; }
+  .docs-search-btn { margin-right: 0; flex: 0 1 260px; }
   .docs-sidebar {
     position: fixed; z-index: 60; top: 60px; left: 0; bottom: 0;
     width: min(300px, 84vw); max-height: none;
@@ -349,8 +369,6 @@ h2:hover .h-anchor, h3:hover .h-anchor, h4:hover .h-anchor,
   .docs-sidebar.open { transform: translateX(0); box-shadow: var(--shadow); }
   .docs-sidebar-backdrop.show { display: block; }
   .docs-main { padding-top: 20px; }
-  .btn-help span { display: none; }
-  .btn-help { padding: 8px 10px; border-radius: 10px; }
 }
 @media (max-width: 560px) {
   .docs-topbar { gap: 8px; padding-inline: 12px; }
