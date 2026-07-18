@@ -2,6 +2,43 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-18 - Docs OG image, status pill hardening, underline = hover color
+
+- **What:**
+  - **Every docs page now carries the PM-designed OG image**: og:image /
+    twitter:image point at the new `/assets/img/og-docs.png` (1200x630, with
+    og:image:type/width/height). The PNG was rasterized from the provided
+    `og-docs-nolink.svg` in Chrome with the design's fonts (Inter, Inter
+    Display, JetBrains Mono) inlined as data-URI @font-face - local
+    rasterizers (QuickLook) fell back to serif and cropped the canvas, so
+    the browser render is the faithful one. The source SVG is committed as
+    `assets/img/og-docs.svg` for future edits; crawlers get the PNG (most
+    OG scrapers do not render SVG).
+  - **Status pill hardening**: it already mapped all four Better Stack
+    states (operational / degraded performance / service disruption /
+    maintenance); now, when status.signature.cat is unreachable (offline,
+    blocked, >6s timeout via AbortController) or reports an unknown state,
+    the pill **hides itself** instead of showing a stale neutral "Status".
+    Includes `.status-pill[hidden] { display:none !important }` - the
+    author `display:inline-flex` would defeat the UA [hidden] rule (same
+    trap as the consent banner, PR #13). Without JS the static pill stays
+    as a plain link to the status page.
+  - **Docs link underline color = hover text color**: in light mode the
+    underline was the lighter brand pink while hovered text swept to the
+    darker `--accent-ink`; both now use `var(--accent-ink, var(--accent))`
+    (dark mode unchanged - both resolve to the brand pink). Also applied
+    to the search "no results" link.
+- **Why:** PM review 2026-07-18 round 4: social sharing previews for docs,
+  resilience of the status indicator, underline/hover color consistency.
+- **Scope:** landingpage (build-docs.mjs meta template + regenerated docs
+  pages, docs.css, docs.js, new assets).
+- **Design impact:** none beyond the underline tone; og-docs.png follows
+  the design system (cream bg, accent gradient, dark glass signature card).
+- **Performance impact:** og-docs.png (322 KB) is fetched only by link
+  scrapers, not by page visitors; pill adds one AbortController timer.
+- **A11y:** pill keeps its accessible name; hidden state removes it from
+  the a11y tree entirely (no phantom link when status is unknown).
+
 ## 2026-07-18 - Accent contrast token (--accent-ink), uniform link underline, {{del}} chip clipping fix
 
 - **What:**
