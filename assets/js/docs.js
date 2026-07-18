@@ -22,17 +22,28 @@
       maintenance: ['maint', 'Maintenance in progress'],
     };
     // /en/index.json directly - the bare /index.json answers with a 302 that
-    // carries no CORS header, which fails the fetch (same trap as /badge)
-    fetch('https://status.signature.cat/en/index.json')
-      .then(function (r) { return r.json(); })
+    // carries no CORS header, which fails the fetch (same trap as /badge).
+    // If the status service is unreachable (offline, blocked, timeout) or
+    // reports something we don't recognize, hide the pill entirely rather
+    // than show a stale/neutral state. Without JS the static "Status" link
+    // stays - it degrades to a plain link to the status page.
+    var hidePill = function () { pill.hidden = true; };
+    var controller = 'AbortController' in window ? new AbortController() : null;
+    var timer = controller && setTimeout(function () { controller.abort(); }, 6000);
+    fetch('https://status.signature.cat/en/index.json', controller ? { signal: controller.signal } : {})
+      .then(function (r) {
+        if (!r.ok) throw new Error('status http ' + r.status);
+        return r.json();
+      })
       .then(function (data) {
         var s = data && data.data && data.data.attributes && data.data.attributes.aggregate_state;
         var m = STATES[s];
-        if (!m) return;
+        if (!m) { hidePill(); return; }
         pill.setAttribute('data-state', m[0]);
         pill.querySelector('.status-pill-text').textContent = m[1];
       })
-      .catch(function () { /* keep the neutral fallback */ });
+      .catch(hidePill)
+      .finally(function () { if (timer) clearTimeout(timer); });
   }
 
   /* ---- 1b. theme toggle: system -> light -> dark ------------------------------
