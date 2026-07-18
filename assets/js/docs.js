@@ -35,6 +35,35 @@
       .catch(function () { /* keep the neutral fallback */ });
   }
 
+  /* ---- 1b. theme toggle: system -> light -> dark ------------------------------
+     "system" = no data-theme attribute (prefers-color-scheme rules apply).
+     A head inline script applies the stored choice before first paint. */
+  var themeBtn = document.getElementById('theme-toggle');
+  if (themeBtn) {
+    var THEME_KEY = 'sigcat-theme';
+    var themeMode = document.documentElement.getAttribute('data-theme') || 'system';
+    var applyTheme = function (mode) {
+      themeMode = mode;
+      try {
+        if (mode === 'system') {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.removeItem(THEME_KEY);
+        } else {
+          document.documentElement.setAttribute('data-theme', mode);
+          localStorage.setItem(THEME_KEY, mode);
+        }
+      } catch (e) { /* storage blocked - theme still applies for this page */ }
+      themeBtn.setAttribute('data-mode', mode);
+      var label = 'Theme: ' + mode;
+      themeBtn.setAttribute('aria-label', label);
+      themeBtn.title = label;
+    };
+    applyTheme(themeMode);
+    themeBtn.addEventListener('click', function () {
+      applyTheme(themeMode === 'system' ? 'light' : themeMode === 'light' ? 'dark' : 'system');
+    });
+  }
+
   /* ---- 2. mobile sidebar ---------------------------------------------------- */
   var sidebar = document.getElementById('docs-sidebar');
   var menuBtn = document.getElementById('docs-menu-btn');
