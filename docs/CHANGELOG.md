@@ -2,6 +2,48 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-18 - No-trailing-slash URLs site-wide; docs UX polish (pill, link sweep, scrollbars)
+
+- **What:**
+  - **Canonical URLs now carry NO trailing slash** across the whole site
+    (`/pl`, `/legal`, `/pl/terms`, `/docs/templates`, ...; the root `/` is the
+    only exception). The edge Worker gained `routePath()`: slashed requests
+    and `/index.html` requests get a cacheable **301** to the canonical form,
+    and extension-less paths are internally rewritten to the origin's
+    `<path>/index.html` (GitHub Pages would otherwise 301 them BACK to the
+    slashed form). Unit-tested in Node (18 cases). All three generators
+    (`build.mjs`, `build-legal.mjs`, `build-docs.mjs`) emit no-slash
+    canonicals, hreflang, sitemaps, breadcrumbs, pager/sidebar links and
+    llms.txt links; `build-docs.mjs` also normalizes internal links inside
+    the Markdown sources at render time (sources may still write `/docs/x/`).
+    Source hrefs updated (`index.html` language switcher, footer legal links,
+    404 quick links, consent-banner links in the Worker). The
+    `verify-worker.yml` smoke check polls `/pl` now.
+  - **Docs status pill** is quiet by default (navbar background, no border);
+    the button look (subtle ink-tint pill) appears only on hover/press.
+  - **Docs article links** get a left-to-right color sweep to the underline
+    (accent) color on hover - two text-clipped gradient layers, pure CSS,
+    with a plain-color fallback when `background-clip: text` is unsupported.
+  - **Scrollbars**: macOS-like overlay style everywhere (style.css - no
+    track, semi-transparent rounded thumb via `--ink`, thin on Firefox);
+    the docs sidebar hides its scrollbar entirely (still scrollable).
+  - Cookie-consent naming: the last "analytics/marketing" leftover in
+    worker.js comments aligned to "analytics" (the policy already only
+    denies marketing cookies; no legal-source changes needed).
+- **Why:** PM review 2026-07-18: URL consistency (one canonical shape,
+  no slash), quieter status affordance, better link hover UX, native-feeling
+  scrollbars on Windows, no scrollbar noise in the sidebar.
+- **Scope:** landingpage (all three builders + generated pages), cloudflare
+  worker (routing + banner links), docs CSS/JS, workflows.
+- **SEO note:** slashed URLs 301 to the no-slash canonicals, sitemaps and
+  hreflang all point at the new forms; Google will transfer the (day-old)
+  /docs indexing via the redirects. GSC sitemaps should be (re)submitted.
+- **Design impact:** docs.css (status pill, link sweep), style.css
+  (scrollbars, Light+Dark via tokens). No landing layout changes.
+- **A11y:** pill keeps a visible :focus-visible state; link sweep respects
+  `prefers-reduced-motion` (global transition kill switch); sidebar remains
+  keyboard/wheel scrollable without a visible bar.
+
 ## 2026-07-18 - Docs theme toggle (system/light/dark), no GENERATED banners, cookie banner label
 
 - **What:**

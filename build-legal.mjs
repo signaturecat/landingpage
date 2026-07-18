@@ -7,8 +7,8 @@
  * supremacy banner). Outputs:
  *
  *   /legal/            hub page linking every version (indexable)
- *   /pl/terms/         Regulamin (PL, binding)            (indexable)
- *   /pl/policy/        Polityka prywatnosci (PL, binding) (indexable)
+ *   /pl/terms          Regulamin (PL, binding)            (indexable)
+ *   /pl/policy         Polityka prywatnosci (PL, binding) (indexable)
  *   /{en,de,fr}/terms/  and  /{en,de,fr}/policy/          (noindex,follow)
  *   /terms/ /privacy/  meta-refresh redirect stubs to the PL versions, so the
  *                      banner links inside the translated documents keep
@@ -79,8 +79,8 @@ const DOCS = [
 ];
 
 const REDIRECTS = [
-  { out: 'terms', to: '/pl/terms/', title: 'Regulamin - Signature.Cat' },
-  { out: 'privacy', to: '/pl/policy/', title: 'Polityka prywatności - Signature.Cat' },
+  { out: 'terms', to: '/pl/terms', title: 'Regulamin - Signature.Cat' },
+  { out: 'privacy', to: '/pl/policy', title: 'Polityka prywatności - Signature.Cat' },
 ];
 
 // ---- escaping -------------------------------------------------------------------
@@ -212,7 +212,7 @@ ${extra}</head>
 <body class="legal-body">
 <header class="legal-top">
   <a class="legal-brand" href="/"><img src="/assets/img/logo-mark.png" alt="" width="26" height="26" /> SignatureCat</a>
-  <nav><a class="legal-hub-link" href="/legal/">Legal</a></nav>
+  <nav><a class="legal-hub-link" href="/legal">Legal</a></nav>
 </header>
 `;
 }
@@ -231,7 +231,7 @@ const foot = (lang) => `
   <span>&copy; 2026 SignatureCat</span>
   <a href="/">signature.cat</a>
   <a href="mailto:contact@signature.cat">contact@signature.cat</a>
-  <a href="/legal/">Legal</a>
+  <a href="/legal">Legal</a>
   <a href="#cookie-settings" class="js-cookie-settings">${COOKIE_SETTINGS_LABEL[lang] || COOKIE_SETTINGS_LABEL.en}</a>
 </footer>
 </body>
@@ -242,7 +242,7 @@ function docPage(doc) {
   const md = readFileSync(join(ROOT, 'legal/src', doc.src), 'utf8');
   const article = mdToHtml(md);
   return (
-    head({ lang: doc.lang, title: doc.title, desc: doc.desc, canonicalPath: `/${doc.out}/`, index: doc.index }) +
+    head({ lang: doc.lang, title: doc.title, desc: doc.desc, canonicalPath: `/${doc.out}`, index: doc.index }) +
     `<main class="legal-doc">\n<article>\n${article}\n</article>\n</main>\n` +
     foot(doc.lang)
   );
@@ -277,19 +277,19 @@ function hubPage() {
 <section id="terms">
   <h2>Terms of Service / Regulamin</h2>
   <ul class="legal-list">
-${item('/pl/terms/', 'pl', 'Regulamin (polski - wersja wiążąca)')}
-${item('/en/terms/', 'en', 'Terms of Service (English - automatic translation)')}
-${item('/de/terms/', 'de', 'Allgemeine Geschäftsbedingungen (Deutsch - automatische Übersetzung)')}
-${item('/fr/terms/', 'fr', "Conditions d'utilisation (français - traduction automatique)")}
+${item('/pl/terms', 'pl', 'Regulamin (polski - wersja wiążąca)')}
+${item('/en/terms', 'en', 'Terms of Service (English - automatic translation)')}
+${item('/de/terms', 'de', 'Allgemeine Geschäftsbedingungen (Deutsch - automatische Übersetzung)')}
+${item('/fr/terms', 'fr', "Conditions d'utilisation (français - traduction automatique)")}
   </ul>
 </section>
 <section id="privacy">
   <h2>Privacy Policy / Polityka prywatności</h2>
   <ul class="legal-list">
-${item('/pl/policy/', 'pl', 'Polityka prywatności (polski - wersja wiążąca)')}
-${item('/en/policy/', 'en', 'Privacy Policy (English - automatic translation)')}
-${item('/de/policy/', 'de', 'Datenschutzerklärung (Deutsch - automatische Übersetzung)')}
-${item('/fr/policy/', 'fr', 'Politique de confidentialité (français - traduction automatique)')}
+${item('/pl/policy', 'pl', 'Polityka prywatności (polski - wersja wiążąca)')}
+${item('/en/policy', 'en', 'Privacy Policy (English - automatic translation)')}
+${item('/de/policy', 'de', 'Datenschutzerklärung (Deutsch - automatische Übersetzung)')}
+${item('/fr/policy', 'fr', 'Politique de confidentialité (français - traduction automatique)')}
   </ul>
 </section>
 <section id="dpa">
@@ -305,7 +305,7 @@ ${item('/fr/policy/', 'fr', 'Politique de confidentialité (français - traducti
       lang: 'en',
       title: 'Legal - Signature.Cat',
       desc: 'Terms of Service and Privacy Policy of Signature.Cat in Polish (legally binding), English, German and French, plus DPA information.',
-      canonicalPath: '/legal/',
+      canonicalPath: '/legal',
       index: true,
     }) + body + foot('en')
   );
@@ -342,6 +342,6 @@ const hub = hubPage();
 assertClean('legal', hub);
 mkdirSync(join(ROOT, 'legal'), { recursive: true });
 writeFileSync(join(ROOT, 'legal', 'index.html'), hub);
-written.push('/legal/');
+written.push('/legal');
 
 console.log('Generated legal pages:\n  ' + written.join('\n  '));
