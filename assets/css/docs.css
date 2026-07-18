@@ -7,6 +7,28 @@
 
 .docs-body { background: var(--cream); }
 
+/* Manual theme override (docs-only): the navbar toggle sets data-theme on
+   <html> ("system" mode = attribute absent, style.css media queries rule).
+   Token sets MIRROR :root / the dark media block in style.css - keep in sync
+   when tokens change there. Attribute selectors out-rank the media-query
+   rules, so a forced theme wins in both directions. */
+html[data-theme="light"] {
+  color-scheme: light;
+  --cream: #fff7ed; --ink: #292524; --muted: #6b6660; --muted-2: #888380;
+  --accent: #f2a8ff; --accent-soft: #e89bf5; --ok: #1f9d57; --bad: #d6453d;
+  --panel: #292524; --panel-text: #faf5ef; --border: #e7ddd0; --surface: #fffdf9;
+  --shadow: 0 1px 2px rgba(41,37,36,.04), 0 8px 24px rgba(41,37,36,.06);
+  --glass-bg: rgba(41,37,36,.82); --glass-border: rgba(250,245,239,.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cream: #1c1917; --ink: #faf5ef; --muted: #a8a29e; --muted-2: #908a85;
+  --accent: #f2a8ff; --accent-soft: #e89bf5; --ok: #34d17e; --bad: #ff6b61;
+  --panel: #292524; --panel-text: #faf5ef; --border: #3f3a37; --surface: #292524;
+  --shadow: 0 1px 2px rgba(0,0,0,.2), 0 8px 28px rgba(0,0,0,.35);
+  --glass-bg: rgba(28,25,23,.72); --glass-border: rgba(250,245,239,.10);
+}
+
 .skip-link {
   position: absolute; left: -9999px; top: 0; z-index: 100;
   background: var(--accent); color: #1c1917; font-weight: 600;
@@ -29,6 +51,8 @@
   padding: 3px 9px; border-radius: 999px; flex: none;
 }
 @media (prefers-color-scheme: dark) { .docs-wordmark { color: var(--accent); } }
+html[data-theme="dark"] .docs-wordmark { color: var(--accent); }
+html[data-theme="light"] .docs-wordmark { color: var(--accent-soft); }
 
 .docs-menu-btn {
   display: none; background: transparent; border: 1px solid var(--border);
@@ -36,10 +60,10 @@
 }
 .docs-menu-btn svg { width: 20px; height: 20px; display: block; }
 
-/* Search trigger */
+/* Search trigger - grows into the free navbar space, centered within it */
 .docs-search-btn {
   display: inline-flex; align-items: center; gap: 9px;
-  margin-left: auto; min-width: 0; flex: 0 1 300px;
+  margin-inline: auto; min-width: 0; flex: 1 1 auto; max-width: 480px;
   padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px;
   background: var(--surface); color: var(--muted); font: inherit; font-size: 14px;
   cursor: pointer; transition: border-color .18s var(--ease), color .18s var(--ease);
@@ -54,7 +78,24 @@
 }
 
 .docs-topbar-right { display: flex; align-items: center; gap: 12px; flex: none; }
-.status-badge { border: 0; border-radius: 8px; flex: none; }
+
+/* Service-status pill (own component fed from status.signature.cat/index.json;
+   without JS it degrades to a plain "Status" link with a neutral dot) */
+.status-pill {
+  display: inline-flex; align-items: center; gap: 8px; flex: none;
+  padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--surface); color: var(--muted); font-size: 13.5px; font-weight: 600;
+  white-space: nowrap; transition: border-color .18s var(--ease), color .18s var(--ease);
+}
+.status-pill:hover, .status-pill:focus-visible { border-color: var(--accent); color: var(--ink); }
+.status-pill-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex: none;
+  background: var(--muted-2);
+}
+.status-pill[data-state="ok"] .status-pill-dot { background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 18%, transparent); }
+.status-pill[data-state="warn"] .status-pill-dot { background: #f59e0b; box-shadow: 0 0 0 3px color-mix(in srgb, #f59e0b 22%, transparent); }
+.status-pill[data-state="down"] .status-pill-dot { background: var(--bad); box-shadow: 0 0 0 3px color-mix(in srgb, var(--bad) 20%, transparent); }
+.status-pill[data-state="maint"] .status-pill-dot { background: var(--accent-soft); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
 .btn-help {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px;
@@ -63,6 +104,20 @@
 }
 .btn-help:hover, .btn-help:focus-visible { border-color: var(--accent); }
 .btn-help svg { width: 16px; height: 16px; }
+
+/* Theme toggle - cycles system -> light -> dark; shows the active mode icon */
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 36px; height: 36px; padding: 0; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 999px;
+  background: transparent; color: var(--ink);
+  transition: border-color .18s var(--ease);
+}
+.theme-toggle:hover, .theme-toggle:focus-visible { border-color: var(--accent); }
+.theme-toggle svg { width: 17px; height: 17px; display: none; }
+.theme-toggle[data-mode="system"] .i-system { display: block; }
+.theme-toggle[data-mode="light"] .i-light { display: block; }
+.theme-toggle[data-mode="dark"] .i-dark { display: block; }
 .docs-app-btn { padding: 9px 18px; font-size: 14px; }
 
 /* Shell: sidebar | article | toc ------------------------------------------- */
@@ -97,6 +152,8 @@
   transition: transform .18s var(--ease);
 }
 @media (prefers-color-scheme: dark) { .docs-nav-group a::before { background: var(--accent); } }
+html[data-theme="dark"] .docs-nav-group a::before { background: var(--accent); }
+html[data-theme="light"] .docs-nav-group a::before { background: var(--accent-soft); }
 .docs-nav-group a:hover { color: var(--ink); background: color-mix(in srgb, var(--accent) 8%, transparent); }
 .docs-nav-group a[aria-current="page"] {
   color: var(--ink); font-weight: 600;
@@ -212,9 +269,13 @@ h2:hover .h-anchor, h3:hover .h-anchor, h4:hover .h-anchor,
 .callout-important { border-color: color-mix(in srgb, var(--accent) 60%, transparent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
 .callout-important .callout-title { color: var(--accent-soft); }
 @media (prefers-color-scheme: dark) { .callout-important .callout-title { color: var(--accent); } }
+html[data-theme="dark"] .callout-important .callout-title { color: var(--accent); }
+html[data-theme="light"] .callout-important .callout-title { color: var(--accent-soft); }
 .callout-warning   { border-color: color-mix(in srgb, #b45309 55%, transparent); background: color-mix(in srgb, #f59e0b 9%, var(--surface)); }
 .callout-warning .callout-title { color: #92400e; }
 @media (prefers-color-scheme: dark) { .callout-warning .callout-title { color: #fbbf24; } }
+html[data-theme="dark"] .callout-warning .callout-title { color: #fbbf24; }
+html[data-theme="light"] .callout-warning .callout-title { color: #92400e; }
 .callout-caution   { border-color: color-mix(in srgb, var(--bad) 55%, transparent); background: color-mix(in srgb, var(--bad) 8%, var(--surface)); }
 .callout-caution .callout-title { color: var(--bad); }
 
@@ -268,6 +329,8 @@ h2:hover .h-anchor, h3:hover .h-anchor, h4:hover .h-anchor,
   opacity: var(--toc-ind-o, 0);
 }
 @media (prefers-color-scheme: dark) { .docs-toc-list::before { background: var(--accent); } }
+html[data-theme="dark"] .docs-toc-list::before { background: var(--accent); }
+html[data-theme="light"] .docs-toc-list::before { background: var(--accent-soft); }
 @media (prefers-reduced-motion: reduce) { .docs-toc-list::before { transition: none; } }
 .docs-toc-list a {
   display: block; padding: 4px 0 4px 16px; color: var(--muted); line-height: 1.45;
@@ -331,13 +394,16 @@ h2:hover .h-anchor, h3:hover .h-anchor, h4:hover .h-anchor,
   .docs-toc { display: none; }
 }
 @media (max-width: 1020px) {
-  .status-badge { display: none; }
-  .docs-search-btn { flex: 0 1 220px; }
+  .status-pill { display: none; }
+  .docs-search-btn { max-width: 320px; }
 }
 @media (max-width: 860px) {
   .docs-shell { grid-template-columns: minmax(0, 1fr); }
   .docs-menu-btn { display: inline-flex; }
   .brand-name { display: none; }
+  /* the Help button gives way; the search trigger docks to the right */
+  .btn-help { display: none; }
+  .docs-search-btn { margin-right: 0; flex: 0 1 260px; }
   .docs-sidebar {
     position: fixed; z-index: 60; top: 60px; left: 0; bottom: 0;
     width: min(300px, 84vw); max-height: none;
@@ -349,8 +415,6 @@ h2:hover .h-anchor, h3:hover .h-anchor, h4:hover .h-anchor,
   .docs-sidebar.open { transform: translateX(0); box-shadow: var(--shadow); }
   .docs-sidebar-backdrop.show { display: block; }
   .docs-main { padding-top: 20px; }
-  .btn-help span { display: none; }
-  .btn-help { padding: 8px 10px; border-radius: 10px; }
 }
 @media (max-width: 560px) {
   .docs-topbar { gap: 8px; padding-inline: 12px; }

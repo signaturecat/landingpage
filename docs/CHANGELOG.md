@@ -2,6 +2,84 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-18 - Docs theme toggle (system/light/dark), no GENERATED banners, cookie banner label
+
+- **What:**
+  - **Manual theme toggle on /docs**: a navbar button cycling
+    system -> light -> dark (icons: monitor / sun / moon). "system" =
+    no `data-theme` attribute on `<html>` (the `prefers-color-scheme`
+    rules apply as before); "light"/"dark" force the full token set via
+    `html[data-theme=...]` overrides in `docs.css` (mirrors of the
+    style.css token blocks + the docs component-level dark rules, with
+    `color-scheme` set accordingly). Choice persists in
+    `localStorage['sigcat-theme']`; a tiny inline `<head>` script applies
+    it before first paint (no flash; the edge Worker stamps its CSP nonce
+    on every `<script>`, so the inline script passes CSP on prod).
+    Docs-only - the landing keeps system-only theming.
+  - **GENERATED HTML banners removed** from all build outputs (PM
+    request): `build-docs.mjs`, `build.mjs` locale pages and
+    `build-legal.mjs` pages/redirect stubs no longer emit the
+    `<!-- GENERATED ... -->` comment. `build.mjs` keeps stripping the
+    historical banner so re-renders stay idempotent. The
+    "generated - do not edit" rule still lives in README + the .mjs
+    headers; served HTML is cleaner.
+  - **Cookie banner checkbox label** narrowed from
+    "Analytics / marketing (Google Analytics)" to
+    **"Analytics (Google Analytics)"** in all four locales
+    (en/pl/de/fr, `BANNER_I18N` in `cloudflare/worker.js`). Accurate:
+    our GA config keeps all ad signals denied (`ad_storage`,
+    `ad_user_data`, `ad_personalization`), so the category is analytics
+    only. Consent cookie semantics unchanged.
+- **Why:** PM feedback 2026-07-18 (manual theme switch; cleaner page
+  source; no aggressive-marketing connotation in the consent UI).
+- **Scope:** landingpage /docs (generator, docs.css, docs.js), build.mjs +
+  build-legal.mjs outputs, cloudflare worker (banner copy).
+- **Design impact:** toggle reuses the pill/button styles; forced themes
+  render identically to the media-query themes (same tokens).
+- **A11y:** toggle is a real button with `aria-label`/`title` announcing
+  the current mode; icons are `aria-hidden`; contrast unchanged (AA).
+- **Note:** DESIGN_SYSTEM.md allows a manual switcher as an extension of
+  `prefers-color-scheme` detection; default remains "system".
+
+## 2026-07-18 - Docs navbar polish: own status pill, wider centered search, "/" shortcut
+
+- **What:** (PM review feedback on PR #16, same branch)
+  - **Status badge replaced with an own status pill.** The Better Stack
+    badge iframe rendered an oversized opaque white box with invisible
+    light text on dark pages in production (cross-origin iframe canvas;
+    the vendor `color-scheme: normal` hint did not help). The iframe is
+    gone; `.status-pill` is our own component on design-system tokens
+    (surface/border/dot), fed by `fetch('https://status.signature.cat/en/index.json')`
+    -> `aggregate_state`, mapped to: operational "All services online"
+    (green), degraded (amber), downtime (red), maintenance (pink). It
+    links to the status page; without JS or on fetch failure it degrades
+    to a neutral "Status" link. GOTCHA: the bare `/index.json` answers
+    with a 302 that carries no CORS header and the fetch dies - the
+    `/en/`-prefixed URL must be used (same trap as `/badge`).
+  - CSP (`cloudflare/worker.js`): `frame-src` allowance dropped (no more
+    iframe), `https://status.signature.cat` added to `connect-src`.
+  - **Search trigger wider and centered** in the free navbar space
+    (`flex: 1 1 auto; max-width: 480px; margin-inline: auto`).
+  - **Search shortcut is now "/" only** (more intuitive; Ctrl/Cmd+K
+    removed, kbd hint shows "/", Esc still closes).
+  - **Mobile (<=860px): Help button hidden**, the search trigger docks to
+    the right edge next to "Open app".
+  - **Scroll-spy bottom fix:** at the very end of the page the last
+    heading can never cross the 25%-viewport reading line, so the TOC
+    indicator never reached it; when the page is scrolled to the bottom
+    and the last heading is on screen, it now becomes active.
+- **Why:** PM review of PR #16 (badge unreadable on prod dark mode +
+  four UX nits).
+- **Scope:** landingpage /docs (build-docs.mjs template, docs.css,
+  docs.js) + cloudflare worker (CSP).
+- **Design impact:** status pill uses existing tokens (Light/Dark OK);
+  navbar layout rebalanced around the centered search.
+- **Performance impact:** one small same-purpose fetch replaces a whole
+  iframe document (net win); no new dependencies.
+- **A11y:** pill is a regular link with visible text; dot is
+  `aria-hidden`; "/" shortcut ignores typing contexts and modifier
+  combos; kbd hint updated.
+
 ## 2026-07-17 - Public documentation at /docs (22 pages, EN)
 
 - **What:**

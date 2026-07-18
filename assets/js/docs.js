@@ -1,28 +1,67 @@
 /* Signature.Cat docs - client behavior (no dependencies).
-   1. Status badge: swap the iframe theme to match prefers-color-scheme.
+   1. Status pill: live aggregate state from status.signature.cat/index.json.
    2. Mobile sidebar toggle.
    3. Heading anchor buttons: copy the deep link, show a "Link copied" tip.
-   4. "On this page" scroll-spy with a sliding indicator (IntersectionObserver).
-   5. Search: Ctrl/Cmd+K overlay over the pre-built /docs/search-index.json. */
+   4. "On this page" scroll-spy with a sliding indicator.
+   5. Search: "/" opens an overlay over the pre-built /docs/search-index.json. */
 (function () {
   'use strict';
 
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- 1. status badge theme ---------------------------------------------- */
-  var badge = document.getElementById('status-badge');
-  if (badge) {
-    var darkMq = window.matchMedia('(prefers-color-scheme: dark)');
-    var setBadgeTheme = function () {
-      var theme = darkMq.matches ? 'dark' : 'light';
-      // /en/badge honors ?theme= (the bare /badge redirect drops the query).
-      // The iframe element keeps the vendor-required color-scheme: normal,
-      // which preserves the badge's transparent background on dark pages.
-      var src = 'https://status.signature.cat/en/badge?theme=' + theme;
-      if (badge.getAttribute('src') !== src) badge.setAttribute('src', src);
+  /* ---- 1. status pill --------------------------------------------------------
+     Own component instead of the vendor badge iframe (the iframe painted an
+     opaque white canvas on dark pages). Without JS, or when the fetch fails,
+     the pill stays a plain "Status" link with a neutral dot. */
+  var pill = document.getElementById('status-pill');
+  if (pill && window.fetch) {
+    var STATES = {
+      operational: ['ok', 'All services online'],
+      degraded: ['warn', 'Degraded performance'],
+      downtime: ['down', 'Service disruption'],
+      maintenance: ['maint', 'Maintenance in progress'],
     };
-    setBadgeTheme();
-    if (darkMq.addEventListener) darkMq.addEventListener('change', setBadgeTheme);
+    // /en/index.json directly - the bare /index.json answers with a 302 that
+    // carries no CORS header, which fails the fetch (same trap as /badge)
+    fetch('https://status.signature.cat/en/index.json')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var s = data && data.data && data.data.attributes && data.data.attributes.aggregate_state;
+        var m = STATES[s];
+        if (!m) return;
+        pill.setAttribute('data-state', m[0]);
+        pill.querySelector('.status-pill-text').textContent = m[1];
+      })
+      .catch(function () { /* keep the neutral fallback */ });
+  }
+
+  /* ---- 1b. theme toggle: system -> light -> dark ------------------------------
+     "system" = no data-theme attribute (prefers-color-scheme rules apply).
+     A head inline script applies the stored choice before first paint. */
+  var themeBtn = document.getElementById('theme-toggle');
+  if (themeBtn) {
+    var THEME_KEY = 'sigcat-theme';
+    var themeMode = document.documentElement.getAttribute('data-theme') || 'system';
+    var applyTheme = function (mode) {
+      themeMode = mode;
+      try {
+        if (mode === 'system') {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.removeItem(THEME_KEY);
+        } else {
+          document.documentElement.setAttribute('data-theme', mode);
+          localStorage.setItem(THEME_KEY, mode);
+        }
+      } catch (e) { /* storage blocked - theme still applies for this page */ }
+      themeBtn.setAttribute('data-mode', mode);
+      var label = 'Theme: ' + mode;
+      themeBtn.setAttribute('aria-label', label);
+      themeBtn.title = label;
+    };
+    applyTheme(themeMode);
+    themeBtn.addEventListener('click', function () {
+      applyTheme(themeMode === 'system' ? 'light' : themeMode === 'light' ? 'dark' : 'system');
+    });
   }
 
   /* ---- 2. mobile sidebar ---------------------------------------------------- */
@@ -99,12 +138,18 @@
 
     if (headings.length) {
       // The heading nearest above the reading line (~25% viewport) wins.
+      // At the very bottom of the page the last heading may never cross that
+      // line (no room left to scroll) - being on screen is enough there.
       var pickCurrent = function () {
         var line = window.innerHeight * 0.25;
         var current = headings[0];
         for (var i = 0; i < headings.length; i++) {
           if (headings[i].getBoundingClientRect().top <= line) current = headings[i];
           else break;
+        }
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+          var last = headings[headings.length - 1];
+          if (last.getBoundingClientRect().top < window.innerHeight) current = last;
         }
         setActive(byId[current.id]);
       };
@@ -129,11 +174,6 @@
   var resultsEl = document.getElementById('docs-search-results');
   var emptyEl = document.getElementById('docs-search-empty');
   if (!overlay || !openBtn || !input) return;
-
-  var isMac = /Mac|iPhone|iPad/.test(navigator.platform);
-  document.querySelectorAll('[data-mod]').forEach(function (el) {
-    el.textContent = isMac ? '⌘' : 'Ctrl';
-  });
 
   var index = null;
   var loading = null;
@@ -168,12 +208,9 @@
     if (e.target === overlay) closeSearch();
   });
   document.addEventListener('keydown', function (e) {
-    if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
-      e.preventDefault();
-      if (overlay.hidden) openSearch(); else closeSearch();
-    } else if (e.key === 'Escape' && !overlay.hidden) {
+    if (e.key === 'Escape' && !overlay.hidden) {
       closeSearch();
-    } else if (e.key === '/' && overlay.hidden) {
+    } else if (e.key === '/' && overlay.hidden && !e.metaKey && !e.ctrlKey && !e.altKey) {
       var t = e.target;
       var typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
       if (!typing) { e.preventDefault(); openSearch(); }

@@ -1,0 +1,2 @@
+# local wrangler state/cache (dashboard-driven deploys; never commit)
+cloudflare/.wrangler/
