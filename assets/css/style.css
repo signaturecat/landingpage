@@ -12,6 +12,7 @@
   --muted-2: #888380;
   --accent: #f2a8ff;       /* pink accent */
   --accent-soft: #e89bf5;
+  --accent-ink: #ad32c1;   /* accent used AS TEXT: dark enough for AA on cream */
   --ok: #1f9d57;           /* status dot: present (green) */
   --bad: #d6453d;          /* status dot: absent (red) */
   --panel: #292524;        /* dark glass panel in hero */
@@ -35,6 +36,7 @@
     --muted-2: #908a85;
     --accent: #f2a8ff;
     --accent-soft: #e89bf5;
+    --accent-ink: #f2a8ff;  /* on dark the brand pink already passes AA */
     --ok: #34d17e;           /* brighter green for dark bg */
     --bad: #ff6b61;          /* brighter red for dark bg */
     --panel: #292524;
@@ -248,8 +250,7 @@ section[id] { scroll-margin-top: 88px; }
 .section { padding: 76px 0; }
 .section-head { max-width: 640px; margin-bottom: 44px; }
 .section-head.center { margin-inline: auto; text-align: center; }
-.kicker { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-soft); }
-@media (prefers-color-scheme: dark) { .kicker { color: var(--accent); } }
+.kicker { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
 .section h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); margin: 12px 0 14px; }
 .section .sub { color: var(--muted); font-size: 1.05rem; }
 
@@ -363,7 +364,7 @@ section[id] { scroll-margin-top: 88px; }
 .faq details { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 4px 20px; margin-bottom: 12px; background: var(--surface); }
 .faq summary { cursor: pointer; font-weight: 600; padding: 16px 0; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 14px; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; font-size: 22px; color: var(--accent-soft); transition: transform .2s; }
+.faq summary::after { content: "+"; font-size: 22px; color: var(--accent-ink); transition: transform .2s; }
 .faq details[open] summary::after { content: "−"; }
 .faq details p { color: var(--muted); padding: 0 0 18px; font-size: .96rem; }
 
@@ -454,11 +455,11 @@ section[id] { scroll-margin-top: 88px; }
 .pers-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
 .pers-var {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 600; font-size: 1rem;
-  line-height: 1.3; color: var(--accent-soft); display: inline-block;
+  line-height: 1.3; color: var(--accent-ink); display: inline-block;
   /* Smooth fade + slide + blur swap, matching the hero signature preview */
   transition: color .3s var(--ease), opacity .28s var(--ease), transform .28s var(--ease), filter .28s var(--ease);
 }
-@media (prefers-color-scheme: dark){ .pers-var { color: var(--accent); } }
+
 .pers-var.filled {
   font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 1rem; color: var(--ink);
 }
@@ -483,10 +484,14 @@ section[id] { scroll-margin-top: 88px; }
 /* Tag chips: padding (incl. vertical) so the rounded border is never clipped; max-width animates to 0 when hidden */
 .cond-tag {
   display: inline-flex; align-items: center; overflow: hidden;
-  max-width: 80px; opacity: 1; transform: scale(1); padding: 1px 0;
-  transition: max-width .4s var(--ease), opacity .35s var(--ease), transform .35s var(--ease), margin .4s var(--ease);
+  /* flex: none - as a flex item in the nowrap .cond-line the tag would
+     otherwise shrink below its content width and clip the chip's right
+     border; only .cond-text is allowed to shrink (ellipsis). */
+  flex: none;
+  max-width: 84px; opacity: 1; transform: scale(1); padding: 1px 1px;
+  transition: max-width .4s var(--ease), opacity .35s var(--ease), transform .35s var(--ease), margin .4s var(--ease), padding .4s var(--ease);
 }
-.cond-line.tags-hidden .cond-tag { max-width: 0; opacity: 0; transform: scale(.85); margin: 0 -3px; }
+.cond-line.tags-hidden .cond-tag { max-width: 0; opacity: 0; transform: scale(.85); margin: 0 -3px; padding: 1px 0; }
 .cond-tag code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; line-height: 1.4; white-space: nowrap;
   background: color-mix(in srgb, var(--accent) 16%, transparent);

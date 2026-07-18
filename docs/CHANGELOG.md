@@ -2,6 +2,43 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-18 - Accent contrast token (--accent-ink), uniform link underline, {{del}} chip clipping fix
+
+- **What:**
+  - New design token **`--accent-ink`** - the accent color used AS TEXT.
+    Light mode: `#ad32c1` (same hue as the brand pink, 4.9:1 on cream /
+    5.2:1 on surface - AA for normal text; picked via a WCAG contrast
+    sweep). Dark mode: the brand `#f2a8ff` (8.5:1, unchanged). Defined in
+    `style.css` (:root + dark) and mirrored in docs.css forced-theme blocks.
+  - Applied everywhere accent was used as text/indicator: docs wordmark,
+    sidebar active dot, TOC scroll-spy indicator, heading-anchor hover,
+    IMPORTANT callout title, pager arrows, link hover sweep target; landing
+    `.kicker`, FAQ +/- marker, `.pers-var` demo tokens. This also collapsed
+    nine per-theme override rules into the single token. Backgrounds/tints
+    keep the brand `--accent` (selection, chips, hovers) - the brand hue is
+    unchanged, only text usage darkens in light mode.
+  - **Docs link underline** is now one solid `var(--accent)` in every state
+    (was a 75% color-mix that rendered as a multi-tone line over descenders
+    until hover). The hover sweep targets `--accent-ink` with an
+    `--accent-soft` fallback, so a stale cached style.css can never produce
+    invisible link text.
+  - **Landing conditional-block demo**: `{{del}}`/`{{/del}}` chips had their
+    right borders clipped - root cause: the tags are flex items in the
+    nowrap `.cond-line` and shrank below content width (default
+    flex-shrink), the `overflow: hidden` wrapper then cut the border. Fixed
+    with `flex: none` on `.cond-tag` (only `.cond-text` may shrink/ellipsis)
+    plus 1px horizontal wrapper padding so the border never sits on the clip
+    edge (verified geometrically: +1px gap both sides, was -1.5px).
+- **Why:** PM review 2026-07-18: #f2a8ff as text in light mode had ~1.7:1
+  contrast; underline looked tri-colored before hover; chip borders were
+  visibly cut in the features card.
+- **Scope:** landingpage CSS only (style.css + docs.css); no HTML/build
+  changes.
+- **Design impact:** new token `--accent-ink` documented in the space
+  DESIGN_SYSTEM.md; brand accent for fills/tints unchanged in both themes.
+- **A11y:** accent-as-text now passes WCAG AA in light mode (4.9:1+);
+  dark mode unchanged (8.5:1).
+
 ## 2026-07-18 - No-trailing-slash URLs site-wide; docs UX polish (pill, link sweep, scrollbars)
 
 - **What:**
