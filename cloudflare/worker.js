@@ -5,9 +5,11 @@
  *
  * Responsibilities (in request order):
  *
- * 1. LANGUAGE ROUTER (behaviour unchanged): only the bare ROOT is
- *    locale-routed; every other path (/pl/, /de/, /fr/, /legal/, /assets/*,
- *    ...) passes straight through to the origin.
+ * 1. LANGUAGE ROUTER: only the bare ROOT is locale-routed; every other path
+ *    (/pl, /de, /fr, /legal, /docs/*, /assets/*, ...) passes to the origin.
+ *    URL canonicalization (routePath below): trailing-slash and /index.html
+ *    requests 301 to the no-slash canonical; extension-less paths are
+ *    internally rewritten to the origin's <path>/index.html.
  *      - manual choice wins: `sigcat_locale` cookie (set by the on-page switcher),
  *      - otherwise the first supported Accept-Language subtag,
  *      - English / no match stays on "/" (x-default indexes normally).
@@ -31,7 +33,7 @@
  *    the first path segment). The banner ships hidden; the injected script
  *    shows it only when the `sigcat_consent` cookie is absent. Categories:
  *      - necessary: always on (checkbox checked + disabled),
- *      - analytics/marketing: opt-in toggle, default OFF (GDPR).
+ *      - analytics: opt-in toggle, default OFF (GDPR).
  *    A choice writes `sigcat_consent=v1:a1|a0` (12 months) and hides the
  *    banner for good; any element with class `js-cookie-settings` (the
  *    "Cookie settings" footer links) re-opens it. The script exposes
@@ -151,7 +153,7 @@ function makeNonce() {
 export function bannerHtml(lang, nonce) {
   const loc = SUPPORTED.includes(lang) ? lang : 'en';
   const t = BANNER_I18N[loc];
-  const policyHref = `/${loc}/policy/`;
+  const policyHref = `/${loc}/policy`;
   return `
 <div id="sigcat-cookies" hidden>
 <style>
@@ -175,7 +177,7 @@ export function bannerHtml(lang, nonce) {
 </style>
 <div class="scc-card" role="dialog" aria-modal="false" aria-labelledby="scc-title">
   <h2 id="scc-title">${t.title}</h2>
-  <p>${t.desc} <a href="${policyHref}">${t.policy}</a> &middot; <a href="/legal/">${t.legal}</a></p>
+  <p>${t.desc} <a href="${policyHref}">${t.policy}</a> &middot; <a href="/legal">${t.legal}</a></p>
   <label><input type="checkbox" checked disabled /> ${t.necessary}</label>
   <label><input type="checkbox" id="scc-analytics" /> ${t.analytics}</label>
   <div class="scc-actions">
@@ -261,6 +263,32 @@ export function bannerHtml(lang, nonce) {
 `;
 }
 
+// ---- URL canonicalization: no trailing slashes ---------------------------------
+// Canonical page URLs have NO trailing slash (https://signature.cat/pl,
+// /docs/templates, /legal). The origin (GitHub Pages) stores every page as
+// <path>/index.html and would itself 301 extension-less paths TO the slashed
+// form, so the Worker (a) 301-redirects any slashed or /index.html request to
+// the canonical form and (b) internally rewrites extension-less paths to the
+// origin's <path>/index.html - the origin never gets a chance to redirect.
+export function routePath(pathname) {
+  if (pathname === '/') return { type: 'pass' };
+  // /index.html and /foo/index.html -> canonical parent URL
+  if (pathname.endsWith('/index.html')) {
+    const parent = pathname.slice(0, -'/index.html'.length);
+    return { type: 'redirect', to: parent === '' ? '/' : parent };
+  }
+  // /foo/ (and /foo///) -> /foo
+  if (pathname.endsWith('/')) {
+    const stripped = pathname.replace(/\/+$/, '');
+    return { type: 'redirect', to: stripped === '' ? '/' : stripped };
+  }
+  // extension-less page URL -> serve the directory index from the origin
+  if (!/\.[a-z0-9]+$/i.test(pathname)) {
+    return { type: 'rewrite', path: `${pathname}/index.html` };
+  }
+  return { type: 'pass' };
+}
+
 // ---- worker -------------------------------------------------------------------
 export default {
   async fetch(request) {
@@ -270,13 +298,23 @@ export default {
       const loc = pickLocale(request);
       if (loc !== 'en') {
         const headers = new Headers({
-          Location: `/${loc}/`,
+          Location: `/${loc}`,
           Vary: 'Cookie, Accept-Language',
           'Cache-Control': 'no-store',
         });
         applyBaseHeaders(headers);
         return new Response(null, { status: 302, headers });
       }
+    }
+
+    const route = routePath(url.pathname);
+    if (route.type === 'redirect') {
+      const headers = new Headers({
+        Location: route.to + url.search,
+        'Cache-Control': 'public, max-age=86400',
+      });
+      applyBaseHeaders(headers);
+      return new Response(null, { status: 301, headers });
     }
 
     // Conditional-request guard for documents: if we forwarded If-None-Match /
@@ -286,13 +324,18 @@ export default {
     // indefinitely, because the ETag keeps matching. Strip the validators for
     // likely-HTML paths so documents always arrive as full 200 responses.
     // Assets (paths with a non-.html extension) keep normal revalidation.
+    const originPath = route.type === 'rewrite' ? route.path : url.pathname;
     const likelyHtml =
-      url.pathname.endsWith('.html') || !/\.[a-z0-9]+$/i.test(url.pathname);
+      originPath.endsWith('.html') || !/\.[a-z0-9]+$/i.test(originPath);
     let originRequest = request;
-    if (likelyHtml) {
-      originRequest = new Request(request);
-      originRequest.headers.delete('If-None-Match');
-      originRequest.headers.delete('If-Modified-Since');
+    if (route.type === 'rewrite' || likelyHtml) {
+      const originUrl = new URL(url);
+      if (route.type === 'rewrite') originUrl.pathname = route.path;
+      originRequest = new Request(originUrl.toString(), request);
+      if (likelyHtml) {
+        originRequest.headers.delete('If-None-Match');
+        originRequest.headers.delete('If-Modified-Since');
+      }
     }
 
     const res = await fetch(originRequest);

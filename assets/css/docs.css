@@ -81,13 +81,17 @@ html[data-theme="light"] .docs-wordmark { color: var(--accent-soft); }
 
 /* Service-status pill (own component fed from status.signature.cat/index.json;
    without JS it degrades to a plain "Status" link with a neutral dot) */
+/* Quiet by default (navbar background, no border) - the button look appears
+   only on hover / press. */
 .status-pill {
   display: inline-flex; align-items: center; gap: 8px; flex: none;
-  padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px;
-  background: var(--surface); color: var(--muted); font-size: 13.5px; font-weight: 600;
-  white-space: nowrap; transition: border-color .18s var(--ease), color .18s var(--ease);
+  padding: 8px 13px; border: 0; border-radius: 999px;
+  background: transparent; color: var(--muted); font-size: 13.5px; font-weight: 600;
+  white-space: nowrap; transition: background .18s var(--ease), color .18s var(--ease);
 }
-.status-pill:hover, .status-pill:focus-visible { border-color: var(--accent); color: var(--ink); }
+.status-pill:hover, .status-pill:focus-visible, .status-pill:active {
+  background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink);
+}
 .status-pill-dot {
   width: 8px; height: 8px; border-radius: 50%; flex: none;
   background: var(--muted-2);
@@ -132,7 +136,9 @@ html[data-theme="light"] .docs-wordmark { color: var(--accent-soft); }
   position: sticky; top: 60px; max-height: calc(100vh - 60px);
   overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain;
   padding: 26px 14px 40px 0; border-right: 1px solid var(--border);
+  scrollbar-width: none; /* still scrollable, no visible bar */
 }
+.docs-sidebar::-webkit-scrollbar { display: none; }
 .docs-nav-group { margin-bottom: 22px; }
 .docs-nav-label {
   font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
@@ -194,6 +200,26 @@ html[data-theme="light"] .docs-nav-group a::before { background: var(--accent-so
   transition: text-decoration-color .15s var(--ease);
 }
 .docs-article a:not(.h-anchor):hover { text-decoration-color: var(--accent-soft); }
+/* Hover: the text color sweeps left-to-right into the underline color. Two
+   text-clipped gradient layers: an accent layer growing from 0 to full width
+   over the base ink layer. Fallback (no background-clip): plain color. */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .docs-article a:not(.h-anchor) {
+    background-image:
+      linear-gradient(to right, var(--accent-soft), var(--accent-soft)),
+      linear-gradient(to right, var(--ink), var(--ink));
+    background-size: 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: background-size .35s var(--ease), text-decoration-color .15s var(--ease);
+  }
+  .docs-article a:not(.h-anchor):hover,
+  .docs-article a:not(.h-anchor):focus-visible { background-size: 100% 100%, 100% 100%; }
+  /* keep code chips inside links readable (they carry their own colors) */
+  .docs-article a:not(.h-anchor) code { color: var(--ink); }
+}
 .docs-article hr { border: 0; border-top: 1px solid var(--border); margin: 34px 0; }
 .docs-article blockquote {
   margin: 0 0 16px; padding: 4px 18px;

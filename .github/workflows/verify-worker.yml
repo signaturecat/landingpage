@@ -19,7 +19,8 @@ jobs:
     steps:
       - name: Poll https://signature.cat/pl/ for Worker behaviour
         run: |
-          URL=https://signature.cat/pl/
+          # canonical URLs carry no trailing slash (/pl/ now 301s to /pl)
+          URL=https://signature.cat/pl
           for i in $(seq 1 10); do
             H=$(mktemp); B=$(mktemp)
             curl -s -D "$H" -o "$B" "$URL"

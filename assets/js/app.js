@@ -18,7 +18,7 @@
   ];
 
   // -------- Locale resolution: the URL PATH is the source of truth ----------
-  // Each locale is its own pre-rendered page (/pl/, /de/, /fr/; English at /).
+  // Each locale is its own pre-rendered page (/pl, /de, /fr; English at /).
   // The client must match the page it was served, so locale is derived from the
   // path - NOT from navigator/cookie. Browser-language routing is a server-side
   // concern (the Cloudflare Worker), so the client never swaps the root to a
