@@ -2,7 +2,7 @@
 title: Verify an assignment job
 navTitle: Verify assignment jobs
 description: Check that a SignatureCat sync or apply job succeeded - job statuses, per-user results and what the common error codes mean.
-updated: 2026-07-17
+updated: 2026-07-19
 ---
 
 # Verify an assignment job
@@ -16,7 +16,7 @@ Open [Task logs](https://app.signature.cat/assignments/logs) (Editors and Admins
 Expand a row to see the per-user drill-down, or click **Open full job view** for the complete result table.
 
 > [!NOTE]
-> Task logs are kept for a limited time (by default the last 3 days) and older entries are removed automatically. Check jobs soon after large rollouts.
+> Task logs are kept for a limited time (by default the last 30 days) and older entries are removed automatically. Check jobs soon after large rollouts.
 
 ## Job statuses
 

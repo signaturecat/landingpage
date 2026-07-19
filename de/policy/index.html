@@ -23,7 +23,7 @@
 <main class="legal-doc">
 <article>
 <h1>Datenschutzerklärung Signature.Cat</h1>
-<p>Version 1.0 - gültig ab 16.07.2026</p>
+<p>Version 1.1 - gültig ab 02.08.2026</p>
 <p><strong>Diese Datenschutzerklärung ist in polnischer Sprache unter <a href="https://signature.cat/privacy">https://signature.cat/privacy</a> als rechtsverbindliche Fassung verfügbar. Dieses Dokument ist eine automatische Übersetzung des polnischen Originals, dient ausschließlich Informationszwecken und kann Fehler oder Ungenauigkeiten enthalten. Im Falle von Abweichungen ist die polnische Fassung maßgeblich.</strong></p>
 <hr />
 <h2>1. Verantwortlicher und Kontakt</h2>
@@ -51,7 +51,7 @@
 <ul>
 <li>dem Auslesen von Daten aus dem Google Workspace-Nutzerverzeichnis des Kunden (Vorname, Nachname, E-Mail-Adresse samt Aliassen, Position, Abteilung, Telefonnummern, Adresse, URL des Profilfotos) <strong>ausschließlich laufend, im Moment der Vorschau oder der Bereitstellung der Signatur</strong> - diese Werte werden von uns nach Abschluss des Vorgangs nicht gespeichert;</li>
 <li>dem Speichern der gerenderten Signatur in den Gmail-Einstellungen des jeweiligen Nutzers (die Signatur verbleibt in der Google-Umgebung des Kunden);</li>
-<li>der kurzzeitigen Speicherung der von einer Bereitstellung erfassten E-Mail-Adressen im Aufgabenverlauf (3 Tage, für die Zwecke des Bereitstellungsberichts);</li>
+<li>der kurzzeitigen Speicherung der von einer Bereitstellung erfassten E-Mail-Adressen im Aufgabenverlauf (30 Tage, für die Zwecke des Bereitstellungsberichts);</li>
 <li>der Speicherung der Inhalte, die der Kunde selbständig in Signaturvorlagen oder Bildern platziert.</li>
 </ul>
 <p>Die Auftragsverarbeitung regelt ein Auftragsverarbeitungsvertrag (DPA), der ausschließlich in englischer Sprache geschlossen wird - sein Abschluss erfolgt auf Antrag des Kunden an contact@signature.cat. Die vollständige Liste der weiteren Auftragsverarbeiter (Unterauftragsverarbeiter) wird den Kunden im Rahmen des DPA sowie auf Anfrage zur Verfügung gestellt.</p>
@@ -103,7 +103,7 @@
 <tr><td>Kontodaten (Nutzer, Vorlagen, Zuweisungen, Bilder, Einstellungen)</td><td>für die Dauer des Vertrags; nach dem Erlöschen des Abonnements - bis zur Löschung des Kontos auf Verlangen des Kunden, nicht länger als bis zum Ablauf der Verjährungsfristen für Ansprüche im Zusammenhang mit dem Vertrag (grundsätzlich 6 Jahre)</td></tr>
 <tr><td>Löschung des Kontos (Self-Service, in den Einstellungen)</td><td>die dauerhafte Löschung der Daten erfolgt nach Ablauf von 7 Tagen ab der Stellung des Antrags</td></tr>
 <tr><td>Anmeldesitzungen</td><td>7 Tage ab der letzten Aktivität, maximal 14 Tage ab der Anmeldung</td></tr>
-<tr><td>Verlauf der Signaturbereitstellungen (einschließlich der von der Bereitstellung erfassten E-Mail-Adressen)</td><td>3 Tage nach Abschluss der Aufgabe</td></tr>
+<tr><td>Verlauf der Signaturbereitstellungen (einschließlich der von der Bereitstellung erfassten E-Mail-Adressen)</td><td>30 Tage nach Abschluss der Aufgabe</td></tr>
 <tr><td>Audit-Log</td><td>365 Tage in der Produktionsdatenbank; Archivkopie für Sicherheitszwecke und zur Verteidigung von Ansprüchen - nicht länger als 6 Jahre</td></tr>
 <tr><td>Ergebnisse automatischer Verbindungstests mit dem Workspace (Preflight)</td><td>90 Tage</td></tr>
 <tr><td>Interne operative Ereignisse (Team-Benachrichtigungen)</td><td>30 Tage ab der Zustellung</td></tr>
@@ -153,6 +153,7 @@
 <li>private Schlüssel der Dienstkonten werden ausschließlich im Secret-Management-Dienst aufbewahrt (niemals in der Datenbank, in Logs oder in API-Antworten), mit einem Cache im Arbeitsspeicher, der nach bis zu 5 Minuten abläuft, sowie einer automatischen, regelmäßigen Schlüsselrotation;</li>
 <li>Kundenisolierung: ein dediziertes Google-Dienstkonto pro Kunde sowie die Beschränkung jeder Datenoperation auf die Umgebung des jeweiligen Kunden;</li>
 <li>Zugriffskontrolle auf Grundlage von Berechtigungsstufen, serverseitig für jede Operation durchgesetzt;</li>
+<li>Servicezugriff durch SignatureCat-Personal: Änderungen an Kontoeinstellungen durch unser Support-Team erfordern die vorherige Zustimmung des Kunden, die ein Administrator über einen dedizierten Schalter in den Anwendungseinstellungen erteilt; jede Support-Aktion sowie jedes Aktivieren und Deaktivieren der Zustimmung wird im Audit-Protokoll des Kontos zusammen mit dem Namen des Mitarbeiters vermerkt, und der Lesezugriff (Diagnose) ist auf den zur Aufrechterhaltung des Dienstes erforderlichen Umfang beschränkt;</li>
 <li>Authentifizierung ausschließlich über Google OAuth (der Dienst speichert keine Passwörter); zusätzliche Anmeldesicherungen, einschließlich MFA, ergeben sich aus der Google Workspace-Richtlinie des Kunden;</li>
 <li>Browser-Sicherheitsheader, einschließlich einer durchgesetzten Content Security Policy;</li>
 <li>Begrenzung des Datenverkehrs pro IP-Adresse am Netzwerkrand;</li>

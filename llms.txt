@@ -37,6 +37,7 @@ Full documentation content in one file: https://signature.cat/llms-full.txt
 
 ## Support
 
+- [Support access](https://signature.cat/docs/support-access): Let SignatureCat support make changes on your account when helping you - what the switch unlocks, where to find it, and how every action shows up in your activity log.
 - [Get help](https://signature.cat/docs/get-help): How to reach SignatureCat support, what to include in a report, and where to check before writing - status page, logs and common fixes.
 - [Service status and SLA](https://signature.cat/docs/service-status): SignatureCat live status page, the 99% monthly availability target, what counts as downtime and where maintenance windows are announced.
 - [Legal](https://signature.cat/docs/legal): SignatureCat legal documents - Terms of Service, Privacy Policy, DPA and GDPR information, data location and retention.

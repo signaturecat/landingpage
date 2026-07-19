@@ -1,6 +1,6 @@
 # Conditions d'utilisation de Signature.Cat
 
-Version 1.1 - en vigueur à compter du 17.07.2026
+Version 1.2 - en vigueur à compter du 02.08.2026
 
 **Les présentes Conditions d'utilisation sont disponibles en polonais à l'adresse https://signature.cat/terms en tant que version juridiquement contraignante. Le présent document est une traduction automatique de l'original polonais, fournie à titre purement informatif, et peut contenir des erreurs ou des inexactitudes. En cas de divergence, la version polonaise prévaut.**
 
@@ -82,6 +82,7 @@ Les présentes Conditions constituent un règlement de fourniture de services pa
 4. Le Client garantit que les données fournies lors de l'inscription et dans le cadre de la facturation sont exactes et à jour.
 5. Le Client répond des actions et omissions de tous ses Utilisateurs comme de ses propres actions et est tenu de veiller à ce que seules les personnes autorisées aient accès au Compte.
 6. L'accès des Utilisateurs aux fonctions de la Plateforme est déterminé par les Niveaux d'accès (de l'accès en libre-service, en passant par les droits de projet et d'édition, jusqu'aux pleins droits d'administration), attribués dans la Plateforme par les Utilisateurs habilités du Client. Les Administrateurs Workspace disposent toujours du niveau d'administration complet, qui ne peut pas leur être retiré dans la Plateforme.
+7. **Accès de service (support).** L'équipe support du Prestataire ne peut modifier les paramètres du Compte (p. ex. les modèles de signatures, les attributions ou les droits) qu'après le consentement préalable du Client, donné au moyen d'un interrupteur dédié dans les paramètres de la Plateforme, accessible aux Utilisateurs disposant du niveau d'administration. Le consentement peut être retiré à tout moment. L'activation et la désactivation du consentement, ainsi que chaque modification effectuée par le support, sont consignées dans le journal d'audit du Compte avec le nom du membre de l'équipe support. Indépendamment du consentement, le Prestataire conserve un accès en lecture dans la mesure nécessaire au maintien du Service et au diagnostic des erreurs (conformément au DPA et à la Politique de confidentialité).
 
 ## § 7. Période d'essai
 

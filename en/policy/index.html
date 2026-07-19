@@ -23,7 +23,7 @@
 <main class="legal-doc">
 <article>
 <h1>Signature.Cat Privacy Policy</h1>
-<p>Version 1.0 - effective as of 16.07.2026</p>
+<p>Version 1.1 - effective as of 02.08.2026</p>
 <p><strong>This Privacy Policy is available in Polish at <a href="https://signature.cat/privacy">https://signature.cat/privacy</a> as the legally binding version. This document is an automatic translation of the Polish original, provided for informational purposes only, and may contain errors or inaccuracies. In case of any discrepancy, the Polish version shall prevail.</strong></p>
 <hr />
 <h2>1. Data controller and contact</h2>
@@ -51,7 +51,7 @@
 <ul>
 <li>reading data from the user directory of the Customer's Google Workspace (first name, last name, e-mail address including aliases, job title, department, phone numbers, address, profile photo URL) <strong>exclusively on an ongoing basis, at the moment of previewing or deploying a signature</strong> - these values are not stored by us after the operation is completed;</li>
 <li>writing the rendered signature in the Gmail settings of the given user (the signature remains in the Customer's Google environment);</li>
-<li>short-term storage of e-mail addresses covered by a deployment in the task history (3 days, for the purposes of the deployment report);</li>
+<li>short-term storage of e-mail addresses covered by a deployment in the task history (30 days, for the purposes of the deployment report);</li>
 <li>storing content that the Customer independently places in signature templates or images.</li>
 </ul>
 <p>The entrustment of processing is governed by a data processing agreement (DPA), concluded exclusively in English - it is concluded at the Customer's request sent to contact@signature.cat. The full list of further processors (sub-processors) is made available to Customers within the DPA and upon request.</p>
@@ -103,7 +103,7 @@
 <tr><td>Account data (Users, templates, assignments, images, settings)</td><td>for the term of the Agreement; after the subscription expires - until the Account is deleted at the Customer's request, no longer than until the expiry of the limitation periods for claims related to the Agreement (as a rule 6 years)</td></tr>
 <tr><td>Account deletion (self-service, in settings)</td><td>permanent deletion of data takes place 7 days after the request is submitted</td></tr>
 <tr><td>Sign-in sessions</td><td>7 days from last activity, at most 14 days from sign-in</td></tr>
-<tr><td>Signature deployment history (including e-mail addresses covered by a deployment)</td><td>3 days from task completion</td></tr>
+<tr><td>Signature deployment history (including e-mail addresses covered by a deployment)</td><td>30 days from task completion</td></tr>
 <tr><td>Audit log</td><td>365 days in the production database; an archival copy for security purposes and defense of claims - no longer than 6 years</td></tr>
 <tr><td>Results of automatic Workspace connection tests (preflight)</td><td>90 days</td></tr>
 <tr><td>Internal operational events (team notifications)</td><td>30 days from delivery</td></tr>
@@ -153,6 +153,7 @@
 <li>private keys of service accounts stored exclusively in a secret management service (never in the database, logs or API responses), with an in-memory cache expiring within up to 5 minutes and automatic, periodic key rotation;</li>
 <li>customer isolation: one dedicated Google service account per Customer and restriction of every data operation to the given Customer's environment;</li>
 <li>access control based on permission levels, enforced server-side for every operation;</li>
+<li>service access by SignatureCat personnel: changes to Account settings by our support team require the Customer's prior consent, granted by an administrator with a dedicated switch in the application settings; every support action, as well as each enabling or disabling of the consent, is recorded in the Account's audit log together with the staff member's name, and read-only access (diagnostics) is limited to the scope necessary to maintain the Service;</li>
 <li>authentication exclusively via Google OAuth (the Service does not store passwords); additional sign-in protections, including MFA, follow from the Customer's Google Workspace policy;</li>
 <li>browser security headers, including an enforced Content Security Policy;</li>
 <li>rate limiting per IP address at the network edge;</li>
