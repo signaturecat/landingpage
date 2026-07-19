@@ -1,6 +1,6 @@
 # Allgemeine Geschäftsbedingungen (AGB) für Signature.Cat
 
-Version 1.1 - gültig ab 17.07.2026
+Version 1.2 - gültig ab 02.08.2026
 
 **Diese Allgemeinen Geschäftsbedingungen sind in polnischer Sprache unter https://signature.cat/terms als rechtsverbindliche Fassung verfügbar. Dieses Dokument ist eine automatische Übersetzung des polnischen Originals, dient ausschließlich Informationszwecken und kann Fehler oder Ungenauigkeiten enthalten. Im Falle von Abweichungen ist die polnische Fassung maßgeblich.**
 
@@ -82,6 +82,7 @@ Diese AGB stellen ein Reglement für die Erbringung von Dienstleistungen auf ele
 4. Der Kunde gewährleistet, dass die bei der Registrierung und in den Abrechnungen angegebenen Daten wahr und aktuell sind.
 5. Der Kunde haftet für Handlungen und Unterlassungen aller seiner Nutzer wie für eigene Handlungen und ist verpflichtet sicherzustellen, dass ausschließlich dazu befugte Personen Zugriff auf das Konto haben.
 6. Der Zugriff der Nutzer auf die Funktionen der Plattform wird durch Zugriffsstufen bestimmt (vom Self-Service-Zugriff über Projekt- und Bearbeitungsrechte bis hin zu vollen Administratorrechten), die in der Plattform durch berechtigte Nutzer des Kunden vergeben werden. Workspace-Administratoren verfügen stets über die volle Administratorstufe, und diese kann ihnen in der Plattform nicht entzogen werden.
+7. **Servicezugriff (Support).** Das Support-Team des Anbieters darf Änderungen an den Kontoeinstellungen (z. B. an Signaturvorlagen, Zuweisungen oder Berechtigungen) nur nach vorheriger Zustimmung des Kunden vornehmen, die über einen dedizierten Schalter in den Plattformeinstellungen erteilt wird und Nutzern mit Administratorstufe zur Verfügung steht. Die Zustimmung kann jederzeit widerrufen werden. Das Aktivieren und Deaktivieren der Zustimmung sowie jede vom Support vorgenommene Änderung werden im Audit-Protokoll des Kontos zusammen mit dem Namen des Support-Mitarbeiters vermerkt. Unabhängig von der Zustimmung behält der Anbieter lesenden Zugriff in dem Umfang, der zur Aufrechterhaltung des Dienstes und zur Fehlerdiagnose erforderlich ist (gemäß DPA und Datenschutzerklärung).
 
 ## § 7. Testzeitraum
 

@@ -1,6 +1,6 @@
 # Politique de confidentialité de Signature.Cat
 
-Version 1.0 - en vigueur à compter du 16.07.2026
+Version 1.1 - en vigueur à compter du 02.08.2026
 
 **La présente Politique de confidentialité est disponible en polonais à l'adresse https://signature.cat/privacy en tant que version juridiquement contraignante. Le présent document est une traduction automatique de l'original polonais, fournie à titre purement informatif, et peut contenir des erreurs ou des inexactitudes. En cas de divergence, la version polonaise prévaut.**
 
@@ -36,7 +36,7 @@ Selon la catégorie de données, nous intervenons dans l'un des deux rôles suiv
 **b) Sous-traitant (processeur)** - en ce qui concerne les données personnelles des employés et collaborateurs du Client, traitées dans le cadre du Service sur instruction du Client. Le responsable du traitement de ces données est le Client. Le traitement consiste en :
 - la lecture des données du répertoire des utilisateurs Google Workspace du Client (prénom, nom, adresse e-mail avec les alias, poste, service, numéros de téléphone, adresse, adresse URL de la photo de profil) **exclusivement en temps réel, au moment de l'aperçu ou du déploiement de la signature** - ces valeurs ne sont pas conservées par nous après la fin de l'opération ;
 - l'écriture de la signature rendue dans les paramètres Gmail de l'utilisateur concerné (la signature reste dans l'environnement Google du Client) ;
-- la conservation de courte durée des adresses e-mail concernées par le déploiement dans l'historique des tâches (3 jours, aux fins du rapport de déploiement) ;
+- la conservation de courte durée des adresses e-mail concernées par le déploiement dans l'historique des tâches (30 jours, aux fins du rapport de déploiement) ;
 - la conservation des contenus que le Client place lui-même dans les modèles de signatures ou les images.
 
 La sous-traitance du traitement est régie par un contrat de sous-traitance (DPA), conclu exclusivement en langue anglaise - sa conclusion intervient à la demande du Client adressée à contact@signature.cat. La liste complète des sous-traitants ultérieurs est mise à la disposition des Clients dans le cadre du DPA ainsi que sur demande.
@@ -102,7 +102,7 @@ Ces transferts sont fondés sur les clauses contractuelles types (SCC) incluses 
 | Données du Compte (Utilisateurs, modèles, attributions, images, paramètres) | pendant la durée du Contrat ; après l'expiration de l'abonnement - jusqu'à la suppression du Compte à la demande du Client, au plus tard jusqu'à l'expiration des délais de prescription des droits liés au Contrat (en principe 6 ans) |
 | Suppression du Compte (en libre-service, dans les paramètres) | la suppression définitive des données intervient après un délai de 7 jours à compter de la soumission de la demande |
 | Sessions de connexion | 7 jours à compter de la dernière activité, au maximum 14 jours à compter de la connexion |
-| Historique des déploiements de signatures (y compris les adresses e-mail concernées par le déploiement) | 3 jours à compter de la fin de la tâche |
+| Historique des déploiements de signatures (y compris les adresses e-mail concernées par le déploiement) | 30 jours à compter de la fin de la tâche |
 | Journal d'audit | 365 jours dans la base de production ; copie d'archive à des fins de sécurité et de défense de droits - au plus 6 ans |
 | Résultats des tests automatiques de connexion au Workspace (preflight) | 90 jours |
 | Événements opérationnels internes (notifications de l'équipe) | 30 jours à compter de la remise |
@@ -164,6 +164,7 @@ Nous appliquons notamment les mesures suivantes :
 - clés privées des comptes de service conservées exclusivement dans le service de gestion des secrets (jamais dans la base de données, les journaux ni les réponses API), avec un cache en mémoire expirant au bout de 5 minutes au maximum ainsi qu'une rotation automatique et périodique des clés ;
 - isolation des clients : un compte de service Google dédié par Client ainsi que la limitation de chaque opération sur les données à l'environnement du Client concerné ;
 - contrôle d'accès fondé sur des niveaux de droits, appliqué côté serveur pour chaque opération ;
+- accès de service par le personnel de SignatureCat : toute modification des paramètres du Compte par notre équipe support nécessite le consentement préalable du Client, accordé par un administrateur au moyen d'un interrupteur dédié dans les paramètres de l'application ; chaque action du support ainsi que chaque activation ou désactivation du consentement est consignée dans le journal d'audit du Compte avec le nom du collaborateur, et l'accès en lecture (diagnostic) est limité à ce qui est nécessaire au maintien du Service ;
 - authentification exclusivement via Google OAuth (le Service ne stocke pas de mots de passe) ; les protections de connexion supplémentaires, y compris la MFA, relèvent de la politique Google Workspace du Client ;
 - en-têtes de sécurité du navigateur, y compris une politique Content Security Policy appliquée ;
 - limitation du trafic par adresse IP en périphérie du réseau ;

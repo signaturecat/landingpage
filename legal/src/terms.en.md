@@ -1,6 +1,6 @@
 # Signature.Cat Terms of Service
 
-Version 1.1 - effective as of 17.07.2026
+Version 1.2 - effective as of 02.08.2026
 
 **These Terms of Service are available in Polish at https://signature.cat/terms as the legally binding version. This document is an automatic translation of the Polish original, provided for informational purposes only, and may contain errors or inaccuracies. In case of any discrepancy, the Polish version shall prevail.**
 
@@ -82,6 +82,7 @@ These Terms constitute terms and conditions for the provision of services by ele
 4. The Customer ensures that the data provided during registration and in billing is true and up to date.
 5. The Customer is liable for the acts and omissions of all its Users as for its own acts and is obliged to ensure that only authorized persons have access to the Account.
 6. Users' access to Platform features is determined by Access Levels (from self-service access, through project and editing permissions, to full administrative permissions), granted in the Platform by the Customer's authorized Users. Workspace Administrators always hold the full administrative level and it cannot be revoked from them in the Platform.
+7. **Service access (support).** The Provider's support team may make changes to Account settings (e.g. signature templates, assignments or permissions) only after the Customer's prior consent, given with a dedicated switch in the Platform settings available to Users with the administrative access level. The consent can be withdrawn at any time. Enabling and disabling the consent, as well as every change made by support, is recorded in the Account's audit log together with the name of the support team member. Regardless of the consent, the Provider retains read-only access to the extent necessary to maintain the Service and diagnose errors (in accordance with the DPA and the Privacy Policy).
 
 ## § 7. Trial Period
 

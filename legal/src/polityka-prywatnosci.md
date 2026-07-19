@@ -1,6 +1,6 @@
 # Polityka Prywatności Signature.Cat
 
-Wersja 1.0 - obowiązuje od dnia 16.07.2026
+Wersja 1.1 - obowiązuje od dnia 02.08.2026
 
 Wersja polska niniejszego dokumentu jest wersją wiążącą prawnie. Wersje angielska, niemiecka i francuska są tłumaczeniami automatycznymi udostępnianymi wyłącznie w celach informacyjnych i mogą zawierać błędy; w przypadku rozbieżności rozstrzyga wersja polska.
 
@@ -36,7 +36,7 @@ W zależności od kategorii danych występujemy w jednej z dwóch ról:
 **b) Podmiot przetwarzający (procesor)** - w odniesieniu do danych osobowych pracowników i współpracowników Klienta, przetwarzanych w ramach Usługi na polecenie Klienta. Administratorem tych danych jest Klient. Przetwarzanie polega na:
 - odczycie danych z katalogu użytkowników Google Workspace Klienta (imię, nazwisko, adres e-mail wraz z aliasami, stanowisko, dział, numery telefonów, adres, adres URL zdjęcia profilowego) **wyłącznie na bieżąco, w chwili podglądu lub wdrażania sygnatury** - wartości te nie są przez nas przechowywane po zakończeniu operacji;
 - zapisie wyrenderowanej sygnatury w ustawieniach Gmail danego użytkownika (sygnatura pozostaje w środowisku Google Klienta);
-- krótkotrwałym przechowywaniu adresów e-mail objętych wdrożeniem w historii zadań (3 dni, na potrzeby raportu z wdrożenia);
+- krótkotrwałym przechowywaniu adresów e-mail objętych wdrożeniem w historii zadań (30 dni, na potrzeby raportu z wdrożenia);
 - przechowywaniu treści, które Klient samodzielnie umieści w szablonach sygnatur lub obrazkach.
 
 Powierzenie przetwarzania reguluje umowa powierzenia (DPA), zawierana wyłącznie w języku angielskim - jej zawarcie następuje na wniosek Klienta skierowany na contact@signature.cat. Pełna lista dalszych podmiotów przetwarzających (podprocesorów) udostępniana jest Klientom w ramach DPA oraz na żądanie.
@@ -102,7 +102,7 @@ Podstawą takich transferów są standardowe klauzule umowne (SCC) zawarte w umo
 | Dane Konta (Użytkownicy, szablony, przypisania, obrazki, ustawienia) | przez czas trwania Umowy; po wygaśnięciu subskrypcji - do czasu usunięcia Konta na żądanie Klienta, nie dłużej niż do upływu terminów przedawnienia roszczeń związanych z Umową (co do zasady 6 lat) |
 | Usunięcie Konta (samoobsługowe, w ustawieniach) | trwałe usunięcie danych następuje po upływie 7 dni od zgłoszenia żądania |
 | Sesje logowania | 7 dni od ostatniej aktywności, maksymalnie 14 dni od zalogowania |
-| Historia wdrożeń sygnatur (w tym adresy e-mail objęte wdrożeniem) | 3 dni od zakończenia zadania |
+| Historia wdrożeń sygnatur (w tym adresy e-mail objęte wdrożeniem) | 30 dni od zakończenia zadania |
 | Dziennik audytu | 365 dni w bazie produkcyjnej; kopia archiwalna na potrzeby bezpieczeństwa i obrony roszczeń - nie dłużej niż 6 lat |
 | Wyniki automatycznych testów połączenia z Workspace (preflight) | 90 dni |
 | Wewnętrzne zdarzenia operacyjne (powiadomienia zespołu) | 30 dni od dostarczenia |
@@ -164,6 +164,7 @@ Stosujemy m.in. następujące środki:
 - klucze prywatne kont serwisowych przechowywane wyłącznie w usłudze zarządzania sekretami (nigdy w bazie danych, logach ani odpowiedziach API), z pamięciowym buforem wygasającym do 5 minut oraz automatyczną, okresową rotacją kluczy;
 - izolację klientów: jedno dedykowane konto serwisowe Google na Klienta oraz ograniczenie każdej operacji na danych do środowiska danego Klienta;
 - kontrolę dostępu opartą na poziomach uprawnień, egzekwowaną po stronie serwera dla każdej operacji;
+- dostęp serwisowy personelu SignatureCat: zmiany ustawień Konta przez nasz zespół supportu wymagają uprzedniej zgody Klienta, udzielanej przez administratora dedykowanym przełącznikiem w ustawieniach aplikacji; każde działanie supportu oraz włączenie i wyłączenie zgody są odnotowywane w dzienniku audytu Konta wraz z imieniem i nazwiskiem pracownika, a dostęp w trybie odczytu (diagnostyka) ogranicza się do zakresu niezbędnego do utrzymania Usługi;
 - uwierzytelnianie wyłącznie przez Google OAuth (Usługa nie przechowuje haseł); dodatkowe zabezpieczenia logowania, w tym MFA, wynikają z polityki Google Workspace Klienta;
 - nagłówki bezpieczeństwa przeglądarki, w tym egzekwowaną politykę Content Security Policy;
 - limitowanie ruchu per adres IP na brzegu sieci;

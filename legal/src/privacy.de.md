@@ -1,6 +1,6 @@
 # Datenschutzerklärung Signature.Cat
 
-Version 1.0 - gültig ab 16.07.2026
+Version 1.1 - gültig ab 02.08.2026
 
 **Diese Datenschutzerklärung ist in polnischer Sprache unter https://signature.cat/privacy als rechtsverbindliche Fassung verfügbar. Dieses Dokument ist eine automatische Übersetzung des polnischen Originals, dient ausschließlich Informationszwecken und kann Fehler oder Ungenauigkeiten enthalten. Im Falle von Abweichungen ist die polnische Fassung maßgeblich.**
 
@@ -36,7 +36,7 @@ Je nach Datenkategorie treten wir in einer von zwei Rollen auf:
 **b) Auftragsverarbeiter (Prozessor)** - in Bezug auf personenbezogene Daten der Mitarbeiter und freien Mitarbeiter des Kunden, die im Rahmen des Dienstes auf Weisung des Kunden verarbeitet werden. Verantwortlicher für diese Daten ist der Kunde. Die Verarbeitung besteht in:
 - dem Auslesen von Daten aus dem Google Workspace-Nutzerverzeichnis des Kunden (Vorname, Nachname, E-Mail-Adresse samt Aliassen, Position, Abteilung, Telefonnummern, Adresse, URL des Profilfotos) **ausschließlich laufend, im Moment der Vorschau oder der Bereitstellung der Signatur** - diese Werte werden von uns nach Abschluss des Vorgangs nicht gespeichert;
 - dem Speichern der gerenderten Signatur in den Gmail-Einstellungen des jeweiligen Nutzers (die Signatur verbleibt in der Google-Umgebung des Kunden);
-- der kurzzeitigen Speicherung der von einer Bereitstellung erfassten E-Mail-Adressen im Aufgabenverlauf (3 Tage, für die Zwecke des Bereitstellungsberichts);
+- der kurzzeitigen Speicherung der von einer Bereitstellung erfassten E-Mail-Adressen im Aufgabenverlauf (30 Tage, für die Zwecke des Bereitstellungsberichts);
 - der Speicherung der Inhalte, die der Kunde selbständig in Signaturvorlagen oder Bildern platziert.
 
 Die Auftragsverarbeitung regelt ein Auftragsverarbeitungsvertrag (DPA), der ausschließlich in englischer Sprache geschlossen wird - sein Abschluss erfolgt auf Antrag des Kunden an contact@signature.cat. Die vollständige Liste der weiteren Auftragsverarbeiter (Unterauftragsverarbeiter) wird den Kunden im Rahmen des DPA sowie auf Anfrage zur Verfügung gestellt.
@@ -102,7 +102,7 @@ Grundlage solcher Übermittlungen sind die Standardvertragsklauseln (SCC), die i
 | Kontodaten (Nutzer, Vorlagen, Zuweisungen, Bilder, Einstellungen) | für die Dauer des Vertrags; nach dem Erlöschen des Abonnements - bis zur Löschung des Kontos auf Verlangen des Kunden, nicht länger als bis zum Ablauf der Verjährungsfristen für Ansprüche im Zusammenhang mit dem Vertrag (grundsätzlich 6 Jahre) |
 | Löschung des Kontos (Self-Service, in den Einstellungen) | die dauerhafte Löschung der Daten erfolgt nach Ablauf von 7 Tagen ab der Stellung des Antrags |
 | Anmeldesitzungen | 7 Tage ab der letzten Aktivität, maximal 14 Tage ab der Anmeldung |
-| Verlauf der Signaturbereitstellungen (einschließlich der von der Bereitstellung erfassten E-Mail-Adressen) | 3 Tage nach Abschluss der Aufgabe |
+| Verlauf der Signaturbereitstellungen (einschließlich der von der Bereitstellung erfassten E-Mail-Adressen) | 30 Tage nach Abschluss der Aufgabe |
 | Audit-Log | 365 Tage in der Produktionsdatenbank; Archivkopie für Sicherheitszwecke und zur Verteidigung von Ansprüchen - nicht länger als 6 Jahre |
 | Ergebnisse automatischer Verbindungstests mit dem Workspace (Preflight) | 90 Tage |
 | Interne operative Ereignisse (Team-Benachrichtigungen) | 30 Tage ab der Zustellung |
@@ -164,6 +164,7 @@ Wir setzen u. a. die folgenden Maßnahmen ein:
 - private Schlüssel der Dienstkonten werden ausschließlich im Secret-Management-Dienst aufbewahrt (niemals in der Datenbank, in Logs oder in API-Antworten), mit einem Cache im Arbeitsspeicher, der nach bis zu 5 Minuten abläuft, sowie einer automatischen, regelmäßigen Schlüsselrotation;
 - Kundenisolierung: ein dediziertes Google-Dienstkonto pro Kunde sowie die Beschränkung jeder Datenoperation auf die Umgebung des jeweiligen Kunden;
 - Zugriffskontrolle auf Grundlage von Berechtigungsstufen, serverseitig für jede Operation durchgesetzt;
+- Servicezugriff durch SignatureCat-Personal: Änderungen an Kontoeinstellungen durch unser Support-Team erfordern die vorherige Zustimmung des Kunden, die ein Administrator über einen dedizierten Schalter in den Anwendungseinstellungen erteilt; jede Support-Aktion sowie jedes Aktivieren und Deaktivieren der Zustimmung wird im Audit-Protokoll des Kontos zusammen mit dem Namen des Mitarbeiters vermerkt, und der Lesezugriff (Diagnose) ist auf den zur Aufrechterhaltung des Dienstes erforderlichen Umfang beschränkt;
 - Authentifizierung ausschließlich über Google OAuth (der Dienst speichert keine Passwörter); zusätzliche Anmeldesicherungen, einschließlich MFA, ergeben sich aus der Google Workspace-Richtlinie des Kunden;
 - Browser-Sicherheitsheader, einschließlich einer durchgesetzten Content Security Policy;
 - Begrenzung des Datenverkehrs pro IP-Adresse am Netzwerkrand;

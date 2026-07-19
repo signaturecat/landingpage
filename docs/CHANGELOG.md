@@ -2,6 +2,39 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-19 - Legal v-bump (job-log retention 30 days, support access) + support-access docs article
+
+- **What:**
+  - **Legal sources + rebuilt /legal pages** (all 4 locales): Privacy Policy
+    v1.1 and Terms v1.2 (both effective 02.08.2026, per the 14-day change
+    notice in the documents themselves). Two changes: (1) signature deployment
+    (job log) history retention extended 3 -> 30 days in the processing
+    description and the retention table; (2) new description of **service
+    access with the Customer's consent** - the support-access switch in
+    Settings (admin-only), audit-log visibility of every support action with
+    the staff member's name, and read-only diagnostics regardless of the
+    switch (Terms § 6.7, Privacy § 13 security measures). Mirrors the app-side
+    D9 consent switch shipping in app PR #123 (internal staff panel epic).
+  - **New docs article `/docs/support-access`** (Support section): where the
+    switch is, what it unlocks per area, what staff can never do, and how the
+    activity log shows "Name (SignatureCat Support)" entries.
+  - **Retention copy updated 3 -> 30 days** in `/docs/logs` (Retention) and
+    the `/docs/verify-assignments` note.
+- **Why:** PM decisions 2026-07-19 accompanying the internal staff panel epic:
+  the 30-day retention env flip (`JOB_LOG_RETENTION_DAYS=30`) is gated on
+  these document updates, and the D9 consent switch requires a terms/privacy
+  mention plus a help-docs article.
+- **Scope:** landingpage (legal/src + generated legal pages, docs-src + generated docs)
+- **Design impact:** none (content only; new article uses existing docs layout)
+- **Performance impact:** none (static pages; sidebar gained one link)
+- **A11y:** article follows existing heading/list/table conventions; no em/en
+  dashes in rendered copy (build assertion green)
+- **Note for PM/legal:** the DPA template (`legal/dpa.en.md`, kept outside this
+  repo) was bumped to v1.1 (Annex 1 + § 9: deployment history 30 days) in the
+  workspace `legal/` folder; customer notification per the DPA change process
+  and the in-app policy popup/notice for the 02.08.2026 effective date remain
+  PM actions before/at publication.
+
 ## 2026-07-18 - Docs OG image, status pill hardening, underline = hover color
 
 - **What:**

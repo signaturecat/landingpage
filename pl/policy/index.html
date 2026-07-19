@@ -23,7 +23,7 @@
 <main class="legal-doc">
 <article>
 <h1>Polityka Prywatności Signature.Cat</h1>
-<p>Wersja 1.0 - obowiązuje od dnia 16.07.2026</p>
+<p>Wersja 1.1 - obowiązuje od dnia 02.08.2026</p>
 <p>Wersja polska niniejszego dokumentu jest wersją wiążącą prawnie. Wersje angielska, niemiecka i francuska są tłumaczeniami automatycznymi udostępnianymi wyłącznie w celach informacyjnych i mogą zawierać błędy; w przypadku rozbieżności rozstrzyga wersja polska.</p>
 <hr />
 <h2>1. Administrator danych i kontakt</h2>
@@ -51,7 +51,7 @@
 <ul>
 <li>odczycie danych z katalogu użytkowników Google Workspace Klienta (imię, nazwisko, adres e-mail wraz z aliasami, stanowisko, dział, numery telefonów, adres, adres URL zdjęcia profilowego) <strong>wyłącznie na bieżąco, w chwili podglądu lub wdrażania sygnatury</strong> - wartości te nie są przez nas przechowywane po zakończeniu operacji;</li>
 <li>zapisie wyrenderowanej sygnatury w ustawieniach Gmail danego użytkownika (sygnatura pozostaje w środowisku Google Klienta);</li>
-<li>krótkotrwałym przechowywaniu adresów e-mail objętych wdrożeniem w historii zadań (3 dni, na potrzeby raportu z wdrożenia);</li>
+<li>krótkotrwałym przechowywaniu adresów e-mail objętych wdrożeniem w historii zadań (30 dni, na potrzeby raportu z wdrożenia);</li>
 <li>przechowywaniu treści, które Klient samodzielnie umieści w szablonach sygnatur lub obrazkach.</li>
 </ul>
 <p>Powierzenie przetwarzania reguluje umowa powierzenia (DPA), zawierana wyłącznie w języku angielskim - jej zawarcie następuje na wniosek Klienta skierowany na contact@signature.cat. Pełna lista dalszych podmiotów przetwarzających (podprocesorów) udostępniana jest Klientom w ramach DPA oraz na żądanie.</p>
@@ -103,7 +103,7 @@
 <tr><td>Dane Konta (Użytkownicy, szablony, przypisania, obrazki, ustawienia)</td><td>przez czas trwania Umowy; po wygaśnięciu subskrypcji - do czasu usunięcia Konta na żądanie Klienta, nie dłużej niż do upływu terminów przedawnienia roszczeń związanych z Umową (co do zasady 6 lat)</td></tr>
 <tr><td>Usunięcie Konta (samoobsługowe, w ustawieniach)</td><td>trwałe usunięcie danych następuje po upływie 7 dni od zgłoszenia żądania</td></tr>
 <tr><td>Sesje logowania</td><td>7 dni od ostatniej aktywności, maksymalnie 14 dni od zalogowania</td></tr>
-<tr><td>Historia wdrożeń sygnatur (w tym adresy e-mail objęte wdrożeniem)</td><td>3 dni od zakończenia zadania</td></tr>
+<tr><td>Historia wdrożeń sygnatur (w tym adresy e-mail objęte wdrożeniem)</td><td>30 dni od zakończenia zadania</td></tr>
 <tr><td>Dziennik audytu</td><td>365 dni w bazie produkcyjnej; kopia archiwalna na potrzeby bezpieczeństwa i obrony roszczeń - nie dłużej niż 6 lat</td></tr>
 <tr><td>Wyniki automatycznych testów połączenia z Workspace (preflight)</td><td>90 dni</td></tr>
 <tr><td>Wewnętrzne zdarzenia operacyjne (powiadomienia zespołu)</td><td>30 dni od dostarczenia</td></tr>
@@ -153,6 +153,7 @@
 <li>klucze prywatne kont serwisowych przechowywane wyłącznie w usłudze zarządzania sekretami (nigdy w bazie danych, logach ani odpowiedziach API), z pamięciowym buforem wygasającym do 5 minut oraz automatyczną, okresową rotacją kluczy;</li>
 <li>izolację klientów: jedno dedykowane konto serwisowe Google na Klienta oraz ograniczenie każdej operacji na danych do środowiska danego Klienta;</li>
 <li>kontrolę dostępu opartą na poziomach uprawnień, egzekwowaną po stronie serwera dla każdej operacji;</li>
+<li>dostęp serwisowy personelu SignatureCat: zmiany ustawień Konta przez nasz zespół supportu wymagają uprzedniej zgody Klienta, udzielanej przez administratora dedykowanym przełącznikiem w ustawieniach aplikacji; każde działanie supportu oraz włączenie i wyłączenie zgody są odnotowywane w dzienniku audytu Konta wraz z imieniem i nazwiskiem pracownika, a dostęp w trybie odczytu (diagnostyka) ogranicza się do zakresu niezbędnego do utrzymania Usługi;</li>
 <li>uwierzytelnianie wyłącznie przez Google OAuth (Usługa nie przechowuje haseł); dodatkowe zabezpieczenia logowania, w tym MFA, wynikają z polityki Google Workspace Klienta;</li>
 <li>nagłówki bezpieczeństwa przeglądarki, w tym egzekwowaną politykę Content Security Policy;</li>
 <li>limitowanie ruchu per adres IP na brzegu sieci;</li>

@@ -1,6 +1,6 @@
 # Regulamin świadczenia usług Signature.Cat
 
-Wersja 1.1 - obowiązuje od dnia 17.07.2026
+Wersja 1.2 - obowiązuje od dnia 02.08.2026
 
 Niniejszy Regulamin jest regulaminem świadczenia usług drogą elektroniczną w rozumieniu art. 8 ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną. Wersja polska Regulaminu jest wersją wiążącą prawnie. Wersje angielska, niemiecka i francuska są tłumaczeniami automatycznymi udostępnianymi wyłącznie w celach informacyjnych i mogą zawierać błędy; w przypadku rozbieżności rozstrzyga wersja polska.
 
@@ -80,6 +80,7 @@ Niniejszy Regulamin jest regulaminem świadczenia usług drogą elektroniczną w
 4. Klient zapewnia, że dane podane przy rejestracji i w rozliczeniach są prawdziwe i aktualne.
 5. Klient odpowiada za działania i zaniechania wszystkich swoich Użytkowników jak za działania własne oraz zobowiązany jest zapewnić, aby dostęp do Konta miały wyłącznie osoby do tego upoważnione.
 6. Dostęp Użytkowników do funkcji Platformy określają Poziomy dostępu (od dostępu samoobsługowego, przez uprawnienia projektowe i edycyjne, po pełne uprawnienia administracyjne), nadawane w Platformie przez uprawnionych Użytkowników Klienta. Administratorzy Workspace posiadają zawsze pełny poziom administracyjny i nie może im on zostać odebrany w Platformie.
+7. **Dostęp serwisowy (support).** Zespół supportu Usługodawcy może wprowadzać zmiany w ustawieniach Konta (np. w szablonach sygnatur, przypisaniach lub uprawnieniach) wyłącznie po uprzednim wyrażeniu zgody przez Klienta - dedykowanym przełącznikiem w ustawieniach Platformy, dostępnym dla Użytkowników z poziomem administracyjnym. Zgodę można w każdej chwili wyłączyć. Włączenie i wyłączenie zgody oraz każda zmiana dokonana przez support są odnotowywane w dzienniku audytu Konta wraz z imieniem i nazwiskiem członka zespołu supportu. Niezależnie od zgody Usługodawca zachowuje dostęp w trybie odczytu w zakresie niezbędnym do utrzymania Usługi i diagnozowania błędów (zgodnie z DPA i Polityką Prywatności).
 
 ## § 7. Okres Próbny
 

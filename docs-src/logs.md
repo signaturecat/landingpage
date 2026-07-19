@@ -2,7 +2,7 @@
 title: Logs
 navTitle: Logs
 description: Where SignatureCat records what happened - task logs for sync and apply jobs, per-user results, retention and audit trail.
-updated: 2026-07-17
+updated: 2026-07-19
 ---
 
 # Logs
@@ -26,7 +26,7 @@ One row per written address: the user (or alias, marked with an "alias" badge), 
 
 ## Retention
 
-Job logs are retained for a limited window (by default **3 days** after a job finishes) and then removed automatically - the page states the current window. Export or review anything you need shortly after big rollouts.
+Job logs are retained for a limited window (by default **30 days** after a job finishes) and then removed automatically - the page states the current window. Export or review anything you need shortly after big rollouts.
 
 > [!NOTE]
 > The retention window applies to job execution logs. Your templates, assignments and settings are of course permanent.
