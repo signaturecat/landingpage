@@ -54,22 +54,131 @@ https://signature.cat/docs
 
   <!-- SEO structured data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "SignatureCat",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web, Google Workspace",
-    "description": "Centralnie zarządzaj podpisami Gmail w całym Google Workspace. Personalizowane, zawsze aktualne podpisy ze zmiennymi, blokami warunkowymi i automatycznym wdrażaniem. Serwery w UE, zgodność z RODO.",
-    "url": "https://signature.cat/pl",
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "USD",
-      "lowPrice": "0.55",
-      "highPrice": "0.80",
-      "offerCount": "4"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://signature.cat/#organization",
+      "name": "SignatureCat",
+      "url": "https://signature.cat/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://signature.cat/assets/img/logo-mark.png"
+      },
+      "sameAs": [
+        "https://github.com/signaturecat"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "contact@signature.cat"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://signature.cat/#website",
+      "name": "SignatureCat",
+      "url": "https://signature.cat/",
+      "inLanguage": "pl",
+      "publisher": {
+        "@id": "https://signature.cat/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://signature.cat/docs?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "SignatureCat",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, Google Workspace",
+      "description": "Centralnie zarządzaj podpisami Gmail w całym Google Workspace. Personalizowane, zawsze aktualne podpisy ze zmiennymi, blokami warunkowymi i automatycznym wdrażaniem. Serwery w UE, zgodność z RODO.",
+      "url": "https://signature.cat/pl",
+      "logo": "https://signature.cat/assets/img/logo-mark.png",
+      "image": "https://signature.cat/assets/img/og-cover.svg",
+      "areaServed": "EU",
+      "publisher": {
+        "@id": "https://signature.cat/#organization"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "0.55",
+        "highPrice": "0.80",
+        "offerCount": "4"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://signature.cat/pl#faq",
+      "inLanguage": "pl",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Jak SignatureCat aktualizuje podpisy Gmail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Narzędzie łączy się po API z konkretnym Google Workspace, dzięki czemu dane są zawsze aktualne i pochodzą z Directory Workspace."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy oferujecie darmowy okres próbny?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tak. Każdy nowy Workspace zaczyna od 7-dniowego okresu próbnego z pełnym dostępem. Kartę pobieramy przy rejestracji, ale nie naliczamy opłat w trakcie okresu próbnego - anuluj przed jego końcem, a nic nie zapłacisz. Po okresie próbnym rozliczamy za aktywnego użytkownika, od 0,80 USD / użytkownik / miesiąc."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Gdzie przechowywane są moje dane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wszystkie dane znajdują się w regionach UE. Nie przechowujemy atrybutów osobowych użytkowników - imiona, telefony i zdjęcia pobierane są na żywo w momencie wdrożenia i odrzucane."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy mogę wskazać tylko część użytkowników?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tak. Możesz wskazać wybranych użytkowników, całe Grupy lub Jednostki Organizacyjne. Cele rozwijane są do właściwych osób w momencie wdrożenia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Co się dzieje, gdy ktoś zmieni stanowisko?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ponieważ zmienne pobierane są na żywo z Directory, codzienna reconciliacja automatycznie utrzymuje podpisy aktualnymi. Zaktualizuj stanowisko raz w Workspace, a zmiana propaguje się wszędzie."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Co jeśli potrzebuję podpisów w wielu językach?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dla każdego zagranicznego oddziału możesz ustawić stopki w osobnym języku - dedykowane szablony i przypisania per oddział. Narzędzie jest na to przygotowane."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy oferujecie wsparcie przy wdrożeniu narzędzia w firmie?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tak, profesjonalnie wspomożemy przy implementacji narzędzia w firmie. Nasze doświadczenie jako administratorów Google Workspace umożliwia szybką i sprawną implementację. Tworzymy również customowe templatki stopek na zamówienie klientów - wystarczy napisać na contact@signature.cat."
+          }
+        }
+      ]
     }
-  }
+  ]
+}
   </script>
 </head>
 <body>

@@ -54,22 +54,131 @@ https://signature.cat/docs
 
   <!-- SEO structured data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "SignatureCat",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web, Google Workspace",
-    "description": "Centrally manage Gmail signatures across your entire Google Workspace. Personalized, always up-to-date signatures with variables, conditional blocks and automated rollout.",
-    "url": "https://signature.cat/",
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "USD",
-      "lowPrice": "0.55",
-      "highPrice": "0.80",
-      "offerCount": "4"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://signature.cat/#organization",
+      "name": "SignatureCat",
+      "url": "https://signature.cat/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://signature.cat/assets/img/logo-mark.png"
+      },
+      "sameAs": [
+        "https://github.com/signaturecat"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "contact@signature.cat"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://signature.cat/#website",
+      "name": "SignatureCat",
+      "url": "https://signature.cat/",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://signature.cat/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://signature.cat/docs?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "SignatureCat",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, Google Workspace",
+      "description": "Centrally manage Gmail signatures across your whole Google Workspace. Personalized, always up-to-date signatures with variables, conditional blocks and automated rollout. EU-hosted, RODO/GDPR-ready.",
+      "url": "https://signature.cat/",
+      "logo": "https://signature.cat/assets/img/logo-mark.png",
+      "image": "https://signature.cat/assets/img/og-cover.svg",
+      "areaServed": "EU",
+      "publisher": {
+        "@id": "https://signature.cat/#organization"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "0.55",
+        "highPrice": "0.80",
+        "offerCount": "4"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://signature.cat/#faq",
+      "inLanguage": "en",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does SignatureCat update Gmail signatures?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tool connects to your Google Workspace via API, so the data is always up to date and comes straight from your Workspace Directory."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer a free trial?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every new Workspace starts with a 7-day free trial with full access. We collect a card at sign-up but do not charge during the trial - cancel any time before it ends and you are not billed. After the trial, billing is per active user, starting at $0.80 / user / month."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is my data stored?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "All data lives in EU regions. We don't store your end-users' personal attributes - names, phones and photos are fetched live at apply time and discarded."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I target only some users?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. You can target specific users, entire Groups or Organizational Units. Targets are expanded to the right people at apply time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens when someone changes their job title?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because variables resolve live from the Directory, a daily reconciliation keeps signatures current automatically. Update the title once in Workspace and it propagates everywhere."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I need signatures in multiple languages?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can set a separate signature language for each foreign branch - dedicated templates and assignments per branch. The tool is built for multilingual organizations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer support with rolling the tool out in my company?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We provide professional support for implementing the tool in your company. Our experience as Google Workspace administrators makes the rollout quick and smooth. We also create custom signature templates on request - just write to contact@signature.cat."
+          }
+        }
+      ]
     }
-  }
+  ]
+}
   </script>
 </head>
 <body>

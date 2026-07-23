@@ -188,10 +188,13 @@
 
   var index = null;
   var loading = null;
+  // Locale-aware index: /pl/docs/* pages read /pl/docs/search-index.json etc.
+  var localeMatch = location.pathname.match(/^\/(pl|de|fr)\//);
+  var indexUrl = (localeMatch ? '/' + localeMatch[1] : '') + '/docs/search-index.json';
   function loadIndex() {
     if (index) return Promise.resolve(index);
     if (!loading) {
-      loading = fetch('/docs/search-index.json')
+      loading = fetch(indexUrl)
         .then(function (r) { return r.json(); })
         .then(function (data) { index = data; return data; })
         .catch(function () { loading = null; return []; });
@@ -335,4 +338,27 @@
       options[selected].querySelector('a').click();
     }
   });
+
+  /* ---- 6. language switcher (sidebar, below the table of contents) --------------
+     The <a href> does the navigation (crawlable, works without JS); JS only
+     remembers the manual choice so the Worker's root redirect honors it -
+     the exact contract of the landing switcher in app.js. */
+  document.querySelectorAll('.docs-lang a[data-lang]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var loc = a.getAttribute('data-lang');
+      try { localStorage.setItem('sigcat_locale', loc); } catch (e) {}
+      document.cookie = 'sigcat_locale=' + loc + ';path=/;max-age=31536000;SameSite=Lax';
+    });
+  });
+
+  /* ---- 7. ?q= deep link (WebSite SearchAction on the landing JSON-LD) -----------
+     /docs?q=foo opens the search overlay pre-filled - keeps the declared
+     SearchAction honest. */
+  var qParam = null;
+  try { qParam = new URLSearchParams(location.search).get('q'); } catch (e) {}
+  if (qParam) {
+    openSearch();
+    input.value = qParam;
+    runSearch();
+  }
 })();

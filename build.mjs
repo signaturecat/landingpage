@@ -62,6 +62,90 @@ const HREFLANG_BLOCK = [
   `  <link rel="alternate" hreflang="x-default" href="${BASE}/" />`,
 ].join('\n');
 
+// ---- structured data: JSON-LD @graph (SEO audit, PM 2026-07-23) ---------------
+// One localized @graph per page: Organization (brand entity + sameAs),
+// WebSite (domain <-> name + SearchAction into the docs search), the
+// SoftwareApplication (now with logo/image/areaServed) and FAQPage built from
+// the SAME i18n keys the visible FAQ section renders from - the markup and
+// the structured data can never diverge.
+const ORG_ID = `${BASE}/#organization`;
+const LOGO_URL = `${BASE}/assets/img/logo-mark.png`;
+const OG_IMAGE_URL = `${BASE}/assets/img/og-cover.svg`;
+// Brand profiles for Organization.sameAs (E-E-A-T entity links). Only list
+// profiles that actually exist and are ours; extend as new ones launch.
+const SAME_AS = [
+  'https://github.com/signaturecat',
+];
+const FAQ_COUNT = 7;
+
+function jsonLdGraph(loc, tr) {
+  const url = urlFor(loc);
+  const graph = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': ORG_ID,
+        name: 'SignatureCat',
+        url: `${BASE}/`,
+        logo: { '@type': 'ImageObject', url: LOGO_URL },
+        sameAs: SAME_AS,
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          email: 'contact@signature.cat',
+        },
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${BASE}/#website`,
+        name: 'SignatureCat',
+        url: `${BASE}/`,
+        inLanguage: loc,
+        publisher: { '@id': ORG_ID },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: `${BASE}/docs?q={search_term_string}`,
+          },
+          'query-input': 'required name=search_term_string',
+        },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'SignatureCat',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Web, Google Workspace',
+        description: tr('meta.desc'),
+        url,
+        logo: LOGO_URL,
+        image: OG_IMAGE_URL,
+        areaServed: 'EU',
+        publisher: { '@id': ORG_ID },
+        offers: {
+          '@type': 'AggregateOffer',
+          priceCurrency: 'USD',
+          lowPrice: '0.55',
+          highPrice: '0.80',
+          offerCount: '4',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        inLanguage: loc,
+        mainEntity: Array.from({ length: FAQ_COUNT }, (_v, i) => ({
+          '@type': 'Question',
+          name: tr(`faq.q${i + 1}`),
+          acceptedAnswer: { '@type': 'Answer', text: tr(`faq.a${i + 1}`) },
+        })),
+      },
+    ],
+  };
+  return JSON.stringify(graph, null, 2);
+}
+
 /** Produce the fully localized HTML for `loc` from the English source. */
 function render(src, loc, I18N) {
   const dict = I18N[loc];
@@ -123,8 +207,7 @@ function render(src, loc, I18N) {
     '\n';
   html = html.replace(/(<meta property="og:url"[^>]*\/>\n)/, `$1${ogLocale}`);
 
-  // Localized social copy + JSON-LD description for non-English (keep en's
-  // hand-tuned strings intact). url in JSON-LD is localized for every locale.
+  // Localized social copy for non-English (keep en's hand-tuned strings intact).
   if (loc !== 'en') {
     html = html.replace(
       /(<meta property="og:title" content=")[^"]*(")/,
@@ -142,9 +225,14 @@ function render(src, loc, I18N) {
       /(<meta name="twitter:description" content=")[^"]*(")/,
       `$1${escAttr(tr('meta.desc'))}$2`,
     );
-    html = html.replace(/("description":\s*")[^"]*(")/, `$1${jsonStr(tr('meta.desc'))}$2`);
   }
-  html = html.replace(/("url":\s*")[^"]*(")/, `$1${urlFor(loc)}$2`);
+
+  // JSON-LD: the whole block is regenerated per locale from the i18n dict -
+  // no field-level regex patching (deterministic, hence idempotent).
+  html = html.replace(
+    /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
+    `<script type="application/ld+json">\n${jsonLdGraph(loc, tr)}\n  </script>`,
+  );
 
   // page-level relative asset refs -> root-absolute so /pl/ resolves them
   html = html.replace(/(\s(?:href|src)=")assets\//g, '$1/assets/');
@@ -201,6 +289,15 @@ for (const m of SRC.matchAll(/\sdata-i18n="([^"]+)"/g)) {
 }
 for (const k of ['meta.title', 'meta.desc']) {
   if (I18N.en[k] == null) throw new Error(`required key "${k}" missing from en dictionary`);
+}
+// FAQPage JSON-LD is built from the same keys the visible FAQ renders from -
+// every locale must have the full set (the FAQ schema must match the markup).
+for (const loc of SUPPORTED) {
+  for (let i = 1; i <= FAQ_COUNT; i += 1) {
+    for (const k of [`faq.q${i}`, `faq.a${i}`]) {
+      if (I18N[loc][k] == null) throw new Error(`FAQ key "${k}" missing from ${loc} dictionary`);
+    }
+  }
 }
 
 const outputs = {};
