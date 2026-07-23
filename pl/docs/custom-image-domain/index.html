@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Serwuj obrazki z własnej domeny | SignatureCat Docs</title>
+  <meta name="description" content="Skieruj subdomenę taką jak images.yourcompany.com na SignatureCat dwoma rekordami DNS, aby obrazki w podpisach ładowały się z Twojej domeny." />
+  <link rel="canonical" href="https://signature.cat/pl/docs/custom-image-domain" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/custom-image-domain" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/custom-image-domain" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/custom-image-domain" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/custom-image-domain" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/custom-image-domain" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Serwuj obrazki z własnej domeny | SignatureCat Docs" />
+  <meta property="og:description" content="Skieruj subdomenę taką jak images.yourcompany.com na SignatureCat dwoma rekordami DNS, aby obrazki w podpisach ładowały się z Twojej domeny." />
+  <meta property="og:url" content="https://signature.cat/pl/docs/custom-image-domain" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Serwuj obrazki z własnej domeny | SignatureCat Docs" />
+  <meta name="twitter:description" content="Skieruj subdomenę taką jak images.yourcompany.com na SignatureCat dwoma rekordami DNS, aby obrazki w podpisach ładowały się z Twojej domeny." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Serwuj obrazki z własnej domeny",
+      "description": "Skieruj subdomenę taką jak images.yourcompany.com na SignatureCat dwoma rekordami DNS, aby obrazki w podpisach ładowały się z Twojej domeny.",
+      "url": "https://signature.cat/pl/docs/custom-image-domain",
+      "inLanguage": "pl",
+      "datePublished": "2026-07-17",
+      "dateModified": "2026-07-17",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Dokumentacja",
+          "item": "https://signature.cat/pl/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Konfiguracja zaawansowana",
+          "item": "https://signature.cat/pl/docs/custom-image-domain"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Serwuj obrazki z własnej domeny",
+          "item": "https://signature.cat/pl/docs/custom-image-domain"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Przejdź do treści</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Przełącz menu dokumentacji" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/pl/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Przeszukaj dokumentację" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Szukaj w dokumentacji</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Motyw: systemowy" title="Motyw: systemowy">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Pomoc</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Otwórz aplikację</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Dokumentacja">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Pierwsze kroki</p>
+        <ul>
+        <li><a href="/pl/docs">Wprowadzenie</a></li>
+        <li><a href="/pl/docs/connect-google-workspace">Połącz Google Workspace</a></li>
+        <li><a href="/pl/docs/create-your-first-template">Utwórz swój pierwszy szablon</a></li>
+        <li><a href="/pl/docs/assign-templates">Przypisz szablony</a></li>
+        <li><a href="/pl/docs/verify-assignments">Weryfikuj zadania przypisań</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Konfiguracja zaawansowana</p>
+        <ul>
+        <li><a href="/pl/docs/user-management">Zarządzanie dostępem</a></li>
+        <li><a href="/pl/docs/self-service">Self-service</a></li>
+        <li><a href="/pl/docs/custom-image-domain" aria-current="page">Własna domena obrazków</a></li>
+        <li><a href="/pl/docs/banners-and-logos">Banery i logo</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Rozliczenia</p>
+        <ul>
+        <li><a href="/pl/docs/invoices">Faktury</a></li>
+        <li><a href="/pl/docs/billing-details">Dane rozliczeniowe</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Referencja</p>
+        <ul>
+        <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/pl/docs/templates">Szablony</a></li>
+        <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
+        <li><a href="/pl/docs/assignments">Przypisania</a></li>
+        <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
+        <li><a href="/pl/docs/logs">Logi</a></li>
+        <li><a href="/pl/docs/images">Obrazki</a></li>
+        <li><a href="/pl/docs/notifications">Powiadomienia</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Wsparcie</p>
+        <ul>
+        <li><a href="/pl/docs/support-access">Dostęp dla supportu</a></li>
+        <li><a href="/pl/docs/get-help">Uzyskaj pomoc</a></li>
+        <li><a href="/pl/docs/service-status">Status usługi</a></li>
+        <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
+        </ul>
+      </div>
+      <div class="docs-lang" role="group" aria-label="Język">
+        <p class="docs-nav-label">Język</p>
+        <a href="/docs/custom-image-domain" lang="en" hreflang="en" data-lang="en">English</a>
+        <a href="/pl/docs/custom-image-domain" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
+        <a href="/de/docs/custom-image-domain" lang="de" hreflang="de" data-lang="de">Deutsch</a>
+        <a href="/fr/docs/custom-image-domain" lang="fr" hreflang="fr" data-lang="fr">Français</a>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Okruszki nawigacyjne"><a href="/pl/docs">Dokumentacja</a><span class="crumb-sep">/</span><span class="crumb-section">Konfiguracja zaawansowana</span><span class="crumb-sep">/</span><span aria-current="page">Własna domena obrazków</span></nav>
+      <article class="docs-article">
+<h1>Serwuj obrazki z własnej domeny</h1>
+<p>Domyślnie logo i banery w Twoich podpisach są serwowane z <code>images.signature.cat</code>. Możesz zamiast tego serwować je z subdomeny własnej domeny - na przykład <code>images.yourcompany.com</code>. Klienci poczty chętniej pobierają obrazki z domeny nadawcy, więc rośnie dostarczalność, a adresy URL niosą Twoją markę.</p>
+<p>Konfiguracja niczego nie psuje: dopóki domena nie jest aktywna, obrazki wciąż ładują się z <code>images.signature.cat</code>, a po aktywacji przełączenie następuje automatycznie dla nowo renderowanych podpisów. Szablony pozostają bez zmian.</p>
+<h2 id="wymagania">Wymagania<a class="h-anchor" href="#wymagania" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ul>
+<li>Poziom dostępu <strong>Admin</strong> w SignatureCat.</li>
+<li>Dostęp do ustawień DNS Twojej domeny.</li>
+<li><strong>Subdomena</strong> (jak <code>images.yourcompany.com</code>). Domeny główne (<code>yourcompany.com</code>) celowo nie są obsługiwane.</li>
+</ul>
+<h2 id="konfiguracja">Konfiguracja<a class="h-anchor" href="#konfiguracja" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ol>
+<li>Otwórz bibliotekę obrazków z edytora dowolnego szablonu na stronie <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Podpisy</a> (przycisk Logo lub Baner) i wybierz <strong>Użyj własnej domeny</strong> w pasku serwowania.</li>
+<li><strong>Podaj subdomenę</strong> - na przykład <code>images.yourcompany.com</code> - i kliknij <strong>Wygeneruj rekord DNS</strong>.</li>
+<li><strong>Dodaj dwa rekordy DNS</strong> u swojego dostawcy DNS, dokładnie tak, jak pokazano:
+<ul>
+<li>rekord <strong>CNAME</strong> wskazujący subdomenę na <code>cdn.signature.cat</code> (kieruje subdomenę do nas),</li>
+<li>rekord <strong>TXT</strong> potwierdzający własność domeny.</li>
+</ul></li>
+<li><strong>Poczekaj na weryfikację.</strong> SignatureCat sprawdza rekordy automatycznie co kilka minut; możesz też kliknąć <strong>Sprawdź teraz</strong>. Aktywacja zwykle trwa kilka minut, czasem do godziny, póki DNS się odświeża. Certyfikat TLS jest wystawiany za Ciebie.</li>
+</ol>
+<p>Kreator pokazuje jeden z trzech statusów: <strong>Oczekuje na rekordy DNS</strong>, <strong>Domena aktywna</strong> lub <strong>Weryfikacja nieudana</strong>.</p>
+<p>Po aktywacji: „Nowe maile pobierają obrazki z Twojej domeny. Szablony zostają bez zmian - podmiana dzieje się automatycznie."</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Uwaga</p><div class="callout-body">
+<p>Wysłane już e-maile nie są objęte zmianą - nadal ładują obrazki z adresu, z którym zostały wyrenderowane.</p>
+</div></aside>
+<h2 id="usuwanie-domeny">Usuwanie domeny<a class="h-anchor" href="#usuwanie-domeny" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Usunięcie domeny w kreatorze automatycznie przełącza serwowanie obrazków z powrotem na <code>images.signature.cat</code> dla nowych maili. Nic się nie psuje.</p>
+<aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Ostrzeżenie</p><div class="callout-body">
+<p>Odwrotny kierunek nie jest monitorowany: jeśli usuniesz rekord CNAME u dostawcy DNS, <strong>póki domena jest wciąż aktywna w SignatureCat</strong>, obrazki w nowo wysyłanych podpisach po cichu przestaną się ładować. Zawsze najpierw usuń domenę w SignatureCat, a dopiero potem posprzątaj DNS.</p>
+</div></aside>
+      </article>
+<nav class="docs-pager" aria-label="Stronicowanie">
+<a class="pager-card pager-prev" href="/pl/docs/self-service" rel="prev">
+      <span class="pager-label">Poprzednia</span>
+      <span class="pager-title">Self-service</span>
+    </a>
+<a class="pager-card pager-next" href="/pl/docs/banners-and-logos" rel="next">
+      <span class="pager-label">Następna</span>
+      <span class="pager-title">Banery i logo</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Informacje prawne</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Na tej stronie">
+      <nav>
+        <p class="docs-toc-title">Na tej stronie</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#wymagania">Wymagania</a></li>
+        <li class="toc-l2"><a href="#konfiguracja">Konfiguracja</a></li>
+        <li class="toc-l2"><a href="#usuwanie-domeny">Usuwanie domeny</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Przeszukaj dokumentację" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Przeszukaj dokumentację" autocomplete="off" spellcheck="false" aria-label="Przeszukaj dokumentację" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Zamknij wyszukiwarkę">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Brak wyników. Spróbuj innych słów kluczowych albo napisz na <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

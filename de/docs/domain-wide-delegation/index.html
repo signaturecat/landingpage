@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Domain-Wide Delegation | SignatureCat Docs</title>
+  <meta name="description" content="Wie SignatureCat Google Domain-Wide Delegation nutzt - Bereiche, die kundeneigene Client-ID, Propagation, Erkennung von Entzug und Neuerteilung." />
+  <link rel="canonical" href="https://signature.cat/de/docs/domain-wide-delegation" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/domain-wide-delegation" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/domain-wide-delegation" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/domain-wide-delegation" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/domain-wide-delegation" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/domain-wide-delegation" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Domain-Wide Delegation | SignatureCat Docs" />
+  <meta property="og:description" content="Wie SignatureCat Google Domain-Wide Delegation nutzt - Bereiche, die kundeneigene Client-ID, Propagation, Erkennung von Entzug und Neuerteilung." />
+  <meta property="og:url" content="https://signature.cat/de/docs/domain-wide-delegation" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Domain-Wide Delegation | SignatureCat Docs" />
+  <meta name="twitter:description" content="Wie SignatureCat Google Domain-Wide Delegation nutzt - Bereiche, die kundeneigene Client-ID, Propagation, Erkennung von Entzug und Neuerteilung." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Domain-Wide Delegation",
+      "description": "Wie SignatureCat Google Domain-Wide Delegation nutzt - Bereiche, die kundeneigene Client-ID, Propagation, Erkennung von Entzug und Neuerteilung.",
+      "url": "https://signature.cat/de/docs/domain-wide-delegation",
+      "inLanguage": "de",
+      "datePublished": "2026-07-17",
+      "dateModified": "2026-07-17",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Doku",
+          "item": "https://signature.cat/de/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Referenz",
+          "item": "https://signature.cat/de/docs/domain-wide-delegation"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Domain-Wide Delegation",
+          "item": "https://signature.cat/de/docs/domain-wide-delegation"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Zum Inhalt springen</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Dokumentationsmenü umschalten" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/de/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Dokumentation durchsuchen" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Doku durchsuchen</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Design: System" title="Design: System">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Hilfe</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">App öffnen</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Dokumentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Erste Schritte</p>
+        <ul>
+        <li><a href="/de/docs">Einführung</a></li>
+        <li><a href="/de/docs/connect-google-workspace">Google Workspace verbinden</a></li>
+        <li><a href="/de/docs/create-your-first-template">Ihre erste Vorlage erstellen</a></li>
+        <li><a href="/de/docs/assign-templates">Vorlagen zuweisen</a></li>
+        <li><a href="/de/docs/verify-assignments">Zuweisungsaufträge prüfen</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Erweiterte Einrichtung</p>
+        <ul>
+        <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
+        <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
+        <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Abrechnung</p>
+        <ul>
+        <li><a href="/de/docs/invoices">Rechnungen</a></li>
+        <li><a href="/de/docs/billing-details">Rechnungsdaten</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Referenz</p>
+        <ul>
+        <li><a href="/de/docs/domain-wide-delegation" aria-current="page">Domain-Wide Delegation</a></li>
+        <li><a href="/de/docs/templates">Vorlagen</a></li>
+        <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
+        <li><a href="/de/docs/assignments">Zuweisungen</a></li>
+        <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
+        <li><a href="/de/docs/logs">Protokolle</a></li>
+        <li><a href="/de/docs/images">Bilder</a></li>
+        <li><a href="/de/docs/notifications">Benachrichtigungen</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Support</p>
+        <ul>
+        <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
+        <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/service-status">Dienststatus</a></li>
+        <li><a href="/de/docs/legal">Rechtliches</a></li>
+        </ul>
+      </div>
+      <div class="docs-lang" role="group" aria-label="Sprache">
+        <p class="docs-nav-label">Sprache</p>
+        <a href="/docs/domain-wide-delegation" lang="en" hreflang="en" data-lang="en">English</a>
+        <a href="/pl/docs/domain-wide-delegation" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
+        <a href="/de/docs/domain-wide-delegation" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
+        <a href="/fr/docs/domain-wide-delegation" lang="fr" hreflang="fr" data-lang="fr">Français</a>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Brotkrümelnavigation"><a href="/de/docs">Doku</a><span class="crumb-sep">/</span><span class="crumb-section">Referenz</span><span class="crumb-sep">/</span><span aria-current="page">Domain-Wide Delegation</span></nav>
+      <article class="docs-article">
+<h1>Domain-Wide Delegation</h1>
+<p>Domain-Wide Delegation (DWD) ist der Google Workspace-Mechanismus, mit dem das dedizierte Service-Konto von SignatureCat Ihr Directory lesen und Gmail-Signaturen schreiben kann - ohne je ein Passwort zu kennen. Sie erteilen die Berechtigung einmal in der Google Admin console; diese Seite erklärt genau, was erteilt wird und wie es sich über die Zeit verhält.</p>
+<p>Die Schritt-für-Schritt-Einrichtung steht in <a href="/de/docs/connect-google-workspace">Ihren Google Workspace verbinden</a>. Dies ist die Referenz.</p>
+<h2 id="was-genau-autorisiere-ich">Was genau autorisiere ich?<a class="h-anchor" href="#was-genau-autorisiere-ich" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Sie fügen <strong>einen API-Client</strong> auf der <a href="https://admin.google.com/ac/owl/domainwidedelegation" target="_blank" rel="noopener">Domain-wide delegation-Seite</a> der Admin console hinzu, identifiziert durch eine numerische <strong>Client-ID</strong>, die für Ihre Organisation eindeutig ist (jeder SignatureCat-Kunde hat sein eigenes isoliertes Service-Konto). Die Client-ID wird im DWD-Assistenten und später in den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a>, Bereich Service-Konto, angezeigt.</p>
+<p>Die Bereiche und wozu jeder dient:</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Bereich</th><th scope="col">Erforderlich</th><th scope="col">Verwendet für</th></tr></thead>
+<tbody>
+<tr><td><code>gmail.settings.basic</code></td><td>Ja</td><td>Schreiben der Signatur auf der primären Adresse jedes Nutzers.</td></tr>
+<tr><td><code>admin.directory.user.readonly</code></td><td>Ja</td><td>Lesen der Nutzerprofile - Namen, Positionen, Telefonnummern - für <a href="/de/docs/template-variables">Vorlagenvariablen</a>.</td></tr>
+<tr><td><code>admin.directory.group.member.readonly</code></td><td>Ja</td><td>Auflösen von Gruppen-Zuweisungen in Mitglieder.</td></tr>
+<tr><td><code>admin.directory.customer.readonly</code></td><td>Ja</td><td>Lesen der Workspace-Nutzerzahl für die Abrechnung.</td></tr>
+<tr><td><code>gmail.settings.sharing</code></td><td>Optional</td><td>Schreiben von Signaturen auf send-as-<strong>Aliassen</strong>. Ohne diesen Bereich bleiben Alias-Funktionen deaktiviert.</td></tr>
+</tbody>
+</table></div>
+<p>SignatureCat fordert nie Bereiche für E-Mail-Inhalte an - es kann niemandes E-Mails lesen oder senden.</p>
+<h2 id="ist-die-client-id-stabil">Ist die Client-ID stabil?<a class="h-anchor" href="#ist-die-client-id-stabil" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Ja. SignatureCat rotiert seine Service-Konto-Schlüssel aus Sicherheitsgründen automatisch, aber die Rotation erzeugt einen neuen Schlüssel auf <strong>demselben</strong> Service-Konto - die numerische Client-ID ändert sich nie. Sie müssen DWD wegen einer Schlüsselrotation nie neu autorisieren.</p>
+<h2 id="wie-schnell-wirkt-eine-neue-erteilung">Wie schnell wirkt eine neue Erteilung?<a class="h-anchor" href="#wie-schnell-wirkt-eine-neue-erteilung" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Google übernimmt DWD-Änderungen mit Verzögerung - meist Sekunden, gelegentlich bis zu etwa 30 Sekunden. Der Button <strong>Prüfen</strong> im Assistenten wartet dieses Fenster ab, bevor er einen Fehler meldet, sodass ein einziger Klick direkt nach der Autorisierung in der Regel gelingt. Eine gelbe „Wird übernommen"-Karte bedeutet genau das: Warten Sie einen Moment und prüfen Sie erneut.</p>
+<h2 id="was-passiert-wenn-dwd-entfernt-oder-ein-bereich-entzogen-wird">Was passiert, wenn DWD entfernt oder ein Bereich entzogen wird?<a class="h-anchor" href="#was-passiert-wenn-dwd-entfernt-oder-ein-bereich-entzogen-wird" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>SignatureCat prüft den DWD-Zustand vor jeder Synchronisierung. Wenn er bricht:</p>
+<ul>
+<li><strong>pausieren</strong> Signatur-Synchronisierungen sofort (nichts wird halb angewendet),</li>
+<li>Admins erhalten die In-App-Benachrichtigung „Domain-Wide Delegation-Zugriff verloren" und eine „Handlung erforderlich"-E-Mail,</li>
+<li>die App leitet Admins zurück zum DWD-Assistenten.</li>
+</ul>
+<p>Die Neuerteilung des fehlenden Eintrags oder Bereichs und ein bestandenes <strong>Prüfen</strong> setzen alles fort - der Zustand heilt sich selbst, nichts muss neu aufgebaut werden. Um den Assistenten jederzeit wieder zu öffnen, nutzen Sie <strong>DWD-Assistent erneut ausführen</strong> in den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a>, Bereich Service-Konto.</p>
+<aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Warnung</p><div class="callout-body">
+<p>Die DWD-Erteilung gilt organisationsweit, und ihr Entfernen stoppt die Signaturverwaltung für den gesamten Workspace auf einmal. Möchten Sie nur die Alias-Unterstützung aufgeben, entfernen Sie nur den Bereich <code>gmail.settings.sharing</code> und führen Sie <strong>Prüfen</strong> erneut aus.</p>
+</div></aside>
+<h2 id="den-optionalen-alias-bereich-spter-hinzufgen">Den optionalen Alias-Bereich später hinzufügen<a class="h-anchor" href="#den-optionalen-alias-bereich-spter-hinzufgen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Fügen Sie <code>https://www.googleapis.com/auth/gmail.settings.sharing</code> zum bestehenden Eintrag in der Admin console hinzu (behalten Sie die anderen vier Bereiche), dann <strong>DWD-Assistent erneut ausführen</strong> und auf <strong>Prüfen</strong> klicken. Alias-Funktionen werden automatisch freigeschaltet - siehe <a href="/de/docs/assignments#alias-modes">Alias-Modi</a>.</p>
+<h2 id="signaturecat-entfernen">SignatureCat entfernen<a class="h-anchor" href="#signaturecat-entfernen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Wenn Sie Ihr Konto löschen, entfernt SignatureCat seine eigene Infrastruktur, kann aber Ihre Admin console nicht bearbeiten: <strong>Löschen Sie den API-Client-Eintrag selbst</strong> auf der <a href="https://admin.google.com/ac/owl/domainwidedelegation" target="_blank" rel="noopener">Domain-wide delegation-Seite</a>, nachdem das Konto weg ist.</p>
+      </article>
+<nav class="docs-pager" aria-label="Seitennavigation">
+<a class="pager-card pager-prev" href="/de/docs/billing-details" rel="prev">
+      <span class="pager-label">Zurück</span>
+      <span class="pager-title">Rechnungsdaten</span>
+    </a>
+<a class="pager-card pager-next" href="/de/docs/templates" rel="next">
+      <span class="pager-label">Weiter</span>
+      <span class="pager-title">Vorlagen</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Rechtliches</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Auf dieser Seite">
+      <nav>
+        <p class="docs-toc-title">Auf dieser Seite</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#was-genau-autorisiere-ich">Was genau autorisiere ich?</a></li>
+        <li class="toc-l2"><a href="#ist-die-client-id-stabil">Ist die Client-ID stabil?</a></li>
+        <li class="toc-l2"><a href="#wie-schnell-wirkt-eine-neue-erteilung">Wie schnell wirkt eine neue Erteilung?</a></li>
+        <li class="toc-l2"><a href="#was-passiert-wenn-dwd-entfernt-oder-ein-bereich-entzogen-wird">Was passiert, wenn DWD entfernt oder ein Bereich entzogen wird?</a></li>
+        <li class="toc-l2"><a href="#den-optionalen-alias-bereich-spter-hinzufgen">Den optionalen Alias-Bereich später hinzufügen</a></li>
+        <li class="toc-l2"><a href="#signaturecat-entfernen">SignatureCat entfernen</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Dokumentation durchsuchen" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Dokumentation durchsuchen" autocomplete="off" spellcheck="false" aria-label="Dokumentation durchsuchen" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Suche schließen">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Keine Ergebnisse. Versuchen Sie andere Suchbegriffe oder schreiben Sie an <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

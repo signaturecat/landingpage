@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Gestion des accès et niveaux d'accès | SignatureCat Docs</title>
+  <meta name="description" content="Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès autorise, et comment accorder l'accès à des utilisateurs individuels ou à des groupes Google entiers." />
+  <link rel="canonical" href="https://signature.cat/fr/docs/user-management" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/user-management" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/user-management" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/user-management" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/user-management" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/user-management" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Gestion des accès et niveaux d'accès | SignatureCat Docs" />
+  <meta property="og:description" content="Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès autorise, et comment accorder l'accès à des utilisateurs individuels ou à des groupes Google entiers." />
+  <meta property="og:url" content="https://signature.cat/fr/docs/user-management" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Gestion des accès et niveaux d'accès | SignatureCat Docs" />
+  <meta name="twitter:description" content="Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès autorise, et comment accorder l'accès à des utilisateurs individuels ou à des groupes Google entiers." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Gestion des accès et niveaux d'accès",
+      "description": "Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès autorise, et comment accorder l'accès à des utilisateurs individuels ou à des groupes Google entiers.",
+      "url": "https://signature.cat/fr/docs/user-management",
+      "inLanguage": "fr",
+      "datePublished": "2026-07-17",
+      "dateModified": "2026-07-17",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Docs",
+          "item": "https://signature.cat/fr/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Configuration avancée",
+          "item": "https://signature.cat/fr/docs/user-management"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Gestion des accès et niveaux d'accès",
+          "item": "https://signature.cat/fr/docs/user-management"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Aller au contenu</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Basculer le menu de la documentation" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/fr/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Rechercher dans la documentation" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Rechercher dans la doc</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Thème : système" title="Thème : système">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Aide</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Ouvrir l'app</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Premiers pas</p>
+        <ul>
+        <li><a href="/fr/docs">Introduction</a></li>
+        <li><a href="/fr/docs/connect-google-workspace">Connecter Google Workspace</a></li>
+        <li><a href="/fr/docs/create-your-first-template">Créer votre premier modèle</a></li>
+        <li><a href="/fr/docs/assign-templates">Affecter des modèles</a></li>
+        <li><a href="/fr/docs/verify-assignments">Vérifier les tâches d'affectation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Configuration avancée</p>
+        <ul>
+        <li><a href="/fr/docs/user-management" aria-current="page">Gestion des accès</a></li>
+        <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
+        <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Facturation</p>
+        <ul>
+        <li><a href="/fr/docs/invoices">Factures</a></li>
+        <li><a href="/fr/docs/billing-details">Informations de facturation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Référence</p>
+        <ul>
+        <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/fr/docs/templates">Modèles</a></li>
+        <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
+        <li><a href="/fr/docs/assignments">Affectations</a></li>
+        <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
+        <li><a href="/fr/docs/logs">Journaux</a></li>
+        <li><a href="/fr/docs/images">Images</a></li>
+        <li><a href="/fr/docs/notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Assistance</p>
+        <ul>
+        <li><a href="/fr/docs/support-access">Accès du support</a></li>
+        <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/service-status">État du service</a></li>
+        <li><a href="/fr/docs/legal">Informations légales</a></li>
+        </ul>
+      </div>
+      <div class="docs-lang" role="group" aria-label="Langue">
+        <p class="docs-nav-label">Langue</p>
+        <a href="/docs/user-management" lang="en" hreflang="en" data-lang="en">English</a>
+        <a href="/pl/docs/user-management" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
+        <a href="/de/docs/user-management" lang="de" hreflang="de" data-lang="de">Deutsch</a>
+        <a href="/fr/docs/user-management" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Fil d'Ariane"><a href="/fr/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Configuration avancée</span><span class="crumb-sep">/</span><span aria-current="page">Gestion des accès</span></nav>
+      <article class="docs-article">
+<h1>Gestion des accès et niveaux d'accès</h1>
+<p>Seules les personnes que vous laissez explicitement entrer peuvent se connecter à SignatureCat : les super administrateurs Workspace (toujours autorisés), les utilisateurs disposant d'un accès direct et les membres des groupes auxquels vous avez accordé l'accès. Tous les autres sont refoulés à la connexion. L'accès se gère sur la page <a href="https://app.signature.cat/user-management" target="_blank" rel="noopener">Gestion des accès</a> (Admins uniquement).</p>
+<h2 id="que-permet-chaque-niveau-daccs">Que permet chaque niveau d'accès ?<a class="h-anchor" href="#que-permet-chaque-niveau-daccs" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Niveau d'accès</th><th scope="col">Ce qu'il permet</th></tr></thead>
+<tbody>
+<tr><td>Self-service</td><td>Définit sa propre signature uniquement à partir des modèles de l'organisation.</td></tr>
+<tr><td>Self-service + édition</td><td>Self-service plus son propre HTML de signature personnalisé.</td></tr>
+<tr><td>Designer</td><td>Modifie les modèles de signature de l'organisation.</td></tr>
+<tr><td>Editor</td><td>Designer plus la gestion des affectations et des tâches d'application, et les notifications dans l'application.</td></tr>
+<tr><td>Admin</td><td>Accès complet, y compris la facturation, la gestion des accès, les domaines d'images et l'assistant DWD.</td></tr>
+</tbody>
+</table></div>
+<p>Quelques conséquences pratiques :</p>
+<ul>
+<li><strong>Modèles</strong> (<a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signatures</a>) : Designer, Editor, Admin.</li>
+<li><strong>Affectations et Appliquer</strong> (<a href="https://app.signature.cat/assignments" target="_blank" rel="noopener">Affectations</a>, <a href="https://app.signature.cat/apply" target="_blank" rel="noopener">Appliquer</a>) : Editor, Admin.</li>
+<li><strong>Facturation, gestion des accès, domaine d'images personnalisé</strong> : Admin uniquement.</li>
+<li>Les Editors voient les <a href="/fr/docs/notifications">notifications</a> dans l'application ; les <strong>e-mails</strong> d'alerte et de facturation ne vont qu'aux administrateurs.</li>
+</ul>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
+<p>Les <strong>super administrateurs</strong> Workspace ont toujours le niveau Admin. C'est appliqué à chaque connexion et ne peut pas être révoqué dans SignatureCat - pour le changer, modifiez leur statut d'administrateur dans Google Workspace lui-même.</p>
+</div></aside>
+<h2 id="qui-peut-se-connecter">Qui peut se connecter ?<a class="h-anchor" href="#qui-peut-se-connecter" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>La connexion se fait uniquement via Google et nécessite un compte Google Workspace de votre domaine. Quand une personne sans accès essaie, elle voit : « Votre compte n'a pas encore accès à SignatureCat. Demandez à un super administrateur Workspace de vous accorder l'accès, puis reconnectez-vous. » - et rien n'est modifié dans votre espace de travail.</p>
+<p>Les sessions durent jusqu'à 7 jours d'inactivité avec un plafond strict de 14 jours, puis une reconnexion Google en un clic est nécessaire.</p>
+<h2 id="accorder-laccs-un-utilisateur-unique">Accorder l'accès à un utilisateur unique<a class="h-anchor" href="#accorder-laccs-un-utilisateur-unique" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ol>
+<li>Ouvrez <a href="https://app.signature.cat/user-management" target="_blank" rel="noopener">Gestion des accès</a> et cliquez sur <strong>Ajouter un accès</strong>.</li>
+<li>Sur l'onglet <strong>Utilisateur</strong>, saisissez l'adresse e-mail (elle doit appartenir à votre Workspace, domaines secondaires inclus).</li>
+<li>Choisissez un niveau d'accès et cliquez sur <strong>Enregistrer l'accès</strong>.</li>
+</ol>
+<p>L'utilisateur reçoit un e-mail d'invitation « Vous avez maintenant accès à signature.cat ».</p>
+<p>Un accès accordé directement à un utilisateur <strong>remplace</strong> toujours tout accès de groupe pour cette personne - même si l'accès de groupe est plus élevé.</p>
+<h2 id="accorder-laccs-un-groupe-google-entier">Accorder l'accès à un groupe Google entier<a class="h-anchor" href="#accorder-laccs-un-groupe-google-entier" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ol>
+<li>Dans le même panneau, passez à l'onglet <strong>Groupe</strong>.</li>
+<li>Collez l'e-mail du groupe (par exemple <code>engineering@example.com</code>), choisissez le niveau et enregistrez.</li>
+</ol>
+<aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Avertissement</p><div class="callout-body">
+<p>Un accès de groupe couvre <strong>tous les membres du groupe, y compris les personnes qui y seront ajoutées à l'avenir</strong> - l'appartenance est vérifiée en direct à chaque connexion, sans confirmation par personne. Accordez aux groupes larges le niveau le plus bas qui suffit (généralement Self-service).</p>
+</div></aside>
+<aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Important</p><div class="callout-body">
+<p>L'appartenance au groupe est évaluée à la connexion de l'utilisateur. Une personne déjà connectée, ou qui vient d'être ajoutée au groupe, devra peut-être <strong>se reconnecter</strong> pour que le nouvel accès prenne effet.</p>
+</div></aside>
+<h2 id="retirer-et-modifier-laccs">Retirer et modifier l'accès<a class="h-anchor" href="#retirer-et-modifier-laccs" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ul>
+<li>Modifiez ou retirez les accès depuis la même page. Retirer un accès bloque la prochaine connexion ; cela ne retire pas une signature déjà appliquée à la boîte.</li>
+<li>Vous ne pouvez pas modifier ni retirer <strong>votre propre</strong> accès - un autre administrateur doit le faire (l'interface affiche un badge « Vous » à la place des contrôles).</li>
+<li>Les niveaux d'accès ne contrôlent que l'application SignatureCat. Ils n'ont aucun effet sur le compte Google de l'utilisateur.</li>
+</ul>
+<h2 id="laisser-les-utilisateurs-grer-leur-propre-signature">Laisser les utilisateurs gérer leur propre signature<a class="h-anchor" href="#laisser-les-utilisateurs-grer-leur-propre-signature" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Accordez aux utilisateurs (ou à un groupe) le niveau <strong>Self-service</strong> et activez au moins un modèle pour le self-service - le parcours complet est décrit dans <a href="/fr/docs/self-service">Self-service</a>.</p>
+      </article>
+<nav class="docs-pager" aria-label="Pagination">
+<a class="pager-card pager-prev" href="/fr/docs/verify-assignments" rel="prev">
+      <span class="pager-label">Précédent</span>
+      <span class="pager-title">Vérifier les tâches d'affectation</span>
+    </a>
+<a class="pager-card pager-next" href="/fr/docs/self-service" rel="next">
+      <span class="pager-label">Suivant</span>
+      <span class="pager-title">Self-service</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Mentions légales</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Sur cette page">
+      <nav>
+        <p class="docs-toc-title">Sur cette page</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#que-permet-chaque-niveau-daccs">Que permet chaque niveau d'accès ?</a></li>
+        <li class="toc-l2"><a href="#qui-peut-se-connecter">Qui peut se connecter ?</a></li>
+        <li class="toc-l2"><a href="#accorder-laccs-un-utilisateur-unique">Accorder l'accès à un utilisateur unique</a></li>
+        <li class="toc-l2"><a href="#accorder-laccs-un-groupe-google-entier">Accorder l'accès à un groupe Google entier</a></li>
+        <li class="toc-l2"><a href="#retirer-et-modifier-laccs">Retirer et modifier l'accès</a></li>
+        <li class="toc-l2"><a href="#laisser-les-utilisateurs-grer-leur-propre-signature">Laisser les utilisateurs gérer leur propre signature</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Rechercher dans la documentation" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Rechercher dans la documentation" autocomplete="off" spellcheck="false" aria-label="Rechercher dans la documentation" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Fermer la recherche">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Aucun résultat. Essayez d'autres mots-clés ou écrivez à <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

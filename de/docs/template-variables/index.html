@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Vorlagenvariablen | SignatureCat Docs</title>
+  <meta name="description" content="Vollständige Referenz der SignatureCat-Vorlagenvariablen - Personenfelder aus Google Directory, Logo- und Banner-Token sowie bedingte del/delete-Blöcke." />
+  <link rel="canonical" href="https://signature.cat/de/docs/template-variables" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/template-variables" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/template-variables" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/template-variables" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/template-variables" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/template-variables" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Vorlagenvariablen | SignatureCat Docs" />
+  <meta property="og:description" content="Vollständige Referenz der SignatureCat-Vorlagenvariablen - Personenfelder aus Google Directory, Logo- und Banner-Token sowie bedingte del/delete-Blöcke." />
+  <meta property="og:url" content="https://signature.cat/de/docs/template-variables" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Vorlagenvariablen | SignatureCat Docs" />
+  <meta name="twitter:description" content="Vollständige Referenz der SignatureCat-Vorlagenvariablen - Personenfelder aus Google Directory, Logo- und Banner-Token sowie bedingte del/delete-Blöcke." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Vorlagenvariablen",
+      "description": "Vollständige Referenz der SignatureCat-Vorlagenvariablen - Personenfelder aus Google Directory, Logo- und Banner-Token sowie bedingte del/delete-Blöcke.",
+      "url": "https://signature.cat/de/docs/template-variables",
+      "inLanguage": "de",
+      "datePublished": "2026-07-17",
+      "dateModified": "2026-07-17",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Doku",
+          "item": "https://signature.cat/de/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Referenz",
+          "item": "https://signature.cat/de/docs/template-variables"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Vorlagenvariablen",
+          "item": "https://signature.cat/de/docs/template-variables"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Zum Inhalt springen</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Dokumentationsmenü umschalten" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/de/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Dokumentation durchsuchen" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Doku durchsuchen</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Design: System" title="Design: System">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Hilfe</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">App öffnen</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Dokumentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Erste Schritte</p>
+        <ul>
+        <li><a href="/de/docs">Einführung</a></li>
+        <li><a href="/de/docs/connect-google-workspace">Google Workspace verbinden</a></li>
+        <li><a href="/de/docs/create-your-first-template">Ihre erste Vorlage erstellen</a></li>
+        <li><a href="/de/docs/assign-templates">Vorlagen zuweisen</a></li>
+        <li><a href="/de/docs/verify-assignments">Zuweisungsaufträge prüfen</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Erweiterte Einrichtung</p>
+        <ul>
+        <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
+        <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
+        <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Abrechnung</p>
+        <ul>
+        <li><a href="/de/docs/invoices">Rechnungen</a></li>
+        <li><a href="/de/docs/billing-details">Rechnungsdaten</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Referenz</p>
+        <ul>
+        <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/de/docs/templates">Vorlagen</a></li>
+        <li><a href="/de/docs/template-variables" aria-current="page">Vorlagenvariablen</a></li>
+        <li><a href="/de/docs/assignments">Zuweisungen</a></li>
+        <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
+        <li><a href="/de/docs/logs">Protokolle</a></li>
+        <li><a href="/de/docs/images">Bilder</a></li>
+        <li><a href="/de/docs/notifications">Benachrichtigungen</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Support</p>
+        <ul>
+        <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
+        <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/service-status">Dienststatus</a></li>
+        <li><a href="/de/docs/legal">Rechtliches</a></li>
+        </ul>
+      </div>
+      <div class="docs-lang" role="group" aria-label="Sprache">
+        <p class="docs-nav-label">Sprache</p>
+        <a href="/docs/template-variables" lang="en" hreflang="en" data-lang="en">English</a>
+        <a href="/pl/docs/template-variables" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
+        <a href="/de/docs/template-variables" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
+        <a href="/fr/docs/template-variables" lang="fr" hreflang="fr" data-lang="fr">Français</a>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Brotkrümelnavigation"><a href="/de/docs">Doku</a><span class="crumb-sep">/</span><span class="crumb-section">Referenz</span><span class="crumb-sep">/</span><span aria-current="page">Vorlagenvariablen</span></nav>
+      <article class="docs-article">
+<h1>Vorlagenvariablen</h1>
+<p>SignatureCat-Vorlagen verwenden <code>{{variable}}</code>-Token, die zum Anwendungszeitpunkt pro Nutzer aufgelöst werden. Es gibt neun Personenvariablen (befüllt aus Google Directory), zwei Bild-Token und zwei bedingte Tags. Token-Namen sind kleingeschrieben und werden unabhängig von Groß-/Kleinschreibung erkannt - <code>{{Phone}}</code> funktioniert genauso wie <code>{{phone}}</code>. Unbekannte Token werden beim Speichern der Vorlage abgelehnt.</p>
+<h2 id="personenvariablen-google-directory">Personenvariablen (Google Directory)<a class="h-anchor" href="#personenvariablen-google-directory" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Die Werte stammen aus dem Datensatz jedes Nutzers in Ihrem Google Workspace-Directory. Halten Sie das Directory gepflegt, und jede Signatur bleibt automatisch korrekt.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Token</th><th scope="col">Wert</th><th scope="col">Hinweise</th></tr></thead>
+<tbody>
+<tr><td><code>{{firstname}}</code></td><td>Vorname</td><td></td></tr>
+<tr><td><code>{{lastname}}</code></td><td>Nachname</td><td></td></tr>
+<tr><td><code>{{email}}</code></td><td>Primäre E-Mail-Adresse</td><td>Beim Anwenden auf einen Alias löst sie stattdessen zur <strong>Alias</strong>-Adresse auf.</td></tr>
+<tr><td><code>{{domain}}</code></td><td>Domain-Teil der E-Mail</td><td>Folgt dem Alias, wenn auf einen Alias angewendet wird.</td></tr>
+<tr><td><code>{{jobtitle}}</code></td><td>Position</td><td>Aus dem primären Organisationseintrag des Nutzers im Directory.</td></tr>
+<tr><td><code>{{department}}</code></td><td>Abteilung</td><td>Aus demselben Organisationseintrag.</td></tr>
+<tr><td><code>{{photo}}</code></td><td>Profilbild-URL</td><td>Automatisch auf 400 px skaliert für scharfes Rendering; muss ein HTTPS-Foto sein.</td></tr>
+<tr><td><code>{{address}}</code></td><td>Formatierte Adresse</td><td>Der primäre Adresseintrag des Nutzers.</td></tr>
+<tr><td><code>{{phone}}</code></td><td>Telefonnummer</td><td>Die erste nicht leere von: Arbeit, dann Mobil, dann Privat.</td></tr>
+</tbody>
+</table></div>
+<p><strong>Leere Werte werden als leerer Text gerendert.</strong> Die Signatur bricht nie, aber es kann ein verwaistes Label wie „Tel.:" übrig bleiben - genau dafür gibt es bedingte Blöcke.</p>
+<h2 id="bild-token">Bild-Token<a class="h-anchor" href="#bild-token" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Token</th><th scope="col">Wert</th></tr></thead>
+<tbody>
+<tr><td><code>{{logo}}</code></td><td>Das für die Vorlage gewählte Firmenlogo, gerendert mit 115x115 px.</td></tr>
+<tr><td><code>{{banner}}</code></td><td>Der für die Vorlage gewählte Kampagnenbanner, gerendert mit 450x100 px, auf schmalen Bildschirmen verkleinert.</td></tr>
+</tbody>
+</table></div>
+<p>Bilder stammen aus der Bibliothek pro Workspace und werden pro Vorlage ausgewählt; ist nichts ausgewählt, wird ein neutraler Platzhalter gerendert. Hat das Bibliotheksbild einen Klick-Link, wird das Bild automatisch darin eingeschlossen. Siehe <a href="/de/docs/banners-and-logos">Banner und Logos</a>.</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
+<p>Bild-Token rendern immer etwas (Bild oder Platzhalter) und zählen daher für die bedingten Blöcke unten nicht als „leer".</p>
+</div></aside>
+<h2 id="bedingte-blcke-del-und-delete">Bedingte Blöcke: del und delete<a class="h-anchor" href="#bedingte-blcke-del-und-delete" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Zwei umschließende Tags entfernen ganze Fragmente der Signatur, wenn Daten fehlen:</p>
+<ul>
+<li><code>{{del}} ... {{/del}}</code> - <strong>weich</strong>: Der Block wird nur entfernt, wenn <strong>jede</strong> Personenvariable darin leer ist. Ist mindestens eine befüllt, bleibt der Block (leere Variablen darin werden als leerer Text gerendert).</li>
+<li><code>{{delete}} ... {{/delete}}</code> - <strong>hart</strong>: Der Block wird entfernt, wenn <strong>irgendeine</strong> Personenvariable darin leer ist. Nutzen Sie ihn, wenn ein Fragment nur vollständig Sinn ergibt.</li>
+</ul>
+<p>Beispiel - eine Telefonzeile, die für Nutzer ohne Telefonnummer verschwindet:</p>
+<pre><code class="language-html">{{del}}&lt;tr&gt;&lt;td&gt;Tel: {{phone}}&lt;/td&gt;&lt;/tr&gt;{{/del}}</code></pre>
+<p>Blöcke können verschachtelt werden; innere Blöcke werden zuerst ausgewertet. Unausgeglichene Tags werden beim Speichern abgelehnt, und die Tags selbst werden nie in die endgültige Gmail-Signatur geschrieben.</p>
+<aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tipp</p><div class="callout-body">
+<p>Faustregel: Schließen Sie jede optionale Zeile (Telefon, Adresse, Abteilung) in <code>{{del}}</code>-Tags ein. Signaturen von Nutzern mit spärlichen Directory-Datensätzen schrumpfen dann elegant, statt leere Labels zu zeigen.</p>
+</div></aside>
+<h2 id="testen-wie-variablen-aufgelst-werden">Testen, wie Variablen aufgelöst werden<a class="h-anchor" href="#testen-wie-variablen-aufgelst-werden" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Nutzen Sie <strong>Rendern als</strong> im <a href="/de/docs/templates#the-editor">Vorlagen-Editor</a> für eine Vorschau anhand des Datensatzes eines beliebigen echten Nutzers und <strong>Mir eine Testsignatur setzen</strong>, um das Ergebnis auf Ihr eigenes Postfach anzuwenden. Beides ist in <a href="/de/docs/create-your-first-template">Ihre erste Vorlage erstellen</a> beschrieben.</p>
+      </article>
+<nav class="docs-pager" aria-label="Seitennavigation">
+<a class="pager-card pager-prev" href="/de/docs/templates" rel="prev">
+      <span class="pager-label">Zurück</span>
+      <span class="pager-title">Vorlagen</span>
+    </a>
+<a class="pager-card pager-next" href="/de/docs/assignments" rel="next">
+      <span class="pager-label">Weiter</span>
+      <span class="pager-title">Zuweisungen</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Rechtliches</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Auf dieser Seite">
+      <nav>
+        <p class="docs-toc-title">Auf dieser Seite</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#personenvariablen-google-directory">Personenvariablen (Google Directory)</a></li>
+        <li class="toc-l2"><a href="#bild-token">Bild-Token</a></li>
+        <li class="toc-l2"><a href="#bedingte-blcke-del-und-delete">Bedingte Blöcke: del und delete</a></li>
+        <li class="toc-l2"><a href="#testen-wie-variablen-aufgelst-werden">Testen, wie Variablen aufgelöst werden</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Dokumentation durchsuchen" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Dokumentation durchsuchen" autocomplete="off" spellcheck="false" aria-label="Dokumentation durchsuchen" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Suche schließen">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Keine Ergebnisse. Versuchen Sie andere Suchbegriffe oder schreiben Sie an <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Połącz swój Google Workspace | SignatureCat Docs</title>
+  <meta name="description" content="Zarejestruj SignatureCat jako superadmin Google Workspace, utwórz odizolowane konto usługi i autoryzuj Domain-Wide Delegation." />
+  <link rel="canonical" href="https://signature.cat/pl/docs/connect-google-workspace" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/connect-google-workspace" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/connect-google-workspace" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/connect-google-workspace" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/connect-google-workspace" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/connect-google-workspace" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Połącz swój Google Workspace | SignatureCat Docs" />
+  <meta property="og:description" content="Zarejestruj SignatureCat jako superadmin Google Workspace, utwórz odizolowane konto usługi i autoryzuj Domain-Wide Delegation." />
+  <meta property="og:url" content="https://signature.cat/pl/docs/connect-google-workspace" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Połącz swój Google Workspace | SignatureCat Docs" />
+  <meta name="twitter:description" content="Zarejestruj SignatureCat jako superadmin Google Workspace, utwórz odizolowane konto usługi i autoryzuj Domain-Wide Delegation." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Połącz swój Google Workspace",
+      "description": "Zarejestruj SignatureCat jako superadmin Google Workspace, utwórz odizolowane konto usługi i autoryzuj Domain-Wide Delegation.",
+      "url": "https://signature.cat/pl/docs/connect-google-workspace",
+      "inLanguage": "pl",
+      "datePublished": "2026-07-17",
+      "dateModified": "2026-07-17",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Dokumentacja",
+          "item": "https://signature.cat/pl/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Pierwsze kroki",
+          "item": "https://signature.cat/pl/docs/connect-google-workspace"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Połącz swój Google Workspace",
+          "item": "https://signature.cat/pl/docs/connect-google-workspace"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Przejdź do treści</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Przełącz menu dokumentacji" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/pl/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Przeszukaj dokumentację" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Szukaj w dokumentacji</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Motyw: systemowy" title="Motyw: systemowy">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Pomoc</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Otwórz aplikację</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Dokumentacja">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Pierwsze kroki</p>
+        <ul>
+        <li><a href="/pl/docs">Wprowadzenie</a></li>
+        <li><a href="/pl/docs/connect-google-workspace" aria-current="page">Połącz Google Workspace</a></li>
+        <li><a href="/pl/docs/create-your-first-template">Utwórz swój pierwszy szablon</a></li>
+        <li><a href="/pl/docs/assign-templates">Przypisz szablony</a></li>
+        <li><a href="/pl/docs/verify-assignments">Weryfikuj zadania przypisań</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Konfiguracja zaawansowana</p>
+        <ul>
+        <li><a href="/pl/docs/user-management">Zarządzanie dostępem</a></li>
+        <li><a href="/pl/docs/self-service">Self-service</a></li>
+        <li><a href="/pl/docs/custom-image-domain">Własna domena obrazków</a></li>
+        <li><a href="/pl/docs/banners-and-logos">Banery i logo</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Rozliczenia</p>
+        <ul>
+        <li><a href="/pl/docs/invoices">Faktury</a></li>
+        <li><a href="/pl/docs/billing-details">Dane rozliczeniowe</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Referencja</p>
+        <ul>
+        <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/pl/docs/templates">Szablony</a></li>
+        <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
+        <li><a href="/pl/docs/assignments">Przypisania</a></li>
+        <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
+        <li><a href="/pl/docs/logs">Logi</a></li>
+        <li><a href="/pl/docs/images">Obrazki</a></li>
+        <li><a href="/pl/docs/notifications">Powiadomienia</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Wsparcie</p>
+        <ul>
+        <li><a href="/pl/docs/support-access">Dostęp dla supportu</a></li>
+        <li><a href="/pl/docs/get-help">Uzyskaj pomoc</a></li>
+        <li><a href="/pl/docs/service-status">Status usługi</a></li>
+        <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
+        </ul>
+      </div>
+      <div class="docs-lang" role="group" aria-label="Język">
+        <p class="docs-nav-label">Język</p>
+        <a href="/docs/connect-google-workspace" lang="en" hreflang="en" data-lang="en">English</a>
+        <a href="/pl/docs/connect-google-workspace" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
+        <a href="/de/docs/connect-google-workspace" lang="de" hreflang="de" data-lang="de">Deutsch</a>
+        <a href="/fr/docs/connect-google-workspace" lang="fr" hreflang="fr" data-lang="fr">Français</a>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Okruszki nawigacyjne"><a href="/pl/docs">Dokumentacja</a><span class="crumb-sep">/</span><span class="crumb-section">Pierwsze kroki</span><span class="crumb-sep">/</span><span aria-current="page">Połącz Google Workspace</span></nav>
+      <article class="docs-article">
+<h1>Połącz swój Google Workspace</h1>
+<p>Aby połączyć Google Workspace z SignatureCat, <strong>superadmin Workspace</strong> loguje się na <a href="https://app.signature.cat" target="_blank" rel="noopener">app.signature.cat</a>, tworzy dedykowane konto usługi i autoryzuje je w Google Admin console przez Domain-Wide Delegation (DWD). Cały proces zajmuje około 10 minut i jest wymagany dokładnie raz.</p>
+<aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Ważne</p><div class="callout-body">
+<p>Pierwszą rejestrację konta firmy musi przeprowadzić <strong>superadmin Google Workspace</strong>. Tylko superadmin może otworzyć stronę Domain-Wide Delegation w Google Admin console, a SignatureCat potrzebuje dostępu do katalogu, aby poprawnie policzyć Twoich użytkowników. Zwykłych użytkowników można zaprosić później - nie potrzebują uprawnień administratora. Zobacz <a href="/pl/docs/user-management">Zarządzanie dostępem</a>.</p>
+</div></aside>
+<h2 id="krok-1-zaloguj-si-przez-google">Krok 1: Zaloguj się przez Google<a class="h-anchor" href="#krok-1-zaloguj-si-przez-google" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Otwórz <a href="https://app.signature.cat" target="_blank" rel="noopener">app.signature.cat</a> i kliknij <strong>Zaloguj się przez Google</strong>, używając konta firmowego. Na tym etapie SignatureCat prosi wyłącznie o podstawowe zakresy logowania <code>openid email profile</code> - uprawnienia Workspace są nadawane osobno w kroku 3, i to wyłącznie Twojemu własnemu, odizolowanemu kontu usługi.</p>
+<p>Prywatne konta Gmail są odrzucane: SignatureCat wymaga konta Google Workspace.</p>
+<h2 id="krok-2-skonfiguruj-swj-workspace">Krok 2: Skonfiguruj swój workspace<a class="h-anchor" href="#krok-2-skonfiguruj-swj-workspace" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Zaraz po pierwszym zalogowaniu trafiasz na ekran <strong>Skonfiguruj swój workspace</strong>. Kliknięcie <strong>Skonfiguruj workspace</strong> tworzy dedykowane, odizolowane konto serwisowe Google Cloud dla Twojej organizacji - to tożsamość, która będzie zarządzać podpisami Gmail w Twoim imieniu. Zwykle zajmuje to kilka sekund (do 15).</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Uwaga</p><div class="callout-body">
+<p>Każdy klient dostaje <strong>własne</strong> konto usługi. Jego poświadczenia są przechowywane w sejfie sekretów, nigdy w bazie danych aplikacji, a klucze są rotowane automatycznie. Rotacja nigdy nie zmienia Client ID, więc nigdy nie będziesz musieć z jej powodu autoryzować dostępu ponownie.</p>
+</div></aside>
+<p>Ten krok może ukończyć wyłącznie administrator, który założył organizację.</p>
+<h2 id="krok-3-autoryzuj-domain-wide-delegation">Krok 3: Autoryzuj Domain-Wide Delegation<a class="h-anchor" href="#krok-3-autoryzuj-domain-wide-delegation" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Następnie kreator <strong>Autoryzuj SignatureCat w Workspace</strong> pod adresem <a href="https://app.signature.cat/onboarding/dwd" target="_blank" rel="noopener">app.signature.cat/onboarding/dwd</a> prowadzi Cię przez Google Admin console:</p>
+<ol>
+<li><strong>Otwórz Konsolę Administratora</strong> - kreator linkuje wprost do <a href="https://admin.google.com/ac/owl/domainwidedelegation" target="_blank" rel="noopener">strony Domain-wide delegation</a> (Security, API Controls, Domain-wide delegation). Zaloguj się jako superadmin.</li>
+<li><strong>Dodaj nowy</strong> - kliknij <strong>Add new</strong> API client.</li>
+<li><strong>Wklej Client ID</strong> - skopiuj numeryczny Client ID pokazany w kreatorze (unikalny dla Twojej organizacji) i wklej go w formularzu Admin console. Użyj przycisku kopiowania; to musi być identyfikator numeryczny, nie adres e-mail.</li>
+<li><strong>Wklej zakresy OAuth</strong> - skopiuj z kreatora ciąg zakresów oddzielonych przecinkami i wklej go w pole OAuth scopes:</li>
+</ol>
+<pre><code>https://www.googleapis.com/auth/gmail.settings.basic,https://www.googleapis.com/auth/admin.directory.user.readonly,https://www.googleapis.com/auth/admin.directory.group.member.readonly,https://www.googleapis.com/auth/admin.directory.customer.readonly,https://www.googleapis.com/auth/gmail.settings.sharing</code></pre>
+<ol>
+<li><strong>Autoryzuj</strong> - kliknij <strong>Authorize</strong> w Admin console.</li>
+<li><strong>Sprawdź</strong> - z powrotem w SignatureCat kliknij <strong>Sprawdź</strong>. Aplikacja wykonuje test łączności dla każdego zakresu i pokazuje wynik OK / Błąd per zakres.</li>
+</ol>
+<p>Ostatni zakres, <code>gmail.settings.sharing</code>, jest <strong>opcjonalny</strong>: jest potrzebny wyłącznie do zapisywania podpisów na aliasach send-as. Możesz go teraz pominąć i dodać później - cała reszta działa, a kreator pokaże informację „Obsługa aliasów jest wyłączona". Zobacz <a href="/pl/docs/assignments#alias-modes">Przypisania</a>, aby dowiedzieć się, co odblokowują aliasy.</p>
+<aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Ostrzeżenie</p><div class="callout-body">
+<p>Wklej ciąg zakresów dokładnie tak, jak został skopiowany. Brakujący lub zmieniony zakres oblewa sprawdzenie z błędem per zakres, na przykład „Ten zakres nie został autoryzowany. Powtórz krok 4 z dokładnym ciągiem zakresów."</p>
+</div></aside>
+<h3 id="sprawdzenie-zgasza-e-dostp-wci-si-propaguje">Sprawdzenie zgłasza, że dostęp wciąż się propaguje<a class="h-anchor" href="#sprawdzenie-zgasza-e-dostp-wci-si-propaguje" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
+<p>Google potrzebuje chwili, aby rozpropagować świeży grant DWD - zwykle sekund, czasem do około 30 sekund. Przycisk <strong>Sprawdź</strong> sam odczekuje większość tego okna. Jeśli nadal widzisz żółtą kartę „dostęp może się jeszcze propagować", odczekaj chwilę i kliknij <strong>Sprawdź</strong> ponownie. To nie jest błąd.</p>
+<h2 id="krok-4-patnoci">Krok 4: Płatności<a class="h-anchor" href="#krok-4-patnoci" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Po zweryfikowaniu DWD trafiasz na <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Płatności</a>, aby rozpocząć 7-dniowy bezpłatny okres próbny (karta jest pobierana z góry, a obciążana po zakończeniu okresu próbnego). Zobacz <a href="/pl/docs/invoices">Faktury</a>, aby poznać progi cenowe.</p>
+<p>To wszystko - przejdź do <a href="/pl/docs/create-your-first-template">Utwórz swój pierwszy szablon</a>.</p>
+<h2 id="odnawianie-lub-ponowne-nadawanie-domain-wide-delegation">Odnawianie lub ponowne nadawanie Domain-Wide Delegation<a class="h-anchor" href="#odnawianie-lub-ponowne-nadawanie-domain-wide-delegation" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Jeśli wpis DWD lub któryś z jego zakresów zostanie później usunięty w Google Admin console, SignatureCat wykryje to przed najbliższą synchronizacją: synchronizacje podpisów zostają wstrzymane, administratorzy dostają powiadomienie w aplikacji i e-mail, a aplikacja prosi o ponowne przejście kreatora.</p>
+<p>Aby uruchomić go ponownie w dowolnym momencie, otwórz <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Ustawienia</a>, znajdź sekcję <strong>Konto usługi</strong> i kliknij <strong>Uruchom ponownie kreator DWD</strong> (tam też widoczny jest Client ID). Gdy sprawdzenie przejdzie, synchronizacje wznawiają się automatycznie.</p>
+<aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Ostrzeżenie</p><div class="callout-body">
+<p>Usunięcie wpisu Domain-Wide Delegation w Admin console natychmiast psuje zarządzanie podpisami w całym Twoim workspace. Jeśli usuwasz konto SignatureCat, usuń wpis DWD dopiero potem - SignatureCat nie może usunąć go za Ciebie.</p>
+</div></aside>
+      </article>
+<nav class="docs-pager" aria-label="Stronicowanie">
+<a class="pager-card pager-prev" href="/pl/docs" rel="prev">
+      <span class="pager-label">Poprzednia</span>
+      <span class="pager-title">Wprowadzenie</span>
+    </a>
+<a class="pager-card pager-next" href="/pl/docs/create-your-first-template" rel="next">
+      <span class="pager-label">Następna</span>
+      <span class="pager-title">Utwórz swój pierwszy szablon</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Informacje prawne</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Na tej stronie">
+      <nav>
+        <p class="docs-toc-title">Na tej stronie</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#krok-1-zaloguj-si-przez-google">Krok 1: Zaloguj się przez Google</a></li>
+        <li class="toc-l2"><a href="#krok-2-skonfiguruj-swj-workspace">Krok 2: Skonfiguruj swój workspace</a></li>
+        <li class="toc-l2"><a href="#krok-3-autoryzuj-domain-wide-delegation">Krok 3: Autoryzuj Domain-Wide Delegation</a></li>
+        <li class="toc-l3"><a href="#sprawdzenie-zgasza-e-dostp-wci-si-propaguje">Sprawdzenie zgłasza, że dostęp wciąż się propaguje</a></li>
+        <li class="toc-l2"><a href="#krok-4-patnoci">Krok 4: Płatności</a></li>
+        <li class="toc-l2"><a href="#odnawianie-lub-ponowne-nadawanie-domain-wide-delegation">Odnawianie lub ponowne nadawanie Domain-Wide Delegation</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Przeszukaj dokumentację" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Przeszukaj dokumentację" autocomplete="off" spellcheck="false" aria-label="Przeszukaj dokumentację" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Zamknij wyszukiwarkę">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Brak wyników. Spróbuj innych słów kluczowych albo napisz na <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

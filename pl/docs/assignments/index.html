@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Przypisania | SignatureCat Docs</title>
+  <meta name="description" content="Referencja przypisań SignatureCat - rodzaje celów, pierwszeństwo gdy użytkownik pasuje do kilku przypisań, tryby aliasów i obsługa konfliktów." />
+  <link rel="canonical" href="https://signature.cat/pl/docs/assignments" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/assignments" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/assignments" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/assignments" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/assignments" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/assignments" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Przypisania | SignatureCat Docs" />
+  <meta property="og:description" content="Referencja przypisań SignatureCat - rodzaje celów, pierwszeństwo gdy użytkownik pasuje do kilku przypisań, tryby aliasów i obsługa konfliktów." />
+  <meta property="og:url" content="https://signature.cat/pl/docs/assignments" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Przypisania | SignatureCat Docs" />
+  <meta name="twitter:description" content="Referencja przypisań SignatureCat - rodzaje celów, pierwszeństwo gdy użytkownik pasuje do kilku przypisań, tryby aliasów i obsługa konfliktów." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Przypisania",
+      "description": "Referencja przypisań SignatureCat - rodzaje celów, pierwszeństwo gdy użytkownik pasuje do kilku przypisań, tryby aliasów i obsługa konfliktów.",
+      "url": "https://signature.cat/pl/docs/assignments",
+      "inLanguage": "pl",
+      "datePublished": "2026-07-17",
+      "dateModified": "2026-07-17",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Dokumentacja",
+          "item": "https://signature.cat/pl/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Referencja",
+          "item": "https://signature.cat/pl/docs/assignments"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Przypisania",
+          "item": "https://signature.cat/pl/docs/assignments"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Przejdź do treści</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Przełącz menu dokumentacji" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/pl/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Przeszukaj dokumentację" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Szukaj w dokumentacji</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Motyw: systemowy" title="Motyw: systemowy">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Pomoc</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Otwórz aplikację</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Dokumentacja">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Pierwsze kroki</p>
+        <ul>
+        <li><a href="/pl/docs">Wprowadzenie</a></li>
+        <li><a href="/pl/docs/connect-google-workspace">Połącz Google Workspace</a></li>
+        <li><a href="/pl/docs/create-your-first-template">Utwórz swój pierwszy szablon</a></li>
+        <li><a href="/pl/docs/assign-templates">Przypisz szablony</a></li>
+        <li><a href="/pl/docs/verify-assignments">Weryfikuj zadania przypisań</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Konfiguracja zaawansowana</p>
+        <ul>
+        <li><a href="/pl/docs/user-management">Zarządzanie dostępem</a></li>
+        <li><a href="/pl/docs/self-service">Self-service</a></li>
+        <li><a href="/pl/docs/custom-image-domain">Własna domena obrazków</a></li>
+        <li><a href="/pl/docs/banners-and-logos">Banery i logo</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Rozliczenia</p>
+        <ul>
+        <li><a href="/pl/docs/invoices">Faktury</a></li>
+        <li><a href="/pl/docs/billing-details">Dane rozliczeniowe</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Referencja</p>
+        <ul>
+        <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/pl/docs/templates">Szablony</a></li>
+        <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
+        <li><a href="/pl/docs/assignments" aria-current="page">Przypisania</a></li>
+        <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
+        <li><a href="/pl/docs/logs">Logi</a></li>
+        <li><a href="/pl/docs/images">Obrazki</a></li>
+        <li><a href="/pl/docs/notifications">Powiadomienia</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Wsparcie</p>
+        <ul>
+        <li><a href="/pl/docs/support-access">Dostęp dla supportu</a></li>
+        <li><a href="/pl/docs/get-help">Uzyskaj pomoc</a></li>
+        <li><a href="/pl/docs/service-status">Status usługi</a></li>
+        <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
+        </ul>
+      </div>
+      <div class="docs-lang" role="group" aria-label="Język">
+        <p class="docs-nav-label">Język</p>
+        <a href="/docs/assignments" lang="en" hreflang="en" data-lang="en">English</a>
+        <a href="/pl/docs/assignments" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
+        <a href="/de/docs/assignments" lang="de" hreflang="de" data-lang="de">Deutsch</a>
+        <a href="/fr/docs/assignments" lang="fr" hreflang="fr" data-lang="fr">Français</a>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Okruszki nawigacyjne"><a href="/pl/docs">Dokumentacja</a><span class="crumb-sep">/</span><span class="crumb-section">Referencja</span><span class="crumb-sep">/</span><span aria-current="page">Przypisania</span></nav>
+      <article class="docs-article">
+<h1>Przypisania</h1>
+<p>Przypisanie wiąże jeden szablon z jednym celem i utrzymuje go zastosowanym dzięki codziennej synchronizacji. Ta strona to referencja działania celów, pierwszeństwa i aliasów; przewodnik krok po kroku znajdziesz w <a href="/pl/docs/assign-templates">Przypisz szablony</a>. Przypisaniami zarządzają użytkownicy z poziomami Editor i Admin pod adresem <a href="https://app.signature.cat/assignments" target="_blank" rel="noopener">app.signature.cat/assignments</a>.</p>
+<h2 id="rodzaje-celw">Rodzaje celów<a class="h-anchor" href="#rodzaje-celw" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Cel</th><th scope="col">Wartość</th><th scope="col">Opcja zakresu</th></tr></thead>
+<tbody>
+<tr><td>Grupa</td><td>Adres email grupy</td><td><strong>+ podgrupy</strong> obejmuje członków grup zagnieżdżonych.</td></tr>
+<tr><td>OU</td><td>Ścieżka zaczynająca się od <code>/</code>, na przykład <code>/Engineering</code></td><td><strong>+ pod-OU</strong> obejmuje całe poddrzewo.</td></tr>
+<tr><td>Wszyscy</td><td>Wszyscy aktywni użytkownicy w Workspace</td><td>Maksymalnie <strong>jedno</strong> takie przypisanie na workspace.</td></tr>
+</tbody>
+</table></div>
+<p>Każdy cel może mieć tylko jedno przypisanie - utworzenie duplikatu jest odrzucane z komunikatem „Wskazany cel ma już przypisanie." Rodzaj celu jest stały po utworzeniu; aby zamienić przypisanie grupy na przypisanie OU, usuń je i utwórz na nowo.</p>
+<p>Pojedynczy użytkownicy celowo nie są celem przypisań - pojedyncze osoby obejmiesz przez <a href="/pl/docs/self-service">self-service</a> albo jednorazowe <a href="/pl/docs/apply-jobs">zadanie zastosowania</a>.</p>
+<h2 id="jak-dziaa-pierwszestwo">Jak działa pierwszeństwo<a class="h-anchor" href="#jak-dziaa-pierwszestwo" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Użytkownicy często pasują do kilku przypisań. Każda synchronizacja wyznacza dokładnie <strong>jednego zwycięzcę per użytkownik</strong>, warstwa po warstwie, od dołu do góry:</p>
+<ol>
+<li><strong>Wszyscy</strong> - warstwa bazowa dla każdego aktywnego użytkownika.</li>
+<li><strong>Przypisania OU</strong> nadpisują przypisanie dla wszystkich dla użytkowników w danym OU.</li>
+<li><strong>Przypisania grup</strong> nadpisują szablon OU dla swoich członków. Jeśli użytkownik należy do wielu przypisanych grup, wygrywa przypisanie <strong>ostatnio zaktualizowane</strong>.</li>
+<li><strong>Self-service</strong> - własny wybór użytkownika wygrywa z każdym przypisaniem, <strong>chyba że</strong> zwycięskie przypisanie ma włączone <strong>Nadpisuj self-service</strong>.</li>
+</ol>
+<p>Gdy przypisanie wypiera inne dla danego użytkownika, wiersz wyniku zadania odnotowuje to („nadpisano N innych przypisań dla tego użytkownika"), więc konflikty możesz audytować na stronach <a href="/pl/docs/logs">logów</a>.</p>
+<aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Wskazówka</p><div class="callout-body">
+<p>Sprawdzony wzorzec: jedno przypisanie dla wszystkich jako firmowy domyślny podpis, przypisania OU per kraj lub marka, przypisania grup dla wyjątków (kampania sprzedażowa, zarząd). Warstwy załatwiają resztę.</p>
+</div></aside>
+<h2 id="tryby-aliasw">Tryby aliasów<a class="h-anchor" href="#tryby-aliasw" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Każde przypisanie ma ustawienie <strong>Aliasy</strong>, które decyduje, na które adresy trafia podpis. Zapisywanie aliasów wymaga opcjonalnego zakresu <code>gmail.settings.sharing</code> - zobacz <a href="/pl/docs/domain-wide-delegation#what-exactly-do-i-authorize">Domain-Wide Delegation</a>.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Tryb</th><th scope="col">Zachowanie</th></tr></thead>
+<tbody>
+<tr><td><strong>Wyłączone</strong> (domyślnie)</td><td>Podpis trafia tylko na adres główny każdego użytkownika. Aliasy send-as pozostają nietknięte.</td></tr>
+<tr><td><strong>Adresy z grupy</strong></td><td>Tylko przypisania grup. Podpis trafia dokładnie na adresy wymienione w grupie: członek dodany aliasem dostaje go tylko na tym aliasie, a dodany adresem głównym - tylko na adresie głównym. Aliasy spoza grupy nigdy nie są zmieniane.</td></tr>
+<tr><td><strong>Wszystkie aliasy</strong></td><td>Każdy użytkownik dostaje podpis na adresie głównym i na każdym posiadanym aliasie send-as. Posiadane aliasy, które nie są jeszcze skonfigurowane jako wpisy send-as, są najpierw tworzone.</td></tr>
+</tbody>
+</table></div>
+<p>Uwagi o zachowaniu:</p>
+<ul>
+<li>W trybie <strong>Wszystkie aliasy</strong> adresy zewnętrzne i aliasy nieedytowalne nigdy nie są tworzone automatycznie; świeżo utworzony wpis send-as, który Gmail raportuje jako oczekujący na weryfikację, jest pomijany do czasu weryfikacji.</li>
+<li><code>{{email}}</code> i <code>{{domain}}</code> rozwiązują się do zapisywanego <strong>aliasu</strong>, więc podpisy aliasów pokazują właściwy adres. Wszystkie pozostałe zmienne pochodzą z rekordu właściciela skrzynki.</li>
+<li>Każdy zapis aliasu dostaje własny wiersz w wynikach zadania, więc <a href="/pl/docs/verify-assignments">weryfikacja</a> pokazuje dokładnie, które adresy zostały podpisane, a które pominięte.</li>
+<li>Podpisy self-service są zawsze stosowane również na zaakceptowanych aliasach użytkownika.</li>
+</ul>
+<h2 id="nadpisuj-self-service">Nadpisuj self-service<a class="h-anchor" href="#nadpisuj-self-service" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Przełącznik <strong>Nadpisuj self-service</strong>, ustawiany per przypisanie, sprawia, że przypisanie wygrywa z własnymi wyborami self-service użytkowników. Wiersz pokazuje wtedy odznakę „nadpisuje self-service". Używaj go dla podpisów krytycznych pod kątem zgodności (zastrzeżenia prawne), gdzie indywidualna personalizacja jest niedopuszczalna.</p>
+<h2 id="gdy-cele-znikaj">Gdy cele znikają<a class="h-anchor" href="#gdy-cele-znikaj" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Jeśli przypisana grupa lub OU zostanie usunięta w Google Workspace, najbliższa synchronizacja oznacza przypisanie odznaką „nie znaleziono w Workspace", pomija cel, powiadamia administratorów (w aplikacji + e-mailem, raz na serię niepowodzeń) i ponawia próbę przy kolejnych synchronizacjach. Popraw cel w panelu edycji albo usuń przypisanie. Zobacz <a href="/pl/docs/verify-assignments#what-the-per-user-rows-tell-you">Zweryfikuj zadanie przypisania</a>.</p>
+<h2 id="edycja-i-usuwanie">Edycja i usuwanie<a class="h-anchor" href="#edycja-i-usuwanie" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Wiersze edytuje się w miejscu (szablon, wartość celu, zakres, tryb aliasów, nadpisywanie). Usunięcie przypisania kończy zarządzanie objętymi nim użytkownikami - już zastosowane podpisy pozostają w Gmail, dopóki coś innego (inne przypisanie, self-service albo szablon domyślny) nie nadpisze ich przy późniejszej synchronizacji.</p>
+      </article>
+<nav class="docs-pager" aria-label="Stronicowanie">
+<a class="pager-card pager-prev" href="/pl/docs/template-variables" rel="prev">
+      <span class="pager-label">Poprzednia</span>
+      <span class="pager-title">Zmienne szablonów</span>
+    </a>
+<a class="pager-card pager-next" href="/pl/docs/apply-jobs" rel="next">
+      <span class="pager-label">Następna</span>
+      <span class="pager-title">Zadania zastosowania</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Informacje prawne</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Na tej stronie">
+      <nav>
+        <p class="docs-toc-title">Na tej stronie</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#rodzaje-celw">Rodzaje celów</a></li>
+        <li class="toc-l2"><a href="#jak-dziaa-pierwszestwo">Jak działa pierwszeństwo</a></li>
+        <li class="toc-l2"><a href="#tryby-aliasw">Tryby aliasów</a></li>
+        <li class="toc-l2"><a href="#nadpisuj-self-service">Nadpisuj self-service</a></li>
+        <li class="toc-l2"><a href="#gdy-cele-znikaj">Gdy cele znikają</a></li>
+        <li class="toc-l2"><a href="#edycja-i-usuwanie">Edycja i usuwanie</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Przeszukaj dokumentację" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Przeszukaj dokumentację" autocomplete="off" spellcheck="false" aria-label="Przeszukaj dokumentację" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Zamknij wyszukiwarkę">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Brak wyników. Spróbuj innych słów kluczowych albo napisz na <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>
