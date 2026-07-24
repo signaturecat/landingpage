@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/user-management" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/user-management" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/user-management" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/user-management" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -215,7 +208,7 @@
 <p><strong>Superadmini</strong> Workspace zawsze mają poziom Admin. Jest to egzekwowane przy każdym logowaniu i nie da się tego odebrać w SignatureCat - aby to zmienić, zmień ich status administratora w samym Google Workspace.</p>
 </div></aside>
 <h2 id="kto-moe-si-logowa">Kto może się logować?<a class="h-anchor" href="#kto-moe-si-logowa" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Logowanie odbywa się wyłącznie przez Google i wymaga konta Google Workspace w Twojej domenie. Gdy próbuje ktoś bez dostępu, widzi: „Twoje konto nie ma jeszcze dostępu do SignatureCat. Poproś superadmina Workspace o nadanie dostępu, a następnie zaloguj się ponownie." - i nic w Twoim workspace się nie zmienia.</p>
+<p>Logowanie odbywa się wyłącznie przez Google i wymaga konta Google Workspace w Twojej domenie. Gdy próbuje ktoś bez dostępu, widzi: "Twoje konto nie ma jeszcze dostępu do SignatureCat. Poproś superadmina Workspace o nadanie dostępu, a następnie zaloguj się ponownie." - i nic w Twoim workspace się nie zmienia.</p>
 <p>Sesje trwają do 7 dni nieaktywności z twardym limitem 14 dni, potem potrzebne jest ponowne zalogowanie przez Google jednym kliknięciem.</p>
 <h2 id="nadaj-dostp-pojedynczemu-uytkownikowi">Nadaj dostęp pojedynczemu użytkownikowi<a class="h-anchor" href="#nadaj-dostp-pojedynczemu-uytkownikowi" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
@@ -223,7 +216,7 @@
 <li>Na karcie <strong>Użytkownik</strong> wpisz adres e-mail (musi należeć do Twojego Workspace, łącznie z domenami wtórnymi).</li>
 <li>Wybierz poziom dostępu i kliknij <strong>Zapisz dostęp</strong>.</li>
 </ol>
-<p>Użytkownik otrzymuje e-mail z zaproszeniem „Masz teraz dostęp do signature.cat".</p>
+<p>Użytkownik otrzymuje e-mail z zaproszeniem "Masz teraz dostęp do signature.cat".</p>
 <p>Bezpośredni grant użytkownika zawsze <strong>nadpisuje</strong> grant grupowy dla tej osoby - nawet jeśli grant grupowy jest silniejszy.</p>
 <h2 id="nadaj-dostp-caej-grupie-google">Nadaj dostęp całej grupie Google<a class="h-anchor" href="#nadaj-dostp-caej-grupie-google" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
@@ -239,7 +232,7 @@
 <h2 id="odbieranie-i-zmiana-dostpu">Odbieranie i zmiana dostępu<a class="h-anchor" href="#odbieranie-i-zmiana-dostpu" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
 <li>Granty edytujesz i usuwasz z tej samej strony. Usunięcie grantu blokuje następne logowanie; nie usuwa podpisu, który jest już zastosowany w skrzynce.</li>
-<li>Nie możesz zmienić ani odebrać <strong>własnego</strong> dostępu - musi to zrobić inny administrator (interfejs pokazuje odznakę „To Ty" zamiast kontrolek).</li>
+<li>Nie możesz zmienić ani odebrać <strong>własnego</strong> dostępu - musi to zrobić inny administrator (interfejs pokazuje odznakę "To Ty" zamiast kontrolek).</li>
 <li>Poziomy dostępu kontrolują wyłącznie aplikację SignatureCat. Nie mają żadnego wpływu na konto Google użytkownika.</li>
 </ul>
 <h2 id="pozwl-uytkownikom-zarzdza-wasnym-podpisem">Pozwól użytkownikom zarządzać własnym podpisem<a class="h-anchor" href="#pozwl-uytkownikom-zarzdza-wasnym-podpisem" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
@@ -258,7 +251,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/user-management" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/user-management" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/user-management" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/user-management" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

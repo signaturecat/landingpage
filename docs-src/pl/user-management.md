@@ -31,7 +31,7 @@ Kilka praktycznych konsekwencji:
 
 ## Kto może się logować?
 
-Logowanie odbywa się wyłącznie przez Google i wymaga konta Google Workspace w Twojej domenie. Gdy próbuje ktoś bez dostępu, widzi: „Twoje konto nie ma jeszcze dostępu do SignatureCat. Poproś superadmina Workspace o nadanie dostępu, a następnie zaloguj się ponownie." - i nic w Twoim workspace się nie zmienia.
+Logowanie odbywa się wyłącznie przez Google i wymaga konta Google Workspace w Twojej domenie. Gdy próbuje ktoś bez dostępu, widzi: "Twoje konto nie ma jeszcze dostępu do SignatureCat. Poproś superadmina Workspace o nadanie dostępu, a następnie zaloguj się ponownie." - i nic w Twoim workspace się nie zmienia.
 
 Sesje trwają do 7 dni nieaktywności z twardym limitem 14 dni, potem potrzebne jest ponowne zalogowanie przez Google jednym kliknięciem.
 
@@ -41,7 +41,7 @@ Sesje trwają do 7 dni nieaktywności z twardym limitem 14 dni, potem potrzebne 
 2. Na karcie **Użytkownik** wpisz adres e-mail (musi należeć do Twojego Workspace, łącznie z domenami wtórnymi).
 3. Wybierz poziom dostępu i kliknij **Zapisz dostęp**.
 
-Użytkownik otrzymuje e-mail z zaproszeniem „Masz teraz dostęp do signature.cat".
+Użytkownik otrzymuje e-mail z zaproszeniem "Masz teraz dostęp do signature.cat".
 
 Bezpośredni grant użytkownika zawsze **nadpisuje** grant grupowy dla tej osoby - nawet jeśli grant grupowy jest silniejszy.
 
@@ -59,7 +59,7 @@ Bezpośredni grant użytkownika zawsze **nadpisuje** grant grupowy dla tej osoby
 ## Odbieranie i zmiana dostępu
 
 - Granty edytujesz i usuwasz z tej samej strony. Usunięcie grantu blokuje następne logowanie; nie usuwa podpisu, który jest już zastosowany w skrzynce.
-- Nie możesz zmienić ani odebrać **własnego** dostępu - musi to zrobić inny administrator (interfejs pokazuje odznakę „To Ty" zamiast kontrolek).
+- Nie możesz zmienić ani odebrać **własnego** dostępu - musi to zrobić inny administrator (interfejs pokazuje odznakę "To Ty" zamiast kontrolek).
 - Poziomy dostępu kontrolują wyłącznie aplikację SignatureCat. Nie mają żadnego wpływu na konto Google użytkownika.
 
 ## Pozwól użytkownikom zarządzać własnym podpisem

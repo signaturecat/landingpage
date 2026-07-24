@@ -25,7 +25,7 @@ Dans le même portail Stripe, vous pouvez modifier le **nom légal de la sociét
 
 ## Vérifier l'état de votre abonnement
 
-La section Facturation sur [Paramètres](https://app.signature.cat/settings) affiche l'état de l'abonnement (Active, Période d'essai, En retard, Annulée), le nombre actuel d'utilisateurs actifs et la date de renouvellement (« Actif jusqu'au ... »).
+La section Facturation sur [Paramètres](https://app.signature.cat/settings) affiche l'état de l'abonnement (Active, Période d'essai, En retard, Annulée), le nombre actuel d'utilisateurs actifs et la date de renouvellement ("Actif jusqu'au ...").
 
 ## Annuler l'abonnement
 

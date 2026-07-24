@@ -178,13 +178,6 @@
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Sprache">
-        <p class="docs-nav-label">Sprache</p>
-        <a href="/docs/domain-wide-delegation" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/domain-wide-delegation" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/domain-wide-delegation" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
-        <a href="/fr/docs/domain-wide-delegation" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -211,12 +204,12 @@
 <h2 id="ist-die-client-id-stabil">Ist die Client-ID stabil?<a class="h-anchor" href="#ist-die-client-id-stabil" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Ja. SignatureCat rotiert seine Service-Konto-Schlüssel aus Sicherheitsgründen automatisch, aber die Rotation erzeugt einen neuen Schlüssel auf <strong>demselben</strong> Service-Konto - die numerische Client-ID ändert sich nie. Sie müssen DWD wegen einer Schlüsselrotation nie neu autorisieren.</p>
 <h2 id="wie-schnell-wirkt-eine-neue-erteilung">Wie schnell wirkt eine neue Erteilung?<a class="h-anchor" href="#wie-schnell-wirkt-eine-neue-erteilung" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Google übernimmt DWD-Änderungen mit Verzögerung - meist Sekunden, gelegentlich bis zu etwa 30 Sekunden. Der Button <strong>Prüfen</strong> im Assistenten wartet dieses Fenster ab, bevor er einen Fehler meldet, sodass ein einziger Klick direkt nach der Autorisierung in der Regel gelingt. Eine gelbe „Wird übernommen"-Karte bedeutet genau das: Warten Sie einen Moment und prüfen Sie erneut.</p>
+<p>Google übernimmt DWD-Änderungen mit Verzögerung - meist Sekunden, gelegentlich bis zu etwa 30 Sekunden. Der Button <strong>Prüfen</strong> im Assistenten wartet dieses Fenster ab, bevor er einen Fehler meldet, sodass ein einziger Klick direkt nach der Autorisierung in der Regel gelingt. Eine gelbe "Wird übernommen"-Karte bedeutet genau das: Warten Sie einen Moment und prüfen Sie erneut.</p>
 <h2 id="was-passiert-wenn-dwd-entfernt-oder-ein-bereich-entzogen-wird">Was passiert, wenn DWD entfernt oder ein Bereich entzogen wird?<a class="h-anchor" href="#was-passiert-wenn-dwd-entfernt-oder-ein-bereich-entzogen-wird" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>SignatureCat prüft den DWD-Zustand vor jeder Synchronisierung. Wenn er bricht:</p>
 <ul>
 <li><strong>pausieren</strong> Signatur-Synchronisierungen sofort (nichts wird halb angewendet),</li>
-<li>Admins erhalten die In-App-Benachrichtigung „Domain-Wide Delegation-Zugriff verloren" und eine „Handlung erforderlich"-E-Mail,</li>
+<li>Admins erhalten die In-App-Benachrichtigung "Domain-Wide Delegation-Zugriff verloren" und eine "Handlung erforderlich"-E-Mail,</li>
 <li>die App leitet Admins zurück zum DWD-Assistenten.</li>
 </ul>
 <p>Die Neuerteilung des fehlenden Eintrags oder Bereichs und ein bestandenes <strong>Prüfen</strong> setzen alles fort - der Zustand heilt sich selbst, nichts muss neu aufgebaut werden. Um den Assistenten jederzeit wieder zu öffnen, nutzen Sie <strong>DWD-Assistent erneut ausführen</strong> in den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a>, Bereich Service-Konto.</p>
@@ -241,7 +234,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/domain-wide-delegation" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/domain-wide-delegation" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/domain-wide-delegation" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/domain-wide-delegation" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Rechtliches</a>
         </span>

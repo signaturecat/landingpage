@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/support-access" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/support-access" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/support-access" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/support-access" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -220,7 +213,7 @@
 <p>La transparence est intégrée :</p>
 <ul>
 <li>L'activation ou la désactivation de l'interrupteur est écrite dans le journal d'activité de votre compte, et les autres Admins reçoivent une notification dans l'application lorsque l'accès du support est activé.</li>
-<li>Chaque modification effectuée par notre équipe apparaît dans le journal d'activité dans <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a> sous le nom du collaborateur suivi de « (SignatureCat Support) » - la même piste que celle des modifications de vos propres administrateurs.</li>
+<li>Chaque modification effectuée par notre équipe apparaît dans le journal d'activité dans <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a> sous le nom du collaborateur suivi de "(SignatureCat Support)" - la même piste que celle des modifications de vos propres administrateurs.</li>
 <li>Ces entrées font partie des données de votre compte, elles sont donc incluses dans les exports de données.</li>
 </ul>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Astuce</p><div class="callout-body">
@@ -241,7 +234,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/support-access" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/support-access" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/support-access" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/support-access" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

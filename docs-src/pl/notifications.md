@@ -39,7 +39,7 @@ Ikona dzwonka w górnej nawigacji (poziomy Admin i Editor) zbiera powiadomienia 
 | Okres próbny wkrótce się kończy | Ostrzeżenie | Około 3 dni przed końcem okresu próbnego. |
 | Płatność nie przeszła | Błąd | Obciążenie nie powiodło się; trwa okno karencji. |
 
-Poza dzwonkiem w aplikacji mogą pojawić się dwa banery: bursztynowy **baner okresu próbnego** w jego ostatnich dniach oraz czerwony **baner płatności** („Zaktualizuj kartę do {date}, inaczej zarządzanie podpisami zostanie wstrzymane") w oknie karencji płatności.
+Poza dzwonkiem w aplikacji mogą pojawić się dwa banery: bursztynowy **baner okresu próbnego** w jego ostatnich dniach oraz czerwony **baner płatności** ("Zaktualizuj kartę do {date}, inaczej zarządzanie podpisami zostanie wstrzymane") w oknie karencji płatności.
 
 ## Zalecana konfiguracja
 

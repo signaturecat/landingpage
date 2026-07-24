@@ -24,9 +24,9 @@ Zwei Schalter machen Self-Service verfügbar:
 1. Unter [app.signature.cat](https://app.signature.cat) anmelden und **Meine Signatur** öffnen.
 2. Eine **Organisationsvorlage** aus dem Dropdown wählen. Eine Live-Vorschau rendert anhand des eigenen Directory-Datensatzes des Nutzers.
 3. Nutzer mit der Bearbeiten-Stufe können zu **Eigenes HTML** wechseln und das Markup anpassen, mit denselben verfügbaren [Variablen](/docs/template-variables/); **Auf Vorlage zurücksetzen** stellt das Original wieder her.
-4. Auf **Signatur speichern** klicken. Die Signatur wird sofort auf das Postfach des Nutzers angewendet („Gespeichert - auf Ihr Postfach angewendet"), einschließlich seiner akzeptierten send-as-Aliasse.
+4. Auf **Signatur speichern** klicken. Die Signatur wird sofort auf das Postfach des Nutzers angewendet ("Gespeichert - auf Ihr Postfach angewendet"), einschließlich seiner akzeptierten send-as-Aliasse.
 
-Ist das Dropdown leer, hat noch keine Vorlage Self-Service aktiviert: „Ihre Organisation hat noch keine Self-Service-Vorlagen veröffentlicht. Bitten Sie einen Admin, eine zu aktivieren."
+Ist das Dropdown leer, hat noch keine Vorlage Self-Service aktiviert: "Ihre Organisation hat noch keine Self-Service-Vorlagen veröffentlicht. Bitten Sie einen Admin, eine zu aktivieren."
 
 ## Wie Self-Service mit Zuweisungen zusammenspielt
 

@@ -20,7 +20,7 @@ Tous les documents légaux se trouvent sur [signature.cat/legal](https://signatu
 - SignatureCat est **hébergé dans l'UE** et conçu pour la conformité au RGPD (RODO).
 - L'application ne lit que les champs de l'annuaire nécessaires aux [variables de modèle](/docs/template-variables/) et n'écrit que les paramètres de signature Gmail - elle n'a aucun accès au contenu des e-mails.
 - Chaque client fonctionne sur un **compte de service isolé** ; les identifiants sont stockés dans un coffre de secrets et rotés automatiquement. Voir [Domain-Wide Delegation](/docs/domain-wide-delegation/) pour savoir exactement ce qui est autorisé.
-- Les préférences de cookies sur les sites web peuvent être modifiées à tout moment via le lien « Paramètres des cookies » dans le pied de page de [signature.cat](https://signature.cat/).
+- Les préférences de cookies sur les sites web peuvent être modifiées à tout moment via le lien "Paramètres des cookies" dans le pied de page de [signature.cat](https://signature.cat/).
 
 > [!NOTE]
 > Cette page est un aperçu pratique, pas un conseil juridique, et ne remplace pas les documents contraignants disponibles sur [signature.cat/legal](https://signature.cat/legal/).

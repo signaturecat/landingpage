@@ -36,7 +36,7 @@ Die vollständige Variablenliste, die Herkunft jedes Werts und die genauen Bedin
 
 ## Vorschau als echter Nutzer
 
-Der Vorschaubereich rendert die aufgelöste Signatur live, während Sie tippen. Nutzen Sie das Steuerelement **Rendern als**, um den Directory-Datensatz eines beliebigen echten Nutzers einzusetzen - standardmäßig wird anhand Ihres eigenen gerendert. Die Vorschau sagt Ihnen genau, welcher Datensatz verwendet wurde: „Gerendert anhand der Directory-Daten von {email}."
+Der Vorschaubereich rendert die aufgelöste Signatur live, während Sie tippen. Nutzen Sie das Steuerelement **Rendern als**, um den Directory-Datensatz eines beliebigen echten Nutzers einzusetzen - standardmäßig wird anhand Ihres eigenen gerendert. Die Vorschau sagt Ihnen genau, welcher Datensatz verwendet wurde: "Gerendert anhand der Directory-Daten von {email}."
 
 ## Auf dem eigenen Postfach testen
 

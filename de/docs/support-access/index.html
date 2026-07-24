@@ -178,13 +178,6 @@
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Sprache">
-        <p class="docs-nav-label">Sprache</p>
-        <a href="/docs/support-access" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/support-access" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/support-access" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
-        <a href="/fr/docs/support-access" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -220,7 +213,7 @@
 <p>Transparenz ist eingebaut:</p>
 <ul>
 <li>Das Ein- oder Ausschalten des Schalters wird in das Aktivitätsprotokoll Ihres Kontos geschrieben, und die anderen Admins erhalten eine In-App-Benachrichtigung, wenn der Support-Zugriff aktiviert wird.</li>
-<li>Jede Änderung unseres Teams erscheint im Aktivitätsprotokoll in den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a> als Name des Mitarbeiters gefolgt von „(SignatureCat Support)" - derselbe Verlauf, in den auch die Änderungen Ihrer eigenen Admins gehen.</li>
+<li>Jede Änderung unseres Teams erscheint im Aktivitätsprotokoll in den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a> als Name des Mitarbeiters gefolgt von "(SignatureCat Support)" - derselbe Verlauf, in den auch die Änderungen Ihrer eigenen Admins gehen.</li>
 <li>Diese Einträge sind Teil Ihrer Kontodaten und daher in Datenexporten enthalten.</li>
 </ul>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tipp</p><div class="callout-body">
@@ -241,7 +234,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/support-access" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/support-access" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/support-access" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/support-access" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Rechtliches</a>
         </span>

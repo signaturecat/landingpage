@@ -24,9 +24,9 @@ Self-service udostępniają dwa przełączniki:
 1. Loguje się na [app.signature.cat](https://app.signature.cat) i otwiera **Mój podpis**.
 2. Wybiera **Szablon organizacji** z listy. Podgląd na żywo renderuje się na podstawie danych Directory tego użytkownika.
 3. Użytkownicy z poziomem edycji mogą przełączyć się na **Własny HTML** i dostosować kod, z tymi samymi dostępnymi [zmiennymi](/docs/template-variables/); **Przywróć szablon** przywraca oryginał.
-4. Klika **Zapisz podpis**. Podpis jest stosowany do skrzynki użytkownika od razu („Zapisano - zastosowano w Twojej skrzynce"), łącznie z jego zaakceptowanymi aliasami send-as.
+4. Klika **Zapisz podpis**. Podpis jest stosowany do skrzynki użytkownika od razu ("Zapisano - zastosowano w Twojej skrzynce"), łącznie z jego zaakceptowanymi aliasami send-as.
 
-Jeśli lista jest pusta, żaden szablon nie ma jeszcze włączonego self-service: „Twoja organizacja nie opublikowała jeszcze żadnych szablonów self-service. Poproś administratora o włączenie szablonu."
+Jeśli lista jest pusta, żaden szablon nie ma jeszcze włączonego self-service: "Twoja organizacja nie opublikowała jeszcze żadnych szablonów self-service. Poproś administratora o włączenie szablonu."
 
 ## Jak self-service współgra z przypisaniami
 

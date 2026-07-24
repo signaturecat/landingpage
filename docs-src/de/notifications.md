@@ -39,7 +39,7 @@ Das Glockensymbol in der oberen Navigation (Admins und Editoren) sammelt operati
 | Ihre Testphase endet bald | Warnung | Etwa 3 Tage vor Ende der Testphase. |
 | Zahlung fehlgeschlagen | Fehler | Eine Abbuchung schlug fehl; die Kulanzfrist läuft. |
 
-Neben der Glocke können zwei Banner in der App erscheinen: das gelbe **Testphasen-Banner** in den letzten Tagen der Testphase und das rote **Zahlungs-Banner** („Aktualisieren Sie Ihre Karte bis {date}, sonst wird die Signaturverwaltung pausiert") während der Kulanzfrist.
+Neben der Glocke können zwei Banner in der App erscheinen: das gelbe **Testphasen-Banner** in den letzten Tagen der Testphase und das rote **Zahlungs-Banner** ("Aktualisieren Sie Ihre Karte bis {date}, sonst wird die Signaturverwaltung pausiert") während der Kulanzfrist.
 
 ## Empfohlene Einrichtung
 

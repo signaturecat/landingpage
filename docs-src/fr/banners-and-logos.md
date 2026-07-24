@@ -16,7 +16,7 @@ SignatureCat conserve deux types d'images d'entreprise dans une bibliothèque pa
 3. Choisissez **Ajouter à la bibliothèque**, puis au choix :
    - **J'ai un lien** - collez l'URL HTTPS publique d'une image que vous hébergez déjà, ou
    - **Téléverser un fichier** - PNG ou JPG, 200 Ko recommandés (limite stricte de 5 Mo).
-4. Définissez éventuellement un nom dans la bibliothèque et un lien de clic (« Au clic, mène vers »), puis enregistrez. L'image est ajoutée à la bibliothèque et sélectionnée pour ce modèle.
+4. Définissez éventuellement un nom dans la bibliothèque et un lien de clic ("Au clic, mène vers"), puis enregistrez. L'image est ajoutée à la bibliothèque et sélectionnée pour ce modèle.
 
 > [!NOTE]
 > PNG et JPG uniquement - les fichiers SVG ne sont pas acceptés (mauvaise prise en charge par les clients mail et raisons de sécurité). La bibliothèque contient jusqu'à 200 images par type.
@@ -38,15 +38,15 @@ Le lien de clic accompagne l'**image de la bibliothèque**, pas le modèle : met
 | Logo | 115x115 px | Image carrée, un PNG avec transparence fonctionne le mieux. |
 | Bannière | 450x100 px (largeur max. 100%) | Exportez en 900x200 px pour un rendu HiDPI net, gardez le fichier sous 200 Ko. |
 
-Les images volumineuses ralentissent le rendu des e-mails et peuvent faire basculer les messages dans le territoire « message tronqué » de Gmail - gardez des fichiers légers.
+Les images volumineuses ralentissent le rendu des e-mails et peuvent faire basculer les messages dans le territoire "message tronqué" de Gmail - gardez des fichiers légers.
 
 ## Supprimer des images
 
-Supprimer une image de la bibliothèque la détache de chaque modèle qui l'avait sélectionnée - ces modèles reviennent à l'espace réservé. L'application vous avertit d'abord : « Cette image est utilisée dans N modèles. Après la suppression, elle ne s'y affichera plus - un espace réservé apparaîtra à la place. »
+Supprimer une image de la bibliothèque la détache de chaque modèle qui l'avait sélectionnée - ces modèles reviennent à l'espace réservé. L'application vous avertit d'abord : "Cette image est utilisée dans N modèles. Après la suppression, elle ne s'y affichera plus - un espace réservé apparaîtra à la place."
 
 > [!NOTE]
 > Les e-mails déjà envoyés conservent leurs images - la suppression n'affecte que les rendus futurs.
 
 ## D'où les images sont-elles servies
 
-Les images de la bibliothèque sont hébergées par défaut sur `images.signature.cat`. Pour les servir depuis votre propre sous-domaine (meilleure délivrabilité), voir [Servir les images depuis votre propre domaine](/docs/custom-image-domain/). Les images par URL externe (« J'ai un lien ») sont toujours chargées depuis l'endroit où vous les hébergez - elles doivent rester accessibles publiquement en HTTPS.
+Les images de la bibliothèque sont hébergées par défaut sur `images.signature.cat`. Pour les servir depuis votre propre sous-domaine (meilleure délivrabilité), voir [Servir les images depuis votre propre domaine](/docs/custom-image-domain/). Les images par URL externe ("J'ai un lien") sont toujours chargées depuis l'endroit où vous les hébergez - elles doivent rester accessibles publiquement en HTTPS.

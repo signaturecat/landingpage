@@ -7,14 +7,14 @@ updated: 2026-07-17
 
 # Uzyskaj pomoc
 
-Support jest dostępny e-mailowo pod adresem [contact@signature.cat](mailto:contact@signature.cat). Zanim napiszesz, szybka samodzielna diagnoza często daje odpowiedź szybciej - większość przypadków „podpisy przestały się stosować" to jedna z trzech znanych przyczyn.
+Support jest dostępny e-mailowo pod adresem [contact@signature.cat](mailto:contact@signature.cat). Zanim napiszesz, szybka samodzielna diagnoza często daje odpowiedź szybciej - większość przypadków "podpisy przestały się stosować" to jedna z trzech znanych przyczyn.
 
 ## Szybka samodzielna diagnoza
 
 1. **Czy to incydent platformy?** Sprawdź [status.signature.cat](https://status.signature.cat/) - incydenty i prace serwisowe są ogłaszane tam. Zobacz [Status usługi](/docs/service-status/).
 2. **Czy zadanie się nie powiodło?** Otwórz [Logi zadań](https://app.signature.cat/assignments/logs) i przejrzyj kody błędów per użytkownik - [Zweryfikuj zadanie przypisania](/docs/verify-assignments/#what-the-per-user-rows-tell-you) wyjaśnia każdy z nich wraz z rozwiązaniem.
-3. **Czy Domain-Wide Delegation jest sprawne?** Jeśli synchronizacje są wstrzymane, administratorzy będą mieć powiadomienie „Utracono dostęp Domain-Wide Delegation" - uruchom ponownie kreator z [Ustawień](https://app.signature.cat/settings). Zobacz [Domain-Wide Delegation](/docs/domain-wide-delegation/#what-happens-if-dwd-is-removed-or-a-scope-revoked).
-4. **Płatności wstrzymane?** Czerwony baner i status „Zaległa płatność" na stronie [Płatności](https://app.signature.cat/billing) oznaczają, że po nieudanej płatności minęło okno karencji - aktualizacja karty przywraca wszystko. Zobacz [Dane rozliczeniowe](/docs/billing-details/).
+3. **Czy Domain-Wide Delegation jest sprawne?** Jeśli synchronizacje są wstrzymane, administratorzy będą mieć powiadomienie "Utracono dostęp Domain-Wide Delegation" - uruchom ponownie kreator z [Ustawień](https://app.signature.cat/settings). Zobacz [Domain-Wide Delegation](/docs/domain-wide-delegation/#what-happens-if-dwd-is-removed-or-a-scope-revoked).
+4. **Płatności wstrzymane?** Czerwony baner i status "Zaległa płatność" na stronie [Płatności](https://app.signature.cat/billing) oznaczają, że po nieudanej płatności minęło okno karencji - aktualizacja karty przywraca wszystko. Zobacz [Dane rozliczeniowe](/docs/billing-details/).
 
 ## Pisanie do supportu
 

@@ -41,7 +41,7 @@ Quel que soit l'état de l'interrupteur, le personnel de SignatureCat ne peut pa
 La transparence est intégrée :
 
 - L'activation ou la désactivation de l'interrupteur est écrite dans le journal d'activité de votre compte, et les autres Admins reçoivent une notification dans l'application lorsque l'accès du support est activé.
-- Chaque modification effectuée par notre équipe apparaît dans le journal d'activité dans [Paramètres](https://app.signature.cat/settings) sous le nom du collaborateur suivi de « (SignatureCat Support) » - la même piste que celle des modifications de vos propres administrateurs.
+- Chaque modification effectuée par notre équipe apparaît dans le journal d'activité dans [Paramètres](https://app.signature.cat/settings) sous le nom du collaborateur suivi de "(SignatureCat Support)" - la même piste que celle des modifications de vos propres administrateurs.
 - Ces entrées font partie des données de votre compte, elles sont donc incluses dans les exports de données.
 
 > [!TIP]

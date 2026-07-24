@@ -15,7 +15,7 @@ Zuweisungen binden eine Vorlage an ein Ziel - eine Google-Gruppe, eine Organisat
 2. Geben Sie die **Gruppen-E-Mail** ein (zum Beispiel `engineering@example.com`).
 3. Wählen Sie die **Vorlage**.
 4. Aktivieren Sie optional **+ Untergruppen**, um Mitglieder verschachtelter Gruppen einzuschließen.
-5. Wählen Sie optional unter **Aliasse** einen Alias-Modus - siehe [Alias-Modi](/docs/assignments/#alias-modes) dazu, was „Adressen aus der Gruppe" und „Alle Aliasse" bewirken.
+5. Wählen Sie optional unter **Aliasse** einen Alias-Modus - siehe [Alias-Modi](/docs/assignments/#alias-modes) dazu, was "Adressen aus der Gruppe" und "Alle Aliasse" bewirken.
 
 ## Einer Organisationseinheit zuweisen
 
@@ -42,4 +42,4 @@ Passt ein Nutzer auf mehrere Zuweisungen, gewinnt genau eine: Gruppe schlägt OU
 Weiter: [Prüfen Sie den Zuweisungsauftrag](/docs/verify-assignments/), um zu bestätigen, dass alles angekommen ist.
 
 > [!NOTE]
-> Jedes Ziel kann nur eine Zuweisung tragen. Der Versuch, eine zweite für dieselbe Gruppe oder OU anzulegen, zeigt „Dieses Ziel hat bereits eine Zuweisung. Bearbeiten Sie den bestehenden Eintrag oder wählen Sie ein anderes Ziel."
+> Jedes Ziel kann nur eine Zuweisung tragen. Der Versuch, eine zweite für dieselbe Gruppe oder OU anzulegen, zeigt "Dieses Ziel hat bereits eine Zuweisung. Bearbeiten Sie den bestehenden Eintrag oder wählen Sie ein anderes Ziel."

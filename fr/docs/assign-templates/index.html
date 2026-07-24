@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/assign-templates" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/assign-templates" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/assign-templates" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/assign-templates" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -199,7 +192,7 @@
 <li>Saisissez l'<strong>E-mail du groupe</strong> (par exemple <code>engineering@example.com</code>).</li>
 <li>Choisissez le <strong>Modèle</strong>.</li>
 <li>Activez éventuellement <strong>+ sous-groupes</strong> pour inclure les membres des groupes imbriqués.</li>
-<li>Choisissez éventuellement un mode d'alias sous <strong>Alias</strong> - voir les <a href="/fr/docs/assignments#alias-modes">modes d'alias</a> pour comprendre ce que font « Adresses du groupe » et « Tous les alias ».</li>
+<li>Choisissez éventuellement un mode d'alias sous <strong>Alias</strong> - voir les <a href="/fr/docs/assignments#alias-modes">modes d'alias</a> pour comprendre ce que font "Adresses du groupe" et "Tous les alias".</li>
 </ol>
 <h2 id="affecter-une-unit-organisationnelle">Affecter à une unité organisationnelle<a class="h-anchor" href="#affecter-une-unit-organisationnelle" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
@@ -221,7 +214,7 @@
 <p>Si un utilisateur correspond à plusieurs affectations, une seule l'emporte : le groupe bat l'OU, l'OU bat l'affectation pour tous, et le choix <a href="/fr/docs/self-service">self-service</a> de l'utilisateur les bat toutes, sauf si l'affectation a <strong>Remplacer le self-service</strong> activé. Les règles précises sont dans la <a href="/fr/docs/assignments#how-precedence-works">référence des affectations</a>.</p>
 <p>Étape suivante : <a href="/fr/docs/verify-assignments">vérifiez la tâche d'affectation</a> pour confirmer que tout a bien été appliqué.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
-<p>Chaque cible ne peut contenir qu'une seule affectation. Tenter d'en créer une seconde pour le même groupe ou la même OU affiche « Cette cible a déjà une affectation. Modifiez l'entrée existante ou choisissez une autre cible. »</p>
+<p>Chaque cible ne peut contenir qu'une seule affectation. Tenter d'en créer une seconde pour le même groupe ou la même OU affiche "Cette cible a déjà une affectation. Modifiez l'entrée existante ou choisissez une autre cible."</p>
 </div></aside>
       </article>
 <nav class="docs-pager" aria-label="Pagination">
@@ -237,7 +230,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/assign-templates" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/assign-templates" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/assign-templates" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/assign-templates" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

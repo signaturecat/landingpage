@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal" aria-current="page">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/legal" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/legal" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/legal" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/legal" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -204,7 +197,7 @@
 <li>SignatureCat jest <strong>hostowany w UE</strong> i zbudowany z myślą o zgodności z RODO (GDPR).</li>
 <li>Aplikacja czyta wyłącznie pola katalogu potrzebne do <a href="/pl/docs/template-variables">zmiennych szablonów</a> i zapisuje wyłącznie ustawienia podpisu Gmail - nie ma dostępu do treści e-maili.</li>
 <li>Każdy klient działa na <strong>odizolowanym koncie usługi</strong>; poświadczenia są przechowywane w sejfie sekretów i rotowane automatycznie. Zobacz <a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a>, aby sprawdzić, co dokładnie jest autoryzowane.</li>
-<li>Preferencje cookies na stronach internetowych możesz zmienić w każdej chwili przez link „Ustawienia cookies" w stopce <a href="https://signature.cat/" target="_blank" rel="noopener">signature.cat</a>.</li>
+<li>Preferencje cookies na stronach internetowych możesz zmienić w każdej chwili przez link "Ustawienia cookies" w stopce <a href="https://signature.cat/" target="_blank" rel="noopener">signature.cat</a>.</li>
 </ul>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Uwaga</p><div class="callout-body">
 <p>Ta strona to przegląd dla wygody, a nie porada prawna - nie zastępuje wiążących dokumentów pod adresem <a href="https://signature.cat/legal" target="_blank" rel="noopener">signature.cat/legal</a>.</p>
@@ -220,7 +213,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/legal" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/legal" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/legal" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/legal" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

@@ -40,7 +40,7 @@ Google propaguje zmiany DWD z opóźnieniem - zwykle sekundy, sporadycznie do ok
 SignatureCat weryfikuje stan DWD przed każdą synchronizacją. Gdy coś się psuje:
 
 - synchronizacje podpisów są **natychmiast wstrzymywane** (nic nie zostaje zastosowane połowicznie),
-- administratorzy dostają w aplikacji powiadomienie „Utracono dostęp Domain-Wide Delegation" oraz e-mail „Wymagane działanie",
+- administratorzy dostają w aplikacji powiadomienie "Utracono dostęp Domain-Wide Delegation" oraz e-mail "Wymagane działanie",
 - aplikacja kieruje administratorów z powrotem do kreatora DWD.
 
 Ponowne nadanie brakującego wpisu lub zakresu i zaliczenie **Sprawdź** wznawia wszystko - stan naprawia się sam, niczego nie trzeba odbudowywać. Aby otworzyć kreator w dowolnym momencie, użyj **Uruchom ponownie kreator DWD** w [Ustawieniach](https://app.signature.cat/settings), w sekcji Konto usługi.

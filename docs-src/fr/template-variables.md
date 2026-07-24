@@ -25,7 +25,7 @@ Les valeurs proviennent de la fiche de chaque utilisateur dans votre annuaire Go
 | `{{address}}` | Adresse formatée | L'entrée d'adresse principale de l'utilisateur. |
 | `{{phone}}` | Numéro de téléphone | Le premier non vide parmi : professionnel, puis mobile, puis domicile. |
 
-**Les valeurs vides sont rendues comme du texte vide.** La signature ne casse jamais, mais vous pouvez vous retrouver avec une étiquette orpheline comme « Tél : » - c'est à cela que servent les blocs conditionnels.
+**Les valeurs vides sont rendues comme du texte vide.** La signature ne casse jamais, mais vous pouvez vous retrouver avec une étiquette orpheline comme "Tél :" - c'est à cela que servent les blocs conditionnels.
 
 ## Jetons d'image
 
@@ -37,7 +37,7 @@ Les valeurs proviennent de la fiche de chaque utilisateur dans votre annuaire Go
 Les images proviennent de la bibliothèque par espace de travail et sont sélectionnées par modèle ; si rien n'est sélectionné, un espace réservé neutre est rendu. Si l'image de la bibliothèque a un lien de clic, l'image y est enveloppée automatiquement. Voir [Bannières et logos](/docs/banners-and-logos/).
 
 > [!NOTE]
-> Les jetons d'image rendent toujours quelque chose (image ou espace réservé), ils ne comptent donc pas comme « vides » pour les blocs conditionnels ci-dessous.
+> Les jetons d'image rendent toujours quelque chose (image ou espace réservé), ils ne comptent donc pas comme "vides" pour les blocs conditionnels ci-dessous.
 
 ## Blocs conditionnels : del et delete
 

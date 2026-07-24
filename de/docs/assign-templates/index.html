@@ -178,13 +178,6 @@
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Sprache">
-        <p class="docs-nav-label">Sprache</p>
-        <a href="/docs/assign-templates" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/assign-templates" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/assign-templates" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
-        <a href="/fr/docs/assign-templates" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -199,7 +192,7 @@
 <li>Geben Sie die <strong>Gruppen-E-Mail</strong> ein (zum Beispiel <code>engineering@example.com</code>).</li>
 <li>Wählen Sie die <strong>Vorlage</strong>.</li>
 <li>Aktivieren Sie optional <strong>+ Untergruppen</strong>, um Mitglieder verschachtelter Gruppen einzuschließen.</li>
-<li>Wählen Sie optional unter <strong>Aliasse</strong> einen Alias-Modus - siehe <a href="/de/docs/assignments#alias-modes">Alias-Modi</a> dazu, was „Adressen aus der Gruppe" und „Alle Aliasse" bewirken.</li>
+<li>Wählen Sie optional unter <strong>Aliasse</strong> einen Alias-Modus - siehe <a href="/de/docs/assignments#alias-modes">Alias-Modi</a> dazu, was "Adressen aus der Gruppe" und "Alle Aliasse" bewirken.</li>
 </ol>
 <h2 id="einer-organisationseinheit-zuweisen">Einer Organisationseinheit zuweisen<a class="h-anchor" href="#einer-organisationseinheit-zuweisen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
@@ -221,7 +214,7 @@
 <p>Passt ein Nutzer auf mehrere Zuweisungen, gewinnt genau eine: Gruppe schlägt OU, OU schlägt die Zuweisung an alle, und die eigene <a href="/de/docs/self-service">Self-Service</a>-Wahl eines Nutzers schlägt sie alle, sofern die Zuweisung nicht <strong>Self-Service überschreiben</strong> aktiviert hat. Die genauen Regeln stehen in der <a href="/de/docs/assignments#how-precedence-works">Zuweisungen-Referenz</a>.</p>
 <p>Weiter: <a href="/de/docs/verify-assignments">Prüfen Sie den Zuweisungsauftrag</a>, um zu bestätigen, dass alles angekommen ist.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
-<p>Jedes Ziel kann nur eine Zuweisung tragen. Der Versuch, eine zweite für dieselbe Gruppe oder OU anzulegen, zeigt „Dieses Ziel hat bereits eine Zuweisung. Bearbeiten Sie den bestehenden Eintrag oder wählen Sie ein anderes Ziel."</p>
+<p>Jedes Ziel kann nur eine Zuweisung tragen. Der Versuch, eine zweite für dieselbe Gruppe oder OU anzulegen, zeigt "Dieses Ziel hat bereits eine Zuweisung. Bearbeiten Sie den bestehenden Eintrag oder wählen Sie ein anderes Ziel."</p>
 </div></aside>
       </article>
 <nav class="docs-pager" aria-label="Seitennavigation">
@@ -237,7 +230,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/assign-templates" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/assign-templates" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/assign-templates" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/assign-templates" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Rechtliches</a>
         </span>

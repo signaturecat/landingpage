@@ -33,14 +33,14 @@ Oui. SignatureCat effectue automatiquement la rotation des clés de son compte d
 
 ## En combien de temps une nouvelle autorisation prend-elle effet ?
 
-Google propage les changements DWD progressivement - en général quelques secondes, parfois jusqu'à environ 30 secondes. Le bouton **Vérifier** de l'assistant attend cette fenêtre avant de signaler un échec, un seul clic réussit donc en général juste après l'autorisation. Une carte jaune « propagation en cours » signifie exactement cela : patientez un instant et vérifiez à nouveau.
+Google propage les changements DWD progressivement - en général quelques secondes, parfois jusqu'à environ 30 secondes. Le bouton **Vérifier** de l'assistant attend cette fenêtre avant de signaler un échec, un seul clic réussit donc en général juste après l'autorisation. Une carte jaune "propagation en cours" signifie exactement cela : patientez un instant et vérifiez à nouveau.
 
 ## Que se passe-t-il si la DWD est retirée ou un scope révoqué ?
 
 SignatureCat vérifie la santé de la DWD avant chaque synchronisation. Quand elle casse :
 
 - les synchronisations de signatures se mettent **en pause** immédiatement (rien n'est appliqué à moitié),
-- les administrateurs reçoivent la notification dans l'application « Accès Domain-Wide Delegation perdu » et un e-mail « Action requise »,
+- les administrateurs reçoivent la notification dans l'application "Accès Domain-Wide Delegation perdu" et un e-mail "Action requise",
 - l'application redirige les administrateurs vers l'assistant DWD.
 
 Réaccorder l'entrée ou le scope manquant et passer **Vérifier** relance tout - l'état se rétablit de lui-même, rien n'a besoin d'être reconstruit. Pour rouvrir l'assistant à tout moment, utilisez **Relancer l'assistant DWD** dans [Paramètres](https://app.signature.cat/settings), section Compte de service.

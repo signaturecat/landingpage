@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/assignments" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/assignments" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/assignments" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/assignments" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -202,7 +195,7 @@
 <tr><td>Wszyscy</td><td>Wszyscy aktywni użytkownicy w Workspace</td><td>Maksymalnie <strong>jedno</strong> takie przypisanie na workspace.</td></tr>
 </tbody>
 </table></div>
-<p>Każdy cel może mieć tylko jedno przypisanie - utworzenie duplikatu jest odrzucane z komunikatem „Wskazany cel ma już przypisanie." Rodzaj celu jest stały po utworzeniu; aby zamienić przypisanie grupy na przypisanie OU, usuń je i utwórz na nowo.</p>
+<p>Każdy cel może mieć tylko jedno przypisanie - utworzenie duplikatu jest odrzucane z komunikatem "Wskazany cel ma już przypisanie." Rodzaj celu jest stały po utworzeniu; aby zamienić przypisanie grupy na przypisanie OU, usuń je i utwórz na nowo.</p>
 <p>Pojedynczy użytkownicy celowo nie są celem przypisań - pojedyncze osoby obejmiesz przez <a href="/pl/docs/self-service">self-service</a> albo jednorazowe <a href="/pl/docs/apply-jobs">zadanie zastosowania</a>.</p>
 <h2 id="jak-dziaa-pierwszestwo">Jak działa pierwszeństwo<a class="h-anchor" href="#jak-dziaa-pierwszestwo" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Użytkownicy często pasują do kilku przypisań. Każda synchronizacja wyznacza dokładnie <strong>jednego zwycięzcę per użytkownik</strong>, warstwa po warstwie, od dołu do góry:</p>
@@ -212,7 +205,7 @@
 <li><strong>Przypisania grup</strong> nadpisują szablon OU dla swoich członków. Jeśli użytkownik należy do wielu przypisanych grup, wygrywa przypisanie <strong>ostatnio zaktualizowane</strong>.</li>
 <li><strong>Self-service</strong> - własny wybór użytkownika wygrywa z każdym przypisaniem, <strong>chyba że</strong> zwycięskie przypisanie ma włączone <strong>Nadpisuj self-service</strong>.</li>
 </ol>
-<p>Gdy przypisanie wypiera inne dla danego użytkownika, wiersz wyniku zadania odnotowuje to („nadpisano N innych przypisań dla tego użytkownika"), więc konflikty możesz audytować na stronach <a href="/pl/docs/logs">logów</a>.</p>
+<p>Gdy przypisanie wypiera inne dla danego użytkownika, wiersz wyniku zadania odnotowuje to ("nadpisano N innych przypisań dla tego użytkownika"), więc konflikty możesz audytować na stronach <a href="/pl/docs/logs">logów</a>.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Wskazówka</p><div class="callout-body">
 <p>Sprawdzony wzorzec: jedno przypisanie dla wszystkich jako firmowy domyślny podpis, przypisania OU per kraj lub marka, przypisania grup dla wyjątków (kampania sprzedażowa, zarząd). Warstwy załatwiają resztę.</p>
 </div></aside>
@@ -234,9 +227,9 @@
 <li>Podpisy self-service są zawsze stosowane również na zaakceptowanych aliasach użytkownika.</li>
 </ul>
 <h2 id="nadpisuj-self-service">Nadpisuj self-service<a class="h-anchor" href="#nadpisuj-self-service" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Przełącznik <strong>Nadpisuj self-service</strong>, ustawiany per przypisanie, sprawia, że przypisanie wygrywa z własnymi wyborami self-service użytkowników. Wiersz pokazuje wtedy odznakę „nadpisuje self-service". Używaj go dla podpisów krytycznych pod kątem zgodności (zastrzeżenia prawne), gdzie indywidualna personalizacja jest niedopuszczalna.</p>
+<p>Przełącznik <strong>Nadpisuj self-service</strong>, ustawiany per przypisanie, sprawia, że przypisanie wygrywa z własnymi wyborami self-service użytkowników. Wiersz pokazuje wtedy odznakę "nadpisuje self-service". Używaj go dla podpisów krytycznych pod kątem zgodności (zastrzeżenia prawne), gdzie indywidualna personalizacja jest niedopuszczalna.</p>
 <h2 id="gdy-cele-znikaj">Gdy cele znikają<a class="h-anchor" href="#gdy-cele-znikaj" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Jeśli przypisana grupa lub OU zostanie usunięta w Google Workspace, najbliższa synchronizacja oznacza przypisanie odznaką „nie znaleziono w Workspace", pomija cel, powiadamia administratorów (w aplikacji + e-mailem, raz na serię niepowodzeń) i ponawia próbę przy kolejnych synchronizacjach. Popraw cel w panelu edycji albo usuń przypisanie. Zobacz <a href="/pl/docs/verify-assignments#what-the-per-user-rows-tell-you">Zweryfikuj zadanie przypisania</a>.</p>
+<p>Jeśli przypisana grupa lub OU zostanie usunięta w Google Workspace, najbliższa synchronizacja oznacza przypisanie odznaką "nie znaleziono w Workspace", pomija cel, powiadamia administratorów (w aplikacji + e-mailem, raz na serię niepowodzeń) i ponawia próbę przy kolejnych synchronizacjach. Popraw cel w panelu edycji albo usuń przypisanie. Zobacz <a href="/pl/docs/verify-assignments#what-the-per-user-rows-tell-you">Zweryfikuj zadanie przypisania</a>.</p>
 <h2 id="edycja-i-usuwanie">Edycja i usuwanie<a class="h-anchor" href="#edycja-i-usuwanie" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Wiersze edytuje się w miejscu (szablon, wartość celu, zakres, tryb aliasów, nadpisywanie). Usunięcie przypisania kończy zarządzanie objętymi nim użytkownikami - już zastosowane podpisy pozostają w Gmail, dopóki coś innego (inne przypisanie, self-service albo szablon domyślny) nie nadpisze ich przy późniejszej synchronizacji.</p>
       </article>
@@ -253,7 +246,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/assignments" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/assignments" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/assignments" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/assignments" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

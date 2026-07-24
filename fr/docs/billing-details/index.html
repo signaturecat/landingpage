@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/billing-details" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/billing-details" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/billing-details" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/billing-details" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -205,7 +198,7 @@
 <p>L'<strong>e-mail de facturation</strong> n'est volontairement pas modifiable dans le portail Stripe - changez-le dans <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a>, section Facturation, afin que l'application et Stripe restent toujours synchronisés. Voir <a href="/fr/docs/invoices#set-the-invoice-email">Factures</a>.</p>
 </div></aside>
 <h2 id="vrifier-ltat-de-votre-abonnement">Vérifier l'état de votre abonnement<a class="h-anchor" href="#vrifier-ltat-de-votre-abonnement" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>La section Facturation sur <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a> affiche l'état de l'abonnement (Active, Période d'essai, En retard, Annulée), le nombre actuel d'utilisateurs actifs et la date de renouvellement (« Actif jusqu'au ... »).</p>
+<p>La section Facturation sur <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a> affiche l'état de l'abonnement (Active, Période d'essai, En retard, Annulée), le nombre actuel d'utilisateurs actifs et la date de renouvellement ("Actif jusqu'au ...").</p>
 <h2 id="annuler-labonnement">Annuler l'abonnement<a class="h-anchor" href="#annuler-labonnement" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Dans <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a>, section Facturation, cliquez sur <strong>Annuler l'abonnement</strong>. L'accès continue jusqu'à la fin de la période de facturation en cours, puis la gestion des signatures s'arrête. Vos signatures Gmail ne sont pas supprimées - elles cessent simplement d'être gérées et mises à jour.</p>
 <aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Avertissement</p><div class="callout-body">
@@ -225,7 +218,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/billing-details" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/billing-details" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/billing-details" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/billing-details" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

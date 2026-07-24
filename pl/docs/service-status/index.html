@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/service-status" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/service-status" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/service-status" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/service-status" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -229,7 +222,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/service-status" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/service-status" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/service-status" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/service-status" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

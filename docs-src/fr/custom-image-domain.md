@@ -28,7 +28,7 @@ La configuration ne casse rien : tant que le domaine n'est pas actif, les images
 
 L'assistant affiche l'un des trois statuts : **En attente des enregistrements DNS**, **Domaine actif** ou **Vérification échouée**.
 
-Une fois actif : « Les nouveaux e-mails chargent les images depuis votre domaine. Les modèles restent inchangés - la bascule est automatique. »
+Une fois actif : "Les nouveaux e-mails chargent les images depuis votre domaine. Les modèles restent inchangés - la bascule est automatique."
 
 > [!NOTE]
 > Les e-mails déjà envoyés ne sont pas affectés - ils continuent de charger les images depuis l'URL avec laquelle ils ont été rendus.

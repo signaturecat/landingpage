@@ -7,14 +7,14 @@ updated: 2026-07-17
 
 # Hilfe erhalten
 
-Support gibt es per E-Mail an [contact@signature.cat](mailto:contact@signature.cat). Vor dem Schreiben führt ein kurzer Selbst-Check oft schneller zur Antwort - die meisten Fälle von „Signaturen werden nicht mehr angewendet" haben eine von drei bekannten Ursachen.
+Support gibt es per E-Mail an [contact@signature.cat](mailto:contact@signature.cat). Vor dem Schreiben führt ein kurzer Selbst-Check oft schneller zur Antwort - die meisten Fälle von "Signaturen werden nicht mehr angewendet" haben eine von drei bekannten Ursachen.
 
 ## Kurzer Selbst-Check
 
 1. **Ist es ein Plattform-Vorfall?** Prüfen Sie [status.signature.cat](https://status.signature.cat/) - Vorfälle und Wartungen werden dort angekündigt. Siehe [Dienststatus](/docs/service-status/).
 2. **Ist ein Auftrag fehlgeschlagen?** Öffnen Sie die [Aufgabenprotokolle](https://app.signature.cat/assignments/logs) und sehen Sie sich die Fehlercodes pro Nutzer an - [Einen Zuweisungsauftrag prüfen](/docs/verify-assignments/#what-the-per-user-rows-tell-you) erklärt jeden Code und seine Lösung.
-3. **Ist Domain-Wide Delegation intakt?** Sind Synchronisierungen pausiert, haben Admins eine Benachrichtigung „Domain-Wide Delegation-Zugriff verloren" - führen Sie den Assistenten aus den [Einstellungen](https://app.signature.cat/settings) erneut aus. Siehe [Domain-Wide Delegation](/docs/domain-wide-delegation/#what-happens-if-dwd-is-removed-or-a-scope-revoked).
-4. **Abrechnung pausiert?** Ein rotes Banner und der Status „Überfällig" auf [Abrechnung](https://app.signature.cat/billing) bedeuten, dass eine fehlgeschlagene Zahlung ihre Kulanzfrist überschritten hat - eine Kartenaktualisierung stellt alles wieder her. Siehe [Rechnungsdaten](/docs/billing-details/).
+3. **Ist Domain-Wide Delegation intakt?** Sind Synchronisierungen pausiert, haben Admins eine Benachrichtigung "Domain-Wide Delegation-Zugriff verloren" - führen Sie den Assistenten aus den [Einstellungen](https://app.signature.cat/settings) erneut aus. Siehe [Domain-Wide Delegation](/docs/domain-wide-delegation/#what-happens-if-dwd-is-removed-or-a-scope-revoked).
+4. **Abrechnung pausiert?** Ein rotes Banner und der Status "Überfällig" auf [Abrechnung](https://app.signature.cat/billing) bedeuten, dass eine fehlgeschlagene Zahlung ihre Kulanzfrist überschritten hat - eine Kartenaktualisierung stellt alles wieder her. Siehe [Rechnungsdaten](/docs/billing-details/).
 
 ## An den Support schreiben
 

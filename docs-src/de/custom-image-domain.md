@@ -28,7 +28,7 @@ Die Einrichtung macht nichts kaputt: Bis die Domain aktiv ist, werden Bilder wei
 
 Der Assistent zeigt einen von drei Status: **Wartet auf DNS-Einträge**, **Domain aktiv** oder **Verifizierung fehlgeschlagen**.
 
-Sobald aktiv: „Neue E-Mails laden Bilder von Ihrer Domain. Vorlagen bleiben unverändert - der Wechsel erfolgt automatisch."
+Sobald aktiv: "Neue E-Mails laden Bilder von Ihrer Domain. Vorlagen bleiben unverändert - der Wechsel erfolgt automatisch."
 
 > [!NOTE]
 > Bereits gesendete E-Mails sind nicht betroffen - sie laden Bilder weiterhin von der URL, mit der sie gerendert wurden.

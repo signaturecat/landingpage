@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/images" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/images" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/images" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/images" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -207,7 +200,7 @@
 <ul>
 <li><strong>Pliki wgrane do biblioteki</strong> są przechowywane przez SignatureCat i serwowane z <code>https://images.signature.cat/...</code> przez CDN z długotrwałym cache'owaniem.</li>
 <li>Ze zweryfikowaną <a href="/pl/docs/custom-image-domain">własną domeną obrazków</a> nowo renderowane podpisy serwują obrazki z biblioteki z Twojej subdomeny (na przykład <code>images.yourcompany.com</code>) - lepsza dostarczalność, ten sam magazyn.</li>
-<li><strong>Obrazki z zewnętrznych adresów URL</strong> („Mam link") są linkowane bezpośrednio stamtąd, gdzie je hostujesz. Muszą być publiczne i dostępne po HTTPS; najlepiej hostuj je na własnej domenie.</li>
+<li><strong>Obrazki z zewnętrznych adresów URL</strong> ("Mam link") są linkowane bezpośrednio stamtąd, gdzie je hostujesz. Muszą być publiczne i dostępne po HTTPS; najlepiej hostuj je na własnej domenie.</li>
 </ul>
 <aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Ważne</p><div class="callout-body">
 <p>Adresy URL obrazków są zapisywane na stałe w każdym wyrenderowanym podpisie. E-maile, które są już w skrzynkach odbiorców, wciąż pobierają adres, z którym zostały wysłane - dlatego SignatureCat nigdy nie usuwa plików źródłowych usuniętych wpisów biblioteki i dlatego zewnętrzny obrazek zdjęty z hostingu pokaże się jako uszkodzony w starych mailach.</p>
@@ -240,7 +233,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/images" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/images" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/images" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/images" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

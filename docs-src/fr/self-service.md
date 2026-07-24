@@ -24,9 +24,9 @@ Deux interrupteurs rendent le self-service disponible :
 1. Se connecter sur [app.signature.cat](https://app.signature.cat) et ouvrir **Ma signature**.
 2. Choisir un **Modèle de l'organisation** dans la liste déroulante. Un aperçu en direct est rendu à partir de la fiche Directory de l'utilisateur.
 3. Les utilisateurs avec le niveau d'édition peuvent passer en **HTML personnalisé** et ajuster le balisage, avec les mêmes [variables](/docs/template-variables/) disponibles ; **Réinitialiser au modèle** restaure l'original.
-4. Cliquer sur **Enregistrer la signature**. La signature est appliquée immédiatement à la boîte de l'utilisateur (« Enregistré - appliqué à votre boîte mail »), y compris à ses alias send-as acceptés.
+4. Cliquer sur **Enregistrer la signature**. La signature est appliquée immédiatement à la boîte de l'utilisateur ("Enregistré - appliqué à votre boîte mail"), y compris à ses alias send-as acceptés.
 
-Si la liste déroulante est vide, aucun modèle n'a encore le self-service activé : « Votre organisation n'a encore publié aucun modèle self-service. Demandez à un administrateur d'en activer un. »
+Si la liste déroulante est vide, aucun modèle n'a encore le self-service activé : "Votre organisation n'a encore publié aucun modèle self-service. Demandez à un administrateur d'en activer un."
 
 ## Comment le self-service interagit avec les affectations
 

@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/domain-wide-delegation" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/domain-wide-delegation" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/domain-wide-delegation" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/domain-wide-delegation" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -211,12 +204,12 @@
 <h2 id="lidentifiant-client-est-il-stable">L'identifiant client est-il stable ?<a class="h-anchor" href="#lidentifiant-client-est-il-stable" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Oui. SignatureCat effectue automatiquement la rotation des clés de son compte de service pour des raisons de sécurité, mais la rotation génère une nouvelle clé sur le <strong>même</strong> compte de service - l'identifiant client numérique ne change jamais. Vous n'aurez jamais à réautoriser la DWD à cause de la rotation des clés.</p>
 <h2 id="en-combien-de-temps-une-nouvelle-autorisation-prend-elle-effet">En combien de temps une nouvelle autorisation prend-elle effet ?<a class="h-anchor" href="#en-combien-de-temps-une-nouvelle-autorisation-prend-elle-effet" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Google propage les changements DWD progressivement - en général quelques secondes, parfois jusqu'à environ 30 secondes. Le bouton <strong>Vérifier</strong> de l'assistant attend cette fenêtre avant de signaler un échec, un seul clic réussit donc en général juste après l'autorisation. Une carte jaune « propagation en cours » signifie exactement cela : patientez un instant et vérifiez à nouveau.</p>
+<p>Google propage les changements DWD progressivement - en général quelques secondes, parfois jusqu'à environ 30 secondes. Le bouton <strong>Vérifier</strong> de l'assistant attend cette fenêtre avant de signaler un échec, un seul clic réussit donc en général juste après l'autorisation. Une carte jaune "propagation en cours" signifie exactement cela : patientez un instant et vérifiez à nouveau.</p>
 <h2 id="que-se-passe-t-il-si-la-dwd-est-retire-ou-un-scope-rvoqu">Que se passe-t-il si la DWD est retirée ou un scope révoqué ?<a class="h-anchor" href="#que-se-passe-t-il-si-la-dwd-est-retire-ou-un-scope-rvoqu" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>SignatureCat vérifie la santé de la DWD avant chaque synchronisation. Quand elle casse :</p>
 <ul>
 <li>les synchronisations de signatures se mettent <strong>en pause</strong> immédiatement (rien n'est appliqué à moitié),</li>
-<li>les administrateurs reçoivent la notification dans l'application « Accès Domain-Wide Delegation perdu » et un e-mail « Action requise »,</li>
+<li>les administrateurs reçoivent la notification dans l'application "Accès Domain-Wide Delegation perdu" et un e-mail "Action requise",</li>
 <li>l'application redirige les administrateurs vers l'assistant DWD.</li>
 </ul>
 <p>Réaccorder l'entrée ou le scope manquant et passer <strong>Vérifier</strong> relance tout - l'état se rétablit de lui-même, rien n'a besoin d'être reconstruit. Pour rouvrir l'assistant à tout moment, utilisez <strong>Relancer l'assistant DWD</strong> dans <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a>, section Compte de service.</p>
@@ -241,7 +234,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/domain-wide-delegation" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/domain-wide-delegation" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/domain-wide-delegation" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/domain-wide-delegation" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

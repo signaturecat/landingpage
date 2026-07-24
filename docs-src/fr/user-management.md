@@ -31,7 +31,7 @@ Quelques conséquences pratiques :
 
 ## Qui peut se connecter ?
 
-La connexion se fait uniquement via Google et nécessite un compte Google Workspace de votre domaine. Quand une personne sans accès essaie, elle voit : « Votre compte n'a pas encore accès à SignatureCat. Demandez à un super administrateur Workspace de vous accorder l'accès, puis reconnectez-vous. » - et rien n'est modifié dans votre espace de travail.
+La connexion se fait uniquement via Google et nécessite un compte Google Workspace de votre domaine. Quand une personne sans accès essaie, elle voit : "Votre compte n'a pas encore accès à SignatureCat. Demandez à un super administrateur Workspace de vous accorder l'accès, puis reconnectez-vous." - et rien n'est modifié dans votre espace de travail.
 
 Les sessions durent jusqu'à 7 jours d'inactivité avec un plafond strict de 14 jours, puis une reconnexion Google en un clic est nécessaire.
 
@@ -41,7 +41,7 @@ Les sessions durent jusqu'à 7 jours d'inactivité avec un plafond strict de 14 
 2. Sur l'onglet **Utilisateur**, saisissez l'adresse e-mail (elle doit appartenir à votre Workspace, domaines secondaires inclus).
 3. Choisissez un niveau d'accès et cliquez sur **Enregistrer l'accès**.
 
-L'utilisateur reçoit un e-mail d'invitation « Vous avez maintenant accès à signature.cat ».
+L'utilisateur reçoit un e-mail d'invitation "Vous avez maintenant accès à signature.cat".
 
 Un accès accordé directement à un utilisateur **remplace** toujours tout accès de groupe pour cette personne - même si l'accès de groupe est plus élevé.
 
@@ -59,7 +59,7 @@ Un accès accordé directement à un utilisateur **remplace** toujours tout acc�
 ## Retirer et modifier l'accès
 
 - Modifiez ou retirez les accès depuis la même page. Retirer un accès bloque la prochaine connexion ; cela ne retire pas une signature déjà appliquée à la boîte.
-- Vous ne pouvez pas modifier ni retirer **votre propre** accès - un autre administrateur doit le faire (l'interface affiche un badge « Vous » à la place des contrôles).
+- Vous ne pouvez pas modifier ni retirer **votre propre** accès - un autre administrateur doit le faire (l'interface affiche un badge "Vous" à la place des contrôles).
 - Les niveaux d'accès ne contrôlent que l'application SignatureCat. Ils n'ont aucun effet sur le compte Google de l'utilisateur.
 
 ## Laisser les utilisateurs gérer leur propre signature

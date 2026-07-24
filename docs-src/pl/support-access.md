@@ -41,7 +41,7 @@ Niezależnie od przełącznika pracownicy SignatureCat nie mogą:
 Przejrzystość jest wbudowana:
 
 - Włączenie i wyłączenie przełącznika jest zapisywane w dzienniku aktywności Twojego konta, a pozostali Administratorzy dostają powiadomienie w aplikacji, gdy dostęp dla supportu zostaje włączony.
-- Każda zmiana wykonana przez nasz zespół pojawia się w dzienniku aktywności w [Ustawieniach](https://app.signature.cat/settings) jako imię i nazwisko pracownika z dopiskiem „(SignatureCat Support)" - to ten sam ślad, do którego trafiają zmiany Twoich własnych administratorów.
+- Każda zmiana wykonana przez nasz zespół pojawia się w dzienniku aktywności w [Ustawieniach](https://app.signature.cat/settings) jako imię i nazwisko pracownika z dopiskiem "(SignatureCat Support)" - to ten sam ślad, do którego trafiają zmiany Twoich własnych administratorów.
 - Te wpisy są częścią danych Twojego konta, więc są uwzględniane w eksportach danych.
 
 > [!TIP]

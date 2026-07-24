@@ -20,7 +20,7 @@ Wszystkie dokumenty prawne znajdują się pod adresem [signature.cat/legal](http
 - SignatureCat jest **hostowany w UE** i zbudowany z myślą o zgodności z RODO (GDPR).
 - Aplikacja czyta wyłącznie pola katalogu potrzebne do [zmiennych szablonów](/docs/template-variables/) i zapisuje wyłącznie ustawienia podpisu Gmail - nie ma dostępu do treści e-maili.
 - Każdy klient działa na **odizolowanym koncie usługi**; poświadczenia są przechowywane w sejfie sekretów i rotowane automatycznie. Zobacz [Domain-Wide Delegation](/docs/domain-wide-delegation/), aby sprawdzić, co dokładnie jest autoryzowane.
-- Preferencje cookies na stronach internetowych możesz zmienić w każdej chwili przez link „Ustawienia cookies" w stopce [signature.cat](https://signature.cat/).
+- Preferencje cookies na stronach internetowych możesz zmienić w każdej chwili przez link "Ustawienia cookies" w stopce [signature.cat](https://signature.cat/).
 
 > [!NOTE]
 > Ta strona to przegląd dla wygody, a nie porada prawna - nie zastępuje wiążących dokumentów pod adresem [signature.cat/legal](https://signature.cat/legal/).

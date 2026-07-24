@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/images" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/images" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/images" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/images" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -207,7 +200,7 @@
 <ul>
 <li><strong>Les téléversements dans la bibliothèque</strong> sont stockés par SignatureCat et servis depuis <code>https://images.signature.cat/...</code> via un CDN avec une mise en cache de longue durée.</li>
 <li>Avec un <a href="/fr/docs/custom-image-domain">domaine d'images personnalisé</a> vérifié, les signatures nouvellement rendues servent les images de la bibliothèque depuis votre sous-domaine (par exemple <code>images.yourcompany.com</code>) - meilleure délivrabilité, même stockage.</li>
-<li><strong>Les images par URL externe</strong> (« J'ai un lien ») sont chargées directement depuis l'endroit où vous les hébergez. Elles doivent être publiques et en HTTPS ; hébergez-les idéalement sur votre propre domaine.</li>
+<li><strong>Les images par URL externe</strong> ("J'ai un lien") sont chargées directement depuis l'endroit où vous les hébergez. Elles doivent être publiques et en HTTPS ; hébergez-les idéalement sur votre propre domaine.</li>
 </ul>
 <aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Important</p><div class="callout-body">
 <p>Les URL d'images sont figées dans chaque signature rendue. Les e-mails déjà présents dans les boîtes des destinataires continuent de charger l'URL avec laquelle ils ont été envoyés - c'est pourquoi SignatureCat ne supprime jamais les fichiers sous-jacents des images retirées de la bibliothèque, et pourquoi une image externe que vous mettez hors ligne apparaîtra cassée dans les anciens e-mails.</p>
@@ -240,7 +233,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/images" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/images" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/images" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/images" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

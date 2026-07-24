@@ -36,7 +36,7 @@ La liste complète des variables, l'origine de chaque valeur et les règles cond
 
 ## Prévisualiser comme un utilisateur réel
 
-Le volet d'aperçu rend la signature résolue en direct pendant que vous tapez. Utilisez le contrôle **Rendre comme** pour substituer la fiche Directory de n'importe quel utilisateur réel - par défaut, le rendu s'appuie sur la vôtre. L'aperçu vous indique exactement quelle fiche a été utilisée : « Rendu à partir des données Directory de {email}. »
+Le volet d'aperçu rend la signature résolue en direct pendant que vous tapez. Utilisez le contrôle **Rendre comme** pour substituer la fiche Directory de n'importe quel utilisateur réel - par défaut, le rendu s'appuie sur la vôtre. L'aperçu vous indique exactement quelle fiche a été utilisée : "Rendu à partir des données Directory de {email}."
 
 ## Le tester sur votre propre boîte
 
