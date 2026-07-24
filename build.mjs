@@ -314,6 +314,20 @@ for (const loc of SUPPORTED) {
 const outputs = {};
 for (const loc of SUPPORTED) outputs[loc] = render(SRC, loc, I18N);
 
+// Forbidden-character guard (PM 2026-07-23 - same rule as build-docs.mjs):
+// no AI-tell dashes, no invisible/bidi characters, and no typographic double
+// quotes (guillemets, low-9, curly) in SERVED pages - rendered copy uses the
+// plain keyboard '"' only. Apostrophes (') stay allowed.
+const FORBIDDEN =
+  /[\u2012\u2013\u2014\u2015\u200B\u200C\u200D\u2060\uFEFF\u00A0\u202F\u00AD\u200E\u200F\u00AB\u00BB\u201C\u201D\u201E\u201F]/;
+for (const loc of SUPPORTED) {
+  const m = outputs[loc].match(FORBIDDEN);
+  if (m) {
+    const cp = m[0].codePointAt(0).toString(16).toUpperCase().padStart(4, '0');
+    throw new Error(`landing ${loc}: forbidden character U+${cp} in output`);
+  }
+}
+
 // idempotency: re-rendering an output must be a no-op
 for (const loc of SUPPORTED) {
   if (render(outputs[loc], loc, I18N) !== outputs[loc]) {

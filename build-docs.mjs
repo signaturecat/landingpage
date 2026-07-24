@@ -776,8 +776,14 @@ function llmsFullTxt(pages) {
   return `SignatureCat documentation (full content). Index: ${BASE}/llms.txt\n\n${'='.repeat(72)}\n\n${parts.join(`\n\n${'='.repeat(72)}\n\n`)}\n`;
 }
 
-/* ---- forbidden-character guard (same rule as the landing copy) -------------------- */
-const FORBIDDEN = /[–—​‌‍⁠﻿  ­‎‏]/;
+/* ---- forbidden-character guard (same rule as the landing copy) --------------------
+   Explicit escapes (PM 2026-07-23; previously literal characters - invisible
+   in editors and grep-hostile): em/en/figure dashes + horizontal bar,
+   zero-width and bidi controls, BOM, (narrow) no-break space, soft hyphen,
+   and ALL typographic double quotes (guillemets, low-9, curly) - rendered
+   copy uses plain keyboard '"' only. Apostrophes (') stay allowed. */
+const FORBIDDEN =
+  /[\u2012\u2013\u2014\u2015\u200B\u200C\u200D\u2060\uFEFF\u00A0\u202F\u00AD\u200E\u200F\u00AB\u00BB\u201C\u201D\u201E\u201F]/;
 function assertClean(name, html) {
   const m = html.match(FORBIDDEN);
   if (m) {
