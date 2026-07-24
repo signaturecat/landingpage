@@ -74,6 +74,7 @@ const SECTION_NAMES = {
   Billing: { en: 'Billing', pl: 'Rozliczenia', de: 'Abrechnung', fr: 'Facturation' },
   Reference: { en: 'Reference', pl: 'Referencja', de: 'Referenz', fr: 'Référence' },
   Support: { en: 'Support', pl: 'Wsparcie', de: 'Support', fr: 'Assistance' },
+  "What's new": { en: "What's new", pl: 'Co nowego', de: 'Neuigkeiten', fr: 'Nouveautés' },
 };
 
 /* Page-chrome strings per locale (everything outside the Markdown content). */
@@ -171,6 +172,10 @@ const NAV = [
       { slug: 'service-status' },
       { slug: 'legal' },
     ],
+  },
+  {
+    section: "What's new",
+    items: [{ slug: 'changelog' }],
   },
 ];
 

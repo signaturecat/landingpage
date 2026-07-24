@@ -42,6 +42,10 @@ Full documentation content in one file: https://signature.cat/llms-full.txt
 - [Service status and SLA](https://signature.cat/docs/service-status): SignatureCat live status page, the 99% monthly availability target, what counts as downtime and where maintenance windows are announced.
 - [Legal](https://signature.cat/docs/legal): SignatureCat legal documents - Terms of Service, Privacy Policy, DPA and GDPR information, data location and retention.
 
+## What's new
+
+- [Changelog](https://signature.cat/docs/changelog): What's new in SignatureCat - monthly highlights of new features and improvements to email signature management for Google Workspace and Gmail.
+
 ## Optional
 
 - [Landing page](https://signature.cat/): product overview and pricing

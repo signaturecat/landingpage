@@ -2,6 +2,25 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-24 - Public product changelog at /docs/changelog (all 4 languages)
+
+- **What:** New docs page `/docs/changelog` (+ `/pl`, `/de`, `/fr` variants)
+  with reader-facing product highlights grouped by month (May-July 2026),
+  curated from the app and landing changelogs - internal-only changes
+  (backend hardening, staff panel, audits) deliberately excluded. Wired as a
+  new sidebar section "What's new" (localized: Co nowego / Neuigkeiten /
+  Nouveautés) at the bottom of the NAV manifest in `build-docs.mjs`, so the
+  page joins prev/next, search index, docs sitemap (92 -> 96 URLs), hreflang
+  cluster and llms.txt automatically. Front matter carries `published:
+  2026-07-24` in addition to `updated:` - JSON-LD `datePublished` stays
+  stable while `dateModified`/sitemap `lastmod` move with each monthly
+  update (PM request: dateModified present).
+- **Why:** PM 2026-07-24 - a public, SEO-friendly changelog tab in the docs;
+  copy written around the signature / Google / Workspace keyword set.
+- **Maintenance:** append new months at the top of `docs-src/changelog.md`
+  (+ the 3 translations, same `updated:` date in all four), then
+  `node build-docs.mjs`.
+
 ## 2026-07-23 - Docs language dropdown in the footer + language-consistent docs links + straight quotes
 
 - **What (PM follow-up to the docs i18n release):**
