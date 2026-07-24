@@ -72,10 +72,11 @@ const ORG_ID = `${BASE}/#organization`;
 const LOGO_URL = `${BASE}/assets/img/logo-mark.png`;
 const OG_IMAGE_URL = `${BASE}/assets/img/og-cover.svg`;
 // Brand profiles for Organization.sameAs (E-E-A-T entity links). Only list
-// profiles that actually exist and are ours; extend as new ones launch.
-const SAME_AS = [
-  'https://github.com/signaturecat',
-];
+// profiles that actually exist and are ours (PM decision 2026-07-23: none
+// are ready yet, so the list stays empty and the property is OMITTED from
+// the output - an empty sameAs is validator noise). When the profiles
+// launch, add their URLs here and rerun the build.
+const SAME_AS = [];
 const FAQ_COUNT = 7;
 
 function jsonLdGraph(loc, tr) {
@@ -89,7 +90,7 @@ function jsonLdGraph(loc, tr) {
         name: 'SignatureCat',
         url: `${BASE}/`,
         logo: { '@type': 'ImageObject', url: LOGO_URL },
-        sameAs: SAME_AS,
+        ...(SAME_AS.length ? { sameAs: SAME_AS } : {}),
         contactPoint: {
           '@type': 'ContactPoint',
           contactType: 'customer support',

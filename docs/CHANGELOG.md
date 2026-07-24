@@ -25,8 +25,9 @@
     `sigcat_locale` cookie on click (same contract as the landing switcher),
     styled on the existing nav tokens (active language gets the pink dot).
   - **Landing JSON-LD rebuilt as a localized `@graph`** (SEO audit):
-    `Organization` (@id, logo, `sameAs` - currently the GitHub org; LinkedIn/X
-    to be added when PM provides the profile URLs - and a contactPoint),
+    `Organization` (@id, logo, a contactPoint; `sameAs` is intentionally
+    OMITTED until the brand profiles exist - PM decision 2026-07-23. The
+    `SAME_AS` list in `build.mjs` is the single place to add them),
     `WebSite` (domain-to-name + `SearchAction` targeting `/docs?q=...`,
     backed by a real search prefill in docs.js), `SoftwareApplication`
     completed with `logo`, `image` and `areaServed: "EU"`, and `FAQPage`
