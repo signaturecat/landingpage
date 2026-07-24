@@ -17,7 +17,7 @@ Une affectation lie un modèle à une cible et le maintient appliqué par la syn
 | OU | Chemin commençant par `/`, par exemple `/Engineering` | **+ sous-OU** couvre toute la sous-arborescence. |
 | Tous | Tous les utilisateurs actifs du Workspace | Au maximum **une** affectation de ce type par espace de travail. |
 
-Chaque cible ne peut contenir qu'une seule affectation - la création d'un doublon est rejetée avec « Cette cible a déjà une affectation. » Le type d'une cible est figé après la création ; pour transformer une affectation de groupe en affectation d'OU, supprimez-la et recréez-la.
+Chaque cible ne peut contenir qu'une seule affectation - la création d'un doublon est rejetée avec "Cette cible a déjà une affectation." Le type d'une cible est figé après la création ; pour transformer une affectation de groupe en affectation d'OU, supprimez-la et recréez-la.
 
 Les utilisateurs individuels ne sont volontairement pas une cible d'affectation - couvrez les cas individuels avec le [self-service](/docs/self-service/) ou une [tâche d'application](/docs/apply-jobs/) ponctuelle.
 
@@ -30,7 +30,7 @@ Les utilisateurs correspondent souvent à plusieurs affectations. Chaque synchro
 3. **Les affectations de groupe** remplacent le modèle de l'OU pour leurs membres. Si un utilisateur appartient à plusieurs groupes affectés, l'affectation **la plus récemment mise à jour** l'emporte.
 4. **Self-service** - le choix propre de l'utilisateur l'emporte sur toute affectation, **sauf** si l'affectation gagnante a **Remplacer le self-service** activé.
 
-Lorsqu'une affectation en supplante d'autres pour un utilisateur, la ligne de résultat de la tâche l'enregistre (« a remplacé N autres affectations pour cet utilisateur »), ce qui vous permet d'auditer les conflits sur les pages de [journaux](/docs/logs/).
+Lorsqu'une affectation en supplante d'autres pour un utilisateur, la ligne de résultat de la tâche l'enregistre ("a remplacé N autres affectations pour cet utilisateur"), ce qui vous permet d'auditer les conflits sur les pages de [journaux](/docs/logs/).
 
 > [!TIP]
 > Schéma recommandé : une affectation pour tous comme modèle par défaut de l'entreprise, des affectations OU par pays ou par marque, des affectations de groupe pour les exceptions (campagne commerciale, équipe de direction). L'empilement des couches fait le reste.
@@ -54,11 +54,11 @@ Remarques sur le comportement :
 
 ## Remplacer le self-service
 
-Par affectation, l'interrupteur **Remplacer le self-service** fait gagner l'affectation sur les choix self-service des utilisateurs. La ligne affiche un badge « remplace le self-service ». Utilisez-le pour les signatures critiques en matière de conformité (mentions légales) où la personnalisation individuelle n'est pas acceptable.
+Par affectation, l'interrupteur **Remplacer le self-service** fait gagner l'affectation sur les choix self-service des utilisateurs. La ligne affiche un badge "remplace le self-service". Utilisez-le pour les signatures critiques en matière de conformité (mentions légales) où la personnalisation individuelle n'est pas acceptable.
 
 ## Quand les cibles disparaissent
 
-Si un groupe ou une OU affecté est supprimé dans Google Workspace, la synchronisation suivante marque l'affectation avec un badge « introuvable dans le Workspace », ignore la cible, notifie les administrateurs (dans l'application + e-mail, une fois par série d'échecs) et réessaie lors des synchronisations suivantes. Corrigez la cible dans le panneau d'édition ou supprimez l'affectation. Voir [Vérifier une tâche d'affectation](/docs/verify-assignments/#what-the-per-user-rows-tell-you).
+Si un groupe ou une OU affecté est supprimé dans Google Workspace, la synchronisation suivante marque l'affectation avec un badge "introuvable dans le Workspace", ignore la cible, notifie les administrateurs (dans l'application + e-mail, une fois par série d'échecs) et réessaie lors des synchronisations suivantes. Corrigez la cible dans le panneau d'édition ou supprimez l'affectation. Voir [Vérifier une tâche d'affectation](/docs/verify-assignments/#what-the-per-user-rows-tell-you).
 
 ## Modifier et retirer
 

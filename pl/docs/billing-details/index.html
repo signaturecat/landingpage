@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/billing-details" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/billing-details" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/billing-details" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/billing-details" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -205,7 +198,7 @@
 <p><strong>E-mail do faktur</strong> celowo nie jest edytowalny w portalu Stripe - zmieniaj go w <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Ustawieniach</a>, w sekcji Płatności, aby aplikacja i Stripe zawsze były zgodne. Zobacz <a href="/pl/docs/invoices#set-the-invoice-email">Faktury</a>.</p>
 </div></aside>
 <h2 id="sprawd-status-subskrypcji">Sprawdź status subskrypcji<a class="h-anchor" href="#sprawd-status-subskrypcji" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Sekcja Płatności w <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Ustawieniach</a> pokazuje status subskrypcji (Aktywna, Okres próbny, Zaległa płatność, Anulowana), bieżącą liczbę aktywnych użytkowników i datę odnowienia („Aktywna do ...").</p>
+<p>Sekcja Płatności w <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Ustawieniach</a> pokazuje status subskrypcji (Aktywna, Okres próbny, Zaległa płatność, Anulowana), bieżącą liczbę aktywnych użytkowników i datę odnowienia ("Aktywna do ...").</p>
 <h2 id="anuluj-subskrypcj">Anuluj subskrypcję<a class="h-anchor" href="#anuluj-subskrypcj" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>W <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Ustawieniach</a>, w sekcji Płatności, kliknij <strong>Anuluj subskrypcję</strong>. Dostęp trwa do końca bieżącego okresu rozliczeniowego, potem zarządzanie podpisami się zatrzymuje. Twoje podpisy Gmail nie są usuwane - po prostu przestają być zarządzane i aktualizowane.</p>
 <aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Ostrzeżenie</p><div class="callout-body">
@@ -225,7 +218,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/billing-details" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/billing-details" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/billing-details" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/billing-details" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

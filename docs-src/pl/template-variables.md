@@ -25,7 +25,7 @@ Wartości pochodzą z rekordu każdego użytkownika w katalogu Twojego Google Wo
 | `{{address}}` | Sformatowany adres | Główny wpis adresu użytkownika. |
 | `{{phone}}` | Numer telefonu | Pierwszy niepusty z: służbowy, potem komórkowy, potem domowy. |
 
-**Puste wartości renderują się jako pusty tekst.** Podpis nigdy się nie psuje, ale może zostać wisząca etykieta w rodzaju „Tel:" - właśnie do tego służą bloki warunkowe.
+**Puste wartości renderują się jako pusty tekst.** Podpis nigdy się nie psuje, ale może zostać wisząca etykieta w rodzaju "Tel:" - właśnie do tego służą bloki warunkowe.
 
 ## Tokeny obrazków
 
@@ -37,7 +37,7 @@ Wartości pochodzą z rekordu każdego użytkownika w katalogu Twojego Google Wo
 Obrazki pochodzą z biblioteki per workspace i są wybierane per szablon; jeśli nic nie wybrano, renderuje się neutralny placeholder. Jeśli obrazek w bibliotece ma link po kliknięciu, obrazek jest w niego automatycznie opakowywany. Zobacz [Banery i logo](/docs/banners-and-logos/).
 
 > [!NOTE]
-> Tokeny obrazków zawsze coś renderują (obrazek albo placeholder), więc nie liczą się jako „puste" dla poniższych bloków warunkowych.
+> Tokeny obrazków zawsze coś renderują (obrazek albo placeholder), więc nie liczą się jako "puste" dla poniższych bloków warunkowych.
 
 ## Bloki warunkowe: del i delete
 

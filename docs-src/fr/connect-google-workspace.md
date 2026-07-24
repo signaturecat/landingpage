@@ -43,14 +43,14 @@ https://www.googleapis.com/auth/gmail.settings.basic,https://www.googleapis.com/
 5. **Autoriser** - cliquez sur **Autoriser** dans l'Admin console.
 6. **Vérifier** - de retour dans SignatureCat, cliquez sur **Vérifier**. L'application exécute un test de connectivité pour chaque scope et affiche un résultat OK / Échec par scope.
 
-Le dernier scope, `gmail.settings.sharing`, est **optionnel** : il n'est nécessaire que pour écrire les signatures sur les alias send-as. Vous pouvez le sauter maintenant et l'ajouter plus tard - tout le reste fonctionne, et l'assistant affichera l'avis « Les signatures d'alias sont désactivées ». Voir [Affectations](/docs/assignments/#alias-modes) pour ce que les alias débloquent.
+Le dernier scope, `gmail.settings.sharing`, est **optionnel** : il n'est nécessaire que pour écrire les signatures sur les alias send-as. Vous pouvez le sauter maintenant et l'ajouter plus tard - tout le reste fonctionne, et l'assistant affichera l'avis "Les signatures d'alias sont désactivées". Voir [Affectations](/docs/assignments/#alias-modes) pour ce que les alias débloquent.
 
 > [!WARNING]
-> Collez la chaîne de scopes exactement telle que copiée. Un scope manquant ou modifié fait échouer la vérification avec une erreur par scope telle que « Cette habilitation n'a pas été autorisée. Refaites l'étape 4 avec la chaîne exacte. »
+> Collez la chaîne de scopes exactement telle que copiée. Un scope manquant ou modifié fait échouer la vérification avec une erreur par scope telle que "Cette habilitation n'a pas été autorisée. Refaites l'étape 4 avec la chaîne exacte."
 
 ### La vérification indique que l'accès se propage encore
 
-Google a besoin d'un moment pour propager une nouvelle autorisation DWD - en général quelques secondes, parfois jusqu'à environ 30 secondes. Le bouton **Vérifier** attend déjà la majeure partie de cette fenêtre. Si vous voyez toujours la carte jaune « l'accès est peut-être encore en cours de propagation », patientez un instant et cliquez à nouveau sur **Vérifier**. Ce n'est pas une erreur.
+Google a besoin d'un moment pour propager une nouvelle autorisation DWD - en général quelques secondes, parfois jusqu'à environ 30 secondes. Le bouton **Vérifier** attend déjà la majeure partie de cette fenêtre. Si vous voyez toujours la carte jaune "l'accès est peut-être encore en cours de propagation", patientez un instant et cliquez à nouveau sur **Vérifier**. Ce n'est pas une erreur.
 
 ## Étape 4 : Facturation
 

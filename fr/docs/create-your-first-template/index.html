@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/create-your-first-template" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/create-your-first-template" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/create-your-first-template" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/create-your-first-template" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -217,7 +210,7 @@
 <p>Gardez les données du Directory propres avant le déploiement - les intitulés de poste, les services et les numéros de téléphone viennent directement de Google Directory. Les champs vides sont simplement rendus comme du texte vide, sauf si vous les enveloppez dans des balises <code>{{del}}</code>.</p>
 </div></aside>
 <h2 id="prvisualiser-comme-un-utilisateur-rel">Prévisualiser comme un utilisateur réel<a class="h-anchor" href="#prvisualiser-comme-un-utilisateur-rel" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Le volet d'aperçu rend la signature résolue en direct pendant que vous tapez. Utilisez le contrôle <strong>Rendre comme</strong> pour substituer la fiche Directory de n'importe quel utilisateur réel - par défaut, le rendu s'appuie sur la vôtre. L'aperçu vous indique exactement quelle fiche a été utilisée : « Rendu à partir des données Directory de {email}. »</p>
+<p>Le volet d'aperçu rend la signature résolue en direct pendant que vous tapez. Utilisez le contrôle <strong>Rendre comme</strong> pour substituer la fiche Directory de n'importe quel utilisateur réel - par défaut, le rendu s'appuie sur la vôtre. L'aperçu vous indique exactement quelle fiche a été utilisée : "Rendu à partir des données Directory de {email}."</p>
 <h2 id="le-tester-sur-votre-propre-bote">Le tester sur votre propre boîte<a class="h-anchor" href="#le-tester-sur-votre-propre-bote" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Cliquez sur <strong>Me définir une signature de test</strong> dans la barre d'outils de l'éditeur. SignatureCat rend le modèle à partir de votre propre fiche Directory et l'écrit dans votre propre signature Gmail - personne d'autre n'est affecté. Envoyez-vous un e-mail ou vérifiez les paramètres Gmail pour voir le résultat réel.</p>
 <p>Quand le modèle vous convient, continuez avec <a href="/fr/docs/assign-templates">Affecter des modèles</a>.</p>
@@ -238,7 +231,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/create-your-first-template" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/create-your-first-template" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/create-your-first-template" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/create-your-first-template" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

@@ -11,7 +11,7 @@ Każda synchronizacja i każde ręczne zastosowanie działa jako zadanie z wynik
 
 ## Sprawdź logi zadań
 
-Otwórz [Logi zadań](https://app.signature.cat/assignments/logs) (poziomy Editor i Admin). Każdy wiersz to jedno zakończone zadanie - **Synchronizacja przypisań** albo **Ręczne zastosowanie** - ze statusem, czasem rozpoczęcia i zakończenia, informacją, kto je uruchomił („Automatycznie" dla codziennej synchronizacji), i podsumowaniem w rodzaju „42 udanych, 1 nieudanych, 2 pominiętych".
+Otwórz [Logi zadań](https://app.signature.cat/assignments/logs) (poziomy Editor i Admin). Każdy wiersz to jedno zakończone zadanie - **Synchronizacja przypisań** albo **Ręczne zastosowanie** - ze statusem, czasem rozpoczęcia i zakończenia, informacją, kto je uruchomił ("Automatycznie" dla codziennej synchronizacji), i podsumowaniem w rodzaju "42 udanych, 1 nieudanych, 2 pominiętych".
 
 Rozwiń wiersz, aby zobaczyć szczegóły per użytkownik, albo kliknij **Otwórz pełny widok zadania**, aby zobaczyć kompletną tabelę wyników.
 
@@ -31,15 +31,15 @@ Rozwiń wiersz, aby zobaczyć szczegóły per użytkownik, albo kliknij **Otwór
 
 ## Co mówią wiersze per użytkownik
 
-Każdy wiersz pokazuje zapisany adres (wiersze aliasów mają odznakę „alias"), status i kod błędu, gdy coś poszło nie tak. Najczęstsze:
+Każdy wiersz pokazuje zapisany adres (wiersze aliasów mają odznakę "alias"), status i kod błędu, gdy coś poszło nie tak. Najczęstsze:
 
-- **TARGET_NOT_FOUND** - przypisana grupa lub OU już nie istnieje w Workspace (usunięta albo błędny identyfikator). Cel został pominięty, administratorzy dostają powiadomienie, a wiersz przypisania pokazuje odznakę „nie znaleziono w Workspace". Popraw lub usuń przypisanie na stronie [Przypisania](https://app.signature.cat/assignments).
+- **TARGET_NOT_FOUND** - przypisana grupa lub OU już nie istnieje w Workspace (usunięta albo błędny identyfikator). Cel został pominięty, administratorzy dostają powiadomienie, a wiersz przypisania pokazuje odznakę "nie znaleziono w Workspace". Popraw lub usuń przypisanie na stronie [Przypisania](https://app.signature.cat/assignments).
 - **USER_NOT_FOUND** - użytkownik już nie istnieje w katalogu.
 - **ALIAS_SCOPE_MISSING** - podpisy aliasów wymagają opcjonalnego zakresu `gmail.settings.sharing`, który nie został nadany. Zobacz [Połącz swój Google Workspace](/docs/connect-google-workspace/#step-3-authorize-domain-wide-delegation).
 - **DWD_NOT_CONFIGURED / DWD_SCOPE_MISSING** - Domain-Wide Delegation nie działa albo brakuje zakresu. Uruchom ponownie kreator z [Ustawień](https://app.signature.cat/settings). Zobacz [Domain-Wide Delegation](/docs/domain-wide-delegation/).
 - **RATE_LIMITED** - Google ograniczył tempo zapytań; worker automatycznie ponawia próby, zanim pokaże ten kod.
 
-Wiersz może też nieść notkę „nadpisano N innych przypisań dla tego użytkownika" - użytkownik pasował do kilku przypisań i to właśnie wygrało. Reguły pierwszeństwa są w [referencji przypisań](/docs/assignments/#how-precedence-works).
+Wiersz może też nieść notkę "nadpisano N innych przypisań dla tego użytkownika" - użytkownik pasował do kilku przypisań i to właśnie wygrało. Reguły pierwszeństwa są w [referencji przypisań](/docs/assignments/#how-precedence-works).
 
 ## Weryfikacja w samym Gmail
 

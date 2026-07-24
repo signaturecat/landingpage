@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/connect-google-workspace" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/connect-google-workspace" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/connect-google-workspace" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/connect-google-workspace" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -218,12 +211,12 @@
 <li><strong>Autoriser</strong> - cliquez sur <strong>Autoriser</strong> dans l'Admin console.</li>
 <li><strong>Vérifier</strong> - de retour dans SignatureCat, cliquez sur <strong>Vérifier</strong>. L'application exécute un test de connectivité pour chaque scope et affiche un résultat OK / Échec par scope.</li>
 </ol>
-<p>Le dernier scope, <code>gmail.settings.sharing</code>, est <strong>optionnel</strong> : il n'est nécessaire que pour écrire les signatures sur les alias send-as. Vous pouvez le sauter maintenant et l'ajouter plus tard - tout le reste fonctionne, et l'assistant affichera l'avis « Les signatures d'alias sont désactivées ». Voir <a href="/fr/docs/assignments#alias-modes">Affectations</a> pour ce que les alias débloquent.</p>
+<p>Le dernier scope, <code>gmail.settings.sharing</code>, est <strong>optionnel</strong> : il n'est nécessaire que pour écrire les signatures sur les alias send-as. Vous pouvez le sauter maintenant et l'ajouter plus tard - tout le reste fonctionne, et l'assistant affichera l'avis "Les signatures d'alias sont désactivées". Voir <a href="/fr/docs/assignments#alias-modes">Affectations</a> pour ce que les alias débloquent.</p>
 <aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Avertissement</p><div class="callout-body">
-<p>Collez la chaîne de scopes exactement telle que copiée. Un scope manquant ou modifié fait échouer la vérification avec une erreur par scope telle que « Cette habilitation n'a pas été autorisée. Refaites l'étape 4 avec la chaîne exacte. »</p>
+<p>Collez la chaîne de scopes exactement telle que copiée. Un scope manquant ou modifié fait échouer la vérification avec une erreur par scope telle que "Cette habilitation n'a pas été autorisée. Refaites l'étape 4 avec la chaîne exacte."</p>
 </div></aside>
 <h3 id="la-vrification-indique-que-laccs-se-propage-encore">La vérification indique que l'accès se propage encore<a class="h-anchor" href="#la-vrification-indique-que-laccs-se-propage-encore" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
-<p>Google a besoin d'un moment pour propager une nouvelle autorisation DWD - en général quelques secondes, parfois jusqu'à environ 30 secondes. Le bouton <strong>Vérifier</strong> attend déjà la majeure partie de cette fenêtre. Si vous voyez toujours la carte jaune « l'accès est peut-être encore en cours de propagation », patientez un instant et cliquez à nouveau sur <strong>Vérifier</strong>. Ce n'est pas une erreur.</p>
+<p>Google a besoin d'un moment pour propager une nouvelle autorisation DWD - en général quelques secondes, parfois jusqu'à environ 30 secondes. Le bouton <strong>Vérifier</strong> attend déjà la majeure partie de cette fenêtre. Si vous voyez toujours la carte jaune "l'accès est peut-être encore en cours de propagation", patientez un instant et cliquez à nouveau sur <strong>Vérifier</strong>. Ce n'est pas une erreur.</p>
 <h2 id="tape-4-facturation">Étape 4 : Facturation<a class="h-anchor" href="#tape-4-facturation" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Après la vérification de la DWD, vous êtes dirigé vers <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Facturation</a> pour démarrer l'essai gratuit de 7 jours (carte collectée dès l'inscription, débitée à la fin de l'essai). Voir <a href="/fr/docs/invoices">Factures</a> pour les paliers de tarification.</p>
 <p>C'est tout - continuez avec <a href="/fr/docs/create-your-first-template">Créer votre premier modèle</a>.</p>
@@ -247,7 +240,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/connect-google-workspace" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/connect-google-workspace" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/connect-google-workspace" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/connect-google-workspace" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/get-help" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/get-help" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/get-help" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/get-help" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -192,13 +185,13 @@
       <nav class="docs-breadcrumb" aria-label="Okruszki nawigacyjne"><a href="/pl/docs">Dokumentacja</a><span class="crumb-sep">/</span><span class="crumb-section">Wsparcie</span><span class="crumb-sep">/</span><span aria-current="page">Uzyskaj pomoc</span></nav>
       <article class="docs-article">
 <h1>Uzyskaj pomoc</h1>
-<p>Support jest dostępny e-mailowo pod adresem <a href="mailto:contact@signature.cat">contact@signature.cat</a>. Zanim napiszesz, szybka samodzielna diagnoza często daje odpowiedź szybciej - większość przypadków „podpisy przestały się stosować" to jedna z trzech znanych przyczyn.</p>
+<p>Support jest dostępny e-mailowo pod adresem <a href="mailto:contact@signature.cat">contact@signature.cat</a>. Zanim napiszesz, szybka samodzielna diagnoza często daje odpowiedź szybciej - większość przypadków "podpisy przestały się stosować" to jedna z trzech znanych przyczyn.</p>
 <h2 id="szybka-samodzielna-diagnoza">Szybka samodzielna diagnoza<a class="h-anchor" href="#szybka-samodzielna-diagnoza" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
 <li><strong>Czy to incydent platformy?</strong> Sprawdź <a href="https://status.signature.cat/" target="_blank" rel="noopener">status.signature.cat</a> - incydenty i prace serwisowe są ogłaszane tam. Zobacz <a href="/pl/docs/service-status">Status usługi</a>.</li>
 <li><strong>Czy zadanie się nie powiodło?</strong> Otwórz <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Logi zadań</a> i przejrzyj kody błędów per użytkownik - <a href="/pl/docs/verify-assignments#what-the-per-user-rows-tell-you">Zweryfikuj zadanie przypisania</a> wyjaśnia każdy z nich wraz z rozwiązaniem.</li>
-<li><strong>Czy Domain-Wide Delegation jest sprawne?</strong> Jeśli synchronizacje są wstrzymane, administratorzy będą mieć powiadomienie „Utracono dostęp Domain-Wide Delegation" - uruchom ponownie kreator z <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Ustawień</a>. Zobacz <a href="/pl/docs/domain-wide-delegation#what-happens-if-dwd-is-removed-or-a-scope-revoked">Domain-Wide Delegation</a>.</li>
-<li><strong>Płatności wstrzymane?</strong> Czerwony baner i status „Zaległa płatność" na stronie <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Płatności</a> oznaczają, że po nieudanej płatności minęło okno karencji - aktualizacja karty przywraca wszystko. Zobacz <a href="/pl/docs/billing-details">Dane rozliczeniowe</a>.</li>
+<li><strong>Czy Domain-Wide Delegation jest sprawne?</strong> Jeśli synchronizacje są wstrzymane, administratorzy będą mieć powiadomienie "Utracono dostęp Domain-Wide Delegation" - uruchom ponownie kreator z <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Ustawień</a>. Zobacz <a href="/pl/docs/domain-wide-delegation#what-happens-if-dwd-is-removed-or-a-scope-revoked">Domain-Wide Delegation</a>.</li>
+<li><strong>Płatności wstrzymane?</strong> Czerwony baner i status "Zaległa płatność" na stronie <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Płatności</a> oznaczają, że po nieudanej płatności minęło okno karencji - aktualizacja karty przywraca wszystko. Zobacz <a href="/pl/docs/billing-details">Dane rozliczeniowe</a>.</li>
 </ol>
 <h2 id="pisanie-do-supportu">Pisanie do supportu<a class="h-anchor" href="#pisanie-do-supportu" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Napisz na <a href="mailto:contact@signature.cat">contact@signature.cat</a>, w miarę możliwości z adresu w domenie Twojego Workspace. Załącz:</p>
@@ -229,7 +222,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/get-help" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/get-help" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/get-help" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/get-help" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

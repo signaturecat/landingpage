@@ -178,13 +178,6 @@
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Sprache">
-        <p class="docs-nav-label">Sprache</p>
-        <a href="/docs/apply-jobs" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/apply-jobs" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/apply-jobs" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
-        <a href="/fr/docs/apply-jobs" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -228,7 +221,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/apply-jobs" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/apply-jobs" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/apply-jobs" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/apply-jobs" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Rechtliches</a>
         </span>

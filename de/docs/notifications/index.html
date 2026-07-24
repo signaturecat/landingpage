@@ -178,13 +178,6 @@
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Sprache">
-        <p class="docs-nav-label">Sprache</p>
-        <a href="/docs/notifications" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/notifications" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/notifications" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
-        <a href="/fr/docs/notifications" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -223,7 +216,7 @@
 <tr><td>Zahlung fehlgeschlagen</td><td>Fehler</td><td>Eine Abbuchung schlug fehl; die Kulanzfrist läuft.</td></tr>
 </tbody>
 </table></div>
-<p>Neben der Glocke können zwei Banner in der App erscheinen: das gelbe <strong>Testphasen-Banner</strong> in den letzten Tagen der Testphase und das rote <strong>Zahlungs-Banner</strong> („Aktualisieren Sie Ihre Karte bis {date}, sonst wird die Signaturverwaltung pausiert") während der Kulanzfrist.</p>
+<p>Neben der Glocke können zwei Banner in der App erscheinen: das gelbe <strong>Testphasen-Banner</strong> in den letzten Tagen der Testphase und das rote <strong>Zahlungs-Banner</strong> ("Aktualisieren Sie Ihre Karte bis {date}, sonst wird die Signaturverwaltung pausiert") während der Kulanzfrist.</p>
 <h2 id="empfohlene-einrichtung">Empfohlene Einrichtung<a class="h-anchor" href="#empfohlene-einrichtung" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
 <li>Stellen Sie sicher, dass mindestens ein regelmäßig gelesenes Postfach die Stufe <strong>Admin</strong> hat - Hinweis-E-Mails gehen nur an Admins und den Inhaber. Siehe <a href="/de/docs/user-management">Benutzerverwaltung</a>.</li>
@@ -244,7 +237,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/notifications" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/notifications" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/notifications" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/notifications" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Rechtliches</a>
         </span>

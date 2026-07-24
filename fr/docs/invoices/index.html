@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/invoices" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/invoices" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/invoices" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/invoices" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -207,20 +200,20 @@
 <p>Par exemple, 60 utilisateurs coûtent 50 x 0,80 $ + 10 x 0,70 $ = 47,00 $ par mois. Les prix sont en USD et hors taxes.</p>
 <p><strong>Ce qui compte comme utilisateur facturable :</strong> le nombre d'utilisateurs actifs (non suspendus) dans votre annuaire Google Workspace - pas le nombre de connexions à SignatureCat. Les augmentations d'effectif sont répercutées immédiatement avec prorata ; quand votre effectif baisse, le nombre inférieur prend effet à partir de la période de facturation suivante.</p>
 <h2 id="lessai-de-7-jours">L'essai de 7 jours<a class="h-anchor" href="#lessai-de-7-jours" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Chaque espace de travail démarre avec un essai gratuit de 7 jours. Une carte est collectée à l'inscription et débitée pour la première fois à la fin de l'essai. Dans les 3 derniers jours de l'essai, l'application affiche une bannière de rappel, et vous recevez aussi un e-mail « Votre essai signature.cat se termine bientôt » environ 3 jours avant la fin.</p>
+<p>Chaque espace de travail démarre avec un essai gratuit de 7 jours. Une carte est collectée à l'inscription et débitée pour la première fois à la fin de l'essai. Dans les 3 derniers jours de l'essai, l'application affiche une bannière de rappel, et vous recevez aussi un e-mail "Votre essai signature.cat se termine bientôt" environ 3 jours avant la fin.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>L'essai est accordé <strong>une fois par domaine Workspace</strong>. Supprimer le compte et enregistrer à nouveau le même domaine ne démarre pas un nouvel essai.</p>
 </div></aside>
 <h2 id="dfinir-le-mail-de-facturation">Définir l'e-mail de facturation<a class="h-anchor" href="#dfinir-le-mail-de-facturation" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
 <li>Ouvrez <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a> (Admin uniquement) et trouvez la section <strong>Facturation</strong>.</li>
-<li>Saisissez l'adresse dans <strong>E-mail de facturation</strong> - « Stripe envoie les factures et les reçus à cette adresse. Elle peut être différente de l'e-mail du compte administrateur. » - et cliquez sur <strong>Enregistrer</strong>.</li>
+<li>Saisissez l'adresse dans <strong>E-mail de facturation</strong> - "Stripe envoie les factures et les reçus à cette adresse. Elle peut être différente de l'e-mail du compte administrateur." - et cliquez sur <strong>Enregistrer</strong>.</li>
 </ol>
 <p>Utilisez cette option pour acheminer les documents directement vers la comptabilité (par exemple <code>invoices@yourcompany.com</code>). Les alertes produit liées à la facturation (fin d'essai, paiement échoué) sont distinctes et vont aux utilisateurs administrateurs - voir <a href="/fr/docs/notifications">Notifications</a>.</p>
 <h2 id="coordonnes-de-la-socit-sur-la-facture">Coordonnées de la société sur la facture<a class="h-anchor" href="#coordonnes-de-la-socit-sur-la-facture" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Le nom légal de votre société, l'adresse de facturation et le numéro fiscal (TVA / NIP) sont stockés uniquement dans Stripe et imprimés sur chaque facture émise après leur saisie. Vous les fournissez au moment du paiement et pouvez les modifier à tout moment - voir <a href="/fr/docs/billing-details">Informations de facturation</a>. Les changements s'appliquent aux factures futures ; les factures déjà émises sont immuables.</p>
 <h2 id="que-se-passe-t-il-si-un-paiement-choue">Que se passe-t-il si un paiement échoue ?<a class="h-anchor" href="#que-se-passe-t-il-si-un-paiement-choue" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Un prélèvement échoué ne coupe <strong>pas</strong> l'accès immédiatement. Vous recevez un e-mail « Action requise - échec du paiement signature.cat » et une bannière rouge dans l'application, et vous disposez d'un court délai de grâce (jusqu'à 3 jours) pour mettre la carte à jour via <strong>Gérer la facturation</strong> sur <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Facturation</a>. Si le délai s'écoule sans prélèvement réussi, la gestion des signatures est mise en pause jusqu'à ce qu'un paiement aboutisse - vos signatures Gmail restent telles quelles, mais les modifications et les synchronisations s'arrêtent.</p>
+<p>Un prélèvement échoué ne coupe <strong>pas</strong> l'accès immédiatement. Vous recevez un e-mail "Action requise - échec du paiement signature.cat" et une bannière rouge dans l'application, et vous disposez d'un court délai de grâce (jusqu'à 3 jours) pour mettre la carte à jour via <strong>Gérer la facturation</strong> sur <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Facturation</a>. Si le délai s'écoule sans prélèvement réussi, la gestion des signatures est mise en pause jusqu'à ce qu'un paiement aboutisse - vos signatures Gmail restent telles quelles, mais les modifications et les synchronisations s'arrêtent.</p>
       </article>
 <nav class="docs-pager" aria-label="Pagination">
 <a class="pager-card pager-prev" href="/fr/docs/banners-and-logos" rel="prev">
@@ -235,7 +228,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/invoices" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/invoices" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/invoices" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/invoices" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

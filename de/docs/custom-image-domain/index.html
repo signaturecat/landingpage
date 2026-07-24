@@ -178,13 +178,6 @@
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Sprache">
-        <p class="docs-nav-label">Sprache</p>
-        <a href="/docs/custom-image-domain" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/custom-image-domain" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/custom-image-domain" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
-        <a href="/fr/docs/custom-image-domain" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -212,7 +205,7 @@
 <li><strong>Warten Sie auf die Verifizierung.</strong> SignatureCat prüft die Einträge automatisch alle paar Minuten; Sie können auch auf <strong>Jetzt prüfen</strong> klicken. Die Aktivierung dauert in der Regel wenige Minuten, manchmal bis zu einer Stunde, während DNS aktualisiert wird. Das TLS-Zertifikat wird für Sie ausgestellt.</li>
 </ol>
 <p>Der Assistent zeigt einen von drei Status: <strong>Wartet auf DNS-Einträge</strong>, <strong>Domain aktiv</strong> oder <strong>Verifizierung fehlgeschlagen</strong>.</p>
-<p>Sobald aktiv: „Neue E-Mails laden Bilder von Ihrer Domain. Vorlagen bleiben unverändert - der Wechsel erfolgt automatisch."</p>
+<p>Sobald aktiv: "Neue E-Mails laden Bilder von Ihrer Domain. Vorlagen bleiben unverändert - der Wechsel erfolgt automatisch."</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
 <p>Bereits gesendete E-Mails sind nicht betroffen - sie laden Bilder weiterhin von der URL, mit der sie gerendert wurden.</p>
 </div></aside>
@@ -235,7 +228,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/custom-image-domain" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/custom-image-domain" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/custom-image-domain" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/custom-image-domain" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Rechtliches</a>
         </span>

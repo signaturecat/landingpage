@@ -43,14 +43,14 @@ https://www.googleapis.com/auth/gmail.settings.basic,https://www.googleapis.com/
 5. **Autoryzuj** - kliknij **Authorize** w Admin console.
 6. **Sprawdź** - z powrotem w SignatureCat kliknij **Sprawdź**. Aplikacja wykonuje test łączności dla każdego zakresu i pokazuje wynik OK / Błąd per zakres.
 
-Ostatni zakres, `gmail.settings.sharing`, jest **opcjonalny**: jest potrzebny wyłącznie do zapisywania podpisów na aliasach send-as. Możesz go teraz pominąć i dodać później - cała reszta działa, a kreator pokaże informację „Obsługa aliasów jest wyłączona". Zobacz [Przypisania](/docs/assignments/#alias-modes), aby dowiedzieć się, co odblokowują aliasy.
+Ostatni zakres, `gmail.settings.sharing`, jest **opcjonalny**: jest potrzebny wyłącznie do zapisywania podpisów na aliasach send-as. Możesz go teraz pominąć i dodać później - cała reszta działa, a kreator pokaże informację "Obsługa aliasów jest wyłączona". Zobacz [Przypisania](/docs/assignments/#alias-modes), aby dowiedzieć się, co odblokowują aliasy.
 
 > [!WARNING]
-> Wklej ciąg zakresów dokładnie tak, jak został skopiowany. Brakujący lub zmieniony zakres oblewa sprawdzenie z błędem per zakres, na przykład „Ten zakres nie został autoryzowany. Powtórz krok 4 z dokładnym ciągiem zakresów."
+> Wklej ciąg zakresów dokładnie tak, jak został skopiowany. Brakujący lub zmieniony zakres oblewa sprawdzenie z błędem per zakres, na przykład "Ten zakres nie został autoryzowany. Powtórz krok 4 z dokładnym ciągiem zakresów."
 
 ### Sprawdzenie zgłasza, że dostęp wciąż się propaguje
 
-Google potrzebuje chwili, aby rozpropagować świeży grant DWD - zwykle sekund, czasem do około 30 sekund. Przycisk **Sprawdź** sam odczekuje większość tego okna. Jeśli nadal widzisz żółtą kartę „dostęp może się jeszcze propagować", odczekaj chwilę i kliknij **Sprawdź** ponownie. To nie jest błąd.
+Google potrzebuje chwili, aby rozpropagować świeży grant DWD - zwykle sekund, czasem do około 30 sekund. Przycisk **Sprawdź** sam odczekuje większość tego okna. Jeśli nadal widzisz żółtą kartę "dostęp może się jeszcze propagować", odczekaj chwilę i kliknij **Sprawdź** ponownie. To nie jest błąd.
 
 ## Krok 4: Płatności
 

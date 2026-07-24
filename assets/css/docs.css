@@ -165,33 +165,6 @@ html[data-theme="dark"] {
 }
 .docs-nav-group a[aria-current="page"]::before { transform: translateY(-50%) scale(1); }
 
-/* Language switcher below the table of contents (docs i18n). Same visual
-   language as the nav groups; the current language gets the pink dot. */
-.docs-lang {
-  margin-top: 26px; padding-top: 18px;
-  border-top: 1px solid var(--border);
-}
-.docs-lang a {
-  position: relative; display: block; padding: 5px 12px 5px 24px;
-  border-radius: 8px; font-size: 13.5px; color: var(--muted); line-height: 1.45;
-  transition: color .15s var(--ease), background .15s var(--ease);
-}
-.docs-lang a::before {
-  content: ""; position: absolute; left: 10px; top: 50%;
-  width: 6px; height: 6px; border-radius: 50%; transform: translateY(-50%) scale(0);
-  background: var(--accent-ink);
-  transition: transform .18s var(--ease);
-}
-.docs-lang a:hover { color: var(--ink); background: color-mix(in srgb, var(--accent) 8%, transparent); }
-.docs-lang a[aria-current="true"] {
-  color: var(--ink); font-weight: 600;
-  background: color-mix(in srgb, var(--accent) 15%, transparent);
-}
-.docs-lang a[aria-current="true"]::before { transform: translateY(-50%) scale(1); }
-@media (prefers-reduced-motion: reduce) {
-  .docs-lang a, .docs-lang a::before { transition: none; }
-}
-
 .docs-sidebar-backdrop {
   display: none; position: fixed; inset: 0; z-index: 58;
   background: rgba(28, 25, 23, .45);
@@ -352,7 +325,38 @@ html[data-theme="light"] .callout-warning .callout-title { color: #92400e; }
 }
 .docs-foot a { color: var(--muted); }
 .docs-foot a:hover { color: var(--ink); }
-.docs-foot-links { display: inline-flex; gap: 16px; }
+.docs-foot-links { display: inline-flex; align-items: center; gap: 16px; }
+
+/* Language dropdown (docs footer) - design system select: bordered panel
+   surface, 10px radius, custom outline chevron (the native arrow cannot be
+   styled), accent focus ring. Chevron color mirrors --muted per theme. */
+.docs-lang-select {
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  font: inherit; font-size: 13px; color: var(--ink);
+  background-color: var(--cream);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 5px 30px 5px 10px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b6660' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 9px center; background-size: 14px 14px;
+  transition: border-color .15s var(--ease), box-shadow .15s var(--ease);
+}
+.docs-lang-select:hover { border-color: var(--border-strong, var(--border)); }
+.docs-lang-select:focus-visible {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+@media (prefers-reduced-motion: reduce) { .docs-lang-select { transition: none; } }
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .docs-lang-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a8a29e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  }
+}
+html[data-theme="dark"] .docs-lang-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a8a29e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+html[data-theme="light"] .docs-lang-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b6660' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
 
 /* TOC (On this page) -------------------------------------------------------------- */
 .docs-toc {

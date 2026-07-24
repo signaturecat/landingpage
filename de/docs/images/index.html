@@ -178,13 +178,6 @@
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Sprache">
-        <p class="docs-nav-label">Sprache</p>
-        <a href="/docs/images" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/images" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/images" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
-        <a href="/fr/docs/images" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -207,7 +200,7 @@
 <ul>
 <li><strong>Bibliotheks-Uploads</strong> werden von SignatureCat gespeichert und über ein CDN mit langlebigem Caching von <code>https://images.signature.cat/...</code> ausgeliefert.</li>
 <li>Mit einer verifizierten <a href="/de/docs/custom-image-domain">eigenen Bilddomain</a> liefern neu gerenderte Signaturen Bibliotheksbilder stattdessen von Ihrer Subdomain aus (zum Beispiel <code>images.yourcompany.com</code>) - bessere Zustellbarkeit, gleicher Speicher.</li>
-<li><strong>Bilder aus externen URLs</strong> („Ich habe einen Link") werden direkt von dort geladen, wo Sie sie hosten. Sie müssen öffentlich und HTTPS sein; idealerweise hosten Sie sie auf Ihrer eigenen Domain.</li>
+<li><strong>Bilder aus externen URLs</strong> ("Ich habe einen Link") werden direkt von dort geladen, wo Sie sie hosten. Sie müssen öffentlich und HTTPS sein; idealerweise hosten Sie sie auf Ihrer eigenen Domain.</li>
 </ul>
 <aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Wichtig</p><div class="callout-body">
 <p>Bild-URLs werden fest in jede gerenderte Signatur eingebettet. E-Mails, die bereits in den Postfächern der Empfänger liegen, laden weiterhin die URL, mit der sie gesendet wurden - deshalb löscht SignatureCat die zugrunde liegenden Dateien entfernter Bibliotheksbilder nie, und deshalb erscheint ein externes Bild, das Sie offline nehmen, in alten E-Mails als defekt.</p>
@@ -240,7 +233,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/images" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/images" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/images" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/images" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Rechtliches</a>
         </span>

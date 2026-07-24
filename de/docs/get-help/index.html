@@ -178,13 +178,6 @@
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Sprache">
-        <p class="docs-nav-label">Sprache</p>
-        <a href="/docs/get-help" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/get-help" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/get-help" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
-        <a href="/fr/docs/get-help" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -192,13 +185,13 @@
       <nav class="docs-breadcrumb" aria-label="Brotkrümelnavigation"><a href="/de/docs">Doku</a><span class="crumb-sep">/</span><span class="crumb-section">Support</span><span class="crumb-sep">/</span><span aria-current="page">Hilfe erhalten</span></nav>
       <article class="docs-article">
 <h1>Hilfe erhalten</h1>
-<p>Support gibt es per E-Mail an <a href="mailto:contact@signature.cat">contact@signature.cat</a>. Vor dem Schreiben führt ein kurzer Selbst-Check oft schneller zur Antwort - die meisten Fälle von „Signaturen werden nicht mehr angewendet" haben eine von drei bekannten Ursachen.</p>
+<p>Support gibt es per E-Mail an <a href="mailto:contact@signature.cat">contact@signature.cat</a>. Vor dem Schreiben führt ein kurzer Selbst-Check oft schneller zur Antwort - die meisten Fälle von "Signaturen werden nicht mehr angewendet" haben eine von drei bekannten Ursachen.</p>
 <h2 id="kurzer-selbst-check">Kurzer Selbst-Check<a class="h-anchor" href="#kurzer-selbst-check" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
 <li><strong>Ist es ein Plattform-Vorfall?</strong> Prüfen Sie <a href="https://status.signature.cat/" target="_blank" rel="noopener">status.signature.cat</a> - Vorfälle und Wartungen werden dort angekündigt. Siehe <a href="/de/docs/service-status">Dienststatus</a>.</li>
 <li><strong>Ist ein Auftrag fehlgeschlagen?</strong> Öffnen Sie die <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Aufgabenprotokolle</a> und sehen Sie sich die Fehlercodes pro Nutzer an - <a href="/de/docs/verify-assignments#what-the-per-user-rows-tell-you">Einen Zuweisungsauftrag prüfen</a> erklärt jeden Code und seine Lösung.</li>
-<li><strong>Ist Domain-Wide Delegation intakt?</strong> Sind Synchronisierungen pausiert, haben Admins eine Benachrichtigung „Domain-Wide Delegation-Zugriff verloren" - führen Sie den Assistenten aus den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a> erneut aus. Siehe <a href="/de/docs/domain-wide-delegation#what-happens-if-dwd-is-removed-or-a-scope-revoked">Domain-Wide Delegation</a>.</li>
-<li><strong>Abrechnung pausiert?</strong> Ein rotes Banner und der Status „Überfällig" auf <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Abrechnung</a> bedeuten, dass eine fehlgeschlagene Zahlung ihre Kulanzfrist überschritten hat - eine Kartenaktualisierung stellt alles wieder her. Siehe <a href="/de/docs/billing-details">Rechnungsdaten</a>.</li>
+<li><strong>Ist Domain-Wide Delegation intakt?</strong> Sind Synchronisierungen pausiert, haben Admins eine Benachrichtigung "Domain-Wide Delegation-Zugriff verloren" - führen Sie den Assistenten aus den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a> erneut aus. Siehe <a href="/de/docs/domain-wide-delegation#what-happens-if-dwd-is-removed-or-a-scope-revoked">Domain-Wide Delegation</a>.</li>
+<li><strong>Abrechnung pausiert?</strong> Ein rotes Banner und der Status "Überfällig" auf <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Abrechnung</a> bedeuten, dass eine fehlgeschlagene Zahlung ihre Kulanzfrist überschritten hat - eine Kartenaktualisierung stellt alles wieder her. Siehe <a href="/de/docs/billing-details">Rechnungsdaten</a>.</li>
 </ol>
 <h2 id="an-den-support-schreiben">An den Support schreiben<a class="h-anchor" href="#an-den-support-schreiben" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Schreiben Sie an <a href="mailto:contact@signature.cat">contact@signature.cat</a>, möglichst von einer Adresse Ihrer Workspace-Domain. Geben Sie an:</p>
@@ -229,7 +222,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/get-help" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/get-help" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/get-help" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/get-help" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Rechtliches</a>
         </span>

@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/user-management" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/user-management" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/user-management" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/user-management" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -215,7 +208,7 @@
 <p>Les <strong>super administrateurs</strong> Workspace ont toujours le niveau Admin. C'est appliqué à chaque connexion et ne peut pas être révoqué dans SignatureCat - pour le changer, modifiez leur statut d'administrateur dans Google Workspace lui-même.</p>
 </div></aside>
 <h2 id="qui-peut-se-connecter">Qui peut se connecter ?<a class="h-anchor" href="#qui-peut-se-connecter" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>La connexion se fait uniquement via Google et nécessite un compte Google Workspace de votre domaine. Quand une personne sans accès essaie, elle voit : « Votre compte n'a pas encore accès à SignatureCat. Demandez à un super administrateur Workspace de vous accorder l'accès, puis reconnectez-vous. » - et rien n'est modifié dans votre espace de travail.</p>
+<p>La connexion se fait uniquement via Google et nécessite un compte Google Workspace de votre domaine. Quand une personne sans accès essaie, elle voit : "Votre compte n'a pas encore accès à SignatureCat. Demandez à un super administrateur Workspace de vous accorder l'accès, puis reconnectez-vous." - et rien n'est modifié dans votre espace de travail.</p>
 <p>Les sessions durent jusqu'à 7 jours d'inactivité avec un plafond strict de 14 jours, puis une reconnexion Google en un clic est nécessaire.</p>
 <h2 id="accorder-laccs-un-utilisateur-unique">Accorder l'accès à un utilisateur unique<a class="h-anchor" href="#accorder-laccs-un-utilisateur-unique" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
@@ -223,7 +216,7 @@
 <li>Sur l'onglet <strong>Utilisateur</strong>, saisissez l'adresse e-mail (elle doit appartenir à votre Workspace, domaines secondaires inclus).</li>
 <li>Choisissez un niveau d'accès et cliquez sur <strong>Enregistrer l'accès</strong>.</li>
 </ol>
-<p>L'utilisateur reçoit un e-mail d'invitation « Vous avez maintenant accès à signature.cat ».</p>
+<p>L'utilisateur reçoit un e-mail d'invitation "Vous avez maintenant accès à signature.cat".</p>
 <p>Un accès accordé directement à un utilisateur <strong>remplace</strong> toujours tout accès de groupe pour cette personne - même si l'accès de groupe est plus élevé.</p>
 <h2 id="accorder-laccs-un-groupe-google-entier">Accorder l'accès à un groupe Google entier<a class="h-anchor" href="#accorder-laccs-un-groupe-google-entier" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
@@ -239,7 +232,7 @@
 <h2 id="retirer-et-modifier-laccs">Retirer et modifier l'accès<a class="h-anchor" href="#retirer-et-modifier-laccs" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
 <li>Modifiez ou retirez les accès depuis la même page. Retirer un accès bloque la prochaine connexion ; cela ne retire pas une signature déjà appliquée à la boîte.</li>
-<li>Vous ne pouvez pas modifier ni retirer <strong>votre propre</strong> accès - un autre administrateur doit le faire (l'interface affiche un badge « Vous » à la place des contrôles).</li>
+<li>Vous ne pouvez pas modifier ni retirer <strong>votre propre</strong> accès - un autre administrateur doit le faire (l'interface affiche un badge "Vous" à la place des contrôles).</li>
 <li>Les niveaux d'accès ne contrôlent que l'application SignatureCat. Ils n'ont aucun effet sur le compte Google de l'utilisateur.</li>
 </ul>
 <h2 id="laisser-les-utilisateurs-grer-leur-propre-signature">Laisser les utilisateurs gérer leur propre signature<a class="h-anchor" href="#laisser-les-utilisateurs-grer-leur-propre-signature" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
@@ -258,7 +251,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/user-management" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/user-management" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/user-management" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/user-management" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

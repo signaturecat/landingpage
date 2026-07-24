@@ -15,7 +15,7 @@ Les affectations lient un modèle à une cible - un groupe Google, une unité or
 2. Saisissez l'**E-mail du groupe** (par exemple `engineering@example.com`).
 3. Choisissez le **Modèle**.
 4. Activez éventuellement **+ sous-groupes** pour inclure les membres des groupes imbriqués.
-5. Choisissez éventuellement un mode d'alias sous **Alias** - voir les [modes d'alias](/docs/assignments/#alias-modes) pour comprendre ce que font « Adresses du groupe » et « Tous les alias ».
+5. Choisissez éventuellement un mode d'alias sous **Alias** - voir les [modes d'alias](/docs/assignments/#alias-modes) pour comprendre ce que font "Adresses du groupe" et "Tous les alias".
 
 ## Affecter à une unité organisationnelle
 
@@ -42,4 +42,4 @@ Si un utilisateur correspond à plusieurs affectations, une seule l'emporte : le
 Étape suivante : [vérifiez la tâche d'affectation](/docs/verify-assignments/) pour confirmer que tout a bien été appliqué.
 
 > [!NOTE]
-> Chaque cible ne peut contenir qu'une seule affectation. Tenter d'en créer une seconde pour le même groupe ou la même OU affiche « Cette cible a déjà une affectation. Modifiez l'entrée existante ou choisissez une autre cible. »
+> Chaque cible ne peut contenir qu'une seule affectation. Tenter d'en créer une seconde pour le même groupe ou la même OU affiche "Cette cible a déjà une affectation. Modifiez l'entrée existante ou choisissez une autre cible."

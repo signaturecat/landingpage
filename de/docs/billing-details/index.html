@@ -178,13 +178,6 @@
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Sprache">
-        <p class="docs-nav-label">Sprache</p>
-        <a href="/docs/billing-details" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/billing-details" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/billing-details" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
-        <a href="/fr/docs/billing-details" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -205,7 +198,7 @@
 <p>Die <strong>Rechnungs-E-Mail</strong> ist im Stripe-Portal bewusst nicht bearbeitbar - ändern Sie sie in den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a>, Bereich Abrechnung, damit App und Stripe immer übereinstimmen. Siehe <a href="/de/docs/invoices#set-the-invoice-email">Rechnungen</a>.</p>
 </div></aside>
 <h2 id="ihren-abonnementstatus-prfen">Ihren Abonnementstatus prüfen<a class="h-anchor" href="#ihren-abonnementstatus-prfen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Der Bereich Abrechnung in den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a> zeigt den Abonnementstatus (Aktiv, Testphase, Überfällig, Gekündigt), die aktuelle Zahl aktiver Nutzer und das Verlängerungsdatum („Aktiv bis ...").</p>
+<p>Der Bereich Abrechnung in den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a> zeigt den Abonnementstatus (Aktiv, Testphase, Überfällig, Gekündigt), die aktuelle Zahl aktiver Nutzer und das Verlängerungsdatum ("Aktiv bis ...").</p>
 <h2 id="das-abonnement-kndigen">Das Abonnement kündigen<a class="h-anchor" href="#das-abonnement-kndigen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Klicken Sie in den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a>, Bereich Abrechnung, auf <strong>Abonnement kündigen</strong>. Der Zugriff läuft bis zum Ende des aktuellen Abrechnungszeitraums weiter, danach endet die Signaturverwaltung. Ihre Gmail-Signaturen werden nicht entfernt - sie werden lediglich nicht mehr verwaltet und aktualisiert.</p>
 <aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Warnung</p><div class="callout-body">
@@ -225,7 +218,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/billing-details" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/billing-details" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/billing-details" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/billing-details" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Rechtliches</a>
         </span>

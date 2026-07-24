@@ -24,7 +24,7 @@ Les entrées de la bibliothèque portent un nom facultatif et un **lien de clic*
 
 - **Les téléversements dans la bibliothèque** sont stockés par SignatureCat et servis depuis `https://images.signature.cat/...` via un CDN avec une mise en cache de longue durée.
 - Avec un [domaine d'images personnalisé](/docs/custom-image-domain/) vérifié, les signatures nouvellement rendues servent les images de la bibliothèque depuis votre sous-domaine (par exemple `images.yourcompany.com`) - meilleure délivrabilité, même stockage.
-- **Les images par URL externe** (« J'ai un lien ») sont chargées directement depuis l'endroit où vous les hébergez. Elles doivent être publiques et en HTTPS ; hébergez-les idéalement sur votre propre domaine.
+- **Les images par URL externe** ("J'ai un lien") sont chargées directement depuis l'endroit où vous les hébergez. Elles doivent être publiques et en HTTPS ; hébergez-les idéalement sur votre propre domaine.
 
 > [!IMPORTANT]
 > Les URL d'images sont figées dans chaque signature rendue. Les e-mails déjà présents dans les boîtes des destinataires continuent de charger l'URL avec laquelle ils ont été envoyés - c'est pourquoi SignatureCat ne supprime jamais les fichiers sous-jacents des images retirées de la bibliothèque, et pourquoi une image externe que vous mettez hors ligne apparaîtra cassée dans les anciens e-mails.

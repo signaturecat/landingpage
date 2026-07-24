@@ -235,6 +235,16 @@ function render(src, loc, I18N) {
     `<script type="application/ld+json">\n${jsonLdGraph(loc, tr)}\n  </script>`,
   );
 
+  // Docs links follow the page language (PM 2026-07-23): /pl -> /pl/docs etc.
+  // Only anchor hrefs - the JSON-LD SearchAction entrypoint stays canonical.
+  // Idempotent: a /pl/docs href no longer matches the /docs pattern.
+  if (loc !== 'en') {
+    html = html.replace(
+      /(href=")https:\/\/signature\.cat\/docs(?=["/#?])/g,
+      `$1https://signature.cat/${loc}/docs`,
+    );
+  }
+
   // page-level relative asset refs -> root-absolute so /pl/ resolves them
   html = html.replace(/(\s(?:href|src)=")assets\//g, '$1/assets/');
 

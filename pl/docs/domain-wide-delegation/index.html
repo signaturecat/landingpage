@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/domain-wide-delegation" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/domain-wide-delegation" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/domain-wide-delegation" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/domain-wide-delegation" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -216,7 +209,7 @@
 <p>SignatureCat weryfikuje stan DWD przed każdą synchronizacją. Gdy coś się psuje:</p>
 <ul>
 <li>synchronizacje podpisów są <strong>natychmiast wstrzymywane</strong> (nic nie zostaje zastosowane połowicznie),</li>
-<li>administratorzy dostają w aplikacji powiadomienie „Utracono dostęp Domain-Wide Delegation" oraz e-mail „Wymagane działanie",</li>
+<li>administratorzy dostają w aplikacji powiadomienie "Utracono dostęp Domain-Wide Delegation" oraz e-mail "Wymagane działanie",</li>
 <li>aplikacja kieruje administratorów z powrotem do kreatora DWD.</li>
 </ul>
 <p>Ponowne nadanie brakującego wpisu lub zakresu i zaliczenie <strong>Sprawdź</strong> wznawia wszystko - stan naprawia się sam, niczego nie trzeba odbudowywać. Aby otworzyć kreator w dowolnym momencie, użyj <strong>Uruchom ponownie kreator DWD</strong> w <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Ustawieniach</a>, w sekcji Konto usługi.</p>
@@ -241,7 +234,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/domain-wide-delegation" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/domain-wide-delegation" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/domain-wide-delegation" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/domain-wide-delegation" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

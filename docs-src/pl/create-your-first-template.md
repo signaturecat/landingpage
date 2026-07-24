@@ -36,7 +36,7 @@ Pełna lista zmiennych, źródło każdej wartości i dokładne reguły warunkó
 
 ## Podgląd jako prawdziwy użytkownik
 
-Panel podglądu renderuje rozwiązany podpis na żywo w trakcie pisania. Użyj kontrolki **Renderuj jako**, aby podstawić rekord Directory dowolnego prawdziwego użytkownika - domyślnie renderowanie odbywa się na Twoich danych. Podgląd mówi dokładnie, którego rekordu użył: „Wyrenderowano na podstawie danych Directory dla {email}."
+Panel podglądu renderuje rozwiązany podpis na żywo w trakcie pisania. Użyj kontrolki **Renderuj jako**, aby podstawić rekord Directory dowolnego prawdziwego użytkownika - domyślnie renderowanie odbywa się na Twoich danych. Podgląd mówi dokładnie, którego rekordu użył: "Wyrenderowano na podstawie danych Directory dla {email}."
 
 ## Przetestuj na własnej skrzynce
 

@@ -178,13 +178,6 @@
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Sprache">
-        <p class="docs-nav-label">Sprache</p>
-        <a href="/docs/assignments" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/assignments" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/assignments" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
-        <a href="/fr/docs/assignments" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -202,7 +195,7 @@
 <tr><td>Alle</td><td>Alle aktiven Nutzer im Workspace</td><td>Höchstens <strong>eine</strong> solche Zuweisung pro Workspace.</td></tr>
 </tbody>
 </table></div>
-<p>Jedes Ziel kann nur eine Zuweisung tragen - das Anlegen eines Duplikats wird mit „Dieses Ziel hat bereits eine Zuweisung." abgelehnt. Die Zielart ist nach dem Anlegen fest; um eine Gruppen-Zuweisung auf eine OU umzustellen, löschen Sie sie und legen sie neu an.</p>
+<p>Jedes Ziel kann nur eine Zuweisung tragen - das Anlegen eines Duplikats wird mit "Dieses Ziel hat bereits eine Zuweisung." abgelehnt. Die Zielart ist nach dem Anlegen fest; um eine Gruppen-Zuweisung auf eine OU umzustellen, löschen Sie sie und legen sie neu an.</p>
 <p>Einzelne Nutzer sind bewusst kein Zuweisungsziel - decken Sie Einzelpersonen über <a href="/de/docs/self-service">Self-Service</a> oder einen einmaligen <a href="/de/docs/apply-jobs">Anwendungs-Auftrag</a> ab.</p>
 <h2 id="wie-der-vorrang-funktioniert">Wie der Vorrang funktioniert<a class="h-anchor" href="#wie-der-vorrang-funktioniert" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Nutzer passen oft auf mehrere Zuweisungen. Jede Synchronisierung ermittelt genau <strong>einen Gewinner pro Nutzer</strong>, Ebene für Ebene, von unten nach oben:</p>
@@ -212,7 +205,7 @@
 <li><strong>Gruppen-Zuweisungen</strong> überschreiben die OU-Vorlage für ihre Mitglieder. Gehört ein Nutzer zu mehreren zugewiesenen Gruppen, gewinnt die <strong>zuletzt aktualisierte</strong> Zuweisung.</li>
 <li><strong>Self-Service</strong> - die eigene Wahl eines Nutzers gewinnt über jede Zuweisung, <strong>außer</strong> die gewinnende Zuweisung hat <strong>Self-Service überschreiben</strong> aktiviert.</li>
 </ol>
-<p>Verdrängt eine Zuweisung andere für einen Nutzer, vermerkt es die Ergebniszeile des Auftrags („N andere Zuweisung(en) für diesen Nutzer überschrieben"), sodass Sie Konflikte auf den <a href="/de/docs/logs">Protokoll</a>-Seiten nachvollziehen können.</p>
+<p>Verdrängt eine Zuweisung andere für einen Nutzer, vermerkt es die Ergebniszeile des Auftrags ("N andere Zuweisung(en) für diesen Nutzer überschrieben"), sodass Sie Konflikte auf den <a href="/de/docs/logs">Protokoll</a>-Seiten nachvollziehen können.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tipp</p><div class="callout-body">
 <p>Bewährtes Muster: eine Zuweisung an alle als Unternehmensstandard, OU-Zuweisungen pro Land oder Marke, Gruppen-Zuweisungen für Ausnahmen (Vertriebskampagne, Führungsteam). Die Ebenenlogik erledigt den Rest.</p>
 </div></aside>
@@ -228,15 +221,15 @@
 </table></div>
 <p>Hinweise zum Verhalten:</p>
 <ul>
-<li>Mit <strong>Alle Aliasse</strong> werden externe Adressen und nicht bearbeitbare Aliasse nie automatisch angelegt; ein neu angelegter send-as-Eintrag, den Gmail als „Verifizierung ausstehend" meldet, wird bis zur Verifizierung übersprungen.</li>
+<li>Mit <strong>Alle Aliasse</strong> werden externe Adressen und nicht bearbeitbare Aliasse nie automatisch angelegt; ein neu angelegter send-as-Eintrag, den Gmail als "Verifizierung ausstehend" meldet, wird bis zur Verifizierung übersprungen.</li>
 <li><code>{{email}}</code> und <code>{{domain}}</code> lösen zum gerade geschriebenen <strong>Alias</strong> auf, sodass Alias-Signaturen die richtige Adresse zeigen. Alle anderen Variablen stammen aus dem Datensatz des Postfach-Inhabers.</li>
 <li>Jeder Alias-Schreibvorgang erhält eine eigene Zeile in den Auftragsergebnissen, sodass die <a href="/de/docs/verify-assignments">Prüfung</a> genau zeigt, welche Adressen signiert oder übersprungen wurden.</li>
 <li>Self-Service-Signaturen werden immer auch auf die akzeptierten Aliasse des Nutzers angewendet.</li>
 </ul>
 <h2 id="self-service-berschreiben">Self-Service überschreiben<a class="h-anchor" href="#self-service-berschreiben" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Pro Zuweisung sorgt der Schalter <strong>Self-Service überschreiben</strong> dafür, dass die Zuweisung über die eigene Self-Service-Wahl der Nutzer gewinnt. Die Zeile zeigt das Badge „überschreibt Self-Service". Nutzen Sie ihn für compliance-kritische Signaturen (rechtliche Disclaimer), bei denen individuelle Anpassung nicht akzeptabel ist.</p>
+<p>Pro Zuweisung sorgt der Schalter <strong>Self-Service überschreiben</strong> dafür, dass die Zuweisung über die eigene Self-Service-Wahl der Nutzer gewinnt. Die Zeile zeigt das Badge "überschreibt Self-Service". Nutzen Sie ihn für compliance-kritische Signaturen (rechtliche Disclaimer), bei denen individuelle Anpassung nicht akzeptabel ist.</p>
 <h2 id="wenn-ziele-verschwinden">Wenn Ziele verschwinden<a class="h-anchor" href="#wenn-ziele-verschwinden" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Wird eine zugewiesene Gruppe oder OU in Google Workspace gelöscht, markiert die nächste Synchronisierung die Zuweisung mit dem Badge „nicht im Workspace gefunden", überspringt das Ziel, benachrichtigt Admins (in der App + per E-Mail, einmal pro Fehlerserie) und versucht es bei folgenden Synchronisierungen erneut. Korrigieren Sie das Ziel im Bearbeitungsbereich oder entfernen Sie die Zuweisung. Siehe <a href="/de/docs/verify-assignments#what-the-per-user-rows-tell-you">Einen Zuweisungsauftrag prüfen</a>.</p>
+<p>Wird eine zugewiesene Gruppe oder OU in Google Workspace gelöscht, markiert die nächste Synchronisierung die Zuweisung mit dem Badge "nicht im Workspace gefunden", überspringt das Ziel, benachrichtigt Admins (in der App + per E-Mail, einmal pro Fehlerserie) und versucht es bei folgenden Synchronisierungen erneut. Korrigieren Sie das Ziel im Bearbeitungsbereich oder entfernen Sie die Zuweisung. Siehe <a href="/de/docs/verify-assignments#what-the-per-user-rows-tell-you">Einen Zuweisungsauftrag prüfen</a>.</p>
 <h2 id="bearbeiten-und-entfernen">Bearbeiten und Entfernen<a class="h-anchor" href="#bearbeiten-und-entfernen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Zeilen werden direkt bearbeitet (Vorlage, Zielwert, Umfang, Alias-Modus, Überschreiben). Das Entfernen einer Zuweisung beendet die Verwaltung dieser Nutzer - bereits angewendete Signaturen bleiben in Gmail, bis etwas anderes (eine andere Zuweisung, Self-Service oder die Standardvorlage) sie bei einer späteren Synchronisierung überschreibt.</p>
       </article>
@@ -253,7 +246,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/assignments" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/assignments" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/assignments" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/assignments" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Rechtliches</a>
         </span>

@@ -41,7 +41,7 @@ Unabhängig vom Schalter kann das SignatureCat-Personal nicht:
 Transparenz ist eingebaut:
 
 - Das Ein- oder Ausschalten des Schalters wird in das Aktivitätsprotokoll Ihres Kontos geschrieben, und die anderen Admins erhalten eine In-App-Benachrichtigung, wenn der Support-Zugriff aktiviert wird.
-- Jede Änderung unseres Teams erscheint im Aktivitätsprotokoll in den [Einstellungen](https://app.signature.cat/settings) als Name des Mitarbeiters gefolgt von „(SignatureCat Support)" - derselbe Verlauf, in den auch die Änderungen Ihrer eigenen Admins gehen.
+- Jede Änderung unseres Teams erscheint im Aktivitätsprotokoll in den [Einstellungen](https://app.signature.cat/settings) als Name des Mitarbeiters gefolgt von "(SignatureCat Support)" - derselbe Verlauf, in den auch die Änderungen Ihrer eigenen Admins gehen.
 - Diese Einträge sind Teil Ihrer Kontodaten und daher in Datenexporten enthalten.
 
 > [!TIP]

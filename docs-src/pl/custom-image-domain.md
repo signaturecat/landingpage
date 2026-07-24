@@ -28,7 +28,7 @@ Konfiguracja niczego nie psuje: dopóki domena nie jest aktywna, obrazki wciąż
 
 Kreator pokazuje jeden z trzech statusów: **Oczekuje na rekordy DNS**, **Domena aktywna** lub **Weryfikacja nieudana**.
 
-Po aktywacji: „Nowe maile pobierają obrazki z Twojej domeny. Szablony zostają bez zmian - podmiana dzieje się automatycznie."
+Po aktywacji: "Nowe maile pobierają obrazki z Twojej domeny. Szablony zostają bez zmian - podmiana dzieje się automatycznie."
 
 > [!NOTE]
 > Wysłane już e-maile nie są objęte zmianą - nadal ładują obrazki z adresu, z którym zostały wyrenderowane.

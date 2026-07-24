@@ -7,7 +7,7 @@ updated: 2026-07-19
 
 # Journaux
 
-SignatureCat tient un journal opérationnel de chaque tâche de signature, par utilisateur et par adresse, pour que vous puissiez toujours répondre à « est-ce que ça s'est appliqué, et sinon, pourquoi ». Le point d'entrée principal est [Journaux des tâches](https://app.signature.cat/assignments/logs).
+SignatureCat tient un journal opérationnel de chaque tâche de signature, par utilisateur et par adresse, pour que vous puissiez toujours répondre à "est-ce que ça s'est appliqué, et sinon, pourquoi". Le point d'entrée principal est [Journaux des tâches](https://app.signature.cat/assignments/logs).
 
 ## Journaux des tâches
 
@@ -15,14 +15,14 @@ SignatureCat tient un journal opérationnel de chaque tâche de signature, par u
 
 - **Type** - Synchronisation des attributions (la tâche quotidienne ou **Synchroniser maintenant**) ou Application manuelle (depuis la page [Appliquer](https://app.signature.cat/apply) et les enregistrements self-service).
 - **Statut** - Réussi, Partiel, Échoué ou Annulé.
-- **Qui** - l'utilisateur qui l'a lancée, ou « Automatique » pour la synchronisation planifiée.
-- **Décomptes** - « N réussies, N échouées, N ignorées ».
+- **Qui** - l'utilisateur qui l'a lancée, ou "Automatique" pour la synchronisation planifiée.
+- **Décomptes** - "N réussies, N échouées, N ignorées".
 
 Déplier une ligne affiche les résultats par utilisateur directement ; **Ouvrir la vue complète de la tâche** ouvre le tableau de résultats complet sur `app.signature.cat/jobs/{id}`.
 
 ## Ce que contient une ligne de résultat
 
-Une ligne par adresse écrite : l'utilisateur (ou l'alias, marqué d'un badge « alias »), le résultat et un code d'erreur pour les échecs ou les cas ignorés. Les codes courants et leurs correctifs sont listés dans [Vérifier une tâche d'affectation](/docs/verify-assignments/#what-the-per-user-rows-tell-you). Les lignes peuvent aussi porter la note « a remplacé N autres affectations pour cet utilisateur » pour les audits de [priorité](/docs/assignments/#how-precedence-works).
+Une ligne par adresse écrite : l'utilisateur (ou l'alias, marqué d'un badge "alias"), le résultat et un code d'erreur pour les échecs ou les cas ignorés. Les codes courants et leurs correctifs sont listés dans [Vérifier une tâche d'affectation](/docs/verify-assignments/#what-the-per-user-rows-tell-you). Les lignes peuvent aussi porter la note "a remplacé N autres affectations pour cet utilisateur" pour les audits de [priorité](/docs/assignments/#how-precedence-works).
 
 ## Conservation
 

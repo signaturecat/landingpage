@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/connect-google-workspace" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/connect-google-workspace" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/connect-google-workspace" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/connect-google-workspace" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -218,12 +211,12 @@
 <li><strong>Autoryzuj</strong> - kliknij <strong>Authorize</strong> w Admin console.</li>
 <li><strong>Sprawdź</strong> - z powrotem w SignatureCat kliknij <strong>Sprawdź</strong>. Aplikacja wykonuje test łączności dla każdego zakresu i pokazuje wynik OK / Błąd per zakres.</li>
 </ol>
-<p>Ostatni zakres, <code>gmail.settings.sharing</code>, jest <strong>opcjonalny</strong>: jest potrzebny wyłącznie do zapisywania podpisów na aliasach send-as. Możesz go teraz pominąć i dodać później - cała reszta działa, a kreator pokaże informację „Obsługa aliasów jest wyłączona". Zobacz <a href="/pl/docs/assignments#alias-modes">Przypisania</a>, aby dowiedzieć się, co odblokowują aliasy.</p>
+<p>Ostatni zakres, <code>gmail.settings.sharing</code>, jest <strong>opcjonalny</strong>: jest potrzebny wyłącznie do zapisywania podpisów na aliasach send-as. Możesz go teraz pominąć i dodać później - cała reszta działa, a kreator pokaże informację "Obsługa aliasów jest wyłączona". Zobacz <a href="/pl/docs/assignments#alias-modes">Przypisania</a>, aby dowiedzieć się, co odblokowują aliasy.</p>
 <aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Ostrzeżenie</p><div class="callout-body">
-<p>Wklej ciąg zakresów dokładnie tak, jak został skopiowany. Brakujący lub zmieniony zakres oblewa sprawdzenie z błędem per zakres, na przykład „Ten zakres nie został autoryzowany. Powtórz krok 4 z dokładnym ciągiem zakresów."</p>
+<p>Wklej ciąg zakresów dokładnie tak, jak został skopiowany. Brakujący lub zmieniony zakres oblewa sprawdzenie z błędem per zakres, na przykład "Ten zakres nie został autoryzowany. Powtórz krok 4 z dokładnym ciągiem zakresów."</p>
 </div></aside>
 <h3 id="sprawdzenie-zgasza-e-dostp-wci-si-propaguje">Sprawdzenie zgłasza, że dostęp wciąż się propaguje<a class="h-anchor" href="#sprawdzenie-zgasza-e-dostp-wci-si-propaguje" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
-<p>Google potrzebuje chwili, aby rozpropagować świeży grant DWD - zwykle sekund, czasem do około 30 sekund. Przycisk <strong>Sprawdź</strong> sam odczekuje większość tego okna. Jeśli nadal widzisz żółtą kartę „dostęp może się jeszcze propagować", odczekaj chwilę i kliknij <strong>Sprawdź</strong> ponownie. To nie jest błąd.</p>
+<p>Google potrzebuje chwili, aby rozpropagować świeży grant DWD - zwykle sekund, czasem do około 30 sekund. Przycisk <strong>Sprawdź</strong> sam odczekuje większość tego okna. Jeśli nadal widzisz żółtą kartę "dostęp może się jeszcze propagować", odczekaj chwilę i kliknij <strong>Sprawdź</strong> ponownie. To nie jest błąd.</p>
 <h2 id="krok-4-patnoci">Krok 4: Płatności<a class="h-anchor" href="#krok-4-patnoci" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Po zweryfikowaniu DWD trafiasz na <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Płatności</a>, aby rozpocząć 7-dniowy bezpłatny okres próbny (karta jest pobierana z góry, a obciążana po zakończeniu okresu próbnego). Zobacz <a href="/pl/docs/invoices">Faktury</a>, aby poznać progi cenowe.</p>
 <p>To wszystko - przejdź do <a href="/pl/docs/create-your-first-template">Utwórz swój pierwszy szablon</a>.</p>
@@ -247,7 +240,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/connect-google-workspace" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/connect-google-workspace" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/connect-google-workspace" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/connect-google-workspace" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

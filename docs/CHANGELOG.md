@@ -2,6 +2,33 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-23 - Docs language dropdown in the footer + language-consistent docs links + straight quotes
+
+- **What (PM follow-up to the docs i18n release):**
+  - **Language switcher is now a design-system `<select>` in the docs
+    footer**, left of the contact link (which is shortened from the full
+    e-mail address to a localized "Contact"/"Kontakt"). The sidebar link
+    group from the first iteration is removed. Options carry the same page
+    in the target language; `docs.js` navigates on change and stores the
+    choice in the `sigcat_locale` cookie (the contract the Worker's root
+    redirect honors). Crawlability of the variants is unaffected - the
+    hreflang cluster in `<head>` and the sitemap remain the discovery path.
+    Select styling mirrors the app's selects: bordered 10px-radius surface,
+    custom outline chevron (per-theme color), accent focus ring,
+    reduced-motion safe.
+  - **The landing links to the docs in the page's own language**
+    (`/pl` -> `/pl/docs` etc., 4 anchors per page: nav, hero CTA, docs
+    section CTA, footer). English stays `/docs`; the JSON-LD SearchAction
+    entrypoint deliberately stays canonical. Applied at build time in
+    `build.mjs` (idempotent).
+  - **Typographic quotes in the translated docs normalized to straight
+    keyboard quotes**: French guillemets (`« »`) and Polish/German low-9
+    openers (`„`) are now plain `"` across all 57 affected source files
+    (and the regenerated pages).
+- **Why:** PM 2026-07-23 - dropdown fits the design system better than the
+  sidebar link list, cross-surface language consistency, and more natural
+  keyboard punctuation in translated content.
+
 ## 2026-07-23 - Multilingual docs (pl/de/fr) + JSON-LD entity graph on the landing
 
 - **What:**

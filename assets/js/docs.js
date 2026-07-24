@@ -339,17 +339,23 @@
     }
   });
 
-  /* ---- 6. language switcher (sidebar, below the table of contents) --------------
-     The <a href> does the navigation (crawlable, works without JS); JS only
-     remembers the manual choice so the Worker's root redirect honors it -
-     the exact contract of the landing switcher in app.js. */
-  document.querySelectorAll('.docs-lang a[data-lang]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      var loc = a.getAttribute('data-lang');
-      try { localStorage.setItem('sigcat_locale', loc); } catch (e) {}
-      document.cookie = 'sigcat_locale=' + loc + ';path=/;max-age=31536000;SameSite=Lax';
+  /* ---- 6. language dropdown (docs footer) ----------------------------------------
+     Option values carry the SAME page in the target language. On change we
+     remember the manual choice (sigcat_locale cookie + localStorage - the
+     contract the Worker's root redirect honors, same as the landing switcher)
+     and navigate. Crawlability comes from the hreflang cluster + sitemap. */
+  var langSelect = document.getElementById('docs-lang-select');
+  if (langSelect) {
+    langSelect.addEventListener('change', function () {
+      var opt = langSelect.selectedOptions && langSelect.selectedOptions[0];
+      var loc = opt && opt.getAttribute('data-lang');
+      if (loc) {
+        try { localStorage.setItem('sigcat_locale', loc); } catch (e) {}
+        document.cookie = 'sigcat_locale=' + loc + ';path=/;max-age=31536000;SameSite=Lax';
+      }
+      if (langSelect.value) location.href = langSelect.value;
     });
-  });
+  }
 
   /* ---- 7. ?q= deep link (WebSite SearchAction on the landing JSON-LD) -----------
      /docs?q=foo opens the search overlay pre-filled - keeps the declared

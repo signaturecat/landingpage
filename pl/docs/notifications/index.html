@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/notifications" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/notifications" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/notifications" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/notifications" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -223,7 +216,7 @@
 <tr><td>Płatność nie przeszła</td><td>Błąd</td><td>Obciążenie nie powiodło się; trwa okno karencji.</td></tr>
 </tbody>
 </table></div>
-<p>Poza dzwonkiem w aplikacji mogą pojawić się dwa banery: bursztynowy <strong>baner okresu próbnego</strong> w jego ostatnich dniach oraz czerwony <strong>baner płatności</strong> („Zaktualizuj kartę do {date}, inaczej zarządzanie podpisami zostanie wstrzymane") w oknie karencji płatności.</p>
+<p>Poza dzwonkiem w aplikacji mogą pojawić się dwa banery: bursztynowy <strong>baner okresu próbnego</strong> w jego ostatnich dniach oraz czerwony <strong>baner płatności</strong> ("Zaktualizuj kartę do {date}, inaczej zarządzanie podpisami zostanie wstrzymane") w oknie karencji płatności.</p>
 <h2 id="zalecana-konfiguracja">Zalecana konfiguracja<a class="h-anchor" href="#zalecana-konfiguracja" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
 <li>Zadbaj, aby co najmniej jedna regularnie czytana skrzynka miała poziom <strong>Admin</strong> - e-maile alertowe trafiają wyłącznie do administratorów i właściciela. Zobacz <a href="/pl/docs/user-management">Zarządzanie dostępem</a>.</li>
@@ -244,7 +237,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/notifications" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/notifications" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/notifications" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/notifications" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/assignments" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/assignments" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/assignments" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/assignments" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -202,7 +195,7 @@
 <tr><td>Tous</td><td>Tous les utilisateurs actifs du Workspace</td><td>Au maximum <strong>une</strong> affectation de ce type par espace de travail.</td></tr>
 </tbody>
 </table></div>
-<p>Chaque cible ne peut contenir qu'une seule affectation - la création d'un doublon est rejetée avec « Cette cible a déjà une affectation. » Le type d'une cible est figé après la création ; pour transformer une affectation de groupe en affectation d'OU, supprimez-la et recréez-la.</p>
+<p>Chaque cible ne peut contenir qu'une seule affectation - la création d'un doublon est rejetée avec "Cette cible a déjà une affectation." Le type d'une cible est figé après la création ; pour transformer une affectation de groupe en affectation d'OU, supprimez-la et recréez-la.</p>
 <p>Les utilisateurs individuels ne sont volontairement pas une cible d'affectation - couvrez les cas individuels avec le <a href="/fr/docs/self-service">self-service</a> ou une <a href="/fr/docs/apply-jobs">tâche d'application</a> ponctuelle.</p>
 <h2 id="fonctionnement-de-la-priorit">Fonctionnement de la priorité<a class="h-anchor" href="#fonctionnement-de-la-priorit" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Les utilisateurs correspondent souvent à plusieurs affectations. Chaque synchronisation calcule exactement <strong>un gagnant par utilisateur</strong>, couche par couche, de bas en haut :</p>
@@ -212,7 +205,7 @@
 <li><strong>Les affectations de groupe</strong> remplacent le modèle de l'OU pour leurs membres. Si un utilisateur appartient à plusieurs groupes affectés, l'affectation <strong>la plus récemment mise à jour</strong> l'emporte.</li>
 <li><strong>Self-service</strong> - le choix propre de l'utilisateur l'emporte sur toute affectation, <strong>sauf</strong> si l'affectation gagnante a <strong>Remplacer le self-service</strong> activé.</li>
 </ol>
-<p>Lorsqu'une affectation en supplante d'autres pour un utilisateur, la ligne de résultat de la tâche l'enregistre (« a remplacé N autres affectations pour cet utilisateur »), ce qui vous permet d'auditer les conflits sur les pages de <a href="/fr/docs/logs">journaux</a>.</p>
+<p>Lorsqu'une affectation en supplante d'autres pour un utilisateur, la ligne de résultat de la tâche l'enregistre ("a remplacé N autres affectations pour cet utilisateur"), ce qui vous permet d'auditer les conflits sur les pages de <a href="/fr/docs/logs">journaux</a>.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Astuce</p><div class="callout-body">
 <p>Schéma recommandé : une affectation pour tous comme modèle par défaut de l'entreprise, des affectations OU par pays ou par marque, des affectations de groupe pour les exceptions (campagne commerciale, équipe de direction). L'empilement des couches fait le reste.</p>
 </div></aside>
@@ -234,9 +227,9 @@
 <li>Les signatures self-service sont toujours appliquées aussi aux alias acceptés de l'utilisateur.</li>
 </ul>
 <h2 id="remplacer-le-self-service">Remplacer le self-service<a class="h-anchor" href="#remplacer-le-self-service" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Par affectation, l'interrupteur <strong>Remplacer le self-service</strong> fait gagner l'affectation sur les choix self-service des utilisateurs. La ligne affiche un badge « remplace le self-service ». Utilisez-le pour les signatures critiques en matière de conformité (mentions légales) où la personnalisation individuelle n'est pas acceptable.</p>
+<p>Par affectation, l'interrupteur <strong>Remplacer le self-service</strong> fait gagner l'affectation sur les choix self-service des utilisateurs. La ligne affiche un badge "remplace le self-service". Utilisez-le pour les signatures critiques en matière de conformité (mentions légales) où la personnalisation individuelle n'est pas acceptable.</p>
 <h2 id="quand-les-cibles-disparaissent">Quand les cibles disparaissent<a class="h-anchor" href="#quand-les-cibles-disparaissent" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Si un groupe ou une OU affecté est supprimé dans Google Workspace, la synchronisation suivante marque l'affectation avec un badge « introuvable dans le Workspace », ignore la cible, notifie les administrateurs (dans l'application + e-mail, une fois par série d'échecs) et réessaie lors des synchronisations suivantes. Corrigez la cible dans le panneau d'édition ou supprimez l'affectation. Voir <a href="/fr/docs/verify-assignments#what-the-per-user-rows-tell-you">Vérifier une tâche d'affectation</a>.</p>
+<p>Si un groupe ou une OU affecté est supprimé dans Google Workspace, la synchronisation suivante marque l'affectation avec un badge "introuvable dans le Workspace", ignore la cible, notifie les administrateurs (dans l'application + e-mail, une fois par série d'échecs) et réessaie lors des synchronisations suivantes. Corrigez la cible dans le panneau d'édition ou supprimez l'affectation. Voir <a href="/fr/docs/verify-assignments#what-the-per-user-rows-tell-you">Vérifier une tâche d'affectation</a>.</p>
 <h2 id="modifier-et-retirer">Modifier et retirer<a class="h-anchor" href="#modifier-et-retirer" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Les lignes sont modifiées sur place (modèle, valeur de la cible, portée, mode d'alias, remplacement). Retirer une affectation arrête la gestion de ces utilisateurs - les signatures déjà appliquées restent dans Gmail jusqu'à ce qu'autre chose (une autre affectation, le self-service ou le modèle par défaut) les écrase lors d'une synchronisation ultérieure.</p>
       </article>
@@ -253,7 +246,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/assignments" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/assignments" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/assignments" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/assignments" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

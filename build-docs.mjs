@@ -85,6 +85,7 @@ const UI = {
     searchEmpty: 'No results. Try different keywords or email',
     onThisPage: 'On this page', prev: 'Previous', next: 'Next',
     help: 'Help', openApp: 'Open app', legal: 'Legal', language: 'Language',
+    contact: 'Contact',
     breadcrumbAria: 'Breadcrumb', pagerAria: 'Pagination', navAria: 'Documentation',
     themeAria: 'Theme: system', anchorAria: 'Copy link to this section',
   },
@@ -95,6 +96,7 @@ const UI = {
     searchEmpty: 'Brak wyników. Spróbuj innych słów kluczowych albo napisz na',
     onThisPage: 'Na tej stronie', prev: 'Poprzednia', next: 'Następna',
     help: 'Pomoc', openApp: 'Otwórz aplikację', legal: 'Informacje prawne', language: 'Język',
+    contact: 'Kontakt',
     breadcrumbAria: 'Okruszki nawigacyjne', pagerAria: 'Stronicowanie', navAria: 'Dokumentacja',
     themeAria: 'Motyw: systemowy', anchorAria: 'Skopiuj link do tej sekcji',
   },
@@ -105,6 +107,7 @@ const UI = {
     searchEmpty: 'Keine Ergebnisse. Versuchen Sie andere Suchbegriffe oder schreiben Sie an',
     onThisPage: 'Auf dieser Seite', prev: 'Zurück', next: 'Weiter',
     help: 'Hilfe', openApp: 'App öffnen', legal: 'Rechtliches', language: 'Sprache',
+    contact: 'Kontakt',
     breadcrumbAria: 'Brotkrümelnavigation', pagerAria: 'Seitennavigation', navAria: 'Dokumentation',
     themeAria: 'Design: System', anchorAria: 'Link zu diesem Abschnitt kopieren',
   },
@@ -115,6 +118,7 @@ const UI = {
     searchEmpty: "Aucun résultat. Essayez d'autres mots-clés ou écrivez à",
     onThisPage: 'Sur cette page', prev: 'Précédent', next: 'Suivant',
     help: 'Aide', openApp: "Ouvrir l'app", legal: 'Mentions légales', language: 'Langue',
+    contact: 'Contact',
     breadcrumbAria: "Fil d'Ariane", pagerAria: 'Pagination', navAria: 'Documentation',
     themeAria: 'Thème : système', anchorAria: 'Copier le lien vers cette section',
   },
@@ -454,7 +458,6 @@ const HELP_ICON =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg>';
 
 function sidebarHtml(activeSlug, loc, pages) {
-  const ui = UI[loc];
   const groups = NAV.map((g) => {
     const items = g.items
       .map((it) => {
@@ -465,19 +468,22 @@ function sidebarHtml(activeSlug, loc, pages) {
       .join('\n');
     return `      <div class="docs-nav-group">\n        <p class="docs-nav-label">${escHtml(SECTION_NAMES[g.section][loc])}</p>\n        <ul>\n${items}\n        </ul>\n      </div>`;
   }).join('\n');
-  // Language switcher below the table of contents (PM 2026-07-23): crawlable
-  // <a> links to the SAME page in every language (the landing pattern -
-  // docs.js additionally stores the manual choice in the sigcat_locale
-  // cookie so the root redirect honors it).
-  const langLinks = LOCALES.map((l) => {
-    const current = l === loc ? ' aria-current="true"' : '';
-    return `        <a href="${urlFor(activeSlug, l)}" lang="${l}" hreflang="${l}" data-lang="${l}"${current}>${LANG_NAMES[l]}</a>`;
+  return groups;
+}
+
+/* Language dropdown in the docs footer (PM 2026-07-23, iteration 2: a design
+   system select instead of sidebar links). Option values carry the SAME page
+   in the target language; docs.js navigates on change and stores the manual
+   choice in the sigcat_locale cookie so the root redirect honors it. The
+   hreflang cluster in <head> + the sitemap keep the variants crawlable. */
+function langSelectHtml(activeSlug, loc, ui) {
+  const options = LOCALES.map((l) => {
+    const selected = l === loc ? ' selected' : '';
+    return `            <option value="${urlFor(activeSlug, l)}" data-lang="${l}" lang="${l}"${selected}>${LANG_NAMES[l]}</option>`;
   }).join('\n');
-  const lang = `      <div class="docs-lang" role="group" aria-label="${escAttr(ui.language)}">
-        <p class="docs-nav-label">${escHtml(ui.language)}</p>
-${langLinks}
-      </div>`;
-  return `${groups}\n${lang}`;
+  return `<select class="docs-lang-select" id="docs-lang-select" aria-label="${escAttr(ui.language)}">
+${options}
+          </select>`;
 }
 
 function tocHtml(toc, loc) {
@@ -665,7 +671,8 @@ ${pagerHtml(prev, next, loc, pages)}
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          ${langSelectHtml(slug, loc, ui)}
+          <a href="mailto:contact@signature.cat">${escHtml(ui.contact)}</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">${escHtml(ui.legal)}</a>
         </span>

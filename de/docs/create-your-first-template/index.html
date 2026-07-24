@@ -178,13 +178,6 @@
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Sprache">
-        <p class="docs-nav-label">Sprache</p>
-        <a href="/docs/create-your-first-template" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/create-your-first-template" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/create-your-first-template" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
-        <a href="/fr/docs/create-your-first-template" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -217,7 +210,7 @@
 <p>Halten Sie die Directory-Daten vor dem Rollout sauber - Positionen, Abteilungen und Telefonnummern kommen direkt aus dem Google Directory. Leere Felder werden schlicht als leerer Text gerendert, sofern Sie sie nicht in <code>{{del}}</code>-Tags einschließen.</p>
 </div></aside>
 <h2 id="vorschau-als-echter-nutzer">Vorschau als echter Nutzer<a class="h-anchor" href="#vorschau-als-echter-nutzer" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Der Vorschaubereich rendert die aufgelöste Signatur live, während Sie tippen. Nutzen Sie das Steuerelement <strong>Rendern als</strong>, um den Directory-Datensatz eines beliebigen echten Nutzers einzusetzen - standardmäßig wird anhand Ihres eigenen gerendert. Die Vorschau sagt Ihnen genau, welcher Datensatz verwendet wurde: „Gerendert anhand der Directory-Daten von {email}."</p>
+<p>Der Vorschaubereich rendert die aufgelöste Signatur live, während Sie tippen. Nutzen Sie das Steuerelement <strong>Rendern als</strong>, um den Directory-Datensatz eines beliebigen echten Nutzers einzusetzen - standardmäßig wird anhand Ihres eigenen gerendert. Die Vorschau sagt Ihnen genau, welcher Datensatz verwendet wurde: "Gerendert anhand der Directory-Daten von {email}."</p>
 <h2 id="auf-dem-eigenen-postfach-testen">Auf dem eigenen Postfach testen<a class="h-anchor" href="#auf-dem-eigenen-postfach-testen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Klicken Sie in der Editor-Werkzeugleiste auf <strong>Mir eine Testsignatur setzen</strong>. SignatureCat rendert die Vorlage anhand Ihres eigenen Directory-Datensatzes und schreibt sie in Ihre eigene Gmail-Signatur - niemand sonst ist betroffen. Senden Sie sich eine E-Mail oder prüfen Sie die Gmail-Einstellungen, um das echte Ergebnis zu sehen.</p>
 <p>Wenn Sie mit der Vorlage zufrieden sind, machen Sie weiter mit <a href="/de/docs/assign-templates">Vorlagen zuweisen</a>.</p>
@@ -238,7 +231,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/create-your-first-template" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/create-your-first-template" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/create-your-first-template" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/create-your-first-template" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Rechtliches</a>
         </span>

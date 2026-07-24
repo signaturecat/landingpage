@@ -31,7 +31,7 @@ Ein paar praktische Konsequenzen:
 
 ## Wer kann sich anmelden?
 
-Die Anmeldung erfolgt ausschließlich über Google und erfordert ein Google Workspace-Konto in Ihrer Domain. Versucht es jemand ohne Zugriff, sieht er: „Ihr Konto hat noch keinen Zugriff auf SignatureCat. Bitten Sie einen Workspace-Super-Admin, Ihnen Zugriff zu gewähren, und melden Sie sich dann erneut an." - und in Ihrem Workspace ändert sich nichts.
+Die Anmeldung erfolgt ausschließlich über Google und erfordert ein Google Workspace-Konto in Ihrer Domain. Versucht es jemand ohne Zugriff, sieht er: "Ihr Konto hat noch keinen Zugriff auf SignatureCat. Bitten Sie einen Workspace-Super-Admin, Ihnen Zugriff zu gewähren, und melden Sie sich dann erneut an." - und in Ihrem Workspace ändert sich nichts.
 
 Sitzungen dauern bis zu 7 Tage Inaktivität mit einer harten Obergrenze von 14 Tagen, danach ist eine Google-Neuanmeldung mit einem Klick nötig.
 
@@ -41,7 +41,7 @@ Sitzungen dauern bis zu 7 Tage Inaktivität mit einer harten Obergrenze von 14 T
 2. Geben Sie im Tab **Benutzer** die E-Mail-Adresse ein (sie muss zu Ihrem Workspace gehören, sekundäre Domains eingeschlossen).
 3. Wählen Sie eine Zugriffsstufe und klicken Sie auf **Zugriff speichern**.
 
-Der Nutzer erhält eine E-Mail-Einladung „Sie haben jetzt Zugriff auf signature.cat".
+Der Nutzer erhält eine E-Mail-Einladung "Sie haben jetzt Zugriff auf signature.cat".
 
 Eine direkte Nutzer-Berechtigung **überschreibt** immer jede Gruppen-Berechtigung für diese Person - selbst wenn die Gruppen-Berechtigung stärker ist.
 
@@ -59,7 +59,7 @@ Eine direkte Nutzer-Berechtigung **überschreibt** immer jede Gruppen-Berechtigu
 ## Zugriff entfernen und ändern
 
 - Bearbeiten oder entfernen Sie Berechtigungen auf derselben Seite. Das Entfernen einer Berechtigung blockiert die nächste Anmeldung; eine bereits auf das Postfach angewendete Signatur wird nicht entfernt.
-- Sie können Ihren **eigenen** Zugriff nicht ändern oder entfernen - das muss ein anderer Admin tun (die Oberfläche zeigt statt der Bedienelemente ein „Sie"-Badge).
+- Sie können Ihren **eigenen** Zugriff nicht ändern oder entfernen - das muss ein anderer Admin tun (die Oberfläche zeigt statt der Bedienelemente ein "Sie"-Badge).
 - Zugriffsstufen steuern nur die SignatureCat-App. Sie haben keine Auswirkung auf das Google-Konto des Nutzers.
 
 ## Nutzer ihre eigene Signatur verwalten lassen

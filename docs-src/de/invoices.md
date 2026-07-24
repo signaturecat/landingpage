@@ -26,7 +26,7 @@ Beispiel: 60 Nutzer kosten 50 x 0,80 $ + 10 x 0,70 $ = 47,00 $ pro Monat. Preise
 
 ## Die 7-Tage-Testphase
 
-Jeder Workspace startet mit einer kostenlosen 7-Tage-Testphase. Eine Karte wird bei der Registrierung erfasst und erstmals belastet, wenn die Testphase endet. In den letzten 3 Tagen der Testphase zeigt die App ein Erinnerungsbanner, und Sie erhalten außerdem etwa 3 Tage vor dem Ende eine E-Mail „Ihre signature.cat-Testphase endet bald".
+Jeder Workspace startet mit einer kostenlosen 7-Tage-Testphase. Eine Karte wird bei der Registrierung erfasst und erstmals belastet, wenn die Testphase endet. In den letzten 3 Tagen der Testphase zeigt die App ein Erinnerungsbanner, und Sie erhalten außerdem etwa 3 Tage vor dem Ende eine E-Mail "Ihre signature.cat-Testphase endet bald".
 
 > [!NOTE]
 > Die Testphase wird **einmal pro Workspace-Domain** gewährt. Das Löschen des Kontos und die erneute Registrierung derselben Domain startet keine neue Testphase.
@@ -34,7 +34,7 @@ Jeder Workspace startet mit einer kostenlosen 7-Tage-Testphase. Eine Karte wird 
 ## Die Rechnungs-E-Mail festlegen
 
 1. Öffnen Sie die [Einstellungen](https://app.signature.cat/settings) (nur Admin) und suchen Sie den Bereich **Abrechnung**.
-2. Geben Sie die Adresse unter **Rechnungs-E-Mail** ein - „Stripe sendet Rechnungen und Belege an diese Adresse. Sie kann von der E-Mail des Admin-Kontos abweichen." - und klicken Sie auf **Speichern**.
+2. Geben Sie die Adresse unter **Rechnungs-E-Mail** ein - "Stripe sendet Rechnungen und Belege an diese Adresse. Sie kann von der E-Mail des Admin-Kontos abweichen." - und klicken Sie auf **Speichern**.
 
 Nutzen Sie das, um Belege direkt an die Buchhaltung zu leiten (zum Beispiel `invoices@yourcompany.com`). Abrechnungsbezogene Produkt-Hinweise (Testphase endet, Zahlung fehlgeschlagen) sind davon getrennt und gehen an Admin-Nutzer - siehe [Benachrichtigungen](/docs/notifications/).
 
@@ -44,4 +44,4 @@ Ihr rechtlicher Firmenname, die Rechnungsadresse und die Steuernummer (USt-IdNr.
 
 ## Was passiert, wenn eine Zahlung fehlschlägt?
 
-Eine fehlgeschlagene Abbuchung kappt den Zugriff **nicht** sofort. Sie erhalten eine E-Mail „Handlung erforderlich - signature.cat-Zahlung fehlgeschlagen" und ein rotes Banner in der App, und Sie haben eine kurze Kulanzfrist (bis zu 3 Tage), um die Karte über **Abrechnung verwalten** auf [Abrechnung](https://app.signature.cat/billing) zu aktualisieren. Verstreicht die Frist ohne erfolgreiche Abbuchung, wird die Signaturverwaltung pausiert, bis die Zahlung gelingt - Ihre Gmail-Signaturen bleiben, wie sie sind, aber Änderungen und Synchronisierungen stoppen.
+Eine fehlgeschlagene Abbuchung kappt den Zugriff **nicht** sofort. Sie erhalten eine E-Mail "Handlung erforderlich - signature.cat-Zahlung fehlgeschlagen" und ein rotes Banner in der App, und Sie haben eine kurze Kulanzfrist (bis zu 3 Tage), um die Karte über **Abrechnung verwalten** auf [Abrechnung](https://app.signature.cat/billing) zu aktualisieren. Verstreicht die Frist ohne erfolgreiche Abbuchung, wird die Signaturverwaltung pausiert, bis die Zahlung gelingt - Ihre Gmail-Signaturen bleiben, wie sie sind, aber Änderungen und Synchronisierungen stoppen.

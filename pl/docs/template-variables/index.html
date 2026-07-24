@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/template-variables" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/template-variables" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/template-variables" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/template-variables" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -209,7 +202,7 @@
 <tr><td><code>{{phone}}</code></td><td>Numer telefonu</td><td>Pierwszy niepusty z: służbowy, potem komórkowy, potem domowy.</td></tr>
 </tbody>
 </table></div>
-<p><strong>Puste wartości renderują się jako pusty tekst.</strong> Podpis nigdy się nie psuje, ale może zostać wisząca etykieta w rodzaju „Tel:" - właśnie do tego służą bloki warunkowe.</p>
+<p><strong>Puste wartości renderują się jako pusty tekst.</strong> Podpis nigdy się nie psuje, ale może zostać wisząca etykieta w rodzaju "Tel:" - właśnie do tego służą bloki warunkowe.</p>
 <h2 id="tokeny-obrazkw">Tokeny obrazków<a class="h-anchor" href="#tokeny-obrazkw" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <div class="tbl"><table>
 <thead><tr><th scope="col">Token</th><th scope="col">Wartość</th></tr></thead>
@@ -220,7 +213,7 @@
 </table></div>
 <p>Obrazki pochodzą z biblioteki per workspace i są wybierane per szablon; jeśli nic nie wybrano, renderuje się neutralny placeholder. Jeśli obrazek w bibliotece ma link po kliknięciu, obrazek jest w niego automatycznie opakowywany. Zobacz <a href="/pl/docs/banners-and-logos">Banery i logo</a>.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Uwaga</p><div class="callout-body">
-<p>Tokeny obrazków zawsze coś renderują (obrazek albo placeholder), więc nie liczą się jako „puste" dla poniższych bloków warunkowych.</p>
+<p>Tokeny obrazków zawsze coś renderują (obrazek albo placeholder), więc nie liczą się jako "puste" dla poniższych bloków warunkowych.</p>
 </div></aside>
 <h2 id="bloki-warunkowe-del-i-delete">Bloki warunkowe: del i delete<a class="h-anchor" href="#bloki-warunkowe-del-i-delete" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Dwa tagi opakowujące usuwają całe fragmenty podpisu, gdy brakuje danych:</p>
@@ -250,7 +243,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/template-variables" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/template-variables" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/template-variables" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/template-variables" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

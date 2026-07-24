@@ -16,7 +16,7 @@ SignatureCat verwaltet zwei Arten von Firmenbildern in einer Bibliothek pro Work
 3. Wählen Sie **Zur Bibliothek hinzufügen** und dann entweder:
    - **Ich habe einen Link** - fügen Sie eine öffentliche HTTPS-URL eines Bildes ein, das Sie bereits hosten, oder
    - **Datei hochladen** - PNG oder JPG, empfohlen bis 200 KB (hartes Limit 5 MB).
-4. Legen Sie optional einen Bibliotheksnamen und einen Klick-Link fest („Führt beim Klick zu") und speichern Sie. Das Bild wird zur Bibliothek hinzugefügt und für diese Vorlage ausgewählt.
+4. Legen Sie optional einen Bibliotheksnamen und einen Klick-Link fest ("Führt beim Klick zu") und speichern Sie. Das Bild wird zur Bibliothek hinzugefügt und für diese Vorlage ausgewählt.
 
 > [!NOTE]
 > Nur PNG und JPG - SVG-Dateien werden nicht akzeptiert (schlechte Unterstützung in Mail-Clients und Sicherheitsgründe). Die Bibliothek fasst bis zu 200 Bilder pro Art.
@@ -38,15 +38,15 @@ Der Klick-Link gehört zum **Bibliotheksbild**, nicht zur Vorlage: Aktualisieren
 | Logo | 115x115 px | Quadratisches Bild, PNG mit Transparenz funktioniert am besten. |
 | Banner | 450x100 px (max-width 100%) | Für scharfes HiDPI-Rendering mit 900x200 px exportieren, Datei unter 200 KB halten. |
 
-Große Bilder verlangsamen das Rendern von E-Mails und können Nachrichten in Gmail in den Bereich „Nachricht gekürzt" schieben - halten Sie die Dateien klein.
+Große Bilder verlangsamen das Rendern von E-Mails und können Nachrichten in Gmail in den Bereich "Nachricht gekürzt" schieben - halten Sie die Dateien klein.
 
 ## Bilder löschen
 
-Das Löschen eines Bibliotheksbildes trennt es von jeder Vorlage, die es ausgewählt hatte - diese Vorlagen fallen auf den Platzhalter zurück. Die App warnt Sie vorher: „Dieses Bild wird in N Vorlage(n) verwendet. Nach dem Löschen wird es dort nicht mehr angezeigt - stattdessen erscheint ein Platzhalter."
+Das Löschen eines Bibliotheksbildes trennt es von jeder Vorlage, die es ausgewählt hatte - diese Vorlagen fallen auf den Platzhalter zurück. Die App warnt Sie vorher: "Dieses Bild wird in N Vorlage(n) verwendet. Nach dem Löschen wird es dort nicht mehr angezeigt - stattdessen erscheint ein Platzhalter."
 
 > [!NOTE]
 > Bereits gesendete E-Mails behalten ihre Bilder - das Löschen betrifft nur zukünftige Renderings.
 
 ## Woher Bilder ausgeliefert werden
 
-Bibliotheksbilder werden standardmäßig unter `images.signature.cat` gehostet. Um sie von Ihrer eigenen Subdomain auszuliefern (bessere Zustellbarkeit), siehe [Bilder von der eigenen Domain ausliefern](/docs/custom-image-domain/). Bilder aus externen URLs („Ich habe einen Link") werden immer von dort geladen, wo Sie sie hosten - sie müssen dauerhaft öffentlich über HTTPS erreichbar bleiben.
+Bibliotheksbilder werden standardmäßig unter `images.signature.cat` gehostet. Um sie von Ihrer eigenen Subdomain auszuliefern (bessere Zustellbarkeit), siehe [Bilder von der eigenen Domain ausliefern](/docs/custom-image-domain/). Bilder aus externen URLs ("Ich habe einen Link") werden immer von dort geladen, wo Sie sie hosten - sie müssen dauerhaft öffentlich über HTTPS erreichbar bleiben.

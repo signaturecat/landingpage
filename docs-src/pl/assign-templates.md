@@ -15,7 +15,7 @@ Przypisania wiążą szablon z celem - grupą Google, jednostką organizacyjną 
 2. Podaj **Email grupy** (na przykład `engineering@example.com`).
 3. Wybierz **Szablon**.
 4. Opcjonalnie włącz **+ podgrupy**, aby objąć członków grup zagnieżdżonych.
-5. Opcjonalnie wybierz tryb aliasów w sekcji **Aliasy** - zobacz [tryby aliasów](/docs/assignments/#alias-modes), aby dowiedzieć się, co robią opcje „Adresy z grupy" i „Wszystkie aliasy".
+5. Opcjonalnie wybierz tryb aliasów w sekcji **Aliasy** - zobacz [tryby aliasów](/docs/assignments/#alias-modes), aby dowiedzieć się, co robią opcje "Adresy z grupy" i "Wszystkie aliasy".
 
 ## Przypisz do jednostki organizacyjnej
 
@@ -42,4 +42,4 @@ Jeśli użytkownik pasuje do kilku przypisań, wygrywa dokładnie jedno: grupa w
 Dalej: [zweryfikuj zadanie przypisania](/docs/verify-assignments/), aby potwierdzić, że wszystko dotarło na miejsce.
 
 > [!NOTE]
-> Każdy cel może mieć tylko jedno przypisanie. Próba utworzenia drugiego dla tej samej grupy lub OU kończy się komunikatem „Wskazany cel ma już przypisanie. Edytuj istniejący wpis albo wybierz inny cel."
+> Każdy cel może mieć tylko jedno przypisanie. Próba utworzenia drugiego dla tej samej grupy lub OU kończy się komunikatem "Wskazany cel ma już przypisanie. Edytuj istniejący wpis albo wybierz inny cel."

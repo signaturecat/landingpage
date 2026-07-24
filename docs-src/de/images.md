@@ -24,7 +24,7 @@ Bibliothekseinträge tragen einen optionalen Namen und einen optionalen **Klick-
 
 - **Bibliotheks-Uploads** werden von SignatureCat gespeichert und über ein CDN mit langlebigem Caching von `https://images.signature.cat/...` ausgeliefert.
 - Mit einer verifizierten [eigenen Bilddomain](/docs/custom-image-domain/) liefern neu gerenderte Signaturen Bibliotheksbilder stattdessen von Ihrer Subdomain aus (zum Beispiel `images.yourcompany.com`) - bessere Zustellbarkeit, gleicher Speicher.
-- **Bilder aus externen URLs** („Ich habe einen Link") werden direkt von dort geladen, wo Sie sie hosten. Sie müssen öffentlich und HTTPS sein; idealerweise hosten Sie sie auf Ihrer eigenen Domain.
+- **Bilder aus externen URLs** ("Ich habe einen Link") werden direkt von dort geladen, wo Sie sie hosten. Sie müssen öffentlich und HTTPS sein; idealerweise hosten Sie sie auf Ihrer eigenen Domain.
 
 > [!IMPORTANT]
 > Bild-URLs werden fest in jede gerenderte Signatur eingebettet. E-Mails, die bereits in den Postfächern der Empfänger liegen, laden weiterhin die URL, mit der sie gesendet wurden - deshalb löscht SignatureCat die zugrunde liegenden Dateien entfernter Bibliotheksbilder nie, und deshalb erscheint ein externes Bild, das Sie offline nehmen, in alten E-Mails als defekt.

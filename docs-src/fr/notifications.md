@@ -39,7 +39,7 @@ L'icône de cloche dans la navigation supérieure (niveaux Admin et Editor) rass
 | Votre essai se termine bientôt | Avertissement | Environ 3 jours avant la fin de l'essai. |
 | Paiement échoué | Erreur | Un prélèvement a échoué ; le délai de grâce court. |
 
-En plus de la cloche, deux bannières peuvent apparaître dans toute l'application : la **bannière d'essai** ambre dans les derniers jours de l'essai, et la **bannière de paiement** rouge (« Mettez à jour votre carte avant le {date}, sinon la gestion des signatures sera suspendue ») pendant le délai de grâce du paiement.
+En plus de la cloche, deux bannières peuvent apparaître dans toute l'application : la **bannière d'essai** ambre dans les derniers jours de l'essai, et la **bannière de paiement** rouge ("Mettez à jour votre carte avant le {date}, sinon la gestion des signatures sera suspendue") pendant le délai de grâce du paiement.
 
 ## Configuration recommandée
 

@@ -17,7 +17,7 @@ Przypisanie wiąże jeden szablon z jednym celem i utrzymuje go zastosowanym dzi
 | OU | Ścieżka zaczynająca się od `/`, na przykład `/Engineering` | **+ pod-OU** obejmuje całe poddrzewo. |
 | Wszyscy | Wszyscy aktywni użytkownicy w Workspace | Maksymalnie **jedno** takie przypisanie na workspace. |
 
-Każdy cel może mieć tylko jedno przypisanie - utworzenie duplikatu jest odrzucane z komunikatem „Wskazany cel ma już przypisanie." Rodzaj celu jest stały po utworzeniu; aby zamienić przypisanie grupy na przypisanie OU, usuń je i utwórz na nowo.
+Każdy cel może mieć tylko jedno przypisanie - utworzenie duplikatu jest odrzucane z komunikatem "Wskazany cel ma już przypisanie." Rodzaj celu jest stały po utworzeniu; aby zamienić przypisanie grupy na przypisanie OU, usuń je i utwórz na nowo.
 
 Pojedynczy użytkownicy celowo nie są celem przypisań - pojedyncze osoby obejmiesz przez [self-service](/docs/self-service/) albo jednorazowe [zadanie zastosowania](/docs/apply-jobs/).
 
@@ -30,7 +30,7 @@ Użytkownicy często pasują do kilku przypisań. Każda synchronizacja wyznacza
 3. **Przypisania grup** nadpisują szablon OU dla swoich członków. Jeśli użytkownik należy do wielu przypisanych grup, wygrywa przypisanie **ostatnio zaktualizowane**.
 4. **Self-service** - własny wybór użytkownika wygrywa z każdym przypisaniem, **chyba że** zwycięskie przypisanie ma włączone **Nadpisuj self-service**.
 
-Gdy przypisanie wypiera inne dla danego użytkownika, wiersz wyniku zadania odnotowuje to („nadpisano N innych przypisań dla tego użytkownika"), więc konflikty możesz audytować na stronach [logów](/docs/logs/).
+Gdy przypisanie wypiera inne dla danego użytkownika, wiersz wyniku zadania odnotowuje to ("nadpisano N innych przypisań dla tego użytkownika"), więc konflikty możesz audytować na stronach [logów](/docs/logs/).
 
 > [!TIP]
 > Sprawdzony wzorzec: jedno przypisanie dla wszystkich jako firmowy domyślny podpis, przypisania OU per kraj lub marka, przypisania grup dla wyjątków (kampania sprzedażowa, zarząd). Warstwy załatwiają resztę.
@@ -54,11 +54,11 @@ Uwagi o zachowaniu:
 
 ## Nadpisuj self-service
 
-Przełącznik **Nadpisuj self-service**, ustawiany per przypisanie, sprawia, że przypisanie wygrywa z własnymi wyborami self-service użytkowników. Wiersz pokazuje wtedy odznakę „nadpisuje self-service". Używaj go dla podpisów krytycznych pod kątem zgodności (zastrzeżenia prawne), gdzie indywidualna personalizacja jest niedopuszczalna.
+Przełącznik **Nadpisuj self-service**, ustawiany per przypisanie, sprawia, że przypisanie wygrywa z własnymi wyborami self-service użytkowników. Wiersz pokazuje wtedy odznakę "nadpisuje self-service". Używaj go dla podpisów krytycznych pod kątem zgodności (zastrzeżenia prawne), gdzie indywidualna personalizacja jest niedopuszczalna.
 
 ## Gdy cele znikają
 
-Jeśli przypisana grupa lub OU zostanie usunięta w Google Workspace, najbliższa synchronizacja oznacza przypisanie odznaką „nie znaleziono w Workspace", pomija cel, powiadamia administratorów (w aplikacji + e-mailem, raz na serię niepowodzeń) i ponawia próbę przy kolejnych synchronizacjach. Popraw cel w panelu edycji albo usuń przypisanie. Zobacz [Zweryfikuj zadanie przypisania](/docs/verify-assignments/#what-the-per-user-rows-tell-you).
+Jeśli przypisana grupa lub OU zostanie usunięta w Google Workspace, najbliższa synchronizacja oznacza przypisanie odznaką "nie znaleziono w Workspace", pomija cel, powiadamia administratorów (w aplikacji + e-mailem, raz na serię niepowodzeń) i ponawia próbę przy kolejnych synchronizacjach. Popraw cel w panelu edycji albo usuń przypisanie. Zobacz [Zweryfikuj zadanie przypisania](/docs/verify-assignments/#what-the-per-user-rows-tell-you).
 
 ## Edycja i usuwanie
 

@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/template-variables" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/template-variables" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/template-variables" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/template-variables" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -209,7 +202,7 @@
 <tr><td><code>{{phone}}</code></td><td>Numéro de téléphone</td><td>Le premier non vide parmi : professionnel, puis mobile, puis domicile.</td></tr>
 </tbody>
 </table></div>
-<p><strong>Les valeurs vides sont rendues comme du texte vide.</strong> La signature ne casse jamais, mais vous pouvez vous retrouver avec une étiquette orpheline comme « Tél : » - c'est à cela que servent les blocs conditionnels.</p>
+<p><strong>Les valeurs vides sont rendues comme du texte vide.</strong> La signature ne casse jamais, mais vous pouvez vous retrouver avec une étiquette orpheline comme "Tél :" - c'est à cela que servent les blocs conditionnels.</p>
 <h2 id="jetons-dimage">Jetons d'image<a class="h-anchor" href="#jetons-dimage" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <div class="tbl"><table>
 <thead><tr><th scope="col">Jeton</th><th scope="col">Valeur</th></tr></thead>
@@ -220,7 +213,7 @@
 </table></div>
 <p>Les images proviennent de la bibliothèque par espace de travail et sont sélectionnées par modèle ; si rien n'est sélectionné, un espace réservé neutre est rendu. Si l'image de la bibliothèque a un lien de clic, l'image y est enveloppée automatiquement. Voir <a href="/fr/docs/banners-and-logos">Bannières et logos</a>.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
-<p>Les jetons d'image rendent toujours quelque chose (image ou espace réservé), ils ne comptent donc pas comme « vides » pour les blocs conditionnels ci-dessous.</p>
+<p>Les jetons d'image rendent toujours quelque chose (image ou espace réservé), ils ne comptent donc pas comme "vides" pour les blocs conditionnels ci-dessous.</p>
 </div></aside>
 <h2 id="blocs-conditionnels-del-et-delete">Blocs conditionnels : del et delete<a class="h-anchor" href="#blocs-conditionnels-del-et-delete" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Deux balises enveloppantes retirent des fragments entiers de la signature quand des données manquent :</p>
@@ -250,7 +243,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/template-variables" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/template-variables" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/template-variables" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/template-variables" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

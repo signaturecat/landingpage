@@ -178,13 +178,6 @@
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Język">
-        <p class="docs-nav-label">Język</p>
-        <a href="/docs/create-your-first-template" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/create-your-first-template" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
-        <a href="/de/docs/create-your-first-template" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/create-your-first-template" lang="fr" hreflang="fr" data-lang="fr">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -217,7 +210,7 @@
 <p>Zadbaj o porządek w danych Directory przed wdrożeniem - stanowiska, działy i numery telefonów pochodzą wprost z Google Directory. Puste pola renderują się po prostu jako pusty tekst, chyba że owiniesz je w tagi <code>{{del}}</code>.</p>
 </div></aside>
 <h2 id="podgld-jako-prawdziwy-uytkownik">Podgląd jako prawdziwy użytkownik<a class="h-anchor" href="#podgld-jako-prawdziwy-uytkownik" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Panel podglądu renderuje rozwiązany podpis na żywo w trakcie pisania. Użyj kontrolki <strong>Renderuj jako</strong>, aby podstawić rekord Directory dowolnego prawdziwego użytkownika - domyślnie renderowanie odbywa się na Twoich danych. Podgląd mówi dokładnie, którego rekordu użył: „Wyrenderowano na podstawie danych Directory dla {email}."</p>
+<p>Panel podglądu renderuje rozwiązany podpis na żywo w trakcie pisania. Użyj kontrolki <strong>Renderuj jako</strong>, aby podstawić rekord Directory dowolnego prawdziwego użytkownika - domyślnie renderowanie odbywa się na Twoich danych. Podgląd mówi dokładnie, którego rekordu użył: "Wyrenderowano na podstawie danych Directory dla {email}."</p>
 <h2 id="przetestuj-na-wasnej-skrzynce">Przetestuj na własnej skrzynce<a class="h-anchor" href="#przetestuj-na-wasnej-skrzynce" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Kliknij <strong>Ustaw mi testowy podpis</strong> w pasku narzędzi edytora. SignatureCat wyrenderuje szablon na podstawie Twojego rekordu Directory i zapisze go do Twojego własnego podpisu Gmail - nikt inny nie zostaje objęty. Wyślij do siebie e-mail albo zajrzyj do ustawień Gmail, żeby zobaczyć realny efekt.</p>
 <p>Gdy szablon Ci odpowiada, przejdź do <a href="/pl/docs/assign-templates">Przypisz szablony</a>.</p>
@@ -238,7 +231,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/create-your-first-template" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/create-your-first-template" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/create-your-first-template" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/create-your-first-template" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Informacje prawne</a>
         </span>

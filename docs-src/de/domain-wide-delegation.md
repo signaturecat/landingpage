@@ -33,14 +33,14 @@ Ja. SignatureCat rotiert seine Service-Konto-Schlüssel aus Sicherheitsgründen 
 
 ## Wie schnell wirkt eine neue Erteilung?
 
-Google übernimmt DWD-Änderungen mit Verzögerung - meist Sekunden, gelegentlich bis zu etwa 30 Sekunden. Der Button **Prüfen** im Assistenten wartet dieses Fenster ab, bevor er einen Fehler meldet, sodass ein einziger Klick direkt nach der Autorisierung in der Regel gelingt. Eine gelbe „Wird übernommen"-Karte bedeutet genau das: Warten Sie einen Moment und prüfen Sie erneut.
+Google übernimmt DWD-Änderungen mit Verzögerung - meist Sekunden, gelegentlich bis zu etwa 30 Sekunden. Der Button **Prüfen** im Assistenten wartet dieses Fenster ab, bevor er einen Fehler meldet, sodass ein einziger Klick direkt nach der Autorisierung in der Regel gelingt. Eine gelbe "Wird übernommen"-Karte bedeutet genau das: Warten Sie einen Moment und prüfen Sie erneut.
 
 ## Was passiert, wenn DWD entfernt oder ein Bereich entzogen wird?
 
 SignatureCat prüft den DWD-Zustand vor jeder Synchronisierung. Wenn er bricht:
 
 - **pausieren** Signatur-Synchronisierungen sofort (nichts wird halb angewendet),
-- Admins erhalten die In-App-Benachrichtigung „Domain-Wide Delegation-Zugriff verloren" und eine „Handlung erforderlich"-E-Mail,
+- Admins erhalten die In-App-Benachrichtigung "Domain-Wide Delegation-Zugriff verloren" und eine "Handlung erforderlich"-E-Mail,
 - die App leitet Admins zurück zum DWD-Assistenten.
 
 Die Neuerteilung des fehlenden Eintrags oder Bereichs und ein bestandenes **Prüfen** setzen alles fort - der Zustand heilt sich selbst, nichts muss neu aufgebaut werden. Um den Assistenten jederzeit wieder zu öffnen, nutzen Sie **DWD-Assistent erneut ausführen** in den [Einstellungen](https://app.signature.cat/settings), Bereich Service-Konto.

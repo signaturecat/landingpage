@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/get-help" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/get-help" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/get-help" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/get-help" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -192,13 +185,13 @@
       <nav class="docs-breadcrumb" aria-label="Fil d'Ariane"><a href="/fr/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Assistance</span><span class="crumb-sep">/</span><span aria-current="page">Obtenir de l'aide</span></nav>
       <article class="docs-article">
 <h1>Obtenir de l'aide</h1>
-<p>Le support est assuré par e-mail à l'adresse <a href="mailto:contact@signature.cat">contact@signature.cat</a>. Avant d'écrire, une rapide auto-vérification vous apporte souvent une réponse plus vite - la plupart des cas « les signatures ne s'appliquent plus » relèvent de l'une de trois causes connues.</p>
+<p>Le support est assuré par e-mail à l'adresse <a href="mailto:contact@signature.cat">contact@signature.cat</a>. Avant d'écrire, une rapide auto-vérification vous apporte souvent une réponse plus vite - la plupart des cas "les signatures ne s'appliquent plus" relèvent de l'une de trois causes connues.</p>
 <h2 id="auto-vrification-rapide">Auto-vérification rapide<a class="h-anchor" href="#auto-vrification-rapide" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
 <li><strong>S'agit-il d'un incident de la plateforme ?</strong> Consultez <a href="https://status.signature.cat/" target="_blank" rel="noopener">status.signature.cat</a> - les incidents et les maintenances y sont annoncés. Voir <a href="/fr/docs/service-status">État du service</a>.</li>
 <li><strong>Une tâche a-t-elle échoué ?</strong> Ouvrez les <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Journaux des tâches</a> et regardez les codes d'erreur par utilisateur - <a href="/fr/docs/verify-assignments#what-the-per-user-rows-tell-you">Vérifier une tâche d'affectation</a> explique chacun d'eux et son correctif.</li>
-<li><strong>La Domain-Wide Delegation est-elle en bonne santé ?</strong> Si les synchronisations sont en pause, les administrateurs ont une notification « Accès Domain-Wide Delegation perdu » - relancez l'assistant depuis <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a>. Voir <a href="/fr/docs/domain-wide-delegation#what-happens-if-dwd-is-removed-or-a-scope-revoked">Domain-Wide Delegation</a>.</li>
-<li><strong>Facturation en pause ?</strong> Une bannière rouge et le statut « En retard » sur <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Facturation</a> signifient qu'un paiement échoué a épuisé son délai de grâce - mettre la carte à jour rétablit tout. Voir <a href="/fr/docs/billing-details">Informations de facturation</a>.</li>
+<li><strong>La Domain-Wide Delegation est-elle en bonne santé ?</strong> Si les synchronisations sont en pause, les administrateurs ont une notification "Accès Domain-Wide Delegation perdu" - relancez l'assistant depuis <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a>. Voir <a href="/fr/docs/domain-wide-delegation#what-happens-if-dwd-is-removed-or-a-scope-revoked">Domain-Wide Delegation</a>.</li>
+<li><strong>Facturation en pause ?</strong> Une bannière rouge et le statut "En retard" sur <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Facturation</a> signifient qu'un paiement échoué a épuisé son délai de grâce - mettre la carte à jour rétablit tout. Voir <a href="/fr/docs/billing-details">Informations de facturation</a>.</li>
 </ol>
 <h2 id="crire-au-support">Écrire au support<a class="h-anchor" href="#crire-au-support" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Écrivez à <a href="mailto:contact@signature.cat">contact@signature.cat</a> depuis une adresse de votre domaine Workspace si possible. Incluez :</p>
@@ -229,7 +222,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/get-help" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/get-help" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/get-help" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/get-help" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

@@ -25,7 +25,7 @@ Im selben Stripe-Portal können Sie den rechtlichen **Firmennamen**, die **Rechn
 
 ## Ihren Abonnementstatus prüfen
 
-Der Bereich Abrechnung in den [Einstellungen](https://app.signature.cat/settings) zeigt den Abonnementstatus (Aktiv, Testphase, Überfällig, Gekündigt), die aktuelle Zahl aktiver Nutzer und das Verlängerungsdatum („Aktiv bis ...").
+Der Bereich Abrechnung in den [Einstellungen](https://app.signature.cat/settings) zeigt den Abonnementstatus (Aktiv, Testphase, Überfällig, Gekündigt), die aktuelle Zahl aktiver Nutzer und das Verlängerungsdatum ("Aktiv bis ...").
 
 ## Das Abonnement kündigen
 

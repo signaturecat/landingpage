@@ -43,14 +43,14 @@ https://www.googleapis.com/auth/gmail.settings.basic,https://www.googleapis.com/
 5. **Autorisieren** - klicken Sie in der Admin console auf **Authorize**.
 6. **Prüfen** - klicken Sie zurück in SignatureCat auf **Prüfen**. Die App führt einen Verbindungstest für jeden Bereich aus und zeigt pro Bereich ein OK / Fehler-Ergebnis.
 
-Der letzte Bereich, `gmail.settings.sharing`, ist **optional**: Er wird nur benötigt, um Signaturen auf send-as-Aliasse zu schreiben. Sie können ihn jetzt überspringen und später hinzufügen - alles andere funktioniert, und der Assistent zeigt den Hinweis „Alias-Signaturen sind deaktiviert". Siehe [Zuweisungen](/docs/assignments/#alias-modes) dazu, was Aliasse ermöglichen.
+Der letzte Bereich, `gmail.settings.sharing`, ist **optional**: Er wird nur benötigt, um Signaturen auf send-as-Aliasse zu schreiben. Sie können ihn jetzt überspringen und später hinzufügen - alles andere funktioniert, und der Assistent zeigt den Hinweis "Alias-Signaturen sind deaktiviert". Siehe [Zuweisungen](/docs/assignments/#alias-modes) dazu, was Aliasse ermöglichen.
 
 > [!WARNING]
-> Fügen Sie die Bereichs-Zeichenkette exakt wie kopiert ein. Ein fehlender oder veränderter Bereich lässt die Prüfung mit einem Fehler pro Bereich fehlschlagen, etwa „Diese Berechtigung wurde nicht erteilt. Wiederholen Sie Schritt 4 mit der exakten Zeichenkette."
+> Fügen Sie die Bereichs-Zeichenkette exakt wie kopiert ein. Ein fehlender oder veränderter Bereich lässt die Prüfung mit einem Fehler pro Bereich fehlschlagen, etwa "Diese Berechtigung wurde nicht erteilt. Wiederholen Sie Schritt 4 mit der exakten Zeichenkette."
 
 ### Die Prüfung meldet, dass der Zugriff noch übernommen wird
 
-Google braucht einen Moment, um eine frische DWD-Erteilung zu übernehmen - typischerweise Sekunden, manchmal bis zu etwa 30 Sekunden. Der Button **Prüfen** wartet dieses Fenster bereits größtenteils ab. Sehen Sie weiterhin die gelbe Karte „Der Zugriff wird möglicherweise noch übernommen", warten Sie einen Moment und klicken Sie erneut auf **Prüfen**. Das ist kein Fehler.
+Google braucht einen Moment, um eine frische DWD-Erteilung zu übernehmen - typischerweise Sekunden, manchmal bis zu etwa 30 Sekunden. Der Button **Prüfen** wartet dieses Fenster bereits größtenteils ab. Sehen Sie weiterhin die gelbe Karte "Der Zugriff wird möglicherweise noch übernommen", warten Sie einen Moment und klicken Sie erneut auf **Prüfen**. Das ist kein Fehler.
 
 ## Schritt 4: Abrechnung
 

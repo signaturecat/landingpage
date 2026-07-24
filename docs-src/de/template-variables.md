@@ -25,7 +25,7 @@ Die Werte stammen aus dem Datensatz jedes Nutzers in Ihrem Google Workspace-Dire
 | `{{address}}` | Formatierte Adresse | Der primäre Adresseintrag des Nutzers. |
 | `{{phone}}` | Telefonnummer | Die erste nicht leere von: Arbeit, dann Mobil, dann Privat. |
 
-**Leere Werte werden als leerer Text gerendert.** Die Signatur bricht nie, aber es kann ein verwaistes Label wie „Tel.:" übrig bleiben - genau dafür gibt es bedingte Blöcke.
+**Leere Werte werden als leerer Text gerendert.** Die Signatur bricht nie, aber es kann ein verwaistes Label wie "Tel.:" übrig bleiben - genau dafür gibt es bedingte Blöcke.
 
 ## Bild-Token
 
@@ -37,7 +37,7 @@ Die Werte stammen aus dem Datensatz jedes Nutzers in Ihrem Google Workspace-Dire
 Bilder stammen aus der Bibliothek pro Workspace und werden pro Vorlage ausgewählt; ist nichts ausgewählt, wird ein neutraler Platzhalter gerendert. Hat das Bibliotheksbild einen Klick-Link, wird das Bild automatisch darin eingeschlossen. Siehe [Banner und Logos](/docs/banners-and-logos/).
 
 > [!NOTE]
-> Bild-Token rendern immer etwas (Bild oder Platzhalter) und zählen daher für die bedingten Blöcke unten nicht als „leer".
+> Bild-Token rendern immer etwas (Bild oder Platzhalter) und zählen daher für die bedingten Blöcke unten nicht als "leer".
 
 ## Bedingte Blöcke: del und delete
 

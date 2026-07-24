@@ -25,7 +25,7 @@ W tym samym portalu Stripe edytujesz prawną **nazwę firmy**, **adres rozliczen
 
 ## Sprawdź status subskrypcji
 
-Sekcja Płatności w [Ustawieniach](https://app.signature.cat/settings) pokazuje status subskrypcji (Aktywna, Okres próbny, Zaległa płatność, Anulowana), bieżącą liczbę aktywnych użytkowników i datę odnowienia („Aktywna do ...").
+Sekcja Płatności w [Ustawieniach](https://app.signature.cat/settings) pokazuje status subskrypcji (Aktywna, Okres próbny, Zaległa płatność, Anulowana), bieżącą liczbę aktywnych użytkowników i datę odnowienia ("Aktywna do ...").
 
 ## Anuluj subskrypcję
 

@@ -178,13 +178,6 @@
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
       </div>
-      <div class="docs-lang" role="group" aria-label="Langue">
-        <p class="docs-nav-label">Langue</p>
-        <a href="/docs/notifications" lang="en" hreflang="en" data-lang="en">English</a>
-        <a href="/pl/docs/notifications" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
-        <a href="/de/docs/notifications" lang="de" hreflang="de" data-lang="de">Deutsch</a>
-        <a href="/fr/docs/notifications" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
-      </div>
     </nav>
     <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
 
@@ -223,7 +216,7 @@
 <tr><td>Paiement échoué</td><td>Erreur</td><td>Un prélèvement a échoué ; le délai de grâce court.</td></tr>
 </tbody>
 </table></div>
-<p>En plus de la cloche, deux bannières peuvent apparaître dans toute l'application : la <strong>bannière d'essai</strong> ambre dans les derniers jours de l'essai, et la <strong>bannière de paiement</strong> rouge (« Mettez à jour votre carte avant le {date}, sinon la gestion des signatures sera suspendue ») pendant le délai de grâce du paiement.</p>
+<p>En plus de la cloche, deux bannières peuvent apparaître dans toute l'application : la <strong>bannière d'essai</strong> ambre dans les derniers jours de l'essai, et la <strong>bannière de paiement</strong> rouge ("Mettez à jour votre carte avant le {date}, sinon la gestion des signatures sera suspendue") pendant le délai de grâce du paiement.</p>
 <h2 id="configuration-recommande">Configuration recommandée<a class="h-anchor" href="#configuration-recommande" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
 <li>Assurez-vous qu'au moins une boîte consultée régulièrement a le niveau <strong>Admin</strong> - les e-mails d'alerte ne vont qu'aux administrateurs et au propriétaire. Voir <a href="/fr/docs/user-management">Gestion des accès</a>.</li>
@@ -244,7 +237,13 @@
       <footer class="docs-foot">
         <span>&copy; 2026 SignatureCat</span>
         <span class="docs-foot-links">
-          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/notifications" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/notifications" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/notifications" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/notifications" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
           <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
           <a href="/legal">Mentions légales</a>
         </span>

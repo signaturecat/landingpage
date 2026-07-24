@@ -24,7 +24,7 @@ Wpisy w bibliotece mają opcjonalną nazwę i opcjonalny **link po kliknięciu**
 
 - **Pliki wgrane do biblioteki** są przechowywane przez SignatureCat i serwowane z `https://images.signature.cat/...` przez CDN z długotrwałym cache'owaniem.
 - Ze zweryfikowaną [własną domeną obrazków](/docs/custom-image-domain/) nowo renderowane podpisy serwują obrazki z biblioteki z Twojej subdomeny (na przykład `images.yourcompany.com`) - lepsza dostarczalność, ten sam magazyn.
-- **Obrazki z zewnętrznych adresów URL** („Mam link") są linkowane bezpośrednio stamtąd, gdzie je hostujesz. Muszą być publiczne i dostępne po HTTPS; najlepiej hostuj je na własnej domenie.
+- **Obrazki z zewnętrznych adresów URL** ("Mam link") są linkowane bezpośrednio stamtąd, gdzie je hostujesz. Muszą być publiczne i dostępne po HTTPS; najlepiej hostuj je na własnej domenie.
 
 > [!IMPORTANT]
 > Adresy URL obrazków są zapisywane na stałe w każdym wyrenderowanym podpisie. E-maile, które są już w skrzynkach odbiorców, wciąż pobierają adres, z którym zostały wysłane - dlatego SignatureCat nigdy nie usuwa plików źródłowych usuniętych wpisów biblioteki i dlatego zewnętrzny obrazek zdjęty z hostingu pokaże się jako uszkodzony w starych mailach.
