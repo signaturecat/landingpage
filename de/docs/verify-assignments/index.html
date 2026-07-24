@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Einen Zuweisungsauftrag prüfen | SignatureCat Docs</title>
+  <meta name="description" content="Prüfen Sie, ob ein SignatureCat-Synchronisierungs- oder Anwendungs-Auftrag erfolgreich war - Auftragsstatus, Ergebnisse pro Nutzer und was die häufigen Fehlercodes bedeuten." />
+  <link rel="canonical" href="https://signature.cat/de/docs/verify-assignments" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/verify-assignments" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/verify-assignments" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/verify-assignments" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/verify-assignments" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/verify-assignments" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Einen Zuweisungsauftrag prüfen | SignatureCat Docs" />
+  <meta property="og:description" content="Prüfen Sie, ob ein SignatureCat-Synchronisierungs- oder Anwendungs-Auftrag erfolgreich war - Auftragsstatus, Ergebnisse pro Nutzer und was die häufigen Fehlercodes bedeuten." />
+  <meta property="og:url" content="https://signature.cat/de/docs/verify-assignments" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Einen Zuweisungsauftrag prüfen | SignatureCat Docs" />
+  <meta name="twitter:description" content="Prüfen Sie, ob ein SignatureCat-Synchronisierungs- oder Anwendungs-Auftrag erfolgreich war - Auftragsstatus, Ergebnisse pro Nutzer und was die häufigen Fehlercodes bedeuten." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Einen Zuweisungsauftrag prüfen",
+      "description": "Prüfen Sie, ob ein SignatureCat-Synchronisierungs- oder Anwendungs-Auftrag erfolgreich war - Auftragsstatus, Ergebnisse pro Nutzer und was die häufigen Fehlercodes bedeuten.",
+      "url": "https://signature.cat/de/docs/verify-assignments",
+      "inLanguage": "de",
+      "datePublished": "2026-07-19",
+      "dateModified": "2026-07-19",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Doku",
+          "item": "https://signature.cat/de/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Erste Schritte",
+          "item": "https://signature.cat/de/docs/verify-assignments"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Einen Zuweisungsauftrag prüfen",
+          "item": "https://signature.cat/de/docs/verify-assignments"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Zum Inhalt springen</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Dokumentationsmenü umschalten" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/de/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Dokumentation durchsuchen" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Doku durchsuchen</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Design: System" title="Design: System">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Hilfe</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">App öffnen</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Dokumentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Erste Schritte</p>
+        <ul>
+        <li><a href="/de/docs">Einführung</a></li>
+        <li><a href="/de/docs/connect-google-workspace">Google Workspace verbinden</a></li>
+        <li><a href="/de/docs/create-your-first-template">Ihre erste Vorlage erstellen</a></li>
+        <li><a href="/de/docs/assign-templates">Vorlagen zuweisen</a></li>
+        <li><a href="/de/docs/verify-assignments" aria-current="page">Zuweisungsaufträge prüfen</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Erweiterte Einrichtung</p>
+        <ul>
+        <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
+        <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
+        <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Abrechnung</p>
+        <ul>
+        <li><a href="/de/docs/invoices">Rechnungen</a></li>
+        <li><a href="/de/docs/billing-details">Rechnungsdaten</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Referenz</p>
+        <ul>
+        <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/de/docs/templates">Vorlagen</a></li>
+        <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
+        <li><a href="/de/docs/assignments">Zuweisungen</a></li>
+        <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
+        <li><a href="/de/docs/logs">Protokolle</a></li>
+        <li><a href="/de/docs/images">Bilder</a></li>
+        <li><a href="/de/docs/notifications">Benachrichtigungen</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Support</p>
+        <ul>
+        <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
+        <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/service-status">Dienststatus</a></li>
+        <li><a href="/de/docs/legal">Rechtliches</a></li>
+        </ul>
+      </div>
+      <div class="docs-lang" role="group" aria-label="Sprache">
+        <p class="docs-nav-label">Sprache</p>
+        <a href="/docs/verify-assignments" lang="en" hreflang="en" data-lang="en">English</a>
+        <a href="/pl/docs/verify-assignments" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
+        <a href="/de/docs/verify-assignments" lang="de" hreflang="de" data-lang="de" aria-current="true">Deutsch</a>
+        <a href="/fr/docs/verify-assignments" lang="fr" hreflang="fr" data-lang="fr">Français</a>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Brotkrümelnavigation"><a href="/de/docs">Doku</a><span class="crumb-sep">/</span><span class="crumb-section">Erste Schritte</span><span class="crumb-sep">/</span><span aria-current="page">Zuweisungsaufträge prüfen</span></nav>
+      <article class="docs-article">
+<h1>Einen Zuweisungsauftrag prüfen</h1>
+<p>Jede Synchronisierung und jedes manuelle Anwenden läuft als Auftrag mit einem Ergebnis pro Nutzer, das Sie einsehen können. Die schnellste Prüfung ist die Seite <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Aufgabenprotokolle</a>; ein laufender Auftrag hat außerdem seine eigene Detailansicht unter <code>app.signature.cat/jobs/{id}</code>, die sich in Echtzeit aktualisiert.</p>
+<h2 id="die-aufgabenprotokolle-prfen">Die Aufgabenprotokolle prüfen<a class="h-anchor" href="#die-aufgabenprotokolle-prfen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Öffnen Sie die <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Aufgabenprotokolle</a> (Editoren und Admins). Jede Zeile ist ein abgeschlossener Auftrag - eine <strong>Zuweisungssynchronisierung</strong> oder ein <strong>Manuelles Anwenden</strong> - mit Status, Start- und Endzeit, Auslöser („Automatisch" für die tägliche Synchronisierung) und einer Zusammenfassung wie „42 erfolgreich, 1 fehlgeschlagen, 2 übersprungen".</p>
+<p>Klappen Sie eine Zeile auf, um die Details pro Nutzer zu sehen, oder klicken Sie auf <strong>Vollständige Aufgabenansicht öffnen</strong> für die komplette Ergebnistabelle.</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
+<p>Aufgabenprotokolle werden für begrenzte Zeit aufbewahrt (standardmäßig die letzten 30 Tage), ältere Einträge werden automatisch entfernt. Prüfen Sie Aufträge zeitnah nach großen Rollouts.</p>
+</div></aside>
+<h2 id="auftragsstatus">Auftragsstatus<a class="h-anchor" href="#auftragsstatus" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Status</th><th scope="col">Bedeutung</th></tr></thead>
+<tbody>
+<tr><td>In Warteschlange</td><td>Wartet darauf, dass der Worker ihn aufnimmt.</td></tr>
+<tr><td>Läuft</td><td>In Bearbeitung - die Detailseite aktualisiert sich live.</td></tr>
+<tr><td>Erfolgreich</td><td>Jeder angesprochene Nutzer hat die Signatur erhalten.</td></tr>
+<tr><td>Teilweise</td><td>Manche Nutzer erfolgreich, manche fehlgeschlagen oder übersprungen - prüfen Sie die Zeilen.</td></tr>
+<tr><td>Fehlgeschlagen</td><td>Der Auftrag wurde nicht abgeschlossen. Ein Auftrag, der länger als 30 Minuten in Läuft hängt, wird automatisch als Fehlgeschlagen markiert.</td></tr>
+<tr><td>Abgebrochen</td><td>Vor der Ausführung abgebrochen (zum Beispiel wurde die Vorlage mit ausstehenden Aufträgen gelöscht).</td></tr>
+</tbody>
+</table></div>
+<h2 id="was-die-zeilen-pro-nutzer-aussagen">Was die Zeilen pro Nutzer aussagen<a class="h-anchor" href="#was-die-zeilen-pro-nutzer-aussagen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Jede Zeile zeigt die geschriebene Adresse (Alias-Zeilen tragen ein „Alias"-Badge), den Status und bei Problemen einen Fehlercode. Die häufigsten:</p>
+<ul>
+<li><strong>TARGET_NOT_FOUND</strong> - die zugewiesene Gruppe oder OU existiert nicht mehr im Workspace (gelöscht oder falscher Bezeichner). Das Ziel wurde übersprungen, Admins erhalten eine Benachrichtigung, und die Zuweisungszeile zeigt das Badge „nicht im Workspace gefunden". Korrigieren oder entfernen Sie die Zuweisung auf <a href="https://app.signature.cat/assignments" target="_blank" rel="noopener">Zuweisungen</a>.</li>
+<li><strong>USER_NOT_FOUND</strong> - der Nutzer existiert nicht mehr im Directory.</li>
+<li><strong>ALIAS_SCOPE_MISSING</strong> - Alias-Signaturen erfordern den optionalen Bereich <code>gmail.settings.sharing</code>, der nicht erteilt wurde. Siehe <a href="/de/docs/connect-google-workspace#step-3-authorize-domain-wide-delegation">Ihren Google Workspace verbinden</a>.</li>
+<li><strong>DWD_NOT_CONFIGURED / DWD_SCOPE_MISSING</strong> - Domain-Wide Delegation ist defekt oder ein Bereich fehlt. Führen Sie den Assistenten aus den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a> erneut aus. Siehe <a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a>.</li>
+<li><strong>RATE_LIMITED</strong> - Google hat die Anfragen gedrosselt; der Worker wiederholt automatisch, bevor dieser Code angezeigt wird.</li>
+</ul>
+<p>Eine Zeile kann außerdem den Vermerk „N andere Zuweisung(en) für diesen Nutzer überschrieben" tragen - der Nutzer passte auf mehrere Zuweisungen, und diese hat gewonnen. Die Vorrangregeln stehen in der <a href="/de/docs/assignments#how-precedence-works">Zuweisungen-Referenz</a>.</p>
+<h2 id="in-gmail-prfen">In Gmail prüfen<a class="h-anchor" href="#in-gmail-prfen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Für eine Stichprobe bitten Sie einen erfassten Nutzer, die Gmail-Einstellungen zu öffnen und die Signatur anzusehen, oder senden Sie sich selbst eine Testnachricht. Denken Sie daran, dass die eigene <a href="/de/docs/self-service">Self-Service</a>-Signatur eines Nutzers über Zuweisungen gewinnt, sofern die Zuweisung sie nicht überschreibt.</p>
+<aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tipp</p><div class="callout-body">
+<p>Fehlgeschlagene Zeilen eines abgeschlossenen Auftrags lassen sich in der Auftrags-Detailansicht mit <strong>Fehlgeschlagene erneut ausführen</strong> wiederholen - kein erneutes Anwenden auf alle nötig.</p>
+</div></aside>
+      </article>
+<nav class="docs-pager" aria-label="Seitennavigation">
+<a class="pager-card pager-prev" href="/de/docs/assign-templates" rel="prev">
+      <span class="pager-label">Zurück</span>
+      <span class="pager-title">Vorlagen zuweisen</span>
+    </a>
+<a class="pager-card pager-next" href="/de/docs/user-management" rel="next">
+      <span class="pager-label">Weiter</span>
+      <span class="pager-title">Benutzerverwaltung</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Rechtliches</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Auf dieser Seite">
+      <nav>
+        <p class="docs-toc-title">Auf dieser Seite</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#die-aufgabenprotokolle-prfen">Die Aufgabenprotokolle prüfen</a></li>
+        <li class="toc-l2"><a href="#auftragsstatus">Auftragsstatus</a></li>
+        <li class="toc-l2"><a href="#was-die-zeilen-pro-nutzer-aussagen">Was die Zeilen pro Nutzer aussagen</a></li>
+        <li class="toc-l2"><a href="#in-gmail-prfen">In Gmail prüfen</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Dokumentation durchsuchen" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Dokumentation durchsuchen" autocomplete="off" spellcheck="false" aria-label="Dokumentation durchsuchen" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Suche schließen">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Keine Ergebnisse. Versuchen Sie andere Suchbegriffe oder schreiben Sie an <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

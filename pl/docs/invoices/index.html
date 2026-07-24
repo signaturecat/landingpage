@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Faktury | SignatureCat Docs</title>
+  <meta name="description" content="Jak działają rozliczenia SignatureCat - progi cenowe, 7-dniowy okres próbny, dokąd wysyłane są faktury i jak ustawić dedykowany e-mail do faktur." />
+  <link rel="canonical" href="https://signature.cat/pl/docs/invoices" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/invoices" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/invoices" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/invoices" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/invoices" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/invoices" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Faktury | SignatureCat Docs" />
+  <meta property="og:description" content="Jak działają rozliczenia SignatureCat - progi cenowe, 7-dniowy okres próbny, dokąd wysyłane są faktury i jak ustawić dedykowany e-mail do faktur." />
+  <meta property="og:url" content="https://signature.cat/pl/docs/invoices" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Faktury | SignatureCat Docs" />
+  <meta name="twitter:description" content="Jak działają rozliczenia SignatureCat - progi cenowe, 7-dniowy okres próbny, dokąd wysyłane są faktury i jak ustawić dedykowany e-mail do faktur." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Faktury",
+      "description": "Jak działają rozliczenia SignatureCat - progi cenowe, 7-dniowy okres próbny, dokąd wysyłane są faktury i jak ustawić dedykowany e-mail do faktur.",
+      "url": "https://signature.cat/pl/docs/invoices",
+      "inLanguage": "pl",
+      "datePublished": "2026-07-17",
+      "dateModified": "2026-07-17",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Dokumentacja",
+          "item": "https://signature.cat/pl/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Rozliczenia",
+          "item": "https://signature.cat/pl/docs/invoices"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Faktury",
+          "item": "https://signature.cat/pl/docs/invoices"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Przejdź do treści</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Przełącz menu dokumentacji" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/pl/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Przeszukaj dokumentację" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Szukaj w dokumentacji</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Motyw: systemowy" title="Motyw: systemowy">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Pomoc</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Otwórz aplikację</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Dokumentacja">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Pierwsze kroki</p>
+        <ul>
+        <li><a href="/pl/docs">Wprowadzenie</a></li>
+        <li><a href="/pl/docs/connect-google-workspace">Połącz Google Workspace</a></li>
+        <li><a href="/pl/docs/create-your-first-template">Utwórz swój pierwszy szablon</a></li>
+        <li><a href="/pl/docs/assign-templates">Przypisz szablony</a></li>
+        <li><a href="/pl/docs/verify-assignments">Weryfikuj zadania przypisań</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Konfiguracja zaawansowana</p>
+        <ul>
+        <li><a href="/pl/docs/user-management">Zarządzanie dostępem</a></li>
+        <li><a href="/pl/docs/self-service">Self-service</a></li>
+        <li><a href="/pl/docs/custom-image-domain">Własna domena obrazków</a></li>
+        <li><a href="/pl/docs/banners-and-logos">Banery i logo</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Rozliczenia</p>
+        <ul>
+        <li><a href="/pl/docs/invoices" aria-current="page">Faktury</a></li>
+        <li><a href="/pl/docs/billing-details">Dane rozliczeniowe</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Referencja</p>
+        <ul>
+        <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/pl/docs/templates">Szablony</a></li>
+        <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
+        <li><a href="/pl/docs/assignments">Przypisania</a></li>
+        <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
+        <li><a href="/pl/docs/logs">Logi</a></li>
+        <li><a href="/pl/docs/images">Obrazki</a></li>
+        <li><a href="/pl/docs/notifications">Powiadomienia</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Wsparcie</p>
+        <ul>
+        <li><a href="/pl/docs/support-access">Dostęp dla supportu</a></li>
+        <li><a href="/pl/docs/get-help">Uzyskaj pomoc</a></li>
+        <li><a href="/pl/docs/service-status">Status usługi</a></li>
+        <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
+        </ul>
+      </div>
+      <div class="docs-lang" role="group" aria-label="Język">
+        <p class="docs-nav-label">Język</p>
+        <a href="/docs/invoices" lang="en" hreflang="en" data-lang="en">English</a>
+        <a href="/pl/docs/invoices" lang="pl" hreflang="pl" data-lang="pl" aria-current="true">Polski</a>
+        <a href="/de/docs/invoices" lang="de" hreflang="de" data-lang="de">Deutsch</a>
+        <a href="/fr/docs/invoices" lang="fr" hreflang="fr" data-lang="fr">Français</a>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Okruszki nawigacyjne"><a href="/pl/docs">Dokumentacja</a><span class="crumb-sep">/</span><span class="crumb-section">Rozliczenia</span><span class="crumb-sep">/</span><span aria-current="page">Faktury</span></nav>
+      <article class="docs-article">
+<h1>Faktury</h1>
+<p>SignatureCat rozlicza się miesięcznie za aktywnego użytkownika Workspace, przez Stripe. Faktury i potwierdzenia są wysyłane na Twój adres <strong>e-mail do faktur</strong>, który możesz skierować na skrzynkę księgowości niezależnie od jakiegokolwiek konta administratora. Faktury za dany miesiąc są wystawiane najpóźniej <strong>10. dnia następnego miesiąca</strong>.</p>
+<h2 id="cennik">Cennik<a class="h-anchor" href="#cennik" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Cennik jest progowy per użytkownik - każdy przedział ma własną stawkę, a większe workspace'y płacą średnio mniej:</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Liczba użytkowników Workspace</th><th scope="col">Cena za użytkownika / miesiąc</th></tr></thead>
+<tbody>
+<tr><td>1 - 50</td><td>0,80 USD</td></tr>
+<tr><td>51 - 120</td><td>0,70 USD</td></tr>
+<tr><td>121 - 300</td><td>0,60 USD</td></tr>
+<tr><td>301+</td><td>0,55 USD</td></tr>
+</tbody>
+</table></div>
+<p>Na przykład 60 użytkowników kosztuje 50 x 0,80 USD + 10 x 0,70 USD = 47,00 USD miesięcznie. Ceny są w USD i nie zawierają podatku.</p>
+<p><strong>Co liczy się jako rozliczany użytkownik:</strong> liczba aktywnych (niezawieszonych) użytkowników w katalogu Twojego Google Workspace - nie liczba logowań do SignatureCat. Wzrost liczby użytkowników jest odzwierciedlany od razu z rozliczeniem proporcjonalnym; gdy zatrudnienie spada, niższa liczba obowiązuje od następnego okresu rozliczeniowego.</p>
+<h2 id="7-dniowy-okres-prbny">7-dniowy okres próbny<a class="h-anchor" href="#7-dniowy-okres-prbny" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Każdy workspace zaczyna od 7-dniowego bezpłatnego okresu próbnego. Karta jest pobierana przy rejestracji, a pierwsze obciążenie następuje po zakończeniu okresu próbnego. W ostatnich 3 dniach okresu próbnego aplikacja pokazuje baner przypominający, a około 3 dni przed końcem dostajesz też e-mail „Twój okres próbny signature.cat wkrótce się kończy".</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Uwaga</p><div class="callout-body">
+<p>Okres próbny jest przyznawany <strong>raz na domenę Workspace</strong>. Usunięcie konta i ponowna rejestracja tej samej domeny nie rozpoczyna nowego okresu próbnego.</p>
+</div></aside>
+<h2 id="ustaw-e-mail-do-faktur">Ustaw e-mail do faktur<a class="h-anchor" href="#ustaw-e-mail-do-faktur" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ol>
+<li>Otwórz <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Ustawienia</a> (tylko Admin) i znajdź sekcję <strong>Płatności</strong>.</li>
+<li>Wpisz adres w polu <strong>E-mail do faktur</strong> - „Na ten adres Stripe wysyła faktury i potwierdzenia płatności. Może być inny niż e-mail konta administratora." - i kliknij <strong>Zapisz</strong>.</li>
+</ol>
+<p>Użyj tego, aby kierować dokumenty prosto do księgowości (na przykład <code>invoices@yourcompany.com</code>). Produktowe alerty związane z rozliczeniami (kończący się okres próbny, nieudana płatność) są osobne i trafiają do administratorów - zobacz <a href="/pl/docs/notifications">Powiadomienia</a>.</p>
+<h2 id="dane-firmy-na-fakturze">Dane firmy na fakturze<a class="h-anchor" href="#dane-firmy-na-fakturze" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Prawna nazwa firmy, adres rozliczeniowy i identyfikator podatkowy (VAT / NIP) są przechowywane wyłącznie w Stripe i drukowane na każdej fakturze wystawionej po ich ustawieniu. Podajesz je przy pierwszej płatności i możesz edytować w dowolnym momencie - zobacz <a href="/pl/docs/billing-details">Dane rozliczeniowe</a>. Zmiany obowiązują dla przyszłych faktur; już wystawione faktury są niezmienne.</p>
+<h2 id="co-si-dzieje-gdy-patno-si-nie-powiedzie">Co się dzieje, gdy płatność się nie powiedzie?<a class="h-anchor" href="#co-si-dzieje-gdy-patno-si-nie-powiedzie" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Nieudane obciążenie <strong>nie</strong> odcina dostępu od razu. Dostajesz e-mail „Wymagane działanie - płatność signature.cat nie powiodła się" i czerwony baner w aplikacji, a także krótkie okno karencji (do 3 dni) na aktualizację karty przez <strong>Zarządzaj płatnościami</strong> na stronie <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Płatności</a>. Jeśli okno minie bez udanego obciążenia, zarządzanie podpisami jest wstrzymywane do czasu udanej płatności - Twoje podpisy Gmail zostają, jak są, ale zmiany i synchronizacje się zatrzymują.</p>
+      </article>
+<nav class="docs-pager" aria-label="Stronicowanie">
+<a class="pager-card pager-prev" href="/pl/docs/banners-and-logos" rel="prev">
+      <span class="pager-label">Poprzednia</span>
+      <span class="pager-title">Banery i logo</span>
+    </a>
+<a class="pager-card pager-next" href="/pl/docs/billing-details" rel="next">
+      <span class="pager-label">Następna</span>
+      <span class="pager-title">Dane rozliczeniowe</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Informacje prawne</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Na tej stronie">
+      <nav>
+        <p class="docs-toc-title">Na tej stronie</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#cennik">Cennik</a></li>
+        <li class="toc-l2"><a href="#7-dniowy-okres-prbny">7-dniowy okres próbny</a></li>
+        <li class="toc-l2"><a href="#ustaw-e-mail-do-faktur">Ustaw e-mail do faktur</a></li>
+        <li class="toc-l2"><a href="#dane-firmy-na-fakturze">Dane firmy na fakturze</a></li>
+        <li class="toc-l2"><a href="#co-si-dzieje-gdy-patno-si-nie-powiedzie">Co się dzieje, gdy płatność się nie powiedzie?</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Przeszukaj dokumentację" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Przeszukaj dokumentację" autocomplete="off" spellcheck="false" aria-label="Przeszukaj dokumentację" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Zamknij wyszukiwarkę">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Brak wyników. Spróbuj innych słów kluczowych albo napisz na <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

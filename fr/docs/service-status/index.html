@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>État du service et SLA | SignatureCat Docs</title>
+  <meta name="description" content="Page d'état en direct de SignatureCat, l'objectif de disponibilité mensuelle de 99%, ce qui compte comme indisponibilité et où les fenêtres de maintenance sont annoncées." />
+  <link rel="canonical" href="https://signature.cat/fr/docs/service-status" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/service-status" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/service-status" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/service-status" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/service-status" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/service-status" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="État du service et SLA | SignatureCat Docs" />
+  <meta property="og:description" content="Page d'état en direct de SignatureCat, l'objectif de disponibilité mensuelle de 99%, ce qui compte comme indisponibilité et où les fenêtres de maintenance sont annoncées." />
+  <meta property="og:url" content="https://signature.cat/fr/docs/service-status" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="État du service et SLA | SignatureCat Docs" />
+  <meta name="twitter:description" content="Page d'état en direct de SignatureCat, l'objectif de disponibilité mensuelle de 99%, ce qui compte comme indisponibilité et où les fenêtres de maintenance sont annoncées." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "État du service et SLA",
+      "description": "Page d'état en direct de SignatureCat, l'objectif de disponibilité mensuelle de 99%, ce qui compte comme indisponibilité et où les fenêtres de maintenance sont annoncées.",
+      "url": "https://signature.cat/fr/docs/service-status",
+      "inLanguage": "fr",
+      "datePublished": "2026-07-17",
+      "dateModified": "2026-07-17",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Docs",
+          "item": "https://signature.cat/fr/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Assistance",
+          "item": "https://signature.cat/fr/docs/service-status"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "État du service et SLA",
+          "item": "https://signature.cat/fr/docs/service-status"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Aller au contenu</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Basculer le menu de la documentation" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/fr/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Rechercher dans la documentation" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Rechercher dans la doc</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Thème : système" title="Thème : système">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Aide</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Ouvrir l'app</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Premiers pas</p>
+        <ul>
+        <li><a href="/fr/docs">Introduction</a></li>
+        <li><a href="/fr/docs/connect-google-workspace">Connecter Google Workspace</a></li>
+        <li><a href="/fr/docs/create-your-first-template">Créer votre premier modèle</a></li>
+        <li><a href="/fr/docs/assign-templates">Affecter des modèles</a></li>
+        <li><a href="/fr/docs/verify-assignments">Vérifier les tâches d'affectation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Configuration avancée</p>
+        <ul>
+        <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
+        <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
+        <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Facturation</p>
+        <ul>
+        <li><a href="/fr/docs/invoices">Factures</a></li>
+        <li><a href="/fr/docs/billing-details">Informations de facturation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Référence</p>
+        <ul>
+        <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/fr/docs/templates">Modèles</a></li>
+        <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
+        <li><a href="/fr/docs/assignments">Affectations</a></li>
+        <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
+        <li><a href="/fr/docs/logs">Journaux</a></li>
+        <li><a href="/fr/docs/images">Images</a></li>
+        <li><a href="/fr/docs/notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Assistance</p>
+        <ul>
+        <li><a href="/fr/docs/support-access">Accès du support</a></li>
+        <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/service-status" aria-current="page">État du service</a></li>
+        <li><a href="/fr/docs/legal">Informations légales</a></li>
+        </ul>
+      </div>
+      <div class="docs-lang" role="group" aria-label="Langue">
+        <p class="docs-nav-label">Langue</p>
+        <a href="/docs/service-status" lang="en" hreflang="en" data-lang="en">English</a>
+        <a href="/pl/docs/service-status" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
+        <a href="/de/docs/service-status" lang="de" hreflang="de" data-lang="de">Deutsch</a>
+        <a href="/fr/docs/service-status" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Fil d'Ariane"><a href="/fr/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Assistance</span><span class="crumb-sep">/</span><span aria-current="page">État du service</span></nav>
+      <article class="docs-article">
+<h1>État du service et SLA</h1>
+<p>La disponibilité en direct, les incidents et les fenêtres de maintenance sont publiés sur <strong> 0 </strong>. La page d'état est le point de référence pour la disponibilité : ce qu'elle rapporte fait foi, y compris pour le SLA ci-dessous. Son badge est aussi affiché dans l'en-tête de cette documentation.</p>
+<h2 id="objectif-de-disponibilit">Objectif de disponibilité<a class="h-anchor" href="#objectif-de-disponibilit" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>SignatureCat vise <strong>au moins 99% de disponibilité par mois calendaire</strong>, mesurée et publiée sur la <a href="https://status.signature.cat/" target="_blank" rel="noopener">page d'état</a>. L'objectif ne s'applique pas pendant la période d'essai gratuit.</p>
+<p>Ne sont pas comptées comme indisponibilité :</p>
+<ul>
+<li>la <strong>maintenance planifiée</strong>, annoncée à l'avance sur <a href="https://status.signature.cat/maintenance" target="_blank" rel="noopener">status.signature.cat/maintenance</a>,</li>
+<li>les défaillances des prestataires tiers dont dépend la plateforme (hébergement, CDN, traitement des paiements, API Google),</li>
+<li>la force majeure,</li>
+<li>les causes côté client - en particulier une autorisation <a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a> révoquée ou des changements de configuration du Workspace.</li>
+</ul>
+<p>La distribution des signatures dépend de la disponibilité et des règles des API de Google ; les changements que Google apporte à ces API ou à votre Workspace échappent au contrôle de SignatureCat.</p>
+<p>La formulation complète et contraignante se trouve dans les <a href="https://signature.cat/legal" target="_blank" rel="noopener">Conditions d'utilisation</a> - les conditions ne prévoient pas de crédits de service par défaut ; des garanties SLA individuelles peuvent être convenues dans un contrat séparé.</p>
+<h2 id="pendant-un-incident">Pendant un incident<a class="h-anchor" href="#pendant-un-incident" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ul>
+<li>L'impact actuel et les mises à jour sont publiés sur la <a href="https://status.signature.cat/" target="_blank" rel="noopener">page d'état</a> au fur et à mesure de l'incident.</li>
+<li>Les <strong>synchronisations de signatures sont mises en file d'attente, pas perdues</strong> - après le rétablissement, la synchronisation quotidienne ramène chaque boîte à son état cible.</li>
+<li>Vous pouvez signaler des pannes ou des anomalies à <a href="mailto:contact@signature.cat">contact@signature.cat</a> - voir <a href="/fr/docs/get-help">Obtenir de l'aide</a>.</li>
+</ul>
+<h2 id="fentres-de-maintenance">Fenêtres de maintenance<a class="h-anchor" href="#fentres-de-maintenance" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Les interruptions techniques planifiées sont annoncées à l'avance sur <a href="https://status.signature.cat/maintenance" target="_blank" rel="noopener">status.signature.cat/maintenance</a>. Elles sont programmées pour minimiser l'impact et ne comptent pas comme indisponibilité.</p>
+<aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Astuce</p><div class="callout-body">
+<p>La page d'état propose des options d'abonnement - abonnez votre canal ops ou IT pour que les mises à jour d'incidents vous parviennent sans vérification manuelle.</p>
+</div></aside>
+      </article>
+<nav class="docs-pager" aria-label="Pagination">
+<a class="pager-card pager-prev" href="/fr/docs/get-help" rel="prev">
+      <span class="pager-label">Précédent</span>
+      <span class="pager-title">Obtenir de l'aide</span>
+    </a>
+<a class="pager-card pager-next" href="/fr/docs/legal" rel="next">
+      <span class="pager-label">Suivant</span>
+      <span class="pager-title">Informations légales</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Mentions légales</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Sur cette page">
+      <nav>
+        <p class="docs-toc-title">Sur cette page</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#objectif-de-disponibilit">Objectif de disponibilité</a></li>
+        <li class="toc-l2"><a href="#pendant-un-incident">Pendant un incident</a></li>
+        <li class="toc-l2"><a href="#fentres-de-maintenance">Fenêtres de maintenance</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Rechercher dans la documentation" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Rechercher dans la documentation" autocomplete="off" spellcheck="false" aria-label="Rechercher dans la documentation" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Fermer la recherche">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Aucun résultat. Essayez d'autres mots-clés ou écrivez à <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

@@ -2,6 +2,46 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-23 - Multilingual docs (pl/de/fr) + JSON-LD entity graph on the landing
+
+- **What:**
+  - **Docs translated into Polish, German and French** (all 22 pages + the
+    index, full metadata: title/navTitle/description per language, `updated`
+    inherited from the English source). URL structure per PM:
+    `/pl/docs/...`, `/de/docs/...`, `/fr/docs/...`; English stays canonical
+    at `/docs/...`. Sources live in `docs-src/<locale>/*.md` with the same
+    front-matter contract; a missing translation file fails the build, and
+    the build asserts `updated` parity with the English source.
+  - **`build-docs.mjs` is now locale-aware**: reciprocal hreflang cluster
+    (en/pl/de/fr + x-default -> en) on every page, `og:locale` (+alternates),
+    localized page chrome (sidebar sections, breadcrumb, pager, search UI,
+    callout titles, aria labels), JSON-LD `inLanguage`/breadcrumbs per
+    locale, internal `/docs/...` links in translated bodies rewritten to the
+    language cluster at build time. One docs sitemap with `xhtml:link`
+    alternates (92 URLs); per-locale `search-index.json`; llms.txt stays
+    English-only.
+  - **Language switcher below the sidebar table of contents** (PM request):
+    crawlable `<a>` links to the same page in every language + the
+    `sigcat_locale` cookie on click (same contract as the landing switcher),
+    styled on the existing nav tokens (active language gets the pink dot).
+  - **Landing JSON-LD rebuilt as a localized `@graph`** (SEO audit):
+    `Organization` (@id, logo, a contactPoint; `sameAs` is intentionally
+    OMITTED until the brand profiles exist - PM decision 2026-07-23. The
+    `SAME_AS` list in `build.mjs` is the single place to add them),
+    `WebSite` (domain-to-name + `SearchAction` targeting `/docs?q=...`,
+    backed by a real search prefill in docs.js), `SoftwareApplication`
+    completed with `logo`, `image` and `areaServed: "EU"`, and `FAQPage`
+    built from the same i18n keys the visible 7-question FAQ section renders
+    from, so markup and structured data cannot diverge.
+  - `docs.js`: locale-aware search-index path, `?q=` deep link opens the
+    search overlay pre-filled, switcher cookie handler.
+- **Why:** open the docs to the app's three non-English locales with a
+  correct hreflang/canonical setup, and close the structured-data gaps
+  (brand entity, FAQ rich results, site-name association) flagged in the
+  2026-07-23 SEO audit.
+- **No Worker/CSP changes:** `routePath` already handles the new paths
+  generically; no new external origins.
+
 ## 2026-07-19 - Legal v-bump (job-log retention 30 days, support access) + support-access docs article
 
 - **What:**

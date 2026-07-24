@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Affectations | SignatureCat Docs</title>
+  <meta name="description" content="Référence des affectations SignatureCat - types de cibles, priorité lorsqu'un utilisateur correspond à plusieurs affectations, modes d'alias et gestion des conflits." />
+  <link rel="canonical" href="https://signature.cat/fr/docs/assignments" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/assignments" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/assignments" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/assignments" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/assignments" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/assignments" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Affectations | SignatureCat Docs" />
+  <meta property="og:description" content="Référence des affectations SignatureCat - types de cibles, priorité lorsqu'un utilisateur correspond à plusieurs affectations, modes d'alias et gestion des conflits." />
+  <meta property="og:url" content="https://signature.cat/fr/docs/assignments" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Affectations | SignatureCat Docs" />
+  <meta name="twitter:description" content="Référence des affectations SignatureCat - types de cibles, priorité lorsqu'un utilisateur correspond à plusieurs affectations, modes d'alias et gestion des conflits." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Affectations",
+      "description": "Référence des affectations SignatureCat - types de cibles, priorité lorsqu'un utilisateur correspond à plusieurs affectations, modes d'alias et gestion des conflits.",
+      "url": "https://signature.cat/fr/docs/assignments",
+      "inLanguage": "fr",
+      "datePublished": "2026-07-17",
+      "dateModified": "2026-07-17",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Docs",
+          "item": "https://signature.cat/fr/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Référence",
+          "item": "https://signature.cat/fr/docs/assignments"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Affectations",
+          "item": "https://signature.cat/fr/docs/assignments"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Aller au contenu</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Basculer le menu de la documentation" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/fr/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Rechercher dans la documentation" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Rechercher dans la doc</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Thème : système" title="Thème : système">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Aide</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Ouvrir l'app</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Premiers pas</p>
+        <ul>
+        <li><a href="/fr/docs">Introduction</a></li>
+        <li><a href="/fr/docs/connect-google-workspace">Connecter Google Workspace</a></li>
+        <li><a href="/fr/docs/create-your-first-template">Créer votre premier modèle</a></li>
+        <li><a href="/fr/docs/assign-templates">Affecter des modèles</a></li>
+        <li><a href="/fr/docs/verify-assignments">Vérifier les tâches d'affectation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Configuration avancée</p>
+        <ul>
+        <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
+        <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
+        <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Facturation</p>
+        <ul>
+        <li><a href="/fr/docs/invoices">Factures</a></li>
+        <li><a href="/fr/docs/billing-details">Informations de facturation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Référence</p>
+        <ul>
+        <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/fr/docs/templates">Modèles</a></li>
+        <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
+        <li><a href="/fr/docs/assignments" aria-current="page">Affectations</a></li>
+        <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
+        <li><a href="/fr/docs/logs">Journaux</a></li>
+        <li><a href="/fr/docs/images">Images</a></li>
+        <li><a href="/fr/docs/notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Assistance</p>
+        <ul>
+        <li><a href="/fr/docs/support-access">Accès du support</a></li>
+        <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/service-status">État du service</a></li>
+        <li><a href="/fr/docs/legal">Informations légales</a></li>
+        </ul>
+      </div>
+      <div class="docs-lang" role="group" aria-label="Langue">
+        <p class="docs-nav-label">Langue</p>
+        <a href="/docs/assignments" lang="en" hreflang="en" data-lang="en">English</a>
+        <a href="/pl/docs/assignments" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
+        <a href="/de/docs/assignments" lang="de" hreflang="de" data-lang="de">Deutsch</a>
+        <a href="/fr/docs/assignments" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Fil d'Ariane"><a href="/fr/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Référence</span><span class="crumb-sep">/</span><span aria-current="page">Affectations</span></nav>
+      <article class="docs-article">
+<h1>Affectations</h1>
+<p>Une affectation lie un modèle à une cible et le maintient appliqué par la synchronisation quotidienne. Cette page est la référence sur le comportement des cibles, de la priorité et des alias ; le guide pratique se trouve dans <a href="/fr/docs/assign-templates">Affecter des modèles</a>. Les affectations sont gérées sur <a href="https://app.signature.cat/assignments" target="_blank" rel="noopener">app.signature.cat/assignments</a> par les niveaux Editor et Admin.</p>
+<h2 id="types-de-cibles">Types de cibles<a class="h-anchor" href="#types-de-cibles" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Cible</th><th scope="col">Valeur</th><th scope="col">Option de portée</th></tr></thead>
+<tbody>
+<tr><td>Groupe</td><td>Adresse e-mail du groupe</td><td><strong>+ sous-groupes</strong> inclut les membres des groupes imbriqués.</td></tr>
+<tr><td>OU</td><td>Chemin commençant par <code>/</code>, par exemple <code>/Engineering</code></td><td><strong>+ sous-OU</strong> couvre toute la sous-arborescence.</td></tr>
+<tr><td>Tous</td><td>Tous les utilisateurs actifs du Workspace</td><td>Au maximum <strong>une</strong> affectation de ce type par espace de travail.</td></tr>
+</tbody>
+</table></div>
+<p>Chaque cible ne peut contenir qu'une seule affectation - la création d'un doublon est rejetée avec « Cette cible a déjà une affectation. » Le type d'une cible est figé après la création ; pour transformer une affectation de groupe en affectation d'OU, supprimez-la et recréez-la.</p>
+<p>Les utilisateurs individuels ne sont volontairement pas une cible d'affectation - couvrez les cas individuels avec le <a href="/fr/docs/self-service">self-service</a> ou une <a href="/fr/docs/apply-jobs">tâche d'application</a> ponctuelle.</p>
+<h2 id="fonctionnement-de-la-priorit">Fonctionnement de la priorité<a class="h-anchor" href="#fonctionnement-de-la-priorit" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Les utilisateurs correspondent souvent à plusieurs affectations. Chaque synchronisation calcule exactement <strong>un gagnant par utilisateur</strong>, couche par couche, de bas en haut :</p>
+<ol>
+<li><strong>Tous</strong> - la couche de base pour chaque utilisateur actif.</li>
+<li><strong>Les affectations OU</strong> remplacent l'affectation pour tous pour les utilisateurs de l'OU.</li>
+<li><strong>Les affectations de groupe</strong> remplacent le modèle de l'OU pour leurs membres. Si un utilisateur appartient à plusieurs groupes affectés, l'affectation <strong>la plus récemment mise à jour</strong> l'emporte.</li>
+<li><strong>Self-service</strong> - le choix propre de l'utilisateur l'emporte sur toute affectation, <strong>sauf</strong> si l'affectation gagnante a <strong>Remplacer le self-service</strong> activé.</li>
+</ol>
+<p>Lorsqu'une affectation en supplante d'autres pour un utilisateur, la ligne de résultat de la tâche l'enregistre (« a remplacé N autres affectations pour cet utilisateur »), ce qui vous permet d'auditer les conflits sur les pages de <a href="/fr/docs/logs">journaux</a>.</p>
+<aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Astuce</p><div class="callout-body">
+<p>Schéma recommandé : une affectation pour tous comme modèle par défaut de l'entreprise, des affectations OU par pays ou par marque, des affectations de groupe pour les exceptions (campagne commerciale, équipe de direction). L'empilement des couches fait le reste.</p>
+</div></aside>
+<h2 id="modes-dalias">Modes d'alias<a class="h-anchor" href="#modes-dalias" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Chaque affectation dispose d'un paramètre <strong>Alias</strong> qui contrôle quelles adresses reçoivent la signature. L'écriture sur les alias nécessite le scope optionnel <code>gmail.settings.sharing</code> - voir <a href="/fr/docs/domain-wide-delegation#what-exactly-do-i-authorize">Domain-Wide Delegation</a>.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Mode</th><th scope="col">Comportement</th></tr></thead>
+<tbody>
+<tr><td><strong>Désactivé</strong> (par défaut)</td><td>Seule l'adresse principale de chaque utilisateur est signée. Les alias send-as ne sont pas touchés.</td></tr>
+<tr><td><strong>Adresses du groupe</strong></td><td>Affectations de groupe uniquement. La signature va exactement aux adresses listées dans le groupe : un membre ajouté par un alias la reçoit uniquement sur cet alias, un membre ajouté par son adresse principale uniquement sur celle-ci. Les alias hors du groupe ne sont jamais modifiés.</td></tr>
+<tr><td><strong>Tous les alias</strong></td><td>Chaque utilisateur reçoit la signature sur son adresse principale et sur chaque alias send-as qu'il possède. Les alias possédés qui ne sont pas encore configurés en send-as sont créés au préalable.</td></tr>
+</tbody>
+</table></div>
+<p>Remarques sur le comportement :</p>
+<ul>
+<li>Avec <strong>Tous les alias</strong>, les adresses externes et les alias non modifiables ne sont jamais créés automatiquement ; une entrée send-as nouvellement créée que Gmail signale comme en attente de vérification est ignorée jusqu'à sa vérification.</li>
+<li><code>{{email}}</code> et <code>{{domain}}</code> sont résolus vers l'<strong>alias</strong> en cours d'écriture, les signatures d'alias affichent donc la bonne adresse. Toutes les autres variables proviennent de la fiche du propriétaire de la boîte.</li>
+<li>Chaque écriture d'alias reçoit sa propre ligne dans les résultats de la tâche, la <a href="/fr/docs/verify-assignments">vérification</a> montre donc exactement quelles adresses ont été signées ou ignorées.</li>
+<li>Les signatures self-service sont toujours appliquées aussi aux alias acceptés de l'utilisateur.</li>
+</ul>
+<h2 id="remplacer-le-self-service">Remplacer le self-service<a class="h-anchor" href="#remplacer-le-self-service" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Par affectation, l'interrupteur <strong>Remplacer le self-service</strong> fait gagner l'affectation sur les choix self-service des utilisateurs. La ligne affiche un badge « remplace le self-service ». Utilisez-le pour les signatures critiques en matière de conformité (mentions légales) où la personnalisation individuelle n'est pas acceptable.</p>
+<h2 id="quand-les-cibles-disparaissent">Quand les cibles disparaissent<a class="h-anchor" href="#quand-les-cibles-disparaissent" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Si un groupe ou une OU affecté est supprimé dans Google Workspace, la synchronisation suivante marque l'affectation avec un badge « introuvable dans le Workspace », ignore la cible, notifie les administrateurs (dans l'application + e-mail, une fois par série d'échecs) et réessaie lors des synchronisations suivantes. Corrigez la cible dans le panneau d'édition ou supprimez l'affectation. Voir <a href="/fr/docs/verify-assignments#what-the-per-user-rows-tell-you">Vérifier une tâche d'affectation</a>.</p>
+<h2 id="modifier-et-retirer">Modifier et retirer<a class="h-anchor" href="#modifier-et-retirer" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Les lignes sont modifiées sur place (modèle, valeur de la cible, portée, mode d'alias, remplacement). Retirer une affectation arrête la gestion de ces utilisateurs - les signatures déjà appliquées restent dans Gmail jusqu'à ce qu'autre chose (une autre affectation, le self-service ou le modèle par défaut) les écrase lors d'une synchronisation ultérieure.</p>
+      </article>
+<nav class="docs-pager" aria-label="Pagination">
+<a class="pager-card pager-prev" href="/fr/docs/template-variables" rel="prev">
+      <span class="pager-label">Précédent</span>
+      <span class="pager-title">Variables de modèle</span>
+    </a>
+<a class="pager-card pager-next" href="/fr/docs/apply-jobs" rel="next">
+      <span class="pager-label">Suivant</span>
+      <span class="pager-title">Tâches d'application</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Mentions légales</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Sur cette page">
+      <nav>
+        <p class="docs-toc-title">Sur cette page</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#types-de-cibles">Types de cibles</a></li>
+        <li class="toc-l2"><a href="#fonctionnement-de-la-priorit">Fonctionnement de la priorité</a></li>
+        <li class="toc-l2"><a href="#modes-dalias">Modes d'alias</a></li>
+        <li class="toc-l2"><a href="#remplacer-le-self-service">Remplacer le self-service</a></li>
+        <li class="toc-l2"><a href="#quand-les-cibles-disparaissent">Quand les cibles disparaissent</a></li>
+        <li class="toc-l2"><a href="#modifier-et-retirer">Modifier et retirer</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Rechercher dans la documentation" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Rechercher dans la documentation" autocomplete="off" spellcheck="false" aria-label="Rechercher dans la documentation" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Fermer la recherche">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Aucun résultat. Essayez d'autres mots-clés ou écrivez à <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

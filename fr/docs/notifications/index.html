@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Notifications | SignatureCat Docs</title>
+  <meta name="description" content="Quelles alertes SignatureCat arrivent par e-mail et lesquelles apparaissent dans l'application - perte de DWD, cibles d'affectation manquantes, événements d'essai et de paiement." />
+  <link rel="canonical" href="https://signature.cat/fr/docs/notifications" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/notifications" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/notifications" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/notifications" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/notifications" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/notifications" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Notifications | SignatureCat Docs" />
+  <meta property="og:description" content="Quelles alertes SignatureCat arrivent par e-mail et lesquelles apparaissent dans l'application - perte de DWD, cibles d'affectation manquantes, événements d'essai et de paiement." />
+  <meta property="og:url" content="https://signature.cat/fr/docs/notifications" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Notifications | SignatureCat Docs" />
+  <meta name="twitter:description" content="Quelles alertes SignatureCat arrivent par e-mail et lesquelles apparaissent dans l'application - perte de DWD, cibles d'affectation manquantes, événements d'essai et de paiement." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Notifications",
+      "description": "Quelles alertes SignatureCat arrivent par e-mail et lesquelles apparaissent dans l'application - perte de DWD, cibles d'affectation manquantes, événements d'essai et de paiement.",
+      "url": "https://signature.cat/fr/docs/notifications",
+      "inLanguage": "fr",
+      "datePublished": "2026-07-17",
+      "dateModified": "2026-07-17",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Docs",
+          "item": "https://signature.cat/fr/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Référence",
+          "item": "https://signature.cat/fr/docs/notifications"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Notifications",
+          "item": "https://signature.cat/fr/docs/notifications"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Aller au contenu</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Basculer le menu de la documentation" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/fr/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Rechercher dans la documentation" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Rechercher dans la doc</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Thème : système" title="Thème : système">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Aide</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Ouvrir l'app</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Premiers pas</p>
+        <ul>
+        <li><a href="/fr/docs">Introduction</a></li>
+        <li><a href="/fr/docs/connect-google-workspace">Connecter Google Workspace</a></li>
+        <li><a href="/fr/docs/create-your-first-template">Créer votre premier modèle</a></li>
+        <li><a href="/fr/docs/assign-templates">Affecter des modèles</a></li>
+        <li><a href="/fr/docs/verify-assignments">Vérifier les tâches d'affectation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Configuration avancée</p>
+        <ul>
+        <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
+        <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
+        <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Facturation</p>
+        <ul>
+        <li><a href="/fr/docs/invoices">Factures</a></li>
+        <li><a href="/fr/docs/billing-details">Informations de facturation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Référence</p>
+        <ul>
+        <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/fr/docs/templates">Modèles</a></li>
+        <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
+        <li><a href="/fr/docs/assignments">Affectations</a></li>
+        <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
+        <li><a href="/fr/docs/logs">Journaux</a></li>
+        <li><a href="/fr/docs/images">Images</a></li>
+        <li><a href="/fr/docs/notifications" aria-current="page">Notifications</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Assistance</p>
+        <ul>
+        <li><a href="/fr/docs/support-access">Accès du support</a></li>
+        <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/service-status">État du service</a></li>
+        <li><a href="/fr/docs/legal">Informations légales</a></li>
+        </ul>
+      </div>
+      <div class="docs-lang" role="group" aria-label="Langue">
+        <p class="docs-nav-label">Langue</p>
+        <a href="/docs/notifications" lang="en" hreflang="en" data-lang="en">English</a>
+        <a href="/pl/docs/notifications" lang="pl" hreflang="pl" data-lang="pl">Polski</a>
+        <a href="/de/docs/notifications" lang="de" hreflang="de" data-lang="de">Deutsch</a>
+        <a href="/fr/docs/notifications" lang="fr" hreflang="fr" data-lang="fr" aria-current="true">Français</a>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Fil d'Ariane"><a href="/fr/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Référence</span><span class="crumb-sep">/</span><span aria-current="page">Notifications</span></nav>
+      <article class="docs-article">
+<h1>Notifications</h1>
+<p>SignatureCat vous notifie par deux canaux : l'<strong>e-mail</strong> pour les événements au niveau du compte nécessitant une action, et la <strong>cloche de notifications dans l'application</strong> pour les alertes opérationnelles. Les e-mails vont aux administrateurs (et au propriétaire du compte) ; la cloche est visible pour les niveaux Admin et Editor.</p>
+<h2 id="quest-ce-qui-arrive-par-e-mail">Qu'est-ce qui arrive par e-mail ?<a class="h-anchor" href="#quest-ce-qui-arrive-par-e-mail" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<div class="tbl"><table>
+<thead><tr><th scope="col">E-mail</th><th scope="col">Quand il est envoyé</th><th scope="col">Qui le reçoit</th></tr></thead>
+<tbody>
+<tr><td>Bienvenue sur signature.cat</td><td>Première connexion d'un nouvel utilisateur</td><td>Le nouvel utilisateur</td></tr>
+<tr><td>Vous avez maintenant accès à signature.cat</td><td>Un administrateur accorde l'accès à un utilisateur sur <a href="https://app.signature.cat/user-management" target="_blank" rel="noopener">Gestion des accès</a></td><td>L'utilisateur concerné</td></tr>
+<tr><td>Votre essai signature.cat a commencé</td><td>L'essai démarre</td><td>Admins + propriétaire</td></tr>
+<tr><td>Votre essai signature.cat se termine bientôt</td><td>Environ 3 jours avant la fin de l'essai</td><td>Admins + propriétaire</td></tr>
+<tr><td>Votre forfait signature.cat est actif</td><td>Premier prélèvement réussi après l'essai</td><td>Admins + propriétaire</td></tr>
+<tr><td>Action requise - échec du paiement signature.cat</td><td>Un prélèvement échoue (le délai de grâce commence)</td><td>Admins + propriétaire</td></tr>
+<tr><td>Une cible d'affectation signature.cat n'existe plus</td><td>Un groupe ou une OU affecté a été supprimé dans le Workspace</td><td>Admins + propriétaire</td></tr>
+<tr><td>Action requise - signature.cat a perdu l'accès au Workspace (DWD)</td><td>La Domain-Wide Delegation a cassé ou un scope requis a été révoqué</td><td>Admins + propriétaire</td></tr>
+</tbody>
+</table></div>
+<p>Les e-mails d'alerte sont dédupliqués (au plus un par sujet et par jour) et envoyés uniquement au passage en état d'échec, pas à chaque nouvelle tentative.</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
+<p>Ces e-mails produit sont distincts des <strong>factures et reçus</strong> de Stripe, qui vont à l'adresse d'<a href="/fr/docs/invoices#set-the-invoice-email">e-mail de facturation</a>. Les niveaux Editor et Designer ne reçoivent pas d'e-mails d'alerte - uniquement des notifications dans l'application.</p>
+</div></aside>
+<h2 id="quest-ce-qui-apparat-dans-lapplication">Qu'est-ce qui apparaît dans l'application ?<a class="h-anchor" href="#quest-ce-qui-apparat-dans-lapplication" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>L'icône de cloche dans la navigation supérieure (niveaux Admin et Editor) rassemble les notifications opérationnelles ; les non lues affichent un badge, et chaque entrée peut être ignorée.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Notification dans l'application</th><th scope="col">Gravité</th><th scope="col">Déclencheur</th></tr></thead>
+<tbody>
+<tr><td>Accès Domain-Wide Delegation perdu</td><td>Erreur</td><td>La DWD ou un scope requis a cassé ; les synchronisations sont en pause jusqu'à ce qu'un administrateur relance l'<a href="/fr/docs/domain-wide-delegation#what-happens-if-dwd-is-removed-or-a-scope-revoked">assistant DWD</a>.</td></tr>
+<tr><td>Le groupe / l'OU n'existe plus</td><td>Avertissement</td><td>Une <a href="/fr/docs/assignments#when-targets-disappear">cible d'affectation</a> a disparu ; le worker réessaie à la prochaine synchronisation.</td></tr>
+<tr><td>Utilisateurs sans signature self-service</td><td>Avertissement</td><td>Des utilisateurs self-service n'ont pas encore choisi de modèle (au plus une fois tous les 7 jours).</td></tr>
+<tr><td>Votre essai se termine bientôt</td><td>Avertissement</td><td>Environ 3 jours avant la fin de l'essai.</td></tr>
+<tr><td>Paiement échoué</td><td>Erreur</td><td>Un prélèvement a échoué ; le délai de grâce court.</td></tr>
+</tbody>
+</table></div>
+<p>En plus de la cloche, deux bannières peuvent apparaître dans toute l'application : la <strong>bannière d'essai</strong> ambre dans les derniers jours de l'essai, et la <strong>bannière de paiement</strong> rouge (« Mettez à jour votre carte avant le {date}, sinon la gestion des signatures sera suspendue ») pendant le délai de grâce du paiement.</p>
+<h2 id="configuration-recommande">Configuration recommandée<a class="h-anchor" href="#configuration-recommande" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ul>
+<li>Assurez-vous qu'au moins une boîte consultée régulièrement a le niveau <strong>Admin</strong> - les e-mails d'alerte ne vont qu'aux administrateurs et au propriétaire. Voir <a href="/fr/docs/user-management">Gestion des accès</a>.</li>
+<li>Faites pointer l'<a href="/fr/docs/invoices#set-the-invoice-email">e-mail de facturation</a> vers la comptabilité pour que les documents ne dépendent jamais d'une boîte d'administrateur.</li>
+<li>Surveillez <a href="https://status.signature.cat/" target="_blank" rel="noopener">status.signature.cat</a> pour les incidents au niveau de la plateforme - voir <a href="/fr/docs/service-status">État du service</a>.</li>
+</ul>
+      </article>
+<nav class="docs-pager" aria-label="Pagination">
+<a class="pager-card pager-prev" href="/fr/docs/images" rel="prev">
+      <span class="pager-label">Précédent</span>
+      <span class="pager-title">Images</span>
+    </a>
+<a class="pager-card pager-next" href="/fr/docs/support-access" rel="next">
+      <span class="pager-label">Suivant</span>
+      <span class="pager-title">Accès du support</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <a href="mailto:contact@signature.cat">contact@signature.cat</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Mentions légales</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Sur cette page">
+      <nav>
+        <p class="docs-toc-title">Sur cette page</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#quest-ce-qui-arrive-par-e-mail">Qu'est-ce qui arrive par e-mail ?</a></li>
+        <li class="toc-l2"><a href="#quest-ce-qui-apparat-dans-lapplication">Qu'est-ce qui apparaît dans l'application ?</a></li>
+        <li class="toc-l2"><a href="#configuration-recommande">Configuration recommandée</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Rechercher dans la documentation" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Rechercher dans la documentation" autocomplete="off" spellcheck="false" aria-label="Rechercher dans la documentation" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Fermer la recherche">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Aucun résultat. Essayez d'autres mots-clés ou écrivez à <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>
