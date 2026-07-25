@@ -559,8 +559,11 @@ section[id] { scroll-margin-top: 88px; }
 @media (prefers-reduced-motion: reduce){ .ad-slide { transition: none; } }
 
 /* Pricing page (/pricing) -------------------------------------------------- */
-.pricing-hero { padding-bottom: 0; }
-.pricing-hero .section-head h1 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); margin: 12px 0 14px; }
+/* .section.pricing-hero: double class so the responsive `.section` padding
+   shorthand (declared later) cannot re-add the bottom padding - the gap to
+   the next section must equal the standard inter-section rhythm. */
+.section.pricing-hero { padding-bottom: 0; }
+.pricing-hero .section-head h1 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); margin: 0 0 14px; }
 
 /* Founders edition banner: dark panel with a warm accent glow */
 .founders {
