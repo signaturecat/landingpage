@@ -559,8 +559,11 @@ section[id] { scroll-margin-top: 88px; }
 @media (prefers-reduced-motion: reduce){ .ad-slide { transition: none; } }
 
 /* Pricing page (/pricing) -------------------------------------------------- */
-.pricing-hero { padding-bottom: 0; }
-.pricing-hero .section-head h1 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); margin: 12px 0 14px; }
+/* .section.pricing-hero: double class so the responsive `.section` padding
+   shorthand (declared later) cannot re-add the bottom padding - the gap to
+   the next section must equal the standard inter-section rhythm. */
+.section.pricing-hero { padding-bottom: 0; }
+.pricing-hero .section-head h1 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); margin: 0 0 14px; }
 
 /* Founders edition banner: dark panel with a warm accent glow */
 .founders {
@@ -628,7 +631,10 @@ section[id] { scroll-margin-top: 88px; }
 .compare tbody tr:last-child td { border-bottom: 0; }
 .compare tbody tr { transition: background .15s; }
 .compare tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
-.compare-tick { text-align: center; width: 220px; }
+/* Wide tick column (PM 2026-07-25): with a fixed narrow column the ticks
+   hugged the right edge - at 45% the column's center (where the tick and
+   the header both align) sits much closer to the table's middle. */
+.compare-tick { text-align: center; width: 45%; }
 .compare-tick .tick {
   display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 8px;
   background: color-mix(in srgb, var(--accent) 20%, transparent); color: var(--ink);
@@ -660,7 +666,7 @@ section[id] { scroll-margin-top: 88px; }
   .plan-points { grid-template-columns: 1fr; }
   .founders { padding: 28px 24px; }
   .compare th, .compare td { padding-inline: 16px; }
-  .compare-tick { width: 90px; }
+  .compare-tick { width: 30%; }
   .card-compact { min-height: 0; }
   .band { padding: 32px; }
   .hero { padding: 56px 0 40px; }
