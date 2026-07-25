@@ -2,6 +2,18 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-25 - "What's new" section moved to the top of the docs sidebar
+
+- **What:** The "What's new" section (the changelog tab) now renders FIRST in
+  the docs sidebar, in all 4 languages. Implemented as a display-only flag
+  (`sidebarTop: true` on the NAV section + a stable-sorted `SIDEBAR_NAV` used
+  exclusively by `sidebarHtml()`), so the NAV manifest keeps being the
+  canonical reading order: `/docs` still lands on Introduction, prev/next
+  still starts at Introduction and ends at the changelog, and the search
+  index / llms.txt / sitemap are byte-identical.
+- **Why:** PM 2026-07-25 - surface the changelog at the top of the tabs
+  without changing the default docs page.
+
 ## 2026-07-24 - Public product changelog at /docs/changelog (all 4 languages)
 
 - **What:** New docs page `/docs/changelog` (+ `/pl`, `/de`, `/fr` variants)

@@ -175,9 +175,20 @@ const NAV = [
   },
   {
     section: "What's new",
+    /* PM 2026-07-25: render this section FIRST in the sidebar. Only the
+       sidebar moves - NAV order stays the canonical reading order, so the
+       docs root (/docs) remains Introduction and prev/next still ends the
+       journey at the changelog instead of starting there. */
+    sidebarTop: true,
     items: [{ slug: 'changelog' }],
   },
 ];
+
+/* Sidebar display order: sections flagged `sidebarTop` float to the top
+   (stable sort - everything else keeps NAV order). */
+const SIDEBAR_NAV = [...NAV].sort(
+  (a, b) => (b.sidebarTop ? 1 : 0) - (a.sidebarTop ? 1 : 0),
+);
 
 const urlFor = (slug, loc = 'en') => {
   const prefix = loc === 'en' ? '/docs' : `/${loc}/docs`;
@@ -463,7 +474,7 @@ const HELP_ICON =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg>';
 
 function sidebarHtml(activeSlug, loc, pages) {
-  const groups = NAV.map((g) => {
+  const groups = SIDEBAR_NAV.map((g) => {
     const items = g.items
       .map((it) => {
         const { meta } = pages.get(it.slug);
