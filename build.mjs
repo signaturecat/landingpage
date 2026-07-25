@@ -29,10 +29,25 @@ const ROOT = dirname(fileURLToPath(import.meta.url));
 const BASE = 'https://signature.cat';
 const SUPPORTED = ['en', 'pl', 'de', 'fr'];
 const OG_LOCALE = { en: 'en_US', pl: 'pl_PL', de: 'de_DE', fr: 'fr_FR' };
+
+/* Landing pages rendered by this generator. Each page is authored ONCE in
+   English (src) with its own per-page title/description i18n keys and a
+   dedicated JSON-LD graph builder (`graph`). Adding a page = a new source
+   file + an entry here (+ the pp.-style keys in i18n.js x4 locales). */
+const PAGES = [
+  { src: 'index.html', slug: '', titleKey: 'meta.title', descKey: 'meta.desc', graph: 'home' },
+  { src: 'pricing.html', slug: 'pricing', titleKey: 'pp.meta.title', descKey: 'pp.meta.desc', graph: 'pricing' },
+];
+
 // Canonical URLs carry NO trailing slash (the edge Worker 301s slashed
-// requests and internally maps /pl -> pl/index.html on the origin).
-const pathFor = (loc) => (loc === 'en' ? '/' : `/${loc}`);
-const urlFor = (loc) => BASE + pathFor(loc);
+// requests and internally maps /pl -> pl/index.html on the origin). The only
+// exception is the English home page, which is the bare root `/`.
+const pathFor = (loc, slug = '') => {
+  const prefix = loc === 'en' ? '' : `/${loc}`;
+  if (!slug) return prefix || '/';
+  return `${prefix}/${slug}`;
+};
+const urlFor = (loc, slug = '') => BASE + pathFor(loc, slug);
 
 // ---- escaping (mirror the browser: textContent / setAttribute semantics) ----
 const escHtml = (s) =>
@@ -54,13 +69,14 @@ function loadDict() {
   return I18N;
 }
 
-// ---- the shared, identical hreflang block injected into every page ----------
-const HREFLANG_BLOCK = [
-  ...SUPPORTED.map(
-    (l) => `  <link rel="alternate" hreflang="${l}" href="${urlFor(l)}" />`,
-  ),
-  `  <link rel="alternate" hreflang="x-default" href="${BASE}/" />`,
-].join('\n');
+// ---- the reciprocal hreflang block, identical on a page's four variants -----
+const hreflangBlock = (slug) =>
+  [
+    ...SUPPORTED.map(
+      (l) => `  <link rel="alternate" hreflang="${l}" href="${urlFor(l, slug)}" />`,
+    ),
+    `  <link rel="alternate" hreflang="x-default" href="${urlFor('en', slug)}" />`,
+  ].join('\n');
 
 // ---- structured data: JSON-LD @graph (SEO audit, PM 2026-07-23) ---------------
 // One localized @graph per page: Organization (brand entity + sameAs),
@@ -79,59 +95,71 @@ const OG_IMAGE_URL = `${BASE}/assets/img/og-cover.svg`;
 const SAME_AS = [];
 const FAQ_COUNT = 7;
 
+// Shared brand nodes referenced (by @id) from every page's graph.
+function orgNode() {
+  return {
+    '@type': 'Organization',
+    '@id': ORG_ID,
+    name: 'SignatureCat',
+    url: `${BASE}/`,
+    logo: { '@type': 'ImageObject', url: LOGO_URL },
+    ...(SAME_AS.length ? { sameAs: SAME_AS } : {}),
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: 'contact@signature.cat',
+    },
+  };
+}
+function webSiteNode(loc) {
+  return {
+    '@type': 'WebSite',
+    '@id': `${BASE}/#website`,
+    name: 'SignatureCat',
+    url: `${BASE}/`,
+    inLanguage: loc,
+    publisher: { '@id': ORG_ID },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${BASE}/docs?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+}
+function softwareNode(loc, tr, url) {
+  return {
+    '@type': 'SoftwareApplication',
+    '@id': `${BASE}/#software`,
+    name: 'SignatureCat',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web, Google Workspace',
+    description: tr('meta.desc'),
+    url,
+    logo: LOGO_URL,
+    image: OG_IMAGE_URL,
+    areaServed: 'EU',
+    publisher: { '@id': ORG_ID },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'USD',
+      lowPrice: '0.55',
+      highPrice: '0.80',
+      offerCount: '4',
+    },
+  };
+}
+
 function jsonLdGraph(loc, tr) {
   const url = urlFor(loc);
   const graph = {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'Organization',
-        '@id': ORG_ID,
-        name: 'SignatureCat',
-        url: `${BASE}/`,
-        logo: { '@type': 'ImageObject', url: LOGO_URL },
-        ...(SAME_AS.length ? { sameAs: SAME_AS } : {}),
-        contactPoint: {
-          '@type': 'ContactPoint',
-          contactType: 'customer support',
-          email: 'contact@signature.cat',
-        },
-      },
-      {
-        '@type': 'WebSite',
-        '@id': `${BASE}/#website`,
-        name: 'SignatureCat',
-        url: `${BASE}/`,
-        inLanguage: loc,
-        publisher: { '@id': ORG_ID },
-        potentialAction: {
-          '@type': 'SearchAction',
-          target: {
-            '@type': 'EntryPoint',
-            urlTemplate: `${BASE}/docs?q={search_term_string}`,
-          },
-          'query-input': 'required name=search_term_string',
-        },
-      },
-      {
-        '@type': 'SoftwareApplication',
-        name: 'SignatureCat',
-        applicationCategory: 'BusinessApplication',
-        operatingSystem: 'Web, Google Workspace',
-        description: tr('meta.desc'),
-        url,
-        logo: LOGO_URL,
-        image: OG_IMAGE_URL,
-        areaServed: 'EU',
-        publisher: { '@id': ORG_ID },
-        offers: {
-          '@type': 'AggregateOffer',
-          priceCurrency: 'USD',
-          lowPrice: '0.55',
-          highPrice: '0.80',
-          offerCount: '4',
-        },
-      },
+      orgNode(),
+      webSiteNode(loc),
+      softwareNode(loc, tr, url),
       {
         '@type': 'FAQPage',
         '@id': `${url}#faq`,
@@ -147,8 +175,35 @@ function jsonLdGraph(loc, tr) {
   return JSON.stringify(graph, null, 2);
 }
 
-/** Produce the fully localized HTML for `loc` from the English source. */
-function render(src, loc, I18N) {
+// /pricing: WebPage about the SoftwareApplication (the offers live on the
+// software node - same AggregateOffer as the home page, single source of
+// truth for the price range). No FAQPage here: the page renders no FAQ
+// markup and structured data must never claim content the page lacks.
+function jsonLdPricingGraph(loc, tr) {
+  const url = urlFor(loc, 'pricing');
+  const graph = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      orgNode(),
+      webSiteNode(loc),
+      {
+        '@type': 'WebPage',
+        '@id': `${url}#webpage`,
+        url,
+        name: tr('pp.meta.title'),
+        description: tr('pp.meta.desc'),
+        inLanguage: loc,
+        isPartOf: { '@id': `${BASE}/#website` },
+        about: { '@id': `${BASE}/#software` },
+      },
+      softwareNode(loc, tr, `${BASE}/`),
+    ],
+  };
+  return JSON.stringify(graph, null, 2);
+}
+
+/** Produce the fully localized HTML for `loc` from the page's English source. */
+function render(src, loc, I18N, page) {
   const dict = I18N[loc];
   const en = I18N.en;
   const tr = (key) => {
@@ -156,10 +211,12 @@ function render(src, loc, I18N) {
     if (v == null) throw new Error(`Missing i18n key "${key}" (locale ${loc})`);
     return v;
   };
+  const pageUrl = urlFor(loc, page.slug);
   let html = src;
 
-  // <html lang>
-  html = html.replace(/<html lang="[^"]*">/, `<html lang="${loc}">`);
+  // <html lang> (attribute-only replace: subpages carry extra attributes on
+  // the <html> tag, e.g. data-i18n-title)
+  html = html.replace(/<html lang="[^"]*"/, `<html lang="${loc}"`);
 
   // [data-i18n] text nodes (content is text-only; assert no child markup)
   html = html.replace(
@@ -174,26 +231,26 @@ function render(src, loc, I18N) {
     },
   );
 
-  // meta description (the only data-i18n-attr usage: content:meta.desc)
+  // meta description (data-i18n-attr usage: content:<page desc key>)
   html = html.replace(
     /(<meta name="description"[^>]*\scontent=")[^"]*(")/,
-    `$1${escAttr(tr('meta.desc'))}$2`,
+    `$1${escAttr(tr(page.descKey))}$2`,
   );
 
   // <title>
-  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escHtml(tr('meta.title'))}</title>`);
+  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escHtml(tr(page.titleKey))}</title>`);
 
-  // canonical -> this page's own URL (never the root for sub-locales)
-  html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${urlFor(loc)}$2`);
+  // canonical -> this page variant's own URL (never the root for sub-locales)
+  html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${pageUrl}$2`);
 
-  // reciprocal hreflang block (identical on every page)
+  // reciprocal hreflang block (identical on the page's four variants)
   html = html.replace(
     /(?:[ \t]*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>\n)+/,
-    HREFLANG_BLOCK + '\n',
+    hreflangBlock(page.slug) + '\n',
   );
 
   // og:url
-  html = html.replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${urlFor(loc)}$2`);
+  html = html.replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${pageUrl}$2`);
 
   // og:locale (+ alternates) - remove any existing first so re-runs are idempotent
   html = html.replace(
@@ -212,27 +269,28 @@ function render(src, loc, I18N) {
   if (loc !== 'en') {
     html = html.replace(
       /(<meta property="og:title" content=")[^"]*(")/,
-      `$1${escAttr(tr('meta.title'))}$2`,
+      `$1${escAttr(tr(page.titleKey))}$2`,
     );
     html = html.replace(
       /(<meta property="og:description" content=")[^"]*(")/,
-      `$1${escAttr(tr('meta.desc'))}$2`,
+      `$1${escAttr(tr(page.descKey))}$2`,
     );
     html = html.replace(
       /(<meta name="twitter:title" content=")[^"]*(")/,
-      `$1${escAttr(tr('meta.title'))}$2`,
+      `$1${escAttr(tr(page.titleKey))}$2`,
     );
     html = html.replace(
       /(<meta name="twitter:description" content=")[^"]*(")/,
-      `$1${escAttr(tr('meta.desc'))}$2`,
+      `$1${escAttr(tr(page.descKey))}$2`,
     );
   }
 
   // JSON-LD: the whole block is regenerated per locale from the i18n dict -
   // no field-level regex patching (deterministic, hence idempotent).
+  const graph = page.graph === 'pricing' ? jsonLdPricingGraph(loc, tr) : jsonLdGraph(loc, tr);
   html = html.replace(
     /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
-    `<script type="application/ld+json">\n${jsonLdGraph(loc, tr)}\n  </script>`,
+    `<script type="application/ld+json">\n${graph}\n  </script>`,
   );
 
   // Docs links follow the page language (PM 2026-07-23): /pl -> /pl/docs etc.
@@ -243,6 +301,21 @@ function render(src, loc, I18N) {
       /(href=")https:\/\/signature\.cat\/docs(?=["/#?])/g,
       `$1https://signature.cat/${loc}/docs`,
     );
+  }
+
+  // Cross-page internal links follow the page language too (subpages link
+  // home sections as /#..., the home page as /, and the pricing page as
+  // /pricing). Language-switcher anchors (data-lang) are exempt - they
+  // deliberately point at a SPECIFIC locale's URL. Idempotent: /pl#, /pl and
+  // /pl/pricing no longer match the English patterns.
+  if (loc !== 'en') {
+    html = html.replace(/href="\/#/g, `href="/${loc}#`);
+    for (const target of ['/', '/pricing']) {
+      html = html.replace(/<a\b[^>]*>/g, (tag) => {
+        if (tag.includes('data-lang')) return tag;
+        return tag.replace(`href="${target}"`, `href="${pathFor(loc, target.slice(1))}"`);
+      });
+    }
   }
 
   // page-level relative asset refs -> root-absolute so /pl/ resolves them
@@ -261,19 +334,23 @@ function render(src, loc, I18N) {
 const LEGAL_URLS = ['/legal', '/pl/terms', '/pl/policy'];
 
 function sitemap() {
-  const alts = SUPPORTED.map(
-    (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${urlFor(l)}"/>`,
-  ).join('\n');
-  const xdef = `    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE}/"/>`;
-  const urls = SUPPORTED.map(
-    (l) => `  <url>
-    <loc>${urlFor(l)}</loc>
+  const urls = PAGES.flatMap((page) => {
+    const alts = [
+      ...SUPPORTED.map(
+        (l) =>
+          `    <xhtml:link rel="alternate" hreflang="${l}" href="${urlFor(l, page.slug)}"/>`,
+      ),
+      `    <xhtml:link rel="alternate" hreflang="x-default" href="${urlFor('en', page.slug)}"/>`,
+    ].join('\n');
+    return SUPPORTED.map(
+      (l) => `  <url>
+    <loc>${urlFor(l, page.slug)}</loc>
     <changefreq>weekly</changefreq>
-    <priority>${l === 'en' ? '1.0' : '0.9'}</priority>
+    <priority>${page.slug === '' ? (l === 'en' ? '1.0' : '0.9') : l === 'en' ? '0.8' : '0.7'}</priority>
 ${alts}
-${xdef}
   </url>`,
-  ).join('\n');
+    );
+  }).join('\n');
   const legal = LEGAL_URLS.map(
     (p) => `  <url>
     <loc>${BASE}${p}</loc>
@@ -292,15 +369,14 @@ ${legal}
 
 // ---- run ---------------------------------------------------------------------
 const I18N = loadDict();
-const SRC = readFileSync(join(ROOT, 'index.html'), 'utf8');
 
-// assert every translated key resolves in en (no visible raw keys)
-for (const m of SRC.matchAll(/\sdata-i18n="([^"]+)"/g)) {
-  if (I18N.en[m[1]] == null) throw new Error(`data-i18n key "${m[1]}" missing from en dictionary`);
-}
-for (const k of ['meta.title', 'meta.desc']) {
-  if (I18N.en[k] == null) throw new Error(`required key "${k}" missing from en dictionary`);
-}
+// Forbidden-character guard (PM 2026-07-23 - same rule as build-docs.mjs):
+// no AI-tell dashes, no invisible/bidi characters, and no typographic double
+// quotes (guillemets, low-9, curly) in SERVED pages - rendered copy uses the
+// plain keyboard '"' only. Apostrophes (') stay allowed.
+const FORBIDDEN =
+  /[\u2012\u2013\u2014\u2015\u200B\u200C\u200D\u2060\uFEFF\u00A0\u202F\u00AD\u200E\u200F\u00AB\u00BB\u201C\u201D\u201E\u201F]/;
+
 // FAQPage JSON-LD is built from the same keys the visible FAQ renders from -
 // every locale must have the full set (the FAQ schema must match the markup).
 for (const loc of SUPPORTED) {
@@ -311,45 +387,67 @@ for (const loc of SUPPORTED) {
   }
 }
 
-const outputs = {};
-for (const loc of SUPPORTED) outputs[loc] = render(SRC, loc, I18N);
+const written = [];
+for (const page of PAGES) {
+  const SRC = readFileSync(join(ROOT, page.src), 'utf8');
 
-// Forbidden-character guard (PM 2026-07-23 - same rule as build-docs.mjs):
-// no AI-tell dashes, no invisible/bidi characters, and no typographic double
-// quotes (guillemets, low-9, curly) in SERVED pages - rendered copy uses the
-// plain keyboard '"' only. Apostrophes (') stay allowed.
-const FORBIDDEN =
-  /[\u2012\u2013\u2014\u2015\u200B\u200C\u200D\u2060\uFEFF\u00A0\u202F\u00AD\u200E\u200F\u00AB\u00BB\u201C\u201D\u201E\u201F]/;
-for (const loc of SUPPORTED) {
-  const m = outputs[loc].match(FORBIDDEN);
-  if (m) {
-    const cp = m[0].codePointAt(0).toString(16).toUpperCase().padStart(4, '0');
-    throw new Error(`landing ${loc}: forbidden character U+${cp} in output`);
+  // assert every translated key resolves in en (no visible raw keys)
+  for (const m of SRC.matchAll(/\sdata-i18n="([^"]+)"/g)) {
+    if (I18N.en[m[1]] == null)
+      throw new Error(`${page.src}: data-i18n key "${m[1]}" missing from en dictionary`);
   }
-}
-
-// idempotency: re-rendering an output must be a no-op
-for (const loc of SUPPORTED) {
-  if (render(outputs[loc], loc, I18N) !== outputs[loc]) {
-    throw new Error(`render is not idempotent for locale ${loc}`);
+  for (const k of [page.titleKey, page.descKey]) {
+    if (I18N.en[k] == null)
+      throw new Error(`${page.src}: required key "${k}" missing from en dictionary`);
   }
-}
 
-// invariants: canonicals match urlFor; only the root carries a trailing slash
-for (const loc of SUPPORTED) {
-  const canon = outputs[loc].match(/<link rel="canonical" href="([^"]*)"/)[1];
-  if (canon !== urlFor(loc)) throw new Error(`canonical mismatch for ${loc}: ${canon}`);
-  if (loc === 'en' ? canon !== `${BASE}/` : canon.endsWith('/')) {
-    throw new Error(`canonical trailing-slash rule violated for ${loc}: ${canon}`);
+  const outputs = {};
+  for (const loc of SUPPORTED) outputs[loc] = render(SRC, loc, I18N, page);
+
+  for (const loc of SUPPORTED) {
+    const m = outputs[loc].match(FORBIDDEN);
+    if (m) {
+      const cp = m[0].codePointAt(0).toString(16).toUpperCase().padStart(4, '0');
+      throw new Error(`${page.src} ${loc}: forbidden character U+${cp} in output`);
+    }
   }
+
+  // idempotency: re-rendering an output must be a no-op
+  for (const loc of SUPPORTED) {
+    if (render(outputs[loc], loc, I18N, page) !== outputs[loc]) {
+      throw new Error(`${page.src}: render is not idempotent for locale ${loc}`);
+    }
+  }
+
+  // invariants: canonicals match urlFor; only the en root carries a trailing slash
+  for (const loc of SUPPORTED) {
+    const canon = outputs[loc].match(/<link rel="canonical" href="([^"]*)"/)[1];
+    if (canon !== urlFor(loc, page.slug))
+      throw new Error(`${page.src}: canonical mismatch for ${loc}: ${canon}`);
+    if (loc === 'en' && page.slug === '' ? canon !== `${BASE}/` : canon.endsWith('/')) {
+      throw new Error(`${page.src}: canonical trailing-slash rule violated for ${loc}: ${canon}`);
+    }
+  }
+
+  // write: en output overwrites the source in place (index.html / pricing.html
+  // is served directly); pricing additionally lands at /pricing/index.html so
+  // the Worker's extension-less rewrite finds it; sub-locales go to
+  // /<loc>/<slug>/index.html.
+  writeFileSync(join(ROOT, page.src), outputs.en);
+  if (page.slug) {
+    mkdirSync(join(ROOT, page.slug), { recursive: true });
+    writeFileSync(join(ROOT, page.slug, 'index.html'), outputs.en);
+  }
+  for (const loc of SUPPORTED.filter((l) => l !== 'en')) {
+    const dir = page.slug ? join(ROOT, loc, page.slug) : join(ROOT, loc);
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, 'index.html'), outputs[loc]);
+  }
+  written.push(...SUPPORTED.map((l) => pathFor(l, page.slug)));
 }
 
-// write
-writeFileSync(join(ROOT, 'index.html'), outputs.en);
-for (const loc of SUPPORTED.filter((l) => l !== 'en')) {
-  mkdirSync(join(ROOT, loc), { recursive: true });
-  writeFileSync(join(ROOT, loc, 'index.html'), outputs[loc]);
-}
 writeFileSync(join(ROOT, 'sitemap.xml'), sitemap());
 
-console.log('Generated: /index.html, /pl/, /de/, /fr/, sitemap.xml (locales: ' + SUPPORTED.join(', ') + ')');
+console.log(
+  `Generated: ${written.join(', ')} + sitemap.xml (locales: ${SUPPORTED.join(', ')})`,
+);

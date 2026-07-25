@@ -64,9 +64,12 @@
       });
     });
 
-    // <title> (keep the baked title if the key is unresolved)
-    var title = t('meta.title');
-    if (title !== 'meta.title') document.title = title;
+    // <title> (keep the baked title if the key is unresolved). Subpages
+    // declare their own key via <html data-i18n-title="...">; the home page
+    // has no attribute and falls back to meta.title.
+    var titleKey = document.documentElement.getAttribute('data-i18n-title') || 'meta.title';
+    var title = t(titleKey);
+    if (title !== titleKey) document.title = title;
 
     // language switcher label
     var label = document.getElementById('lang-current');
@@ -237,6 +240,28 @@
     initPersonalizeCard();
     initConditionalCard();
     initAdBanner();
+    initFoundersBar();
+  }
+
+  // -------- Founders edition progress (/pricing) ---------------------------
+  // The onboarded-user count is maintained MANUALLY as data-count on
+  // #founders-bar in pricing.html (single source; the baked width/count/percent
+  // in the HTML are the no-JS fallback). This derives the fill width, the
+  // localized count and the rounded percent from that one attribute.
+  function initFoundersBar() {
+    var bar = document.getElementById('founders-bar');
+    if (!bar) return;
+    var count = parseInt(bar.getAttribute('data-count'), 10);
+    var cap = parseInt(bar.getAttribute('data-cap'), 10) || 1000;
+    if (isNaN(count) || count < 0) count = 0;
+    var pct = Math.max(0, Math.min(100, (count / cap) * 100));
+    var fill = bar.querySelector('i');
+    if (fill) fill.style.width = pct + '%';
+    bar.setAttribute('aria-valuenow', String(Math.min(count, cap)));
+    var countEl = document.getElementById('founders-count');
+    if (countEl) countEl.textContent = fmtNum(count);
+    var pctEl = document.getElementById('founders-pct');
+    if (pctEl) pctEl.textContent = fmtNum(Math.round(pct)) + '%';
   }
 
   // -------- Card 2: {{firstname}} {{lastname}} auto-fill on hover ----------

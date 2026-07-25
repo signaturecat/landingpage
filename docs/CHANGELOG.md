@@ -2,6 +2,47 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-25 - /pricing subpage: Founders banner, calculator, Workspace compatibility table (4 languages)
+
+- **What:** New landing subpage at `/pricing` (+ `/pl/pricing`, `/de/pricing`,
+  `/fr/pricing`), sharing the home page's navbar and footer 1:1:
+  - **Founders edition banner** - lifetime 10% discount on the plan price for
+    every workspace registered before signature.cat serves its first 1000
+    users (counted across all workspaces). Progress bar seeded at 169/1000
+    (17%); the count is maintained MANUALLY as `data-count` on `#founders-bar`
+    in `pricing.html` (one attribute; `initFoundersBar()` in app.js derives
+    the width/count/percent, the baked values are the no-JS fallback). Update
+    = change the attribute + `node build.mjs`. "Start free trial" CTA next to
+    the bar.
+  - **Cost calculator + one-plan message** - the calculator/tier-table markup
+    is shared with the home page (same element ids and `pricing.*` i18n keys;
+    app.js drives whichever page it finds them on) under a "one plan,
+    everything included, zero hidden costs" section with 4 ticked bullets.
+  - **Google Workspace compatibility table** - 16 rows (auto deployment,
+    unlimited updates/templates, on-demand updates, aliases/send-as,
+    per-department languages, Groups, OUs, whole-workspace assignment,
+    Workspace-based access management, live Directory variables, conditional
+    blocks, banner/logo hosting + custom image domain, self-service control,
+    job logs/audit, EU hosting + RODO/GDPR + DPA) with brand-style tick pills
+    (`.tick` pattern) and `.sr-only` "Included" labels for screen readers.
+  - **CTA band** ("Lock in your Founders discount") reusing the `.band`
+    pattern.
+- **Build/i18n mechanics:** `build.mjs` is now MULTI-PAGE: a `PAGES` manifest
+  (src + slug + per-page title/desc keys + JSON-LD graph builder) drives
+  rendering, hreflang clusters, canonicals and the sitemap (8 landing URLs +
+  3 legal). New `pp.*` key set x4 locales in i18n.js. Subpages declare their
+  runtime title key via `<html data-i18n-title>`; app.js falls back to
+  `meta.title` on the home page. Cross-page links are localized at build time
+  (`/#section`, `/`, `/pricing` -> `/pl#section`, `/pl`, `/pl/pricing`;
+  language-switcher anchors with `data-lang` are exempt). JSON-LD on /pricing
+  = Organization + WebSite + WebPage(about) + SoftwareApplication (shared
+  `@id`s with the home graph; no FAQPage - the page has no FAQ markup).
+- **No Worker changes:** `routePath()` already rewrites extension-less paths
+  and the consent banner/nonce injection covers every HTML page.
+- **Why:** PM 2026-07-25 - dedicated pricing page with the Founders promo,
+  billing-simplicity message and a Workspace compatibility table, translated
+  and SEO-complete.
+
 ## 2026-07-25 - "What's new" section moved to the top of the docs sidebar
 
 - **What:** The "What's new" section (the changelog tab) now renders FIRST in
