@@ -42,6 +42,46 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/"/>
   </url>
   <url>
+    <loc>https://signature.cat/pricing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/pricing"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/pricing"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/pricing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/pricing"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/pl/pricing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/pricing"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/pricing"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/pricing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/pricing"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/de/pricing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/pricing"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/pricing"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/pricing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/pricing"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/fr/pricing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/pricing"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/pricing"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/pricing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/pricing"/>
+  </url>
+  <url>
     <loc>https://signature.cat/legal</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
