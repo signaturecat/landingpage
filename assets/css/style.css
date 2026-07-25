@@ -631,7 +631,10 @@ section[id] { scroll-margin-top: 88px; }
 .compare tbody tr:last-child td { border-bottom: 0; }
 .compare tbody tr { transition: background .15s; }
 .compare tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
-.compare-tick { text-align: center; width: 220px; }
+/* Wide tick column (PM 2026-07-25): with a fixed narrow column the ticks
+   hugged the right edge - at 45% the column's center (where the tick and
+   the header both align) sits much closer to the table's middle. */
+.compare-tick { text-align: center; width: 45%; }
 .compare-tick .tick {
   display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 8px;
   background: color-mix(in srgb, var(--accent) 20%, transparent); color: var(--ink);
@@ -663,7 +666,7 @@ section[id] { scroll-margin-top: 88px; }
   .plan-points { grid-template-columns: 1fr; }
   .founders { padding: 28px 24px; }
   .compare th, .compare td { padding-inline: 16px; }
-  .compare-tick { width: 90px; }
+  .compare-tick { width: 30%; }
   .card-compact { min-height: 0; }
   .band { padding: 32px; }
   .hero { padding: 56px 0 40px; }
