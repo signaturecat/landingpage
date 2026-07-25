@@ -39,6 +39,12 @@
   `@id`s with the home graph; no FAQPage - the page has no FAQ markup).
 - **No Worker changes:** `routePath()` already rewrites extension-less paths
   and the consent banner/nonce injection covers every HTML page.
+- **PM follow-up (same PR):** no kicker labels on the pricing sections
+  (pp.*.kicker keys dropped x4 locales); the HOME page navbar + footer
+  "Pricing" links point at `/pricing` (localized per language at build time)
+  instead of the on-page `#pricing` section; `.section.pricing-hero`
+  double-class keeps the hero's bottom padding at 0 across breakpoints so
+  the Founders-banner-to-heading gap equals the standard section rhythm.
 - **Why:** PM 2026-07-25 - dedicated pricing page with the Founders promo,
   billing-simplicity message and a Workspace compatibility table, translated
   and SEO-complete.
