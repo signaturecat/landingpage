@@ -1013,4 +1013,48 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/legal"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/legal"/>
   </url>
+  <url>
+    <loc>https://signature.cat/docs/changelog</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/changelog"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/pl/docs/changelog</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/changelog"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/de/docs/changelog</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/changelog"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/fr/docs/changelog</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/changelog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/changelog"/>
+  </url>
 </urlset>
