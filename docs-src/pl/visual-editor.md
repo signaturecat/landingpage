@@ -1,13 +1,13 @@
 ---
 title: Edytor wizualny
 navTitle: Edytor wizualny
-description: Projektuj podpisy Gmail bez pisania HTML - edytor wizualny SignatureCat z chipami zmiennych, zmianą rozmiaru obrazków, kolumnami, czcionkami i wynikiem gwarantowanie bezpiecznym dla Gmaila.
+description: Projektuj podpisy Gmail bez pisania HTML - edytor wizualny SignatureCat z chipami zmiennych, zmianą rozmiaru obrazków, kolumnami, czcionkami i wynikiem z gwarancją poprawnego renderowania w Gmailu.
 updated: 2026-07-26
 ---
 
 # Edytor wizualny
 
-Edytor wizualny pozwala zaprojektować szablon podpisu bez napisania ani linijki HTML. Pracujesz na kanwie z formatowaniem tekstu, chipami zmiennych i obrazkami w rzeczywistym rozmiarze - a wszystko, co edytor wygeneruje, jest gwarantowanie bezpieczne dla poczty: edytor potrafi wyemitować wyłącznie znaczniki renderujące się poprawnie w Gmailu, więc nie da się w nim zbudować podpisu, który zepsuje się w skrzynce.
+Edytor wizualny pozwala zaprojektować szablon podpisu bez napisania ani linijki HTML. Pracujesz na kanwie z formatowaniem tekstu, chipami zmiennych i obrazkami w rzeczywistym rozmiarze - a wszystko, co edytor wygeneruje, ma gwarancję poprawnego renderowania w poczcie: edytor potrafi wyemitować wyłącznie znaczniki renderujące się poprawnie w Gmailu, więc nie da się w nim zbudować podpisu, który zepsuje się w skrzynce.
 
 Edytor mieszka na tej samej stronie co [edytor HTML](/docs/templates/#the-editor): otwórz dowolny szablon na stronie [Podpisy](https://app.signature.cat/signatures) i przełączaj się między kartami **Wizualny** i **HTML**.
 
