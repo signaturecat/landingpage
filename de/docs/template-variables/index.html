@@ -47,8 +47,8 @@
       "description": "Vollständige Referenz der SignatureCat-Vorlagenvariablen - Personenfelder aus Google Directory, Logo- und Banner-Token sowie bedingte del/delete-Blöcke.",
       "url": "https://signature.cat/de/docs/template-variables",
       "inLanguage": "de",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -167,6 +167,7 @@
         <ul>
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates">Vorlagen</a></li>
+        <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
         <li><a href="/de/docs/template-variables" aria-current="page">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -203,7 +204,7 @@
 <tr><td><code>{{domain}}</code></td><td>Domain-Teil der E-Mail</td><td>Folgt dem Alias, wenn auf einen Alias angewendet wird.</td></tr>
 <tr><td><code>{{jobtitle}}</code></td><td>Position</td><td>Aus dem primären Organisationseintrag des Nutzers im Directory.</td></tr>
 <tr><td><code>{{department}}</code></td><td>Abteilung</td><td>Aus demselben Organisationseintrag.</td></tr>
-<tr><td><code>{{photo}}</code></td><td>Profilbild-URL</td><td>Automatisch auf 400 px skaliert für scharfes Rendering; muss ein HTTPS-Foto sein.</td></tr>
+<tr><td><code>{{photo}}</code></td><td>Profilbild</td><td>Allein stehend rendert das Token ein rundes Profilbild (standardmäßig 115x115 px, <a href="/de/docs/visual-editor#images-logo-banner-and-photo">pro Vorlage in der Größe änderbar</a>); Nutzer ohne Directory-Foto erhalten gar kein Bild statt eines defekten Symbols. Innerhalb Ihres eigenen <code>&lt;img src="{{photo}}"&gt;</code> löst es zur HTTPS-Foto-URL auf (automatisch auf 400 px skaliert), und Ihr Markup bleibt unangetastet.</td></tr>
 <tr><td><code>{{address}}</code></td><td>Formatierte Adresse</td><td>Der primäre Adresseintrag des Nutzers.</td></tr>
 <tr><td><code>{{phone}}</code></td><td>Telefonnummer</td><td>Die erste nicht leere von: Arbeit, dann Mobil, dann Privat.</td></tr>
 </tbody>
@@ -213,11 +214,11 @@
 <div class="tbl"><table>
 <thead><tr><th scope="col">Token</th><th scope="col">Wert</th></tr></thead>
 <tbody>
-<tr><td><code>{{logo}}</code></td><td>Das für die Vorlage gewählte Firmenlogo, gerendert mit 115x115 px.</td></tr>
-<tr><td><code>{{banner}}</code></td><td>Der für die Vorlage gewählte Kampagnenbanner, gerendert mit 450x100 px, auf schmalen Bildschirmen verkleinert.</td></tr>
+<tr><td><code>{{logo}}</code></td><td>Das für die Vorlage gewählte Firmenlogo - standardmäßig 115x115 px, pro Vorlage in der Größe änderbar (24-300 px).</td></tr>
+<tr><td><code>{{banner}}</code></td><td>Der für die Vorlage gewählte Kampagnenbanner - standardmäßig 450x100 px (ein Bibliothekseintrag kann eine eigene Größe definieren), pro Vorlage in der Größe änderbar, auf schmalen Bildschirmen verkleinert.</td></tr>
 </tbody>
 </table></div>
-<p>Bilder stammen aus der Bibliothek pro Workspace und werden pro Vorlage ausgewählt; ist nichts ausgewählt, wird ein neutraler Platzhalter gerendert. Hat das Bibliotheksbild einen Klick-Link, wird das Bild automatisch darin eingeschlossen. Siehe <a href="/de/docs/banners-and-logos">Banner und Logos</a>.</p>
+<p>Bilder stammen aus der Bibliothek pro Workspace und werden pro Vorlage ausgewählt; ist nichts ausgewählt, wird ein neutraler Platzhalter gerendert. Hat das Bibliotheksbild einen Klick-Link, wird das Bild automatisch darin eingeschlossen - und jede Vorlage kann <a href="/de/docs/visual-editor#images-logo-banner-and-photo">diesen Link überschreiben</a>. Größendetails und die Ziehpunkte sind im <a href="/de/docs/visual-editor">visuellen Editor</a> und in <a href="/de/docs/banners-and-logos">Banner und Logos</a> beschrieben.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
 <p>Bild-Token rendern immer etwas (Bild oder Platzhalter) und zählen daher für die bedingten Blöcke unten nicht als "leer".</p>
 </div></aside>
@@ -237,9 +238,9 @@
 <p>Nutzen Sie <strong>Rendern als</strong> im <a href="/de/docs/templates#the-editor">Vorlagen-Editor</a> für eine Vorschau anhand des Datensatzes eines beliebigen echten Nutzers und <strong>Mir eine Testsignatur setzen</strong>, um das Ergebnis auf Ihr eigenes Postfach anzuwenden. Beides ist in <a href="/de/docs/create-your-first-template">Ihre erste Vorlage erstellen</a> beschrieben.</p>
       </article>
 <nav class="docs-pager" aria-label="Seitennavigation">
-<a class="pager-card pager-prev" href="/de/docs/templates" rel="prev">
+<a class="pager-card pager-prev" href="/de/docs/visual-editor" rel="prev">
       <span class="pager-label">Zurück</span>
-      <span class="pager-title">Vorlagen</span>
+      <span class="pager-title">Visueller Editor</span>
     </a>
 <a class="pager-card pager-next" href="/de/docs/assignments" rel="next">
       <span class="pager-label">Weiter</span>

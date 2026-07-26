@@ -1,19 +1,24 @@
 ---
 title: Modèles
 navTitle: Modèles
-description: Référence des modèles SignatureCat - l'éditeur HTML, les starters, l'aperçu, l'application de test, l'interrupteur self-service, le modèle par défaut et la suppression sécurisée.
-updated: 2026-07-17
+description: Référence des modèles SignatureCat - les éditeurs visuel et HTML, les starters, l'aperçu, l'application de test, l'interrupteur self-service, le modèle par défaut et la suppression sécurisée.
+updated: 2026-07-26
 ---
 
 # Modèles
 
-Un modèle est un document HTML unique avec des jetons `{{variable}}` que SignatureCat rend par utilisateur. Les modèles se trouvent sur la page [Signatures](https://app.signature.cat/signatures) (niveaux Designer, Editor et Admin) et sont modifiés dans un éditeur de code avec aperçu en direct.
+Un modèle est un document HTML unique avec des jetons `{{variable}}` que SignatureCat rend par utilisateur. Les modèles se trouvent sur la page [Signatures](https://app.signature.cat/signatures) (niveaux Designer, Editor et Admin) et sont modifiés soit dans l'[éditeur visuel](/docs/visual-editor/), soit dans un éditeur de code, tous deux avec aperçu en direct.
 
 Pour une première prise en main guidée, voir [Créer votre premier modèle](/docs/create-your-first-template/). Le jeu de variables a sa propre page : [Variables de modèle](/docs/template-variables/).
 
 ## L'éditeur
 
-L'éditeur sur `app.signature.cat/signatures/{id}` est **HTML-first** : vous modifiez directement le balisage de la signature, avec l'autocomplétion pour tous les jetons `{{variable}}`. À côté du volet de code, vous disposez de :
+L'éditeur sur `app.signature.cat/signatures/{id}` a deux onglets et s'ouvre dans le mode dans lequel le modèle a été enregistré pour la dernière fois :
+
+- **Visuel** - concevez sur un canevas sans écrire de HTML : puces de variables, poignées de redimensionnement d'images, colonnes, polices et un rendu garanti compatible Gmail. Il a une [page dédiée](/docs/visual-editor/).
+- **HTML** - modifiez directement le balisage de la signature, avec l'autocomplétion pour tous les jetons `{{variable}}`.
+
+La conversion de HTML vers Visuel est à sens unique et au mieux (les mises en page à tableaux complexes sont aplaties ; l'éditeur avertit d'abord) ; enregistrer depuis l'onglet HTML abandonne le document visuel. Dans les deux modes, vous disposez de :
 
 - **Aperçu** - rendu en direct de la signature résolue, dans un bac à sable. **Rendre comme** substitue la fiche Directory de n'importe quel utilisateur réel pour vérifier les cas limites (noms longs, numéros de téléphone manquants).
 - **Insérer une variable** - menu de toutes les variables de personne, groupées avec des indications.
@@ -28,6 +33,8 @@ L'enregistrement valide le modèle et rejette :
 
 - les jetons inconnus (tout ce qui n'est pas une variable connue, un jeton d'image ou une balise conditionnelle),
 - les paires `{{del}}` / `{{delete}}` non équilibrées.
+
+Les messages d'erreur sont précis : un jeton inconnu est nommé et les balises conditionnelles non équilibrées viennent avec leurs décomptes d'ouverture/fermeture. Un compteur en direct suit la limite de signature de 10 000 caractères de Gmail.
 
 Le HTML est assaini à l'enregistrement : les scripts, les iframes, les gestionnaires d'événements (`onclick=` et consorts) et les URL `javascript:` sont retirés. Les signatures sont par nature du HTML statique - Gmail retirerait de toute façon le contenu actif.
 

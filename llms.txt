@@ -17,7 +17,7 @@ Full documentation content in one file: https://signature.cat/llms-full.txt
 - [User management and access levels](https://signature.cat/docs/user-management): Who can sign in to SignatureCat, what each access level allows, and how to grant access to individual users or whole Google groups.
 - [Self-service signatures](https://signature.cat/docs/self-service): Let end users pick and apply their own Gmail signature from admin-approved SignatureCat templates - setup, flow and precedence rules.
 - [Serve images from your own domain](https://signature.cat/docs/custom-image-domain): Point a subdomain like images.yourcompany.com at SignatureCat with two DNS records so signature images load from your own domain.
-- [Upload and insert banners and logos](https://signature.cat/docs/banners-and-logos): Add company logos and campaign banners to SignatureCat signature templates - image library, upload limits, click-through links and placeholders.
+- [Upload and insert banners and logos](https://signature.cat/docs/banners-and-logos): Add company logos and campaign banners to SignatureCat signature templates - image library, custom sizes, per-template resizing, click-through links and placeholders.
 
 ## Billing
 
@@ -27,7 +27,8 @@ Full documentation content in one file: https://signature.cat/llms-full.txt
 ## Reference
 
 - [Domain-Wide Delegation](https://signature.cat/docs/domain-wide-delegation): How SignatureCat uses Google Domain-Wide Delegation - scopes, the per-tenant client ID, propagation, revocation detection and re-granting.
-- [Templates](https://signature.cat/docs/templates): SignatureCat template reference - the HTML editor, starters, preview, test apply, self-service toggle, default template and safe deletion.
+- [Templates](https://signature.cat/docs/templates): SignatureCat template reference - the visual and HTML editors, starters, preview, test apply, self-service toggle, default template and safe deletion.
+- [Visual editor](https://signature.cat/docs/visual-editor): Design Gmail signatures without writing HTML - SignatureCat's visual editor with variable chips, image resizing, columns, fonts and guaranteed Gmail-safe output.
 - [Template variables](https://signature.cat/docs/template-variables): Complete reference of SignatureCat template variables - Google Directory person fields, logo and banner tokens, and del/delete conditional blocks.
 - [Assignments](https://signature.cat/docs/assignments): SignatureCat assignments reference - target kinds, precedence when a user matches several assignments, alias modes and conflict handling.
 - [Apply jobs](https://signature.cat/docs/apply-jobs): How SignatureCat applies signatures - the daily assignment sync, manual one-shot applies from the Apply page, and job tracking.

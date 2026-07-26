@@ -2,7 +2,7 @@
 title: Utwórz swój pierwszy szablon
 navTitle: Utwórz swój pierwszy szablon
 description: Utwórz szablon podpisu Gmail w SignatureCat, spersonalizuj go zmiennymi z Google Directory, obejrzyj podgląd i przetestuj na własnej skrzynce.
-updated: 2026-07-17
+updated: 2026-07-26
 ---
 
 # Utwórz swój pierwszy szablon
@@ -18,11 +18,11 @@ Szablon to jeden podpis HTML, który SignatureCat personalizuje per użytkownik 
    - **Z banerem** - podpis plus baner kampanii (450x100 px) pod spodem.
 3. Dla starterów z logo lub banerem wybierz obrazek z biblioteki albo wgraj nowy - albo pomiń ten krok, a do czasu wyboru używany będzie placeholder. Zobacz [Banery i logo](/docs/banners-and-logos/).
 
-Edytor otwiera się od razu. Wszystko ze startera możesz później dostosować.
+Edytor otwiera się od razu. Wszystko ze startera możesz później dostosować - bezpośrednio w HTML albo na kanwie [edytora wizualnego](/docs/visual-editor/) zupełnie bez HTML (przełącz się na kartę **Wizualny**; jednorazowa konwersja jest opisana na tamtej stronie).
 
 ## Personalizuj zmiennymi
 
-Wstawiaj tokeny `{{variable}}` przez menu **Wstaw zmienną** - na przykład `{{firstname}}`, `{{jobtitle}}` albo `{{phone}}`. W momencie zastosowania każdy token rozwiązuje się z rekordu użytkownika w Google Directory, więc jeden szablon daje osobisty podpis każdemu.
+Wstawiaj tokeny `{{variable}}` przez menu **Wstaw zmienną** - na przykład `{{firstname}}`, `{{jobtitle}}` albo `{{phone}}`. W edytorze wizualnym pojawiają się one jako zwarte chipy, które możesz przeciągać, formatować i usuwać jak obiekty. W momencie zastosowania każdy token rozwiązuje się z rekordu użytkownika w Google Directory, więc jeden szablon daje osobisty podpis każdemu.
 
 Owijaj opcjonalne linie w tagi warunkowe, aby podpisy pozostały czyste przy brakujących danych:
 

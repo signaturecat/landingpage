@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Wgrywaj i wstawiaj banery oraz logo | SignatureCat Docs</title>
-  <meta name="description" content="Dodawaj logo firmy i banery kampanii do szablonów podpisów SignatureCat - biblioteka obrazków, limity wgrywania, linki po kliknięciu i placeholdery." />
+  <meta name="description" content="Dodawaj logo firmy i banery kampanii do szablonów podpisów SignatureCat - biblioteka obrazków, własne rozmiary, zmiana rozmiaru per szablon, linki po kliknięciu i placeholdery." />
   <link rel="canonical" href="https://signature.cat/pl/docs/banners-and-logos" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/banners-and-logos" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/banners-and-logos" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Wgrywaj i wstawiaj banery oraz logo | SignatureCat Docs" />
-  <meta property="og:description" content="Dodawaj logo firmy i banery kampanii do szablonów podpisów SignatureCat - biblioteka obrazków, limity wgrywania, linki po kliknięciu i placeholdery." />
+  <meta property="og:description" content="Dodawaj logo firmy i banery kampanii do szablonów podpisów SignatureCat - biblioteka obrazków, własne rozmiary, zmiana rozmiaru per szablon, linki po kliknięciu i placeholdery." />
   <meta property="og:url" content="https://signature.cat/pl/docs/banners-and-logos" />
   <meta property="og:locale" content="pl_PL" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Wgrywaj i wstawiaj banery oraz logo | SignatureCat Docs" />
-  <meta name="twitter:description" content="Dodawaj logo firmy i banery kampanii do szablonów podpisów SignatureCat - biblioteka obrazków, limity wgrywania, linki po kliknięciu i placeholdery." />
+  <meta name="twitter:description" content="Dodawaj logo firmy i banery kampanii do szablonów podpisów SignatureCat - biblioteka obrazków, własne rozmiary, zmiana rozmiaru per szablon, linki po kliknięciu i placeholdery." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Wgrywaj i wstawiaj banery oraz logo",
-      "description": "Dodawaj logo firmy i banery kampanii do szablonów podpisów SignatureCat - biblioteka obrazków, limity wgrywania, linki po kliknięciu i placeholdery.",
+      "description": "Dodawaj logo firmy i banery kampanii do szablonów podpisów SignatureCat - biblioteka obrazków, własne rozmiary, zmiana rozmiaru per szablon, linki po kliknięciu i placeholdery.",
       "url": "https://signature.cat/pl/docs/banners-and-logos",
       "inLanguage": "pl",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -167,6 +167,7 @@
         <ul>
         <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/pl/docs/templates">Szablony</a></li>
+        <li><a href="/pl/docs/visual-editor">Edytor wizualny</a></li>
         <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
         <li><a href="/pl/docs/assignments">Przypisania</a></li>
         <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
@@ -191,7 +192,7 @@
       <nav class="docs-breadcrumb" aria-label="Okruszki nawigacyjne"><a href="/pl/docs">Dokumentacja</a><span class="crumb-sep">/</span><span class="crumb-section">Konfiguracja zaawansowana</span><span class="crumb-sep">/</span><span aria-current="page">Banery i logo</span></nav>
       <article class="docs-article">
 <h1>Wgrywaj i wstawiaj banery oraz logo</h1>
-<p>SignatureCat przechowuje dwa rodzaje obrazków firmowych w bibliotece per workspace: <strong>logo</strong> (renderowane 115x115 px) i <strong>banery</strong> (renderowane 450x100 px, pomniejszane na małych ekranach). Każdy szablon wybiera własne logo i baner, wstawiane tokenami <code>{{logo}}</code> i <code>{{banner}}</code>.</p>
+<p>SignatureCat przechowuje dwa rodzaje obrazków firmowych w bibliotece per workspace: <strong>logo</strong> (domyślnie 115x115 px) i <strong>banery</strong> (domyślnie 450x100 px, pomniejszane na małych ekranach). Każdy szablon wybiera własne logo i baner, wstawiane tokenami <code>{{logo}}</code> i <code>{{banner}}</code> - i może zmienić rozmiar każdego z nich na własne potrzeby <a href="/pl/docs/visual-editor#images-logo-banner-and-photo">uchwytami zmiany rozmiaru edytora wizualnego</a>.</p>
 <h2 id="dodaj-obrazek-do-biblioteki">Dodaj obrazek do biblioteki<a class="h-anchor" href="#dodaj-obrazek-do-biblioteki" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
 <li>Otwórz szablon w edytorze na stronie <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Podpisy</a>.</li>
@@ -203,20 +204,29 @@
 </ul></li>
 <li>Opcjonalnie ustaw nazwę w bibliotece i link po kliknięciu ("Po kliknięciu prowadzi do"), po czym zapisz. Obrazek zostaje dodany do biblioteki i wybrany dla tego szablonu.</li>
 </ol>
+<p>Banerowi możesz też nadać <strong>własny rozmiar wpisu w bibliotece</strong> (checkbox z polami szerokości i wysokości, 24-600 x 24-400 px) - zarówno przy dodawaniu wpisu, jak i później w szczegółach wybranego wpisu. Ten rozmiar staje się domyślnym rozmiarem wpisu wszędzie tam, gdzie jest on używany; wyczyszczenie go przywraca 450x100.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Uwaga</p><div class="callout-body">
 <p>Tylko PNG i JPG - pliki SVG nie są przyjmowane (słabe wsparcie klientów pocztowych i względy bezpieczeństwa). Biblioteka mieści do 200 obrazków każdego rodzaju.</p>
 </div></aside>
 <h2 id="wstaw-do-szablonu">Wstaw do szablonu<a class="h-anchor" href="#wstaw-do-szablonu" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Wskaż obrazek w galerii i kliknij <strong>Użyj wybranego</strong> - edytor może też wstawić za Ciebie token <code>{{logo}}</code> lub <code>{{banner}}</code> w miejscu kursora. Przy renderowaniu token staje się właściwym znacznikiem obrazka; jeśli obrazek ma link po kliknięciu, jest automatycznie opakowywany w link.</p>
 <p>Jeśli szablon używa <code>{{banner}}</code> bez wybranego banera, zamiast niego renderuje się neutralny placeholder, a edytor podpowiada, żeby jakiś wybrać - podpis nigdy się nie psuje.</p>
+<h2 id="rozmiary-obrazkw-domylny-z-biblioteki-vs-per-szablon">Rozmiary obrazków: domyślny z biblioteki vs per szablon<a class="h-anchor" href="#rozmiary-obrazkw-domylny-z-biblioteki-vs-per-szablon" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>O tym, jak duże renderuje się logo lub baner, decydują dwie warstwy, a wygrywa ta bardziej szczegółowa:</p>
+<ol>
+<li><strong>Rozmiar per szablon</strong> - ustawiany uchwytami zmiany rozmiaru w <a href="/pl/docs/visual-editor#images-logo-banner-and-photo">edytorze wizualnym</a> (baner 24-600 x 24-400 px, logo 24-300 px). Dotyczy tylko tego szablonu, więc zmiana rozmiaru banera w jednym szablonie nigdy nie zmienia pozostałych współdzielących ten sam obrazek.</li>
+<li><strong>Rozmiar wpisu w bibliotece</strong> (tylko banery) - własny domyślny rozmiar wpisu opisany wyżej.</li>
+</ol>
+<p>Gdy nie ustawiono żadnego z nich, obowiązują wartości domyślne: logo 115x115, baner 450x100.</p>
 <h2 id="linki-po-klikniciu">Linki po kliknięciu<a class="h-anchor" href="#linki-po-klikniciu" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Link po kliknięciu podróżuje z <strong>obrazkiem w bibliotece</strong>, nie z szablonem: aktualizujesz link raz, a każdy szablon używający tego obrazka podchwytuje zmianę przy następnym renderowaniu. To wygodne przy rotacji banerów kampanii - podmieniasz adres docelowy bez dotykania szablonów.</p>
+<p>Gdy jeden szablon ma się zachowywać inaczej, zaznacz chip obrazka w <a href="/pl/docs/visual-editor#images-logo-banner-and-photo">edytorze wizualnym</a> i użyj przycisku <strong>Link</strong>: zachowaj link z biblioteki, usuń link tylko dla tego szablonu albo skieruj go pod inny adres.</p>
 <h2 id="zalecane-wymiary">Zalecane wymiary<a class="h-anchor" href="#zalecane-wymiary" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <div class="tbl"><table>
-<thead><tr><th scope="col">Rodzaj</th><th scope="col">Rozmiar renderowania</th><th scope="col">Zalecenie</th></tr></thead>
+<thead><tr><th scope="col">Rodzaj</th><th scope="col">Domyślny rozmiar renderowania</th><th scope="col">Zalecenie</th></tr></thead>
 <tbody>
-<tr><td>Logo</td><td>115x115 px</td><td>Obrazek kwadratowy, najlepiej PNG z przezroczystością.</td></tr>
-<tr><td>Baner</td><td>450x100 px (max-width 100%)</td><td>Eksportuj w 900x200 px dla ostrego renderowania HiDPI, utrzymuj plik poniżej 200 KB.</td></tr>
+<tr><td>Logo</td><td>115x115 px (rozmiar zmienialny per szablon do 300 px)</td><td>Obrazek kwadratowy, najlepiej PNG z przezroczystością.</td></tr>
+<tr><td>Baner</td><td>450x100 px (własne rozmiary do 600x400 px; max-width 100%)</td><td>Eksportuj w dwukrotności rozmiaru wyświetlania dla ostrego renderowania HiDPI, utrzymuj plik poniżej 200 KB.</td></tr>
 </tbody>
 </table></div>
 <p>Duże obrazki spowalniają renderowanie wiadomości i mogą wpychać maile w obszar "wiadomości skróconej" w Gmail - utrzymuj małe pliki.</p>
@@ -260,6 +270,7 @@
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#dodaj-obrazek-do-biblioteki">Dodaj obrazek do biblioteki</a></li>
         <li class="toc-l2"><a href="#wstaw-do-szablonu">Wstaw do szablonu</a></li>
+        <li class="toc-l2"><a href="#rozmiary-obrazkw-domylny-z-biblioteki-vs-per-szablon">Rozmiary obrazków: domyślny z biblioteki vs per szablon</a></li>
         <li class="toc-l2"><a href="#linki-po-klikniciu">Linki po kliknięciu</a></li>
         <li class="toc-l2"><a href="#zalecane-wymiary">Zalecane wymiary</a></li>
         <li class="toc-l2"><a href="#usuwanie-obrazkw">Usuwanie obrazków</a></li>

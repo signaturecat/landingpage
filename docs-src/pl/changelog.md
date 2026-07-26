@@ -2,7 +2,7 @@
 title: Changelog
 navTitle: Changelog
 description: Co nowego w SignatureCat - comiesięczne podsumowanie nowych funkcji i ulepszeń w zarządzaniu podpisami e-mail dla Google Workspace i Gmaila.
-updated: 2026-07-24
+updated: 2026-07-26
 published: 2026-07-24
 ---
 
@@ -12,6 +12,10 @@ Co nowego w SignatureCat, menedżerze podpisów e-mail dla Google Workspace. Sta
 
 ## Lipiec 2026
 
+- **Wizualny edytor podpisów.** Projektuj szablony podpisów Gmail bez pisania HTML: chipy zmiennych do przeciągania i upuszczania, układy 2-3 kolumn, czcionki web-safe, bezpieczna dla e-maili paleta kolorów i widoczne bloki warunkowe - z wynikiem gwarantowanie renderującym się poprawnie w Gmailu. Klasyczny edytor HTML pozostaje o jedną kartę obok. Zobacz nowy przewodnik [Edytor wizualny](/docs/visual-editor).
+- **Zmiana rozmiaru obrazków per szablon.** Przeciągaj narożniki logo, banera lub zdjęcia profilowego wprost na kanwie - każdy szablon podpisu trzyma własny rozmiar, a wpisy banerów w bibliotece mogą definiować własne domyślne wymiary. Szablon może też nadpisać link po kliknięciu obrazka bez dotykania współdzielonej biblioteki.
+- **Mądrzejsza zmienna {{photo}}.** Użyty samodzielnie, `{{photo}}` renderuje teraz gotowe okrągłe zdjęcie profilowe o rozmiarze per szablon - a użytkownicy bez zdjęcia w Google Workspace Directory nie dostają zepsutego obrazka: zdjęcie po prostu znika z ich podpisu.
+- **Czytelniejsza walidacja szablonów.** Błędy zapisu wymieniają teraz z nazwy konkretny nieznany token albo liczą niezbalansowane tagi warunkowe, a edytor wyjaśnia różnicę między `{{del}}` i `{{delete}}` dwoma animowanymi mini-demo.
 - **Dokumentacja w czterech językach.** To centrum pomocy jest teraz dostępne po angielsku, polsku, niemiecku i francusku. Przełącznik języka w stopce prowadzi do tego samego artykułu, więc cały zespół może czytać o zarządzaniu podpisami w Google Workspace w swoim języku.
 - **Zobacz, kto edytował szablon podpisu.** Każdy szablon podpisu pokazuje teraz, kto ostatnio go edytował i kiedy - na liście szablonów i w edytorze podpisu. Przydatne, gdy podpisami e-mail zarządza kilku administratorów Workspace.
 - **Prostsza własna domena obrazków.** Hostowanie banerów i logo podpisów na własnej domenie wymaga teraz tylko jednego rekordu CNAME. Kreator sam sprawdza konfigurację - zobacz [Własna domena obrazków](/docs/custom-image-domain).

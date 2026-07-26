@@ -47,8 +47,8 @@
       "description": "Créez un modèle de signature Gmail dans SignatureCat, personnalisez-le avec les variables Google Directory, prévisualisez-le et testez-le sur votre propre boîte.",
       "url": "https://signature.cat/fr/docs/create-your-first-template",
       "inLanguage": "fr",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -167,6 +167,7 @@
         <ul>
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
+        <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -203,9 +204,9 @@
 </ul></li>
 <li>Pour les starters logo ou bannière, choisissez une image dans votre bibliothèque ou téléversez-en une - ou passez cette étape et un espace réservé sera utilisé jusqu'à ce que vous en choisissiez une. Voir <a href="/fr/docs/banners-and-logos">Bannières et logos</a>.</li>
 </ol>
-<p>L'éditeur s'ouvre immédiatement. Tout ce qui vient du starter peut être ajusté plus tard.</p>
+<p>L'éditeur s'ouvre immédiatement. Tout ce qui vient du starter peut être ajusté plus tard - soit directement dans le HTML, soit sur le canevas de l'<a href="/fr/docs/visual-editor">éditeur visuel</a> sans aucun HTML (basculez sur l'onglet <strong>Visuel</strong> ; la page en question décrit la conversion initiale).</p>
 <h2 id="personnaliser-avec-des-variables">Personnaliser avec des variables<a class="h-anchor" href="#personnaliser-avec-des-variables" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Insérez des jetons <code>{{variable}}</code> avec le menu <strong>Insérer une variable</strong> - par exemple <code>{{firstname}}</code>, <code>{{jobtitle}}</code> ou <code>{{phone}}</code>. Au moment de l'application, chaque jeton est résolu à partir de la fiche Google Directory de l'utilisateur, de sorte qu'un seul modèle produit une signature personnelle pour chacun.</p>
+<p>Insérez des jetons <code>{{variable}}</code> avec le menu <strong>Insérer une variable</strong> - par exemple <code>{{firstname}}</code>, <code>{{jobtitle}}</code> ou <code>{{phone}}</code>. Dans l'éditeur visuel, ils apparaissent comme des puces pleines que vous pouvez glisser, mettre en forme et supprimer comme des objets. Au moment de l'application, chaque jeton est résolu à partir de la fiche Google Directory de l'utilisateur, de sorte qu'un seul modèle produit une signature personnelle pour chacun.</p>
 <p>Enveloppez les lignes facultatives dans des balises conditionnelles pour que les signatures restent propres quand des données manquent :</p>
 <ul>
 <li><code>{{del}} ... {{/del}}</code> retire le bloc enveloppé uniquement lorsque <strong>toutes</strong> les variables à l'intérieur sont vides.</li>

@@ -47,8 +47,8 @@
       "description": "Utwórz szablon podpisu Gmail w SignatureCat, spersonalizuj go zmiennymi z Google Directory, obejrzyj podgląd i przetestuj na własnej skrzynce.",
       "url": "https://signature.cat/pl/docs/create-your-first-template",
       "inLanguage": "pl",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -167,6 +167,7 @@
         <ul>
         <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/pl/docs/templates">Szablony</a></li>
+        <li><a href="/pl/docs/visual-editor">Edytor wizualny</a></li>
         <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
         <li><a href="/pl/docs/assignments">Przypisania</a></li>
         <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
@@ -203,9 +204,9 @@
 </ul></li>
 <li>Dla starterów z logo lub banerem wybierz obrazek z biblioteki albo wgraj nowy - albo pomiń ten krok, a do czasu wyboru używany będzie placeholder. Zobacz <a href="/pl/docs/banners-and-logos">Banery i logo</a>.</li>
 </ol>
-<p>Edytor otwiera się od razu. Wszystko ze startera możesz później dostosować.</p>
+<p>Edytor otwiera się od razu. Wszystko ze startera możesz później dostosować - bezpośrednio w HTML albo na kanwie <a href="/pl/docs/visual-editor">edytora wizualnego</a> zupełnie bez HTML (przełącz się na kartę <strong>Wizualny</strong>; jednorazowa konwersja jest opisana na tamtej stronie).</p>
 <h2 id="personalizuj-zmiennymi">Personalizuj zmiennymi<a class="h-anchor" href="#personalizuj-zmiennymi" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Wstawiaj tokeny <code>{{variable}}</code> przez menu <strong>Wstaw zmienną</strong> - na przykład <code>{{firstname}}</code>, <code>{{jobtitle}}</code> albo <code>{{phone}}</code>. W momencie zastosowania każdy token rozwiązuje się z rekordu użytkownika w Google Directory, więc jeden szablon daje osobisty podpis każdemu.</p>
+<p>Wstawiaj tokeny <code>{{variable}}</code> przez menu <strong>Wstaw zmienną</strong> - na przykład <code>{{firstname}}</code>, <code>{{jobtitle}}</code> albo <code>{{phone}}</code>. W edytorze wizualnym pojawiają się one jako zwarte chipy, które możesz przeciągać, formatować i usuwać jak obiekty. W momencie zastosowania każdy token rozwiązuje się z rekordu użytkownika w Google Directory, więc jeden szablon daje osobisty podpis każdemu.</p>
 <p>Owijaj opcjonalne linie w tagi warunkowe, aby podpisy pozostały czyste przy brakujących danych:</p>
 <ul>
 <li><code>{{del}} ... {{/del}}</code> usuwa owinięty blok tylko wtedy, gdy <strong>wszystkie</strong> zmienne wewnątrz są puste.</li>

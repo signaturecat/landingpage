@@ -47,8 +47,8 @@
       "description": "Kompletna referencja zmiennych szablonów SignatureCat - pola osobowe z Google Directory, tokeny logo i banera oraz bloki warunkowe del/delete.",
       "url": "https://signature.cat/pl/docs/template-variables",
       "inLanguage": "pl",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -167,6 +167,7 @@
         <ul>
         <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/pl/docs/templates">Szablony</a></li>
+        <li><a href="/pl/docs/visual-editor">Edytor wizualny</a></li>
         <li><a href="/pl/docs/template-variables" aria-current="page">Zmienne szablonów</a></li>
         <li><a href="/pl/docs/assignments">Przypisania</a></li>
         <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
@@ -203,7 +204,7 @@
 <tr><td><code>{{domain}}</code></td><td>Część domenowa adresu e-mail</td><td>Podąża za aliasem przy zastosowaniu do aliasu.</td></tr>
 <tr><td><code>{{jobtitle}}</code></td><td>Stanowisko</td><td>Z głównego wpisu organizacji użytkownika w Directory.</td></tr>
 <tr><td><code>{{department}}</code></td><td>Dział</td><td>Z tego samego wpisu organizacji.</td></tr>
-<tr><td><code>{{photo}}</code></td><td>URL zdjęcia profilowego</td><td>Automatycznie skalowany do 400 px dla ostrego renderowania; musi to być zdjęcie po HTTPS.</td></tr>
+<tr><td><code>{{photo}}</code></td><td>Zdjęcie profilowe</td><td>Użyty samodzielnie, token renderuje okrągłe zdjęcie profilowe (domyślnie 115x115 px, <a href="/pl/docs/visual-editor#images-logo-banner-and-photo">rozmiar zmienialny per szablon</a>); użytkownicy bez zdjęcia w Directory nie dostają żadnego obrazka zamiast zepsutej ikony. Wewnątrz Twojego własnego <code>&lt;img src="{{photo}}"&gt;</code> rozwiązuje się do adresu HTTPS zdjęcia (automatycznie skalowanego do 400 px), a Twoje znaczniki pozostają nietknięte.</td></tr>
 <tr><td><code>{{address}}</code></td><td>Sformatowany adres</td><td>Główny wpis adresu użytkownika.</td></tr>
 <tr><td><code>{{phone}}</code></td><td>Numer telefonu</td><td>Pierwszy niepusty z: służbowy, potem komórkowy, potem domowy.</td></tr>
 </tbody>
@@ -213,11 +214,11 @@
 <div class="tbl"><table>
 <thead><tr><th scope="col">Token</th><th scope="col">Wartość</th></tr></thead>
 <tbody>
-<tr><td><code>{{logo}}</code></td><td>Wybrane w szablonie logo firmy, renderowane 115x115 px.</td></tr>
-<tr><td><code>{{banner}}</code></td><td>Wybrany w szablonie baner kampanii, renderowany 450x100 px, pomniejszany na wąskich ekranach.</td></tr>
+<tr><td><code>{{logo}}</code></td><td>Wybrane w szablonie logo firmy - domyślnie 115x115 px, rozmiar zmienialny per szablon (24-300 px).</td></tr>
+<tr><td><code>{{banner}}</code></td><td>Wybrany w szablonie baner kampanii - domyślnie 450x100 px (wpis w bibliotece może definiować własny rozmiar), rozmiar zmienialny per szablon, pomniejszany na wąskich ekranach.</td></tr>
 </tbody>
 </table></div>
-<p>Obrazki pochodzą z biblioteki per workspace i są wybierane per szablon; jeśli nic nie wybrano, renderuje się neutralny placeholder. Jeśli obrazek w bibliotece ma link po kliknięciu, obrazek jest w niego automatycznie opakowywany. Zobacz <a href="/pl/docs/banners-and-logos">Banery i logo</a>.</p>
+<p>Obrazki pochodzą z biblioteki per workspace i są wybierane per szablon; jeśli nic nie wybrano, renderuje się neutralny placeholder. Jeśli obrazek w bibliotece ma link po kliknięciu, obrazek jest w niego automatycznie opakowywany - a każdy szablon może <a href="/pl/docs/visual-editor#images-logo-banner-and-photo">ten link nadpisać</a>. Szczegóły rozmiarów i uchwyty zmiany rozmiaru opisują <a href="/pl/docs/visual-editor">edytor wizualny</a> oraz <a href="/pl/docs/banners-and-logos">Banery i logo</a>.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Uwaga</p><div class="callout-body">
 <p>Tokeny obrazków zawsze coś renderują (obrazek albo placeholder), więc nie liczą się jako "puste" dla poniższych bloków warunkowych.</p>
 </div></aside>
@@ -237,9 +238,9 @@
 <p>Użyj <strong>Renderuj jako</strong> w <a href="/pl/docs/templates#the-editor">edytorze szablonów</a>, aby zobaczyć podgląd na rekordzie dowolnego prawdziwego użytkownika, i <strong>Ustaw mi testowy podpis</strong>, aby zastosować wynik do własnej skrzynki. Oba są opisane w <a href="/pl/docs/create-your-first-template">Utwórz swój pierwszy szablon</a>.</p>
       </article>
 <nav class="docs-pager" aria-label="Stronicowanie">
-<a class="pager-card pager-prev" href="/pl/docs/templates" rel="prev">
+<a class="pager-card pager-prev" href="/pl/docs/visual-editor" rel="prev">
       <span class="pager-label">Poprzednia</span>
-      <span class="pager-title">Szablony</span>
+      <span class="pager-title">Edytor wizualny</span>
     </a>
 <a class="pager-card pager-next" href="/pl/docs/assignments" rel="next">
       <span class="pager-label">Następna</span>

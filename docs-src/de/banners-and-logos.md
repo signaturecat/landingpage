@@ -1,13 +1,13 @@
 ---
 title: Banner und Logos hochladen und einfügen
 navTitle: Banner und Logos
-description: Fügen Sie Firmenlogos und Kampagnenbanner zu SignatureCat-Signaturvorlagen hinzu - Bildbibliothek, Upload-Limits, Klick-Links und Platzhalter.
-updated: 2026-07-17
+description: Fügen Sie Firmenlogos und Kampagnenbanner zu SignatureCat-Signaturvorlagen hinzu - Bildbibliothek, eigene Größen, Größenänderung pro Vorlage, Klick-Links und Platzhalter.
+updated: 2026-07-26
 ---
 
 # Banner und Logos hochladen und einfügen
 
-SignatureCat verwaltet zwei Arten von Firmenbildern in einer Bibliothek pro Workspace: **Logos** (gerendert mit 115x115 px) und **Banner** (gerendert mit 450x100 px, auf kleinen Bildschirmen verkleinert). Jede Vorlage wählt ihr eigenes Logo und ihren eigenen Banner, eingefügt über die Token `{{logo}}` und `{{banner}}`.
+SignatureCat verwaltet zwei Arten von Firmenbildern in einer Bibliothek pro Workspace: **Logos** (standardmäßig 115x115 px) und **Banner** (standardmäßig 450x100 px, auf kleinen Bildschirmen verkleinert). Jede Vorlage wählt ihr eigenes Logo und ihren eigenen Banner, eingefügt über die Token `{{logo}}` und `{{banner}}` - und kann beide mit den [Ziehpunkten des visuellen Editors](/docs/visual-editor/#images-logo-banner-and-photo) für sich selbst in der Größe ändern.
 
 ## Ein Bild zur Bibliothek hinzufügen
 
@@ -18,6 +18,8 @@ SignatureCat verwaltet zwei Arten von Firmenbildern in einer Bibliothek pro Work
    - **Datei hochladen** - PNG oder JPG, empfohlen bis 200 KB (hartes Limit 5 MB).
 4. Legen Sie optional einen Bibliotheksnamen und einen Klick-Link fest ("Führt beim Klick zu") und speichern Sie. Das Bild wird zur Bibliothek hinzugefügt und für diese Vorlage ausgewählt.
 
+Für Banner können Sie außerdem dem **Bibliothekseintrag eine eigene Größe** geben (eine Checkbox mit Feldern für Breite und Höhe, 24-600 x 24-400 px) - sowohl beim Hinzufügen des Eintrags als auch später in den Details des ausgewählten Eintrags. Diese Größe wird zum Standard des Eintrags, wo immer er verwendet wird; wird sie geleert, gilt wieder 450x100.
+
 > [!NOTE]
 > Nur PNG und JPG - SVG-Dateien werden nicht akzeptiert (schlechte Unterstützung in Mail-Clients und Sicherheitsgründe). Die Bibliothek fasst bis zu 200 Bilder pro Art.
 
@@ -27,16 +29,27 @@ Wählen Sie ein Bild in der Galerie und klicken Sie auf **Auswahl verwenden** - 
 
 Verwendet eine Vorlage `{{banner}}` ohne ausgewählten Banner, wird stattdessen ein neutraler Platzhalter gerendert und der Editor erinnert Sie daran, einen auszuwählen - die Signatur bricht nie.
 
+## Bildgrößen: Bibliotheksstandard vs. pro Vorlage
+
+Zwei Ebenen steuern, wie groß ein Logo oder Banner gerendert wird, und die spezifischere gewinnt:
+
+1. **Größe pro Vorlage** - gesetzt mit den Ziehpunkten im [visuellen Editor](/docs/visual-editor/#images-logo-banner-and-photo) (Banner 24-600 x 24-400 px, Logo 24-300 px). Sie gilt nur für diese Vorlage; das Ändern der Bannergröße in einer Vorlage verändert also nie die anderen, die dasselbe Bild teilen.
+2. **Größe des Bibliothekseintrags** (nur Banner) - der oben beschriebene eigene Standard des Eintrags.
+
+Ist keines von beiden gesetzt, gelten die Standardwerte: Logo 115x115, Banner 450x100.
+
 ## Klick-Links
 
 Der Klick-Link gehört zum **Bibliotheksbild**, nicht zur Vorlage: Aktualisieren Sie den Link einmal, und jede Vorlage, die dieses Bild verwendet, übernimmt ihn beim nächsten Rendern. Das ist praktisch für wechselnde Kampagnenbanner - tauschen Sie die Ziel-URL, ohne Vorlagen anzufassen.
 
+Soll sich eine einzelne Vorlage anders verhalten, wählen Sie den Bild-Chip im [visuellen Editor](/docs/visual-editor/#images-logo-banner-and-photo) aus und nutzen Sie den Button **Link**: den Bibliotheks-Link behalten, den Link nur für diese Vorlage entfernen oder auf eine andere URL zeigen lassen.
+
 ## Größenempfehlungen
 
-| Art | Gerenderte Größe | Empfehlung |
+| Art | Gerenderte Standardgröße | Empfehlung |
 |---|---|---|
-| Logo | 115x115 px | Quadratisches Bild, PNG mit Transparenz funktioniert am besten. |
-| Banner | 450x100 px (max-width 100%) | Für scharfes HiDPI-Rendering mit 900x200 px exportieren, Datei unter 200 KB halten. |
+| Logo | 115x115 px (pro Vorlage bis 300 px änderbar) | Quadratisches Bild, PNG mit Transparenz funktioniert am besten. |
+| Banner | 450x100 px (eigene Größen bis 600x400 px; max-width 100%) | Für scharfes HiDPI-Rendering in doppelter Anzeigegröße exportieren, Datei unter 200 KB halten. |
 
 Große Bilder verlangsamen das Rendern von E-Mails und können Nachrichten in Gmail in den Bereich "Nachricht gekürzt" schieben - halten Sie die Dateien klein.
 

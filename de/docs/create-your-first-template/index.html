@@ -47,8 +47,8 @@
       "description": "Erstellen Sie eine Gmail-Signaturvorlage in SignatureCat, personalisieren Sie sie mit Google Directory-Variablen, sehen Sie die Vorschau und testen Sie sie auf Ihrem eigenen Postfach.",
       "url": "https://signature.cat/de/docs/create-your-first-template",
       "inLanguage": "de",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -167,6 +167,7 @@
         <ul>
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates">Vorlagen</a></li>
+        <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
         <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -203,9 +204,9 @@
 </ul></li>
 <li>Wählen Sie für die Logo- oder Banner-Starter ein Bild aus Ihrer Bibliothek oder laden Sie eines hoch - oder überspringen Sie den Schritt, dann wird ein Platzhalter verwendet, bis Sie eines wählen. Siehe <a href="/de/docs/banners-and-logos">Banner und Logos</a>.</li>
 </ol>
-<p>Der Editor öffnet sich sofort. Alles aus dem Starter lässt sich später anpassen.</p>
+<p>Der Editor öffnet sich sofort. Alles aus dem Starter lässt sich später anpassen - entweder direkt im HTML oder ganz ohne HTML auf der Arbeitsfläche des <a href="/de/docs/visual-editor">visuellen Editors</a> (wechseln Sie zum Tab <strong>Visuell</strong>; die einmalige Konvertierung ist dort beschrieben).</p>
 <h2 id="mit-variablen-personalisieren">Mit Variablen personalisieren<a class="h-anchor" href="#mit-variablen-personalisieren" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Fügen Sie <code>{{variable}}</code>-Token über das Menü <strong>Variable einfügen</strong> ein - zum Beispiel <code>{{firstname}}</code>, <code>{{jobtitle}}</code> oder <code>{{phone}}</code>. Beim Anwenden löst jedes Token aus dem Google Directory-Datensatz des Nutzers auf, sodass eine Vorlage für alle eine persönliche Signatur erzeugt.</p>
+<p>Fügen Sie <code>{{variable}}</code>-Token über das Menü <strong>Variable einfügen</strong> ein - zum Beispiel <code>{{firstname}}</code>, <code>{{jobtitle}}</code> oder <code>{{phone}}</code>. Im visuellen Editor erscheinen sie als feste Chips, die Sie wie Objekte ziehen, formatieren und löschen können. Beim Anwenden löst jedes Token aus dem Google Directory-Datensatz des Nutzers auf, sodass eine Vorlage für alle eine persönliche Signatur erzeugt.</p>
 <p>Schließen Sie optionale Zeilen in bedingte Tags ein, damit Signaturen sauber bleiben, wenn Daten fehlen:</p>
 <ul>
 <li><code>{{del}} ... {{/del}}</code> entfernt den eingeschlossenen Block nur, wenn <strong>alle</strong> Variablen darin leer sind.</li>

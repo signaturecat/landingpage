@@ -1,19 +1,24 @@
 ---
 title: Szablony
 navTitle: Szablony
-description: Referencja szablonów SignatureCat - edytor HTML, startery, podgląd, testowe zastosowanie, przełącznik self-service, szablon domyślny i bezpieczne usuwanie.
-updated: 2026-07-17
+description: Referencja szablonów SignatureCat - edytory wizualny i HTML, startery, podgląd, testowe zastosowanie, przełącznik self-service, szablon domyślny i bezpieczne usuwanie.
+updated: 2026-07-26
 ---
 
 # Szablony
 
-Szablon to pojedynczy dokument HTML z tokenami `{{variable}}`, który SignatureCat renderuje per użytkownik. Szablony mieszkają na stronie [Podpisy](https://app.signature.cat/signatures) (poziomy Designer, Editor i Admin) i są edytowane w edytorze kodu z podglądem na żywo.
+Szablon to pojedynczy dokument HTML z tokenami `{{variable}}`, który SignatureCat renderuje per użytkownik. Szablony mieszkają na stronie [Podpisy](https://app.signature.cat/signatures) (poziomy Designer, Editor i Admin) i są edytowane w [edytorze wizualnym](/docs/visual-editor/) albo w edytorze kodu, oba z podglądem na żywo.
 
 Prowadzony pierwszy przebieg znajdziesz w [Utwórz swój pierwszy szablon](/docs/create-your-first-template/). Zestaw zmiennych ma własną stronę: [Zmienne szablonów](/docs/template-variables/).
 
 ## Edytor
 
-Edytor pod `app.signature.cat/signatures/{id}` jest **HTML-first**: edytujesz kod podpisu bezpośrednio, z autouzupełnianiem wszystkich tokenów `{{variable}}`. Obok panelu kodu masz:
+Edytor pod `app.signature.cat/signatures/{id}` ma dwie karty i otwiera się w trybie, w którym szablon był ostatnio zapisany:
+
+- **Wizualny** - projektowanie na kanwie bez pisania HTML: chipy zmiennych, uchwyty zmiany rozmiaru obrazków, kolumny, czcionki i wynik gwarantowanie bezpieczny dla Gmaila. Ma [własną stronę](/docs/visual-editor/).
+- **HTML** - bezpośrednia edycja kodu podpisu, z autouzupełnianiem wszystkich tokenów `{{variable}}`.
+
+Konwersja HTML na Wizualny działa w jedną stronę i nie zawsze jest bezstratna (złożone układy tabel są spłaszczane; edytor najpierw ostrzega); zapis z karty HTML odrzuca dokument wizualny. W obu trybach masz:
 
 - **Podgląd** - renderowanie rozwiązanego podpisu na żywo, w piaskownicy. **Renderuj jako** podstawia rekord Directory dowolnego prawdziwego użytkownika, więc sprawdzisz przypadki brzegowe (długie nazwiska, brakujące numery telefonów).
 - **Wstaw zmienną** - menu wszystkich zmiennych osobowych, pogrupowanych z podpowiedziami.
@@ -28,6 +33,8 @@ Zapis waliduje szablon i odrzuca:
 
 - nieznane tokeny (wszystko, co nie jest znaną zmienną, tokenem obrazka ani tagiem warunkowym),
 - niezbalansowane pary `{{del}}` / `{{delete}}`.
+
+Komunikaty błędów są konkretne: nieznany token jest wymieniany z nazwy, a niezbalansowane tagi warunkowe przychodzą z licznikami otwarć/zamknięć. Licznik na żywo śledzi gmailowy limit 10 000 znaków podpisu.
 
 HTML jest sanityzowany przy zapisie: skrypty, iframe'y, handlery zdarzeń (`onclick=` i podobne) oraz adresy `javascript:` są usuwane. Podpisy są z natury statycznym HTML - Gmail i tak usunąłby aktywną zawartość.
 

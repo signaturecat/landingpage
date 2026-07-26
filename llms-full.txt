@@ -132,11 +132,11 @@ A template is one HTML signature that SignatureCat personalizes per user with da
    - **With banner** - the signature plus a campaign banner (450x100 px) below it.
 3. For the logo or banner starters, pick an image from your library or upload one - or skip and a placeholder is used until you choose one. See [Banners and logos](/docs/banners-and-logos).
 
-The editor opens immediately. Everything from the starter can be adjusted later.
+The editor opens immediately. Everything from the starter can be adjusted later - either directly in the HTML, or on the [visual editor](/docs/visual-editor) canvas with no HTML at all (switch to the **Visual** tab; the one-time conversion is described on that page).
 
 ## Personalize with variables
 
-Insert `{{variable}}` tokens with the **Insert variable** menu - for example `{{firstname}}`, `{{jobtitle}}` or `{{phone}}`. At apply time each token resolves from the user's Google Directory record, so one template produces a personal signature for everyone.
+Insert `{{variable}}` tokens with the **Insert variable** menu - for example `{{firstname}}`, `{{jobtitle}}` or `{{phone}}`. In the visual editor they appear as solid chips you can drag, format and delete like objects. At apply time each token resolves from the user's Google Directory record, so one template produces a personal signature for everyone.
 
 Wrap optional lines in conditional tags so signatures stay clean when data is missing:
 
@@ -407,7 +407,7 @@ Section: Advanced setup
 
 # Upload and insert banners and logos
 
-SignatureCat keeps two kinds of company images in a per-workspace library: **logos** (rendered 115x115 px) and **banners** (rendered 450x100 px, scaled down on small screens). Each template selects its own logo and banner, inserted with the `{{logo}}` and `{{banner}}` tokens.
+SignatureCat keeps two kinds of company images in a per-workspace library: **logos** (115x115 px by default) and **banners** (450x100 px by default, scaled down on small screens). Each template selects its own logo and banner, inserted with the `{{logo}}` and `{{banner}}` tokens - and can resize either one for itself with the [visual editor's resize handles](/docs/visual-editor#images-logo-banner-and-photo).
 
 ## Add an image to the library
 
@@ -418,6 +418,8 @@ SignatureCat keeps two kinds of company images in a per-workspace library: **log
    - **Upload a file** - PNG or JPG, recommended up to 200 KB (5 MB hard limit).
 4. Optionally set a library label and a click-through link ("On click, leads to"), then save. The image is added to the library and selected for this template.
 
+For banners you can also give the **library entry its own size** (a checkbox with width and height fields, 24-600 x 24-400 px) - both when adding the entry and later in the selected entry's details. That size becomes the entry's default wherever it is used; clearing it returns to 450x100.
+
 > [!NOTE]
 > PNG and JPG only - SVG files are not accepted (poor mail-client support and security reasons). The library holds up to 200 images per kind.
 
@@ -427,16 +429,27 @@ Pick an image in the gallery and click **Use selected** - the editor can also in
 
 If a template uses `{{banner}}` without a selected banner, a neutral placeholder renders instead and the editor nudges you to pick one - the signature never breaks.
 
+## Image sizes: library default vs per-template
+
+Two layers control how big a logo or banner renders, and the more specific one wins:
+
+1. **Per-template size** - set with the resize handles in the [visual editor](/docs/visual-editor#images-logo-banner-and-photo) (banner 24-600 x 24-400 px, logo 24-300 px). It applies to that template only, so resizing a banner in one template never changes the others sharing the same image.
+2. **Library entry size** (banners only) - the entry's own default described above.
+
+With neither set, the defaults apply: logo 115x115, banner 450x100.
+
 ## Click-through links
 
 The click link travels with the **library image**, not the template: update the link once and every template using that image picks it up on the next render. This is handy for rotating campaign banners - swap the target URL without touching templates.
 
+When one template should behave differently, select the image chip in the [visual editor](/docs/visual-editor#images-logo-banner-and-photo) and use the **Link** button: keep the library link, remove the link for this template only, or point it at a different URL.
+
 ## Sizing recommendations
 
-| Kind | Rendered size | Recommendation |
+| Kind | Default rendered size | Recommendation |
 |---|---|---|
-| Logo | 115x115 px | Square image, PNG with transparency works best. |
-| Banner | 450x100 px (max-width 100%) | Export at 900x200 px for sharp HiDPI rendering, keep the file under 200 KB. |
+| Logo | 115x115 px (resizable per template up to 300 px) | Square image, PNG with transparency works best. |
+| Banner | 450x100 px (custom sizes up to 600x400 px; max-width 100%) | Export at twice the display size for sharp HiDPI rendering, keep the file under 200 KB. |
 
 Large images slow down email rendering and can push messages into the "message clipped" territory in Gmail - keep files small.
 
@@ -598,13 +611,18 @@ Section: Reference
 
 # Templates
 
-A template is a single HTML document with `{{variable}}` tokens that SignatureCat renders per user. Templates live on the [Signatures](https://app.signature.cat/signatures) page (Designers, Editors and Admins) and are edited in a code editor with live preview.
+A template is a single HTML document with `{{variable}}` tokens that SignatureCat renders per user. Templates live on the [Signatures](https://app.signature.cat/signatures) page (Designers, Editors and Admins) and are edited either in the [visual editor](/docs/visual-editor) or in a code editor, both with live preview.
 
 For a guided first run, see [Create your first template](/docs/create-your-first-template). The variable set has its own page: [Template variables](/docs/template-variables).
 
 ## The editor
 
-The editor at `app.signature.cat/signatures/{id}` is **HTML-first**: you edit the signature markup directly, with autocompletion for all `{{variable}}` tokens. Alongside the code pane you get:
+The editor at `app.signature.cat/signatures/{id}` has two tabs, and opens in the mode the template was last saved in:
+
+- **Visual** - design on a canvas without writing HTML: variable chips, image resize handles, columns, fonts and a guaranteed Gmail-safe output. It has a [dedicated page](/docs/visual-editor).
+- **HTML** - edit the signature markup directly, with autocompletion for all `{{variable}}` tokens.
+
+Converting HTML to Visual is one-way and best-effort (complex table layouts are flattened; the editor warns first); saving from the HTML tab discards the visual document. In both modes you get:
 
 - **Preview** - live rendering of the resolved signature, in a sandbox. **Render as** substitutes any real user's Directory record so you can check edge cases (long names, missing phone numbers).
 - **Insert variable** - menu of all person variables, grouped with hints.
@@ -619,6 +637,8 @@ Saving validates the template and rejects:
 
 - unknown tokens (anything that is not a known variable, asset token or conditional tag),
 - unbalanced `{{del}}` / `{{delete}}` pairs.
+
+Error messages are specific: an unknown token is named and unbalanced conditional tags come with their open/close counts. A live counter tracks Gmail's 10,000-character signature limit.
 
 The HTML is sanitized on save: scripts, iframes, event handlers (`onclick=` and friends) and `javascript:` URLs are stripped. Signatures are static HTML by nature - Gmail would strip active content anyway.
 
@@ -646,6 +666,88 @@ Deleting an unused template just removes it. Deleting a template that is **in us
 
 ========================================================================
 
+# Visual editor
+URL: https://signature.cat/docs/visual-editor
+Section: Reference
+
+# Visual editor
+
+The visual editor lets you design a signature template without writing a line of HTML. You work on a canvas with text formatting, variable chips and live-sized images - and everything it produces is guaranteed email-safe: the editor can only emit markup that renders correctly in Gmail, so there is no way to build a signature that breaks in the mailbox.
+
+The editor lives on the same page as the [HTML editor](/docs/templates#the-editor): open any template on [Signatures](https://app.signature.cat/signatures) and switch between the **Visual** and **HTML** tabs.
+
+## Editing modes
+
+Every template is edited in one of two modes, and the editor opens in the mode the template was last saved in:
+
+- **Visual** - the canvas described on this page. Saving stores both the visual document and the generated HTML.
+- **HTML** - the classic code editor with token autocompletion; see [Templates](/docs/templates#the-editor).
+
+Switching between them is possible at any time, with two caveats:
+
+- **HTML to Visual is a one-way conversion.** The importer translates your markup into canvas blocks on a best-effort basis - simple layouts (including single-row tables, which become [columns](#columns)) convert cleanly, while deeply nested table layouts are flattened. The editor warns you before a lossy conversion.
+- **Visual to HTML is a downgrade.** You get the generated HTML to edit freely, but saving from the HTML tab discards the visual document - switching back later means converting again.
+
+## Text, fonts and colors
+
+The canvas supports the formatting that reliably survives mail clients: paragraphs, **bold**, *italic*, underline, bullet and numbered lists, an email-safe text color palette, links (web, mailto and tel) and undo/redo.
+
+Two dropdowns control typography:
+
+- **Font size** - 10 to 24 px.
+- **Font** - "Default (mail client)" plus seven web-safe families: Arial, Verdana, Tahoma, Trebuchet MS, Georgia, Times New Roman and Courier New. The default option emits no font at all, letting each recipient's mail client use its own - the safest choice.
+
+> [!NOTE]
+> Web-safe fonts render consistently because they ship with the recipient's system, not with the email. The first time you pick a non-default font the editor shows a short compatibility note.
+
+## Columns
+
+Insert a 2- or 3-column row from the toolbar to place content side by side - for example a photo on the left and contact details on the right. Columns are stored as a single-row table in the generated HTML, the one layout technique every mail client renders correctly. Existing single-row tables in imported HTML become columns automatically.
+
+## Variables as chips
+
+Person variables like `{{firstname}}` or `{{phone}}` appear on the canvas as **chips** - solid tokens you cannot accidentally break by typing into them. Chips can be:
+
+- inserted from the **Insert variable** menu,
+- formatted like text (bold, italic, underline apply to the resolved value),
+- dragged and dropped anywhere on the canvas,
+- removed with the trash button that appears on hover.
+
+The full variable list and resolution rules are in [Template variables](/docs/template-variables).
+
+## Images: logo, banner and photo
+
+`{{logo}}`, `{{banner}}` and `{{photo}}` render on the canvas as image chips at their real size - the logo and banner chips show the actual image selected from your [library](/docs/banners-and-logos), the photo chip shows a circular avatar placeholder (real photos substitute per user at render time).
+
+Select an image chip and drag its **resize handles** (edges and corner) to size it for this template - like resizing a window. Double-click restores the default size; the handles also work from the keyboard (arrow keys step 10 px, Shift-arrows 50 px, Home/End jump to the limits). Allowed ranges:
+
+| Image | Default size | Resize range |
+|---|---|---|
+| Logo | 115x115 px | 24-300 px per side |
+| Banner | 450x100 px (or the library entry's own size) | 24-600 x 24-400 px |
+| Photo | 115x115 px, circular | 24-300 px per side |
+
+Sizes are stored **per template**: resizing a banner in one template never changes other templates that use the same library image.
+
+A selected logo or banner chip also exposes a **Link** button: keep the library image's click-through link, remove the link for this template only, or point it at a different URL - without touching the library entry other templates share.
+
+## Conditional blocks
+
+`{{del}}` and `{{delete}}` wrappers appear as framed blocks on the canvas, so you can see exactly what disappears when a user's data is missing. When a save is rejected because of unbalanced tags, the editor shows two looping micro-demos contrasting how `{{del}}` and `{{delete}}` behave - the exact rules are in [Template variables](/docs/template-variables#conditional-blocks-del-and-delete).
+
+## Staying within Gmail's limits
+
+Gmail caps signatures at 10,000 characters. A live budget counter under the canvas tracks the generated HTML size, so you know long before Gmail would reject the signature.
+
+## Reset and validation
+
+- **Reset to saved** (visible whenever you have unsaved changes) restores the template to its last saved state, including the saved editing mode, after a confirmation.
+- Validation errors are specific: an unknown token is named, unbalanced conditional tags come with open/close counts - no guesswork.
+
+When your template looks right, preview it against real users and test it on your own mailbox - see [Create your first template](/docs/create-your-first-template#preview-as-a-real-user).
+
+========================================================================
+
 # Template variables
 URL: https://signature.cat/docs/template-variables
 Section: Reference
@@ -666,7 +768,7 @@ Values come from each user's record in your Google Workspace directory. Keep the
 | `{{domain}}` | Domain part of the email | Follows the alias when applying to an alias. |
 | `{{jobtitle}}` | Job title | From the user's primary organization entry in Directory. |
 | `{{department}}` | Department | From the same organization entry. |
-| `{{photo}}` | Profile photo URL | Auto-scaled to 400 px for crisp rendering; must be an HTTPS photo. |
+| `{{photo}}` | Profile photo | Standalone, the token renders a circular profile photo (default 115x115 px, [resizable per template](/docs/visual-editor#images-logo-banner-and-photo)); users without a Directory photo get no image at all instead of a broken icon. Inside your own `<img src="{{photo}}">` it resolves to the HTTPS photo URL (auto-scaled to 400 px) and your markup is untouched. |
 | `{{address}}` | Formatted address | The user's primary address entry. |
 | `{{phone}}` | Phone number | First non-empty of: work, then mobile, then home. |
 
@@ -676,10 +778,10 @@ Values come from each user's record in your Google Workspace directory. Keep the
 
 | Token | Value |
 |---|---|
-| `{{logo}}` | The template's selected company logo, rendered 115x115 px. |
-| `{{banner}}` | The template's selected campaign banner, rendered 450x100 px, scaled down on narrow screens. |
+| `{{logo}}` | The template's selected company logo - 115x115 px by default, resizable per template (24-300 px). |
+| `{{banner}}` | The template's selected campaign banner - 450x100 px by default (a library entry can define its own size), resizable per template, scaled down on narrow screens. |
 
-Images come from the per-workspace library and are selected per template; if nothing is selected, a neutral placeholder renders. If the library image has a click-through link, the image is wrapped in it automatically. See [Banners and logos](/docs/banners-and-logos).
+Images come from the per-workspace library and are selected per template; if nothing is selected, a neutral placeholder renders. If the library image has a click-through link, the image is wrapped in it automatically - and each template can [override that link](/docs/visual-editor#images-logo-banner-and-photo). Sizing details and the resize handles are described in the [visual editor](/docs/visual-editor) and [Banners and logos](/docs/banners-and-logos).
 
 > [!NOTE]
 > Image tokens always render something (image or placeholder), so they do not count as "empty" for the conditional blocks below.
@@ -1105,6 +1207,10 @@ What's new in SignatureCat, the email signature manager for Google Workspace. We
 
 ## July 2026
 
+- **A visual signature editor.** Design Gmail signature templates without writing HTML: variable chips you drag and drop, 2-3 column layouts, web-safe fonts, an email-safe color palette and conditional blocks you can see - with output guaranteed to render correctly in Gmail. The classic HTML editor stays one tab away. See the new [Visual editor](/docs/visual-editor) guide.
+- **Resize images per template.** Drag the corners of a logo, banner or profile photo right on the canvas - each signature template keeps its own size, and banner library entries can define their own default dimensions. A template can also override an image's click-through link without touching the shared library.
+- **A smarter {{photo}} variable.** Used on its own, `{{photo}}` now renders a ready-made circular profile photo sized per template - and users without a photo in the Google Workspace Directory get no broken image, the photo simply disappears from their signature.
+- **Clearer template validation.** Save errors now name the exact unknown token or count the unbalanced conditional tags, and the editor explains `{{del}}` vs `{{delete}}` with two animated mini-demos.
 - **Documentation in four languages.** This help center is now available in English, Polish, German and French. The language selector in the footer keeps you on the same article when you switch, so your whole team can read about Google Workspace signature management in their own language.
 - **See who edited a signature template.** Every signature template now shows who last edited it and when - in the template list and inside the signature editor. Useful when several Workspace admins manage email signatures together.
 - **Simpler custom image domains.** Hosting signature banners and logos on your own domain now needs just one CNAME record. A guided wizard checks the setup for you - see [Custom image domain](/docs/custom-image-domain).

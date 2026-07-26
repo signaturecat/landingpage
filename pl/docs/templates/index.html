@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Szablony | SignatureCat Docs</title>
-  <meta name="description" content="Referencja szablonów SignatureCat - edytor HTML, startery, podgląd, testowe zastosowanie, przełącznik self-service, szablon domyślny i bezpieczne usuwanie." />
+  <meta name="description" content="Referencja szablonów SignatureCat - edytory wizualny i HTML, startery, podgląd, testowe zastosowanie, przełącznik self-service, szablon domyślny i bezpieczne usuwanie." />
   <link rel="canonical" href="https://signature.cat/pl/docs/templates" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/templates" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/templates" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Szablony | SignatureCat Docs" />
-  <meta property="og:description" content="Referencja szablonów SignatureCat - edytor HTML, startery, podgląd, testowe zastosowanie, przełącznik self-service, szablon domyślny i bezpieczne usuwanie." />
+  <meta property="og:description" content="Referencja szablonów SignatureCat - edytory wizualny i HTML, startery, podgląd, testowe zastosowanie, przełącznik self-service, szablon domyślny i bezpieczne usuwanie." />
   <meta property="og:url" content="https://signature.cat/pl/docs/templates" />
   <meta property="og:locale" content="pl_PL" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Szablony | SignatureCat Docs" />
-  <meta name="twitter:description" content="Referencja szablonów SignatureCat - edytor HTML, startery, podgląd, testowe zastosowanie, przełącznik self-service, szablon domyślny i bezpieczne usuwanie." />
+  <meta name="twitter:description" content="Referencja szablonów SignatureCat - edytory wizualny i HTML, startery, podgląd, testowe zastosowanie, przełącznik self-service, szablon domyślny i bezpieczne usuwanie." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Szablony",
-      "description": "Referencja szablonów SignatureCat - edytor HTML, startery, podgląd, testowe zastosowanie, przełącznik self-service, szablon domyślny i bezpieczne usuwanie.",
+      "description": "Referencja szablonów SignatureCat - edytory wizualny i HTML, startery, podgląd, testowe zastosowanie, przełącznik self-service, szablon domyślny i bezpieczne usuwanie.",
       "url": "https://signature.cat/pl/docs/templates",
       "inLanguage": "pl",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -167,6 +167,7 @@
         <ul>
         <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/pl/docs/templates" aria-current="page">Szablony</a></li>
+        <li><a href="/pl/docs/visual-editor">Edytor wizualny</a></li>
         <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
         <li><a href="/pl/docs/assignments">Przypisania</a></li>
         <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
@@ -191,10 +192,15 @@
       <nav class="docs-breadcrumb" aria-label="Okruszki nawigacyjne"><a href="/pl/docs">Dokumentacja</a><span class="crumb-sep">/</span><span class="crumb-section">Referencja</span><span class="crumb-sep">/</span><span aria-current="page">Szablony</span></nav>
       <article class="docs-article">
 <h1>Szablony</h1>
-<p>Szablon to pojedynczy dokument HTML z tokenami <code>{{variable}}</code>, który SignatureCat renderuje per użytkownik. Szablony mieszkają na stronie <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Podpisy</a> (poziomy Designer, Editor i Admin) i są edytowane w edytorze kodu z podglądem na żywo.</p>
+<p>Szablon to pojedynczy dokument HTML z tokenami <code>{{variable}}</code>, który SignatureCat renderuje per użytkownik. Szablony mieszkają na stronie <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Podpisy</a> (poziomy Designer, Editor i Admin) i są edytowane w <a href="/pl/docs/visual-editor">edytorze wizualnym</a> albo w edytorze kodu, oba z podglądem na żywo.</p>
 <p>Prowadzony pierwszy przebieg znajdziesz w <a href="/pl/docs/create-your-first-template">Utwórz swój pierwszy szablon</a>. Zestaw zmiennych ma własną stronę: <a href="/pl/docs/template-variables">Zmienne szablonów</a>.</p>
 <h2 id="edytor">Edytor<a class="h-anchor" href="#edytor" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Edytor pod <code>app.signature.cat/signatures/{id}</code> jest <strong>HTML-first</strong>: edytujesz kod podpisu bezpośrednio, z autouzupełnianiem wszystkich tokenów <code>{{variable}}</code>. Obok panelu kodu masz:</p>
+<p>Edytor pod <code>app.signature.cat/signatures/{id}</code> ma dwie karty i otwiera się w trybie, w którym szablon był ostatnio zapisany:</p>
+<ul>
+<li><strong>Wizualny</strong> - projektowanie na kanwie bez pisania HTML: chipy zmiennych, uchwyty zmiany rozmiaru obrazków, kolumny, czcionki i wynik gwarantowanie bezpieczny dla Gmaila. Ma <a href="/pl/docs/visual-editor">własną stronę</a>.</li>
+<li><strong>HTML</strong> - bezpośrednia edycja kodu podpisu, z autouzupełnianiem wszystkich tokenów <code>{{variable}}</code>.</li>
+</ul>
+<p>Konwersja HTML na Wizualny działa w jedną stronę i nie zawsze jest bezstratna (złożone układy tabel są spłaszczane; edytor najpierw ostrzega); zapis z karty HTML odrzuca dokument wizualny. W obu trybach masz:</p>
 <ul>
 <li><strong>Podgląd</strong> - renderowanie rozwiązanego podpisu na żywo, w piaskownicy. <strong>Renderuj jako</strong> podstawia rekord Directory dowolnego prawdziwego użytkownika, więc sprawdzisz przypadki brzegowe (długie nazwiska, brakujące numery telefonów).</li>
 <li><strong>Wstaw zmienną</strong> - menu wszystkich zmiennych osobowych, pogrupowanych z podpowiedziami.</li>
@@ -209,6 +215,7 @@
 <li>nieznane tokeny (wszystko, co nie jest znaną zmienną, tokenem obrazka ani tagiem warunkowym),</li>
 <li>niezbalansowane pary <code>{{del}}</code> / <code>{{delete}}</code>.</li>
 </ul>
+<p>Komunikaty błędów są konkretne: nieznany token jest wymieniany z nazwy, a niezbalansowane tagi warunkowe przychodzą z licznikami otwarć/zamknięć. Licznik na żywo śledzi gmailowy limit 10 000 znaków podpisu.</p>
 <p>HTML jest sanityzowany przy zapisie: skrypty, iframe'y, handlery zdarzeń (<code>onclick=</code> i podobne) oraz adresy <code>javascript:</code> są usuwane. Podpisy są z natury statycznym HTML - Gmail i tak usunąłby aktywną zawartość.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Wskazówka</p><div class="callout-body">
 <p>Podpisy Gmail renderują się najlepiej z układami opartymi na tabelach i stylami inline. Unikaj zewnętrznych plików CSS i web fontów; większość klientów poczty je ignoruje.</p>
@@ -233,9 +240,9 @@
       <span class="pager-label">Poprzednia</span>
       <span class="pager-title">Domain-Wide Delegation</span>
     </a>
-<a class="pager-card pager-next" href="/pl/docs/template-variables" rel="next">
+<a class="pager-card pager-next" href="/pl/docs/visual-editor" rel="next">
       <span class="pager-label">Następna</span>
-      <span class="pager-title">Zmienne szablonów</span>
+      <span class="pager-title">Edytor wizualny</span>
     </a>
 </nav>
       <footer class="docs-foot">

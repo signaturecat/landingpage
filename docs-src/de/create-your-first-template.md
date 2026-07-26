@@ -2,7 +2,7 @@
 title: Ihre erste Vorlage erstellen
 navTitle: Ihre erste Vorlage erstellen
 description: Erstellen Sie eine Gmail-Signaturvorlage in SignatureCat, personalisieren Sie sie mit Google Directory-Variablen, sehen Sie die Vorschau und testen Sie sie auf Ihrem eigenen Postfach.
-updated: 2026-07-17
+updated: 2026-07-26
 ---
 
 # Ihre erste Vorlage erstellen
@@ -18,11 +18,11 @@ Eine Vorlage ist eine HTML-Signatur, die SignatureCat pro Nutzer mit Daten aus I
    - **Mit Banner** - die Signatur plus ein Kampagnenbanner (450x100 px) darunter.
 3. Wählen Sie für die Logo- oder Banner-Starter ein Bild aus Ihrer Bibliothek oder laden Sie eines hoch - oder überspringen Sie den Schritt, dann wird ein Platzhalter verwendet, bis Sie eines wählen. Siehe [Banner und Logos](/docs/banners-and-logos/).
 
-Der Editor öffnet sich sofort. Alles aus dem Starter lässt sich später anpassen.
+Der Editor öffnet sich sofort. Alles aus dem Starter lässt sich später anpassen - entweder direkt im HTML oder ganz ohne HTML auf der Arbeitsfläche des [visuellen Editors](/docs/visual-editor/) (wechseln Sie zum Tab **Visuell**; die einmalige Konvertierung ist dort beschrieben).
 
 ## Mit Variablen personalisieren
 
-Fügen Sie `{{variable}}`-Token über das Menü **Variable einfügen** ein - zum Beispiel `{{firstname}}`, `{{jobtitle}}` oder `{{phone}}`. Beim Anwenden löst jedes Token aus dem Google Directory-Datensatz des Nutzers auf, sodass eine Vorlage für alle eine persönliche Signatur erzeugt.
+Fügen Sie `{{variable}}`-Token über das Menü **Variable einfügen** ein - zum Beispiel `{{firstname}}`, `{{jobtitle}}` oder `{{phone}}`. Im visuellen Editor erscheinen sie als feste Chips, die Sie wie Objekte ziehen, formatieren und löschen können. Beim Anwenden löst jedes Token aus dem Google Directory-Datensatz des Nutzers auf, sodass eine Vorlage für alle eine persönliche Signatur erzeugt.
 
 Schließen Sie optionale Zeilen in bedingte Tags ein, damit Signaturen sauber bleiben, wenn Daten fehlen:
 
