@@ -2,7 +2,7 @@
 title: Changelog
 navTitle: Changelog
 description: What's new in SignatureCat - monthly highlights of new features and improvements to email signature management for Google Workspace and Gmail.
-updated: 2026-07-24
+updated: 2026-07-26
 published: 2026-07-24
 ---
 
@@ -12,6 +12,10 @@ What's new in SignatureCat, the email signature manager for Google Workspace. We
 
 ## July 2026
 
+- **A visual signature editor.** Design Gmail signature templates without writing HTML: variable chips you drag and drop, 2-3 column layouts, web-safe fonts, an email-safe color palette and conditional blocks you can see - with output guaranteed to render correctly in Gmail. The classic HTML editor stays one tab away. See the new [Visual editor](/docs/visual-editor) guide.
+- **Resize images per template.** Drag the corners of a logo, banner or profile photo right on the canvas - each signature template keeps its own size, and banner library entries can define their own default dimensions. A template can also override an image's click-through link without touching the shared library.
+- **A smarter {{photo}} variable.** Used on its own, `{{photo}}` now renders a ready-made circular profile photo sized per template - and users without a photo in the Google Workspace Directory get no broken image, the photo simply disappears from their signature.
+- **Clearer template validation.** Save errors now name the exact unknown token or count the unbalanced conditional tags, and the editor explains `{{del}}` vs `{{delete}}` with two animated mini-demos.
 - **Documentation in four languages.** This help center is now available in English, Polish, German and French. The language selector in the footer keeps you on the same article when you switch, so your whole team can read about Google Workspace signature management in their own language.
 - **See who edited a signature template.** Every signature template now shows who last edited it and when - in the template list and inside the signature editor. Useful when several Workspace admins manage email signatures together.
 - **Simpler custom image domains.** Hosting signature banners and logos on your own domain now needs just one CNAME record. A guided wizard checks the setup for you - see [Custom image domain](/docs/custom-image-domain).

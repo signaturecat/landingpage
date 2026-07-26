@@ -1,19 +1,24 @@
 ---
 title: Templates
 navTitle: Templates
-description: SignatureCat template reference - the HTML editor, starters, preview, test apply, self-service toggle, default template and safe deletion.
-updated: 2026-07-17
+description: SignatureCat template reference - the visual and HTML editors, starters, preview, test apply, self-service toggle, default template and safe deletion.
+updated: 2026-07-26
 ---
 
 # Templates
 
-A template is a single HTML document with `{{variable}}` tokens that SignatureCat renders per user. Templates live on the [Signatures](https://app.signature.cat/signatures) page (Designers, Editors and Admins) and are edited in a code editor with live preview.
+A template is a single HTML document with `{{variable}}` tokens that SignatureCat renders per user. Templates live on the [Signatures](https://app.signature.cat/signatures) page (Designers, Editors and Admins) and are edited either in the [visual editor](/docs/visual-editor/) or in a code editor, both with live preview.
 
 For a guided first run, see [Create your first template](/docs/create-your-first-template/). The variable set has its own page: [Template variables](/docs/template-variables/).
 
 ## The editor
 
-The editor at `app.signature.cat/signatures/{id}` is **HTML-first**: you edit the signature markup directly, with autocompletion for all `{{variable}}` tokens. Alongside the code pane you get:
+The editor at `app.signature.cat/signatures/{id}` has two tabs, and opens in the mode the template was last saved in:
+
+- **Visual** - design on a canvas without writing HTML: variable chips, image resize handles, columns, fonts and a guaranteed Gmail-safe output. It has a [dedicated page](/docs/visual-editor/).
+- **HTML** - edit the signature markup directly, with autocompletion for all `{{variable}}` tokens.
+
+Converting HTML to Visual is one-way and best-effort (complex table layouts are flattened; the editor warns first); saving from the HTML tab discards the visual document. In both modes you get:
 
 - **Preview** - live rendering of the resolved signature, in a sandbox. **Render as** substitutes any real user's Directory record so you can check edge cases (long names, missing phone numbers).
 - **Insert variable** - menu of all person variables, grouped with hints.
@@ -28,6 +33,8 @@ Saving validates the template and rejects:
 
 - unknown tokens (anything that is not a known variable, asset token or conditional tag),
 - unbalanced `{{del}}` / `{{delete}}` pairs.
+
+Error messages are specific: an unknown token is named and unbalanced conditional tags come with their open/close counts. A live counter tracks Gmail's 10,000-character signature limit.
 
 The HTML is sanitized on save: scripts, iframes, event handlers (`onclick=` and friends) and `javascript:` URLs are stripped. Signatures are static HTML by nature - Gmail would strip active content anyway.
 

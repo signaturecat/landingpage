@@ -2,7 +2,7 @@
 title: Template variables
 navTitle: Template variables
 description: Complete reference of SignatureCat template variables - Google Directory person fields, logo and banner tokens, and del/delete conditional blocks.
-updated: 2026-07-17
+updated: 2026-07-26
 ---
 
 # Template variables
@@ -21,7 +21,7 @@ Values come from each user's record in your Google Workspace directory. Keep the
 | `{{domain}}` | Domain part of the email | Follows the alias when applying to an alias. |
 | `{{jobtitle}}` | Job title | From the user's primary organization entry in Directory. |
 | `{{department}}` | Department | From the same organization entry. |
-| `{{photo}}` | Profile photo URL | Auto-scaled to 400 px for crisp rendering; must be an HTTPS photo. |
+| `{{photo}}` | Profile photo | Standalone, the token renders a circular profile photo (default 115x115 px, [resizable per template](/docs/visual-editor/#images-logo-banner-and-photo)); users without a Directory photo get no image at all instead of a broken icon. Inside your own `<img src="{{photo}}">` it resolves to the HTTPS photo URL (auto-scaled to 400 px) and your markup is untouched. |
 | `{{address}}` | Formatted address | The user's primary address entry. |
 | `{{phone}}` | Phone number | First non-empty of: work, then mobile, then home. |
 
@@ -31,10 +31,10 @@ Values come from each user's record in your Google Workspace directory. Keep the
 
 | Token | Value |
 |---|---|
-| `{{logo}}` | The template's selected company logo, rendered 115x115 px. |
-| `{{banner}}` | The template's selected campaign banner, rendered 450x100 px, scaled down on narrow screens. |
+| `{{logo}}` | The template's selected company logo - 115x115 px by default, resizable per template (24-300 px). |
+| `{{banner}}` | The template's selected campaign banner - 450x100 px by default (a library entry can define its own size), resizable per template, scaled down on narrow screens. |
 
-Images come from the per-workspace library and are selected per template; if nothing is selected, a neutral placeholder renders. If the library image has a click-through link, the image is wrapped in it automatically. See [Banners and logos](/docs/banners-and-logos/).
+Images come from the per-workspace library and are selected per template; if nothing is selected, a neutral placeholder renders. If the library image has a click-through link, the image is wrapped in it automatically - and each template can [override that link](/docs/visual-editor/#images-logo-banner-and-photo). Sizing details and the resize handles are described in the [visual editor](/docs/visual-editor/) and [Banners and logos](/docs/banners-and-logos/).
 
 > [!NOTE]
 > Image tokens always render something (image or placeholder), so they do not count as "empty" for the conditional blocks below.

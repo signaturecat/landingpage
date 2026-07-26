@@ -2,7 +2,7 @@
 title: Create your first template
 navTitle: Create your first template
 description: Create a Gmail signature template in SignatureCat, personalize it with Google Directory variables, preview it and test it on your own mailbox.
-updated: 2026-07-17
+updated: 2026-07-26
 ---
 
 # Create your first template
@@ -18,11 +18,11 @@ A template is one HTML signature that SignatureCat personalizes per user with da
    - **With banner** - the signature plus a campaign banner (450x100 px) below it.
 3. For the logo or banner starters, pick an image from your library or upload one - or skip and a placeholder is used until you choose one. See [Banners and logos](/docs/banners-and-logos/).
 
-The editor opens immediately. Everything from the starter can be adjusted later.
+The editor opens immediately. Everything from the starter can be adjusted later - either directly in the HTML, or on the [visual editor](/docs/visual-editor/) canvas with no HTML at all (switch to the **Visual** tab; the one-time conversion is described on that page).
 
 ## Personalize with variables
 
-Insert `{{variable}}` tokens with the **Insert variable** menu - for example `{{firstname}}`, `{{jobtitle}}` or `{{phone}}`. At apply time each token resolves from the user's Google Directory record, so one template produces a personal signature for everyone.
+Insert `{{variable}}` tokens with the **Insert variable** menu - for example `{{firstname}}`, `{{jobtitle}}` or `{{phone}}`. In the visual editor they appear as solid chips you can drag, format and delete like objects. At apply time each token resolves from the user's Google Directory record, so one template produces a personal signature for everyone.
 
 Wrap optional lines in conditional tags so signatures stay clean when data is missing:
 
