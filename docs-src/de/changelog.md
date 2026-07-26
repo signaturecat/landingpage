@@ -2,7 +2,7 @@
 title: Changelog
 navTitle: Changelog
 description: Was ist neu in SignatureCat - monatliche Highlights neuer Funktionen und Verbesserungen der E-Mail-Signatur-Verwaltung für Google Workspace und Gmail.
-updated: 2026-07-24
+updated: 2026-07-26
 published: 2026-07-24
 ---
 
@@ -12,6 +12,10 @@ Was ist neu in SignatureCat, dem E-Mail-Signatur-Manager für Google Workspace. 
 
 ## Juli 2026
 
+- **Ein visueller Signatur-Editor.** Gestalten Sie Gmail-Signaturvorlagen, ohne HTML zu schreiben: Variablen-Chips zum Ziehen und Ablegen, Layouts mit 2-3 Spalten, websichere Schriften, eine E-Mail-sichere Farbpalette und sichtbare bedingte Blöcke - mit einer Ausgabe, die garantiert korrekt in Gmail rendert. Der klassische HTML-Editor bleibt einen Tab entfernt. Siehe die neue Anleitung [Visueller Editor](/docs/visual-editor).
+- **Bildgrößen pro Vorlage ändern.** Ziehen Sie die Ecken eines Logos, Banners oder Profilbilds direkt auf der Arbeitsfläche - jede Signaturvorlage behält ihre eigene Größe, und Banner-Bibliothekseinträge können eigene Standardmaße definieren. Eine Vorlage kann außerdem den Klick-Link eines Bildes überschreiben, ohne die gemeinsame Bibliothek anzufassen.
+- **Eine klügere {{photo}}-Variable.** Allein verwendet rendert `{{photo}}` jetzt ein fertiges rundes Profilbild in der pro Vorlage eingestellten Größe - und Nutzer ohne Foto im Google Workspace-Directory bekommen kein defektes Bild, das Foto verschwindet einfach aus ihrer Signatur.
+- **Klarere Vorlagen-Validierung.** Speicherfehler nennen jetzt das genaue unbekannte Token oder zählen die unausgeglichenen bedingten Tags, und der Editor erklärt `{{del}}` vs. `{{delete}}` mit zwei animierten Mini-Demos.
 - **Dokumentation in vier Sprachen.** Dieses Hilfe-Center ist jetzt auf Englisch, Polnisch, Deutsch und Französisch verfügbar. Die Sprachauswahl in der Fußzeile führt zum selben Artikel, damit Ihr ganzes Team in seiner Sprache über die Signaturverwaltung in Google Workspace lesen kann.
 - **Sehen, wer eine Signaturvorlage bearbeitet hat.** Jede Signaturvorlage zeigt jetzt, wer sie zuletzt bearbeitet hat und wann - in der Vorlagenliste und im Signatur-Editor. Praktisch, wenn mehrere Workspace-Admins E-Mail-Signaturen gemeinsam verwalten.
 - **Einfachere eigene Bild-Domains.** Für das Hosting von Signatur-Bannern und Logos auf der eigenen Domain reicht jetzt ein einziger CNAME-Eintrag. Ein Assistent prüft die Einrichtung für Sie - siehe [Eigene Bild-Domain](/docs/custom-image-domain).

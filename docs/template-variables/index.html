@@ -47,8 +47,8 @@
       "description": "Complete reference of SignatureCat template variables - Google Directory person fields, logo and banner tokens, and del/delete conditional blocks.",
       "url": "https://signature.cat/docs/template-variables",
       "inLanguage": "en",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -167,6 +167,7 @@
         <ul>
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
+        <li><a href="/docs/visual-editor">Visual editor</a></li>
         <li><a href="/docs/template-variables" aria-current="page">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -203,7 +204,7 @@
 <tr><td><code>{{domain}}</code></td><td>Domain part of the email</td><td>Follows the alias when applying to an alias.</td></tr>
 <tr><td><code>{{jobtitle}}</code></td><td>Job title</td><td>From the user's primary organization entry in Directory.</td></tr>
 <tr><td><code>{{department}}</code></td><td>Department</td><td>From the same organization entry.</td></tr>
-<tr><td><code>{{photo}}</code></td><td>Profile photo URL</td><td>Auto-scaled to 400 px for crisp rendering; must be an HTTPS photo.</td></tr>
+<tr><td><code>{{photo}}</code></td><td>Profile photo</td><td>Standalone, the token renders a circular profile photo (default 115x115 px, <a href="/docs/visual-editor#images-logo-banner-and-photo">resizable per template</a>); users without a Directory photo get no image at all instead of a broken icon. Inside your own <code>&lt;img src="{{photo}}"&gt;</code> it resolves to the HTTPS photo URL (auto-scaled to 400 px) and your markup is untouched.</td></tr>
 <tr><td><code>{{address}}</code></td><td>Formatted address</td><td>The user's primary address entry.</td></tr>
 <tr><td><code>{{phone}}</code></td><td>Phone number</td><td>First non-empty of: work, then mobile, then home.</td></tr>
 </tbody>
@@ -213,11 +214,11 @@
 <div class="tbl"><table>
 <thead><tr><th scope="col">Token</th><th scope="col">Value</th></tr></thead>
 <tbody>
-<tr><td><code>{{logo}}</code></td><td>The template's selected company logo, rendered 115x115 px.</td></tr>
-<tr><td><code>{{banner}}</code></td><td>The template's selected campaign banner, rendered 450x100 px, scaled down on narrow screens.</td></tr>
+<tr><td><code>{{logo}}</code></td><td>The template's selected company logo - 115x115 px by default, resizable per template (24-300 px).</td></tr>
+<tr><td><code>{{banner}}</code></td><td>The template's selected campaign banner - 450x100 px by default (a library entry can define its own size), resizable per template, scaled down on narrow screens.</td></tr>
 </tbody>
 </table></div>
-<p>Images come from the per-workspace library and are selected per template; if nothing is selected, a neutral placeholder renders. If the library image has a click-through link, the image is wrapped in it automatically. See <a href="/docs/banners-and-logos">Banners and logos</a>.</p>
+<p>Images come from the per-workspace library and are selected per template; if nothing is selected, a neutral placeholder renders. If the library image has a click-through link, the image is wrapped in it automatically - and each template can <a href="/docs/visual-editor#images-logo-banner-and-photo">override that link</a>. Sizing details and the resize handles are described in the <a href="/docs/visual-editor">visual editor</a> and <a href="/docs/banners-and-logos">Banners and logos</a>.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Image tokens always render something (image or placeholder), so they do not count as "empty" for the conditional blocks below.</p>
 </div></aside>
@@ -237,9 +238,9 @@
 <p>Use <strong>Render as</strong> in the <a href="/docs/templates#the-editor">template editor</a> to preview against any real user's record, and <strong>Set me a test signature</strong> to apply the result to your own mailbox. Both are described in <a href="/docs/create-your-first-template">Create your first template</a>.</p>
       </article>
 <nav class="docs-pager" aria-label="Pagination">
-<a class="pager-card pager-prev" href="/docs/templates" rel="prev">
+<a class="pager-card pager-prev" href="/docs/visual-editor" rel="prev">
       <span class="pager-label">Previous</span>
-      <span class="pager-title">Templates</span>
+      <span class="pager-title">Visual editor</span>
     </a>
 <a class="pager-card pager-next" href="/docs/assignments" rel="next">
       <span class="pager-label">Next</span>

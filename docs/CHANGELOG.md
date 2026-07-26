@@ -2,6 +2,40 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-07-26 - Docs: visual editor page + editor-related refresh (app PRs #184/#185/#186)
+
+- **What:** Public docs updated for the app's new Lexical-based visual
+  signature editor (app PRs #184, #185, #186 - all merged+deployed
+  2026-07-26):
+  - **New page `/docs/visual-editor`** (x4 languages, NAV: Reference after
+    Templates): editing modes (Visual | HTML tabs, one-way import, downgrade
+    warning), text/fonts/colors (7 web-safe families + default, sizes
+    10-24 px), 2-3 columns (email-safe single-row tables), variable chips
+    (insert/format/drag/trash), image chips with per-template resize handles
+    (logo/photo 24-300 px, banner 24-600 x 24-400 px; keyboard support;
+    double-click reset), per-template click-link override, visual
+    conditional blocks + del/delete education, Gmail 10k budget counter,
+    reset-to-saved and specific validation errors.
+  - **Templates**: "The editor" section rewritten around the two tabs;
+    validation copy notes named tokens/counts + the 10k counter.
+  - **Template variables**: `{{photo}}` row documents BOTH usages -
+    standalone (circular photo, per-template size, disappears entirely for
+    users without a Directory photo) and attribute position (unchanged URL
+    substitution); image-token table carries default sizes + resize ranges;
+    click-link override cross-referenced.
+  - **Banners and logos**: banner library entries' own size (24-600 x
+    24-400), new "Image sizes: library default vs per-template" section
+    (precedence: template pair > entry pair > defaults), per-template link
+    override under Click-through links, sizing table refreshed.
+  - **Create your first template**: points the reader at the Visual tab +
+    chips.
+  - **Changelog page**: four new July bullets (visual editor, per-template
+    image resize, smarter standalone `{{photo}}`, clearer validation).
+  - All six touched pages carry `updated: 2026-07-26` across the four
+    languages; docs sitemap grows 96 -> 100 URLs.
+- **Why:** PM 2026-07-26 - the public docs must reflect the shipped visual
+  editor, including the `{{photo}}` behavior change.
+
 ## 2026-07-25 - /pricing subpage: Founders banner, calculator, Workspace compatibility table (4 languages)
 
 - **What:** New landing subpage at `/pricing` (+ `/pl/pricing`, `/de/pricing`,

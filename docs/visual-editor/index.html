@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Visual editor | SignatureCat Docs</title>
+  <meta name="description" content="Design Gmail signatures without writing HTML - SignatureCat's visual editor with variable chips, image resizing, columns, fonts and guaranteed Gmail-safe output." />
+  <link rel="canonical" href="https://signature.cat/docs/visual-editor" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/visual-editor" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/visual-editor" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/visual-editor" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/visual-editor" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/visual-editor" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Visual editor | SignatureCat Docs" />
+  <meta property="og:description" content="Design Gmail signatures without writing HTML - SignatureCat's visual editor with variable chips, image resizing, columns, fonts and guaranteed Gmail-safe output." />
+  <meta property="og:url" content="https://signature.cat/docs/visual-editor" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Visual editor | SignatureCat Docs" />
+  <meta name="twitter:description" content="Design Gmail signatures without writing HTML - SignatureCat's visual editor with variable chips, image resizing, columns, fonts and guaranteed Gmail-safe output." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Visual editor",
+      "description": "Design Gmail signatures without writing HTML - SignatureCat's visual editor with variable chips, image resizing, columns, fonts and guaranteed Gmail-safe output.",
+      "url": "https://signature.cat/docs/visual-editor",
+      "inLanguage": "en",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Docs",
+          "item": "https://signature.cat/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Reference",
+          "item": "https://signature.cat/docs/visual-editor"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Visual editor",
+          "item": "https://signature.cat/docs/visual-editor"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Skip to content</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Toggle documentation menu" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Search documentation" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Search docs</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Theme: system" title="Theme: system">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Help</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Open app</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">What's new</p>
+        <ul>
+        <li><a href="/docs/changelog">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Getting started</p>
+        <ul>
+        <li><a href="/docs">Introduction</a></li>
+        <li><a href="/docs/connect-google-workspace">Connect Google Workspace</a></li>
+        <li><a href="/docs/create-your-first-template">Create your first template</a></li>
+        <li><a href="/docs/assign-templates">Assign templates</a></li>
+        <li><a href="/docs/verify-assignments">Verify assignment jobs</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Advanced setup</p>
+        <ul>
+        <li><a href="/docs/user-management">User management</a></li>
+        <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
+        <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Billing</p>
+        <ul>
+        <li><a href="/docs/invoices">Invoices</a></li>
+        <li><a href="/docs/billing-details">Billing details</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Reference</p>
+        <ul>
+        <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/docs/templates">Templates</a></li>
+        <li><a href="/docs/visual-editor" aria-current="page">Visual editor</a></li>
+        <li><a href="/docs/template-variables">Template variables</a></li>
+        <li><a href="/docs/assignments">Assignments</a></li>
+        <li><a href="/docs/apply-jobs">Apply jobs</a></li>
+        <li><a href="/docs/logs">Logs</a></li>
+        <li><a href="/docs/images">Images</a></li>
+        <li><a href="/docs/notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Support</p>
+        <ul>
+        <li><a href="/docs/support-access">Support access</a></li>
+        <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/service-status">Service status</a></li>
+        <li><a href="/docs/legal">Legal</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Breadcrumb"><a href="/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Reference</span><span class="crumb-sep">/</span><span aria-current="page">Visual editor</span></nav>
+      <article class="docs-article">
+<h1>Visual editor</h1>
+<p>The visual editor lets you design a signature template without writing a line of HTML. You work on a canvas with text formatting, variable chips and live-sized images - and everything it produces is guaranteed email-safe: the editor can only emit markup that renders correctly in Gmail, so there is no way to build a signature that breaks in the mailbox.</p>
+<p>The editor lives on the same page as the <a href="/docs/templates#the-editor">HTML editor</a>: open any template on <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signatures</a> and switch between the <strong>Visual</strong> and <strong>HTML</strong> tabs.</p>
+<h2 id="editing-modes">Editing modes<a class="h-anchor" href="#editing-modes" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Every template is edited in one of two modes, and the editor opens in the mode the template was last saved in:</p>
+<ul>
+<li><strong>Visual</strong> - the canvas described on this page. Saving stores both the visual document and the generated HTML.</li>
+<li><strong>HTML</strong> - the classic code editor with token autocompletion; see <a href="/docs/templates#the-editor">Templates</a>.</li>
+</ul>
+<p>Switching between them is possible at any time, with two caveats:</p>
+<ul>
+<li><strong>HTML to Visual is a one-way conversion.</strong> The importer translates your markup into canvas blocks on a best-effort basis - simple layouts (including single-row tables, which become <a href="#columns">columns</a>) convert cleanly, while deeply nested table layouts are flattened. The editor warns you before a lossy conversion.</li>
+<li><strong>Visual to HTML is a downgrade.</strong> You get the generated HTML to edit freely, but saving from the HTML tab discards the visual document - switching back later means converting again.</li>
+</ul>
+<h2 id="text-fonts-and-colors">Text, fonts and colors<a class="h-anchor" href="#text-fonts-and-colors" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>The canvas supports the formatting that reliably survives mail clients: paragraphs, <strong>bold</strong>, <em>italic</em>, underline, bullet and numbered lists, an email-safe text color palette, links (web, mailto and tel) and undo/redo.</p>
+<p>Two dropdowns control typography:</p>
+<ul>
+<li><strong>Font size</strong> - 10 to 24 px.</li>
+<li><strong>Font</strong> - "Default (mail client)" plus seven web-safe families: Arial, Verdana, Tahoma, Trebuchet MS, Georgia, Times New Roman and Courier New. The default option emits no font at all, letting each recipient's mail client use its own - the safest choice.</li>
+</ul>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
+<p>Web-safe fonts render consistently because they ship with the recipient's system, not with the email. The first time you pick a non-default font the editor shows a short compatibility note.</p>
+</div></aside>
+<h2 id="columns">Columns<a class="h-anchor" href="#columns" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Insert a 2- or 3-column row from the toolbar to place content side by side - for example a photo on the left and contact details on the right. Columns are stored as a single-row table in the generated HTML, the one layout technique every mail client renders correctly. Existing single-row tables in imported HTML become columns automatically.</p>
+<h2 id="variables-as-chips">Variables as chips<a class="h-anchor" href="#variables-as-chips" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Person variables like <code>{{firstname}}</code> or <code>{{phone}}</code> appear on the canvas as <strong>chips</strong> - solid tokens you cannot accidentally break by typing into them. Chips can be:</p>
+<ul>
+<li>inserted from the <strong>Insert variable</strong> menu,</li>
+<li>formatted like text (bold, italic, underline apply to the resolved value),</li>
+<li>dragged and dropped anywhere on the canvas,</li>
+<li>removed with the trash button that appears on hover.</li>
+</ul>
+<p>The full variable list and resolution rules are in <a href="/docs/template-variables">Template variables</a>.</p>
+<h2 id="images-logo-banner-and-photo">Images: logo, banner and photo<a class="h-anchor" href="#images-logo-banner-and-photo" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p><code>{{logo}}</code>, <code>{{banner}}</code> and <code>{{photo}}</code> render on the canvas as image chips at their real size - the logo and banner chips show the actual image selected from your <a href="/docs/banners-and-logos">library</a>, the photo chip shows a circular avatar placeholder (real photos substitute per user at render time).</p>
+<p>Select an image chip and drag its <strong>resize handles</strong> (edges and corner) to size it for this template - like resizing a window. Double-click restores the default size; the handles also work from the keyboard (arrow keys step 10 px, Shift-arrows 50 px, Home/End jump to the limits). Allowed ranges:</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Image</th><th scope="col">Default size</th><th scope="col">Resize range</th></tr></thead>
+<tbody>
+<tr><td>Logo</td><td>115x115 px</td><td>24-300 px per side</td></tr>
+<tr><td>Banner</td><td>450x100 px (or the library entry's own size)</td><td>24-600 x 24-400 px</td></tr>
+<tr><td>Photo</td><td>115x115 px, circular</td><td>24-300 px per side</td></tr>
+</tbody>
+</table></div>
+<p>Sizes are stored <strong>per template</strong>: resizing a banner in one template never changes other templates that use the same library image.</p>
+<p>A selected logo or banner chip also exposes a <strong>Link</strong> button: keep the library image's click-through link, remove the link for this template only, or point it at a different URL - without touching the library entry other templates share.</p>
+<h2 id="conditional-blocks">Conditional blocks<a class="h-anchor" href="#conditional-blocks" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p><code>{{del}}</code> and <code>{{delete}}</code> wrappers appear as framed blocks on the canvas, so you can see exactly what disappears when a user's data is missing. When a save is rejected because of unbalanced tags, the editor shows two looping micro-demos contrasting how <code>{{del}}</code> and <code>{{delete}}</code> behave - the exact rules are in <a href="/docs/template-variables#conditional-blocks-del-and-delete">Template variables</a>.</p>
+<h2 id="staying-within-gmails-limits">Staying within Gmail's limits<a class="h-anchor" href="#staying-within-gmails-limits" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Gmail caps signatures at 10,000 characters. A live budget counter under the canvas tracks the generated HTML size, so you know long before Gmail would reject the signature.</p>
+<h2 id="reset-and-validation">Reset and validation<a class="h-anchor" href="#reset-and-validation" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ul>
+<li><strong>Reset to saved</strong> (visible whenever you have unsaved changes) restores the template to its last saved state, including the saved editing mode, after a confirmation.</li>
+<li>Validation errors are specific: an unknown token is named, unbalanced conditional tags come with open/close counts - no guesswork.</li>
+</ul>
+<p>When your template looks right, preview it against real users and test it on your own mailbox - see <a href="/docs/create-your-first-template#preview-as-a-real-user">Create your first template</a>.</p>
+      </article>
+<nav class="docs-pager" aria-label="Pagination">
+<a class="pager-card pager-prev" href="/docs/templates" rel="prev">
+      <span class="pager-label">Previous</span>
+      <span class="pager-title">Templates</span>
+    </a>
+<a class="pager-card pager-next" href="/docs/template-variables" rel="next">
+      <span class="pager-label">Next</span>
+      <span class="pager-title">Template variables</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Language">
+            <option value="/docs/visual-editor" data-lang="en" lang="en" selected>English</option>
+            <option value="/pl/docs/visual-editor" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/visual-editor" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/visual-editor" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Legal</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page">
+      <nav>
+        <p class="docs-toc-title">On this page</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#editing-modes">Editing modes</a></li>
+        <li class="toc-l2"><a href="#text-fonts-and-colors">Text, fonts and colors</a></li>
+        <li class="toc-l2"><a href="#columns">Columns</a></li>
+        <li class="toc-l2"><a href="#variables-as-chips">Variables as chips</a></li>
+        <li class="toc-l2"><a href="#images-logo-banner-and-photo">Images: logo, banner and photo</a></li>
+        <li class="toc-l2"><a href="#conditional-blocks">Conditional blocks</a></li>
+        <li class="toc-l2"><a href="#staying-within-gmails-limits">Staying within Gmail's limits</a></li>
+        <li class="toc-l2"><a href="#reset-and-validation">Reset and validation</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Search documentation" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Search documentation" autocomplete="off" spellcheck="false" aria-label="Search documentation" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Close search">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>No results. Try different keywords or email <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

@@ -156,6 +156,7 @@ const NAV = [
     items: [
       { slug: 'domain-wide-delegation' },
       { slug: 'templates' },
+      { slug: 'visual-editor' },
       { slug: 'template-variables' },
       { slug: 'assignments' },
       { slug: 'apply-jobs' },

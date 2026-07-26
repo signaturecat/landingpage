@@ -48,7 +48,7 @@
       "url": "https://signature.cat/fr/docs/changelog",
       "inLanguage": "fr",
       "datePublished": "2026-07-24",
-      "dateModified": "2026-07-24",
+      "dateModified": "2026-07-26",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -167,6 +167,7 @@
         <ul>
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
+        <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -194,6 +195,10 @@
 <p>Les nouveautés de SignatureCat, le gestionnaire de signatures e-mail pour Google Workspace. Nous améliorons en continu les modèles de signature, l'intégration Gmail et l'administration Workspace - les points forts sont rassemblés ici, mois par mois.</p>
 <h2 id="juillet-2026">Juillet 2026<a class="h-anchor" href="#juillet-2026" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
+<li><strong>Un éditeur visuel de signatures.</strong> Concevez des modèles de signature Gmail sans écrire de HTML : des puces de variables à glisser-déposer, des mises en page en 2-3 colonnes, des polices web-safe, une palette de couleurs compatible e-mail et des blocs conditionnels que vous voyez - avec un rendu garanti correct dans Gmail. L'éditeur HTML classique reste à un onglet de distance. Voir le nouveau guide <a href="/fr/docs/visual-editor">Éditeur visuel</a>.</li>
+<li><strong>Redimensionnez les images par modèle.</strong> Faites glisser les coins d'un logo, d'une bannière ou d'une photo de profil directement sur le canevas - chaque modèle de signature garde sa propre taille, et les entrées de bibliothèque de bannières peuvent définir leurs propres dimensions par défaut. Un modèle peut aussi remplacer le lien de clic d'une image sans toucher à la bibliothèque partagée.</li>
+<li><strong>Une variable {{photo}} plus maligne.</strong> Utilisé seul, <code>{{photo}}</code> rend désormais une photo de profil circulaire prête à l'emploi, dimensionnée par modèle - et les utilisateurs sans photo dans l'annuaire Google Workspace n'obtiennent pas d'image cassée, la photo disparaît simplement de leur signature.</li>
+<li><strong>Validation de modèles plus claire.</strong> Les erreurs d'enregistrement nomment désormais le jeton inconnu exact ou comptent les balises conditionnelles non équilibrées, et l'éditeur explique <code>{{del}}</code> vs <code>{{delete}}</code> avec deux mini-démos animées.</li>
 <li><strong>Documentation en quatre langues.</strong> Ce centre d'aide est désormais disponible en anglais, polonais, allemand et français. Le sélecteur de langue dans le pied de page mène au même article, pour que toute votre équipe lise la gestion des signatures Google Workspace dans sa langue.</li>
 <li><strong>Voir qui a modifié un modèle de signature.</strong> Chaque modèle de signature affiche désormais qui l'a modifié en dernier et quand - dans la liste des modèles et dans l'éditeur de signature. Utile quand plusieurs admins Workspace gèrent les signatures e-mail ensemble.</li>
 <li><strong>Domaine d'images personnalisé simplifié.</strong> Héberger les bannières et logos de signature sur votre propre domaine ne demande plus qu'un seul enregistrement CNAME. Un assistant vérifie la configuration pour vous - voir <a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a>.</li>

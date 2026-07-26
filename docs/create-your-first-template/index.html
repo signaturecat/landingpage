@@ -47,8 +47,8 @@
       "description": "Create a Gmail signature template in SignatureCat, personalize it with Google Directory variables, preview it and test it on your own mailbox.",
       "url": "https://signature.cat/docs/create-your-first-template",
       "inLanguage": "en",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -167,6 +167,7 @@
         <ul>
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
+        <li><a href="/docs/visual-editor">Visual editor</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -203,9 +204,9 @@
 </ul></li>
 <li>For the logo or banner starters, pick an image from your library or upload one - or skip and a placeholder is used until you choose one. See <a href="/docs/banners-and-logos">Banners and logos</a>.</li>
 </ol>
-<p>The editor opens immediately. Everything from the starter can be adjusted later.</p>
+<p>The editor opens immediately. Everything from the starter can be adjusted later - either directly in the HTML, or on the <a href="/docs/visual-editor">visual editor</a> canvas with no HTML at all (switch to the <strong>Visual</strong> tab; the one-time conversion is described on that page).</p>
 <h2 id="personalize-with-variables">Personalize with variables<a class="h-anchor" href="#personalize-with-variables" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Insert <code>{{variable}}</code> tokens with the <strong>Insert variable</strong> menu - for example <code>{{firstname}}</code>, <code>{{jobtitle}}</code> or <code>{{phone}}</code>. At apply time each token resolves from the user's Google Directory record, so one template produces a personal signature for everyone.</p>
+<p>Insert <code>{{variable}}</code> tokens with the <strong>Insert variable</strong> menu - for example <code>{{firstname}}</code>, <code>{{jobtitle}}</code> or <code>{{phone}}</code>. In the visual editor they appear as solid chips you can drag, format and delete like objects. At apply time each token resolves from the user's Google Directory record, so one template produces a personal signature for everyone.</p>
 <p>Wrap optional lines in conditional tags so signatures stay clean when data is missing:</p>
 <ul>
 <li><code>{{del}} ... {{/del}}</code> removes the wrapped block only when <strong>all</strong> variables inside are empty.</li>

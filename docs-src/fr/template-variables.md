@@ -2,7 +2,7 @@
 title: Variables de modèle
 navTitle: Variables de modèle
 description: Référence complète des variables de modèle SignatureCat - champs de personne Google Directory, jetons de logo et de bannière, et blocs conditionnels del/delete.
-updated: 2026-07-17
+updated: 2026-07-26
 ---
 
 # Variables de modèle
@@ -21,7 +21,7 @@ Les valeurs proviennent de la fiche de chaque utilisateur dans votre annuaire Go
 | `{{domain}}` | Partie domaine de l'e-mail | Suit l'alias lors de l'application à un alias. |
 | `{{jobtitle}}` | Intitulé de poste | Depuis l'entrée d'organisation principale de l'utilisateur dans le Directory. |
 | `{{department}}` | Service | Depuis la même entrée d'organisation. |
-| `{{photo}}` | URL de la photo de profil | Mise à l'échelle automatique en 400 px pour un rendu net ; doit être une photo HTTPS. |
+| `{{photo}}` | Photo de profil | Utilisé seul, le jeton rend une photo de profil circulaire (115x115 px par défaut, [redimensionnable par modèle](/docs/visual-editor/#images-logo-banner-and-photo)) ; les utilisateurs sans photo dans le Directory n'obtiennent aucune image plutôt qu'une icône cassée. À l'intérieur de votre propre `<img src="{{photo}}">`, il est résolu vers l'URL HTTPS de la photo (mise à l'échelle automatique en 400 px) et votre balisage reste intact. |
 | `{{address}}` | Adresse formatée | L'entrée d'adresse principale de l'utilisateur. |
 | `{{phone}}` | Numéro de téléphone | Le premier non vide parmi : professionnel, puis mobile, puis domicile. |
 
@@ -31,10 +31,10 @@ Les valeurs proviennent de la fiche de chaque utilisateur dans votre annuaire Go
 
 | Jeton | Valeur |
 |---|---|
-| `{{logo}}` | Le logo d'entreprise sélectionné du modèle, rendu en 115x115 px. |
-| `{{banner}}` | La bannière de campagne sélectionnée du modèle, rendue en 450x100 px, réduite sur écrans étroits. |
+| `{{logo}}` | Le logo d'entreprise sélectionné du modèle - 115x115 px par défaut, redimensionnable par modèle (24-300 px). |
+| `{{banner}}` | La bannière de campagne sélectionnée du modèle - 450x100 px par défaut (une entrée de bibliothèque peut définir sa propre taille), redimensionnable par modèle, réduite sur écrans étroits. |
 
-Les images proviennent de la bibliothèque par espace de travail et sont sélectionnées par modèle ; si rien n'est sélectionné, un espace réservé neutre est rendu. Si l'image de la bibliothèque a un lien de clic, l'image y est enveloppée automatiquement. Voir [Bannières et logos](/docs/banners-and-logos/).
+Les images proviennent de la bibliothèque par espace de travail et sont sélectionnées par modèle ; si rien n'est sélectionné, un espace réservé neutre est rendu. Si l'image de la bibliothèque a un lien de clic, l'image y est enveloppée automatiquement - et chaque modèle peut [remplacer ce lien](/docs/visual-editor/#images-logo-banner-and-photo). Les détails de dimensionnement et les poignées de redimensionnement sont décrits dans l'[éditeur visuel](/docs/visual-editor/) et [Bannières et logos](/docs/banners-and-logos/).
 
 > [!NOTE]
 > Les jetons d'image rendent toujours quelque chose (image ou espace réservé), ils ne comptent donc pas comme "vides" pour les blocs conditionnels ci-dessous.

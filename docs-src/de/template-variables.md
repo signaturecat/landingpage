@@ -2,7 +2,7 @@
 title: Vorlagenvariablen
 navTitle: Vorlagenvariablen
 description: Vollständige Referenz der SignatureCat-Vorlagenvariablen - Personenfelder aus Google Directory, Logo- und Banner-Token sowie bedingte del/delete-Blöcke.
-updated: 2026-07-17
+updated: 2026-07-26
 ---
 
 # Vorlagenvariablen
@@ -21,7 +21,7 @@ Die Werte stammen aus dem Datensatz jedes Nutzers in Ihrem Google Workspace-Dire
 | `{{domain}}` | Domain-Teil der E-Mail | Folgt dem Alias, wenn auf einen Alias angewendet wird. |
 | `{{jobtitle}}` | Position | Aus dem primären Organisationseintrag des Nutzers im Directory. |
 | `{{department}}` | Abteilung | Aus demselben Organisationseintrag. |
-| `{{photo}}` | Profilbild-URL | Automatisch auf 400 px skaliert für scharfes Rendering; muss ein HTTPS-Foto sein. |
+| `{{photo}}` | Profilbild | Allein stehend rendert das Token ein rundes Profilbild (standardmäßig 115x115 px, [pro Vorlage in der Größe änderbar](/docs/visual-editor/#images-logo-banner-and-photo)); Nutzer ohne Directory-Foto erhalten gar kein Bild statt eines defekten Symbols. Innerhalb Ihres eigenen `<img src="{{photo}}">` löst es zur HTTPS-Foto-URL auf (automatisch auf 400 px skaliert), und Ihr Markup bleibt unangetastet. |
 | `{{address}}` | Formatierte Adresse | Der primäre Adresseintrag des Nutzers. |
 | `{{phone}}` | Telefonnummer | Die erste nicht leere von: Arbeit, dann Mobil, dann Privat. |
 
@@ -31,10 +31,10 @@ Die Werte stammen aus dem Datensatz jedes Nutzers in Ihrem Google Workspace-Dire
 
 | Token | Wert |
 |---|---|
-| `{{logo}}` | Das für die Vorlage gewählte Firmenlogo, gerendert mit 115x115 px. |
-| `{{banner}}` | Der für die Vorlage gewählte Kampagnenbanner, gerendert mit 450x100 px, auf schmalen Bildschirmen verkleinert. |
+| `{{logo}}` | Das für die Vorlage gewählte Firmenlogo - standardmäßig 115x115 px, pro Vorlage in der Größe änderbar (24-300 px). |
+| `{{banner}}` | Der für die Vorlage gewählte Kampagnenbanner - standardmäßig 450x100 px (ein Bibliothekseintrag kann eine eigene Größe definieren), pro Vorlage in der Größe änderbar, auf schmalen Bildschirmen verkleinert. |
 
-Bilder stammen aus der Bibliothek pro Workspace und werden pro Vorlage ausgewählt; ist nichts ausgewählt, wird ein neutraler Platzhalter gerendert. Hat das Bibliotheksbild einen Klick-Link, wird das Bild automatisch darin eingeschlossen. Siehe [Banner und Logos](/docs/banners-and-logos/).
+Bilder stammen aus der Bibliothek pro Workspace und werden pro Vorlage ausgewählt; ist nichts ausgewählt, wird ein neutraler Platzhalter gerendert. Hat das Bibliotheksbild einen Klick-Link, wird das Bild automatisch darin eingeschlossen - und jede Vorlage kann [diesen Link überschreiben](/docs/visual-editor/#images-logo-banner-and-photo). Größendetails und die Ziehpunkte sind im [visuellen Editor](/docs/visual-editor/) und in [Banner und Logos](/docs/banners-and-logos/) beschrieben.
 
 > [!NOTE]
 > Bild-Token rendern immer etwas (Bild oder Platzhalter) und zählen daher für die bedingten Blöcke unten nicht als "leer".

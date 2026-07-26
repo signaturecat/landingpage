@@ -91,7 +91,7 @@
   </url>
   <url>
     <loc>https://signature.cat/docs/create-your-first-template</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/create-your-first-template"/>
@@ -102,7 +102,7 @@
   </url>
   <url>
     <loc>https://signature.cat/pl/docs/create-your-first-template</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/create-your-first-template"/>
@@ -113,7 +113,7 @@
   </url>
   <url>
     <loc>https://signature.cat/de/docs/create-your-first-template</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/create-your-first-template"/>
@@ -124,7 +124,7 @@
   </url>
   <url>
     <loc>https://signature.cat/fr/docs/create-your-first-template</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/create-your-first-template"/>
@@ -355,7 +355,7 @@
   </url>
   <url>
     <loc>https://signature.cat/docs/banners-and-logos</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/banners-and-logos"/>
@@ -366,7 +366,7 @@
   </url>
   <url>
     <loc>https://signature.cat/pl/docs/banners-and-logos</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/banners-and-logos"/>
@@ -377,7 +377,7 @@
   </url>
   <url>
     <loc>https://signature.cat/de/docs/banners-and-logos</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/banners-and-logos"/>
@@ -388,7 +388,7 @@
   </url>
   <url>
     <loc>https://signature.cat/fr/docs/banners-and-logos</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/banners-and-logos"/>
@@ -531,7 +531,7 @@
   </url>
   <url>
     <loc>https://signature.cat/docs/templates</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/templates"/>
@@ -542,7 +542,7 @@
   </url>
   <url>
     <loc>https://signature.cat/pl/docs/templates</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/templates"/>
@@ -553,7 +553,7 @@
   </url>
   <url>
     <loc>https://signature.cat/de/docs/templates</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/templates"/>
@@ -564,7 +564,7 @@
   </url>
   <url>
     <loc>https://signature.cat/fr/docs/templates</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/templates"/>
@@ -574,8 +574,52 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/templates"/>
   </url>
   <url>
+    <loc>https://signature.cat/docs/visual-editor</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/visual-editor"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/pl/docs/visual-editor</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/visual-editor"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/de/docs/visual-editor</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/visual-editor"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/fr/docs/visual-editor</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/visual-editor"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/visual-editor"/>
+  </url>
+  <url>
     <loc>https://signature.cat/docs/template-variables</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/template-variables"/>
@@ -586,7 +630,7 @@
   </url>
   <url>
     <loc>https://signature.cat/pl/docs/template-variables</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/template-variables"/>
@@ -597,7 +641,7 @@
   </url>
   <url>
     <loc>https://signature.cat/de/docs/template-variables</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/template-variables"/>
@@ -608,7 +652,7 @@
   </url>
   <url>
     <loc>https://signature.cat/fr/docs/template-variables</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/template-variables"/>
@@ -1015,7 +1059,7 @@
   </url>
   <url>
     <loc>https://signature.cat/docs/changelog</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/changelog"/>
@@ -1026,7 +1070,7 @@
   </url>
   <url>
     <loc>https://signature.cat/pl/docs/changelog</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/changelog"/>
@@ -1037,7 +1081,7 @@
   </url>
   <url>
     <loc>https://signature.cat/de/docs/changelog</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/changelog"/>
@@ -1048,7 +1092,7 @@
   </url>
   <url>
     <loc>https://signature.cat/fr/docs/changelog</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/docs/changelog"/>

@@ -2,7 +2,7 @@
 title: Zmienne szablonów
 navTitle: Zmienne szablonów
 description: Kompletna referencja zmiennych szablonów SignatureCat - pola osobowe z Google Directory, tokeny logo i banera oraz bloki warunkowe del/delete.
-updated: 2026-07-17
+updated: 2026-07-26
 ---
 
 # Zmienne szablonów
@@ -21,7 +21,7 @@ Wartości pochodzą z rekordu każdego użytkownika w katalogu Twojego Google Wo
 | `{{domain}}` | Część domenowa adresu e-mail | Podąża za aliasem przy zastosowaniu do aliasu. |
 | `{{jobtitle}}` | Stanowisko | Z głównego wpisu organizacji użytkownika w Directory. |
 | `{{department}}` | Dział | Z tego samego wpisu organizacji. |
-| `{{photo}}` | URL zdjęcia profilowego | Automatycznie skalowany do 400 px dla ostrego renderowania; musi to być zdjęcie po HTTPS. |
+| `{{photo}}` | Zdjęcie profilowe | Użyty samodzielnie, token renderuje okrągłe zdjęcie profilowe (domyślnie 115x115 px, [rozmiar zmienialny per szablon](/docs/visual-editor/#images-logo-banner-and-photo)); użytkownicy bez zdjęcia w Directory nie dostają żadnego obrazka zamiast zepsutej ikony. Wewnątrz Twojego własnego `<img src="{{photo}}">` rozwiązuje się do adresu HTTPS zdjęcia (automatycznie skalowanego do 400 px), a Twoje znaczniki pozostają nietknięte. |
 | `{{address}}` | Sformatowany adres | Główny wpis adresu użytkownika. |
 | `{{phone}}` | Numer telefonu | Pierwszy niepusty z: służbowy, potem komórkowy, potem domowy. |
 
@@ -31,10 +31,10 @@ Wartości pochodzą z rekordu każdego użytkownika w katalogu Twojego Google Wo
 
 | Token | Wartość |
 |---|---|
-| `{{logo}}` | Wybrane w szablonie logo firmy, renderowane 115x115 px. |
-| `{{banner}}` | Wybrany w szablonie baner kampanii, renderowany 450x100 px, pomniejszany na wąskich ekranach. |
+| `{{logo}}` | Wybrane w szablonie logo firmy - domyślnie 115x115 px, rozmiar zmienialny per szablon (24-300 px). |
+| `{{banner}}` | Wybrany w szablonie baner kampanii - domyślnie 450x100 px (wpis w bibliotece może definiować własny rozmiar), rozmiar zmienialny per szablon, pomniejszany na wąskich ekranach. |
 
-Obrazki pochodzą z biblioteki per workspace i są wybierane per szablon; jeśli nic nie wybrano, renderuje się neutralny placeholder. Jeśli obrazek w bibliotece ma link po kliknięciu, obrazek jest w niego automatycznie opakowywany. Zobacz [Banery i logo](/docs/banners-and-logos/).
+Obrazki pochodzą z biblioteki per workspace i są wybierane per szablon; jeśli nic nie wybrano, renderuje się neutralny placeholder. Jeśli obrazek w bibliotece ma link po kliknięciu, obrazek jest w niego automatycznie opakowywany - a każdy szablon może [ten link nadpisać](/docs/visual-editor/#images-logo-banner-and-photo). Szczegóły rozmiarów i uchwyty zmiany rozmiaru opisują [edytor wizualny](/docs/visual-editor/) oraz [Banery i logo](/docs/banners-and-logos/).
 
 > [!NOTE]
 > Tokeny obrazków zawsze coś renderują (obrazek albo placeholder), więc nie liczą się jako "puste" dla poniższych bloków warunkowych.

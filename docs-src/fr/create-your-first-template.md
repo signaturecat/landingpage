@@ -2,7 +2,7 @@
 title: Créer votre premier modèle
 navTitle: Créer votre premier modèle
 description: Créez un modèle de signature Gmail dans SignatureCat, personnalisez-le avec les variables Google Directory, prévisualisez-le et testez-le sur votre propre boîte.
-updated: 2026-07-17
+updated: 2026-07-26
 ---
 
 # Créer votre premier modèle
@@ -18,11 +18,11 @@ Un modèle est une signature HTML unique que SignatureCat personnalise par utili
    - **Avec bannière** - la signature plus une bannière de campagne (450x100 px) en dessous.
 3. Pour les starters logo ou bannière, choisissez une image dans votre bibliothèque ou téléversez-en une - ou passez cette étape et un espace réservé sera utilisé jusqu'à ce que vous en choisissiez une. Voir [Bannières et logos](/docs/banners-and-logos/).
 
-L'éditeur s'ouvre immédiatement. Tout ce qui vient du starter peut être ajusté plus tard.
+L'éditeur s'ouvre immédiatement. Tout ce qui vient du starter peut être ajusté plus tard - soit directement dans le HTML, soit sur le canevas de l'[éditeur visuel](/docs/visual-editor/) sans aucun HTML (basculez sur l'onglet **Visuel** ; la page en question décrit la conversion initiale).
 
 ## Personnaliser avec des variables
 
-Insérez des jetons `{{variable}}` avec le menu **Insérer une variable** - par exemple `{{firstname}}`, `{{jobtitle}}` ou `{{phone}}`. Au moment de l'application, chaque jeton est résolu à partir de la fiche Google Directory de l'utilisateur, de sorte qu'un seul modèle produit une signature personnelle pour chacun.
+Insérez des jetons `{{variable}}` avec le menu **Insérer une variable** - par exemple `{{firstname}}`, `{{jobtitle}}` ou `{{phone}}`. Dans l'éditeur visuel, ils apparaissent comme des puces pleines que vous pouvez glisser, mettre en forme et supprimer comme des objets. Au moment de l'application, chaque jeton est résolu à partir de la fiche Google Directory de l'utilisateur, de sorte qu'un seul modèle produit une signature personnelle pour chacun.
 
 Enveloppez les lignes facultatives dans des balises conditionnelles pour que les signatures restent propres quand des données manquent :
 

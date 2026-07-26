@@ -1,19 +1,24 @@
 ---
 title: Vorlagen
 navTitle: Vorlagen
-description: SignatureCat-Vorlagen-Referenz - der HTML-Editor, Starter, Vorschau, Test-Anwendung, Self-Service-Schalter, Standardvorlage und sicheres Löschen.
-updated: 2026-07-17
+description: SignatureCat-Vorlagen-Referenz - der visuelle und der HTML-Editor, Starter, Vorschau, Test-Anwendung, Self-Service-Schalter, Standardvorlage und sicheres Löschen.
+updated: 2026-07-26
 ---
 
 # Vorlagen
 
-Eine Vorlage ist ein einzelnes HTML-Dokument mit `{{variable}}`-Token, das SignatureCat pro Nutzer rendert. Vorlagen liegen auf der Seite [Signaturen](https://app.signature.cat/signatures) (Designer, Editoren und Admins) und werden in einem Code-Editor mit Live-Vorschau bearbeitet.
+Eine Vorlage ist ein einzelnes HTML-Dokument mit `{{variable}}`-Token, das SignatureCat pro Nutzer rendert. Vorlagen liegen auf der Seite [Signaturen](https://app.signature.cat/signatures) (Designer, Editoren und Admins) und werden entweder im [visuellen Editor](/docs/visual-editor/) oder in einem Code-Editor bearbeitet, beide mit Live-Vorschau.
 
 Für einen geführten ersten Durchlauf siehe [Ihre erste Vorlage erstellen](/docs/create-your-first-template/). Der Variablensatz hat eine eigene Seite: [Vorlagenvariablen](/docs/template-variables/).
 
 ## Der Editor
 
-Der Editor unter `app.signature.cat/signatures/{id}` ist **HTML-first**: Sie bearbeiten das Signatur-Markup direkt, mit Autovervollständigung für alle `{{variable}}`-Token. Neben dem Code-Bereich erhalten Sie:
+Der Editor unter `app.signature.cat/signatures/{id}` hat zwei Tabs und öffnet sich in dem Modus, in dem die Vorlage zuletzt gespeichert wurde:
+
+- **Visuell** - gestalten auf einer Arbeitsfläche, ohne HTML zu schreiben: Variablen-Chips, Ziehpunkte für Bildgrößen, Spalten, Schriften und eine garantiert Gmail-sichere Ausgabe. Er hat eine [eigene Seite](/docs/visual-editor/).
+- **HTML** - das Signatur-Markup direkt bearbeiten, mit Autovervollständigung für alle `{{variable}}`-Token.
+
+Die Konvertierung von HTML zu Visuell ist eine Einbahnstraße und erfolgt nach bestem Bemühen (komplexe Tabellen-Layouts werden abgeflacht; der Editor warnt vorher); das Speichern aus dem HTML-Tab verwirft das visuelle Dokument. In beiden Modi erhalten Sie:
 
 - **Vorschau** - Live-Rendering der aufgelösten Signatur, in einer Sandbox. **Rendern als** setzt den Directory-Datensatz eines beliebigen echten Nutzers ein, damit Sie Grenzfälle prüfen können (lange Namen, fehlende Telefonnummern).
 - **Variable einfügen** - Menü aller Personenvariablen, gruppiert und mit Hinweisen.
@@ -28,6 +33,8 @@ Beim Speichern wird die Vorlage validiert und Folgendes abgelehnt:
 
 - unbekannte Token (alles, was keine bekannte Variable, kein Asset-Token und kein bedingtes Tag ist),
 - unausgeglichene `{{del}}`- / `{{delete}}`-Paare.
+
+Fehlermeldungen sind konkret: Ein unbekanntes Token wird beim Namen genannt, und unausgeglichene bedingte Tags kommen mit ihren Öffnungs-/Schließzählern. Ein Live-Zähler verfolgt Gmails Signatur-Limit von 10.000 Zeichen.
 
 Das HTML wird beim Speichern bereinigt: Skripte, iframes, Event-Handler (`onclick=` und Verwandte) und `javascript:`-URLs werden entfernt. Signaturen sind von Natur aus statisches HTML - Gmail würde aktive Inhalte ohnehin entfernen.
 

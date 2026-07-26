@@ -2,7 +2,7 @@
 title: Changelog
 navTitle: Changelog
 description: Les nouveautés de SignatureCat - chaque mois, les nouvelles fonctions et améliorations de la gestion des signatures e-mail pour Google Workspace et Gmail.
-updated: 2026-07-24
+updated: 2026-07-26
 published: 2026-07-24
 ---
 
@@ -12,6 +12,10 @@ Les nouveautés de SignatureCat, le gestionnaire de signatures e-mail pour Googl
 
 ## Juillet 2026
 
+- **Un éditeur visuel de signatures.** Concevez des modèles de signature Gmail sans écrire de HTML : des puces de variables à glisser-déposer, des mises en page en 2-3 colonnes, des polices web-safe, une palette de couleurs compatible e-mail et des blocs conditionnels que vous voyez - avec un rendu garanti correct dans Gmail. L'éditeur HTML classique reste à un onglet de distance. Voir le nouveau guide [Éditeur visuel](/docs/visual-editor).
+- **Redimensionnez les images par modèle.** Faites glisser les coins d'un logo, d'une bannière ou d'une photo de profil directement sur le canevas - chaque modèle de signature garde sa propre taille, et les entrées de bibliothèque de bannières peuvent définir leurs propres dimensions par défaut. Un modèle peut aussi remplacer le lien de clic d'une image sans toucher à la bibliothèque partagée.
+- **Une variable {{photo}} plus maligne.** Utilisé seul, `{{photo}}` rend désormais une photo de profil circulaire prête à l'emploi, dimensionnée par modèle - et les utilisateurs sans photo dans l'annuaire Google Workspace n'obtiennent pas d'image cassée, la photo disparaît simplement de leur signature.
+- **Validation de modèles plus claire.** Les erreurs d'enregistrement nomment désormais le jeton inconnu exact ou comptent les balises conditionnelles non équilibrées, et l'éditeur explique `{{del}}` vs `{{delete}}` avec deux mini-démos animées.
 - **Documentation en quatre langues.** Ce centre d'aide est désormais disponible en anglais, polonais, allemand et français. Le sélecteur de langue dans le pied de page mène au même article, pour que toute votre équipe lise la gestion des signatures Google Workspace dans sa langue.
 - **Voir qui a modifié un modèle de signature.** Chaque modèle de signature affiche désormais qui l'a modifié en dernier et quand - dans la liste des modèles et dans l'éditeur de signature. Utile quand plusieurs admins Workspace gèrent les signatures e-mail ensemble.
 - **Domaine d'images personnalisé simplifié.** Héberger les bannières et logos de signature sur votre propre domaine ne demande plus qu'un seul enregistrement CNAME. Un assistant vérifie la configuration pour vous - voir [Domaine d'images personnalisé](/docs/custom-image-domain).

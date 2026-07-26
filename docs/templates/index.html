@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Templates | SignatureCat Docs</title>
-  <meta name="description" content="SignatureCat template reference - the HTML editor, starters, preview, test apply, self-service toggle, default template and safe deletion." />
+  <meta name="description" content="SignatureCat template reference - the visual and HTML editors, starters, preview, test apply, self-service toggle, default template and safe deletion." />
   <link rel="canonical" href="https://signature.cat/docs/templates" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/templates" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/templates" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Templates | SignatureCat Docs" />
-  <meta property="og:description" content="SignatureCat template reference - the HTML editor, starters, preview, test apply, self-service toggle, default template and safe deletion." />
+  <meta property="og:description" content="SignatureCat template reference - the visual and HTML editors, starters, preview, test apply, self-service toggle, default template and safe deletion." />
   <meta property="og:url" content="https://signature.cat/docs/templates" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Templates | SignatureCat Docs" />
-  <meta name="twitter:description" content="SignatureCat template reference - the HTML editor, starters, preview, test apply, self-service toggle, default template and safe deletion." />
+  <meta name="twitter:description" content="SignatureCat template reference - the visual and HTML editors, starters, preview, test apply, self-service toggle, default template and safe deletion." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Templates",
-      "description": "SignatureCat template reference - the HTML editor, starters, preview, test apply, self-service toggle, default template and safe deletion.",
+      "description": "SignatureCat template reference - the visual and HTML editors, starters, preview, test apply, self-service toggle, default template and safe deletion.",
       "url": "https://signature.cat/docs/templates",
       "inLanguage": "en",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-07-26",
+      "dateModified": "2026-07-26",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -167,6 +167,7 @@
         <ul>
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates" aria-current="page">Templates</a></li>
+        <li><a href="/docs/visual-editor">Visual editor</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -191,10 +192,15 @@
       <nav class="docs-breadcrumb" aria-label="Breadcrumb"><a href="/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Reference</span><span class="crumb-sep">/</span><span aria-current="page">Templates</span></nav>
       <article class="docs-article">
 <h1>Templates</h1>
-<p>A template is a single HTML document with <code>{{variable}}</code> tokens that SignatureCat renders per user. Templates live on the <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signatures</a> page (Designers, Editors and Admins) and are edited in a code editor with live preview.</p>
+<p>A template is a single HTML document with <code>{{variable}}</code> tokens that SignatureCat renders per user. Templates live on the <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signatures</a> page (Designers, Editors and Admins) and are edited either in the <a href="/docs/visual-editor">visual editor</a> or in a code editor, both with live preview.</p>
 <p>For a guided first run, see <a href="/docs/create-your-first-template">Create your first template</a>. The variable set has its own page: <a href="/docs/template-variables">Template variables</a>.</p>
 <h2 id="the-editor">The editor<a class="h-anchor" href="#the-editor" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>The editor at <code>app.signature.cat/signatures/{id}</code> is <strong>HTML-first</strong>: you edit the signature markup directly, with autocompletion for all <code>{{variable}}</code> tokens. Alongside the code pane you get:</p>
+<p>The editor at <code>app.signature.cat/signatures/{id}</code> has two tabs, and opens in the mode the template was last saved in:</p>
+<ul>
+<li><strong>Visual</strong> - design on a canvas without writing HTML: variable chips, image resize handles, columns, fonts and a guaranteed Gmail-safe output. It has a <a href="/docs/visual-editor">dedicated page</a>.</li>
+<li><strong>HTML</strong> - edit the signature markup directly, with autocompletion for all <code>{{variable}}</code> tokens.</li>
+</ul>
+<p>Converting HTML to Visual is one-way and best-effort (complex table layouts are flattened; the editor warns first); saving from the HTML tab discards the visual document. In both modes you get:</p>
 <ul>
 <li><strong>Preview</strong> - live rendering of the resolved signature, in a sandbox. <strong>Render as</strong> substitutes any real user's Directory record so you can check edge cases (long names, missing phone numbers).</li>
 <li><strong>Insert variable</strong> - menu of all person variables, grouped with hints.</li>
@@ -209,6 +215,7 @@
 <li>unknown tokens (anything that is not a known variable, asset token or conditional tag),</li>
 <li>unbalanced <code>{{del}}</code> / <code>{{delete}}</code> pairs.</li>
 </ul>
+<p>Error messages are specific: an unknown token is named and unbalanced conditional tags come with their open/close counts. A live counter tracks Gmail's 10,000-character signature limit.</p>
 <p>The HTML is sanitized on save: scripts, iframes, event handlers (<code>onclick=</code> and friends) and <code>javascript:</code> URLs are stripped. Signatures are static HTML by nature - Gmail would strip active content anyway.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tip</p><div class="callout-body">
 <p>Gmail signatures render best with table-based layouts and inline styles. Avoid external CSS files and web fonts; most mail clients ignore them.</p>
@@ -233,9 +240,9 @@
       <span class="pager-label">Previous</span>
       <span class="pager-title">Domain-Wide Delegation</span>
     </a>
-<a class="pager-card pager-next" href="/docs/template-variables" rel="next">
+<a class="pager-card pager-next" href="/docs/visual-editor" rel="next">
       <span class="pager-label">Next</span>
-      <span class="pager-title">Template variables</span>
+      <span class="pager-title">Visual editor</span>
     </a>
 </nav>
       <footer class="docs-foot">
