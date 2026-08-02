@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Bilder von der eigenen Domain ausliefern | SignatureCat Docs</title>
-  <meta name="description" content="Verbinden Sie eine Subdomain wie images.yourcompany.com über zwei DNS-Einträge mit SignatureCat, damit Signaturbilder von Ihrer eigenen Domain geladen werden." />
+  <meta name="description" content="Verbinden Sie eine Subdomain wie images.yourcompany.com mit einem einzigen CNAME-Eintrag mit SignatureCat, damit Signaturbilder in Gmail von Ihrer eigenen Domain geladen werden." />
   <link rel="canonical" href="https://signature.cat/de/docs/custom-image-domain" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/custom-image-domain" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/custom-image-domain" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Bilder von der eigenen Domain ausliefern | SignatureCat Docs" />
-  <meta property="og:description" content="Verbinden Sie eine Subdomain wie images.yourcompany.com über zwei DNS-Einträge mit SignatureCat, damit Signaturbilder von Ihrer eigenen Domain geladen werden." />
+  <meta property="og:description" content="Verbinden Sie eine Subdomain wie images.yourcompany.com mit einem einzigen CNAME-Eintrag mit SignatureCat, damit Signaturbilder in Gmail von Ihrer eigenen Domain geladen werden." />
   <meta property="og:url" content="https://signature.cat/de/docs/custom-image-domain" />
   <meta property="og:locale" content="de_DE" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Bilder von der eigenen Domain ausliefern | SignatureCat Docs" />
-  <meta name="twitter:description" content="Verbinden Sie eine Subdomain wie images.yourcompany.com über zwei DNS-Einträge mit SignatureCat, damit Signaturbilder von Ihrer eigenen Domain geladen werden." />
+  <meta name="twitter:description" content="Verbinden Sie eine Subdomain wie images.yourcompany.com mit einem einzigen CNAME-Eintrag mit SignatureCat, damit Signaturbilder in Gmail von Ihrer eigenen Domain geladen werden." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Bilder von der eigenen Domain ausliefern",
-      "description": "Verbinden Sie eine Subdomain wie images.yourcompany.com über zwei DNS-Einträge mit SignatureCat, damit Signaturbilder von Ihrer eigenen Domain geladen werden.",
+      "description": "Verbinden Sie eine Subdomain wie images.yourcompany.com mit einem einzigen CNAME-Eintrag mit SignatureCat, damit Signaturbilder in Gmail von Ihrer eigenen Domain geladen werden.",
       "url": "https://signature.cat/de/docs/custom-image-domain",
       "inLanguage": "de",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
         <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/user-data">Benutzerdaten</a></li>
+        <li><a href="/de/docs/user-data-import">Benutzerdaten importieren</a></li>
         <li><a href="/de/docs/custom-image-domain" aria-current="page">Eigene Bilddomain</a></li>
         <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates">Vorlagen</a></li>
         <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
+        <li><a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a></li>
         <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
         <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/gmail-sanitization">Gmail-Kürzung</a></li>
         <li><a href="/de/docs/service-status">Dienststatus</a></li>
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
@@ -204,28 +208,27 @@
 <ol>
 <li>Öffnen Sie die Bildbibliothek aus einem beliebigen Vorlagen-Editor auf <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signaturen</a> (Button Logo oder Banner) und wählen Sie in der Auslieferungsleiste <strong>Eigene Domain verwenden</strong>.</li>
 <li><strong>Geben Sie eine Subdomain ein</strong> - zum Beispiel <code>images.yourcompany.com</code> - und klicken Sie auf <strong>DNS-Eintrag erzeugen</strong>.</li>
-<li><strong>Fügen Sie zwei DNS-Einträge</strong> bei Ihrem DNS-Anbieter hinzu, exakt wie angezeigt:
-<ul>
-<li>einen <strong>CNAME</strong>-Eintrag, der die Subdomain auf <code>cdn.signature.cat</code> zeigen lässt (leitet die Subdomain zu uns),</li>
-<li>einen <strong>TXT</strong>-Eintrag, der den Domainbesitz nachweist.</li>
-</ul></li>
-<li><strong>Warten Sie auf die Verifizierung.</strong> SignatureCat prüft die Einträge automatisch alle paar Minuten; Sie können auch auf <strong>Jetzt prüfen</strong> klicken. Die Aktivierung dauert in der Regel wenige Minuten, manchmal bis zu einer Stunde, während DNS aktualisiert wird. Das TLS-Zertifikat wird für Sie ausgestellt.</li>
+<li><strong>Fügen Sie einen DNS-Eintrag</strong> bei Ihrem DNS-Anbieter hinzu, exakt wie angezeigt: einen <strong>CNAME</strong>, der Ihre Subdomain auf <code>cdn.signature.cat</code> zeigen lässt. Dieser eine Eintrag ist alles, was SignatureCat braucht. Manche Anbieter wollen im Feld Name nur den Teil vor Ihrer Domain, und der Assistent gibt Ihnen diese Kurzform aus.</li>
+<li><strong>Warten Sie auf die Verifizierung.</strong> SignatureCat prüft den Eintrag automatisch alle paar Minuten; Sie können auch auf <strong>Jetzt prüfen</strong> klicken. Die Aktivierung dauert in der Regel wenige Minuten, manchmal bis zu einer Stunde, während DNS aktualisiert wird. Das TLS-Zertifikat wird für Sie ausgestellt.</li>
 </ol>
 <p>Der Assistent zeigt einen von drei Status: <strong>Wartet auf DNS-Einträge</strong>, <strong>Domain aktiv</strong> oder <strong>Verifizierung fehlgeschlagen</strong>.</p>
 <p>Sobald aktiv: "Neue E-Mails laden Bilder von Ihrer Domain. Vorlagen bleiben unverändert - der Wechsel erfolgt automatisch."</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
 <p>Bereits gesendete E-Mails sind nicht betroffen - sie laden Bilder weiterhin von der URL, mit der sie gerendert wurden.</p>
 </div></aside>
+<h3 id="verifizierung-klappt-nicht">Verifizierung klappt nicht?<a class="h-anchor" href="#verifizierung-klappt-nicht" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
+<p>Bleibt die Domain nach einer Prüfung ausstehend oder schlägt die Verifizierung fehl, blendet der Assistent unter der Überschrift <strong>Verifizierung klappt nicht?</strong> einen <strong>TXT</strong>-Eintrag ein. Er ist ein Rückfallweg für zwei seltene Fälle: Ein CAA-Eintrag auf Ihrer Domain blockiert die Zertifizierungsstelle, die SignatureCat verwendet, oder der Hostname wird bereits über eine andere Cloudflare-Zone geleitet. Fügen Sie den TXT-Eintrag zusätzlich zum CNAME hinzu und klicken Sie erneut auf <strong>Jetzt prüfen</strong>. In jedem anderen Fall genügt der CNAME allein.</p>
 <h2 id="die-domain-entfernen">Die Domain entfernen<a class="h-anchor" href="#die-domain-entfernen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Das Entfernen der Domain im Assistenten stellt die Bildauslieferung für neue E-Mails automatisch auf <code>images.signature.cat</code> zurück. Nichts geht kaputt.</p>
 <aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Warnung</p><div class="callout-body">
-<p>Der umgekehrte Weg wird nicht überwacht: Löschen Sie den CNAME-Eintrag bei Ihrem DNS-Anbieter, <strong>während die Domain in SignatureCat noch aktiv ist</strong>, laden Bilder in neu gesendeten Signaturen stillschweigend nicht mehr. Entfernen Sie die Domain immer zuerst in SignatureCat und räumen Sie dann DNS auf.</p>
+<p>Löschen Sie den CNAME-Eintrag bei Ihrem DNS-Anbieter, <strong>während die Domain in SignatureCat noch aktiv ist</strong>, lädt jedes Bild, das bereits über diese Subdomain ausgeliefert wurde, nicht mehr - auch Bilder in E-Mails, die früher gesendet wurden. Entfernen Sie die Domain immer zuerst in SignatureCat und räumen Sie dann DNS auf.</p>
 </div></aside>
+<p>Aktive Domains werden automatisch erneut geprüft, ein verschwundener CNAME fällt also innerhalb von etwa einem Tag auf: Die Domain verlässt den aktiven Zustand, und neu gerenderte Signaturen fallen von selbst auf <code>images.signature.cat</code> zurück. Das ist ein Sicherheitsnetz für künftige Signaturen, keine Reparatur für die, die bereits in den Postfächern der Empfänger liegen - daher die obige Reihenfolge.</p>
       </article>
 <nav class="docs-pager" aria-label="Seitennavigation">
-<a class="pager-card pager-prev" href="/de/docs/self-service" rel="prev">
+<a class="pager-card pager-prev" href="/de/docs/user-data-import" rel="prev">
       <span class="pager-label">Zurück</span>
-      <span class="pager-title">Self-Service</span>
+      <span class="pager-title">Benutzerdaten importieren</span>
     </a>
 <a class="pager-card pager-next" href="/de/docs/banners-and-logos" rel="next">
       <span class="pager-label">Weiter</span>
@@ -254,6 +257,7 @@
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#voraussetzungen">Voraussetzungen</a></li>
         <li class="toc-l2"><a href="#einrichtung">Einrichtung</a></li>
+        <li class="toc-l3"><a href="#verifizierung-klappt-nicht">Verifizierung klappt nicht?</a></li>
         <li class="toc-l2"><a href="#die-domain-entfernen">Die Domain entfernen</a></li>
         </ul>
       </nav>

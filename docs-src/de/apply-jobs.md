@@ -1,8 +1,8 @@
 ---
 title: Anwendungs-Aufträge
 navTitle: Anwendungs-Aufträge
-description: Wie SignatureCat Signaturen anwendet - die tägliche Zuweisungssynchronisierung, manuelle Einmal-Aufträge von der Anwenden-Seite und die Auftragsverfolgung.
-updated: 2026-07-17
+description: Wie SignatureCat Gmail-Signaturen im gesamten Google Workspace schreibt - die tägliche Zuweisungssynchronisierung, Einmal-Anwendungen von der Anwenden-Seite und die Auftragsverfolgung.
+updated: 2026-08-02
 ---
 
 # Anwendungs-Aufträge
@@ -11,7 +11,7 @@ Jeder Signatur-Schreibvorgang läuft innerhalb eines **Auftrags**: entweder die 
 
 ## Die Zuweisungssynchronisierung
 
-Einmal am Tag löst SignatureCat alle [Zuweisungen](/docs/assignments/) neu auf und wendet die Signaturen im gesamten Workspace erneut an. So bleiben Signaturen aktuell, wenn Personen Gruppen beitreten, zwischen OUs wechseln oder neu eingestellt werden. Dieselbe Synchronisierung können Sie jederzeit mit **Jetzt synchronisieren** auf [Zuweisungen](https://app.signature.cat/assignments) anstoßen.
+Einmal am Tag löst SignatureCat alle [Zuweisungen](/docs/assignments) neu auf und wendet die Signaturen im gesamten Workspace erneut an. So bleiben Signaturen aktuell, wenn Personen Gruppen beitreten, zwischen OUs wechseln oder neu eingestellt werden. Dieselbe Synchronisierung können Sie jederzeit mit **Jetzt synchronisieren** auf [Zuweisungen](https://app.signature.cat/assignments) anstoßen.
 
 ## Manuelles Anwenden: die Anwenden-Seite
 
@@ -28,14 +28,18 @@ Empfänger können beliebig kombiniert werden (bis zu 50 Einträge):
 Nach dem Absenden werden Sie zur Live-Auftragsansicht weitergeleitet.
 
 > [!NOTE]
-> Ein Einmal-Anwenden schreibt die Signatur **einmal**. Ist der Nutzer von einer Zuweisung oder einer Self-Service-Wahl erfasst, überschreibt die nächste tägliche Synchronisierung das Einmal-Ergebnis gemäß den [Vorrangregeln](/docs/assignments/#how-precedence-works).
+> Ein Einmal-Anwenden schreibt die Signatur **einmal**. Ist der Nutzer von einer Zuweisung oder einer Self-Service-Wahl erfasst, überschreibt die nächste tägliche Synchronisierung das Einmal-Ergebnis gemäß den [Vorrangregeln](/docs/assignments#wie-der-vorrang-funktioniert).
 
 ## Einen Auftrag verfolgen
 
-Die Auftragsansicht unter `app.signature.cat/jobs/{id}` aktualisiert sich live, während der Auftrag läuft: Status, Fortschritt und eine Ergebnistabelle pro Nutzer mit Fehlercodes. Abgeschlossene Aufträge werden außerdem in den [Aufgabenprotokollen](https://app.signature.cat/assignments/logs) gelistet. **Fehlgeschlagene erneut ausführen** wiederholt nur die fehlgeschlagenen Zeilen.
+Die Auftragsansicht unter `app.signature.cat/jobs/{id}` aktualisiert sich live, während der Auftrag läuft: Status, Fortschritt und eine Ergebnistabelle pro Nutzer mit Fehlercodes. Abgeschlossene Aufträge werden außerdem in den [Aufgabenprotokollen](https://app.signature.cat/logs) gelistet. Ein abgeschlossener Auftrag hat keine Schaltfläche zum Wiederholen: Beheben Sie zuerst die Ursache und starten Sie dann über die Seite [Anwenden](https://app.signature.cat/apply) eine neue Anwendung für die fehlgeschlagenen Adressen, oder überlassen Sie es der täglichen Synchronisierung.
 
-Statuswerte und Fehlercodes sind in [Einen Zuweisungsauftrag prüfen](/docs/verify-assignments/#job-statuses) dokumentiert.
+Ist der Auftrag abgeschlossen, ergänzt dieselbe Ansicht den Bereich **Ausführungsdetails**: **Aktualisierte Hauptadressen**, **Aktualisierte send-as-Aliasse**, **Verarbeitete Gruppen** (mit der Anzahl der Untergruppen, wo relevant), **Verarbeitete Organisationseinheiten (OU)** und bei einem Ziel über den gesamten Workspace die Anzahl der Nutzer, zu der es aufgelöst wurde.
+
+Statuswerte und Fehlercodes sind in [Einen Zuweisungsauftrag prüfen](/docs/verify-assignments#auftragsstatus) dokumentiert.
 
 ## Wie schnell sind Änderungen sichtbar?
 
 Manuelles Anwenden und Self-Service-Speichern wirken nahezu sofort (Sekunden bis wenige Minuten bei großen Zielgruppen). Zuweisungsänderungen greifen bei der nächsten täglichen Synchronisierung, sofern Sie nicht **Jetzt synchronisieren** klicken. Gmail zeigt die neue Signatur beim nächsten Verfassen einer E-Mail - bereits gesendete E-Mails ändern sich nie.
+
+Das Bearbeiten von Benutzerdaten verhält sich je nach Weg unterschiedlich. Das Speichern oder Löschen der Werte eines einzelnen Nutzers im Tab **Daten** stellt sofort eine Aktualisierung der Signatur genau dieser Person in die Warteschlange, die Änderung greift also binnen Momenten. Ein CSV-Import stellt nichts in die Warteschlange: Der letzte Schritt des Imports bietet einen überspringbaren Button **Signaturen jetzt synchronisieren**, und ohne ihn erreichen die importierten Werte die Postfächer erst mit der nächsten täglichen Synchronisierung. Siehe [Benutzerdaten](/docs/user-data).

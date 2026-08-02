@@ -47,8 +47,8 @@
       "description": "How SignatureCat uses Google Domain-Wide Delegation - scopes, the per-tenant client ID, propagation, revocation detection and re-granting.",
       "url": "https://signature.cat/docs/domain-wide-delegation",
       "inLanguage": "en",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/docs/user-management">User management</a></li>
         <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
         <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
         <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/docs/domain-wide-delegation" aria-current="page">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
         <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/docs/support-access">Support access</a></li>
         <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
         <li><a href="/docs/service-status">Service status</a></li>
         <li><a href="/docs/legal">Legal</a></li>
         </ul>
@@ -200,7 +204,7 @@
 <div class="tbl"><table>
 <thead><tr><th scope="col">Scope</th><th scope="col">Required</th><th scope="col">Used for</th></tr></thead>
 <tbody>
-<tr><td><code>gmail.settings.basic</code></td><td>Yes</td><td>Writing the signature on each user's primary address.</td></tr>
+<tr><td><code>gmail.settings.basic</code></td><td>Yes</td><td>Writing the signature on each user's primary address, and reading the stored signature back - the check that compares what Gmail saved with what was sent, and the on-demand mailbox lookup in <a href="/docs/logs#read-the-current-mailbox-signature">Logs</a>.</td></tr>
 <tr><td><code>admin.directory.user.readonly</code></td><td>Yes</td><td>Reading user profiles - names, job titles, phones - for <a href="/docs/template-variables">template variables</a>.</td></tr>
 <tr><td><code>admin.directory.group.member.readonly</code></td><td>Yes</td><td>Expanding group assignments into members.</td></tr>
 <tr><td><code>admin.directory.customer.readonly</code></td><td>Yes</td><td>Reading the workspace seat count for billing.</td></tr>
@@ -217,8 +221,10 @@
 <ul>
 <li>signature syncs <strong>pause</strong> immediately (nothing is half-applied),</li>
 <li>admins get the in-app notification "Domain-Wide Delegation access lost" and an "Action required" email,</li>
+<li>admins see a red banner across the app: "The last Google Workspace access check failed. Signature syncs are paused until the access is fixed.",</li>
 <li>the app routes admins back to the DWD wizard.</li>
 </ul>
+<p>The banner carries an inline <strong>Check access now</strong> button that re-runs the access check on the spot, without opening the wizard: if it passes, the banner disappears; if it still fails, you land in the wizard. There is also an <strong>Open the DWD wizard</strong> link. Only admins see the banner, because only they can re-authorize, and it appears only after a check has actually failed - never merely because a check is old.</p>
 <p>Re-granting the missing entry or scope and passing <strong>Check</strong> resumes everything - state self-heals, nothing needs to be rebuilt. To re-open the wizard at any time use <strong>Re-run DWD wizard</strong> in <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Settings</a>, Service Account section.</p>
 <aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Warning</p><div class="callout-body">
 <p>The DWD grant applies organization-wide, and removing it stops signature management for the whole workspace at once. If you only want to drop alias support, remove just the <code>gmail.settings.sharing</code> scope and re-run <strong>Check</strong>.</p>

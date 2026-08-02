@@ -48,7 +48,7 @@
       "url": "https://signature.cat/fr/docs/changelog",
       "inLanguage": "fr",
       "datePublished": "2026-07-24",
-      "dateModified": "2026-07-26",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
         <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
         <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
         <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
         <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/fr/docs/support-access">Accès du support</a></li>
         <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
         <li><a href="/fr/docs/service-status">État du service</a></li>
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
@@ -193,17 +197,36 @@
       <article class="docs-article">
 <h1>Changelog</h1>
 <p>Les nouveautés de SignatureCat, le gestionnaire de signatures e-mail pour Google Workspace. Nous améliorons en continu les modèles de signature, l'intégration Gmail et l'administration Workspace - les points forts sont rassemblés ici, mois par mois.</p>
+<h2 id="aot-2026">Août 2026<a class="h-anchor" href="#aot-2026" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ul>
+<li><strong>Nous vérifions désormais ce que Gmail a réellement enregistré.</strong> Gmail réécrit les signatures sur ses propres serveurs au moment de les stocker, et il peut discrètement retirer des parties d'une mise en page compliquée. SignatureCat compare maintenant ce qu'il a envoyé avec ce que Gmail a gardé : si quelque chose a été tronqué, la ligne de résultat porte la mention "tronquée par Gmail" et la signature de test dans l'éditeur vous indique quels éléments ont disparu. Voir <a href="/fr/docs/gmail-sanitization">Quand Gmail tronque votre signature</a>.</li>
+<li><strong>Voyez la signature qu'une boîte porte en ce moment.</strong> Depuis <a href="/fr/docs/logs">Journaux</a>, vous pouvez ouvrir la signature Gmail actuelle de n'importe quel collaborateur et la regarder, sans lui demander de capture d'écran. Utile quand quelqu'un a modifié sa signature à la main dans Gmail, ou quand vous voulez la preuve qu'un déploiement est bien arrivé.</li>
+<li><strong>Texte alternatif pour les logos et les bannières.</strong> Chaque image de votre bibliothèque peut désormais porter une courte description que les destinataires voient quand leur application de messagerie bloque les images - l'un des gains d'accessibilité les plus simples dans une signature e-mail. Voir <a href="/fr/docs/banners-and-logos">Bannières et logos</a>.</li>
+<li><strong>N'importe quelle image, directement depuis une URL.</strong> À côté de la bibliothèque d'images partagée, l'éditeur visuel peut désormais placer une image ponctuelle hébergée n'importe où, avec sa propre description, une forme carrée ou ronde et un redimensionnement au glisser. Les photos de profil ont reçu le même choix : ronde (par défaut) ou carrée.</li>
+<li><strong>Des séparateurs que vous pouvez styler.</strong> Insérez une ligne horizontale entre les blocs et réglez sa couleur et sa longueur - la façon nette de séparer un nom des coordonnées.</li>
+<li><strong>Des colonnes qui disparaissent quand elles sont vides.</strong> Une colonne entière peut désormais être marquée comme conditionnelle : la colonne photo (ou la colonne téléphone) disparaît pour les personnes qui n'ont pas de photo ou pas de téléphone, au lieu de laisser un trou dans leur signature.</li>
+<li><strong>Les signatures HTML existantes s'importent mieux.</strong> Les tableaux de mise en page à plusieurs lignes, les sections conditionnelles autour de cellules entières et le balisage écrit à la main survivent désormais bien plus fidèlement au passage à l'éditeur visuel.</li>
+<li><strong>Mise à jour de la politique de confidentialité.</strong> Une nouvelle version de la <a href="https://signature.cat/privacy" target="_blank" rel="noopener">Politique de confidentialité</a> entre en vigueur le 17 août 2026 : elle décrit le stockage optionnel des <a href="/fr/docs/user-data">données utilisateur</a> et la relecture d'une signature depuis une boîte mail.</li>
+</ul>
 <h2 id="juillet-2026">Juillet 2026<a class="h-anchor" href="#juillet-2026" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
+<li><strong>Comblez les manques de vos données d'annuaire.</strong> Un intitulé de poste ou un numéro de téléphone absent ne bloque plus une bonne signature. Sur le nouvel onglet <strong>Données</strong>, vous pouvez stocker des valeurs par utilisateur qui remplacent l'annuaire Google dans les signatures, en importer des centaines depuis un fichier CSV, ou laisser chacun compléter ses propres informations. La fonction est désactivée tant que vous ne l'activez pas, et la désactiver supprime tout ce qu'elle a stocké. Voir <a href="/fr/docs/user-data">Données utilisateur</a>.</li>
 <li><strong>Un éditeur visuel de signatures.</strong> Concevez des modèles de signature Gmail sans écrire de HTML : des puces de variables à glisser-déposer, des mises en page en 2-3 colonnes, des polices web-safe, une palette de couleurs compatible e-mail et des blocs conditionnels que vous voyez - avec un rendu garanti correct dans Gmail. L'éditeur HTML classique reste à un onglet de distance. Voir le nouveau guide <a href="/fr/docs/visual-editor">Éditeur visuel</a>.</li>
 <li><strong>Redimensionnez les images par modèle.</strong> Faites glisser les coins d'un logo, d'une bannière ou d'une photo de profil directement sur le canevas - chaque modèle de signature garde sa propre taille, et les entrées de bibliothèque de bannières peuvent définir leurs propres dimensions par défaut. Un modèle peut aussi remplacer le lien de clic d'une image sans toucher à la bibliothèque partagée.</li>
+<li><strong>Des largeurs de colonnes que vous faites glisser.</strong> Attrapez la gouttière entre deux colonnes pour changer leurs proportions, ou saisissez une rangée entière et déplacez-la. Une mise en page photo-et-détails en 30/70 est désormais un glissement, pas une supposition.</li>
+<li><strong>Une mise en forme qui tient sur les variables.</strong> Agrandir <code>{{firstname}}</code> ou lui donner une couleur part vraiment ainsi dans la signature livrée, au lieu de retomber discrètement sur le style du texte qui l'entoure.</li>
 <li><strong>Une variable {{photo}} plus maligne.</strong> Utilisé seul, <code>{{photo}}</code> rend désormais une photo de profil circulaire prête à l'emploi, dimensionnée par modèle - et les utilisateurs sans photo dans l'annuaire Google Workspace n'obtiennent pas d'image cassée, la photo disparaît simplement de leur signature.</li>
 <li><strong>Validation de modèles plus claire.</strong> Les erreurs d'enregistrement nomment désormais le jeton inconnu exact ou comptent les balises conditionnelles non équilibrées, et l'éditeur explique <code>{{del}}</code> vs <code>{{delete}}</code> avec deux mini-démos animées.</li>
+<li><strong>Voyez votre signature comme chaque client mail l'affiche.</strong> L'aperçu peut désormais simuler Gmail sur le web, Gmail sur téléphone, Outlook classique sur Windows, Outlook.com et Apple Mail, en mode clair et en mode sombre - de quoi repérer la surprise du mode sombre avant vos collègues. Vous pouvez aussi rendre le modèle à partir de la fiche d'annuaire de n'importe quel utilisateur réel avec le champ <strong>Rendre comme</strong>. Voir <a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a>.</li>
+<li><strong>Des modèles de départ refaits pour Outlook, et plus nombreux.</strong> Les points de départ intégrés ont été réécrits pour qu'une signature toute neuve ne s'effondre plus sur une seule ligne dans Outlook classique, et l'assistant de création peut désormais proposer des designs prêts à l'emploi en plus des trois intégrés.</li>
 <li><strong>Documentation en quatre langues.</strong> Ce centre d'aide est désormais disponible en anglais, polonais, allemand et français. Le sélecteur de langue dans le pied de page mène au même article, pour que toute votre équipe lise la gestion des signatures Google Workspace dans sa langue.</li>
 <li><strong>Voir qui a modifié un modèle de signature.</strong> Chaque modèle de signature affiche désormais qui l'a modifié en dernier et quand - dans la liste des modèles et dans l'éditeur de signature. Utile quand plusieurs admins Workspace gèrent les signatures e-mail ensemble.</li>
 <li><strong>Domaine d'images personnalisé simplifié.</strong> Héberger les bannières et logos de signature sur votre propre domaine ne demande plus qu'un seul enregistrement CNAME. Un assistant vérifie la configuration pour vous - voir <a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a>.</li>
+<li><strong>Une alerte quand une image utilisée est supprimée.</strong> Retirer un logo ou une bannière que des modèles de signature utilisent encore envoie désormais une notification dans l'application et un e-mail aux admins, pour qu'une image manquante ne soit jamais une surprise silencieuse dans la boîte de quelqu'un.</li>
 <li><strong>Résultats de déploiement plus clairs.</strong> La vue des tâches a été repensée : barre de progression colorée, icônes de résultat par utilisateur et une section de détails d'exécution qui montre exactement quels comptes Gmail ont reçu la nouvelle signature.</li>
 <li><strong>Une page Logs dédiée.</strong> L'historique des attributions de signatures a sa propre page <a href="/fr/docs/logs">Logs</a> - savoir qui a reçu quelle signature e-mail, et quand, ne prend qu'un clic.</li>
+<li><strong>Un avertissement quand l'accès au Workspace se casse.</strong> Si SignatureCat perd l'accès dont il a besoin à votre Google Workspace, les admins voient désormais un bandeau rouge dans toute l'application avec un bouton <strong>Vérifier l'accès maintenant</strong>, au lieu de l'apprendre d'un déploiement en échec quelques jours plus tard.</li>
+<li><strong>Une visite guidée à la première connexion.</strong> Les nouveaux admins reçoivent une courte présentation de la navigation sur la page Signatures, que l'on peut passer, pour que personne n'ait à deviner ce qui se cache derrière chaque onglet.</li>
 <li><strong>Lancement de la documentation publique.</strong> signature.cat/docs est en ligne avec plus de 20 guides - de la <a href="/fr/docs/connect-google-workspace">connexion de votre Google Workspace</a> à la <a href="/fr/docs/create-your-first-template">création de votre premier modèle de signature</a>. Les liens d'aide dans l'application mènent désormais directement au bon article.</li>
 <li><strong>De meilleurs messages d'erreur partout.</strong> Chaque écran affiche désormais un message clair dans votre langue en cas de problème, avec les détails techniques à portée de main - utile pour contacter le support.</li>
 <li><strong>Suppression de modèles plus sûre.</strong> Supprimer un modèle de signature encore attribué à des groupes ou unités organisationnelles affiche d'abord un avertissement avec les décomptes exacts.</li>
@@ -249,6 +272,7 @@
       <nav>
         <p class="docs-toc-title">Sur cette page</p>
         <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#aot-2026">Août 2026</a></li>
         <li class="toc-l2"><a href="#juillet-2026">Juillet 2026</a></li>
         <li class="toc-l2"><a href="#juin-2026">Juin 2026</a></li>
         <li class="toc-l2"><a href="#mai-2026">Mai 2026</a></li>

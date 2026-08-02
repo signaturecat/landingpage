@@ -1,8 +1,8 @@
 ---
 title: Serve images from your own domain
 navTitle: Custom image domain
-description: Point a subdomain like images.yourcompany.com at SignatureCat with two DNS records so signature images load from your own domain.
-updated: 2026-07-17
+description: Point a subdomain like images.yourcompany.com at SignatureCat with one CNAME record so signature images in Gmail load from your own domain.
+updated: 2026-08-02
 ---
 
 # Serve images from your own domain
@@ -20,11 +20,9 @@ Setup breaks nothing: until the domain is active, images keep loading from `imag
 ## Set it up
 
 1. Open the image library from any template editor on [Signatures](https://app.signature.cat/signatures) (Logo or Banner button) and choose **Use your own domain** in the serving bar.
-2. **Enter a subdomain** - for example `images.yourcompany.com` - and click **Generate DNS records**.
-3. **Add two DNS records** at your DNS provider, exactly as shown:
-   - a **CNAME** record pointing the subdomain to `cdn.signature.cat` (points the subdomain to us),
-   - a **TXT** record proving domain ownership.
-4. **Wait for verification.** SignatureCat checks the records automatically every few minutes; you can also click **Check now**. Activation usually takes a few minutes, sometimes up to an hour while DNS refreshes. The TLS certificate is issued for you.
+2. **Enter a subdomain** - for example `images.yourcompany.com` - and click **Generate DNS record**.
+3. **Add one DNS record** at your DNS provider, exactly as shown: a **CNAME** pointing your subdomain to `cdn.signature.cat`. That single record is all SignatureCat needs. Some providers want only the part before your domain in the Name field, and the wizard prints that short form for you.
+4. **Wait for verification.** SignatureCat checks the record automatically every few minutes; you can also click **Check now**. Activation usually takes a few minutes, sometimes up to an hour while DNS refreshes. The TLS certificate is issued for you.
 
 The wizard shows one of three statuses: **Waiting for DNS records**, **Domain active** or **Verification failed**.
 
@@ -33,9 +31,15 @@ Once active: "New emails fetch images from your domain. Templates stay unchanged
 > [!NOTE]
 > Emails that were already sent are not affected - they keep loading images from the URL they were rendered with.
 
+### Verification not going through?
+
+If the domain stays pending after a check, or verification fails, the wizard reveals a **TXT** record under the heading **Verification not going through?**. It is a fallback for two rare cases: a CAA record on your domain blocks the certificate authority SignatureCat uses, or the hostname is already proxied through another Cloudflare zone. Add the TXT record alongside the CNAME, then click **Check now** again. In every other case the CNAME on its own is enough.
+
 ## Removing the domain
 
 Removing the domain in the wizard switches image serving back to `images.signature.cat` automatically for new emails. Nothing breaks.
 
 > [!WARNING]
-> The reverse is not monitored: if you delete the CNAME record at your DNS provider **while the domain is still active in SignatureCat**, images in newly sent signatures will silently stop loading. Always remove the domain in SignatureCat first, then clean up DNS.
+> If you delete the CNAME record at your DNS provider **while the domain is still active in SignatureCat**, every image already served from that subdomain stops loading - including images in emails that were sent earlier. Always remove the domain in SignatureCat first, then clean up DNS.
+
+Active domains are re-checked automatically, so a CNAME that disappears is noticed within about a day: the domain drops out of the active state and newly rendered signatures fall back to `images.signature.cat` on their own. That is a safety net for future signatures, not a repair for the ones already in recipients' inboxes - hence the order above.

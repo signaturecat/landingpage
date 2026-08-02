@@ -47,8 +47,8 @@
       "description": "Create a Gmail signature template in SignatureCat, personalize it with Google Directory variables, preview it and test it on your own mailbox.",
       "url": "https://signature.cat/docs/create-your-first-template",
       "inLanguage": "en",
-      "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/docs/user-management">User management</a></li>
         <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
         <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
         <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
         <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/docs/support-access">Support access</a></li>
         <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
         <li><a href="/docs/service-status">Service status</a></li>
         <li><a href="/docs/legal">Legal</a></li>
         </ul>
@@ -204,7 +208,7 @@
 </ul></li>
 <li>For the logo or banner starters, pick an image from your library or upload one - or skip and a placeholder is used until you choose one. See <a href="/docs/banners-and-logos">Banners and logos</a>.</li>
 </ol>
-<p>The editor opens immediately. Everything from the starter can be adjusted later - either directly in the HTML, or on the <a href="/docs/visual-editor">visual editor</a> canvas with no HTML at all (switch to the <strong>Visual</strong> tab; the one-time conversion is described on that page).</p>
+<p>The editor opens immediately. Everything from the starter can be adjusted later - either directly in the HTML, or on the <a href="/docs/visual-editor">visual editor</a> canvas with no HTML at all, where text, variable chips, columns, dividers and images from your library or from any <code>https://</code> address are blocks you arrange (switch to the <strong>Visual</strong> tab; the one-time conversion is described on that page).</p>
 <h2 id="personalize-with-variables">Personalize with variables<a class="h-anchor" href="#personalize-with-variables" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Insert <code>{{variable}}</code> tokens with the <strong>Insert variable</strong> menu - for example <code>{{firstname}}</code>, <code>{{jobtitle}}</code> or <code>{{phone}}</code>. In the visual editor they appear as solid chips you can drag, format and delete like objects. At apply time each token resolves from the user's Google Directory record, so one template produces a personal signature for everyone.</p>
 <p>Wrap optional lines in conditional tags so signatures stay clean when data is missing:</p>
@@ -220,6 +224,7 @@
 <p>The preview pane renders the resolved signature live as you type. Use the <strong>Render as</strong> control to substitute any real user's Directory record - by default it renders against your own. The preview tells you exactly which record it used: "Rendered against {email}'s Directory record."</p>
 <h2 id="test-it-on-your-own-mailbox">Test it on your own mailbox<a class="h-anchor" href="#test-it-on-your-own-mailbox" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Click <strong>Set me a test signature</strong> in the editor toolbar. SignatureCat renders the template against your own Directory record and writes it to your own Gmail signature - no one else is affected. Send yourself an email or check Gmail settings to see the real result.</p>
+<p>SignatureCat then reads the signature back from your mailbox. If Gmail rewrote it while saving, an amber notice appears: "Applied, but Gmail stored a trimmed copy of this signature." (or "Applied, but Gmail stored an empty signature."). Open <strong>Technical details</strong> for the dropped elements and the character counts before and after. This is the fastest way to find the construct Gmail refuses to keep - see <a href="/docs/gmail-sanitization">When Gmail trims your signature</a>.</p>
 <p>When you are happy with the template, continue to <a href="/docs/assign-templates">Assign templates</a>.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Saving a template validates it: unknown <code>{{tokens}}</code> and unbalanced <code>{{del}}</code> / <code>{{delete}}</code> tags are rejected, and the HTML is sanitized (scripts, iframes and inline event handlers are stripped). See <a href="/docs/templates">Templates</a> for the full reference.</p>

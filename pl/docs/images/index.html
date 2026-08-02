@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Obrazki | SignatureCat Docs</title>
-  <meta name="description" content="Referencja obrazków SignatureCat - biblioteka per workspace, hosting na images.signature.cat lub własnej domenie, formaty, limity i cykl życia." />
+  <meta name="description" content="Referencja obrazków w podpisach e-mail SignatureCat dla Google Workspace - biblioteka, opisy ALT, hosting, formaty, limity i usuwanie." />
   <link rel="canonical" href="https://signature.cat/pl/docs/images" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/images" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/images" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Obrazki | SignatureCat Docs" />
-  <meta property="og:description" content="Referencja obrazków SignatureCat - biblioteka per workspace, hosting na images.signature.cat lub własnej domenie, formaty, limity i cykl życia." />
+  <meta property="og:description" content="Referencja obrazków w podpisach e-mail SignatureCat dla Google Workspace - biblioteka, opisy ALT, hosting, formaty, limity i usuwanie." />
   <meta property="og:url" content="https://signature.cat/pl/docs/images" />
   <meta property="og:locale" content="pl_PL" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Obrazki | SignatureCat Docs" />
-  <meta name="twitter:description" content="Referencja obrazków SignatureCat - biblioteka per workspace, hosting na images.signature.cat lub własnej domenie, formaty, limity i cykl życia." />
+  <meta name="twitter:description" content="Referencja obrazków w podpisach e-mail SignatureCat dla Google Workspace - biblioteka, opisy ALT, hosting, formaty, limity i usuwanie." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Obrazki",
-      "description": "Referencja obrazków SignatureCat - biblioteka per workspace, hosting na images.signature.cat lub własnej domenie, formaty, limity i cykl życia.",
+      "description": "Referencja obrazków w podpisach e-mail SignatureCat dla Google Workspace - biblioteka, opisy ALT, hosting, formaty, limity i usuwanie.",
       "url": "https://signature.cat/pl/docs/images",
       "inLanguage": "pl",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/pl/docs/user-management">Zarządzanie dostępem</a></li>
         <li><a href="/pl/docs/self-service">Self-service</a></li>
+        <li><a href="/pl/docs/user-data">Dane użytkowników</a></li>
+        <li><a href="/pl/docs/user-data-import">Import danych</a></li>
         <li><a href="/pl/docs/custom-image-domain">Własna domena obrazków</a></li>
         <li><a href="/pl/docs/banners-and-logos">Banery i logo</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/pl/docs/templates">Szablony</a></li>
         <li><a href="/pl/docs/visual-editor">Edytor wizualny</a></li>
+        <li><a href="/pl/docs/mail-client-preview">Podgląd w kliencie pocztowym</a></li>
         <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
         <li><a href="/pl/docs/assignments">Przypisania</a></li>
         <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/pl/docs/support-access">Dostęp dla supportu</a></li>
         <li><a href="/pl/docs/get-help">Uzyskaj pomoc</a></li>
+        <li><a href="/pl/docs/gmail-sanitization">Okrajanie przez Gmail</a></li>
         <li><a href="/pl/docs/service-status">Status usługi</a></li>
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
@@ -202,7 +206,15 @@
 <tr><td>Baner</td><td>450x100 px, max-width 100%</td><td><code>{{banner}}</code></td><td>200 wpisów</td></tr>
 </tbody>
 </table></div>
-<p>Wpisy w bibliotece mają opcjonalną nazwę i opcjonalny <strong>link po kliknięciu</strong>. Każdy szablon wybiera z biblioteki własne logo i baner; szablony bez wyboru renderują neutralny placeholder. Wgrywane pliki to PNG lub JPG, do 5 MB (zalecane 200 KB); SVG nie jest przyjmowane.</p>
+<p>Wpisy w bibliotece mają opcjonalną nazwę, opcjonalny <strong>link po kliknięciu</strong> i opcjonalny <strong>Opis obrazka (ALT)</strong>. Każdy szablon wybiera z biblioteki własne logo i baner; szablony bez wyboru renderują neutralny placeholder. Wgrywane pliki to PNG lub JPG, do 5 MB (zalecane 200 KB); SVG nie jest przyjmowane.</p>
+<h2 id="opis-obrazka-alt">Opis obrazka (ALT)<a class="h-anchor" href="#opis-obrazka-alt" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p><strong>Opis obrazka (ALT)</strong> to treść, którą odbiorca widzi zamiast obrazka, gdy jego klient poczty blokuje obrazki, oraz to, co odczytuje czytnik ekranu. Jest opcjonalny i ograniczony do 300 znaków.</p>
+<ul>
+<li><strong>Gdzie go ustawiasz:</strong> w formularzu dodawania, gdy wgrywasz plik albo wklejasz link, w kroku obrazka w kreatorze nowego szablonu, a później w panelu <strong>Szczegóły wybranego obrazka</strong> w bibliotece.</li>
+<li><strong>Czego dotyczy:</strong> każdego wpisu biblioteki, niezależnie od tego, czy plik hostuje SignatureCat, czy linkujesz do własnego.</li>
+<li><strong>Dokąd podróżuje:</strong> razem z wpisem biblioteki, dokładnie tak jak link po kliknięciu - zmieniasz go raz, a każdy szablon używający tego obrazka wysyła nowy opis przy następnym renderowaniu.</li>
+<li><strong>Jeśli zostawisz go pustym:</strong> obrazek renderuje się jako dekoracyjny i nie dostaje żadnego opisu.</li>
+</ul>
 <h2 id="skd-serwowane-s-obrazki">Skąd serwowane są obrazki<a class="h-anchor" href="#skd-serwowane-s-obrazki" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
 <li><strong>Pliki wgrane do biblioteki</strong> są przechowywane przez SignatureCat i serwowane z <code>https://images.signature.cat/...</code> przez CDN z długotrwałym cache'owaniem.</li>
@@ -210,15 +222,17 @@
 <li><strong>Obrazki z zewnętrznych adresów URL</strong> ("Mam link") są linkowane bezpośrednio stamtąd, gdzie je hostujesz. Muszą być publiczne i dostępne po HTTPS; najlepiej hostuj je na własnej domenie.</li>
 </ul>
 <aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Ważne</p><div class="callout-body">
-<p>Adresy URL obrazków są zapisywane na stałe w każdym wyrenderowanym podpisie. E-maile, które są już w skrzynkach odbiorców, wciąż pobierają adres, z którym zostały wysłane - dlatego SignatureCat nigdy nie usuwa plików źródłowych usuniętych wpisów biblioteki i dlatego zewnętrzny obrazek zdjęty z hostingu pokaże się jako uszkodzony w starych mailach.</p>
+<p>Adresy URL obrazków są zapisywane na stałe w każdym wyrenderowanym podpisie, więc e-maile, które są już w skrzynkach odbiorców, wciąż pobierają adres, z którym zostały wysłane: usunięcie wpisu biblioteki hostowanego przez SignatureCat zwalnia przechowywany plik, a obrazek z czasem przestaje się ładować w dostarczonej już poczcie.</p>
 </div></aside>
 <h2 id="zdjcia-profilowe">Zdjęcia profilowe<a class="h-anchor" href="#zdjcia-profilowe" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Zmienna <code>{{photo}}</code> używa zdjęcia profilowego Google użytkownika z Directory (automatycznie skalowanego do 400 px). Nie jest częścią biblioteki - zdjęciami profilowymi użytkownicy i administratorzy zarządzają w Google Workspace. Zobacz <a href="/pl/docs/template-variables#person-variables-google-directory">Zmienne szablonów</a>.</p>
+<p>Zmienna <code>{{photo}}</code> używa zdjęcia profilowego Google użytkownika z Directory (automatycznie skalowanego do 400 px). Nie jest częścią biblioteki - zdjęciami profilowymi użytkownicy i administratorzy zarządzają w Google Workspace. Zobacz <a href="/pl/docs/template-variables#zmienne-osobowe-google-directory">Zmienne szablonów</a>.</p>
 <h2 id="cykl-ycia">Cykl życia<a class="h-anchor" href="#cykl-ycia" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
-<li><strong>Podmiana obrazka:</strong> dodaj nowy plik do biblioteki i wybierz go w szablonie - albo zachowaj ten sam wpis biblioteki i zaktualizuj tylko jego link po kliknięciu (podchwytywany przy następnym renderowaniu).</li>
-<li><strong>Usunięcie wpisu biblioteki</strong> odłącza go od szablonów, które go używają (wracają do placeholdera), po ostrzeżeniu z liczbą użyć.</li>
-<li><strong>Wysłane już e-maile</strong> nigdy nie są objęte zmianami w bibliotece.</li>
+<li><strong>Podmiana obrazka:</strong> wgraj nowy plik, wybierz go w każdym szablonie, który używał starego, i dopiero gdy masz pewność, usuń stary wpis - albo zachowaj ten sam wpis biblioteki i zaktualizuj tylko jego link po kliknięciu lub opis ALT, co każdy szablon podchwytuje przy następnym renderowaniu.</li>
+<li><strong>Usunięcie wpisu biblioteki</strong> odłącza go od szablonów, które go używają (wracają do placeholdera), po ostrzeżeniu z liczbą użyć. Te podpisy w międzyczasie nadal są stosowane.</li>
+<li><strong>Usunięcie używanego obrazka powiadamia workspace:</strong> w dzwonku pojawia się powiadomienie w aplikacji, a do administratorów i właściciela idzie e-mail wymieniający dotknięte szablony. Zobacz <a href="/pl/docs/notifications">Powiadomienia</a>.</li>
+<li><strong>Hostowane pliki są zwalniane:</strong> gdy wpis biblioteki zniknie, SignatureCat sprząta przechowywany plik przy najbliższym dziennym przebiegu, więc obrazek przestaje się ładować także w dostarczonych już e-mailach. Usunięcie jest trwałe i nie da się go cofnąć samodzielnie.</li>
+<li><strong>Usunięcie nie dotyczy obrazków zewnętrznych.</strong> To Ty hostujesz plik, więc usunięcie wpisu biblioteki usuwa tylko wpis - stare e-maile ładują obrazek, dopóki sam nie zdejmiesz go z serwera.</li>
 </ul>
 <h2 id="wskazwki-dostarczalnoci">Wskazówki dostarczalności<a class="h-anchor" href="#wskazwki-dostarczalnoci" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
@@ -258,6 +272,7 @@
         <p class="docs-toc-title">Na tej stronie</p>
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#biblioteka-obrazkw">Biblioteka obrazków</a></li>
+        <li class="toc-l2"><a href="#opis-obrazka-alt">Opis obrazka (ALT)</a></li>
         <li class="toc-l2"><a href="#skd-serwowane-s-obrazki">Skąd serwowane są obrazki</a></li>
         <li class="toc-l2"><a href="#zdjcia-profilowe">Zdjęcia profilowe</a></li>
         <li class="toc-l2"><a href="#cykl-ycia">Cykl życia</a></li>

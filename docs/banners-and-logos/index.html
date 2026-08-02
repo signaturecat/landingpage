@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Upload and insert banners and logos | SignatureCat Docs</title>
-  <meta name="description" content="Add company logos and campaign banners to SignatureCat signature templates - image library, custom sizes, per-template resizing, click-through links and placeholders." />
+  <meta name="description" content="Add company logos and campaign banners to Gmail signature templates in SignatureCat - image library, ALT descriptions, sizes, click links and deletion." />
   <link rel="canonical" href="https://signature.cat/docs/banners-and-logos" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/banners-and-logos" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/banners-and-logos" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Upload and insert banners and logos | SignatureCat Docs" />
-  <meta property="og:description" content="Add company logos and campaign banners to SignatureCat signature templates - image library, custom sizes, per-template resizing, click-through links and placeholders." />
+  <meta property="og:description" content="Add company logos and campaign banners to Gmail signature templates in SignatureCat - image library, ALT descriptions, sizes, click links and deletion." />
   <meta property="og:url" content="https://signature.cat/docs/banners-and-logos" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Upload and insert banners and logos | SignatureCat Docs" />
-  <meta name="twitter:description" content="Add company logos and campaign banners to SignatureCat signature templates - image library, custom sizes, per-template resizing, click-through links and placeholders." />
+  <meta name="twitter:description" content="Add company logos and campaign banners to Gmail signature templates in SignatureCat - image library, ALT descriptions, sizes, click links and deletion." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Upload and insert banners and logos",
-      "description": "Add company logos and campaign banners to SignatureCat signature templates - image library, custom sizes, per-template resizing, click-through links and placeholders.",
+      "description": "Add company logos and campaign banners to Gmail signature templates in SignatureCat - image library, ALT descriptions, sizes, click links and deletion.",
       "url": "https://signature.cat/docs/banners-and-logos",
       "inLanguage": "en",
-      "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/docs/user-management">User management</a></li>
         <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
         <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
         <li><a href="/docs/banners-and-logos" aria-current="page">Banners and logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
         <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/docs/support-access">Support access</a></li>
         <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
         <li><a href="/docs/service-status">Service status</a></li>
         <li><a href="/docs/legal">Legal</a></li>
         </ul>
@@ -202,7 +206,7 @@
 <li><strong>I have a link</strong> - paste a public HTTPS URL of an image you already host, or</li>
 <li><strong>Upload a file</strong> - PNG or JPG, recommended up to 200 KB (5 MB hard limit).</li>
 </ul></li>
-<li>Optionally set a library label and a click-through link ("On click, leads to"), then save. The image is added to the library and selected for this template.</li>
+<li>Optionally set a library label, a click-through link ("On click, leads to") and an <strong>Image description (ALT)</strong>, then save. The image is added to the library and selected for this template.</li>
 </ol>
 <p>For banners you can also give the <strong>library entry its own size</strong> (a checkbox with width and height fields, 24-600 x 24-400 px) - both when adding the entry and later in the selected entry's details. That size becomes the entry's default wherever it is used; clearing it returns to 450x100.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
@@ -221,6 +225,12 @@
 <h2 id="click-through-links">Click-through links<a class="h-anchor" href="#click-through-links" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>The click link travels with the <strong>library image</strong>, not the template: update the link once and every template using that image picks it up on the next render. This is handy for rotating campaign banners - swap the target URL without touching templates.</p>
 <p>When one template should behave differently, select the image chip in the <a href="/docs/visual-editor#images-logo-banner-and-photo">visual editor</a> and use the <strong>Link</strong> button: keep the library link, remove the link for this template only, or point it at a different URL.</p>
+<h2 id="image-description-alt">Image description (ALT)<a class="h-anchor" href="#image-description-alt" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Every library image can carry an <strong>Image description (ALT)</strong>, up to 300 characters. The app puts it plainly: "The recipient will see this description if their mail program cannot display the image." Many people read mail with images blocked by default, and screen readers announce the description instead of the picture, so a logo entry described as "Acme logo" still says something useful.</p>
+<p>Set it when you add the image (both <strong>I have a link</strong> and <strong>Upload a file</strong>), in the image step of the new-template wizard, or later in the <strong>Selected image details</strong> panel of the library. Like the click link, the description belongs to the library entry, so every template using that image ships the same one - and images you host yourself get the field just like uploads. Leave it empty and the image is rendered as decorative, with no description.</p>
+<aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tip</p><div class="callout-body">
+<p>Describe what the image says, not that it is an image: "Acme logo" or "Spring 2026 promotion - 20 percent off" beats "banner.png".</p>
+</div></aside>
 <h2 id="sizing-recommendations">Sizing recommendations<a class="h-anchor" href="#sizing-recommendations" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <div class="tbl"><table>
 <thead><tr><th scope="col">Kind</th><th scope="col">Default rendered size</th><th scope="col">Recommendation</th></tr></thead>
@@ -231,10 +241,12 @@
 </table></div>
 <p>Large images slow down email rendering and can push messages into the "message clipped" territory in Gmail - keep files small.</p>
 <h2 id="deleting-images">Deleting images<a class="h-anchor" href="#deleting-images" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Deleting a library image detaches it from every template that selected it - those templates fall back to the placeholder. The app warns you first: "This image is used in N template(s). After deleting it will no longer show there - a placeholder appears instead."</p>
-<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
-<p>Emails that were already sent keep their images - deletion only affects future renders.</p>
+<p>Deleting a library image detaches it from every template that selected it - those templates fall back to the placeholder and keep applying normally. The app warns you first: "This image is used in N template(s). After deleting it will no longer show there - a placeholder appears instead."</p>
+<p>If the deleted image was still in use, SignatureCat also tells the workspace: an in-app notification ("A logo used by your signatures was deleted") appears in the bell and an email goes to the admins and the owner, listing the affected templates. Nobody has to spot the placeholder by accident.</p>
+<aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Important</p><div class="callout-body">
+<p>For images SignatureCat hosts, deletion is permanent: the stored file is released on the next daily cleanup, so the image also stops loading in emails that were already delivered, and there is no self-service undo.</p>
 </div></aside>
+<p>Images you added with <strong>I have a link</strong> are not affected in that way - the file stays on your own server, so old emails keep loading it. To swap a hosted image safely, upload the new one, point the templates at it, and delete the old entry only once you are sure nothing needs it.</p>
 <h2 id="where-images-are-served-from">Where images are served from<a class="h-anchor" href="#where-images-are-served-from" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Library images are hosted at <code>images.signature.cat</code> by default. To serve them from your own subdomain (better deliverability), see <a href="/docs/custom-image-domain">Serve images from your own domain</a>. External URL images ("I have a link") are always fetched from wherever you host them - they must stay publicly reachable over HTTPS.</p>
       </article>
@@ -272,6 +284,7 @@
         <li class="toc-l2"><a href="#insert-into-a-template">Insert into a template</a></li>
         <li class="toc-l2"><a href="#image-sizes-library-default-vs-per-template">Image sizes: library default vs per-template</a></li>
         <li class="toc-l2"><a href="#click-through-links">Click-through links</a></li>
+        <li class="toc-l2"><a href="#image-description-alt">Image description (ALT)</a></li>
         <li class="toc-l2"><a href="#sizing-recommendations">Sizing recommendations</a></li>
         <li class="toc-l2"><a href="#deleting-images">Deleting images</a></li>
         <li class="toc-l2"><a href="#where-images-are-served-from">Where images are served from</a></li>

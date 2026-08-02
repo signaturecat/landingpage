@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Aperçu par client de messagerie | SignatureCat Docs</title>
+  <meta name="description" content="Voyez une signature Gmail sur des surfaces simulées Gmail, Outlook et Apple Mail, en clair et en sombre - ce que l'aperçu SignatureCat montre et ce qu'il ne montre pas." />
+  <link rel="canonical" href="https://signature.cat/fr/docs/mail-client-preview" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/mail-client-preview" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/mail-client-preview" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/mail-client-preview" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/mail-client-preview" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/mail-client-preview" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Aperçu par client de messagerie | SignatureCat Docs" />
+  <meta property="og:description" content="Voyez une signature Gmail sur des surfaces simulées Gmail, Outlook et Apple Mail, en clair et en sombre - ce que l'aperçu SignatureCat montre et ce qu'il ne montre pas." />
+  <meta property="og:url" content="https://signature.cat/fr/docs/mail-client-preview" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Aperçu par client de messagerie | SignatureCat Docs" />
+  <meta name="twitter:description" content="Voyez une signature Gmail sur des surfaces simulées Gmail, Outlook et Apple Mail, en clair et en sombre - ce que l'aperçu SignatureCat montre et ce qu'il ne montre pas." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Aperçu par client de messagerie",
+      "description": "Voyez une signature Gmail sur des surfaces simulées Gmail, Outlook et Apple Mail, en clair et en sombre - ce que l'aperçu SignatureCat montre et ce qu'il ne montre pas.",
+      "url": "https://signature.cat/fr/docs/mail-client-preview",
+      "inLanguage": "fr",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Docs",
+          "item": "https://signature.cat/fr/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Référence",
+          "item": "https://signature.cat/fr/docs/mail-client-preview"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Aperçu par client de messagerie",
+          "item": "https://signature.cat/fr/docs/mail-client-preview"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Aller au contenu</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Basculer le menu de la documentation" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/fr/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Rechercher dans la documentation" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Rechercher dans la doc</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Thème : système" title="Thème : système">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Aide</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Ouvrir l'app</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Nouveautés</p>
+        <ul>
+        <li><a href="/fr/docs/changelog">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Premiers pas</p>
+        <ul>
+        <li><a href="/fr/docs">Introduction</a></li>
+        <li><a href="/fr/docs/connect-google-workspace">Connecter Google Workspace</a></li>
+        <li><a href="/fr/docs/create-your-first-template">Créer votre premier modèle</a></li>
+        <li><a href="/fr/docs/assign-templates">Affecter des modèles</a></li>
+        <li><a href="/fr/docs/verify-assignments">Vérifier les tâches d'affectation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Configuration avancée</p>
+        <ul>
+        <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
+        <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
+        <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
+        <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Facturation</p>
+        <ul>
+        <li><a href="/fr/docs/invoices">Factures</a></li>
+        <li><a href="/fr/docs/billing-details">Informations de facturation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Référence</p>
+        <ul>
+        <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/fr/docs/templates">Modèles</a></li>
+        <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview" aria-current="page">Aperçu par client de messagerie</a></li>
+        <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
+        <li><a href="/fr/docs/assignments">Affectations</a></li>
+        <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
+        <li><a href="/fr/docs/logs">Journaux</a></li>
+        <li><a href="/fr/docs/images">Images</a></li>
+        <li><a href="/fr/docs/notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Assistance</p>
+        <ul>
+        <li><a href="/fr/docs/support-access">Accès du support</a></li>
+        <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
+        <li><a href="/fr/docs/service-status">État du service</a></li>
+        <li><a href="/fr/docs/legal">Informations légales</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Fil d'Ariane"><a href="/fr/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Référence</span><span class="crumb-sep">/</span><span aria-current="page">Aperçu par client de messagerie</span></nav>
+      <article class="docs-article">
+<h1>Aperçu par client de messagerie</h1>
+<p>L'aperçu situé à côté de l'éditeur dessine votre signature sur une surface de client de messagerie simulée : votre HTML, inchangé, sur le fond de page de ce client, dans sa police par défaut, avec l'unique changement de couleur que ce client opère en mode sombre. C'est une approximation, pas le moteur de rendu du client lui-même.</p>
+<p>L'application le dit elle-même, derrière l'icône d'information au bout de la rangée des clients ("Ce que cet aperçu montre et ne montre pas") :</p>
+<blockquote>
+<p>Approximation : le HTML de la signature est inchangé, seuls la surface et la façon dont ce client repeint les couleurs en mode sombre changent. Ce n'est pas un rendu par le moteur du client.</p>
+</blockquote>
+<p>Utilisez la simulation pour repérer tôt les erreurs de couleur et de mise en page. Utilisez <strong>Me définir une signature de test</strong> et votre propre boîte mail pour obtenir la réponse qui compte.</p>
+<h2 id="ce-quun-profil-de-client-change">Ce qu'un profil de client change<a class="h-anchor" href="#ce-quun-profil-de-client-change" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Un profil change quatre choses autour de votre signature et rien à l'intérieur :</p>
+<ul>
+<li>le fond de page derrière le message,</li>
+<li>la couleur de texte par défaut,</li>
+<li>la couleur de lien par défaut,</li>
+<li>la police et la taille par défaut du client.</li>
+</ul>
+<p>Tout ce que votre modèle définit explicitement - polices, couleurs, largeurs de tableaux, tailles d'images - est transmis sans modification. C'est aussi pourquoi la police par défaut compte : une signature qui ne définit aucune <code>font-family</code> hérite de la valeur par défaut du client du destinataire, et chaque profil vous montre laquelle ce serait.</p>
+<p>Les boutons en pastille au-dessus du cadre ("Client de messagerie simulé") changent de profil, et un sélecteur <strong>Clair</strong> / <strong>Sombre</strong> se trouve juste à côté. L'aperçu s'ouvre sur <strong>Gmail (web)</strong> en mode <strong>Clair</strong> - la surface qui montre la signature telle qu'elle a été écrite - et retient le client et le mode que vous avez choisis pour votre prochaine visite. Le cadre est en bac à sable : aucun script ne s'y exécute, et les liens de la signature s'ouvrent dans un nouvel onglet.</p>
+<h2 id="les-cinq-profils-de-client">Les cinq profils de client<a class="h-anchor" href="#les-cinq-profils-de-client" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Profil</th><th scope="col">Ce qu'il simule</th><th scope="col">Pourquoi il est là</th></tr></thead>
+<tbody>
+<tr><td><strong>Gmail (web)</strong></td><td>Gmail dans un navigateur : page blanche, Arial, mode clair uniquement</td><td>La vue telle qu'écrite, et le profil sur lequel l'aperçu s'ouvre</td></tr>
+<tr><td><strong>Gmail (app)</strong></td><td>Gmail sur un téléphone : Roboto, inversion complète en mode sombre</td><td>Le client à inversion complète le plus répandu</td></tr>
+<tr><td><strong>Outlook (classic, Windows)</strong></td><td>Le moteur de rendu de Word : une pile Aptos/Calibri en 11pt, plus des règles de géométrie, et une inversion forcée en mode sombre</td><td>Le seul profil qui approxime aussi un autre moteur de mise en page</td></tr>
+<tr><td><strong>Outlook.com</strong></td><td>Outlook sur le web : Segoe UI, et un mode sombre qui conserve les couleurs que vous avez définies explicitement</td><td>Le cas de l'inversion partielle, où seules certaines couleurs changent</td></tr>
+<tr><td><strong>Apple Mail</strong></td><td>Apple Mail sur macOS et iOS : la police système, inversion complète en mode sombre</td><td>Le second client à inversion complète, avec d'autres valeurs par défaut</td></tr>
+</tbody>
+</table></div>
+<p>Quatre des cinq proposent à la fois le clair et le sombre, ce qui fait neuf combinaisons client-mode au total. Les noms de marque sont délibérément laissés non traduits dans toutes les versions linguistiques de l'application.</p>
+<h2 id="clair-et-sombre">Clair et sombre<a class="h-anchor" href="#clair-et-sombre" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Chaque profil applique l'unique transformation de couleur que ce client effectue réellement en mode sombre - et les cinq ne sont pas la même transformation.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Profil</th><th scope="col">Mode sombre</th></tr></thead>
+<tbody>
+<tr><td>Gmail (web)</td><td>Non proposé. L'interface web de Gmail assombrit ce qui entoure le message, jamais le message lui-même.</td></tr>
+<tr><td>Gmail (app)</td><td>Inversion complète, sauf si la signature peint son propre fond.</td></tr>
+<tr><td>Apple Mail</td><td>Inversion complète, sauf si la signature peint son propre fond.</td></tr>
+<tr><td>Outlook (classic, Windows)</td><td>Inverse toujours, même une signature qui apporte son propre fond, parce que Word repeint quoi qu'il arrive.</td></tr>
+<tr><td>Outlook.com</td><td>Partielle : une surface sombre avec du texte et des liens par défaut plus clairs, tandis que toute couleur définie explicitement dans la signature reste intacte.</td></tr>
+</tbody>
+</table></div>
+<p>La moitié <strong>Sombre</strong> du sélecteur est désactivée pour <strong>Gmail (web)</strong>, avec la raison affichée sur le contrôle : "Gmail (web) assombrit sa propre interface, mais jamais les couleurs à l'intérieur d'un message."</p>
+<h3 id="les-signatures-qui-ont-leur-propre-fond">Les signatures qui ont leur propre fond<a class="h-anchor" href="#les-signatures-qui-ont-leur-propre-fond" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
+<p>Si votre signature peint son propre fond opaque, les profils qui inversent ne touchent pas à ses couleurs - et l'aperçu le dit : "Cette signature peint son propre fond, donc un client qui inverse les couleurs n'y touche pas." Un vrai client à inversion automatique laisse un tel contenu intact, la simulation fait donc de même.</p>
+<p>Le blanc, <code>transparent</code> et les valeurs <code>rgba()</code> entièrement transparentes ne comptent pas comme un fond ici. <strong>Outlook (classic, Windows)</strong> fait exception : il inverse quand même, ce qui explique pourquoi les e-mails marketing sombres y ressortent clairs.</p>
+<h3 id="choisir-des-couleurs-qui-survivent-aux-deux-modes">Choisir des couleurs qui survivent aux deux modes<a class="h-anchor" href="#choisir-des-couleurs-qui-survivent-aux-deux-modes" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
+<p>Laissez vos lignes de coordonnées sans couleur explicite et laissez-les hériter. Un client en mode sombre forcé éclaircit le texte hérité, les lignes restent donc lisibles ; un gris foncé codé en dur sur chaque ligne rend bien sur du blanc et disparaît presque sur la surface sombre d'Outlook.com, où les couleurs explicites sont conservées telles quelles. L'aperçu nomme ce cas lui aussi : "Outlook.com conserve les couleurs définies explicitement par l'auteur et n'éclaircit que le texte sans couleur propre : une couleur sombre codée en dur reste sombre ici."</p>
+<p>Les starters intégrés sont écrits de cette façon : le nom et l'intitulé de poste portent une couleur, les lignes de coordonnées n'en portent aucune, et les liens utilisent un gris qui offre assez de contraste sur une page blanche comme sur une surface sombre.</p>
+<h2 id="outlook-classic-windows-fait-son-rendu-avec-word">Outlook (classic, Windows) fait son rendu avec Word<a class="h-anchor" href="#outlook-classic-windows-fait-son-rendu-avec-word" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Outlook classique sur Windows n'utilise pas de moteur de navigateur - il dessine le courrier avec Word, et ce profil approxime cette géométrie <strong>aussi bien</strong> en clair qu'en sombre. Dans ce profil :</p>
+<ul>
+<li>les coins arrondis sont supprimés, une photo ronde s'affiche donc en carré,</li>
+<li><code>display</code> n'est respecté que sous la forme <code>display:none</code>, un span stylé en bloc cesse donc de se comporter comme tel,</li>
+<li>les marges sur <code>&lt;span&gt;</code> sont abandonnées,</li>
+<li>le padding ne survit qu'à l'intérieur des cellules de tableau (<code>td</code> et <code>th</code>),</li>
+<li><code>white-space</code>, <code>float</code>, <code>box-shadow</code>, <code>text-shadow</code>, <code>opacity</code>, <code>transform</code> et les images de fond sont ignorés,</li>
+<li><code>max-width</code> ne s'applique qu'aux tableaux.</li>
+</ul>
+<p>C'est pourquoi les starters intégrés construisent chaque ligne comme un <code>&lt;div&gt;</code> avec des marges explicites, placent les gouttières sous forme de padding sur les cellules de tableau et définissent les tailles d'images avec les attributs <code>width</code> et <code>height</code> plutôt qu'avec du CSS.</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
+<p>Une photo de profil circulaire ne peut pas avoir le même aspect partout : le moteur de Word ne prend pas en charge les coins arrondis, <code>{{photo}}</code> est donc un cercle dans Gmail et Apple Mail et un carré dans Outlook classique. L'aperçu reproduit cette différence au lieu de la masquer.</p>
+</div></aside>
+<p>Une chose à savoir avant de changer d'onglet : ouvrir dans l'<a href="/fr/docs/visual-editor">éditeur visuel</a> un HTML réglé pour Outlook puis l'enregistrer resérialise le balisage et abandonne une partie de ce qui lui donne sa parité avec Outlook classique - marges de bloc, hauteurs de ligne explicites et padding de cellule. Si vous avez besoin de cette parité, continuez à modifier le modèle sur l'onglet <strong>HTML</strong>.</p>
+<h2 id="ce-que-la-simulation-ne-reproduit-pas">Ce que la simulation ne reproduit pas<a class="h-anchor" href="#ce-que-la-simulation-ne-reproduit-pas" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>La simulation s'arrête à la surface. Ce qu'elle ne fait pas :</p>
+<ul>
+<li>exécuter le moteur de rendu propre au client - rien de ce que vous voyez n'est une vraie sortie Gmail ou Outlook ;</li>
+<li>reproduire l'auto-layout des tableaux d'Outlook classique ni la mise à l'échelle 120 DPI qu'il applique ;</li>
+<li>garantir les couleurs exactes des éditeurs - les surfaces sont des approximations représentatives, car aucun éditeur ne publie les vraies valeurs ;</li>
+<li>montrer ce que Gmail enregistre une fois que vous avez sauvegardé. Gmail applique son propre assainissement sur ses serveurs : une signature peut donc être tronquée après une écriture réussie - voir <a href="/fr/docs/gmail-sanitization">Quand Gmail tronque votre signature</a>.</li>
+</ul>
+<h2 id="rendre-comme">Rendre comme<a class="h-anchor" href="#rendre-comme" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Le champ <strong>Rendre comme :</strong> rend le modèle à partir de la fiche Google Directory d'une personne réelle, ce qui vous permet de vérifier les cas que votre propre fiche ne présente pas : un intitulé de poste long, un numéro de téléphone manquant, un service vide.</p>
+<ul>
+<li>Laissez le champ vide et l'aperçu se fait à partir de votre propre fiche Directory.</li>
+<li>Saisissez deux caractères ou plus et des suggestions apparaissent depuis l'annuaire de votre Workspace, chacune avec le nom, l'adresse et la photo Directory. Dix correspondances au maximum, utilisateurs suspendus exclus.</li>
+<li>Le champ accepte aussi le texte libre : vous pouvez donc saisir n'importe quelle adresse - un alias, ou quelqu'un que la recherche ne renvoie pas. L'aperçu se recharge dès que ce que vous avez saisi est une adresse complète. Si rien ne correspond : "Aucune personne correspondante. Vous pouvez aussi saisir n'importe quelle adresse."</li>
+<li><strong>Effacer et rendre comme moi</strong> remet l'aperçu sur vous.</li>
+</ul>
+<p>Rendre comme quelqu'un d'autre exige le niveau d'accès Designer, Editor ou Admin. Les utilisateurs self-service ont le même aperçu, figé sur leur propre fiche. Voir <a href="/fr/docs/user-management">Gestion des accès</a>.</p>
+<p>La ligne située juste sous l'aperçu nomme toujours la fiche qui a été utilisée : "Rendu à partir des données Directory de {email}."</p>
+<p>Les valeurs se résolvent exactement comme lors d'une vraie application : la fiche Google Directory, avec par-dessus les éventuelles valeurs par utilisateur enregistrées sur l'onglet Données. La liste complète des champs et l'origine de chacun se trouvent dans <a href="/fr/docs/template-variables">Variables de modèle</a>. Si le modèle utilise <code>{{banner}}</code> ou <code>{{logo}}</code>, une seconde ligne sous l'aperçu vous rappelle que ces jetons sont rendus avec les images choisies pour ce modèle - voir <a href="/fr/docs/banners-and-logos">Bannières et logos</a>.</p>
+<p>Quand une cible ne peut pas être rendue, le message est précis :</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Message</th><th scope="col">Ce qui s'est passé</th></tr></thead>
+<tbody>
+<tr><td>"Aucun utilisateur Workspace trouvé pour {email}. Vérifiez l'adresse et réessayez."</td><td>L'adresse ne figure pas dans votre Google Directory.</td></tr>
+<tr><td>"Cette adresse e-mail ou ce domaine n'est pas valide. Vérifiez et réessayez."</td><td>L'adresse ou son domaine est mal formé.</td></tr>
+<tr><td>"Trop d'actualisations de l'aperçu. Pause d'un instant, puis l'aperçu se rafraîchit."</td><td>Trop d'actualisations en peu de temps. L'aperçu reprend de lui-même.</td></tr>
+<tr><td>"Terminez la configuration de la délégation à l'échelle du domaine pour prévisualiser les signatures."</td><td>L'aperçu lit l'annuaire, il a donc besoin d'une délégation vérifiée. Voir <a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a>.</td></tr>
+</tbody>
+</table></div>
+<h2 id="la-seule-vrification-totalement-fidle">La seule vérification totalement fidèle<a class="h-anchor" href="#la-seule-vrification-totalement-fidle" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Votre propre boîte mail est la seule vérification fidèle. Cliquez sur <strong>Me définir une signature de test</strong> dans l'éditeur : SignatureCat rend le modèle à partir de votre propre fiche Directory et l'écrit dans votre propre signature Gmail, personne d'autre n'est donc concerné. Ouvrez ensuite Gmail et regardez le résultat.</p>
+<p>Cette vérification répond à une autre question que l'aperçu. L'aperçu montre comment un client dessinerait votre HTML ; la boîte mail montre ce que Gmail a réellement enregistré, et Gmail réécrit les signatures sur ses propres serveurs au moment de l'enregistrement. Si le résultat semble coupé, lisez <a href="/fr/docs/gmail-sanitization">Quand Gmail tronque votre signature</a>.</p>
+<h2 id="o-laperu-apparat">Où l'aperçu apparaît<a class="h-anchor" href="#o-laperu-apparat" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>La simulation de client est présente sur les deux surfaces où les signatures sont écrites :</p>
+<ul>
+<li><strong>L'éditeur de modèle</strong> sur <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signatures</a>, pour les niveaux Designer, Editor et Admin - avec les pastilles de clients, le sélecteur clair et sombre, <strong>Rendre comme</strong> et <strong>Me définir une signature de test</strong>. Voir <a href="/fr/docs/templates">Modèles</a>.</li>
+<li><strong><a href="https://app.signature.cat/self-service" target="_blank" rel="noopener">Ma signature</a></strong>, pour les utilisateurs self-service - les mêmes pastilles et le même sélecteur, toujours rendus à partir de la fiche de l'utilisateur connecté ("Rendu à partir de votre propre fiche Directory."). Il n'y a pas de bouton d'application de test sur cette page : l'avertissement indique donc l'autre chemin vers la certitude, "Pour une fidélité totale, enregistrez et regardez la signature dans votre propre boîte mail." Voir <a href="/fr/docs/self-service">Signatures self-service</a>.</li>
+</ul>
+      </article>
+<nav class="docs-pager" aria-label="Pagination">
+<a class="pager-card pager-prev" href="/fr/docs/visual-editor" rel="prev">
+      <span class="pager-label">Précédent</span>
+      <span class="pager-title">Éditeur visuel</span>
+    </a>
+<a class="pager-card pager-next" href="/fr/docs/template-variables" rel="next">
+      <span class="pager-label">Suivant</span>
+      <span class="pager-title">Variables de modèle</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/mail-client-preview" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/mail-client-preview" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/mail-client-preview" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/mail-client-preview" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Mentions légales</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Sur cette page">
+      <nav>
+        <p class="docs-toc-title">Sur cette page</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#ce-quun-profil-de-client-change">Ce qu'un profil de client change</a></li>
+        <li class="toc-l2"><a href="#les-cinq-profils-de-client">Les cinq profils de client</a></li>
+        <li class="toc-l2"><a href="#clair-et-sombre">Clair et sombre</a></li>
+        <li class="toc-l3"><a href="#les-signatures-qui-ont-leur-propre-fond">Les signatures qui ont leur propre fond</a></li>
+        <li class="toc-l3"><a href="#choisir-des-couleurs-qui-survivent-aux-deux-modes">Choisir des couleurs qui survivent aux deux modes</a></li>
+        <li class="toc-l2"><a href="#outlook-classic-windows-fait-son-rendu-avec-word">Outlook (classic, Windows) fait son rendu avec Word</a></li>
+        <li class="toc-l2"><a href="#ce-que-la-simulation-ne-reproduit-pas">Ce que la simulation ne reproduit pas</a></li>
+        <li class="toc-l2"><a href="#rendre-comme">Rendre comme</a></li>
+        <li class="toc-l2"><a href="#la-seule-vrification-totalement-fidle">La seule vérification totalement fidèle</a></li>
+        <li class="toc-l2"><a href="#o-laperu-apparat">Où l'aperçu apparaît</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Rechercher dans la documentation" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Rechercher dans la documentation" autocomplete="off" spellcheck="false" aria-label="Rechercher dans la documentation" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Fermer la recherche">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Aucun résultat. Essayez d'autres mots-clés ou écrivez à <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 title: Affecter des modèles aux groupes, aux OU ou à tout le monde
 navTitle: Affecter des modèles
 description: Liez les modèles SignatureCat à des groupes Google, des unités organisationnelles ou tous les utilisateurs actifs du Workspace, et synchronisez les signatures à la demande.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # Affecter des modèles aux groupes, aux OU ou à tout le monde
@@ -15,7 +15,7 @@ Les affectations lient un modèle à une cible - un groupe Google, une unité or
 2. Saisissez l'**E-mail du groupe** (par exemple `engineering@example.com`).
 3. Choisissez le **Modèle**.
 4. Activez éventuellement **+ sous-groupes** pour inclure les membres des groupes imbriqués.
-5. Choisissez éventuellement un mode d'alias sous **Alias** - voir les [modes d'alias](/docs/assignments/#alias-modes) pour comprendre ce que font "Adresses du groupe" et "Tous les alias".
+5. Choisissez éventuellement un mode d'alias sous **Alias** - voir les [modes d'alias](/docs/assignments#modes-dalias) pour comprendre ce que font "Adresses du groupe" et "Tous les alias".
 
 ## Affecter à une unité organisationnelle
 
@@ -30,16 +30,18 @@ La section **Attribuer à tous** contient au maximum une entrée par espace de t
 Cliquez sur **Attribuer à tous**, choisissez le modèle et enregistrez le formulaire.
 
 > [!IMPORTANT]
-> L'affectation pour tous atteint tous les utilisateurs actifs de votre Workspace, et la synchronisation quotidienne continuera de la réappliquer sans confirmation supplémentaire. Vérifiez soigneusement le modèle avant d'enregistrer - idéalement après un [test sur votre propre boîte](/docs/create-your-first-template/#test-it-on-your-own-mailbox).
+> L'affectation pour tous atteint tous les utilisateurs actifs de votre Workspace, et la synchronisation quotidienne continuera de la réappliquer sans confirmation supplémentaire. Vérifiez soigneusement le modèle avant d'enregistrer - idéalement après un [test sur votre propre boîte](/docs/create-your-first-template#le-tester-sur-votre-propre-bote).
 
 ## Quand les signatures changent-elles réellement ?
 
 - Cliquez sur **Synchroniser maintenant** sur la page Affectations pour tout appliquer immédiatement, ou
 - attendez la **synchronisation quotidienne en arrière-plan**, qui réapplique toutes les affectations une fois par jour et prend en compte automatiquement les nouveaux membres de groupes, les changements d'OU et les nouvelles recrues.
 
-Si un utilisateur correspond à plusieurs affectations, une seule l'emporte : le groupe bat l'OU, l'OU bat l'affectation pour tous, et le choix [self-service](/docs/self-service/) de l'utilisateur les bat toutes, sauf si l'affectation a **Remplacer le self-service** activé. Les règles précises sont dans la [référence des affectations](/docs/assignments/#how-precedence-works).
+La modification des valeurs d'un utilisateur sur l'onglet **Données** réapplique immédiatement la signature de cet utilisateur, sans attendre la synchronisation quotidienne - voir [Données utilisateur](/docs/user-data).
 
-Étape suivante : [vérifiez la tâche d'affectation](/docs/verify-assignments/) pour confirmer que tout a bien été appliqué.
+Si un utilisateur correspond à plusieurs affectations, une seule l'emporte : le groupe bat l'OU, l'OU bat l'affectation pour tous, et le choix [self-service](/docs/self-service) de l'utilisateur les bat toutes, sauf si l'affectation a **Remplacer le self-service** activé. Les règles précises sont dans la [référence des affectations](/docs/assignments#fonctionnement-de-la-priorit).
+
+Étape suivante : [vérifiez la tâche d'affectation](/docs/verify-assignments) pour confirmer que tout a bien été appliqué.
 
 > [!NOTE]
 > Chaque cible ne peut contenir qu'une seule affectation. Tenter d'en créer une seconde pour le même groupe ou la même OU affiche "Cette cible a déjà une affectation. Modifiez l'entrée existante ou choisissez une autre cible."

@@ -2,14 +2,14 @@
 title: Domain-Wide Delegation
 navTitle: Domain-Wide Delegation
 description: Comment SignatureCat utilise la Google Domain-Wide Delegation - scopes, identifiant client par locataire, propagation, détection de révocation et réautorisation.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # Domain-Wide Delegation
 
 La Domain-Wide Delegation (DWD) est le mécanisme de Google Workspace qui permet au compte de service dédié de SignatureCat de lire votre annuaire et d'écrire les signatures Gmail - sans jamais connaître le mot de passe de quiconque. Vous l'accordez une seule fois dans la Google Admin console ; cette page explique exactement ce qui est accordé et comment cela se comporte dans le temps.
 
-La configuration pas à pas se trouve dans [Connecter votre Google Workspace](/docs/connect-google-workspace/). Ceci est la référence.
+La configuration pas à pas se trouve dans [Connecter votre Google Workspace](/docs/connect-google-workspace). Ceci est la référence.
 
 ## Qu'est-ce que j'autorise exactement ?
 
@@ -19,8 +19,8 @@ Les scopes et le rôle de chacun :
 
 | Scope | Requis | Utilisé pour |
 |---|---|---|
-| `gmail.settings.basic` | Oui | Écrire la signature sur l'adresse principale de chaque utilisateur. |
-| `admin.directory.user.readonly` | Oui | Lire les profils utilisateurs - noms, intitulés de poste, téléphones - pour les [variables de modèle](/docs/template-variables/). |
+| `gmail.settings.basic` | Oui | Écrire la signature sur l'adresse principale de chaque utilisateur, et relire la signature enregistrée - la vérification qui compare ce que Gmail a enregistré avec ce qui a été envoyé, et la consultation de boîte à la demande dans [Journaux](/docs/logs#lire-la-signature-actuelle-de-la-bote). |
+| `admin.directory.user.readonly` | Oui | Lire les profils utilisateurs - noms, intitulés de poste, téléphones - pour les [variables de modèle](/docs/template-variables). |
 | `admin.directory.group.member.readonly` | Oui | Étendre les affectations de groupe en membres. |
 | `admin.directory.customer.readonly` | Oui | Lire le nombre d'utilisateurs du Workspace pour la facturation. |
 | `gmail.settings.sharing` | Optionnel | Écrire les signatures sur les **alias** send-as. Sautez-le et les fonctionnalités d'alias restent désactivées. |
@@ -41,7 +41,10 @@ SignatureCat vérifie la santé de la DWD avant chaque synchronisation. Quand el
 
 - les synchronisations de signatures se mettent **en pause** immédiatement (rien n'est appliqué à moitié),
 - les administrateurs reçoivent la notification dans l'application "Accès Domain-Wide Delegation perdu" et un e-mail "Action requise",
+- les administrateurs voient un bandeau rouge dans toute l'application : "La dernière vérification de l'accès à Google Workspace a échoué. Les synchronisations de signatures sont en pause jusqu'à la réparation de l'accès.",
 - l'application redirige les administrateurs vers l'assistant DWD.
+
+Le bandeau comporte un bouton intégré **Vérifier l'accès maintenant** qui relance la vérification d'accès sur place, sans ouvrir l'assistant : si elle passe, le bandeau disparaît ; si elle échoue toujours, vous arrivez dans l'assistant. Il y a aussi un lien **Ouvrir l'assistant DWD**. Seuls les administrateurs voient le bandeau, car eux seuls peuvent réautoriser, et il n'apparaît qu'après l'échec effectif d'une vérification - jamais simplement parce qu'une vérification est ancienne.
 
 Réaccorder l'entrée ou le scope manquant et passer **Vérifier** relance tout - l'état se rétablit de lui-même, rien n'a besoin d'être reconstruit. Pour rouvrir l'assistant à tout moment, utilisez **Relancer l'assistant DWD** dans [Paramètres](https://app.signature.cat/settings), section Compte de service.
 
@@ -50,7 +53,7 @@ Réaccorder l'entrée ou le scope manquant et passer **Vérifier** relance tout 
 
 ## Ajouter le scope d'alias optionnel plus tard
 
-Ajoutez `https://www.googleapis.com/auth/gmail.settings.sharing` à l'entrée existante de l'Admin console (conservez les quatre autres scopes), puis **Relancer l'assistant DWD** et cliquez sur **Vérifier**. Les fonctionnalités d'alias se débloquent automatiquement - voir les [modes d'alias](/docs/assignments/#alias-modes).
+Ajoutez `https://www.googleapis.com/auth/gmail.settings.sharing` à l'entrée existante de l'Admin console (conservez les quatre autres scopes), puis **Relancer l'assistant DWD** et cliquez sur **Vérifier**. Les fonctionnalités d'alias se débloquent automatiquement - voir les [modes d'alias](/docs/assignments#modes-dalias).
 
 ## Retirer SignatureCat
 

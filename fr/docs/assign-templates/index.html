@@ -47,8 +47,8 @@
       "description": "Liez les modèles SignatureCat à des groupes Google, des unités organisationnelles ou tous les utilisateurs actifs du Workspace, et synchronisez les signatures à la demande.",
       "url": "https://signature.cat/fr/docs/assign-templates",
       "inLanguage": "fr",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
         <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
         <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
         <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
         <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/fr/docs/support-access">Accès du support</a></li>
         <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
         <li><a href="/fr/docs/service-status">État du service</a></li>
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
@@ -199,7 +203,7 @@
 <li>Saisissez l'<strong>E-mail du groupe</strong> (par exemple <code>engineering@example.com</code>).</li>
 <li>Choisissez le <strong>Modèle</strong>.</li>
 <li>Activez éventuellement <strong>+ sous-groupes</strong> pour inclure les membres des groupes imbriqués.</li>
-<li>Choisissez éventuellement un mode d'alias sous <strong>Alias</strong> - voir les <a href="/fr/docs/assignments#alias-modes">modes d'alias</a> pour comprendre ce que font "Adresses du groupe" et "Tous les alias".</li>
+<li>Choisissez éventuellement un mode d'alias sous <strong>Alias</strong> - voir les <a href="/fr/docs/assignments#modes-dalias">modes d'alias</a> pour comprendre ce que font "Adresses du groupe" et "Tous les alias".</li>
 </ol>
 <h2 id="affecter-une-unit-organisationnelle">Affecter à une unité organisationnelle<a class="h-anchor" href="#affecter-une-unit-organisationnelle" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
@@ -211,14 +215,15 @@
 <p>La section <strong>Attribuer à tous</strong> contient au maximum une entrée par espace de travail. Elle couvre tous les utilisateurs actifs (non suspendus) et sert de couche de base : les affectations OU et de groupe la remplacent toujours par utilisateur, vous pouvez donc définir un modèle par défaut pour toute l'entreprise et l'affiner pour des équipes spécifiques.</p>
 <p>Cliquez sur <strong>Attribuer à tous</strong>, choisissez le modèle et enregistrez le formulaire.</p>
 <aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Important</p><div class="callout-body">
-<p>L'affectation pour tous atteint tous les utilisateurs actifs de votre Workspace, et la synchronisation quotidienne continuera de la réappliquer sans confirmation supplémentaire. Vérifiez soigneusement le modèle avant d'enregistrer - idéalement après un <a href="/fr/docs/create-your-first-template#test-it-on-your-own-mailbox">test sur votre propre boîte</a>.</p>
+<p>L'affectation pour tous atteint tous les utilisateurs actifs de votre Workspace, et la synchronisation quotidienne continuera de la réappliquer sans confirmation supplémentaire. Vérifiez soigneusement le modèle avant d'enregistrer - idéalement après un <a href="/fr/docs/create-your-first-template#le-tester-sur-votre-propre-bote">test sur votre propre boîte</a>.</p>
 </div></aside>
 <h2 id="quand-les-signatures-changent-elles-rellement">Quand les signatures changent-elles réellement ?<a class="h-anchor" href="#quand-les-signatures-changent-elles-rellement" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
 <li>Cliquez sur <strong>Synchroniser maintenant</strong> sur la page Affectations pour tout appliquer immédiatement, ou</li>
 <li>attendez la <strong>synchronisation quotidienne en arrière-plan</strong>, qui réapplique toutes les affectations une fois par jour et prend en compte automatiquement les nouveaux membres de groupes, les changements d'OU et les nouvelles recrues.</li>
 </ul>
-<p>Si un utilisateur correspond à plusieurs affectations, une seule l'emporte : le groupe bat l'OU, l'OU bat l'affectation pour tous, et le choix <a href="/fr/docs/self-service">self-service</a> de l'utilisateur les bat toutes, sauf si l'affectation a <strong>Remplacer le self-service</strong> activé. Les règles précises sont dans la <a href="/fr/docs/assignments#how-precedence-works">référence des affectations</a>.</p>
+<p>La modification des valeurs d'un utilisateur sur l'onglet <strong>Données</strong> réapplique immédiatement la signature de cet utilisateur, sans attendre la synchronisation quotidienne - voir <a href="/fr/docs/user-data">Données utilisateur</a>.</p>
+<p>Si un utilisateur correspond à plusieurs affectations, une seule l'emporte : le groupe bat l'OU, l'OU bat l'affectation pour tous, et le choix <a href="/fr/docs/self-service">self-service</a> de l'utilisateur les bat toutes, sauf si l'affectation a <strong>Remplacer le self-service</strong> activé. Les règles précises sont dans la <a href="/fr/docs/assignments#fonctionnement-de-la-priorit">référence des affectations</a>.</p>
 <p>Étape suivante : <a href="/fr/docs/verify-assignments">vérifiez la tâche d'affectation</a> pour confirmer que tout a bien été appliqué.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Chaque cible ne peut contenir qu'une seule affectation. Tenter d'en créer une seconde pour le même groupe ou la même OU affiche "Cette cible a déjà une affectation. Modifiez l'entrée existante ou choisissez une autre cible."</p>

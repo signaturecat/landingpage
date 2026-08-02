@@ -2,6 +2,82 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-02 - Docs: August refresh (user data, Gmail trimming, mail client preview) + privacy 1.2
+
+- **What:** Public docs and the legal documents brought up to date with
+  everything the app shipped between 2026-07-27 and 2026-08-02 (app PRs
+  #189-#216), plus corrections of published statements that had become false.
+  - **Four new pages (x4 languages).** `/docs/user-data` (Advanced setup) -
+    the /data feature: the directory-first nudge, the consent screen, the nine
+    overridable fields with their directory fallbacks and length caps, the
+    display-only nature of Email/Domain, the per-field directory toggle, the
+    three post-save outcomes, removal, the self-service padlock, Admin-only
+    access, turn-off-and-delete, and the lifecycle/audit rules.
+    `/docs/user-data-import` (Advanced setup) - the CSV contract: columns,
+    replace semantics, 2000 rows / 1 MB, dry-run then confirm, all-or-nothing
+    with a per-row error table, and the skippable **Sync signatures now**.
+    `/docs/gmail-sanitization` (Support) - why Gmail can store a trimmed copy
+    of a signature that applied successfully, the **trimmed by Gmail** badge,
+    the test-apply warning, reading the mailbox back, and the separate 10,000
+    character limit. `/docs/mail-client-preview` (Reference) - the five client
+    profiles, light/dark behaviour per client, the Word engine caveat, what
+    the simulation does not reproduce, and **Render as**.
+  - **Changelog page:** new "August 2026" section (Gmail trimming check,
+    mailbox signature lookup, image ALT text, custom images, dividers,
+    conditional columns, better HTML import, privacy policy update) and eight
+    additions to July (user data, mail client preview, Outlook-safe starters,
+    draggable column widths, formatting on variable chips, deleted-image
+    warning, Workspace access banner, guided tour).
+  - **Corrections of published statements that were wrong:** the custom image
+    domain needs ONE CNAME, not two (the button is **Generate DNS record**;
+    the TXT record is now documented as the fallback the wizard reveals), and
+    active domains are re-checked automatically; deleting a SignatureCat-hosted
+    library image DOES release the file, so images in already-delivered mail
+    break (both `images` and `banners-and-logos` promised the opposite);
+    **Reset to saved** is **Discard changes**; the font size picker offers seven
+    fixed values, not a range; the Logs page lives at `/logs`; there is no
+    "Re-run failed" button on a finished job (the feature does not exist in the
+    app - verified); support access DOES now unlock reading a user's current
+    Gmail signature, so the "never reads your mailboxes" bullet was rewritten
+    to the still-true "holds no mail content scopes".
+  - **Additions to existing pages:** terms acceptance as a real onboarding step
+    (connect-google-workspace, with every later step renumbered), dividers,
+    custom images, conditional columns, draggable column widths, round/square
+    photo and chip formatting (visual-editor, templates, template-variables),
+    image ALT text (images, banners-and-logos, template-variables), the
+    deleted-image notification and the third app-wide banner (notifications),
+    the mailbox signature lookup and the **trimmed by Gmail** badge (logs,
+    verify-assignments), **Execution details** (apply-jobs, verify-assignments),
+    the **My signature data** popup (self-service), user data in the access
+    table (user-management), the OU-vs-OU precedence tie-break (assignments),
+    signature read-back on the `gmail.settings.basic` scope row
+    (domain-wide-delegation), and the new pages in the index.
+  - **Legal:** Privacy Policy **1.2** (effective 17.08.2026) in all four
+    languages - section 3(b) now covers storing the values the Customer enters
+    under User data and reading the signature back from Gmail, with two new
+    explanatory paragraphs; section 8 gains a retention row and drops the
+    unqualified "employee data is not stored" claim; section 12 states that
+    Gmail settings cover writing AND reading; section 13 records that the
+    support-access switch also gates the mailbox signature preview and narrows
+    the data-minimization bullet. Terms: the clause naming the version in force
+    still said 1.1 / 17.07.2026 while the header said 1.2 / 02.08.2026 - fixed
+    in all four languages (authoring miss from the 2026-07-19 bump).
+  - **Generator fix:** `inline()` unwound its placeholder stash in a single
+    pass, so a link wrapped in bold left the raw sentinel bytes in the output.
+    Three links on `/docs/legal` (Terms, Privacy Policy, DPA) and one on
+    `/docs/service-status` were rendering as a literal "0" in production. The
+    unwind now loops until no placeholder is left.
+- **Why:** A whole tenant-facing area (/data) was undocumented, several
+  published statements had become false (some of them cost customers data or
+  money), and the Privacy Policy contradicted the product in three places once
+  user data overrides shipped.
+- **Scope:** landingpage (docs-src x4 languages, legal/src x4, build-docs.mjs)
+- **Design impact:** none - no new components, tokens or styles.
+- **Performance impact:** docs sitemap 100 -> 116 URLs (29 pages x 4 locales);
+  search index and llms.txt regenerated.
+- **A11y:** none beyond the restored links (a bold link on `/docs/legal` was
+  not reachable at all before the generator fix).
+
 ## 2026-07-26 - Docs: visual editor page + editor-related refresh (app PRs #184/#185/#186)
 
 - **What:** Public docs updated for the app's new Lexical-based visual

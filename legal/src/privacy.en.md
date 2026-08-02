@@ -1,6 +1,6 @@
 # Signature.Cat Privacy Policy
 
-Version 1.1 - effective as of 02.08.2026
+Version 1.2 - effective as of 17.08.2026
 
 **This Privacy Policy is available in Polish at https://signature.cat/privacy as the legally binding version. This document is an automatic translation of the Polish original, provided for informational purposes only, and may contain errors or inaccuracies. In case of any discrepancy, the Polish version shall prevail.**
 
@@ -35,9 +35,15 @@ Depending on the category of data, we act in one of two roles:
 
 **b) Processor** - with respect to personal data of the Customer's employees and associates, processed within the Service on the Customer's instructions. The Customer is the controller of this data. The processing consists of:
 - reading data from the user directory of the Customer's Google Workspace (first name, last name, e-mail address including aliases, job title, department, phone numbers, address, profile photo URL) **exclusively on an ongoing basis, at the moment of previewing or deploying a signature** - these values are not stored by us after the operation is completed;
+- storing the values of signature fields entered by the Customer as part of the **User data** feature - an optional feature, switched off by default, activated by an independent decision of the Customer's administrator (described below);
 - writing the rendered signature in the Gmail settings of the given user (the signature remains in the Customer's Google environment);
+- reading the signature stored in the Gmail settings of the given user - automatically after every deployment and at the request of a person authorized by the Customer (described below);
 - short-term storage of e-mail addresses covered by a deployment in the task history (30 days, for the purposes of the deployment report);
 - storing content that the Customer independently places in signature templates or images.
+
+**User data (values entered by the Customer).** The feature is switched off by default and activating it requires an explicit decision of the Customer's administrator. Once it is switched on, we store in our database the values of signature fields concerning the persons indicated by the Customer: first name, last name, displayed e-mail address, displayed domain, job title, department, photo URL, address and phone number, together with information about who made the last change and when. The values are entered by the Customer's administrator, by the user themselves (if the Customer allows it) or by importing a CSV file; they replace the data from the Google Workspace directory solely for the purposes of rendering the signature. An entry exists only for persons for whom the Customer has entered at least one value. Switching the feature off permanently deletes all stored values, and entries of persons removed from the Customer's Google Workspace are deleted by us automatically (section 8). In the audit log we record who changed which fields and when - never the values themselves.
+
+**Reading the stored signature.** Google may modify a signature on its own when saving it, which is why after every deployment we check what content Gmail actually stored. The same reading is available at the request of a person authorized by the Customer (a preview of the signature currently set in the mailbox of a given user). The content of the signature read in this way is not stored or cached by us - we present it exclusively in the browser of the person performing the reading. In the audit log we record the address of the mailbox checked, the moment of the reading and the length of the signature.
 
 The entrustment of processing is governed by a data processing agreement (DPA), concluded exclusively in English - it is concluded at the Customer's request sent to contact@signature.cat. The full list of further processors (sub-processors) is made available to Customers within the DPA and upon request.
 
@@ -103,6 +109,7 @@ The basis for such transfers are standard contractual clauses (SCC) included in 
 | Account deletion (self-service, in settings) | permanent deletion of data takes place 7 days after the request is submitted |
 | Sign-in sessions | 7 days from last activity, at most 14 days from sign-in |
 | Signature deployment history (including e-mail addresses covered by a deployment) | 30 days from task completion |
+| Values of signature fields entered by the Customer (the User data feature) | for as long as the Customer uses the feature; deletion takes place immediately after the entry is removed or the feature is switched off by the Customer, and entries of persons removed from the Customer's Google Workspace are deleted automatically in the daily sweep |
 | Audit log | 365 days in the production database; an archival copy for security purposes and defense of claims - no longer than 6 years |
 | Results of automatic Workspace connection tests (preflight) | 90 days |
 | Internal operational events (team notifications) | 30 days from delivery |
@@ -113,7 +120,7 @@ The basis for such transfers are standard contractual clauses (SCC) included in 
 | Google Analytics statistical data | up to 14 months |
 | Data during the Trial Period | same as Account data (section 10) |
 
-Data of the Customer's employees retrieved from the Workspace directory is not stored - we process it only at the moment of rendering or deploying a signature (section 3(b)).
+Data of the Customer's employees retrieved from the Workspace directory is not stored - we process it only at the moment of rendering or deploying a signature (section 3(b)). The exception is the values that the Customer enters independently as part of the User data feature; their retention period is indicated in the table above.
 
 ## 9. Rights of data subjects
 
@@ -153,7 +160,7 @@ We do not use marketing cookies and we do not sell personal data.
 
 ## 12. Data from Google APIs
 
-The Service uses Google APIs (Google OAuth sign-in and Google Workspace interfaces: Gmail settings and the user directory - within the scopes indicated in the Terms). The use of information received from Google APIs complies with the Google API Services User Data Policy, including the Limited Use requirements: we use this data exclusively to provide and improve user-facing features of the Service (signature management), we do not use it for advertising purposes, we do not sell it, we do not transfer it to third parties beyond the scope necessary to provide the Service, and we do not use it to train artificial intelligence models.
+The Service uses Google APIs (Google OAuth sign-in and Google Workspace interfaces: Gmail settings - writing and reading the signature - and the user directory, within the scopes indicated in the Terms; the Service does not use any permission granting access to the content of messages). The use of information received from Google APIs complies with the Google API Services User Data Policy, including the Limited Use requirements: we use this data exclusively to provide and improve user-facing features of the Service (signature management), we do not use it for advertising purposes, we do not sell it, we do not transfer it to third parties beyond the scope necessary to provide the Service, and we do not use it to train artificial intelligence models.
 
 ## 13. Data security (technical and organizational measures)
 
@@ -164,14 +171,15 @@ We apply, among others, the following measures:
 - private keys of service accounts stored exclusively in a secret management service (never in the database, logs or API responses), with an in-memory cache expiring within up to 5 minutes and automatic, periodic key rotation;
 - customer isolation: one dedicated Google service account per Customer and restriction of every data operation to the given Customer's environment;
 - access control based on permission levels, enforced server-side for every operation;
-- service access by SignatureCat personnel: changes to Account settings by our support team require the Customer's prior consent, granted by an administrator with a dedicated switch in the application settings; every support action, as well as each enabling or disabling of the consent, is recorded in the Account's audit log together with the staff member's name, and read-only access (diagnostics) is limited to the scope necessary to maintain the Service;
+- service access by SignatureCat personnel: changes to Account settings by our support team require the Customer's prior consent, granted by an administrator with a dedicated switch in the application settings; the same consent is required for previewing the signature stored in the mailbox of a given user, even though this is a read-only operation; every support action, every such preview, as well as each enabling or disabling of the consent, is recorded in the Account's audit log together with the staff member's name, and read-only access (diagnostics) is limited to the scope necessary to maintain the Service;
 - authentication exclusively via Google OAuth (the Service does not store passwords); additional sign-in protections, including MFA, follow from the Customer's Google Workspace policy;
 - browser security headers, including an enforced Content Security Policy;
 - rate limiting per IP address at the network edge;
 - server-side sanitization of signature content (blocking scripts and dangerous constructs) and verification of uploaded image files (PNG/JPEG only, verification of the actual file type, 5 MB limit, SVG blocked);
 - database in a private network, with no public access point; backups with point-in-time recovery;
 - an append-only audit log and internal notifications about significant account events;
-- data minimization: attributes of the Customer's employees are not stored, and payment card data is processed exclusively by the payment operator.
+- data minimization: attributes of the Customer's employees retrieved from the Workspace directory are not stored, and payment card data is processed exclusively by the payment operator;
+- the User data feature, which is a deliberate exception to the rule above, is switched off by default, is activated exclusively by a decision of the Customer's administrator, covers only the persons indicated by the Customer, and switching it off permanently deletes all stored values.
 
 ## 14. Personal data breaches
 

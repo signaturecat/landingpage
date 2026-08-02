@@ -2,7 +2,7 @@
 title: Assignments
 navTitle: Assignments
 description: SignatureCat assignments reference - target kinds, precedence when a user matches several assignments, alias modes and conflict handling.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # Assignments
@@ -26,7 +26,7 @@ Individual users are deliberately not an assignment target - cover individuals w
 Users often match several assignments. Every sync computes exactly **one winner per user**, layer by layer, from bottom to top:
 
 1. **Everyone** - the base layer for every active user.
-2. **OU assignments** override the everyone-assignment for users in the OU.
+2. **OU assignments** override the everyone-assignment for users in the OU. If a user is covered by two assigned OUs, the **most recently updated** assignment wins.
 3. **Group assignments** override the OU template for their members. If a user belongs to multiple assigned groups, the **most recently updated** assignment wins.
 4. **Self-service** - a user's own choice wins over every assignment, **unless** the winning assignment has **Override self-service** enabled.
 

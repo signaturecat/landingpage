@@ -1,8 +1,8 @@
 ---
 title: Accès du support
 navTitle: Accès du support
-description: Autorisez le support SignatureCat à faire des modifications sur votre compte lorsqu'il vous aide - ce que l'interrupteur débloque, où le trouver, et comment chaque action apparaît dans votre journal d'activité.
-updated: 2026-07-19
+description: Ce que le support SignatureCat peut et ne peut pas faire sur votre compte Google Workspace, y compris consulter la signature Gmail actuelle d'un utilisateur, et comment tout cela est consigné.
+updated: 2026-08-02
 ---
 
 # Accès du support
@@ -15,7 +15,7 @@ Allez dans [Paramètres](https://app.signature.cat/settings) et trouvez la secti
 
 ## Ce qu'il débloque
 
-Avec l'accès du support **activé**, notre équipe support peut ajuster les parties de votre compte sur lesquelles elle intervient habituellement :
+Avec l'accès du support **activé**, notre équipe support peut travailler sur les parties de votre compte sur lesquelles elle intervient habituellement, plus une vue de diagnostic qui est bloquée sinon :
 
 | Domaine | Exemples |
 |---|---|
@@ -23,8 +23,9 @@ Avec l'accès du support **activé**, notre équipe support peut ajuster les par
 | Affectations | Recibler un groupe ou une OU, changer le modèle affecté |
 | Accès des utilisateurs | Ajouter ou corriger des accès |
 | E-mail de facturation | Corriger l'adresse à laquelle vos factures sont envoyées |
+| Diagnostic de signature | Consulter la signature actuellement définie dans le Gmail d'un utilisateur |
 
-Avec l'interrupteur **désactivé**, le support peut toujours *lire* les données du compte nécessaires au diagnostic d'un problème (journaux des tâches, configuration), mais chaque modification est rejetée par le système - pas simplement masquée dans l'interface.
+Avec l'interrupteur **désactivé**, le support peut toujours *lire* les données du compte nécessaires au diagnostic d'un problème (journaux des tâches, configuration), mais chaque modification est rejetée par le système - pas simplement masquée dans l'interface. Consulter la signature Gmail actuelle d'un utilisateur est l'exception parmi les lectures : cela va chercher dans une boîte mail, c'est donc refusé dès que l'interrupteur est désactivé.
 
 ## Ce qu'il n'autorise jamais
 
@@ -33,7 +34,7 @@ Quel que soit l'état de l'interrupteur, le personnel de SignatureCat ne peut pa
 - se connecter en tant que vous ou l'un de vos utilisateurs ;
 - modifier ou annuler votre abonnement, ni émettre des prélèvements ;
 - supprimer votre compte ;
-- lire les boîtes mail de votre organisation (le service n'écrit que les paramètres de signature Gmail - voir [Domain-Wide Delegation](/docs/domain-wide-delegation)) ;
+- lire les e-mails de qui que ce soit - SignatureCat ne détient aucun scope de contenu de messagerie, les e-mails, les pièces jointes et les brouillons sont donc hors de portée, que l'interrupteur soit activé ou non (voir [Domain-Wide Delegation](/docs/domain-wide-delegation)) ;
 - accéder aux secrets ou identifiants stockés.
 
 ## Tout est consigné
@@ -42,6 +43,7 @@ La transparence est intégrée :
 
 - L'activation ou la désactivation de l'interrupteur est écrite dans le journal d'activité de votre compte, et les autres Admins reçoivent une notification dans l'application lorsque l'accès du support est activé.
 - Chaque modification effectuée par notre équipe apparaît dans le journal d'activité dans [Paramètres](https://app.signature.cat/settings) sous le nom du collaborateur suivi de "(SignatureCat Support)" - la même piste que celle des modifications de vos propres administrateurs.
+- Chaque fois que notre équipe consulte la signature actuellement définie dans le Gmail d'un utilisateur, cette consultation est écrite dans le même journal d'activité. L'entrée enregistre l'adresse vérifiée, jamais la signature elle-même.
 - Ces entrées font partie des données de votre compte, elles sont donc incluses dans les exports de données.
 
 > [!TIP]

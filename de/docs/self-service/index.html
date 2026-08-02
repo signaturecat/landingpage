@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Self-Service-Signaturen | SignatureCat Docs</title>
-  <meta name="description" content="Lassen Sie Endnutzer ihre eigene Gmail-Signatur aus admin-freigegebenen SignatureCat-Vorlagen wählen und anwenden - Einrichtung, Ablauf und Vorrangregeln." />
+  <meta name="description" content="Lassen Sie Endnutzer ihre eigene Gmail-Signatur aus admin-freigegebenen SignatureCat-Vorlagen wählen und anwenden - Einrichtung, Ablauf, eigene Daten und Vorrangregeln." />
   <link rel="canonical" href="https://signature.cat/de/docs/self-service" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/self-service" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/self-service" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Self-Service-Signaturen | SignatureCat Docs" />
-  <meta property="og:description" content="Lassen Sie Endnutzer ihre eigene Gmail-Signatur aus admin-freigegebenen SignatureCat-Vorlagen wählen und anwenden - Einrichtung, Ablauf und Vorrangregeln." />
+  <meta property="og:description" content="Lassen Sie Endnutzer ihre eigene Gmail-Signatur aus admin-freigegebenen SignatureCat-Vorlagen wählen und anwenden - Einrichtung, Ablauf, eigene Daten und Vorrangregeln." />
   <meta property="og:url" content="https://signature.cat/de/docs/self-service" />
   <meta property="og:locale" content="de_DE" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Self-Service-Signaturen | SignatureCat Docs" />
-  <meta name="twitter:description" content="Lassen Sie Endnutzer ihre eigene Gmail-Signatur aus admin-freigegebenen SignatureCat-Vorlagen wählen und anwenden - Einrichtung, Ablauf und Vorrangregeln." />
+  <meta name="twitter:description" content="Lassen Sie Endnutzer ihre eigene Gmail-Signatur aus admin-freigegebenen SignatureCat-Vorlagen wählen und anwenden - Einrichtung, Ablauf, eigene Daten und Vorrangregeln." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Self-Service-Signaturen",
-      "description": "Lassen Sie Endnutzer ihre eigene Gmail-Signatur aus admin-freigegebenen SignatureCat-Vorlagen wählen und anwenden - Einrichtung, Ablauf und Vorrangregeln.",
+      "description": "Lassen Sie Endnutzer ihre eigene Gmail-Signatur aus admin-freigegebenen SignatureCat-Vorlagen wählen und anwenden - Einrichtung, Ablauf, eigene Daten und Vorrangregeln.",
       "url": "https://signature.cat/de/docs/self-service",
       "inLanguage": "de",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
         <li><a href="/de/docs/self-service" aria-current="page">Self-Service</a></li>
+        <li><a href="/de/docs/user-data">Benutzerdaten</a></li>
+        <li><a href="/de/docs/user-data-import">Benutzerdaten importieren</a></li>
         <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
         <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates">Vorlagen</a></li>
         <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
+        <li><a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a></li>
         <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
         <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/gmail-sanitization">Gmail-Kürzung</a></li>
         <li><a href="/de/docs/service-status">Dienststatus</a></li>
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
@@ -210,8 +214,27 @@
 <li>Auf <strong>Signatur speichern</strong> klicken. Die Signatur wird sofort auf das Postfach des Nutzers angewendet ("Gespeichert - auf Ihr Postfach angewendet"), einschließlich seiner akzeptierten send-as-Aliasse.</li>
 </ol>
 <p>Ist das Dropdown leer, hat noch keine Vorlage Self-Service aktiviert: "Ihre Organisation hat noch keine Self-Service-Vorlagen veröffentlicht. Bitten Sie einen Admin, eine zu aktivieren."</p>
+<h2 id="meine-signaturdaten">Meine Signaturdaten<a class="h-anchor" href="#meine-signaturdaten" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p><strong>Meine Signaturdaten</strong> ist eine Schaltfläche auf der Seite <strong>Meine Signatur</strong>, auf der ein Nutzer seine eigenen Werte für die Variablen in seiner Signatur einträgt - Position, Telefon, Adresse und den Rest. Sie erscheint, sobald ein Admin die Benutzerdaten für die Organisation eingeschaltet und das Schloss <strong>Self-Service-Bearbeitung</strong> geöffnet hat; siehe <a href="/de/docs/user-data">Benutzerdaten</a>.</p>
+<p>Für den Nutzer läuft es so:</p>
+<ol>
+<li><a href="https://app.signature.cat/self-service" target="_blank" rel="noopener">Meine Signatur</a> öffnen und auf <strong>Meine Signaturdaten</strong> klicken.</li>
+<li>Das Fenster <strong>Ergänzen Sie Ihre Daten</strong> öffnet sich: "Diese Werte füllen die Variablen in Ihrer Signatur."</li>
+<li>Jedes Feld zeigt den Wert aus Ihrem Unternehmensverzeichnis, bis Sie auf das Symbol daneben klicken und Ihren eigenen eintippen.</li>
+<li>Auf <strong>Meine Daten speichern</strong> klicken. <strong>Verzeichnisdaten verwenden</strong> tut das Gegenteil: Es entfernt alles, was Sie eingetragen haben, und setzt jedes Feld zurück auf den Verzeichniswert.</li>
+</ol>
+<p>Was sich dadurch ändert:</p>
+<ul>
+<li>Die Werte speisen dieselben <a href="/de/docs/template-variables">Vorlagenvariablen</a> wie überall sonst - die von Ihnen gewählte Organisationsvorlage, die Vorschau auf der Seite und die Signatur in Ihrem Postfach verwenden sie alle.</li>
+<li>Das Speichern wendet Ihre Signatur sofort erneut auf Ihr Postfach an ("Gespeichert. Ihre Signatur wird gerade aktualisiert."). Lässt sich in diesem Moment nichts anwenden, geht die Änderung mit der nächsten Signatur-Aktualisierung hinaus.</li>
+<li>Sie können immer nur Ihren <strong>eigenen</strong> Datensatz bearbeiten. Das Fenster arbeitet stets mit Ihrer eigenen Adresse.</li>
+<li>Ihr Admin sieht jeden Eintrag, einschließlich der Angabe, wer ihn zuletzt geändert hat, und kann ihn überschreiben oder löschen.</li>
+</ul>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
+<p>Keine Schaltfläche <strong>Meine Signaturdaten</strong> auf der Seite? Dann sind die Benutzerdaten für Ihre Organisation abgeschaltet, oder die Self-Service-Bearbeitung ist noch gesperrt. Fragen Sie einen Admin.</p>
+</div></aside>
 <h2 id="wie-self-service-mit-zuweisungen-zusammenspielt">Wie Self-Service mit Zuweisungen zusammenspielt<a class="h-anchor" href="#wie-self-service-mit-zuweisungen-zusammenspielt" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Die Self-Service-Wahl eines Nutzers steht <strong>ganz oben</strong> auf der Vorrangleiter: Sie gewinnt über Gruppen-, OU- und Alle-Zuweisungen. Die einzige Ausnahme ist eine Zuweisung mit aktiviertem <strong>Self-Service überschreiben</strong>, die die Regel für die von ihr erfassten Nutzer umkehrt. Details: <a href="/de/docs/assignments#how-precedence-works">Zuweisungen</a>.</p>
+<p>Die Self-Service-Wahl eines Nutzers steht <strong>ganz oben</strong> auf der Vorrangleiter: Sie gewinnt über Gruppen-, OU- und Alle-Zuweisungen. Die einzige Ausnahme ist eine Zuweisung mit aktiviertem <strong>Self-Service überschreiben</strong>, die die Regel für die von ihr erfassten Nutzer umkehrt. Details: <a href="/de/docs/assignments#wie-der-vorrang-funktioniert">Zuweisungen</a>.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
 <p>Self-Service-Nutzer können immer nur ihre <strong>eigene</strong> Signatur setzen. Sie sehen nur die von Ihnen aktivierten Vorlagen, nie die Daten anderer Nutzer oder Admin-Seiten.</p>
 </div></aside>
@@ -221,9 +244,9 @@
       <span class="pager-label">Zurück</span>
       <span class="pager-title">Benutzerverwaltung</span>
     </a>
-<a class="pager-card pager-next" href="/de/docs/custom-image-domain" rel="next">
+<a class="pager-card pager-next" href="/de/docs/user-data" rel="next">
       <span class="pager-label">Weiter</span>
-      <span class="pager-title">Eigene Bilddomain</span>
+      <span class="pager-title">Benutzerdaten</span>
     </a>
 </nav>
       <footer class="docs-foot">
@@ -248,6 +271,7 @@
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#was-admins-einrichten">Was Admins einrichten</a></li>
         <li class="toc-l2"><a href="#was-der-nutzer-tut">Was der Nutzer tut</a></li>
+        <li class="toc-l2"><a href="#meine-signaturdaten">Meine Signaturdaten</a></li>
         <li class="toc-l2"><a href="#wie-self-service-mit-zuweisungen-zusammenspielt">Wie Self-Service mit Zuweisungen zusammenspielt</a></li>
         </ul>
       </nav>

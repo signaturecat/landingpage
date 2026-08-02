@@ -21,7 +21,7 @@ Die nächste Abbuchung verwendet die neue Karte. Befinden Sie sich in einer Kula
 Im selben Stripe-Portal können Sie den rechtlichen **Firmennamen**, die **Rechnungsadresse** und die **Steuernummer** (USt-IdNr. / NIP - polnische Unternehmen verwenden die USt-IdNr. mit dem Präfix `PL`) bearbeiten. Diese Angaben erscheinen auf jeder nach der Änderung ausgestellten Rechnung; bereits ausgestellte Rechnungen bleiben unverändert.
 
 > [!NOTE]
-> Die **Rechnungs-E-Mail** ist im Stripe-Portal bewusst nicht bearbeitbar - ändern Sie sie in den [Einstellungen](https://app.signature.cat/settings), Bereich Abrechnung, damit App und Stripe immer übereinstimmen. Siehe [Rechnungen](/docs/invoices/#set-the-invoice-email).
+> Die **Rechnungs-E-Mail** ist im Stripe-Portal bewusst nicht bearbeitbar - ändern Sie sie in den [Einstellungen](https://app.signature.cat/settings), Bereich Abrechnung, damit App und Stripe immer übereinstimmen. Siehe [Rechnungen](/docs/invoices#die-rechnungs-e-mail-festlegen).
 
 ## Ihren Abonnementstatus prüfen
 
@@ -32,4 +32,4 @@ Der Bereich Abrechnung in den [Einstellungen](https://app.signature.cat/settings
 Klicken Sie in den [Einstellungen](https://app.signature.cat/settings), Bereich Abrechnung, auf **Abonnement kündigen**. Der Zugriff läuft bis zum Ende des aktuellen Abrechnungszeitraums weiter, danach endet die Signaturverwaltung. Ihre Gmail-Signaturen werden nicht entfernt - sie werden lediglich nicht mehr verwaltet und aktualisiert.
 
 > [!WARNING]
-> Die Kündigung löscht weder Ihre Daten noch den Domain-Wide Delegation-Eintrag. Wenn Sie endgültig gehen, löschen Sie zusätzlich das Konto in der Gefahrenzone in den [Einstellungen](https://app.signature.cat/settings) und entfernen Sie den DWD-Eintrag in der Google Admin console - siehe [Domain-Wide Delegation](/docs/domain-wide-delegation/#removing-signaturecat).
+> Die Kündigung löscht weder Ihre Daten noch den Domain-Wide Delegation-Eintrag. Wenn Sie endgültig gehen, löschen Sie zusätzlich das Konto in der Gefahrenzone in den [Einstellungen](https://app.signature.cat/settings) und entfernen Sie den DWD-Eintrag in der Google Admin console - siehe [Domain-Wide Delegation](/docs/domain-wide-delegation#signaturecat-entfernen).

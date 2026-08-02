@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Nadpisania danych użytkowników | SignatureCat Docs</title>
+  <meta name="description" content="Przechowuj wartości per użytkownik, które nadpisują katalog Google Workspace w podpisach Gmail - zgoda, dziewięć pól, edycja self-service i usuwanie." />
+  <link rel="canonical" href="https://signature.cat/pl/docs/user-data" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/user-data" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/user-data" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/user-data" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/user-data" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/user-data" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Nadpisania danych użytkowników | SignatureCat Docs" />
+  <meta property="og:description" content="Przechowuj wartości per użytkownik, które nadpisują katalog Google Workspace w podpisach Gmail - zgoda, dziewięć pól, edycja self-service i usuwanie." />
+  <meta property="og:url" content="https://signature.cat/pl/docs/user-data" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Nadpisania danych użytkowników | SignatureCat Docs" />
+  <meta name="twitter:description" content="Przechowuj wartości per użytkownik, które nadpisują katalog Google Workspace w podpisach Gmail - zgoda, dziewięć pól, edycja self-service i usuwanie." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Nadpisania danych użytkowników",
+      "description": "Przechowuj wartości per użytkownik, które nadpisują katalog Google Workspace w podpisach Gmail - zgoda, dziewięć pól, edycja self-service i usuwanie.",
+      "url": "https://signature.cat/pl/docs/user-data",
+      "inLanguage": "pl",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Dokumentacja",
+          "item": "https://signature.cat/pl/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Konfiguracja zaawansowana",
+          "item": "https://signature.cat/pl/docs/user-data"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Nadpisania danych użytkowników",
+          "item": "https://signature.cat/pl/docs/user-data"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Przejdź do treści</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Przełącz menu dokumentacji" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/pl/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Przeszukaj dokumentację" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Szukaj w dokumentacji</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Motyw: systemowy" title="Motyw: systemowy">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Pomoc</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Otwórz aplikację</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Dokumentacja">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Co nowego</p>
+        <ul>
+        <li><a href="/pl/docs/changelog">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Pierwsze kroki</p>
+        <ul>
+        <li><a href="/pl/docs">Wprowadzenie</a></li>
+        <li><a href="/pl/docs/connect-google-workspace">Połącz Google Workspace</a></li>
+        <li><a href="/pl/docs/create-your-first-template">Utwórz swój pierwszy szablon</a></li>
+        <li><a href="/pl/docs/assign-templates">Przypisz szablony</a></li>
+        <li><a href="/pl/docs/verify-assignments">Weryfikuj zadania przypisań</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Konfiguracja zaawansowana</p>
+        <ul>
+        <li><a href="/pl/docs/user-management">Zarządzanie dostępem</a></li>
+        <li><a href="/pl/docs/self-service">Self-service</a></li>
+        <li><a href="/pl/docs/user-data" aria-current="page">Dane użytkowników</a></li>
+        <li><a href="/pl/docs/user-data-import">Import danych</a></li>
+        <li><a href="/pl/docs/custom-image-domain">Własna domena obrazków</a></li>
+        <li><a href="/pl/docs/banners-and-logos">Banery i logo</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Rozliczenia</p>
+        <ul>
+        <li><a href="/pl/docs/invoices">Faktury</a></li>
+        <li><a href="/pl/docs/billing-details">Dane rozliczeniowe</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Referencja</p>
+        <ul>
+        <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/pl/docs/templates">Szablony</a></li>
+        <li><a href="/pl/docs/visual-editor">Edytor wizualny</a></li>
+        <li><a href="/pl/docs/mail-client-preview">Podgląd w kliencie pocztowym</a></li>
+        <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
+        <li><a href="/pl/docs/assignments">Przypisania</a></li>
+        <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
+        <li><a href="/pl/docs/logs">Logi</a></li>
+        <li><a href="/pl/docs/images">Obrazki</a></li>
+        <li><a href="/pl/docs/notifications">Powiadomienia</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Wsparcie</p>
+        <ul>
+        <li><a href="/pl/docs/support-access">Dostęp dla supportu</a></li>
+        <li><a href="/pl/docs/get-help">Uzyskaj pomoc</a></li>
+        <li><a href="/pl/docs/gmail-sanitization">Okrajanie przez Gmail</a></li>
+        <li><a href="/pl/docs/service-status">Status usługi</a></li>
+        <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Okruszki nawigacyjne"><a href="/pl/docs">Dokumentacja</a><span class="crumb-sep">/</span><span class="crumb-section">Konfiguracja zaawansowana</span><span class="crumb-sep">/</span><span aria-current="page">Dane użytkowników</span></nav>
+      <article class="docs-article">
+<h1>Nadpisania danych użytkowników</h1>
+<p>Zakładka <strong>Dane</strong> pozwala zapisać własną wartość dla pojedynczej osoby i użyć jej w podpisach zamiast tego, co zwraca katalog Google. Funkcja jest wyłączona, dopóki nie włączy jej Admin, obejmuje te same dziewięć osobowych <a href="/pl/docs/template-variables">zmiennych</a>, których używają Twoje szablony, i nigdy niczego nie zapisuje z powrotem do Google. Strona to <a href="https://app.signature.cat/data" target="_blank" rel="noopener">app.signature.cat/data</a>, tylko dla poziomu Admin.</p>
+<h2 id="kiedy-uywa-nadpisa">Kiedy używać nadpisań<a class="h-anchor" href="#kiedy-uywa-nadpisa" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Używaj nadpisań tam, gdzie braku nie da się szybko naprawić u źródła. Poprawienie danych w Google pozostaje zalecaną drogą i mówi o tym sam ekran zgody: <strong>Najpierw katalog - nadpisania później</strong>. Najlepszym miejscem na dane pracowników jest sam katalog Google (w konsoli administracyjnej Google: <strong>Katalog</strong>, <strong>Użytkownicy</strong>, wybierz osobę, <strong>Informacje o użytkowniku</strong>). Dane trzymane tam trafiają do podpisów automatycznie, bez żadnych nadpisań, i korzysta z nich każde inne narzędzie Workspace.</p>
+<p>Dobre powody, by mimo wszystko nadpisać:</p>
+<ul>
+<li>stanowisko albo dział jest dziś błędne, a proces, który za nie odpowiada, nie zostanie naprawiony w tym tygodniu;</li>
+<li>współpracownik nie ma w katalogu numeru telefonu, a w podpisie musi go mieć;</li>
+<li>jedna osoba ma występować w mailu pod preferowanym imieniem, ale nie w rekordzie katalogu.</li>
+</ul>
+<p>Późniejsze poprawienie rekordu w katalogu zawsze jest bezpieczne: przełącz pole z powrotem na wartość z katalogu, a nadpisanie zniknie.</p>
+<h2 id="wczanie">Włączanie<a class="h-anchor" href="#wczanie" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Nic nie jest zapisywane, dopóki funkcji nie włączy Admin. Otwórz <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Dane</a> i przeczytaj ekran zgody <strong>Przechowywać dane do podpisów dla wybranych osób?</strong>, który w sekcji <strong>Co i kiedy przechowujemy</strong> mówi:</p>
+<ul>
+<li>nic nie jest zapisywane, dopóki nie włączysz funkcji - a potem wyłącznie wartości, które sami wpiszecie, tylko dla nadpisanych osób;</li>
+<li>każda zmiana ląduje w dzienniku audytu (kto, kiedy i które pola - nigdy wartości);</li>
+<li>wyłączenie funkcji trwale usuwa wszystkie zapisane wartości, a osoby usunięte z Workspace są czyszczone automatycznie.</li>
+</ul>
+<p>Kliknij <strong>Włącz i przechowuj dane</strong>, aby ją uruchomić. Do tego momentu ekrany danych niczego nie przechowują, a funkcja nie wykonuje żadnych zapytań do katalogu.</p>
+<aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Ważne</p><div class="callout-body">
+<p>Wartości, które tu wpisujesz, przechowuje SignatureCat, we własnej bazie danych SignatureCat - nie w Twoim Google Workspace. Ta funkcja nigdy nie zmienia rekordów w Twoim katalogu Google.</p>
+</div></aside>
+<p>Strona Dane wymaga zweryfikowanego połączenia z Workspace; jeśli kreator konfiguracji nie jest dokończony, trafisz najpierw na <a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a>.</p>
+<h2 id="pola-ktre-moesz-nadpisa">Pola, które możesz nadpisać<a class="h-anchor" href="#pola-ktre-moesz-nadpisa" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Dziewięć pól, po jednym na każdą zmienną osobową. Zapisana wartość wygrywa z wartością z katalogu na każdej ścieżce renderowania - podgląd w edytorze, testowe zastosowanie, ręczne zastosowanie i codzienna synchronizacja - więc to, co pokazuje edytor, trafia do skrzynek. Pole, którego nie ruszysz, zachowuje wartość z katalogu.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Pole</th><th scope="col">Zmienna</th><th scope="col">Wartość z katalogu</th><th scope="col">Limit</th></tr></thead>
+<tbody>
+<tr><td><strong>Imię</strong></td><td><code>{{firstname}}</code></td><td>Imię z katalogu</td><td>120 znaków</td></tr>
+<tr><td><strong>Nazwisko</strong></td><td><code>{{lastname}}</code></td><td>Nazwisko z katalogu</td><td>120 znaków</td></tr>
+<tr><td><strong>E-mail (wyświetlany)</strong></td><td><code>{{email}}</code></td><td>Główny adres e-mail</td><td>320 znaków, musi być poprawnym adresem</td></tr>
+<tr><td><strong>Domena (wyświetlana)</strong></td><td><code>{{domain}}</code></td><td>Część domenowa adresu głównego</td><td>253 znaki, sama domena, na przykład <code>yourcompany.com</code></td></tr>
+<tr><td><strong>Stanowisko</strong></td><td><code>{{jobtitle}}</code></td><td>Stanowisko z głównego wpisu organizacji użytkownika</td><td>200 znaków</td></tr>
+<tr><td><strong>Dział</strong></td><td><code>{{department}}</code></td><td>Dział z tego samego wpisu</td><td>200 znaków</td></tr>
+<tr><td><strong>URL zdjęcia</strong></td><td><code>{{photo}}</code></td><td>Zdjęcie profilowe z katalogu</td><td>2048 znaków, tylko link <code>https://</code></td></tr>
+<tr><td><strong>Adres</strong></td><td><code>{{address}}</code></td><td>Główny adres użytkownika, sformatowany</td><td>300 znaków</td></tr>
+<tr><td><strong>Telefon</strong></td><td><code>{{phone}}</code></td><td>Pierwszy niepusty z: służbowy, komórkowy, domowy</td><td>60 znaków</td></tr>
+</tbody>
+</table></div>
+<aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Ostrzeżenie</p><div class="callout-body">
+<p><strong>E-mail (wyświetlany)</strong> i <strong>Domena (wyświetlana)</strong> zmieniają tylko to, co pokazuje podpis. Nigdy nie zmieniają adresu skrzynki, z której wychodzą maile, i niczego nie tworzą w Google.</p>
+</div></aside>
+<p>Dwie dodatkowe reguły warte zapamiętania:</p>
+<ul>
+<li><strong>URL zdjęcia</strong> przyjmuje publiczny link <code>https://</code> do obrazka, który hostujesz sam - SignatureCat nie hostuje zdjęć pracowników.</li>
+<li>Gdy podpis jest zapisywany na aliasie send-as, <code>{{email}}</code> i <code>{{domain}}</code> podążają za adresem aliasu, nawet jeśli masz dla tej osoby zapisane nadpisanie; wszystkie pozostałe pola zachowują swoje nadpisania. Zobacz <a href="/pl/docs/assignments#tryby-aliasw">Tryby aliasów</a>.</li>
+</ul>
+<h2 id="nadpisanie-dla-jednej-osoby">Nadpisanie dla jednej osoby<a class="h-anchor" href="#nadpisanie-dla-jednej-osoby" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ol>
+<li>Na stronie <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Dane</a> zacznij pisać w polu <strong>Znajdź użytkownika</strong> - wystarczy jeden znak. Wyniki pochodzą na żywo z katalogu Twojego Workspace; puste wyszukiwanie celowo nie zwraca nic, dzięki czemu strona nigdy nie wypisuje całego Workspace.</li>
+<li>Wybierz osobę z wyników. Otworzy się edytor, w którym każde pole pokazuje aktualną wartość z katalogu, tylko do odczytu, oznaczoną ikoną chmury.</li>
+<li>Kliknij ikonę obok pola, aby przełączyć je z <strong>Użyj wartości z katalogu</strong> na <strong>Nadpisz to pole</strong>, i wpisz swoją wartość. Tryb katalogu jest domyślny dla każdego pola, a przełączenie pola z powrotem na niego usuwa zapisaną wartość przy zapisie.</li>
+<li>Jeśli dane są błędne u źródła, skorzystaj z <strong>Edytuj tę osobę w konsoli Google</strong> - otwiera profil tej osoby w Google.</li>
+<li>Kliknij <strong>Zapisz dane</strong>.</li>
+</ol>
+<p>Po zapisie aplikacja mówi, co stało się ze skrzynką:</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Co mówi aplikacja</th><th scope="col">Co to znaczy</th></tr></thead>
+<tbody>
+<tr><td>"Zapisano. Podpis jane@yourcompany.com odświeży się za chwilę."</td><td>Jednorazowe odświeżenie podpisu tej osoby zostało zakolejkowane.</td></tr>
+<tr><td>"Zapisano, ale jane@yourcompany.com nie ma przypisanego podpisu - nic nie zostało zastosowane w skrzynce."</td><td>Osoba nie pasuje do żadnego przypisania i nie dokonała wyboru self-service, więc nie ma czego odświeżać.</td></tr>
+<tr><td>"Zapisano. Zmiana wejdzie w życie przy najbliższej synchronizacji podpisów."</td><td>Nic nie dało się teraz zakolejkować; zmianę podchwyci codzienna synchronizacja.</td></tr>
+</tbody>
+</table></div>
+<p>Każda nadpisana osoba trafia na listę <strong>Osoby z nadpisanymi danymi</strong>, wraz z polami, które mają wartość, datą i kolumną <strong>Ostatnia zmiana</strong> (<strong>Administrator</strong>, <strong>Self-service</strong> albo <strong>Import CSV</strong>). Ta lista pochodzi z własnej bazy danych SignatureCat i nie wykonuje żadnych zapytań do Google.</p>
+<p>Dla dziesiątek lub setek osób naraz użyj <strong>Import z CSV</strong> - zobacz <a href="/pl/docs/user-data-import">Import danych użytkowników z CSV</a>.</p>
+<h2 id="usuwanie-nadpisania">Usuwanie nadpisania<a class="h-anchor" href="#usuwanie-nadpisania" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Wyczyszczenie wszystkich pól danej osoby usuwa jej zapisany wpis:</p>
+<ul>
+<li>w edytorze <strong>Wróć do danych z katalogu</strong> usuwa wszystkie zapisane wartości naraz;</li>
+<li>na liście to samo robi <strong>Usuń nadpisanie</strong> w wierszu;</li>
+<li>zapisanie osoby, której wszystkie pola wróciły do trybu katalogu, również usuwa wpis.</li>
+</ul>
+<p>Nie da się wymusić pustej wartości: puste nadpisanie zawsze oznacza "użyj katalogu". Jeśli podpis ma całkowicie ukrywać brakujące pole, zamknij tę linię w <a href="/pl/docs/template-variables#bloki-warunkowe-del-i-delete">bloku warunkowym</a>.</p>
+<p>Osobę, której już nie ma w Twoim Workspace, wciąż możesz wyczyścić ręcznie - edytor mówi "Ten użytkownik nie istnieje już w Twoim Workspace." i proponuje <strong>Usuń nadpisanie teraz</strong>. Automatyczne czyszczenie i tak usunęłoby ten wpis.</p>
+<h2 id="pozwl-ludziom-uzupeni-wasne-dane">Pozwól ludziom uzupełnić własne dane<a class="h-anchor" href="#pozwl-ludziom-uzupeni-wasne-dane" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Włącz przełącznik <strong>Edycja self-service</strong> na stronie Dane, aby pozwolić użytkownikom wpisywać własne wartości na stronie Mój podpis. Pod adresem <a href="https://app.signature.cat/self-service" target="_blank" rel="noopener">app.signature.cat/self-service</a> pojawi się wtedy przycisk <strong>Moje dane do podpisu</strong>, który otwiera <strong>Uzupełnij swoje dane</strong> - ten sam edytor per pole, z <strong>Zapisz moje dane</strong> i <strong>Użyj danych z katalogu</strong>.</p>
+<ul>
+<li>Skorzysta z niego każdy poziom dostępu od <strong>Self-service</strong> wzwyż, i zawsze tylko na własnym rekordzie.</li>
+<li>Ich wpisy pojawiają się na Twojej liście z wartością <strong>Self-service</strong> w kolumnie <strong>Ostatnia zmiana</strong>, obok adresu osoby, która je zapisała.</li>
+<li>Każdy z nich możesz nadpisać albo usunąć; zapis administratora zmienia źródło wpisu na <strong>Administrator</strong>.</li>
+<li>Każda zmiana self-service ląduje w dzienniku audytu tak samo jak Twoja.</li>
+</ul>
+<p>Więcej o stronie Mój podpis: <a href="/pl/docs/self-service">Self-service</a>.</p>
+<h2 id="kto-co-moe">Kto co może<a class="h-anchor" href="#kto-co-moe" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Zakładka <strong>Dane</strong> jest tylko dla poziomu Admin, tak jak <a href="/pl/docs/user-management">Zarządzanie dostępem</a>. Wszyscy pozostali mogą co najwyżej edytować własny rekord.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Kto</th><th scope="col">Co może zrobić</th></tr></thead>
+<tbody>
+<tr><td>Admin</td><td>Włączyć i wyłączyć funkcję, nadpisać dowolną osobę, <a href="/pl/docs/user-data-import">zaimportować CSV</a>, otworzyć lub zamknąć edycję self-service.</td></tr>
+<tr><td>Poziom <strong>Self-service</strong> i wyżej</td><td>Edytować wyłącznie własne wartości i tylko wtedy, gdy funkcja jest włączona, a edycja self-service otwarta.</td></tr>
+</tbody>
+</table></div>
+<h2 id="wyczanie">Wyłączanie<a class="h-anchor" href="#wyczanie" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Sekcja <strong>Wyłącz i usuń</strong> na dole strony Dane usuwa wszystko. Kliknij <strong>Wyłącz nadpisywanie danych</strong>, a następnie w oknie <strong>Usunąć wszystkie zapisane dane?</strong> wykonaj <strong>Przepisz domenę Workspace, aby potwierdzić</strong> i kliknij <strong>Usuń wszystko i wyłącz</strong>.</p>
+<p>Wszystkie zapisane wartości Twojego workspace znikają natychmiast, a edycja self-service wyłącza się razem z funkcją. Podpisy wracają do danych z katalogu przy najbliższym zastosowaniu.</p>
+<aside class="callout callout-caution" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.9 4.9l14.2 14.2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/></svg>Przestroga</p><div class="callout-body">
+<p>Usunięcie jest trwałe i nie da się go cofnąć. Zanim potwierdzisz, wyeksportuj albo zapisz sobie wszystko, co chcesz zachować.</p>
+</div></aside>
+<p>Strona Dane pozostaje dostępna nawet wtedy, gdy subskrypcja wygasła, więc wyłącznik masz zawsze pod ręką.</p>
+<h2 id="cykl-ycia-i-prywatno">Cykl życia i prywatność<a class="h-anchor" href="#cykl-ycia-i-prywatno" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ul>
+<li>Wpisy istnieją tylko dla osób, które ktoś faktycznie nadpisał - SignatureCat nigdy nie kopiuje Twojego katalogu.</li>
+<li>Zawieszeni użytkownicy zachowują swoje zapisane wartości.</li>
+<li>Osoby usunięte z Twojego Workspace mają wpisy usuwane automatycznie, raz dziennie.</li>
+<li>Usunięcie konta SignatureCat usuwa razem z nim wszystkie zapisane wartości.</li>
+<li>Każda zmiana trafia do dziennika audytu z informacją kto, kiedy i które pola - nigdy z samymi wartościami.</li>
+<li>Wyłączenie funkcji usuwa wszystko, natychmiast.</li>
+</ul>
+<p>Wiążące dokumenty i podsumowanie prywatności znajdziesz na stronie <a href="/pl/docs/legal">Kwestie prawne</a>.</p>
+      </article>
+<nav class="docs-pager" aria-label="Stronicowanie">
+<a class="pager-card pager-prev" href="/pl/docs/self-service" rel="prev">
+      <span class="pager-label">Poprzednia</span>
+      <span class="pager-title">Self-service</span>
+    </a>
+<a class="pager-card pager-next" href="/pl/docs/user-data-import" rel="next">
+      <span class="pager-label">Następna</span>
+      <span class="pager-title">Import danych</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Język">
+            <option value="/docs/user-data" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/user-data" data-lang="pl" lang="pl" selected>Polski</option>
+            <option value="/de/docs/user-data" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/user-data" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Informacje prawne</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Na tej stronie">
+      <nav>
+        <p class="docs-toc-title">Na tej stronie</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#kiedy-uywa-nadpisa">Kiedy używać nadpisań</a></li>
+        <li class="toc-l2"><a href="#wczanie">Włączanie</a></li>
+        <li class="toc-l2"><a href="#pola-ktre-moesz-nadpisa">Pola, które możesz nadpisać</a></li>
+        <li class="toc-l2"><a href="#nadpisanie-dla-jednej-osoby">Nadpisanie dla jednej osoby</a></li>
+        <li class="toc-l2"><a href="#usuwanie-nadpisania">Usuwanie nadpisania</a></li>
+        <li class="toc-l2"><a href="#pozwl-ludziom-uzupeni-wasne-dane">Pozwól ludziom uzupełnić własne dane</a></li>
+        <li class="toc-l2"><a href="#kto-co-moe">Kto co może</a></li>
+        <li class="toc-l2"><a href="#wyczanie">Wyłączanie</a></li>
+        <li class="toc-l2"><a href="#cykl-ycia-i-prywatno">Cykl życia i prywatność</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Przeszukaj dokumentację" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Przeszukaj dokumentację" autocomplete="off" spellcheck="false" aria-label="Przeszukaj dokumentację" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Zamknij wyszukiwarkę">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Brak wyników. Spróbuj innych słów kluczowych albo napisz na <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

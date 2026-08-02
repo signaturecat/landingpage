@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Images | SignatureCat Docs</title>
-  <meta name="description" content="SignatureCat image reference - the per-workspace library, hosting on images.signature.cat or your own domain, formats, limits and lifecycle." />
+  <meta name="description" content="Reference for images in SignatureCat email signatures for Google Workspace - the library, ALT descriptions, hosting, formats, limits and deletion." />
   <link rel="canonical" href="https://signature.cat/docs/images" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/images" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/images" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Images | SignatureCat Docs" />
-  <meta property="og:description" content="SignatureCat image reference - the per-workspace library, hosting on images.signature.cat or your own domain, formats, limits and lifecycle." />
+  <meta property="og:description" content="Reference for images in SignatureCat email signatures for Google Workspace - the library, ALT descriptions, hosting, formats, limits and deletion." />
   <meta property="og:url" content="https://signature.cat/docs/images" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Images | SignatureCat Docs" />
-  <meta name="twitter:description" content="SignatureCat image reference - the per-workspace library, hosting on images.signature.cat or your own domain, formats, limits and lifecycle." />
+  <meta name="twitter:description" content="Reference for images in SignatureCat email signatures for Google Workspace - the library, ALT descriptions, hosting, formats, limits and deletion." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Images",
-      "description": "SignatureCat image reference - the per-workspace library, hosting on images.signature.cat or your own domain, formats, limits and lifecycle.",
+      "description": "Reference for images in SignatureCat email signatures for Google Workspace - the library, ALT descriptions, hosting, formats, limits and deletion.",
       "url": "https://signature.cat/docs/images",
       "inLanguage": "en",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/docs/user-management">User management</a></li>
         <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
         <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
         <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
         <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/docs/support-access">Support access</a></li>
         <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
         <li><a href="/docs/service-status">Service status</a></li>
         <li><a href="/docs/legal">Legal</a></li>
         </ul>
@@ -202,7 +206,15 @@
 <tr><td>Banner</td><td>450x100 px, max-width 100%</td><td><code>{{banner}}</code></td><td>200 entries</td></tr>
 </tbody>
 </table></div>
-<p>Library entries carry an optional label and an optional <strong>click-through link</strong>. Each template selects its own logo and banner from the library; templates without a selection render a neutral placeholder. Uploads are PNG or JPG, up to 5 MB (200 KB recommended); SVG is not accepted.</p>
+<p>Library entries carry an optional label, an optional <strong>click-through link</strong> and an optional <strong>Image description (ALT)</strong>. Each template selects its own logo and banner from the library; templates without a selection render a neutral placeholder. Uploads are PNG or JPG, up to 5 MB (200 KB recommended); SVG is not accepted.</p>
+<h2 id="image-description-alt">Image description (ALT)<a class="h-anchor" href="#image-description-alt" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>The <strong>Image description (ALT)</strong> is what a recipient sees instead of the picture when their mail client blocks images, and what a screen reader announces. It is optional and limited to 300 characters.</p>
+<ul>
+<li><strong>Where you set it:</strong> in the add form when you upload a file or paste a link, in the image step of the new-template wizard, and later in the <strong>Selected image details</strong> panel of the library.</li>
+<li><strong>What it applies to:</strong> every library entry, whether SignatureCat hosts the file or you link to your own.</li>
+<li><strong>Where it travels:</strong> with the library entry, exactly like the click-through link - change it once and every template using that image ships the new description on the next render.</li>
+<li><strong>If you leave it empty:</strong> the image is rendered as decorative and gets no description.</li>
+</ul>
 <h2 id="where-images-are-served-from">Where images are served from<a class="h-anchor" href="#where-images-are-served-from" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
 <li><strong>Library uploads</strong> are stored by SignatureCat and served from <code>https://images.signature.cat/...</code> over a CDN with long-lived caching.</li>
@@ -210,15 +222,17 @@
 <li><strong>External URL images</strong> ("I have a link") are hot-linked from wherever you host them. They must be public and HTTPS; ideally host them on your own domain.</li>
 </ul>
 <aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Important</p><div class="callout-body">
-<p>Image URLs are baked into each rendered signature. Emails that are already in recipients' inboxes keep fetching the URL they were sent with - which is why SignatureCat never deletes the underlying files of removed library images, and why an external image you take offline will show as broken in old emails.</p>
+<p>Image URLs are baked into each rendered signature, so emails already in recipients' inboxes keep fetching the URL they were sent with: deleting a library entry that SignatureCat hosts releases the stored file, and the image eventually stops loading in mail that was already delivered.</p>
 </div></aside>
 <h2 id="profile-photos">Profile photos<a class="h-anchor" href="#profile-photos" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>The <code>{{photo}}</code> variable uses the user's Google profile photo from Directory (auto-scaled to 400 px). It is not part of the library - users and admins manage profile photos in Google Workspace. See <a href="/docs/template-variables#person-variables-google-directory">Template variables</a>.</p>
 <h2 id="lifecycle-notes">Lifecycle notes<a class="h-anchor" href="#lifecycle-notes" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
-<li><strong>Replacing an image:</strong> add the new file to the library and select it on the template - or keep the same library entry and only update its click-through link (picked up on the next render).</li>
-<li><strong>Deleting a library entry</strong> detaches it from templates that use it (they fall back to the placeholder) after a warning with the usage count.</li>
-<li><strong>Already-sent emails</strong> are never affected by library changes.</li>
+<li><strong>Replacing an image:</strong> upload the new file, select it on every template that used the old one, and delete the old entry only once you are sure - or keep the same library entry and only update its click-through link or ALT description, which every template picks up on the next render.</li>
+<li><strong>Deleting a library entry</strong> detaches it from templates that use it (they fall back to the placeholder) after a warning with the usage count. Those signatures keep applying in the meantime.</li>
+<li><strong>Deleting an in-use image notifies the workspace:</strong> an in-app notification appears in the bell and an email goes to the admins and the owner, naming the affected templates. See <a href="/docs/notifications">Notifications</a>.</li>
+<li><strong>Hosted files are released:</strong> once the library entry is gone, SignatureCat cleans up the stored file on the next daily pass, so the image stops loading in already-delivered emails too. Deletion is permanent and there is no self-service undo.</li>
+<li><strong>External images are unaffected by deletion.</strong> You host the file, so removing the library entry only removes the entry - old emails keep loading the image until you take it offline yourself.</li>
 </ul>
 <h2 id="deliverability-tips">Deliverability tips<a class="h-anchor" href="#deliverability-tips" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
@@ -258,6 +272,7 @@
         <p class="docs-toc-title">On this page</p>
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#the-image-library">The image library</a></li>
+        <li class="toc-l2"><a href="#image-description-alt">Image description (ALT)</a></li>
         <li class="toc-l2"><a href="#where-images-are-served-from">Where images are served from</a></li>
         <li class="toc-l2"><a href="#profile-photos">Profile photos</a></li>
         <li class="toc-l2"><a href="#lifecycle-notes">Lifecycle notes</a></li>

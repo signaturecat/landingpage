@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Mail client preview | SignatureCat Docs</title>
+  <meta name="description" content="See a Gmail signature on simulated Gmail, Outlook and Apple Mail surfaces in light and dark - what the SignatureCat preview shows and what it cannot." />
+  <link rel="canonical" href="https://signature.cat/docs/mail-client-preview" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/mail-client-preview" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/mail-client-preview" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/mail-client-preview" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/mail-client-preview" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/mail-client-preview" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Mail client preview | SignatureCat Docs" />
+  <meta property="og:description" content="See a Gmail signature on simulated Gmail, Outlook and Apple Mail surfaces in light and dark - what the SignatureCat preview shows and what it cannot." />
+  <meta property="og:url" content="https://signature.cat/docs/mail-client-preview" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Mail client preview | SignatureCat Docs" />
+  <meta name="twitter:description" content="See a Gmail signature on simulated Gmail, Outlook and Apple Mail surfaces in light and dark - what the SignatureCat preview shows and what it cannot." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Mail client preview",
+      "description": "See a Gmail signature on simulated Gmail, Outlook and Apple Mail surfaces in light and dark - what the SignatureCat preview shows and what it cannot.",
+      "url": "https://signature.cat/docs/mail-client-preview",
+      "inLanguage": "en",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Docs",
+          "item": "https://signature.cat/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Reference",
+          "item": "https://signature.cat/docs/mail-client-preview"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Mail client preview",
+          "item": "https://signature.cat/docs/mail-client-preview"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Skip to content</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Toggle documentation menu" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Search documentation" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Search docs</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Theme: system" title="Theme: system">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Help</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Open app</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">What's new</p>
+        <ul>
+        <li><a href="/docs/changelog">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Getting started</p>
+        <ul>
+        <li><a href="/docs">Introduction</a></li>
+        <li><a href="/docs/connect-google-workspace">Connect Google Workspace</a></li>
+        <li><a href="/docs/create-your-first-template">Create your first template</a></li>
+        <li><a href="/docs/assign-templates">Assign templates</a></li>
+        <li><a href="/docs/verify-assignments">Verify assignment jobs</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Advanced setup</p>
+        <ul>
+        <li><a href="/docs/user-management">User management</a></li>
+        <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
+        <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
+        <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Billing</p>
+        <ul>
+        <li><a href="/docs/invoices">Invoices</a></li>
+        <li><a href="/docs/billing-details">Billing details</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Reference</p>
+        <ul>
+        <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/docs/templates">Templates</a></li>
+        <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview" aria-current="page">Mail client preview</a></li>
+        <li><a href="/docs/template-variables">Template variables</a></li>
+        <li><a href="/docs/assignments">Assignments</a></li>
+        <li><a href="/docs/apply-jobs">Apply jobs</a></li>
+        <li><a href="/docs/logs">Logs</a></li>
+        <li><a href="/docs/images">Images</a></li>
+        <li><a href="/docs/notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Support</p>
+        <ul>
+        <li><a href="/docs/support-access">Support access</a></li>
+        <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
+        <li><a href="/docs/service-status">Service status</a></li>
+        <li><a href="/docs/legal">Legal</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Breadcrumb"><a href="/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Reference</span><span class="crumb-sep">/</span><span aria-current="page">Mail client preview</span></nav>
+      <article class="docs-article">
+<h1>Mail client preview</h1>
+<p>The preview next to the editor draws your signature on a simulated mail client surface: your HTML, unchanged, on that client's page background, in its default font, with the one color change that client makes in dark mode. It is an approximation, not the client's own rendering engine.</p>
+<p>The app states this itself, behind the info icon at the end of the client row ("What this preview does and does not show"):</p>
+<blockquote>
+<p>Approximation: the signature HTML is unchanged, only the surface and the way this client repaints colors in dark mode. It is not rendered by the client's own engine.</p>
+</blockquote>
+<p>Use the simulation to catch color and layout mistakes early. Use <strong>Set me a test signature</strong> and your own mailbox for the answer that counts.</p>
+<h2 id="what-a-client-profile-changes">What a client profile changes<a class="h-anchor" href="#what-a-client-profile-changes" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>A profile changes four things around your signature and nothing inside it:</p>
+<ul>
+<li>the page background behind the message,</li>
+<li>the default text color,</li>
+<li>the default link color,</li>
+<li>the client's default font and size.</li>
+</ul>
+<p>Everything your template sets explicitly - fonts, colors, table widths, image sizes - is passed through untouched. That is also why the default font matters: a signature that sets no <code>font-family</code> inherits the recipient's client default, and each profile shows you which one that would be.</p>
+<p>The pill buttons above the frame ("Simulated mail client") switch profiles, and a <strong>Light</strong> / <strong>Dark</strong> toggle sits next to them. The preview opens on <strong>Gmail (web)</strong> in <strong>Light</strong> - the surface that shows the signature as authored - and remembers the client and mode you picked for your next visit. The frame is sandboxed: no scripts run inside it, and links in the signature open in a new tab.</p>
+<h2 id="the-five-client-profiles">The five client profiles<a class="h-anchor" href="#the-five-client-profiles" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Profile</th><th scope="col">What it simulates</th><th scope="col">Why it is there</th></tr></thead>
+<tbody>
+<tr><td><strong>Gmail (web)</strong></td><td>Gmail in a browser: white page, Arial, light only</td><td>The as-authored view, and the profile the preview opens on</td></tr>
+<tr><td><strong>Gmail (app)</strong></td><td>Gmail on a phone: Roboto, full inversion in dark mode</td><td>The most common fully inverting client</td></tr>
+<tr><td><strong>Outlook (classic, Windows)</strong></td><td>The Word rendering engine: an Aptos/Calibri stack at 11pt, plus geometry rules, and a forced inversion in dark mode</td><td>The only profile that also approximates a different layout engine</td></tr>
+<tr><td><strong>Outlook.com</strong></td><td>Outlook on the web: Segoe UI, and a dark mode that keeps the colors you set explicitly</td><td>The partial-inversion case, where only some colors change</td></tr>
+<tr><td><strong>Apple Mail</strong></td><td>Apple Mail on macOS and iOS: the system font, full inversion in dark mode</td><td>The second fully inverting client, with different defaults</td></tr>
+</tbody>
+</table></div>
+<p>Four of the five offer both light and dark, so there are nine client-and-mode combinations in total. The brand names are deliberately left untranslated in every language version of the app.</p>
+<h2 id="light-and-dark">Light and dark<a class="h-anchor" href="#light-and-dark" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Each profile applies the one color transformation that client actually performs in dark mode - and the five are not the same transformation.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Profile</th><th scope="col">Dark mode</th></tr></thead>
+<tbody>
+<tr><td>Gmail (web)</td><td>Not offered. Gmail's web interface darkens around the message, never the message itself.</td></tr>
+<tr><td>Gmail (app)</td><td>Full inversion, unless the signature paints its own background.</td></tr>
+<tr><td>Apple Mail</td><td>Full inversion, unless the signature paints its own background.</td></tr>
+<tr><td>Outlook (classic, Windows)</td><td>Inverts always, even a signature that brings its own background, because Word repaints regardless.</td></tr>
+<tr><td>Outlook.com</td><td>Partial: a dark surface with lighter default text and links, while any color set explicitly in the signature is left alone.</td></tr>
+</tbody>
+</table></div>
+<p>The <strong>Dark</strong> half of the toggle is disabled for <strong>Gmail (web)</strong>, with the reason on the control: "Gmail (web) darkens its own interface, but never the colors inside a message."</p>
+<h3 id="signatures-with-their-own-background">Signatures with their own background<a class="h-anchor" href="#signatures-with-their-own-background" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
+<p>If your signature paints its own opaque background, the inverting profiles leave its colors alone - and the preview says so: "This signature paints its own background, so an inverting client leaves its colors alone." A real auto-inverting client leaves such content alone, so the simulation does too.</p>
+<p>White, <code>transparent</code> and fully transparent <code>rgba()</code> values do not count as a background here. <strong>Outlook (classic, Windows)</strong> is the exception: it inverts anyway, which is why dark marketing emails come out light there.</p>
+<h3 id="picking-colors-that-survive-both-modes">Picking colors that survive both modes<a class="h-anchor" href="#picking-colors-that-survive-both-modes" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
+<p>Leave your contact lines without an explicit color and let them inherit. A forced-dark client lightens inherited text, so the lines stay readable; a dark gray hardcoded on every line looks right on white and nearly disappears on Outlook.com's dark surface, where explicit colors are kept as they are. The preview names that case too: "Outlook.com keeps colors the author set explicitly and only lightens text that has no color of its own - a hardcoded dark color stays dark here."</p>
+<p>The built-in starters are written this way: the name and the job title carry a color, the contact lines carry none, and the links use a gray with enough contrast on a white page and on a dark surface.</p>
+<h2 id="outlook-classic-windows-renders-with-word">Outlook (classic, Windows) renders with Word<a class="h-anchor" href="#outlook-classic-windows-renders-with-word" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Classic Outlook on Windows does not use a browser engine - it draws mail with Word, and this profile approximates that geometry in <strong>both</strong> light and dark. In this profile:</p>
+<ul>
+<li>rounded corners are removed, so a round photo shows as a square,</li>
+<li><code>display</code> is honored only as <code>display:none</code>, so a span styled as a block stops behaving like one,</li>
+<li>margins on <code>&lt;span&gt;</code> are dropped,</li>
+<li>padding survives only inside table cells (<code>td</code> and <code>th</code>),</li>
+<li><code>white-space</code>, <code>float</code>, <code>box-shadow</code>, <code>text-shadow</code>, <code>opacity</code>, <code>transform</code> and background images are ignored,</li>
+<li><code>max-width</code> applies to tables only.</li>
+</ul>
+<p>This is why the built-in starters build every line as a <code>&lt;div&gt;</code> with explicit margins, put gutters as padding on table cells and set image sizes with <code>width</code> and <code>height</code> attributes instead of CSS.</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
+<p>A circular profile photo cannot look the same everywhere: the Word engine has no support for rounded corners, so <code>{{photo}}</code> is a circle in Gmail and Apple Mail and a square in classic Outlook. The preview reproduces that difference instead of hiding it.</p>
+</div></aside>
+<p>One thing to know before you switch tabs: opening Outlook-tuned HTML in the <a href="/docs/visual-editor">visual editor</a> and saving it re-serializes the markup and drops part of what gives it classic-Outlook parity - block margins, explicit line heights and cell padding. If you need that parity, keep editing the template on the <strong>HTML</strong> tab.</p>
+<h2 id="what-the-simulation-does-not-reproduce">What the simulation does not reproduce<a class="h-anchor" href="#what-the-simulation-does-not-reproduce" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>The simulation stops at the surface. It does not:</p>
+<ul>
+<li>run the client's own rendering engine - nothing you see is real Gmail or real Outlook output;</li>
+<li>reproduce classic Outlook's table auto-layout or the 120 DPI scaling it applies;</li>
+<li>claim exact vendor colors - the surfaces are representative approximations, because no vendor publishes the real values;</li>
+<li>show what Gmail stores once you save. Gmail runs its own sanitizer on its servers, so a signature can be trimmed after a successful write - see <a href="/docs/gmail-sanitization">When Gmail trims your signature</a>.</li>
+</ul>
+<h2 id="render-as">Render as<a class="h-anchor" href="#render-as" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>The <strong>Render as:</strong> field renders the template against a real person's Google Directory record, so you can check the cases your own record does not have: a long job title, a missing phone number, an empty department.</p>
+<ul>
+<li>Leave the field empty and the preview renders against your own Directory record.</li>
+<li>Type two characters or more and suggestions appear from your Workspace directory, each with the name, the address and the Directory photo. At most ten matches, suspended users excluded.</li>
+<li>The field also accepts free text, so you can type any address - an alias, or somebody the search does not return. The preview reloads once what you typed is a complete address. If nothing matches: "No users match your search. You can still type any address."</li>
+<li><strong>Clear and render as me</strong> puts it back to you.</li>
+</ul>
+<p>Rendering as somebody else requires the Designer, Editor or Admin access level. Self-service users get the same preview, pinned to their own record. See <a href="/docs/user-management">User management</a>.</p>
+<p>The line directly under the preview always names the record that was used: "Rendered against {email}'s Directory record."</p>
+<p>Values resolve exactly as they will on a real apply: the Google Directory record, with any per-user values stored on the Data tab layered on top. The full list of fields and where each one comes from is in <a href="/docs/template-variables">Template variables</a>. If the template uses <code>{{banner}}</code> or <code>{{logo}}</code>, a second line under the preview reminds you that those tokens render with the images picked for this template - see <a href="/docs/banners-and-logos">Banners and logos</a>.</p>
+<p>When a target cannot be rendered, the message is specific:</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Message</th><th scope="col">What happened</th></tr></thead>
+<tbody>
+<tr><td>"No Workspace user found for {email}. Check the address and try again."</td><td>The address is not in your Google Directory.</td></tr>
+<tr><td>"That email address or domain isn't valid. Check it and try again."</td><td>The address or its domain is malformed.</td></tr>
+<tr><td>"Too many preview updates. Pausing for a moment, then it will refresh."</td><td>Too many refreshes in a short time. The preview resumes on its own.</td></tr>
+<tr><td>"Finish domain-wide delegation setup to preview signatures."</td><td>The preview reads the directory, so it needs a verified delegation. See <a href="/docs/domain-wide-delegation">Domain-wide delegation</a>.</td></tr>
+</tbody>
+</table></div>
+<h2 id="the-only-100-percent-check">The only 100 percent check<a class="h-anchor" href="#the-only-100-percent-check" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Your own mailbox is the only faithful check. Click <strong>Set me a test signature</strong> in the editor: SignatureCat renders the template against your own Directory record and writes it to your own Gmail signature, so nobody else is affected. Then open Gmail and look at the result.</p>
+<p>That check answers a different question than the preview. The preview shows how a client would draw your HTML; the mailbox shows what Gmail actually stored, and Gmail rewrites signatures on its own servers when it saves them. If the result looks cut off, read <a href="/docs/gmail-sanitization">When Gmail trims your signature</a>.</p>
+<h2 id="where-the-preview-appears">Where the preview appears<a class="h-anchor" href="#where-the-preview-appears" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>The client simulation is on the two surfaces where signatures are authored:</p>
+<ul>
+<li><strong>The template editor</strong> on <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signatures</a>, for Designers, Editors and Admins - with the client pills, the light and dark toggle, <strong>Render as</strong> and <strong>Set me a test signature</strong>. See <a href="/docs/templates">Templates</a>.</li>
+<li><strong><a href="https://app.signature.cat/self-service" target="_blank" rel="noopener">My signature</a></strong>, for self-service users - the same pills and toggle, always rendered against the signed-in user's own record ("Rendered against your own Directory record."). There is no test-apply button there, so the disclaimer names the other route to certainty: "For a 100% faithful check, save and look at the signature in your own mailbox." See <a href="/docs/self-service">Self-service signatures</a>.</li>
+</ul>
+      </article>
+<nav class="docs-pager" aria-label="Pagination">
+<a class="pager-card pager-prev" href="/docs/visual-editor" rel="prev">
+      <span class="pager-label">Previous</span>
+      <span class="pager-title">Visual editor</span>
+    </a>
+<a class="pager-card pager-next" href="/docs/template-variables" rel="next">
+      <span class="pager-label">Next</span>
+      <span class="pager-title">Template variables</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Language">
+            <option value="/docs/mail-client-preview" data-lang="en" lang="en" selected>English</option>
+            <option value="/pl/docs/mail-client-preview" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/mail-client-preview" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/mail-client-preview" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Legal</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page">
+      <nav>
+        <p class="docs-toc-title">On this page</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#what-a-client-profile-changes">What a client profile changes</a></li>
+        <li class="toc-l2"><a href="#the-five-client-profiles">The five client profiles</a></li>
+        <li class="toc-l2"><a href="#light-and-dark">Light and dark</a></li>
+        <li class="toc-l3"><a href="#signatures-with-their-own-background">Signatures with their own background</a></li>
+        <li class="toc-l3"><a href="#picking-colors-that-survive-both-modes">Picking colors that survive both modes</a></li>
+        <li class="toc-l2"><a href="#outlook-classic-windows-renders-with-word">Outlook (classic, Windows) renders with Word</a></li>
+        <li class="toc-l2"><a href="#what-the-simulation-does-not-reproduce">What the simulation does not reproduce</a></li>
+        <li class="toc-l2"><a href="#render-as">Render as</a></li>
+        <li class="toc-l2"><a href="#the-only-100-percent-check">The only 100 percent check</a></li>
+        <li class="toc-l2"><a href="#where-the-preview-appears">Where the preview appears</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Search documentation" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Search documentation" autocomplete="off" spellcheck="false" aria-label="Search documentation" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Close search">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>No results. Try different keywords or email <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

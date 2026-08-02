@@ -2,12 +2,12 @@
 title: Przypisania
 navTitle: Przypisania
 description: Referencja przypisań SignatureCat - rodzaje celów, pierwszeństwo gdy użytkownik pasuje do kilku przypisań, tryby aliasów i obsługa konfliktów.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # Przypisania
 
-Przypisanie wiąże jeden szablon z jednym celem i utrzymuje go zastosowanym dzięki codziennej synchronizacji. Ta strona to referencja działania celów, pierwszeństwa i aliasów; przewodnik krok po kroku znajdziesz w [Przypisz szablony](/docs/assign-templates/). Przypisaniami zarządzają użytkownicy z poziomami Editor i Admin pod adresem [app.signature.cat/assignments](https://app.signature.cat/assignments).
+Przypisanie wiąże jeden szablon z jednym celem i utrzymuje go zastosowanym dzięki codziennej synchronizacji. Ta strona to referencja działania celów, pierwszeństwa i aliasów; przewodnik krok po kroku znajdziesz w [Przypisz szablony](/docs/assign-templates). Przypisaniami zarządzają użytkownicy z poziomami Editor i Admin pod adresem [app.signature.cat/assignments](https://app.signature.cat/assignments).
 
 ## Rodzaje celów
 
@@ -19,25 +19,25 @@ Przypisanie wiąże jeden szablon z jednym celem i utrzymuje go zastosowanym dzi
 
 Każdy cel może mieć tylko jedno przypisanie - utworzenie duplikatu jest odrzucane z komunikatem "Wskazany cel ma już przypisanie." Rodzaj celu jest stały po utworzeniu; aby zamienić przypisanie grupy na przypisanie OU, usuń je i utwórz na nowo.
 
-Pojedynczy użytkownicy celowo nie są celem przypisań - pojedyncze osoby obejmiesz przez [self-service](/docs/self-service/) albo jednorazowe [zadanie zastosowania](/docs/apply-jobs/).
+Pojedynczy użytkownicy celowo nie są celem przypisań - pojedyncze osoby obejmiesz przez [self-service](/docs/self-service) albo jednorazowe [zadanie zastosowania](/docs/apply-jobs).
 
 ## Jak działa pierwszeństwo
 
 Użytkownicy często pasują do kilku przypisań. Każda synchronizacja wyznacza dokładnie **jednego zwycięzcę per użytkownik**, warstwa po warstwie, od dołu do góry:
 
 1. **Wszyscy** - warstwa bazowa dla każdego aktywnego użytkownika.
-2. **Przypisania OU** nadpisują przypisanie dla wszystkich dla użytkowników w danym OU.
+2. **Przypisania OU** nadpisują przypisanie dla wszystkich dla użytkowników w danym OU. Jeśli użytkownik jest objęty dwoma przypisanymi OU, wygrywa przypisanie **ostatnio zaktualizowane**.
 3. **Przypisania grup** nadpisują szablon OU dla swoich członków. Jeśli użytkownik należy do wielu przypisanych grup, wygrywa przypisanie **ostatnio zaktualizowane**.
 4. **Self-service** - własny wybór użytkownika wygrywa z każdym przypisaniem, **chyba że** zwycięskie przypisanie ma włączone **Nadpisuj self-service**.
 
-Gdy przypisanie wypiera inne dla danego użytkownika, wiersz wyniku zadania odnotowuje to ("nadpisano N innych przypisań dla tego użytkownika"), więc konflikty możesz audytować na stronach [logów](/docs/logs/).
+Gdy przypisanie wypiera inne dla danego użytkownika, wiersz wyniku zadania odnotowuje to ("nadpisano N innych przypisań dla tego użytkownika"), więc konflikty możesz audytować na stronach [logów](/docs/logs).
 
 > [!TIP]
 > Sprawdzony wzorzec: jedno przypisanie dla wszystkich jako firmowy domyślny podpis, przypisania OU per kraj lub marka, przypisania grup dla wyjątków (kampania sprzedażowa, zarząd). Warstwy załatwiają resztę.
 
 ## Tryby aliasów
 
-Każde przypisanie ma ustawienie **Aliasy**, które decyduje, na które adresy trafia podpis. Zapisywanie aliasów wymaga opcjonalnego zakresu `gmail.settings.sharing` - zobacz [Domain-Wide Delegation](/docs/domain-wide-delegation/#what-exactly-do-i-authorize).
+Każde przypisanie ma ustawienie **Aliasy**, które decyduje, na które adresy trafia podpis. Zapisywanie aliasów wymaga opcjonalnego zakresu `gmail.settings.sharing` - zobacz [Domain-Wide Delegation](/docs/domain-wide-delegation#co-dokadnie-autoryzuj).
 
 | Tryb | Zachowanie |
 |---|---|
@@ -49,7 +49,7 @@ Uwagi o zachowaniu:
 
 - W trybie **Wszystkie aliasy** adresy zewnętrzne i aliasy nieedytowalne nigdy nie są tworzone automatycznie; świeżo utworzony wpis send-as, który Gmail raportuje jako oczekujący na weryfikację, jest pomijany do czasu weryfikacji.
 - `{{email}}` i `{{domain}}` rozwiązują się do zapisywanego **aliasu**, więc podpisy aliasów pokazują właściwy adres. Wszystkie pozostałe zmienne pochodzą z rekordu właściciela skrzynki.
-- Każdy zapis aliasu dostaje własny wiersz w wynikach zadania, więc [weryfikacja](/docs/verify-assignments/) pokazuje dokładnie, które adresy zostały podpisane, a które pominięte.
+- Każdy zapis aliasu dostaje własny wiersz w wynikach zadania, więc [weryfikacja](/docs/verify-assignments) pokazuje dokładnie, które adresy zostały podpisane, a które pominięte.
 - Podpisy self-service są zawsze stosowane również na zaakceptowanych aliasach użytkownika.
 
 ## Nadpisuj self-service
@@ -58,7 +58,7 @@ Przełącznik **Nadpisuj self-service**, ustawiany per przypisanie, sprawia, że
 
 ## Gdy cele znikają
 
-Jeśli przypisana grupa lub OU zostanie usunięta w Google Workspace, najbliższa synchronizacja oznacza przypisanie odznaką "nie znaleziono w Workspace", pomija cel, powiadamia administratorów (w aplikacji + e-mailem, raz na serię niepowodzeń) i ponawia próbę przy kolejnych synchronizacjach. Popraw cel w panelu edycji albo usuń przypisanie. Zobacz [Zweryfikuj zadanie przypisania](/docs/verify-assignments/#what-the-per-user-rows-tell-you).
+Jeśli przypisana grupa lub OU zostanie usunięta w Google Workspace, najbliższa synchronizacja oznacza przypisanie odznaką "nie znaleziono w Workspace", pomija cel, powiadamia administratorów (w aplikacji + e-mailem, raz na serię niepowodzeń) i ponawia próbę przy kolejnych synchronizacjach. Popraw cel w panelu edycji albo usuń przypisanie. Zobacz [Zweryfikuj zadanie przypisania](/docs/verify-assignments#co-mwi-wiersze-per-uytkownik).
 
 ## Edycja i usuwanie
 

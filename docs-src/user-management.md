@@ -1,8 +1,8 @@
 ---
 title: User management and access levels
 navTitle: User management
-description: Who can sign in to SignatureCat, what each access level allows, and how to grant access to individual users or whole Google groups.
-updated: 2026-07-17
+description: Who can sign in to SignatureCat, what each Google Workspace access level allows, and who may edit signature data or grant access to groups.
+updated: 2026-08-02
 ---
 
 # User management and access levels
@@ -17,14 +17,18 @@ Only people you explicitly let in can sign in to SignatureCat: Workspace super a
 | Self-service + edit | Self-service plus their own custom HTML signature. |
 | Designer | Edits organization signature templates. |
 | Editor | Designer plus managing assignments and apply jobs, and in-app notifications. |
-| Admin | Full access, including billing, user management, image domains and the DWD wizard. |
+| Admin | Full access, including billing, user management, user data, support access, image domains and the DWD wizard. |
+
+Users on any level from **Self-service** upward can also edit their **own** signature data, but only once an Admin has turned the feature on and opened the **Self-service editing** padlock - see [User data](/docs/user-data).
 
 A few practical consequences:
 
 - **Templates** ([Signatures](https://app.signature.cat/signatures)): Designer, Editor, Admin.
 - **Assignments and Apply** ([Assignments](https://app.signature.cat/assignments), [Apply](https://app.signature.cat/apply)): Editor, Admin.
+- **User data** (the [Data](https://app.signature.cat/data) tab, where stored per-user values override the Google directory in signatures): Admin only.
+- **Support access** (the switch that lets SignatureCat support help hands-on): Admin only - see [Support access](/docs/support-access).
 - **Billing, user management, custom image domain**: Admin only.
-- Editors see in-app [notifications](/docs/notifications/); alert and billing **emails** go to admins only.
+- Editors see in-app [notifications](/docs/notifications); alert and billing **emails** go to admins only.
 
 > [!NOTE]
 > Workspace **super admins** always have the Admin level. It is enforced at every sign-in and cannot be revoked in SignatureCat - to change it, change their admin status in Google Workspace itself.
@@ -64,4 +68,4 @@ A direct user grant always **overrides** any group grant for that person - even 
 
 ## Letting users manage their own signature
 
-Grant users (or a group) the **Self-service** level and enable at least one template for self-service - the full flow is described in [Self-service](/docs/self-service/).
+Grant users (or a group) the **Self-service** level and enable at least one template for self-service - the full flow is described in [Self-service](/docs/self-service). If you also want users to fill in their own variable values, turn on user data and open **Self-service editing** on the [Data](https://app.signature.cat/data) tab; the values they enter are visible to you and you can overwrite or delete any of them.

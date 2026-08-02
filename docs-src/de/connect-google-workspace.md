@@ -2,7 +2,7 @@
 title: Ihren Google Workspace verbinden
 navTitle: Google Workspace verbinden
 description: Registrieren Sie SignatureCat als Google Workspace-Super-Admin, richten Sie Ihr isoliertes Service-Konto ein und autorisieren Sie Domain-Wide Delegation.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # Ihren Google Workspace verbinden
@@ -14,20 +14,28 @@ Um einen Google Workspace mit SignatureCat zu verbinden, meldet sich ein **Works
 
 ## Schritt 1: Mit Google anmelden
 
-Öffnen Sie [app.signature.cat](https://app.signature.cat) und klicken Sie auf **Mit Google anmelden** mit Ihrem Firmenkonto. SignatureCat fordert an dieser Stelle nur die grundlegenden Anmelde-Bereiche `openid email profile` an - die Workspace-Berechtigungen werden separat in Schritt 3 erteilt, und zwar nur an Ihr eigenes isoliertes Service-Konto.
+Öffnen Sie [app.signature.cat](https://app.signature.cat) und klicken Sie auf **Mit Google anmelden** mit Ihrem Firmenkonto. SignatureCat fordert an dieser Stelle nur die grundlegenden Anmelde-Bereiche `openid email profile` an - die Workspace-Berechtigungen werden separat in Schritt 4 erteilt, und zwar nur an Ihr eigenes isoliertes Service-Konto.
 
 Private Gmail-Konten werden abgelehnt: SignatureCat erfordert ein Google Workspace-Konto.
 
-## Schritt 2: Ihren Workspace einrichten
+## Schritt 2: Die Bedingungen akzeptieren
 
-Direkt nach der ersten Anmeldung landen Sie auf dem Bildschirm **Richten Sie Ihren Workspace ein**. Ein Klick auf **Workspace einrichten** erstellt ein dediziertes, isoliertes Google Cloud-Service-Konto für Ihre Organisation - das ist die Identität, die in Ihrem Namen Gmail-Signaturen verwalten wird. Das dauert in der Regel wenige Sekunden (bis zu 15).
+Nach der ersten Anmeldung landen Sie auf **Bedingungen akzeptieren, um zu starten**. Setzen Sie das Häkchen bei "Ich habe die Nutzungsbedingungen und die Datenschutzerklärung gelesen und akzeptiere sie." (beide öffnen sich in einem neuen Tab) und klicken Sie auf **Akzeptieren und fortfahren**.
+
+Dieser Schritt ist verpflichtend und steht bewusst am Anfang: Für Ihre Organisation wird nichts eingerichtet, bevor die Bedingungen akzeptiert sind.
+
+Nur der Administrator, der die Organisation erstellt hat, kann sie akzeptieren. Alle anderen aus Ihrer Domain, die sich vorher anmelden, sehen die Karte **Warten auf Ihren Administrator** und erhalten Zugriff, sobald der gründende Admin diesen Schritt abgeschlossen hat.
+
+## Schritt 3: Ihren Workspace einrichten
+
+Sobald die Bedingungen akzeptiert sind, landen Sie auf dem Bildschirm **Richten Sie Ihren Workspace ein**. Ein Klick auf **Workspace einrichten** erstellt ein dediziertes, isoliertes Google Cloud-Service-Konto für Ihre Organisation - das ist die Identität, die in Ihrem Namen Gmail-Signaturen verwalten wird. Das dauert in der Regel wenige Sekunden (bis zu 15).
 
 > [!NOTE]
 > Jeder Kunde erhält sein **eigenes** Service-Konto. Dessen Zugangsdaten werden in einem Secrets-Tresor gespeichert, nie in der Anwendungsdatenbank, und die Schlüssel werden automatisch rotiert. Die Rotation ändert die Client-ID nie, Sie müssen also deswegen nie neu autorisieren.
 
 Nur der Administrator, der die Organisation erstellt hat, kann diesen Schritt abschließen.
 
-## Schritt 3: Domain-Wide Delegation autorisieren
+## Schritt 4: Domain-Wide Delegation autorisieren
 
 Anschließend führt Sie der Assistent **SignatureCat im Workspace autorisieren** unter [app.signature.cat/onboarding/dwd](https://app.signature.cat/onboarding/dwd) durch die Google Admin console:
 
@@ -43,7 +51,7 @@ https://www.googleapis.com/auth/gmail.settings.basic,https://www.googleapis.com/
 5. **Autorisieren** - klicken Sie in der Admin console auf **Authorize**.
 6. **Prüfen** - klicken Sie zurück in SignatureCat auf **Prüfen**. Die App führt einen Verbindungstest für jeden Bereich aus und zeigt pro Bereich ein OK / Fehler-Ergebnis.
 
-Der letzte Bereich, `gmail.settings.sharing`, ist **optional**: Er wird nur benötigt, um Signaturen auf send-as-Aliasse zu schreiben. Sie können ihn jetzt überspringen und später hinzufügen - alles andere funktioniert, und der Assistent zeigt den Hinweis "Alias-Signaturen sind deaktiviert". Siehe [Zuweisungen](/docs/assignments/#alias-modes) dazu, was Aliasse ermöglichen.
+Der letzte Bereich, `gmail.settings.sharing`, ist **optional**: Er wird nur benötigt, um Signaturen auf send-as-Aliasse zu schreiben. Sie können ihn jetzt überspringen und später hinzufügen - alles andere funktioniert, und der Assistent zeigt den Hinweis "Alias-Signaturen sind deaktiviert". Siehe [Zuweisungen](/docs/assignments/#alias-modi) dazu, was Aliasse ermöglichen.
 
 > [!WARNING]
 > Fügen Sie die Bereichs-Zeichenkette exakt wie kopiert ein. Ein fehlender oder veränderter Bereich lässt die Prüfung mit einem Fehler pro Bereich fehlschlagen, etwa "Diese Berechtigung wurde nicht erteilt. Wiederholen Sie Schritt 4 mit der exakten Zeichenkette."
@@ -52,7 +60,7 @@ Der letzte Bereich, `gmail.settings.sharing`, ist **optional**: Er wird nur ben�
 
 Google braucht einen Moment, um eine frische DWD-Erteilung zu übernehmen - typischerweise Sekunden, manchmal bis zu etwa 30 Sekunden. Der Button **Prüfen** wartet dieses Fenster bereits größtenteils ab. Sehen Sie weiterhin die gelbe Karte "Der Zugriff wird möglicherweise noch übernommen", warten Sie einen Moment und klicken Sie erneut auf **Prüfen**. Das ist kein Fehler.
 
-## Schritt 4: Abrechnung
+## Schritt 5: Abrechnung
 
 Nachdem DWD verifiziert ist, gelangen Sie zur [Abrechnung](https://app.signature.cat/billing), um die kostenlose 7-Tage-Testphase zu starten (Karte wird vorab erfasst, belastet erst nach Ende der Testphase). Siehe [Rechnungen](/docs/invoices/) für die Preisstufen.
 

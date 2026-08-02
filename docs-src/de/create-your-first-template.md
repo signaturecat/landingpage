@@ -2,7 +2,7 @@
 title: Ihre erste Vorlage erstellen
 navTitle: Ihre erste Vorlage erstellen
 description: Erstellen Sie eine Gmail-Signaturvorlage in SignatureCat, personalisieren Sie sie mit Google Directory-Variablen, sehen Sie die Vorschau und testen Sie sie auf Ihrem eigenen Postfach.
-updated: 2026-07-26
+updated: 2026-08-02
 ---
 
 # Ihre erste Vorlage erstellen
@@ -18,7 +18,7 @@ Eine Vorlage ist eine HTML-Signatur, die SignatureCat pro Nutzer mit Daten aus I
    - **Mit Banner** - die Signatur plus ein Kampagnenbanner (450x100 px) darunter.
 3. Wählen Sie für die Logo- oder Banner-Starter ein Bild aus Ihrer Bibliothek oder laden Sie eines hoch - oder überspringen Sie den Schritt, dann wird ein Platzhalter verwendet, bis Sie eines wählen. Siehe [Banner und Logos](/docs/banners-and-logos/).
 
-Der Editor öffnet sich sofort. Alles aus dem Starter lässt sich später anpassen - entweder direkt im HTML oder ganz ohne HTML auf der Arbeitsfläche des [visuellen Editors](/docs/visual-editor/) (wechseln Sie zum Tab **Visuell**; die einmalige Konvertierung ist dort beschrieben).
+Der Editor öffnet sich sofort. Alles aus dem Starter lässt sich später anpassen - entweder direkt im HTML oder ganz ohne HTML auf der Arbeitsfläche des [visuellen Editors](/docs/visual-editor/), wo Text, Variablen-Chips, Spalten, Trennlinien und Bilder aus Ihrer Bibliothek oder von jeder `https://`-Adresse Blöcke sind, die Sie anordnen (wechseln Sie zum Tab **Visuell**; die einmalige Konvertierung ist dort beschrieben).
 
 ## Mit Variablen personalisieren
 
@@ -41,6 +41,8 @@ Der Vorschaubereich rendert die aufgelöste Signatur live, während Sie tippen. 
 ## Auf dem eigenen Postfach testen
 
 Klicken Sie in der Editor-Werkzeugleiste auf **Mir eine Testsignatur setzen**. SignatureCat rendert die Vorlage anhand Ihres eigenen Directory-Datensatzes und schreibt sie in Ihre eigene Gmail-Signatur - niemand sonst ist betroffen. Senden Sie sich eine E-Mail oder prüfen Sie die Gmail-Einstellungen, um das echte Ergebnis zu sehen.
+
+SignatureCat liest die Signatur anschließend aus Ihrem Postfach zurück. Hat Gmail sie beim Speichern umgeschrieben, erscheint ein bernsteinfarbener Hinweis: "Angewendet, aber Gmail hat eine gekürzte Kopie dieser Signatur gespeichert." (oder "Angewendet, aber Gmail hat eine leere Signatur gespeichert."). Öffnen Sie **Technische Details** für die entfernten Elemente und die Zeichenzahlen davor und danach. Das ist der schnellste Weg, das Konstrukt zu finden, das Gmail nicht behalten will - siehe [Wenn Gmail Ihre Signatur kürzt](/docs/gmail-sanitization).
 
 Wenn Sie mit der Vorlage zufrieden sind, machen Sie weiter mit [Vorlagen zuweisen](/docs/assign-templates/).
 

@@ -10,14 +10,16 @@ Full documentation content in one file: https://signature.cat/llms-full.txt
 - [Connect your Google Workspace](https://signature.cat/docs/connect-google-workspace): Register SignatureCat as a Google Workspace super admin, provision your isolated service account and authorize Domain-Wide Delegation.
 - [Create your first template](https://signature.cat/docs/create-your-first-template): Create a Gmail signature template in SignatureCat, personalize it with Google Directory variables, preview it and test it on your own mailbox.
 - [Assign templates to groups, OUs or everyone](https://signature.cat/docs/assign-templates): Bind SignatureCat templates to Google groups, organizational units or every active user in the Workspace, and sync signatures on demand.
-- [Verify an assignment job](https://signature.cat/docs/verify-assignments): Check that a SignatureCat sync or apply job succeeded - job statuses, per-user results and what the common error codes mean.
+- [Verify an assignment job](https://signature.cat/docs/verify-assignments): Check that a SignatureCat signature job succeeded in Google Workspace - job statuses, per-user results, error codes and reading a live Gmail mailbox.
 
 ## Advanced setup
 
-- [User management and access levels](https://signature.cat/docs/user-management): Who can sign in to SignatureCat, what each access level allows, and how to grant access to individual users or whole Google groups.
-- [Self-service signatures](https://signature.cat/docs/self-service): Let end users pick and apply their own Gmail signature from admin-approved SignatureCat templates - setup, flow and precedence rules.
-- [Serve images from your own domain](https://signature.cat/docs/custom-image-domain): Point a subdomain like images.yourcompany.com at SignatureCat with two DNS records so signature images load from your own domain.
-- [Upload and insert banners and logos](https://signature.cat/docs/banners-and-logos): Add company logos and campaign banners to SignatureCat signature templates - image library, custom sizes, per-template resizing, click-through links and placeholders.
+- [User management and access levels](https://signature.cat/docs/user-management): Who can sign in to SignatureCat, what each Google Workspace access level allows, and who may edit signature data or grant access to groups.
+- [Self-service signatures](https://signature.cat/docs/self-service): Let end users pick and apply their own Gmail signature from admin-approved SignatureCat templates - setup, flow, own data and precedence rules.
+- [User data overrides](https://signature.cat/docs/user-data): Store per-user values that override your Google Workspace directory in Gmail signatures - consent, the nine fields, self-service editing and deletion.
+- [Import user data from a CSV](https://signature.cat/docs/user-data-import): Bulk-load per-user signature data into SignatureCat from a CSV file - columns, replace rules, limits, the preview step and the Gmail sync afterwards.
+- [Serve images from your own domain](https://signature.cat/docs/custom-image-domain): Point a subdomain like images.yourcompany.com at SignatureCat with one CNAME record so signature images in Gmail load from your own domain.
+- [Upload and insert banners and logos](https://signature.cat/docs/banners-and-logos): Add company logos and campaign banners to Gmail signature templates in SignatureCat - image library, ALT descriptions, sizes, click links and deletion.
 
 ## Billing
 
@@ -27,21 +29,23 @@ Full documentation content in one file: https://signature.cat/llms-full.txt
 ## Reference
 
 - [Domain-Wide Delegation](https://signature.cat/docs/domain-wide-delegation): How SignatureCat uses Google Domain-Wide Delegation - scopes, the per-tenant client ID, propagation, revocation detection and re-granting.
-- [Templates](https://signature.cat/docs/templates): SignatureCat template reference - the visual and HTML editors, starters, preview, test apply, self-service toggle, default template and safe deletion.
-- [Visual editor](https://signature.cat/docs/visual-editor): Design Gmail signatures without writing HTML - SignatureCat's visual editor with variable chips, image resizing, columns, fonts and guaranteed Gmail-safe output.
-- [Template variables](https://signature.cat/docs/template-variables): Complete reference of SignatureCat template variables - Google Directory person fields, logo and banner tokens, and del/delete conditional blocks.
+- [Templates](https://signature.cat/docs/templates): How SignatureCat signature templates work - the visual and HTML editors, live preview, test apply to Gmail, the default template and safe deletion.
+- [Visual editor](https://signature.cat/docs/visual-editor): Design Gmail signature templates without writing HTML - variable chips, columns, dividers, custom images and email-safe formatting on one canvas.
+- [Mail client preview](https://signature.cat/docs/mail-client-preview): See a Gmail signature on simulated Gmail, Outlook and Apple Mail surfaces in light and dark - what the SignatureCat preview shows and what it cannot.
+- [Template variables](https://signature.cat/docs/template-variables): Every SignatureCat signature variable - Google Workspace directory fields, per-user data overrides, logo and banner tokens and del/delete conditional blocks.
 - [Assignments](https://signature.cat/docs/assignments): SignatureCat assignments reference - target kinds, precedence when a user matches several assignments, alias modes and conflict handling.
-- [Apply jobs](https://signature.cat/docs/apply-jobs): How SignatureCat applies signatures - the daily assignment sync, manual one-shot applies from the Apply page, and job tracking.
-- [Logs](https://signature.cat/docs/logs): Where SignatureCat records what happened - task logs for sync and apply jobs, per-user results, retention and audit trail.
-- [Images](https://signature.cat/docs/images): SignatureCat image reference - the per-workspace library, hosting on images.signature.cat or your own domain, formats, limits and lifecycle.
-- [Notifications](https://signature.cat/docs/notifications): Which SignatureCat alerts arrive by email and which appear in the app - DWD loss, missing assignment targets, trial and payment events.
+- [Apply jobs](https://signature.cat/docs/apply-jobs): How SignatureCat writes Gmail signatures across Google Workspace - the daily assignment sync, one-shot applies from the Apply page and job tracking.
+- [Logs](https://signature.cat/docs/logs): Where SignatureCat records every Gmail signature job - task logs, per-user results, the trimmed by Gmail badge, live mailbox checks and retention.
+- [Images](https://signature.cat/docs/images): Reference for images in SignatureCat email signatures for Google Workspace - the library, ALT descriptions, hosting, formats, limits and deletion.
+- [Notifications](https://signature.cat/docs/notifications): Which SignatureCat signature alerts arrive by email and which appear in the app - Google Workspace access, assignment targets, images, billing.
 
 ## Support
 
-- [Support access](https://signature.cat/docs/support-access): Let SignatureCat support make changes on your account when helping you - what the switch unlocks, where to find it, and how every action shows up in your activity log.
-- [Get help](https://signature.cat/docs/get-help): How to reach SignatureCat support, what to include in a report, and where to check before writing - status page, logs and common fixes.
+- [Support access](https://signature.cat/docs/support-access): What SignatureCat support can and cannot do on your Google Workspace account, including viewing a user's current Gmail signature, and how it is logged.
+- [Get help](https://signature.cat/docs/get-help): How to reach SignatureCat support about Gmail signature problems - what to check first in status, logs and Google Workspace access, and what to include.
+- [When Gmail trims your signature](https://signature.cat/docs/gmail-sanitization): Why Gmail can store a trimmed copy of a signature SignatureCat applied in your Google Workspace, how to spot it and how to fix the template.
 - [Service status and SLA](https://signature.cat/docs/service-status): SignatureCat live status page, the 99% monthly availability target, what counts as downtime and where maintenance windows are announced.
-- [Legal](https://signature.cat/docs/legal): SignatureCat legal documents - Terms of Service, Privacy Policy, DPA and GDPR information, data location and retention.
+- [Legal](https://signature.cat/docs/legal): SignatureCat legal documents - Terms of Service, Privacy Policy and DPA - plus what the app reads from Google Workspace and writes as a Gmail signature.
 
 ## What's new
 

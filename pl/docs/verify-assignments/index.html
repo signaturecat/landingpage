@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Zweryfikuj zadanie przypisania | SignatureCat Docs</title>
-  <meta name="description" content="Sprawdź, czy zadanie synchronizacji lub zastosowania SignatureCat się powiodło - statusy zadań, wyniki per użytkownik i znaczenie typowych kodów błędów." />
+  <meta name="description" content="Sprawdź, czy zadanie podpisów SignatureCat powiodło się w Google Workspace - statusy zadań, wyniki per użytkownik, kody błędów i odczyt skrzynki Gmail na żywo." />
   <link rel="canonical" href="https://signature.cat/pl/docs/verify-assignments" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/verify-assignments" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/verify-assignments" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Zweryfikuj zadanie przypisania | SignatureCat Docs" />
-  <meta property="og:description" content="Sprawdź, czy zadanie synchronizacji lub zastosowania SignatureCat się powiodło - statusy zadań, wyniki per użytkownik i znaczenie typowych kodów błędów." />
+  <meta property="og:description" content="Sprawdź, czy zadanie podpisów SignatureCat powiodło się w Google Workspace - statusy zadań, wyniki per użytkownik, kody błędów i odczyt skrzynki Gmail na żywo." />
   <meta property="og:url" content="https://signature.cat/pl/docs/verify-assignments" />
   <meta property="og:locale" content="pl_PL" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Zweryfikuj zadanie przypisania | SignatureCat Docs" />
-  <meta name="twitter:description" content="Sprawdź, czy zadanie synchronizacji lub zastosowania SignatureCat się powiodło - statusy zadań, wyniki per użytkownik i znaczenie typowych kodów błędów." />
+  <meta name="twitter:description" content="Sprawdź, czy zadanie podpisów SignatureCat powiodło się w Google Workspace - statusy zadań, wyniki per użytkownik, kody błędów i odczyt skrzynki Gmail na żywo." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Zweryfikuj zadanie przypisania",
-      "description": "Sprawdź, czy zadanie synchronizacji lub zastosowania SignatureCat się powiodło - statusy zadań, wyniki per użytkownik i znaczenie typowych kodów błędów.",
+      "description": "Sprawdź, czy zadanie podpisów SignatureCat powiodło się w Google Workspace - statusy zadań, wyniki per użytkownik, kody błędów i odczyt skrzynki Gmail na żywo.",
       "url": "https://signature.cat/pl/docs/verify-assignments",
       "inLanguage": "pl",
-      "datePublished": "2026-07-19",
-      "dateModified": "2026-07-19",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/pl/docs/user-management">Zarządzanie dostępem</a></li>
         <li><a href="/pl/docs/self-service">Self-service</a></li>
+        <li><a href="/pl/docs/user-data">Dane użytkowników</a></li>
+        <li><a href="/pl/docs/user-data-import">Import danych</a></li>
         <li><a href="/pl/docs/custom-image-domain">Własna domena obrazków</a></li>
         <li><a href="/pl/docs/banners-and-logos">Banery i logo</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/pl/docs/templates">Szablony</a></li>
         <li><a href="/pl/docs/visual-editor">Edytor wizualny</a></li>
+        <li><a href="/pl/docs/mail-client-preview">Podgląd w kliencie pocztowym</a></li>
         <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
         <li><a href="/pl/docs/assignments">Przypisania</a></li>
         <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/pl/docs/support-access">Dostęp dla supportu</a></li>
         <li><a href="/pl/docs/get-help">Uzyskaj pomoc</a></li>
+        <li><a href="/pl/docs/gmail-sanitization">Okrajanie przez Gmail</a></li>
         <li><a href="/pl/docs/service-status">Status usługi</a></li>
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
@@ -192,10 +196,11 @@
       <nav class="docs-breadcrumb" aria-label="Okruszki nawigacyjne"><a href="/pl/docs">Dokumentacja</a><span class="crumb-sep">/</span><span class="crumb-section">Pierwsze kroki</span><span class="crumb-sep">/</span><span aria-current="page">Weryfikuj zadania przypisań</span></nav>
       <article class="docs-article">
 <h1>Zweryfikuj zadanie przypisania</h1>
-<p>Każda synchronizacja i każde ręczne zastosowanie działa jako zadanie z wynikiem per użytkownik, który możesz przejrzeć. Najszybszym sprawdzeniem jest strona <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Logi zadań</a>; działające zadanie ma też własny widok szczegółów pod <code>app.signature.cat/jobs/{id}</code>, aktualizowany w czasie rzeczywistym.</p>
+<p>Każda synchronizacja i każde ręczne zastosowanie działa jako zadanie z wynikiem per użytkownik, który możesz przejrzeć. Najszybszym sprawdzeniem jest strona <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Logi zadań</a>; działające zadanie ma też własny widok szczegółów pod <code>app.signature.cat/jobs/{id}</code>, aktualizowany w czasie rzeczywistym.</p>
 <h2 id="sprawd-logi-zada">Sprawdź logi zadań<a class="h-anchor" href="#sprawd-logi-zada" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Otwórz <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Logi zadań</a> (poziomy Editor i Admin). Każdy wiersz to jedno zakończone zadanie - <strong>Synchronizacja przypisań</strong> albo <strong>Ręczne zastosowanie</strong> - ze statusem, czasem rozpoczęcia i zakończenia, informacją, kto je uruchomił ("Automatycznie" dla codziennej synchronizacji), i podsumowaniem w rodzaju "42 udanych, 1 nieudanych, 2 pominiętych".</p>
+<p>Otwórz <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Logi zadań</a> (poziomy Editor i Admin). Każdy wiersz to jedno zakończone zadanie - <strong>Synchronizacja przypisań</strong> albo <strong>Ręczne zastosowanie</strong> - ze statusem, czasem rozpoczęcia i zakończenia, informacją, kto je uruchomił ("Automatycznie" dla codziennej synchronizacji), i podsumowaniem w rodzaju "42 udanych, 1 nieudanych, 2 pominiętych".</p>
 <p>Rozwiń wiersz, aby zobaczyć szczegóły per użytkownik, albo kliknij <strong>Otwórz pełny widok zadania</strong>, aby zobaczyć kompletną tabelę wyników.</p>
+<p>Po zakończeniu zadania pełny widok pokazuje też panel <strong>Szczegóły realizacji</strong>: <strong>Zaktualizowane adresy główne</strong>, <strong>Zaktualizowane aliasy send-as</strong>, <strong>Przetworzone grupy</strong> (z liczbą podgrup, jeśli przypisanie je obejmowało), <strong>Przetworzone jednostki organizacyjne (OU)</strong>, a dla celu obejmującego cały Workspace - liczbę użytkowników, do których się rozwinął. Dzięki niemu potwierdzisz, że zadanie objęło oczekiwaną grupę osób.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Uwaga</p><div class="callout-body">
 <p>Logi zadań są przechowywane przez ograniczony czas (domyślnie ostatnie 30 dni), a starsze wpisy są usuwane automatycznie. Sprawdzaj zadania wkrótce po dużych wdrożeniach.</p>
 </div></aside>
@@ -216,15 +221,17 @@
 <ul>
 <li><strong>TARGET_NOT_FOUND</strong> - przypisana grupa lub OU już nie istnieje w Workspace (usunięta albo błędny identyfikator). Cel został pominięty, administratorzy dostają powiadomienie, a wiersz przypisania pokazuje odznakę "nie znaleziono w Workspace". Popraw lub usuń przypisanie na stronie <a href="https://app.signature.cat/assignments" target="_blank" rel="noopener">Przypisania</a>.</li>
 <li><strong>USER_NOT_FOUND</strong> - użytkownik już nie istnieje w katalogu.</li>
-<li><strong>ALIAS_SCOPE_MISSING</strong> - podpisy aliasów wymagają opcjonalnego zakresu <code>gmail.settings.sharing</code>, który nie został nadany. Zobacz <a href="/pl/docs/connect-google-workspace#step-3-authorize-domain-wide-delegation">Połącz swój Google Workspace</a>.</li>
+<li><strong>ALIAS_SCOPE_MISSING</strong> - podpisy aliasów wymagają opcjonalnego zakresu <code>gmail.settings.sharing</code>, który nie został nadany. Zobacz <a href="/pl/docs/connect-google-workspace#krok-4-autoryzuj-domain-wide-delegation">Połącz swój Google Workspace</a>.</li>
 <li><strong>DWD_NOT_CONFIGURED / DWD_SCOPE_MISSING</strong> - Domain-Wide Delegation nie działa albo brakuje zakresu. Uruchom ponownie kreator z <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Ustawień</a>. Zobacz <a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a>.</li>
 <li><strong>RATE_LIMITED</strong> - Google ograniczył tempo zapytań; worker automatycznie ponawia próby, zanim pokaże ten kod.</li>
 </ul>
-<p>Wiersz może też nieść notkę "nadpisano N innych przypisań dla tego użytkownika" - użytkownik pasował do kilku przypisań i to właśnie wygrało. Reguły pierwszeństwa są w <a href="/pl/docs/assignments#how-precedence-works">referencji przypisań</a>.</p>
+<p>Jeden kod jest ostrzeżeniem, a nie niepowodzeniem: <strong>GMAIL_SIGNATURE_SANITIZED</strong> siedzi na wierszach, które <strong>się powiodły</strong>, i pokazuje się jako bursztynowa odznaka <strong>okrojony przez Gmail</strong> z komunikatem "Podpis ustawiony, ale Gmail zapisał okrojoną wersję." Gmail przyjął zapis, a potem przepisał HTML w trakcie zapisywania, więc ponowienie zapisze dokładnie to samo. Naprawa polega na uproszczeniu oznaczonych znaczników - <strong>Szczegóły techniczne</strong> w wierszu nazywają utracone elementy - i ponownym przetestowaniu szablonu. Zobacz <a href="/pl/docs/gmail-sanitization">Kiedy Gmail okraja Twój podpis</a>.</p>
+<p>Wiersz może też nieść notkę "nadpisano N innych przypisań dla tego użytkownika" - użytkownik pasował do kilku przypisań i to właśnie wygrało. Reguły pierwszeństwa są w <a href="/pl/docs/assignments#jak-dziaa-pierwszestwo">referencji przypisań</a>.</p>
 <h2 id="weryfikacja-w-samym-gmail">Weryfikacja w samym Gmail<a class="h-anchor" href="#weryfikacja-w-samym-gmail" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Dla wyrywkowej kontroli poproś objętego użytkownika o otwarcie ustawień Gmail i sprawdzenie podpisu albo wyślij do siebie wiadomość testową. Pamiętaj, że własny podpis <a href="/pl/docs/self-service">self-service</a> użytkownika wygrywa z przypisaniami, chyba że przypisanie go nadpisuje.</p>
+<p>Najszybsze sprawdzenie to <strong>Wyświetl aktualną stopkę</strong> w udanym wierszu w <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Logach zadań</a>: odczytuje skrzynkę Gmail tego użytkownika na żywo i pokazuje, co naprawdę jest w niej zapisane, łącznie z tym, co użytkownik zmienił ręcznie. Zobacz <a href="/pl/docs/logs#odczytaj-aktualn-stopk-ze-skrzynki">Odczytaj aktualną stopkę ze skrzynki</a>.</p>
+<p>Aby sprawdzić to w samym kliencie pocztowym, poproś objętego użytkownika o otwarcie ustawień Gmail i sprawdzenie podpisu albo wyślij do siebie wiadomość testową. Pamiętaj, że własny podpis <a href="/pl/docs/self-service">self-service</a> użytkownika wygrywa z przypisaniami, chyba że przypisanie go nadpisuje.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Wskazówka</p><div class="callout-body">
-<p>Nieudane wiersze zakończonego zadania można ponowić z widoku szczegółów zadania przyciskiem <strong>Ponów nieudane</strong> - nie trzeba ponownie stosować podpisu u wszystkich.</p>
+<p>Zakończone zadanie nie ma przycisku ponawiania. Gdy usuniesz już to, na co wskazuje kod błędu, wyślij nowe zastosowanie ze strony <a href="https://app.signature.cat/apply" target="_blank" rel="noopener">Zastosuj</a> tylko dla tych adresów - nie trzeba ponownie stosować podpisu u wszystkich.</p>
 </div></aside>
       </article>
 <nav class="docs-pager" aria-label="Stronicowanie">

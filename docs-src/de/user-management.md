@@ -1,8 +1,8 @@
 ---
 title: Benutzerverwaltung und Zugriffsstufen
 navTitle: Benutzerverwaltung
-description: Wer sich bei SignatureCat anmelden kann, was jede Zugriffsstufe erlaubt und wie Sie einzelnen Nutzern oder ganzen Google-Gruppen Zugriff gewähren.
-updated: 2026-07-17
+description: Wer sich bei SignatureCat anmelden kann, was jede Google Workspace-Zugriffsstufe erlaubt und wer Signaturdaten bearbeiten oder Gruppen Zugriff gewähren darf.
+updated: 2026-08-02
 ---
 
 # Benutzerverwaltung und Zugriffsstufen
@@ -17,14 +17,18 @@ Nur Personen, die Sie ausdrücklich hereinlassen, können sich bei SignatureCat 
 | Self-Service + Bearbeiten | Self-Service plus eigenes HTML für die Signatur. |
 | Designer | Bearbeitet die Signaturvorlagen der Organisation. |
 | Editor | Designer plus Verwaltung von Zuweisungen und Anwendungs-Aufträgen sowie In-App-Benachrichtigungen. |
-| Admin | Vollzugriff, einschließlich Abrechnung, Benutzerverwaltung, Bilddomains und DWD-Assistent. |
+| Admin | Vollzugriff, einschließlich Abrechnung, Benutzerverwaltung, Benutzerdaten, Support-Zugriff, Bilddomains und DWD-Assistent. |
+
+Nutzer auf jeder Stufe ab **Self-Service** aufwärts können außerdem ihre **eigenen** Signaturdaten bearbeiten, aber erst, wenn ein Admin die Funktion eingeschaltet und das Schloss **Self-Service-Bearbeitung** geöffnet hat - siehe [Benutzerdaten](/docs/user-data).
 
 Ein paar praktische Konsequenzen:
 
 - **Vorlagen** ([Signaturen](https://app.signature.cat/signatures)): Designer, Editor, Admin.
 - **Zuweisungen und Anwenden** ([Zuweisungen](https://app.signature.cat/assignments), [Anwenden](https://app.signature.cat/apply)): Editor, Admin.
+- **Benutzerdaten** (der Tab [Daten](https://app.signature.cat/data), in dem gespeicherte Werte pro Nutzer das Google-Verzeichnis in Signaturen überschreiben): nur Admin.
+- **Support-Zugriff** (der Schalter, mit dem der SignatureCat-Support direkt mit anpacken darf): nur Admin - siehe [Support-Zugriff](/docs/support-access).
 - **Abrechnung, Benutzerverwaltung, eigene Bilddomain**: nur Admin.
-- Editoren sehen [Benachrichtigungen](/docs/notifications/) in der App; Hinweis- und Abrechnungs-**E-Mails** gehen nur an Admins.
+- Editoren sehen [Benachrichtigungen](/docs/notifications) in der App; Hinweis- und Abrechnungs-**E-Mails** gehen nur an Admins.
 
 > [!NOTE]
 > Workspace-**Super-Admins** haben immer die Stufe Admin. Sie wird bei jeder Anmeldung durchgesetzt und kann in SignatureCat nicht entzogen werden - um sie zu ändern, ändern Sie deren Admin-Status in Google Workspace selbst.
@@ -64,4 +68,4 @@ Eine direkte Nutzer-Berechtigung **überschreibt** immer jede Gruppen-Berechtigu
 
 ## Nutzer ihre eigene Signatur verwalten lassen
 
-Gewähren Sie Nutzern (oder einer Gruppe) die Stufe **Self-Service** und aktivieren Sie mindestens eine Vorlage für Self-Service - der vollständige Ablauf ist in [Self-Service](/docs/self-service/) beschrieben.
+Gewähren Sie Nutzern (oder einer Gruppe) die Stufe **Self-Service** und aktivieren Sie mindestens eine Vorlage für Self-Service - der vollständige Ablauf ist in [Self-Service](/docs/self-service) beschrieben. Sollen Nutzer zusätzlich ihre eigenen Variablenwerte eintragen, schalten Sie die Benutzerdaten ein und öffnen Sie **Self-Service-Bearbeitung** im Tab [Daten](https://app.signature.cat/data); die Werte, die sie eintragen, sind für Sie sichtbar, und Sie können jeden davon überschreiben oder löschen.

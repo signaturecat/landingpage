@@ -2,7 +2,7 @@
 title: Domain-Wide Delegation
 navTitle: Domain-Wide Delegation
 description: Wie SignatureCat Google Domain-Wide Delegation nutzt - Bereiche, die kundeneigene Client-ID, Propagation, Erkennung von Entzug und Neuerteilung.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # Domain-Wide Delegation
@@ -19,7 +19,7 @@ Die Bereiche und wozu jeder dient:
 
 | Bereich | Erforderlich | Verwendet für |
 |---|---|---|
-| `gmail.settings.basic` | Ja | Schreiben der Signatur auf der primären Adresse jedes Nutzers. |
+| `gmail.settings.basic` | Ja | Schreiben der Signatur auf der primären Adresse jedes Nutzers und Zurücklesen der gespeicherten Signatur - die Prüfung, die vergleicht, was Gmail gespeichert hat, mit dem, was gesendet wurde, sowie die Postfach-Abfrage auf Anforderung in den [Protokollen](/docs/logs#die-aktuelle-signatur-aus-dem-postfach-lesen). |
 | `admin.directory.user.readonly` | Ja | Lesen der Nutzerprofile - Namen, Positionen, Telefonnummern - für [Vorlagenvariablen](/docs/template-variables/). |
 | `admin.directory.group.member.readonly` | Ja | Auflösen von Gruppen-Zuweisungen in Mitglieder. |
 | `admin.directory.customer.readonly` | Ja | Lesen der Workspace-Nutzerzahl für die Abrechnung. |
@@ -41,7 +41,10 @@ SignatureCat prüft den DWD-Zustand vor jeder Synchronisierung. Wenn er bricht:
 
 - **pausieren** Signatur-Synchronisierungen sofort (nichts wird halb angewendet),
 - Admins erhalten die In-App-Benachrichtigung "Domain-Wide Delegation-Zugriff verloren" und eine "Handlung erforderlich"-E-Mail,
+- Admins sehen ein rotes Banner in der gesamten App: "Die letzte Überprüfung des Google Workspace-Zugriffs ist fehlgeschlagen. Die Signatur-Synchronisierung ist pausiert, bis der Zugriff repariert ist.",
 - die App leitet Admins zurück zum DWD-Assistenten.
+
+Das Banner enthält direkt einen Button **Zugriff jetzt prüfen**, der die Zugriffsprüfung an Ort und Stelle erneut ausführt, ohne den Assistenten zu öffnen: Besteht sie, verschwindet das Banner; schlägt sie weiterhin fehl, landen Sie im Assistenten. Es gibt außerdem einen Link **DWD-Assistenten öffnen**. Nur Admins sehen das Banner, weil nur sie neu autorisieren können, und es erscheint erst, nachdem eine Prüfung tatsächlich fehlgeschlagen ist - nie nur deshalb, weil eine Prüfung alt ist.
 
 Die Neuerteilung des fehlenden Eintrags oder Bereichs und ein bestandenes **Prüfen** setzen alles fort - der Zustand heilt sich selbst, nichts muss neu aufgebaut werden. Um den Assistenten jederzeit wieder zu öffnen, nutzen Sie **DWD-Assistent erneut ausführen** in den [Einstellungen](https://app.signature.cat/settings), Bereich Service-Konto.
 
@@ -50,7 +53,7 @@ Die Neuerteilung des fehlenden Eintrags oder Bereichs und ein bestandenes **Prü
 
 ## Den optionalen Alias-Bereich später hinzufügen
 
-Fügen Sie `https://www.googleapis.com/auth/gmail.settings.sharing` zum bestehenden Eintrag in der Admin console hinzu (behalten Sie die anderen vier Bereiche), dann **DWD-Assistent erneut ausführen** und auf **Prüfen** klicken. Alias-Funktionen werden automatisch freigeschaltet - siehe [Alias-Modi](/docs/assignments/#alias-modes).
+Fügen Sie `https://www.googleapis.com/auth/gmail.settings.sharing` zum bestehenden Eintrag in der Admin console hinzu (behalten Sie die anderen vier Bereiche), dann **DWD-Assistent erneut ausführen** und auf **Prüfen** klicken. Alias-Funktionen werden automatisch freigeschaltet - siehe [Alias-Modi](/docs/assignments/#alias-modi).
 
 ## SignatureCat entfernen
 

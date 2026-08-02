@@ -2,7 +2,7 @@
 title: Einführung
 navTitle: Einführung
 description: Was SignatureCat ist und wie es Gmail-Signaturen in Ihrem gesamten Google Workspace verwaltet - Vorlagen, Zuweisungen und automatische tägliche Synchronisierung.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # SignatureCat-Dokumentation
@@ -16,7 +16,8 @@ Die App läuft unter [app.signature.cat](https://app.signature.cat). Diese Dokum
 1. **Verbinden Sie Ihren Google Workspace.** Ein Workspace-Super-Admin autorisiert SignatureCat über [Domain-Wide Delegation](/docs/domain-wide-delegation/), damit es Ihr Nutzer-Directory lesen und Gmail-Signaturen schreiben kann.
 2. **Erstellen Sie eine Vorlage.** Eine HTML-Vorlage mit [Variablen](/docs/template-variables/) wie `{{firstname}}` oder `{{jobtitle}}`, die pro Nutzer aus Ihrem Google Directory aufgelöst werden.
 3. **Weisen Sie sie zu.** Binden Sie Vorlagen auf der Seite [Zuweisungen](https://app.signature.cat/assignments) an Gruppen, Organisationseinheiten oder alle auf einmal.
-4. **Bleiben Sie aktuell.** Eine Hintergrund-Synchronisierung wendet Zuweisungen einmal am Tag erneut an, sodass Neueinstellungen und Teamwechsel die richtige Signatur erhalten, ohne dass jemand einen Finger rühren muss.
+4. **Schließen Sie Lücken.** Wo das Directory unvollständig ist, kann ein Admin im Tab **Daten** Werte pro Nutzer hinterlegen, die in Signaturen Vorrang vor dem Directory haben. Siehe [Benutzerdaten](/docs/user-data).
+5. **Bleiben Sie aktuell.** Eine Hintergrund-Synchronisierung wendet Zuweisungen einmal am Tag erneut an, sodass Neueinstellungen und Teamwechsel die richtige Signatur erhalten, ohne dass jemand einen Finger rühren muss.
 
 ## Was Sie benötigen
 
@@ -41,5 +42,8 @@ Folgen Sie den Einstiegsanleitungen der Reihe nach:
 - [Vorlagen](/docs/templates/) und [Vorlagenvariablen](/docs/template-variables/) - die vollständige Editor- und Variablenreferenz.
 - [Zuweisungen](/docs/assignments/) - Vorrangregeln und Alias-Modi.
 - [Anwendungs-Aufträge](/docs/apply-jobs/) und [Protokolle](/docs/logs/) - wie der Signatur-Rollout nachverfolgt wird.
+- [Benutzerdaten](/docs/user-data) und [Benutzerdaten importieren](/docs/user-data-import) - Werte pro Nutzer, die das Directory überschreiben, einzeln oder aus einer CSV-Datei.
+- [E-Mail-Client-Vorschau](/docs/mail-client-preview) - wie die Vorschau Gmail, Outlook und Apple Mail in Hell und Dunkel simuliert.
+- [Wenn Gmail Ihre Signatur kürzt](/docs/gmail-sanitization) - was die Warnung "von Gmail gekürzt" bedeutet und wie Sie sie beheben.
 - [Benachrichtigungen](/docs/notifications/) - welche Hinweise per E-Mail kommen und welche in der App erscheinen.
 - [Hilfe erhalten](/docs/get-help/) - Support-Kontakt und [Dienststatus](/docs/service-status/).

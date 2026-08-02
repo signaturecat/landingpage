@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Logs | SignatureCat Docs</title>
-  <meta name="description" content="Where SignatureCat records what happened - task logs for sync and apply jobs, per-user results, retention and audit trail." />
+  <meta name="description" content="Where SignatureCat records every Gmail signature job - task logs, per-user results, the trimmed by Gmail badge, live mailbox checks and retention." />
   <link rel="canonical" href="https://signature.cat/docs/logs" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/logs" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/logs" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Logs | SignatureCat Docs" />
-  <meta property="og:description" content="Where SignatureCat records what happened - task logs for sync and apply jobs, per-user results, retention and audit trail." />
+  <meta property="og:description" content="Where SignatureCat records every Gmail signature job - task logs, per-user results, the trimmed by Gmail badge, live mailbox checks and retention." />
   <meta property="og:url" content="https://signature.cat/docs/logs" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Logs | SignatureCat Docs" />
-  <meta name="twitter:description" content="Where SignatureCat records what happened - task logs for sync and apply jobs, per-user results, retention and audit trail." />
+  <meta name="twitter:description" content="Where SignatureCat records every Gmail signature job - task logs, per-user results, the trimmed by Gmail badge, live mailbox checks and retention." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Logs",
-      "description": "Where SignatureCat records what happened - task logs for sync and apply jobs, per-user results, retention and audit trail.",
+      "description": "Where SignatureCat records every Gmail signature job - task logs, per-user results, the trimmed by Gmail badge, live mailbox checks and retention.",
       "url": "https://signature.cat/docs/logs",
       "inLanguage": "en",
-      "datePublished": "2026-07-19",
-      "dateModified": "2026-07-19",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/docs/user-management">User management</a></li>
         <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
         <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
         <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
         <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/docs/support-access">Support access</a></li>
         <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
         <li><a href="/docs/service-status">Service status</a></li>
         <li><a href="/docs/legal">Legal</a></li>
         </ul>
@@ -192,9 +196,9 @@
       <nav class="docs-breadcrumb" aria-label="Breadcrumb"><a href="/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Reference</span><span class="crumb-sep">/</span><span aria-current="page">Logs</span></nav>
       <article class="docs-article">
 <h1>Logs</h1>
-<p>SignatureCat keeps an operational log of every signature job, per user and per address, so you can always answer "did it apply, and if not, why". The main entry point is <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Task logs</a>.</p>
+<p>SignatureCat keeps an operational log of every signature job, per user and per address, so you can always answer "did it apply, and if not, why". The entry point is the <strong>Logs</strong> tab in the top navigation: <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Task logs</a>.</p>
 <h2 id="task-logs">Task logs<a class="h-anchor" href="#task-logs" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p><a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Task logs</a> (Editors and Admins) lists recent finished jobs for your workspace, newest first:</p>
+<p><a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Task logs</a> (Editors and Admins) lists recent finished jobs for your workspace, newest first:</p>
 <ul>
 <li><strong>Kind</strong> - Assignment sync (the daily job or <strong>Sync now</strong>) or Manual apply (from the <a href="https://app.signature.cat/apply" target="_blank" rel="noopener">Apply</a> page and self-service saves).</li>
 <li><strong>Status</strong> - Succeeded, Partial, Failed or Cancelled.</li>
@@ -204,6 +208,19 @@
 <p>Expanding a row shows the per-user results inline; <strong>Open full job view</strong> opens the complete result table at <code>app.signature.cat/jobs/{id}</code>.</p>
 <h2 id="what-a-result-row-contains">What a result row contains<a class="h-anchor" href="#what-a-result-row-contains" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>One row per written address: the user (or alias, marked with an "alias" badge), the outcome and an error code for failures or skips. Common codes and their fixes are listed in <a href="/docs/verify-assignments#what-the-per-user-rows-tell-you">Verify an assignment job</a>. Rows may also carry the note "overrode N other assignment(s) for this user" for <a href="/docs/assignments#how-precedence-works">precedence</a> audits.</p>
+<p>A row that succeeded can additionally carry an amber <strong>trimmed by Gmail</strong> badge with the line "Applied, but Gmail stored a trimmed copy of this signature." The apply itself worked - Gmail accepted the write and then rewrote the HTML on its own servers while saving it. <strong>Technical details</strong> on the row names the elements that were dropped and the character counts before and after. See <a href="/docs/gmail-sanitization">When Gmail trims your signature</a>.</p>
+<h2 id="read-the-current-mailbox-signature">Read the current mailbox signature<a class="h-anchor" href="#read-the-current-mailbox-signature" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Two actions on this page read a mailbox live: <strong>View current signature</strong> on a successful result row, and <strong>Check an employee's signature</strong> in the page header. Both open the same read-only panel, titled "Current mailbox signature", with the subtitle "Reads the signature straight from the user's Gmail mailbox."</p>
+<ul>
+<li><strong>View current signature</strong> is offered on rows that succeeded and starts the lookup for that address immediately.</li>
+<li><strong>Check an employee's signature</strong> lets you pick anyone in your Workspace in the <strong>Employee</strong> field and press <strong>Show signature</strong>.</li>
+<li>Both are available to Editors and Admins.</li>
+<li>The panel shows the signature, it does not edit it. Because it reads Gmail rather than SignatureCat's own records, it also reveals signatures a user changed by hand in their Gmail settings.</li>
+<li>If there is nothing stored, you get "{email} has no signature set in Gmail." instead of a preview.</li>
+</ul>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
+<p>Every lookup is recorded in your account's activity log in <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Settings</a> with the address that was checked and the length of the signature - never its content. The signature itself is not stored by SignatureCat.</p>
+</div></aside>
 <h2 id="retention">Retention<a class="h-anchor" href="#retention" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Job logs are retained for a limited window (by default <strong>30 days</strong> after a job finishes) and then removed automatically - the page states the current window. Export or review anything you need shortly after big rollouts.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
@@ -244,6 +261,7 @@
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#task-logs">Task logs</a></li>
         <li class="toc-l2"><a href="#what-a-result-row-contains">What a result row contains</a></li>
+        <li class="toc-l2"><a href="#read-the-current-mailbox-signature">Read the current mailbox signature</a></li>
         <li class="toc-l2"><a href="#retention">Retention</a></li>
         <li class="toc-l2"><a href="#live-jobs">Live jobs</a></li>
         </ul>

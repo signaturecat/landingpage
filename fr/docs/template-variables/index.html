@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Variables de modèle | SignatureCat Docs</title>
-  <meta name="description" content="Référence complète des variables de modèle SignatureCat - champs de personne Google Directory, jetons de logo et de bannière, et blocs conditionnels del/delete." />
+  <meta name="description" content="Toutes les variables de signature SignatureCat - champs de l'annuaire Google Workspace, remplacements de données par utilisateur, jetons de logo et de bannière et blocs conditionnels del/delete." />
   <link rel="canonical" href="https://signature.cat/fr/docs/template-variables" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/template-variables" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/template-variables" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Variables de modèle | SignatureCat Docs" />
-  <meta property="og:description" content="Référence complète des variables de modèle SignatureCat - champs de personne Google Directory, jetons de logo et de bannière, et blocs conditionnels del/delete." />
+  <meta property="og:description" content="Toutes les variables de signature SignatureCat - champs de l'annuaire Google Workspace, remplacements de données par utilisateur, jetons de logo et de bannière et blocs conditionnels del/delete." />
   <meta property="og:url" content="https://signature.cat/fr/docs/template-variables" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Variables de modèle | SignatureCat Docs" />
-  <meta name="twitter:description" content="Référence complète des variables de modèle SignatureCat - champs de personne Google Directory, jetons de logo et de bannière, et blocs conditionnels del/delete." />
+  <meta name="twitter:description" content="Toutes les variables de signature SignatureCat - champs de l'annuaire Google Workspace, remplacements de données par utilisateur, jetons de logo et de bannière et blocs conditionnels del/delete." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Variables de modèle",
-      "description": "Référence complète des variables de modèle SignatureCat - champs de personne Google Directory, jetons de logo et de bannière, et blocs conditionnels del/delete.",
+      "description": "Toutes les variables de signature SignatureCat - champs de l'annuaire Google Workspace, remplacements de données par utilisateur, jetons de logo et de bannière et blocs conditionnels del/delete.",
       "url": "https://signature.cat/fr/docs/template-variables",
       "inLanguage": "fr",
-      "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
         <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
         <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
         <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
         <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
         <li><a href="/fr/docs/template-variables" aria-current="page">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/fr/docs/support-access">Accès du support</a></li>
         <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
         <li><a href="/fr/docs/service-status">État du service</a></li>
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
@@ -195,6 +199,7 @@
 <p>Les modèles SignatureCat utilisent des jetons <code>{{variable}}</code> résolus par utilisateur au moment de l'application. Il existe neuf variables de personne (remplies depuis Google Directory), deux jetons d'image et deux balises conditionnelles. Les noms de jetons sont en minuscules et reconnus sans tenir compte de la casse - <code>{{Phone}}</code> fonctionne comme <code>{{phone}}</code>. Les jetons inconnus sont rejetés à l'enregistrement du modèle.</p>
 <h2 id="variables-de-personne-google-directory">Variables de personne (Google Directory)<a class="h-anchor" href="#variables-de-personne-google-directory" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Les valeurs proviennent de la fiche de chaque utilisateur dans votre annuaire Google Workspace. Gardez l'annuaire propre et chaque signature reste exacte automatiquement.</p>
+<p>Une valeur stockée pour un utilisateur sur l'onglet <strong>Données</strong> prime sur l'annuaire pour cet utilisateur et ce champ uniquement, partout où la signature est rendue : l'aperçu, <strong>Me définir une signature de test</strong> et le déploiement réel vers les boîtes. Les champs que vous laissez à l'annuaire continuent de venir de l'annuaire. Voir <a href="/fr/docs/user-data">Données utilisateur</a>. Une exception : quand une signature est écrite sur un alias d'envoi, <code>{{email}}</code> et <code>{{domain}}</code> suivent toujours l'adresse de l'alias, même s'ils sont remplacés.</p>
 <div class="tbl"><table>
 <thead><tr><th scope="col">Jeton</th><th scope="col">Valeur</th><th scope="col">Remarques</th></tr></thead>
 <tbody>
@@ -204,7 +209,7 @@
 <tr><td><code>{{domain}}</code></td><td>Partie domaine de l'e-mail</td><td>Suit l'alias lors de l'application à un alias.</td></tr>
 <tr><td><code>{{jobtitle}}</code></td><td>Intitulé de poste</td><td>Depuis l'entrée d'organisation principale de l'utilisateur dans le Directory.</td></tr>
 <tr><td><code>{{department}}</code></td><td>Service</td><td>Depuis la même entrée d'organisation.</td></tr>
-<tr><td><code>{{photo}}</code></td><td>Photo de profil</td><td>Utilisé seul, le jeton rend une photo de profil circulaire (115x115 px par défaut, <a href="/fr/docs/visual-editor#images-logo-banner-and-photo">redimensionnable par modèle</a>) ; les utilisateurs sans photo dans le Directory n'obtiennent aucune image plutôt qu'une icône cassée. À l'intérieur de votre propre <code>&lt;img src="{{photo}}"&gt;</code>, il est résolu vers l'URL HTTPS de la photo (mise à l'échelle automatique en 400 px) et votre balisage reste intact.</td></tr>
+<tr><td><code>{{photo}}</code></td><td>Photo de profil</td><td>Utilisé seul, le jeton rend une photo de profil prête à l'emploi - ronde par défaut, carrée si le modèle est basculé sur cette forme (115x115 px par défaut, <a href="/fr/docs/visual-editor#images-logo-bannire-et-photo">la forme et la taille se règlent par modèle</a>) ; les utilisateurs sans photo dans le Directory n'obtiennent aucune image plutôt qu'une icône cassée. À l'intérieur de votre propre <code>&lt;img src="{{photo}}"&gt;</code>, il est résolu vers l'URL HTTPS de la photo (mise à l'échelle automatique en 400 px) et votre balisage reste intact.</td></tr>
 <tr><td><code>{{address}}</code></td><td>Adresse formatée</td><td>L'entrée d'adresse principale de l'utilisateur.</td></tr>
 <tr><td><code>{{phone}}</code></td><td>Numéro de téléphone</td><td>Le premier non vide parmi : professionnel, puis mobile, puis domicile.</td></tr>
 </tbody>
@@ -218,7 +223,8 @@
 <tr><td><code>{{banner}}</code></td><td>La bannière de campagne sélectionnée du modèle - 450x100 px par défaut (une entrée de bibliothèque peut définir sa propre taille), redimensionnable par modèle, réduite sur écrans étroits.</td></tr>
 </tbody>
 </table></div>
-<p>Les images proviennent de la bibliothèque par espace de travail et sont sélectionnées par modèle ; si rien n'est sélectionné, un espace réservé neutre est rendu. Si l'image de la bibliothèque a un lien de clic, l'image y est enveloppée automatiquement - et chaque modèle peut <a href="/fr/docs/visual-editor#images-logo-banner-and-photo">remplacer ce lien</a>. Les détails de dimensionnement et les poignées de redimensionnement sont décrits dans l'<a href="/fr/docs/visual-editor">éditeur visuel</a> et <a href="/fr/docs/banners-and-logos">Bannières et logos</a>.</p>
+<p>Les images proviennent de la bibliothèque par espace de travail et sont sélectionnées par modèle ; si rien n'est sélectionné, un espace réservé neutre est rendu. Si l'image de la bibliothèque a un lien de clic, l'image y est enveloppée automatiquement - et chaque modèle peut <a href="/fr/docs/visual-editor#images-logo-bannire-et-photo">remplacer ce lien</a>. Les détails de dimensionnement et les poignées de redimensionnement sont décrits dans l'<a href="/fr/docs/visual-editor">éditeur visuel</a> et <a href="/fr/docs/banners-and-logos">Bannières et logos</a>.</p>
+<p>Si l'entrée de bibliothèque porte une <strong>Description de l'image (ALT)</strong>, ce texte est émis comme attribut <code>alt</code> de l'image rendue - aussi bien pour les images que vous avez téléversées que pour les entrées qui pointent vers votre propre URL. C'est ce que les destinataires lisent quand leur programme de messagerie bloque les images ou ne peut pas les charger. La description appartient à l'entrée de bibliothèque, tous les modèles qui utilisent cette image affichent donc la même ; une entrée sans description rend un <code>alt</code> vide.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Les jetons d'image rendent toujours quelque chose (image ou espace réservé), ils ne comptent donc pas comme "vides" pour les blocs conditionnels ci-dessous.</p>
 </div></aside>
@@ -231,16 +237,17 @@
 <p>Exemple - une ligne de téléphone qui disparaît pour les utilisateurs sans aucun numéro :</p>
 <pre><code class="language-html">{{del}}&lt;tr&gt;&lt;td&gt;Tel: {{phone}}&lt;/td&gt;&lt;/tr&gt;{{/del}}</code></pre>
 <p>Les blocs peuvent être imbriqués ; les blocs internes sont évalués en premier. Les balises non équilibrées sont rejetées à l'enregistrement, et les balises elles-mêmes ne sont jamais écrites dans la signature Gmail finale.</p>
+<p>Un garde peut aussi envelopper une cellule de tableau entière, une suite de cellules voisines ou une ligne de tableau entière. Dans l'<a href="/fr/docs/visual-editor#colonnes">éditeur visuel</a>, c'est une colonne conditionnelle, définie depuis l'interrupteur de la colonne.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Astuce</p><div class="callout-body">
 <p>Règle empirique : enveloppez chaque ligne facultative (téléphone, adresse, service) dans des balises <code>{{del}}</code>. Les signatures des utilisateurs aux fiches Directory peu remplies se réduisent alors avec élégance au lieu d'afficher des étiquettes vides.</p>
 </div></aside>
 <h2 id="tester-la-rsolution-des-variables">Tester la résolution des variables<a class="h-anchor" href="#tester-la-rsolution-des-variables" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Utilisez <strong>Rendre comme</strong> dans l'<a href="/fr/docs/templates#the-editor">éditeur de modèle</a> pour prévisualiser à partir de la fiche de n'importe quel utilisateur réel, et <strong>Me définir une signature de test</strong> pour appliquer le résultat à votre propre boîte. Les deux sont décrits dans <a href="/fr/docs/create-your-first-template">Créer votre premier modèle</a>.</p>
+<p>Utilisez <strong>Rendre comme</strong> dans l'<a href="/fr/docs/templates#lditeur">éditeur de modèle</a> pour prévisualiser à partir de la fiche de n'importe quel utilisateur réel, et <strong>Me définir une signature de test</strong> pour appliquer le résultat à votre propre boîte. Les deux sont décrits dans <a href="/fr/docs/create-your-first-template">Créer votre premier modèle</a>.</p>
       </article>
 <nav class="docs-pager" aria-label="Pagination">
-<a class="pager-card pager-prev" href="/fr/docs/visual-editor" rel="prev">
+<a class="pager-card pager-prev" href="/fr/docs/mail-client-preview" rel="prev">
       <span class="pager-label">Précédent</span>
-      <span class="pager-title">Éditeur visuel</span>
+      <span class="pager-title">Aperçu par client de messagerie</span>
     </a>
 <a class="pager-card pager-next" href="/fr/docs/assignments" rel="next">
       <span class="pager-label">Suivant</span>

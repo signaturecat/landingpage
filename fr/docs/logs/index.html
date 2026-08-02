@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Journaux | SignatureCat Docs</title>
-  <meta name="description" content="Où SignatureCat enregistre ce qui s'est passé - journaux des tâches de synchronisation et d'application, résultats par utilisateur, conservation et piste d'audit." />
+  <meta name="description" content="Où SignatureCat enregistre chaque tâche de signature Gmail - journaux des tâches, résultats par utilisateur, badge tronquée par Gmail, lectures de boîte en direct et conservation." />
   <link rel="canonical" href="https://signature.cat/fr/docs/logs" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/logs" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/logs" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Journaux | SignatureCat Docs" />
-  <meta property="og:description" content="Où SignatureCat enregistre ce qui s'est passé - journaux des tâches de synchronisation et d'application, résultats par utilisateur, conservation et piste d'audit." />
+  <meta property="og:description" content="Où SignatureCat enregistre chaque tâche de signature Gmail - journaux des tâches, résultats par utilisateur, badge tronquée par Gmail, lectures de boîte en direct et conservation." />
   <meta property="og:url" content="https://signature.cat/fr/docs/logs" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Journaux | SignatureCat Docs" />
-  <meta name="twitter:description" content="Où SignatureCat enregistre ce qui s'est passé - journaux des tâches de synchronisation et d'application, résultats par utilisateur, conservation et piste d'audit." />
+  <meta name="twitter:description" content="Où SignatureCat enregistre chaque tâche de signature Gmail - journaux des tâches, résultats par utilisateur, badge tronquée par Gmail, lectures de boîte en direct et conservation." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Journaux",
-      "description": "Où SignatureCat enregistre ce qui s'est passé - journaux des tâches de synchronisation et d'application, résultats par utilisateur, conservation et piste d'audit.",
+      "description": "Où SignatureCat enregistre chaque tâche de signature Gmail - journaux des tâches, résultats par utilisateur, badge tronquée par Gmail, lectures de boîte en direct et conservation.",
       "url": "https://signature.cat/fr/docs/logs",
       "inLanguage": "fr",
-      "datePublished": "2026-07-19",
-      "dateModified": "2026-07-19",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
         <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
         <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
         <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
         <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/fr/docs/support-access">Accès du support</a></li>
         <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
         <li><a href="/fr/docs/service-status">État du service</a></li>
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
@@ -192,9 +196,9 @@
       <nav class="docs-breadcrumb" aria-label="Fil d'Ariane"><a href="/fr/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Référence</span><span class="crumb-sep">/</span><span aria-current="page">Journaux</span></nav>
       <article class="docs-article">
 <h1>Journaux</h1>
-<p>SignatureCat tient un journal opérationnel de chaque tâche de signature, par utilisateur et par adresse, pour que vous puissiez toujours répondre à "est-ce que ça s'est appliqué, et sinon, pourquoi". Le point d'entrée principal est <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Journaux des tâches</a>.</p>
+<p>SignatureCat tient un journal opérationnel de chaque tâche de signature, par utilisateur et par adresse, pour que vous puissiez toujours répondre à "est-ce que ça s'est appliqué, et sinon, pourquoi". Le point d'entrée est l'onglet <strong>Journaux</strong> de la navigation principale : <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Journaux des tâches</a>.</p>
 <h2 id="journaux-des-tches">Journaux des tâches<a class="h-anchor" href="#journaux-des-tches" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p><a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Journaux des tâches</a> (niveaux Editor et Admin) liste les tâches récemment terminées pour votre espace de travail, les plus récentes en premier :</p>
+<p><a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Journaux des tâches</a> (niveaux Editor et Admin) liste les tâches récemment terminées pour votre espace de travail, les plus récentes en premier :</p>
 <ul>
 <li><strong>Type</strong> - Synchronisation des attributions (la tâche quotidienne ou <strong>Synchroniser maintenant</strong>) ou Application manuelle (depuis la page <a href="https://app.signature.cat/apply" target="_blank" rel="noopener">Appliquer</a> et les enregistrements self-service).</li>
 <li><strong>Statut</strong> - Réussi, Partiel, Échoué ou Annulé.</li>
@@ -203,14 +207,27 @@
 </ul>
 <p>Déplier une ligne affiche les résultats par utilisateur directement ; <strong>Ouvrir la vue complète de la tâche</strong> ouvre le tableau de résultats complet sur <code>app.signature.cat/jobs/{id}</code>.</p>
 <h2 id="ce-que-contient-une-ligne-de-rsultat">Ce que contient une ligne de résultat<a class="h-anchor" href="#ce-que-contient-une-ligne-de-rsultat" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Une ligne par adresse écrite : l'utilisateur (ou l'alias, marqué d'un badge "alias"), le résultat et un code d'erreur pour les échecs ou les cas ignorés. Les codes courants et leurs correctifs sont listés dans <a href="/fr/docs/verify-assignments#what-the-per-user-rows-tell-you">Vérifier une tâche d'affectation</a>. Les lignes peuvent aussi porter la note "a remplacé N autres affectations pour cet utilisateur" pour les audits de <a href="/fr/docs/assignments#how-precedence-works">priorité</a>.</p>
+<p>Une ligne par adresse écrite : l'utilisateur (ou l'alias, marqué d'un badge "alias"), le résultat et un code d'erreur pour les échecs ou les cas ignorés. Les codes courants et leurs correctifs sont listés dans <a href="/fr/docs/verify-assignments#ce-que-les-lignes-par-utilisateur-vous-disent">Vérifier une tâche d'affectation</a>. Les lignes peuvent aussi porter la note "a remplacé N autres affectations pour cet utilisateur" pour les audits de <a href="/fr/docs/assignments#fonctionnement-de-la-priorit">priorité</a>.</p>
+<p>Une ligne réussie peut en plus porter un badge ambre <strong>tronquée par Gmail</strong> accompagné de la phrase "Signature appliquée, mais Gmail a enregistré une copie tronquée." L'application elle-même a fonctionné - Gmail a accepté l'écriture puis a réécrit le HTML sur ses propres serveurs au moment de l'enregistrer. <strong>Détails techniques</strong> sur la ligne nomme les éléments supprimés ainsi que les décomptes de caractères avant et après. Voir <a href="/fr/docs/gmail-sanitization">Quand Gmail tronque votre signature</a>.</p>
+<h2 id="lire-la-signature-actuelle-de-la-bote">Lire la signature actuelle de la boîte<a class="h-anchor" href="#lire-la-signature-actuelle-de-la-bote" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Deux actions sur cette page lisent une boîte en direct : <strong>Afficher la signature actuelle</strong> sur une ligne de résultat réussie, et <strong>Vérifier la signature d'un employé</strong> dans l'en-tête de la page. Toutes deux ouvrent le même panneau en lecture seule, intitulé "Signature actuelle de la boîte", avec le sous-titre "Lit la signature directement depuis la boîte Gmail de l'utilisateur."</p>
+<ul>
+<li><strong>Afficher la signature actuelle</strong> est proposé sur les lignes qui ont réussi et lance immédiatement la consultation pour cette adresse.</li>
+<li><strong>Vérifier la signature d'un employé</strong> vous laisse choisir n'importe qui dans votre Workspace dans le champ <strong>Employé</strong> puis cliquer sur <strong>Afficher la signature</strong>.</li>
+<li>Les deux sont accessibles aux niveaux Editor et Admin.</li>
+<li>Le panneau affiche la signature, il ne la modifie pas. Comme il lit Gmail plutôt que les enregistrements propres à SignatureCat, il révèle aussi les signatures qu'un utilisateur a modifiées à la main dans ses paramètres Gmail.</li>
+<li>Si rien n'est stocké, vous obtenez "{email} n'a pas de signature définie dans Gmail." à la place d'un aperçu.</li>
+</ul>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
+<p>Chaque consultation est enregistrée dans le journal d'activité de votre compte dans <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a> avec l'adresse qui a été lue et la longueur de la signature - jamais son contenu. La signature elle-même n'est pas stockée par SignatureCat.</p>
+</div></aside>
 <h2 id="conservation">Conservation<a class="h-anchor" href="#conservation" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Les journaux des tâches sont conservés pendant une fenêtre limitée (par défaut <strong>30 jours</strong> après la fin d'une tâche) puis supprimés automatiquement - la page indique la fenêtre en vigueur. Exportez ou passez en revue ce dont vous avez besoin peu après les grands déploiements.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>La fenêtre de conservation s'applique aux journaux d'exécution des tâches. Vos modèles, affectations et paramètres sont bien entendu permanents.</p>
 </div></aside>
 <h2 id="tches-en-cours">Tâches en cours<a class="h-anchor" href="#tches-en-cours" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Une tâche en cours d'exécution se suit au mieux sur sa propre page, <code>app.signature.cat/jobs/{id}</code>, qui interroge la progression - voir <a href="/fr/docs/apply-jobs#watching-a-job">Tâches d'application</a>.</p>
+<p>Une tâche en cours d'exécution se suit au mieux sur sa propre page, <code>app.signature.cat/jobs/{id}</code>, qui interroge la progression - voir <a href="/fr/docs/apply-jobs#suivre-une-tche">Tâches d'application</a>.</p>
       </article>
 <nav class="docs-pager" aria-label="Pagination">
 <a class="pager-card pager-prev" href="/fr/docs/apply-jobs" rel="prev">
@@ -244,6 +261,7 @@
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#journaux-des-tches">Journaux des tâches</a></li>
         <li class="toc-l2"><a href="#ce-que-contient-une-ligne-de-rsultat">Ce que contient une ligne de résultat</a></li>
+        <li class="toc-l2"><a href="#lire-la-signature-actuelle-de-la-bote">Lire la signature actuelle de la boîte</a></li>
         <li class="toc-l2"><a href="#conservation">Conservation</a></li>
         <li class="toc-l2"><a href="#tches-en-cours">Tâches en cours</a></li>
         </ul>

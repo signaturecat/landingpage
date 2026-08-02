@@ -47,8 +47,8 @@
       "description": "Referencja przypisań SignatureCat - rodzaje celów, pierwszeństwo gdy użytkownik pasuje do kilku przypisań, tryby aliasów i obsługa konfliktów.",
       "url": "https://signature.cat/pl/docs/assignments",
       "inLanguage": "pl",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/pl/docs/user-management">Zarządzanie dostępem</a></li>
         <li><a href="/pl/docs/self-service">Self-service</a></li>
+        <li><a href="/pl/docs/user-data">Dane użytkowników</a></li>
+        <li><a href="/pl/docs/user-data-import">Import danych</a></li>
         <li><a href="/pl/docs/custom-image-domain">Własna domena obrazków</a></li>
         <li><a href="/pl/docs/banners-and-logos">Banery i logo</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/pl/docs/templates">Szablony</a></li>
         <li><a href="/pl/docs/visual-editor">Edytor wizualny</a></li>
+        <li><a href="/pl/docs/mail-client-preview">Podgląd w kliencie pocztowym</a></li>
         <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
         <li><a href="/pl/docs/assignments" aria-current="page">Przypisania</a></li>
         <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/pl/docs/support-access">Dostęp dla supportu</a></li>
         <li><a href="/pl/docs/get-help">Uzyskaj pomoc</a></li>
+        <li><a href="/pl/docs/gmail-sanitization">Okrajanie przez Gmail</a></li>
         <li><a href="/pl/docs/service-status">Status usługi</a></li>
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
@@ -208,7 +212,7 @@
 <p>Użytkownicy często pasują do kilku przypisań. Każda synchronizacja wyznacza dokładnie <strong>jednego zwycięzcę per użytkownik</strong>, warstwa po warstwie, od dołu do góry:</p>
 <ol>
 <li><strong>Wszyscy</strong> - warstwa bazowa dla każdego aktywnego użytkownika.</li>
-<li><strong>Przypisania OU</strong> nadpisują przypisanie dla wszystkich dla użytkowników w danym OU.</li>
+<li><strong>Przypisania OU</strong> nadpisują przypisanie dla wszystkich dla użytkowników w danym OU. Jeśli użytkownik jest objęty dwoma przypisanymi OU, wygrywa przypisanie <strong>ostatnio zaktualizowane</strong>.</li>
 <li><strong>Przypisania grup</strong> nadpisują szablon OU dla swoich członków. Jeśli użytkownik należy do wielu przypisanych grup, wygrywa przypisanie <strong>ostatnio zaktualizowane</strong>.</li>
 <li><strong>Self-service</strong> - własny wybór użytkownika wygrywa z każdym przypisaniem, <strong>chyba że</strong> zwycięskie przypisanie ma włączone <strong>Nadpisuj self-service</strong>.</li>
 </ol>
@@ -217,7 +221,7 @@
 <p>Sprawdzony wzorzec: jedno przypisanie dla wszystkich jako firmowy domyślny podpis, przypisania OU per kraj lub marka, przypisania grup dla wyjątków (kampania sprzedażowa, zarząd). Warstwy załatwiają resztę.</p>
 </div></aside>
 <h2 id="tryby-aliasw">Tryby aliasów<a class="h-anchor" href="#tryby-aliasw" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Każde przypisanie ma ustawienie <strong>Aliasy</strong>, które decyduje, na które adresy trafia podpis. Zapisywanie aliasów wymaga opcjonalnego zakresu <code>gmail.settings.sharing</code> - zobacz <a href="/pl/docs/domain-wide-delegation#what-exactly-do-i-authorize">Domain-Wide Delegation</a>.</p>
+<p>Każde przypisanie ma ustawienie <strong>Aliasy</strong>, które decyduje, na które adresy trafia podpis. Zapisywanie aliasów wymaga opcjonalnego zakresu <code>gmail.settings.sharing</code> - zobacz <a href="/pl/docs/domain-wide-delegation#co-dokadnie-autoryzuj">Domain-Wide Delegation</a>.</p>
 <div class="tbl"><table>
 <thead><tr><th scope="col">Tryb</th><th scope="col">Zachowanie</th></tr></thead>
 <tbody>
@@ -236,7 +240,7 @@
 <h2 id="nadpisuj-self-service">Nadpisuj self-service<a class="h-anchor" href="#nadpisuj-self-service" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Przełącznik <strong>Nadpisuj self-service</strong>, ustawiany per przypisanie, sprawia, że przypisanie wygrywa z własnymi wyborami self-service użytkowników. Wiersz pokazuje wtedy odznakę "nadpisuje self-service". Używaj go dla podpisów krytycznych pod kątem zgodności (zastrzeżenia prawne), gdzie indywidualna personalizacja jest niedopuszczalna.</p>
 <h2 id="gdy-cele-znikaj">Gdy cele znikają<a class="h-anchor" href="#gdy-cele-znikaj" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Jeśli przypisana grupa lub OU zostanie usunięta w Google Workspace, najbliższa synchronizacja oznacza przypisanie odznaką "nie znaleziono w Workspace", pomija cel, powiadamia administratorów (w aplikacji + e-mailem, raz na serię niepowodzeń) i ponawia próbę przy kolejnych synchronizacjach. Popraw cel w panelu edycji albo usuń przypisanie. Zobacz <a href="/pl/docs/verify-assignments#what-the-per-user-rows-tell-you">Zweryfikuj zadanie przypisania</a>.</p>
+<p>Jeśli przypisana grupa lub OU zostanie usunięta w Google Workspace, najbliższa synchronizacja oznacza przypisanie odznaką "nie znaleziono w Workspace", pomija cel, powiadamia administratorów (w aplikacji + e-mailem, raz na serię niepowodzeń) i ponawia próbę przy kolejnych synchronizacjach. Popraw cel w panelu edycji albo usuń przypisanie. Zobacz <a href="/pl/docs/verify-assignments#co-mwi-wiersze-per-uytkownik">Zweryfikuj zadanie przypisania</a>.</p>
 <h2 id="edycja-i-usuwanie">Edycja i usuwanie<a class="h-anchor" href="#edycja-i-usuwanie" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Wiersze edytuje się w miejscu (szablon, wartość celu, zakres, tryb aliasów, nadpisywanie). Usunięcie przypisania kończy zarządzanie objętymi nim użytkownikami - już zastosowane podpisy pozostają w Gmail, dopóki coś innego (inne przypisanie, self-service albo szablon domyślny) nie nadpisze ich przy późniejszej synchronizacji.</p>
       </article>

@@ -2,7 +2,7 @@
 title: Domain-Wide Delegation
 navTitle: Domain-Wide Delegation
 description: How SignatureCat uses Google Domain-Wide Delegation - scopes, the per-tenant client ID, propagation, revocation detection and re-granting.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # Domain-Wide Delegation
@@ -19,7 +19,7 @@ The scopes and what each one is for:
 
 | Scope | Required | Used for |
 |---|---|---|
-| `gmail.settings.basic` | Yes | Writing the signature on each user's primary address. |
+| `gmail.settings.basic` | Yes | Writing the signature on each user's primary address, and reading the stored signature back - the check that compares what Gmail saved with what was sent, and the on-demand mailbox lookup in [Logs](/docs/logs#read-the-current-mailbox-signature). |
 | `admin.directory.user.readonly` | Yes | Reading user profiles - names, job titles, phones - for [template variables](/docs/template-variables/). |
 | `admin.directory.group.member.readonly` | Yes | Expanding group assignments into members. |
 | `admin.directory.customer.readonly` | Yes | Reading the workspace seat count for billing. |
@@ -41,7 +41,10 @@ SignatureCat verifies DWD health before every sync. When it breaks:
 
 - signature syncs **pause** immediately (nothing is half-applied),
 - admins get the in-app notification "Domain-Wide Delegation access lost" and an "Action required" email,
+- admins see a red banner across the app: "The last Google Workspace access check failed. Signature syncs are paused until the access is fixed.",
 - the app routes admins back to the DWD wizard.
+
+The banner carries an inline **Check access now** button that re-runs the access check on the spot, without opening the wizard: if it passes, the banner disappears; if it still fails, you land in the wizard. There is also an **Open the DWD wizard** link. Only admins see the banner, because only they can re-authorize, and it appears only after a check has actually failed - never merely because a check is old.
 
 Re-granting the missing entry or scope and passing **Check** resumes everything - state self-heals, nothing needs to be rebuilt. To re-open the wizard at any time use **Re-run DWD wizard** in [Settings](https://app.signature.cat/settings), Service Account section.
 

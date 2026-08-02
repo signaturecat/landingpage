@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Benutzerverwaltung und Zugriffsstufen | SignatureCat Docs</title>
-  <meta name="description" content="Wer sich bei SignatureCat anmelden kann, was jede Zugriffsstufe erlaubt und wie Sie einzelnen Nutzern oder ganzen Google-Gruppen Zugriff gewähren." />
+  <meta name="description" content="Wer sich bei SignatureCat anmelden kann, was jede Google Workspace-Zugriffsstufe erlaubt und wer Signaturdaten bearbeiten oder Gruppen Zugriff gewähren darf." />
   <link rel="canonical" href="https://signature.cat/de/docs/user-management" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/user-management" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/user-management" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Benutzerverwaltung und Zugriffsstufen | SignatureCat Docs" />
-  <meta property="og:description" content="Wer sich bei SignatureCat anmelden kann, was jede Zugriffsstufe erlaubt und wie Sie einzelnen Nutzern oder ganzen Google-Gruppen Zugriff gewähren." />
+  <meta property="og:description" content="Wer sich bei SignatureCat anmelden kann, was jede Google Workspace-Zugriffsstufe erlaubt und wer Signaturdaten bearbeiten oder Gruppen Zugriff gewähren darf." />
   <meta property="og:url" content="https://signature.cat/de/docs/user-management" />
   <meta property="og:locale" content="de_DE" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Benutzerverwaltung und Zugriffsstufen | SignatureCat Docs" />
-  <meta name="twitter:description" content="Wer sich bei SignatureCat anmelden kann, was jede Zugriffsstufe erlaubt und wie Sie einzelnen Nutzern oder ganzen Google-Gruppen Zugriff gewähren." />
+  <meta name="twitter:description" content="Wer sich bei SignatureCat anmelden kann, was jede Google Workspace-Zugriffsstufe erlaubt und wer Signaturdaten bearbeiten oder Gruppen Zugriff gewähren darf." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Benutzerverwaltung und Zugriffsstufen",
-      "description": "Wer sich bei SignatureCat anmelden kann, was jede Zugriffsstufe erlaubt und wie Sie einzelnen Nutzern oder ganzen Google-Gruppen Zugriff gewähren.",
+      "description": "Wer sich bei SignatureCat anmelden kann, was jede Google Workspace-Zugriffsstufe erlaubt und wer Signaturdaten bearbeiten oder Gruppen Zugriff gewähren darf.",
       "url": "https://signature.cat/de/docs/user-management",
       "inLanguage": "de",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/de/docs/user-management" aria-current="page">Benutzerverwaltung</a></li>
         <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/user-data">Benutzerdaten</a></li>
+        <li><a href="/de/docs/user-data-import">Benutzerdaten importieren</a></li>
         <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
         <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates">Vorlagen</a></li>
         <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
+        <li><a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a></li>
         <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
         <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/gmail-sanitization">Gmail-Kürzung</a></li>
         <li><a href="/de/docs/service-status">Dienststatus</a></li>
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
@@ -201,13 +205,16 @@
 <tr><td>Self-Service + Bearbeiten</td><td>Self-Service plus eigenes HTML für die Signatur.</td></tr>
 <tr><td>Designer</td><td>Bearbeitet die Signaturvorlagen der Organisation.</td></tr>
 <tr><td>Editor</td><td>Designer plus Verwaltung von Zuweisungen und Anwendungs-Aufträgen sowie In-App-Benachrichtigungen.</td></tr>
-<tr><td>Admin</td><td>Vollzugriff, einschließlich Abrechnung, Benutzerverwaltung, Bilddomains und DWD-Assistent.</td></tr>
+<tr><td>Admin</td><td>Vollzugriff, einschließlich Abrechnung, Benutzerverwaltung, Benutzerdaten, Support-Zugriff, Bilddomains und DWD-Assistent.</td></tr>
 </tbody>
 </table></div>
+<p>Nutzer auf jeder Stufe ab <strong>Self-Service</strong> aufwärts können außerdem ihre <strong>eigenen</strong> Signaturdaten bearbeiten, aber erst, wenn ein Admin die Funktion eingeschaltet und das Schloss <strong>Self-Service-Bearbeitung</strong> geöffnet hat - siehe <a href="/de/docs/user-data">Benutzerdaten</a>.</p>
 <p>Ein paar praktische Konsequenzen:</p>
 <ul>
 <li><strong>Vorlagen</strong> (<a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signaturen</a>): Designer, Editor, Admin.</li>
 <li><strong>Zuweisungen und Anwenden</strong> (<a href="https://app.signature.cat/assignments" target="_blank" rel="noopener">Zuweisungen</a>, <a href="https://app.signature.cat/apply" target="_blank" rel="noopener">Anwenden</a>): Editor, Admin.</li>
+<li><strong>Benutzerdaten</strong> (der Tab <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Daten</a>, in dem gespeicherte Werte pro Nutzer das Google-Verzeichnis in Signaturen überschreiben): nur Admin.</li>
+<li><strong>Support-Zugriff</strong> (der Schalter, mit dem der SignatureCat-Support direkt mit anpacken darf): nur Admin - siehe <a href="/de/docs/support-access">Support-Zugriff</a>.</li>
 <li><strong>Abrechnung, Benutzerverwaltung, eigene Bilddomain</strong>: nur Admin.</li>
 <li>Editoren sehen <a href="/de/docs/notifications">Benachrichtigungen</a> in der App; Hinweis- und Abrechnungs-<strong>E-Mails</strong> gehen nur an Admins.</li>
 </ul>
@@ -243,7 +250,7 @@
 <li>Zugriffsstufen steuern nur die SignatureCat-App. Sie haben keine Auswirkung auf das Google-Konto des Nutzers.</li>
 </ul>
 <h2 id="nutzer-ihre-eigene-signatur-verwalten-lassen">Nutzer ihre eigene Signatur verwalten lassen<a class="h-anchor" href="#nutzer-ihre-eigene-signatur-verwalten-lassen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Gewähren Sie Nutzern (oder einer Gruppe) die Stufe <strong>Self-Service</strong> und aktivieren Sie mindestens eine Vorlage für Self-Service - der vollständige Ablauf ist in <a href="/de/docs/self-service">Self-Service</a> beschrieben.</p>
+<p>Gewähren Sie Nutzern (oder einer Gruppe) die Stufe <strong>Self-Service</strong> und aktivieren Sie mindestens eine Vorlage für Self-Service - der vollständige Ablauf ist in <a href="/de/docs/self-service">Self-Service</a> beschrieben. Sollen Nutzer zusätzlich ihre eigenen Variablenwerte eintragen, schalten Sie die Benutzerdaten ein und öffnen Sie <strong>Self-Service-Bearbeitung</strong> im Tab <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Daten</a>; die Werte, die sie eintragen, sind für Sie sichtbar, und Sie können jeden davon überschreiben oder löschen.</p>
       </article>
 <nav class="docs-pager" aria-label="Seitennavigation">
 <a class="pager-card pager-prev" href="/de/docs/verify-assignments" rel="prev">

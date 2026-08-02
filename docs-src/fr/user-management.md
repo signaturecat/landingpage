@@ -1,8 +1,8 @@
 ---
 title: Gestion des accès et niveaux d'accès
 navTitle: Gestion des accès
-description: Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès autorise, et comment accorder l'accès à des utilisateurs individuels ou à des groupes Google entiers.
-updated: 2026-07-17
+description: Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès Google Workspace autorise, et qui peut modifier les données de signature ou accorder l'accès à des groupes.
+updated: 2026-08-02
 ---
 
 # Gestion des accès et niveaux d'accès
@@ -17,14 +17,18 @@ Seules les personnes que vous laissez explicitement entrer peuvent se connecter 
 | Self-service + édition | Self-service plus son propre HTML de signature personnalisé. |
 | Designer | Modifie les modèles de signature de l'organisation. |
 | Editor | Designer plus la gestion des affectations et des tâches d'application, et les notifications dans l'application. |
-| Admin | Accès complet, y compris la facturation, la gestion des accès, les domaines d'images et l'assistant DWD. |
+| Admin | Accès complet, y compris la facturation, la gestion des accès, les données utilisateur, l'accès du support, les domaines d'images et l'assistant DWD. |
+
+Les utilisateurs à partir du niveau **Self-service** peuvent aussi modifier leurs **propres** données de signature, mais seulement une fois qu'un Admin a activé la fonction et ouvert le cadenas **Édition en self-service** - voir [Données utilisateur](/docs/user-data).
 
 Quelques conséquences pratiques :
 
 - **Modèles** ([Signatures](https://app.signature.cat/signatures)) : Designer, Editor, Admin.
 - **Affectations et Appliquer** ([Affectations](https://app.signature.cat/assignments), [Appliquer](https://app.signature.cat/apply)) : Editor, Admin.
+- **Données utilisateur** (l'onglet [Données](https://app.signature.cat/data), où des valeurs stockées par utilisateur remplacent l'annuaire Google dans les signatures) : Admin uniquement.
+- **Accès du support** (l'interrupteur qui permet au support SignatureCat d'aider de façon opérationnelle) : Admin uniquement - voir [Accès du support](/docs/support-access).
 - **Facturation, gestion des accès, domaine d'images personnalisé** : Admin uniquement.
-- Les Editors voient les [notifications](/docs/notifications/) dans l'application ; les **e-mails** d'alerte et de facturation ne vont qu'aux administrateurs.
+- Les Editors voient les [notifications](/docs/notifications) dans l'application ; les **e-mails** d'alerte et de facturation ne vont qu'aux administrateurs.
 
 > [!NOTE]
 > Les **super administrateurs** Workspace ont toujours le niveau Admin. C'est appliqué à chaque connexion et ne peut pas être révoqué dans SignatureCat - pour le changer, modifiez leur statut d'administrateur dans Google Workspace lui-même.
@@ -64,4 +68,4 @@ Un accès accordé directement à un utilisateur **remplace** toujours tout acc�
 
 ## Laisser les utilisateurs gérer leur propre signature
 
-Accordez aux utilisateurs (ou à un groupe) le niveau **Self-service** et activez au moins un modèle pour le self-service - le parcours complet est décrit dans [Self-service](/docs/self-service/).
+Accordez aux utilisateurs (ou à un groupe) le niveau **Self-service** et activez au moins un modèle pour le self-service - le parcours complet est décrit dans [Self-service](/docs/self-service). Si vous voulez aussi que les utilisateurs renseignent leurs propres valeurs de variables, activez les données utilisateur et ouvrez **Édition en self-service** sur l'onglet [Données](https://app.signature.cat/data) ; les valeurs qu'ils saisissent vous sont visibles et vous pouvez écraser ou supprimer chacune d'elles.

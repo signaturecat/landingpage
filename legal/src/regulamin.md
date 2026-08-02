@@ -200,7 +200,7 @@ Niniejszy Regulamin jest regulaminem świadczenia usług drogą elektroniczną w
 1. Prawem właściwym dla Umowy jest **prawo polskie**.
 2. Sądem właściwym dla sporów wynikających z Umowy jest sąd powszechny właściwy miejscowo dla siedziby Usługodawcy. Zdanie poprzednie nie narusza bezwzględnie obowiązujących przepisów o jurysdykcji.
 3. Jeżeli poszczególne postanowienia Regulaminu okażą się nieważne lub bezskuteczne, pozostałe postanowienia pozostają w mocy, a w miejsce postanowienia nieważnego stosuje się ważne postanowienie najbliższe jego celowi gospodarczemu.
-4. Regulamin w niniejszej wersji (1.1) wchodzi w życie z dniem **17.07.2026**; wersja 1.0 obowiązywała od dnia 16.07.2026.
+4. Regulamin w niniejszej wersji (1.2) wchodzi w życie z dniem **02.08.2026**; wersja 1.1 obowiązywała od dnia 17.07.2026, a wersja 1.0 od dnia 16.07.2026.
 
 ---
 

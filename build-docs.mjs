@@ -143,6 +143,8 @@ const NAV = [
     items: [
       { slug: 'user-management' },
       { slug: 'self-service' },
+      { slug: 'user-data' },
+      { slug: 'user-data-import' },
       { slug: 'custom-image-domain' },
       { slug: 'banners-and-logos' },
     ],
@@ -157,6 +159,7 @@ const NAV = [
       { slug: 'domain-wide-delegation' },
       { slug: 'templates' },
       { slug: 'visual-editor' },
+      { slug: 'mail-client-preview' },
       { slug: 'template-variables' },
       { slug: 'assignments' },
       { slug: 'apply-jobs' },
@@ -170,6 +173,7 @@ const NAV = [
     items: [
       { slug: 'support-access' },
       { slug: 'get-help' },
+      { slug: 'gmail-sanitization' },
       { slug: 'service-status' },
       { slug: 'legal' },
     ],
@@ -274,7 +278,12 @@ function inline(text) {
   s = s.replace(/https?:\/\/[^\s<)"]*[^\s<)".,;:]/g, (url) =>
     stash(`<a href="${escAttr(url)}" target="_blank" rel="noopener">${url}</a>`),
   );
-  s = s.replace(/ (\d+) /g, (_m, i) => hold[Number(i)]);
+  /* Stashed HTML can itself hold a placeholder (a link inside bold, for
+     example), so unwind repeatedly until none are left - a single pass
+     used to leak the raw sentinel into the page. */
+  for (let pass = 0; pass < 6 && / \d+ /.test(s); pass += 1) {
+    s = s.replace(/ (\d+) /g, (_m, i) => hold[Number(i)]);
+  }
   return s;
 }
 

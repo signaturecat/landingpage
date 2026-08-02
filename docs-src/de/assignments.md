@@ -2,7 +2,7 @@
 title: Zuweisungen
 navTitle: Zuweisungen
 description: SignatureCat-Zuweisungen-Referenz - Zielarten, Vorrang bei mehreren zutreffenden Zuweisungen, Alias-Modi und Konfliktbehandlung.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # Zuweisungen
@@ -26,7 +26,7 @@ Einzelne Nutzer sind bewusst kein Zuweisungsziel - decken Sie Einzelpersonen üb
 Nutzer passen oft auf mehrere Zuweisungen. Jede Synchronisierung ermittelt genau **einen Gewinner pro Nutzer**, Ebene für Ebene, von unten nach oben:
 
 1. **Alle** - die Basisebene für jeden aktiven Nutzer.
-2. **OU-Zuweisungen** überschreiben die Zuweisung an alle für Nutzer in der OU.
+2. **OU-Zuweisungen** überschreiben die Zuweisung an alle für Nutzer in der OU. Wird ein Nutzer von zwei zugewiesenen OUs erfasst, gewinnt die **zuletzt aktualisierte** Zuweisung.
 3. **Gruppen-Zuweisungen** überschreiben die OU-Vorlage für ihre Mitglieder. Gehört ein Nutzer zu mehreren zugewiesenen Gruppen, gewinnt die **zuletzt aktualisierte** Zuweisung.
 4. **Self-Service** - die eigene Wahl eines Nutzers gewinnt über jede Zuweisung, **außer** die gewinnende Zuweisung hat **Self-Service überschreiben** aktiviert.
 
@@ -37,7 +37,7 @@ Verdrängt eine Zuweisung andere für einen Nutzer, vermerkt es die Ergebniszeil
 
 ## Alias-Modi
 
-Jede Zuweisung hat eine Einstellung **Aliasse**, die steuert, welche Adressen die Signatur erhalten. Das Schreiben auf Aliasse erfordert den optionalen Bereich `gmail.settings.sharing` - siehe [Domain-Wide Delegation](/docs/domain-wide-delegation/#what-exactly-do-i-authorize).
+Jede Zuweisung hat eine Einstellung **Aliasse**, die steuert, welche Adressen die Signatur erhalten. Das Schreiben auf Aliasse erfordert den optionalen Bereich `gmail.settings.sharing` - siehe [Domain-Wide Delegation](/docs/domain-wide-delegation/#was-genau-autorisiere-ich).
 
 | Modus | Verhalten |
 |---|---|
@@ -58,7 +58,7 @@ Pro Zuweisung sorgt der Schalter **Self-Service überschreiben** dafür, dass di
 
 ## Wenn Ziele verschwinden
 
-Wird eine zugewiesene Gruppe oder OU in Google Workspace gelöscht, markiert die nächste Synchronisierung die Zuweisung mit dem Badge "nicht im Workspace gefunden", überspringt das Ziel, benachrichtigt Admins (in der App + per E-Mail, einmal pro Fehlerserie) und versucht es bei folgenden Synchronisierungen erneut. Korrigieren Sie das Ziel im Bearbeitungsbereich oder entfernen Sie die Zuweisung. Siehe [Einen Zuweisungsauftrag prüfen](/docs/verify-assignments/#what-the-per-user-rows-tell-you).
+Wird eine zugewiesene Gruppe oder OU in Google Workspace gelöscht, markiert die nächste Synchronisierung die Zuweisung mit dem Badge "nicht im Workspace gefunden", überspringt das Ziel, benachrichtigt Admins (in der App + per E-Mail, einmal pro Fehlerserie) und versucht es bei folgenden Synchronisierungen erneut. Korrigieren Sie das Ziel im Bearbeitungsbereich oder entfernen Sie die Zuweisung. Siehe [Einen Zuweisungsauftrag prüfen](/docs/verify-assignments/#was-die-zeilen-pro-nutzer-aussagen).
 
 ## Bearbeiten und Entfernen
 

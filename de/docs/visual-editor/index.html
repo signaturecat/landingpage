@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Visueller Editor | SignatureCat Docs</title>
-  <meta name="description" content="Gestalten Sie Gmail-Signaturen, ohne HTML zu schreiben - der visuelle Editor von SignatureCat mit Variablen-Chips, Bildgrößenänderung, Spalten, Schriften und garantiert Gmail-sicherer Ausgabe." />
+  <meta name="description" content="Gestalten Sie Gmail-Signaturvorlagen, ohne HTML zu schreiben - Variablen-Chips, Spalten, Trennlinien, eigene Bilder und E-Mail-sichere Formatierung auf einer Arbeitsfläche." />
   <link rel="canonical" href="https://signature.cat/de/docs/visual-editor" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/visual-editor" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/visual-editor" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Visueller Editor | SignatureCat Docs" />
-  <meta property="og:description" content="Gestalten Sie Gmail-Signaturen, ohne HTML zu schreiben - der visuelle Editor von SignatureCat mit Variablen-Chips, Bildgrößenänderung, Spalten, Schriften und garantiert Gmail-sicherer Ausgabe." />
+  <meta property="og:description" content="Gestalten Sie Gmail-Signaturvorlagen, ohne HTML zu schreiben - Variablen-Chips, Spalten, Trennlinien, eigene Bilder und E-Mail-sichere Formatierung auf einer Arbeitsfläche." />
   <meta property="og:url" content="https://signature.cat/de/docs/visual-editor" />
   <meta property="og:locale" content="de_DE" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Visueller Editor | SignatureCat Docs" />
-  <meta name="twitter:description" content="Gestalten Sie Gmail-Signaturen, ohne HTML zu schreiben - der visuelle Editor von SignatureCat mit Variablen-Chips, Bildgrößenänderung, Spalten, Schriften und garantiert Gmail-sicherer Ausgabe." />
+  <meta name="twitter:description" content="Gestalten Sie Gmail-Signaturvorlagen, ohne HTML zu schreiben - Variablen-Chips, Spalten, Trennlinien, eigene Bilder und E-Mail-sichere Formatierung auf einer Arbeitsfläche." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Visueller Editor",
-      "description": "Gestalten Sie Gmail-Signaturen, ohne HTML zu schreiben - der visuelle Editor von SignatureCat mit Variablen-Chips, Bildgrößenänderung, Spalten, Schriften und garantiert Gmail-sicherer Ausgabe.",
+      "description": "Gestalten Sie Gmail-Signaturvorlagen, ohne HTML zu schreiben - Variablen-Chips, Spalten, Trennlinien, eigene Bilder und E-Mail-sichere Formatierung auf einer Arbeitsfläche.",
       "url": "https://signature.cat/de/docs/visual-editor",
       "inLanguage": "de",
-      "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
         <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/user-data">Benutzerdaten</a></li>
+        <li><a href="/de/docs/user-data-import">Benutzerdaten importieren</a></li>
         <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
         <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates">Vorlagen</a></li>
         <li><a href="/de/docs/visual-editor" aria-current="page">Visueller Editor</a></li>
+        <li><a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a></li>
         <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
         <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/gmail-sanitization">Gmail-Kürzung</a></li>
         <li><a href="/de/docs/service-status">Dienststatus</a></li>
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
@@ -192,43 +196,64 @@
       <nav class="docs-breadcrumb" aria-label="Brotkrümelnavigation"><a href="/de/docs">Doku</a><span class="crumb-sep">/</span><span class="crumb-section">Referenz</span><span class="crumb-sep">/</span><span aria-current="page">Visueller Editor</span></nav>
       <article class="docs-article">
 <h1>Visueller Editor</h1>
-<p>Mit dem visuellen Editor gestalten Sie eine Signaturvorlage, ohne eine Zeile HTML zu schreiben. Sie arbeiten auf einer Arbeitsfläche mit Textformatierung, Variablen-Chips und Bildern in Echtgröße - und alles, was er erzeugt, ist garantiert E-Mail-sicher: Der Editor kann nur Markup ausgeben, das in Gmail korrekt rendert, sodass sich gar keine Signatur bauen lässt, die im Postfach bricht.</p>
-<p>Der Editor liegt auf derselben Seite wie der <a href="/de/docs/templates#the-editor">HTML-Editor</a>: Öffnen Sie eine beliebige Vorlage auf <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signaturen</a> und wechseln Sie zwischen den Tabs <strong>Visuell</strong> und <strong>HTML</strong>.</p>
+<p>Mit dem visuellen Editor gestalten Sie eine Signaturvorlage, ohne eine Zeile HTML zu schreiben. Sie arbeiten auf einer Arbeitsfläche mit Textformatierung, Variablen-Chips und Bildern in Echtgröße, und der Editor kann nur Markup aus einer E-Mail-sicheren Positivliste erzeugen - was die Arbeitsfläche ausgibt, ist genau das, was SignatureCat speichert und an Gmail sendet, nichts wird hinter Ihrem Rücken umgeschrieben.</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
+<p>Gmail hat das letzte Wort: Beim Speichern einer Signatur läuft dort eine eigene Bereinigung, sodass ein sehr kompliziertes Layout trotzdem gekürzt zurückkommen kann. Siehe <a href="/de/docs/gmail-sanitization">Wenn Gmail Ihre Signatur kürzt</a>.</p>
+</div></aside>
+<p>Der Editor liegt auf derselben Seite wie der <a href="/de/docs/templates#der-editor">HTML-Editor</a>: Öffnen Sie eine beliebige Vorlage auf <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signaturen</a> und wechseln Sie zwischen den Tabs <strong>Visuell</strong> und <strong>HTML</strong>.</p>
 <h2 id="bearbeitungsmodi">Bearbeitungsmodi<a class="h-anchor" href="#bearbeitungsmodi" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Jede Vorlage wird in einem von zwei Modi bearbeitet, und der Editor öffnet sich in dem Modus, in dem die Vorlage zuletzt gespeichert wurde:</p>
 <ul>
 <li><strong>Visuell</strong> - die auf dieser Seite beschriebene Arbeitsfläche. Beim Speichern werden sowohl das visuelle Dokument als auch das erzeugte HTML gespeichert.</li>
-<li><strong>HTML</strong> - der klassische Code-Editor mit Token-Autovervollständigung; siehe <a href="/de/docs/templates#the-editor">Vorlagen</a>.</li>
+<li><strong>HTML</strong> - der klassische Code-Editor mit Token-Autovervollständigung; siehe <a href="/de/docs/templates#der-editor">Vorlagen</a>.</li>
 </ul>
 <p>Der Wechsel ist jederzeit möglich, mit zwei Einschränkungen:</p>
 <ul>
-<li><strong>HTML zu Visuell ist eine Einweg-Konvertierung.</strong> Der Importer übersetzt Ihr Markup nach bestem Bemühen in Blöcke auf der Arbeitsfläche - einfache Layouts (einschließlich einzeiliger Tabellen, die zu <a href="#spalten">Spalten</a> werden) konvertieren sauber, tief verschachtelte Tabellen-Layouts werden dagegen abgeflacht. Vor einer verlustbehafteten Konvertierung warnt der Editor.</li>
+<li><strong>HTML zu Visuell ist eine Einweg-Konvertierung.</strong> Der Importer übersetzt Ihr Markup nach bestem Bemühen in Blöcke auf der Arbeitsfläche, und eine handgeschriebene Signatur übersteht diesen Weg jetzt deutlich besser: Jede Zeile einer mehrzeiligen Layout-Tabelle wird zu einer eigenen <a href="#spalten">Spaltenzeile</a>, und <code>{{del}}</code>- oder <code>{{delete}}</code>-Wächter, die eine ganze Zelle, mehrere benachbarte Zellen oder eine ganze Zeile umschließen, bleiben erhalten, statt stillschweigend verworfen zu werden. Tief verschachtelte Tabellen-Layouts werden weiterhin abgeflacht, und vor einer verlustbehafteten Konvertierung warnt der Editor.</li>
 <li><strong>Visuell zu HTML ist ein Downgrade.</strong> Sie erhalten das erzeugte HTML zur freien Bearbeitung, aber das Speichern aus dem HTML-Tab verwirft das visuelle Dokument - wer später zurückwechselt, konvertiert erneut.</li>
 </ul>
 <h2 id="text-schriften-und-farben">Text, Schriften und Farben<a class="h-anchor" href="#text-schriften-und-farben" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Die Arbeitsfläche unterstützt die Formatierung, die Mail-Clients zuverlässig überlebt: Absätze, <strong>fett</strong>, <em>kursiv</em>, Unterstreichung, Aufzählungs- und nummerierte Listen, eine E-Mail-sichere Textfarbpalette, Links (Web, mailto und tel) sowie Rückgängig/Wiederholen.</p>
 <p>Zwei Dropdowns steuern die Typografie:</p>
 <ul>
-<li><strong>Schriftgröße</strong> - 10 bis 24 px.</li>
-<li><strong>Schriftart</strong> - "Standard (Mail-Client)" plus sieben websichere Familien: Arial, Verdana, Tahoma, Trebuchet MS, Georgia, Times New Roman und Courier New. Die Standardoption gibt gar keine Schrift aus und überlässt jedem Empfänger die seines Mail-Clients - die sicherste Wahl.</li>
+<li><strong>Schriftgröße</strong> - sieben feste Größen plus <strong>Standardgröße</strong>: 10, 12, 14, 16, 18, 20 und 24 px. Etwas anderes wird nicht angeboten, und die Voreinstellung der Arbeitsfläche ist 14 px.</li>
+<li><strong>Schriftart</strong> - "Standard (Mail-Programm)" plus sieben websichere Familien: Arial, Verdana, Tahoma, Trebuchet MS, Georgia, Times New Roman und Courier New. Die Standardoption gibt gar keine Schrift aus und überlässt jedem Empfänger die seines Mail-Clients - die sicherste Wahl. Die Schriftart gilt für die ganze Signatur, nicht für die Auswahl.</li>
 </ul>
+<p><strong>Textfarbe</strong> bietet acht E-Mail-sichere Farbfelder plus <strong>Standardfarbe</strong>, die die Farbe wieder entfernt.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
 <p>Websichere Schriften rendern konsistent, weil sie mit dem System des Empfängers ausgeliefert werden, nicht mit der E-Mail. Beim ersten Auswählen einer Nicht-Standard-Schrift zeigt der Editor einen kurzen Kompatibilitätshinweis.</p>
 </div></aside>
 <h2 id="spalten">Spalten<a class="h-anchor" href="#spalten" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Fügen Sie über die Werkzeugleiste eine Zeile mit 2 oder 3 Spalten ein, um Inhalte nebeneinander zu platzieren - zum Beispiel ein Foto links und Kontaktdaten rechts. Spalten werden im erzeugten HTML als einzeilige Tabelle gespeichert, die einzige Layout-Technik, die jeder Mail-Client korrekt rendert. Vorhandene einzeilige Tabellen in importiertem HTML werden automatisch zu Spalten.</p>
+<p>Fügen Sie über die Werkzeugleiste eine Zeile mit 2 oder 3 Spalten ein (<strong>2 Spalten einfügen</strong>, <strong>3 Spalten einfügen</strong>), um Inhalte nebeneinander zu platzieren - zum Beispiel ein Foto links und Kontaktdaten rechts. Spalten werden im erzeugten HTML als einzeilige Tabelle gespeichert, die einzige Layout-Technik, die jeder Mail-Client korrekt rendert. Einer vorhandenen Zeile lässt sich keine Spalte hinzufügen: Fügen Sie eine Zeile mit der Spaltenanzahl ein, die Sie brauchen.</p>
+<p>Sobald eine Zeile auf der Arbeitsfläche liegt:</p>
+<ul>
+<li><strong>Die Proportionen ändern.</strong> Ziehen Sie den Akzentbalken im Zwischenraum zwischen zwei Spalten (<strong>Spaltenbreite (ziehen; Pfeiltasten passen an)</strong>). Jede Spalte behält mindestens 10 Prozent der Breite, und der Ziehpunkt funktioniert auch per Tastatur - Pfeiltasten bewegen ihn in Schritten von 5 Prozent. Ein Ziehvorgang legt die Proportionen für die ganze Zeile fest, eine Zeile ist also entweder gleichmäßig geteilt oder vollständig frei aufgeteilt.</li>
+<li><strong>Die ganze Zeile verschieben.</strong> Der Griff links oben an der Zeile (<strong>Diese Zeile verschieben (zwischen Zeilen ablegen)</strong>) zieht sie zwischen die anderen Blöcke, wobei eine Linie zeigt, wo sie landen wird.</li>
+<li><strong>Eine einzelne Spalte löschen.</strong> Der Papierkorb-Button in der Spalten-Überlagerung entfernt sie; eine Spalte, die noch Inhalt enthält, fragt zuerst nach einer Bestätigung. Bleibt in einer Zeile nur eine Spalte übrig, wird die Zeile automatisch aufgelöst - Löschen kann also nie ein kaputtes Layout hinterlassen.</li>
+<li><strong>Eine Spalte bedingt machen.</strong> Der Schalter in der Spalten-Überlagerung schaltet die Spalte reihum zwischen keinem Wächter, <code>{{del}}</code> und <code>{{delete}}</code> um (<strong>Spalte bedingt machen (sie verschwindet, wenn ihre Variablen leer sind)</strong>). Die ganze Spalte verschwindet dann für Nutzer, deren Variablen darin leer sind - zum Beispiel eine Fotospalte für Personen ohne Foto. Eine bedingte Spalte wird mit gestricheltem Rahmen und einer Ecken-Markierung mit dem Token gezeichnet; es gelten genau die Regeln der <a href="/de/docs/template-variables#bedingte-blcke-del-und-delete">bedingten Blöcke</a>.</li>
+</ul>
+<p>Importiertes HTML behält sein Layout: Jede Zeile einer mehrzelligen Tabelle wird zu einer eigenen Spaltenzeile, sodass eine Zeile mit Foto und Name über einer Trennlinienzeile zwei Zeilen bleibt, statt zu einer einzigen zu verschmelzen.</p>
+<h2 id="trennlinien">Trennlinien<a class="h-anchor" href="#trennlinien" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Eine Trennlinie ist eine waagerechte Linie zwischen zwei Blöcken - die saubere Art, einen Namen von den Kontaktdaten abzusetzen. Fügen Sie eine mit <strong>Trennlinie einfügen</strong> ein; standardmäßig ist sie eine dünne hellgraue Linie mit etwas Abstand darüber und darunter.</p>
+<p>Auf der Arbeitsfläche ist sie ein auswählbarer Block namens <strong>Trennlinie</strong>. Beim Überfahren mit der Maus erscheinen ein Griff, der sie zwischen die anderen Blöcke zieht, und ein Button, der sie entfernt. Zwei Eigenschaften bestimmen Sie selbst:</p>
+<ul>
+<li><strong>Farbe</strong> - wählen Sie die Linie aus und dann ein Farbfeld aus der Palette in der Werkzeugleiste (<strong>Linienfarbe (Linie auswählen, dann Farbe wählen)</strong>).</li>
+<li><strong>Länge</strong> - ziehen Sie den Ziehpunkt am Ende der Linie (<strong>Linienlänge (ziehen; Doppelklick = volle Breite)</strong>) zwischen 10 und 100 Prozent der Signaturbreite. Ein Doppelklick stellt die volle Breite wieder her.</li>
+</ul>
+<p>Eine von Hand in HTML geschriebene Trennlinie behält beim Konvertieren der Vorlage in den visuellen Modus den Stil, den Sie ihr gegeben haben.</p>
 <h2 id="variablen-als-chips">Variablen als Chips<a class="h-anchor" href="#variablen-als-chips" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Personenvariablen wie <code>{{firstname}}</code> oder <code>{{phone}}</code> erscheinen auf der Arbeitsfläche als <strong>Chips</strong> - feste Token, die Sie nicht versehentlich durch Hineintippen zerstören können. Chips können:</p>
 <ul>
 <li>über das Menü <strong>Variable einfügen</strong> eingefügt werden,</li>
-<li>wie Text formatiert werden (fett, kursiv und Unterstreichung wirken auf den aufgelösten Wert),</li>
+<li>wie der Text um sie herum formatiert werden - fett, kursiv, unterstrichen, dazu <strong>Textfarbe</strong> und <strong>Schriftgröße</strong>, die bis in den Wert durchschlagen, der in der ausgelieferten Signatur landet,</li>
 <li>per Drag-and-drop an eine beliebige Stelle der Arbeitsfläche gezogen werden,</li>
 <li>mit dem Papierkorb-Button entfernt werden, der beim Überfahren mit der Maus erscheint.</li>
 </ul>
+<p>Wählen Sie den Chip oder einen Textabschnitt aus, der ihn enthält, bevor Sie eine Größe oder eine Farbe wählen: Den Cursor neben einem Chip zu parken ändert nichts. Bild-Chips (<code>{{logo}}</code>, <code>{{banner}}</code>, <code>{{photo}}</code>) werden auf diese Weise nie umgestylt - sie werden stattdessen über ihre Ziehpunkte dimensioniert.</p>
 <p>Die vollständige Variablenliste und die Auflösungsregeln stehen in <a href="/de/docs/template-variables">Vorlagenvariablen</a>.</p>
 <h2 id="bilder-logo-banner-und-foto">Bilder: Logo, Banner und Foto<a class="h-anchor" href="#bilder-logo-banner-und-foto" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p><code>{{logo}}</code>, <code>{{banner}}</code> und <code>{{photo}}</code> werden auf der Arbeitsfläche als Bild-Chips in ihrer echten Größe gerendert - die Logo- und Banner-Chips zeigen das tatsächlich aus Ihrer <a href="/de/docs/banners-and-logos">Bibliothek</a> gewählte Bild, der Foto-Chip zeigt einen runden Avatar-Platzhalter (echte Fotos werden beim Rendern pro Nutzer eingesetzt).</p>
-<p>Wählen Sie einen Bild-Chip aus und ziehen Sie seine <strong>Ziehpunkte</strong> (Kanten und Ecke), um ihn für diese Vorlage zu dimensionieren - wie beim Vergrößern eines Fensters. Ein Doppelklick stellt die Standardgröße wieder her; die Ziehpunkte funktionieren auch per Tastatur (Pfeiltasten in 10-px-Schritten, Umschalt+Pfeiltasten in 50-px-Schritten, Pos1/Ende springen zu den Grenzen). Erlaubte Bereiche:</p>
+<p><code>{{logo}}</code>, <code>{{banner}}</code> und <code>{{photo}}</code> werden auf der Arbeitsfläche als Bild-Chips in ihrer echten Größe gerendert - die Logo- und Banner-Chips zeigen das tatsächlich aus Ihrer <a href="/de/docs/banners-and-logos">Bibliothek</a> gewählte Bild, der Foto-Chip zeigt einen Avatar-Platzhalter (echte Fotos werden beim Rendern pro Nutzer eingesetzt).</p>
+<p>Wählen Sie einen Bild-Chip aus und ziehen Sie seine <strong>Ziehpunkte</strong> (Kanten und Ecke), um ihn für diese Vorlage zu dimensionieren - wie beim Vergrößern eines Fensters. Ein Doppelklick stellt die Standardgröße wieder her. Die Ziehpunkte werden mit der Maus bedient; eine Tastatursteuerung gibt es für sie nicht. Erlaubte Bereiche:</p>
 <div class="tbl"><table>
 <thead><tr><th scope="col">Bild</th><th scope="col">Standardgröße</th><th scope="col">Größenbereich</th></tr></thead>
 <tbody>
@@ -237,27 +262,40 @@
 <tr><td>Foto</td><td>115x115 px, rund</td><td>24-300 px pro Seite</td></tr>
 </tbody>
 </table></div>
+<p>Das Profilbild ist standardmäßig rund. Der kleine Schalter am Griff des Foto-Chips macht es für diese Vorlage eckig (<strong>Zu eckigem Foto wechseln</strong>) und wieder rund (<strong>Zu rundem Foto wechseln</strong>).</p>
 <p>Größen werden <strong>pro Vorlage</strong> gespeichert: Das Ändern der Bannergröße in einer Vorlage verändert nie andere Vorlagen, die dasselbe Bibliotheksbild verwenden.</p>
 <p>Ein ausgewählter Logo- oder Banner-Chip bietet außerdem einen Button <strong>Link</strong>: den Klick-Link des Bibliotheksbildes behalten, den Link nur für diese Vorlage entfernen oder auf eine andere URL zeigen lassen - ohne den Bibliothekseintrag anzufassen, den andere Vorlagen teilen.</p>
+<h2 id="eigene-bilder">Eigene Bilder<a class="h-anchor" href="#eigene-bilder" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Jedes Bild, das Sie bereits unter einer <code>https://</code>-Adresse hosten, kann direkt in eine Vorlage, ohne es der gemeinsamen Bibliothek hinzuzufügen. Klicken Sie in der Werkzeugleiste auf <strong>Bild einfügen (URL)</strong> und füllen Sie aus:</p>
+<ul>
+<li><strong>Bild-URL (https)</strong> - die Adresse des Bildes. Sie muss mit <code>https://</code> beginnen.</li>
+<li><strong>Beschreibung (ALT, optional)</strong> - was Empfänger sehen, wenn ihr Mail-Programm das Bild nicht anzeigen kann. Sie darf keine <code>{{ }}</code>-Vorlagen-Token enthalten.</li>
+<li><strong>Form</strong> - <strong>Eckig</strong> oder <strong>Rund</strong>.</li>
+</ul>
+<p>Auf der Arbeitsfläche verhält sich der Block wie die anderen Bilder: Der Griff verschiebt ihn zwischen den Blöcken, die Kanten- und Eck-Ziehpunkte ändern seine Größe (16 bis 600 px breit, 16 bis 400 px hoch), der Stift (<strong>Bild bearbeiten</strong>) öffnet Adresse, Beschreibung und Form erneut, und der Papierkorb-Button entfernt ihn. Setzen Sie ihn in einen Link, bleibt der Link erhalten.</p>
+<p>Ein eigenes Bild gehört zu genau dieser einen Vorlage. Es ist kein Bibliothekseintrag: Es taucht in den Galerien Logo und Banner nicht auf, andere Vorlagen können es nicht auswählen, und es wird nicht unter <a href="/de/docs/banners-and-logos">Banner und Logos</a> verwaltet. SignatureCat lädt die Datei weder hoch noch speichert sie - das Bild bleibt bei Ihrem Hoster, die Adresse muss also so lange funktionieren, wie die Signatur im Einsatz ist.</p>
+<aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tipp</p><div class="callout-body">
+<p>Nutzen Sie die Bibliothek für das Logo und den Kampagnenbanner, die die ganze Firma teilt, und ein eigenes Bild für den Einzelfall - ein Auszeichnungs-Abzeichen oder ein Veranstaltungslogo, das nur in einer einzigen Vorlage lebt.</p>
+</div></aside>
 <h2 id="bedingte-blcke">Bedingte Blöcke<a class="h-anchor" href="#bedingte-blcke" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p><code>{{del}}</code>- und <code>{{delete}}</code>-Umschließungen erscheinen auf der Arbeitsfläche als gerahmte Blöcke, sodass Sie genau sehen, was verschwindet, wenn die Daten eines Nutzers fehlen. Wird ein Speichern wegen unausgeglichener Tags abgelehnt, zeigt der Editor zwei kleine Demo-Animationen in Schleife, die das Verhalten von <code>{{del}}</code> und <code>{{delete}}</code> gegenüberstellen - die genauen Regeln stehen in <a href="/de/docs/template-variables#conditional-blocks-del-and-delete">Vorlagenvariablen</a>.</p>
+<p><code>{{del}}</code>- und <code>{{delete}}</code>-Umschließungen erscheinen auf der Arbeitsfläche als gerahmte Blöcke, sodass Sie genau sehen, was verschwindet, wenn die Daten eines Nutzers fehlen. Eine ganze <a href="#spalten">Spalte</a> kann denselben Wächter tragen. Wird ein Speichern wegen unausgeglichener Tags abgelehnt, zeigt der Editor zwei kleine Demo-Animationen in Schleife, die das Verhalten von <code>{{del}}</code> und <code>{{delete}}</code> gegenüberstellen - die genauen Regeln stehen in <a href="/de/docs/template-variables#bedingte-blcke-del-und-delete">Vorlagenvariablen</a>.</p>
 <h2 id="innerhalb-der-gmail-limits-bleiben">Innerhalb der Gmail-Limits bleiben<a class="h-anchor" href="#innerhalb-der-gmail-limits-bleiben" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Gmail begrenzt Signaturen auf 10.000 Zeichen. Ein Live-Zähler unter der Arbeitsfläche verfolgt die Größe des erzeugten HTML - so wissen Sie es lange, bevor Gmail die Signatur ablehnen würde.</p>
 <h2 id="zurcksetzen-und-validierung">Zurücksetzen und Validierung<a class="h-anchor" href="#zurcksetzen-und-validierung" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
-<li><strong>Auf Gespeichertes zurücksetzen</strong> (sichtbar, sobald Sie ungespeicherte Änderungen haben) stellt die Vorlage nach einer Bestätigung auf ihren zuletzt gespeicherten Stand zurück, einschließlich des gespeicherten Bearbeitungsmodus.</li>
+<li><strong>Änderungen verwerfen</strong> (sichtbar, sobald Sie ungespeicherte Änderungen haben, Tooltip "Zuletzt gespeicherte Version wiederherstellen") stellt die Vorlage nach einer Bestätigung auf ihren zuletzt gespeicherten Stand zurück, einschließlich des gespeicherten Bearbeitungsmodus.</li>
 <li>Validierungsfehler sind konkret: Ein unbekanntes Token wird beim Namen genannt, unausgeglichene bedingte Tags kommen mit Öffnungs-/Schließzählern - kein Rätselraten.</li>
 </ul>
-<p>Wenn Ihre Vorlage gut aussieht, prüfen Sie die Vorschau mit echten Nutzern und testen Sie sie auf Ihrem eigenen Postfach - siehe <a href="/de/docs/create-your-first-template#preview-as-a-real-user">Ihre erste Vorlage erstellen</a>.</p>
+<p>Wenn Ihre Vorlage gut aussieht, prüfen Sie sie auf den simulierten Clients über der Vorschau (<a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a>), rendern Sie sie mit echten Nutzern und testen Sie sie auf Ihrem eigenen Postfach - siehe <a href="/de/docs/create-your-first-template#vorschau-als-echter-nutzer">Ihre erste Vorlage erstellen</a>.</p>
       </article>
 <nav class="docs-pager" aria-label="Seitennavigation">
 <a class="pager-card pager-prev" href="/de/docs/templates" rel="prev">
       <span class="pager-label">Zurück</span>
       <span class="pager-title">Vorlagen</span>
     </a>
-<a class="pager-card pager-next" href="/de/docs/template-variables" rel="next">
+<a class="pager-card pager-next" href="/de/docs/mail-client-preview" rel="next">
       <span class="pager-label">Weiter</span>
-      <span class="pager-title">Vorlagenvariablen</span>
+      <span class="pager-title">E-Mail-Client-Vorschau</span>
     </a>
 </nav>
       <footer class="docs-foot">
@@ -283,8 +321,10 @@
         <li class="toc-l2"><a href="#bearbeitungsmodi">Bearbeitungsmodi</a></li>
         <li class="toc-l2"><a href="#text-schriften-und-farben">Text, Schriften und Farben</a></li>
         <li class="toc-l2"><a href="#spalten">Spalten</a></li>
+        <li class="toc-l2"><a href="#trennlinien">Trennlinien</a></li>
         <li class="toc-l2"><a href="#variablen-als-chips">Variablen als Chips</a></li>
         <li class="toc-l2"><a href="#bilder-logo-banner-und-foto">Bilder: Logo, Banner und Foto</a></li>
+        <li class="toc-l2"><a href="#eigene-bilder">Eigene Bilder</a></li>
         <li class="toc-l2"><a href="#bedingte-blcke">Bedingte Blöcke</a></li>
         <li class="toc-l2"><a href="#innerhalb-der-gmail-limits-bleiben">Innerhalb der Gmail-Limits bleiben</a></li>
         <li class="toc-l2"><a href="#zurcksetzen-und-validierung">Zurücksetzen und Validierung</a></li>

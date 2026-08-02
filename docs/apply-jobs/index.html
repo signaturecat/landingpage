@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Apply jobs | SignatureCat Docs</title>
-  <meta name="description" content="How SignatureCat applies signatures - the daily assignment sync, manual one-shot applies from the Apply page, and job tracking." />
+  <meta name="description" content="How SignatureCat writes Gmail signatures across Google Workspace - the daily assignment sync, one-shot applies from the Apply page and job tracking." />
   <link rel="canonical" href="https://signature.cat/docs/apply-jobs" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/apply-jobs" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/apply-jobs" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Apply jobs | SignatureCat Docs" />
-  <meta property="og:description" content="How SignatureCat applies signatures - the daily assignment sync, manual one-shot applies from the Apply page, and job tracking." />
+  <meta property="og:description" content="How SignatureCat writes Gmail signatures across Google Workspace - the daily assignment sync, one-shot applies from the Apply page and job tracking." />
   <meta property="og:url" content="https://signature.cat/docs/apply-jobs" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Apply jobs | SignatureCat Docs" />
-  <meta name="twitter:description" content="How SignatureCat applies signatures - the daily assignment sync, manual one-shot applies from the Apply page, and job tracking." />
+  <meta name="twitter:description" content="How SignatureCat writes Gmail signatures across Google Workspace - the daily assignment sync, one-shot applies from the Apply page and job tracking." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Apply jobs",
-      "description": "How SignatureCat applies signatures - the daily assignment sync, manual one-shot applies from the Apply page, and job tracking.",
+      "description": "How SignatureCat writes Gmail signatures across Google Workspace - the daily assignment sync, one-shot applies from the Apply page and job tracking.",
       "url": "https://signature.cat/docs/apply-jobs",
       "inLanguage": "en",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/docs/user-management">User management</a></li>
         <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
         <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
         <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
         <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs" aria-current="page">Apply jobs</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/docs/support-access">Support access</a></li>
         <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
         <li><a href="/docs/service-status">Service status</a></li>
         <li><a href="/docs/legal">Legal</a></li>
         </ul>
@@ -210,10 +214,12 @@
 <p>A one-shot apply writes the signature <strong>once</strong>. If the user is covered by an assignment or self-service choice, the next daily sync will overwrite the one-shot result according to the <a href="/docs/assignments#how-precedence-works">precedence rules</a>.</p>
 </div></aside>
 <h2 id="watching-a-job">Watching a job<a class="h-anchor" href="#watching-a-job" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>The job view at <code>app.signature.cat/jobs/{id}</code> live-updates while the job runs: status, progress and a per-user result table with error codes. Finished jobs are also listed on <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Task logs</a>. <strong>Re-run failed</strong> retries only the failed rows.</p>
+<p>The job view at <code>app.signature.cat/jobs/{id}</code> live-updates while the job runs: status, progress and a per-user result table with error codes. Finished jobs are also listed on <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Task logs</a>. There is no retry button on a finished job: fix the cause first, then dispatch a new apply from the <a href="https://app.signature.cat/apply" target="_blank" rel="noopener">Apply</a> page for the addresses that failed, or leave it to the daily sync.</p>
+<p>When the job finishes, the same view adds an <strong>Execution details</strong> panel: <strong>Primary addresses updated</strong>, <strong>Send-as aliases updated</strong>, <strong>Groups expanded</strong> (with the number of subgroups where relevant), <strong>Organizational units (OU) expanded</strong>, and, for a whole-Workspace target, how many users it resolved to.</p>
 <p>Statuses and error codes are documented in <a href="/docs/verify-assignments#job-statuses">Verify an assignment job</a>.</p>
 <h2 id="how-fast-are-changes-visible">How fast are changes visible?<a class="h-anchor" href="#how-fast-are-changes-visible" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Manual applies and self-service saves are near-instant (seconds to a couple of minutes for large targets). Assignment edits apply on the next daily sync unless you hit <strong>Sync now</strong>. Gmail shows the new signature on the next compose - already-sent emails never change.</p>
+<p>Editing user data behaves differently depending on how you do it. Saving or deleting one user's values on the <strong>Data</strong> tab enqueues an immediate refresh of that one person's signature, so the change lands within moments. A CSV import does not enqueue anything: the last step of the import offers a skippable <strong>Sync signatures now</strong> button, and without it the imported values reach mailboxes with the next daily sync. See <a href="/docs/user-data">User data</a>.</p>
       </article>
 <nav class="docs-pager" aria-label="Pagination">
 <a class="pager-card pager-prev" href="/docs/assignments" rel="prev">

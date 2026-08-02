@@ -47,8 +47,8 @@
       "description": "Erstellen Sie eine Gmail-Signaturvorlage in SignatureCat, personalisieren Sie sie mit Google Directory-Variablen, sehen Sie die Vorschau und testen Sie sie auf Ihrem eigenen Postfach.",
       "url": "https://signature.cat/de/docs/create-your-first-template",
       "inLanguage": "de",
-      "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
         <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/user-data">Benutzerdaten</a></li>
+        <li><a href="/de/docs/user-data-import">Benutzerdaten importieren</a></li>
         <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
         <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates">Vorlagen</a></li>
         <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
+        <li><a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a></li>
         <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
         <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/gmail-sanitization">Gmail-Kürzung</a></li>
         <li><a href="/de/docs/service-status">Dienststatus</a></li>
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
@@ -204,7 +208,7 @@
 </ul></li>
 <li>Wählen Sie für die Logo- oder Banner-Starter ein Bild aus Ihrer Bibliothek oder laden Sie eines hoch - oder überspringen Sie den Schritt, dann wird ein Platzhalter verwendet, bis Sie eines wählen. Siehe <a href="/de/docs/banners-and-logos">Banner und Logos</a>.</li>
 </ol>
-<p>Der Editor öffnet sich sofort. Alles aus dem Starter lässt sich später anpassen - entweder direkt im HTML oder ganz ohne HTML auf der Arbeitsfläche des <a href="/de/docs/visual-editor">visuellen Editors</a> (wechseln Sie zum Tab <strong>Visuell</strong>; die einmalige Konvertierung ist dort beschrieben).</p>
+<p>Der Editor öffnet sich sofort. Alles aus dem Starter lässt sich später anpassen - entweder direkt im HTML oder ganz ohne HTML auf der Arbeitsfläche des <a href="/de/docs/visual-editor">visuellen Editors</a>, wo Text, Variablen-Chips, Spalten, Trennlinien und Bilder aus Ihrer Bibliothek oder von jeder <code>https://</code>-Adresse Blöcke sind, die Sie anordnen (wechseln Sie zum Tab <strong>Visuell</strong>; die einmalige Konvertierung ist dort beschrieben).</p>
 <h2 id="mit-variablen-personalisieren">Mit Variablen personalisieren<a class="h-anchor" href="#mit-variablen-personalisieren" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Fügen Sie <code>{{variable}}</code>-Token über das Menü <strong>Variable einfügen</strong> ein - zum Beispiel <code>{{firstname}}</code>, <code>{{jobtitle}}</code> oder <code>{{phone}}</code>. Im visuellen Editor erscheinen sie als feste Chips, die Sie wie Objekte ziehen, formatieren und löschen können. Beim Anwenden löst jedes Token aus dem Google Directory-Datensatz des Nutzers auf, sodass eine Vorlage für alle eine persönliche Signatur erzeugt.</p>
 <p>Schließen Sie optionale Zeilen in bedingte Tags ein, damit Signaturen sauber bleiben, wenn Daten fehlen:</p>
@@ -220,6 +224,7 @@
 <p>Der Vorschaubereich rendert die aufgelöste Signatur live, während Sie tippen. Nutzen Sie das Steuerelement <strong>Rendern als</strong>, um den Directory-Datensatz eines beliebigen echten Nutzers einzusetzen - standardmäßig wird anhand Ihres eigenen gerendert. Die Vorschau sagt Ihnen genau, welcher Datensatz verwendet wurde: "Gerendert anhand der Directory-Daten von {email}."</p>
 <h2 id="auf-dem-eigenen-postfach-testen">Auf dem eigenen Postfach testen<a class="h-anchor" href="#auf-dem-eigenen-postfach-testen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Klicken Sie in der Editor-Werkzeugleiste auf <strong>Mir eine Testsignatur setzen</strong>. SignatureCat rendert die Vorlage anhand Ihres eigenen Directory-Datensatzes und schreibt sie in Ihre eigene Gmail-Signatur - niemand sonst ist betroffen. Senden Sie sich eine E-Mail oder prüfen Sie die Gmail-Einstellungen, um das echte Ergebnis zu sehen.</p>
+<p>SignatureCat liest die Signatur anschließend aus Ihrem Postfach zurück. Hat Gmail sie beim Speichern umgeschrieben, erscheint ein bernsteinfarbener Hinweis: "Angewendet, aber Gmail hat eine gekürzte Kopie dieser Signatur gespeichert." (oder "Angewendet, aber Gmail hat eine leere Signatur gespeichert."). Öffnen Sie <strong>Technische Details</strong> für die entfernten Elemente und die Zeichenzahlen davor und danach. Das ist der schnellste Weg, das Konstrukt zu finden, das Gmail nicht behalten will - siehe <a href="/de/docs/gmail-sanitization">Wenn Gmail Ihre Signatur kürzt</a>.</p>
 <p>Wenn Sie mit der Vorlage zufrieden sind, machen Sie weiter mit <a href="/de/docs/assign-templates">Vorlagen zuweisen</a>.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
 <p>Beim Speichern wird die Vorlage validiert: Unbekannte <code>{{tokens}}</code> und unausgeglichene <code>{{del}}</code>- / <code>{{delete}}</code>-Tags werden abgelehnt, und das HTML wird bereinigt (Skripte, iframes und Inline-Event-Handler werden entfernt). Siehe <a href="/de/docs/templates">Vorlagen</a> für die vollständige Referenz.</p>

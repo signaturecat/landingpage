@@ -1,8 +1,8 @@
 ---
 title: Uzyskaj pomoc
 navTitle: Uzyskaj pomoc
-description: Jak skontaktować się z supportem SignatureCat, co zawrzeć w zgłoszeniu i gdzie zajrzeć przed napisaniem - strona statusu, logi i typowe rozwiązania.
-updated: 2026-07-17
+description: Jak skontaktować się z supportem SignatureCat w sprawie problemów z podpisami Gmail - co sprawdzić najpierw w statusie, logach i dostępie do Google Workspace oraz co zawrzeć w zgłoszeniu.
+updated: 2026-08-02
 ---
 
 # Uzyskaj pomoc
@@ -11,10 +11,11 @@ Support jest dostępny e-mailowo pod adresem [contact@signature.cat](mailto:cont
 
 ## Szybka samodzielna diagnoza
 
-1. **Czy to incydent platformy?** Sprawdź [status.signature.cat](https://status.signature.cat/) - incydenty i prace serwisowe są ogłaszane tam. Zobacz [Status usługi](/docs/service-status/).
-2. **Czy zadanie się nie powiodło?** Otwórz [Logi zadań](https://app.signature.cat/assignments/logs) i przejrzyj kody błędów per użytkownik - [Zweryfikuj zadanie przypisania](/docs/verify-assignments/#what-the-per-user-rows-tell-you) wyjaśnia każdy z nich wraz z rozwiązaniem.
-3. **Czy Domain-Wide Delegation jest sprawne?** Jeśli synchronizacje są wstrzymane, administratorzy będą mieć powiadomienie "Utracono dostęp Domain-Wide Delegation" - uruchom ponownie kreator z [Ustawień](https://app.signature.cat/settings). Zobacz [Domain-Wide Delegation](/docs/domain-wide-delegation/#what-happens-if-dwd-is-removed-or-a-scope-revoked).
-4. **Płatności wstrzymane?** Czerwony baner i status "Zaległa płatność" na stronie [Płatności](https://app.signature.cat/billing) oznaczają, że po nieudanej płatności minęło okno karencji - aktualizacja karty przywraca wszystko. Zobacz [Dane rozliczeniowe](/docs/billing-details/).
+1. **Czy to incydent platformy?** Sprawdź [status.signature.cat](https://status.signature.cat/) - incydenty i prace serwisowe są ogłaszane tam. Zobacz [Status usługi](/docs/service-status).
+2. **Czy zadanie się nie powiodło?** Otwórz [Logi zadań](https://app.signature.cat/logs) i przejrzyj kody błędów per użytkownik - [Zweryfikuj zadanie przypisania](/docs/verify-assignments#co-mwi-wiersze-per-uytkownik) wyjaśnia każdy z nich wraz z rozwiązaniem.
+3. **Czy Domain-Wide Delegation jest sprawne?** Jeśli synchronizacje są wstrzymane, administratorzy będą mieć powiadomienie "Utracono dostęp Domain-Wide Delegation" - uruchom ponownie kreator z [Ustawień](https://app.signature.cat/settings). Zobacz [Domain-Wide Delegation](/docs/domain-wide-delegation#co-si-dzieje-gdy-dwd-zostanie-usunite-lub-zakres-odebrany).
+4. **Płatności wstrzymane?** Czerwony baner i status "Zaległa płatność" na stronie [Płatności](https://app.signature.cat/billing) oznaczają, że po nieudanej płatności minęło okno karencji - aktualizacja karty przywraca wszystko. Zobacz [Dane rozliczeniowe](/docs/billing-details).
+5. **Zastosowane, ale ucięte w Gmailu?** Jeśli zadanie się powiodło, a podpis w skrzynce nadal wygląda na niekompletny, poszukaj w wierszu wyniku bursztynowej odznaki **okrojony przez Gmail** - Gmail przepisał podpis w trakcie zapisywania. Zobacz [Kiedy Gmail okraja Twój podpis](/docs/gmail-sanitization).
 
 ## Pisanie do supportu
 
@@ -22,7 +23,7 @@ Napisz na [contact@signature.cat](mailto:contact@signature.cat), w miarę możli
 
 - swoją **domenę Workspace** (na przykład `yourcompany.com`),
 - **czego się spodziewano, a co się stało**, ze znacznikami czasu i Twoją strefą czasową,
-- **link do zadania** (`app.signature.cat/jobs/...`) albo zrzut ekranu wiersza z [Logów zadań](https://app.signature.cat/assignments/logs), jeśli sprawa dotyczy zadania,
+- **link do zadania** (`app.signature.cat/jobs/...`) albo zrzut ekranu wiersza z [Logów zadań](https://app.signature.cat/logs), jeśli sprawa dotyczy zadania,
 - każdy **kod błędu** pokazany w aplikacji (komunikaty błędów można rozwinąć, aby zobaczyć kod, status HTTP i identyfikator żądania - załącz wszystkie trzy).
 
 > [!TIP]

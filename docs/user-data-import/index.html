@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Import user data from a CSV | SignatureCat Docs</title>
+  <meta name="description" content="Bulk-load per-user signature data into SignatureCat from a CSV file - columns, replace rules, limits, the preview step and the Gmail sync afterwards." />
+  <link rel="canonical" href="https://signature.cat/docs/user-data-import" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/user-data-import" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/user-data-import" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/user-data-import" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/user-data-import" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/user-data-import" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Import user data from a CSV | SignatureCat Docs" />
+  <meta property="og:description" content="Bulk-load per-user signature data into SignatureCat from a CSV file - columns, replace rules, limits, the preview step and the Gmail sync afterwards." />
+  <meta property="og:url" content="https://signature.cat/docs/user-data-import" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Import user data from a CSV | SignatureCat Docs" />
+  <meta name="twitter:description" content="Bulk-load per-user signature data into SignatureCat from a CSV file - columns, replace rules, limits, the preview step and the Gmail sync afterwards." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Import user data from a CSV",
+      "description": "Bulk-load per-user signature data into SignatureCat from a CSV file - columns, replace rules, limits, the preview step and the Gmail sync afterwards.",
+      "url": "https://signature.cat/docs/user-data-import",
+      "inLanguage": "en",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Docs",
+          "item": "https://signature.cat/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Advanced setup",
+          "item": "https://signature.cat/docs/user-data-import"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Import user data from a CSV",
+          "item": "https://signature.cat/docs/user-data-import"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Skip to content</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Toggle documentation menu" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Search documentation" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Search docs</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Theme: system" title="Theme: system">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Help</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Open app</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">What's new</p>
+        <ul>
+        <li><a href="/docs/changelog">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Getting started</p>
+        <ul>
+        <li><a href="/docs">Introduction</a></li>
+        <li><a href="/docs/connect-google-workspace">Connect Google Workspace</a></li>
+        <li><a href="/docs/create-your-first-template">Create your first template</a></li>
+        <li><a href="/docs/assign-templates">Assign templates</a></li>
+        <li><a href="/docs/verify-assignments">Verify assignment jobs</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Advanced setup</p>
+        <ul>
+        <li><a href="/docs/user-management">User management</a></li>
+        <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import" aria-current="page">Import user data</a></li>
+        <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
+        <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Billing</p>
+        <ul>
+        <li><a href="/docs/invoices">Invoices</a></li>
+        <li><a href="/docs/billing-details">Billing details</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Reference</p>
+        <ul>
+        <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/docs/templates">Templates</a></li>
+        <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
+        <li><a href="/docs/template-variables">Template variables</a></li>
+        <li><a href="/docs/assignments">Assignments</a></li>
+        <li><a href="/docs/apply-jobs">Apply jobs</a></li>
+        <li><a href="/docs/logs">Logs</a></li>
+        <li><a href="/docs/images">Images</a></li>
+        <li><a href="/docs/notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Support</p>
+        <ul>
+        <li><a href="/docs/support-access">Support access</a></li>
+        <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
+        <li><a href="/docs/service-status">Service status</a></li>
+        <li><a href="/docs/legal">Legal</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Breadcrumb"><a href="/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Advanced setup</span><span class="crumb-sep">/</span><span aria-current="page">Import user data</span></nav>
+      <article class="docs-article">
+<h1>Import user data from a CSV</h1>
+<p>A CSV import sets stored values for many users in one go, at <a href="https://app.signature.cat/data/import" target="_blank" rel="noopener">app.signature.cat/data/import</a> or through <strong>Import from CSV</strong> on the <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Data</a> page. The file is checked before anything is written, and the whole import applies all-or-nothing. Turn the feature on first - see <a href="/docs/user-data">User data overrides</a>.</p>
+<h2 id="when-to-use-it">When to use it<a class="h-anchor" href="#when-to-use-it" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Use the import when you have dozens or hundreds of users to set up, typically straight from an HR export. For one person the per-user editor is faster and refreshes their signature right away.</p>
+<p>The import only ever touches the addresses listed in the file. Everyone else keeps whatever they have, including users with no stored data at all.</p>
+<h2 id="the-file">The file<a class="h-anchor" href="#the-file" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Start from <strong>Download CSV template</strong> on the import page - it contains the header row and one example row:</p>
+<pre><code>email,firstname,lastname,jobtitle,department,photo,address,phone
+jane.doe@yourcompany.com,Jane,Doe,Senior Account Manager,Sales,https://yourcompany.com/photos/jane.jpg,"Main Street 1, 00-001 Warsaw",+48 600 000 000</code></pre>
+<p>The format is ordinary CSV: comma-separated, one header row, values with a comma inside wrapped in double quotes (a quote inside a quoted value is doubled), LF or CRLF line ends, UTF-8.</p>
+<p><code>email</code> is required in every file. It identifies the user whose entry the row replaces and must be that user's <strong>primary</strong> Workspace address - it is not an override of the <code>{{email}}</code> variable, and it is not written into any signature. Aliases are not resolved here, so a row listing an alias never reaches that person's signature.</p>
+<p>Add at least one of the data columns. Each one sets the field of the same name on the <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Data</a> screen:</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Column</th><th scope="col">Sets</th><th scope="col">Limit</th></tr></thead>
+<tbody>
+<tr><td><code>firstname</code></td><td><strong>First name</strong>, <code>{{firstname}}</code></td><td>120 characters</td></tr>
+<tr><td><code>lastname</code></td><td><strong>Last name</strong>, <code>{{lastname}}</code></td><td>120 characters</td></tr>
+<tr><td><code>jobtitle</code></td><td><strong>Job title</strong>, <code>{{jobtitle}}</code></td><td>200 characters</td></tr>
+<tr><td><code>department</code></td><td><strong>Department</strong>, <code>{{department}}</code></td><td>200 characters</td></tr>
+<tr><td><code>photo</code></td><td><strong>Photo URL</strong>, <code>{{photo}}</code></td><td>2048 characters, <code>https://</code> link only</td></tr>
+<tr><td><code>address</code></td><td><strong>Address</strong>, <code>{{address}}</code></td><td>300 characters</td></tr>
+<tr><td><code>phone</code></td><td><strong>Phone</strong>, <code>{{phone}}</code></td><td>60 characters</td></tr>
+</tbody>
+</table></div>
+<p>Columns may appear in any order, but every header must be one of the names above and none may appear twice.</p>
+<aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Important</p><div class="callout-body">
+<p>The <strong>Email (displayed)</strong> and <strong>Domain (displayed)</strong> overrides are deliberately not importable - that keeps the <code>email</code> column unambiguous. Set those two per user in the editor on the <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Data</a> page.</p>
+</div></aside>
+<h2 id="what-a-row-does">What a row does<a class="h-anchor" href="#what-a-row-does" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>A row replaces that user's whole stored entry - it is not a partial update:</p>
+<ul>
+<li>a filled cell stores that value;</li>
+<li>an empty cell means "use the directory" and clears any value stored for that field;</li>
+<li>a column you left out of the header is cleared as well, for every address in the file;</li>
+<li>a row with an address and no values at all removes that user's entry entirely;</li>
+<li>users not listed in the file are never touched.</li>
+</ul>
+<p>So a file with only <code>email</code> and <code>phone</code> clears every other stored field of the listed users. Export what you already have, or list every column you want to keep.</p>
+<h2 id="limits">Limits<a class="h-anchor" href="#limits" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Up to <strong>2000 data rows</strong> and <strong>1 MB</strong> per file. Larger files are rejected before the upload - split the data into several files and import them one after another.</p>
+<h2 id="upload-check-confirm">Upload, check, confirm<a class="h-anchor" href="#upload-check-confirm" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Nothing is written until you confirm the preview:</p>
+<ol>
+<li><strong>Upload.</strong> Choose the file with <strong>Choose a CSV file</strong>. It is parsed and validated on the spot.</li>
+<li><strong>Review before import.</strong> You get a summary (how many rows, how many are new, how many update an existing entry) and a table of rows marked <strong>New</strong> or <strong>Update</strong>, with "directory" shown wherever a cell would clear a value. Very long files list the first rows only; all of them are imported.</li>
+<li><strong>Confirm.</strong> Click <strong>Import N rows</strong>. Only now is anything written. The result screen reports how many entries were saved and how many empty rows removed an entry.</li>
+</ol>
+<h2 id="one-broken-row-rejects-the-whole-file">One broken row rejects the whole file<a class="h-anchor" href="#one-broken-row-rejects-the-whole-file" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>The import is all-or-nothing: if any row or the file itself fails validation, nothing is written and no entry changes. Fix the file and upload it again.</p>
+<p>Problems with a single row:</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">What the app says</th><th scope="col">Cause and fix</th></tr></thead>
+<tbody>
+<tr><td>"The email address is not valid."</td><td>The <code>email</code> cell is not a syntactically valid address.</td></tr>
+<tr><td>"This email appears more than once in the file."</td><td>The same address is listed twice. Merge the rows into one - a row replaces the whole entry, so the second one would silently win.</td></tr>
+<tr><td>"The row has a different number of cells than the header."</td><td>Usually an unquoted comma inside a value. Wrap such values in double quotes.</td></tr>
+<tr><td>"The row contains control characters (e.g. a line break inside a value)."</td><td>Values must be single-line plain text. Remove line breaks and tabs, including inside quoted cells.</td></tr>
+<tr><td>"A value is not valid for its column."</td><td>A value is longer than the limit above, or a <code>photo</code> cell is not an <code>https://</code> link.</td></tr>
+</tbody>
+</table></div>
+<p>Problems that reject the file outright:</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">What the app says</th><th scope="col">Cause and fix</th></tr></thead>
+<tbody>
+<tr><td>"The file has no data rows."</td><td>The file holds only a header.</td></tr>
+<tr><td>"The email column is missing."</td><td>Add the required <code>email</code> column.</td></tr>
+<tr><td>"Add at least one data column besides email."</td><td>A file of addresses alone does nothing.</td></tr>
+<tr><td>"Unknown column in the header."</td><td>Only the eight documented column names are accepted, spelled exactly.</td></tr>
+<tr><td>"A column appears twice in the header."</td><td>Remove the duplicate.</td></tr>
+<tr><td>"The file has more than 2000 data rows."</td><td>Split the file.</td></tr>
+<tr><td>"A quoted value is never closed - check the quoting."</td><td>An opening double quote has no closing one - often a stray quote in an address.</td></tr>
+</tbody>
+</table></div>
+<aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tip</p><div class="callout-body">
+<p>Spreadsheet exports are the usual source of trouble: check that your tool saved plain CSV (not semicolon-separated), and that no cell carries a line break.</p>
+</div></aside>
+<h2 id="after-the-import">After the import<a class="h-anchor" href="#after-the-import" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Imported values reach mailboxes with the next daily sync. To apply them sooner, use <strong>Sync signatures now</strong> on the result screen - it starts a signature sync immediately. The button is optional; skipping it just leaves the change to the daily sync. If a sync is already running, the app says so, and anything that run misses is applied by the next one.</p>
+<p>Unlike a single-user save on the <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Data</a> page, an import does not refresh signatures on its own - that is why the button is offered.</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
+<p>A row for an address that does not exist in your Workspace is accepted (addresses are checked for shape only), never matches a mailbox, and is cleaned up automatically later. It is harmless, but worth removing from your source file.</p>
+</div></aside>
+<p>Related: <a href="/docs/user-data">User data overrides</a>, <a href="/docs/template-variables">Template variables</a>, <a href="/docs/logs">Logs</a>.</p>
+      </article>
+<nav class="docs-pager" aria-label="Pagination">
+<a class="pager-card pager-prev" href="/docs/user-data" rel="prev">
+      <span class="pager-label">Previous</span>
+      <span class="pager-title">User data</span>
+    </a>
+<a class="pager-card pager-next" href="/docs/custom-image-domain" rel="next">
+      <span class="pager-label">Next</span>
+      <span class="pager-title">Custom image domain</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Language">
+            <option value="/docs/user-data-import" data-lang="en" lang="en" selected>English</option>
+            <option value="/pl/docs/user-data-import" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/user-data-import" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/user-data-import" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Legal</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page">
+      <nav>
+        <p class="docs-toc-title">On this page</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#when-to-use-it">When to use it</a></li>
+        <li class="toc-l2"><a href="#the-file">The file</a></li>
+        <li class="toc-l2"><a href="#what-a-row-does">What a row does</a></li>
+        <li class="toc-l2"><a href="#limits">Limits</a></li>
+        <li class="toc-l2"><a href="#upload-check-confirm">Upload, check, confirm</a></li>
+        <li class="toc-l2"><a href="#one-broken-row-rejects-the-whole-file">One broken row rejects the whole file</a></li>
+        <li class="toc-l2"><a href="#after-the-import">After the import</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Search documentation" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Search documentation" autocomplete="off" spellcheck="false" aria-label="Search documentation" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Close search">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>No results. Try different keywords or email <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>
