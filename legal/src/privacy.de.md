@@ -1,6 +1,6 @@
 # Datenschutzerklärung Signature.Cat
 
-Version 1.2 - gültig ab 17.08.2026
+Version 1.2 - gültig ab 02.08.2026
 
 **Diese Datenschutzerklärung ist in polnischer Sprache unter https://signature.cat/privacy als rechtsverbindliche Fassung verfügbar. Dieses Dokument ist eine automatische Übersetzung des polnischen Originals, dient ausschließlich Informationszwecken und kann Fehler oder Ungenauigkeiten enthalten. Im Falle von Abweichungen ist die polnische Fassung maßgeblich.**
 

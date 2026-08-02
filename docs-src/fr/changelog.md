@@ -19,7 +19,7 @@ Les nouveautés de SignatureCat, le gestionnaire de signatures e-mail pour Googl
 - **Des séparateurs que vous pouvez styler.** Insérez une ligne horizontale entre les blocs et réglez sa couleur et sa longueur - la façon nette de séparer un nom des coordonnées.
 - **Des colonnes qui disparaissent quand elles sont vides.** Une colonne entière peut désormais être marquée comme conditionnelle : la colonne photo (ou la colonne téléphone) disparaît pour les personnes qui n'ont pas de photo ou pas de téléphone, au lieu de laisser un trou dans leur signature.
 - **Les signatures HTML existantes s'importent mieux.** Les tableaux de mise en page à plusieurs lignes, les sections conditionnelles autour de cellules entières et le balisage écrit à la main survivent désormais bien plus fidèlement au passage à l'éditeur visuel.
-- **Mise à jour de la politique de confidentialité.** Une nouvelle version de la [Politique de confidentialité](https://signature.cat/privacy) entre en vigueur le 17 août 2026 : elle décrit le stockage optionnel des [données utilisateur](/docs/user-data) et la relecture d'une signature depuis une boîte mail.
+- **Mise à jour de la politique de confidentialité.** Une nouvelle version de la [Politique de confidentialité](https://signature.cat/privacy) est en vigueur depuis aujourd'hui : elle décrit le stockage optionnel des [données utilisateur](/docs/user-data) et la relecture d'une signature depuis une boîte mail.
 
 ## Juillet 2026
 

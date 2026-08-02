@@ -1,6 +1,6 @@
 # Signature.Cat Privacy Policy
 
-Version 1.2 - effective as of 17.08.2026
+Version 1.2 - effective as of 02.08.2026
 
 **This Privacy Policy is available in Polish at https://signature.cat/privacy as the legally binding version. This document is an automatic translation of the Polish original, provided for informational purposes only, and may contain errors or inaccuracies. In case of any discrepancy, the Polish version shall prevail.**
 

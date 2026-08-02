@@ -52,7 +52,7 @@
     table (user-management), the OU-vs-OU precedence tie-break (assignments),
     signature read-back on the `gmail.settings.basic` scope row
     (domain-wide-delegation), and the new pages in the index.
-  - **Legal:** Privacy Policy **1.2** (effective 17.08.2026) in all four
+  - **Legal:** Privacy Policy **1.2** (effective 02.08.2026, PM decision) in all four
     languages - section 3(b) now covers storing the values the Customer enters
     under User data and reading the signature back from Gmail, with two new
     explanatory paragraphs; section 8 gains a retention row and drops the

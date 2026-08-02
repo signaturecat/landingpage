@@ -19,7 +19,7 @@ Co nowego w SignatureCat, menedżerze podpisów e-mail dla Google Workspace. Sta
 - **Separatory, które możesz ostylować.** Wstaw poziomą linię między blokami i ustaw jej kolor oraz długość - to schludny sposób na oddzielenie nazwiska od danych kontaktowych.
 - **Kolumny, które znikają, gdy są puste.** Całą kolumnę można teraz oznaczyć jako warunkową, więc kolumna ze zdjęciem (albo z telefonem) znika u osób bez zdjęcia lub bez numeru, zamiast zostawiać dziurę w ich podpisie.
 - **Lepszy import istniejących podpisów HTML.** Wielowierszowe tabele układu, sekcje warunkowe wokół całych komórek i ręcznie pisane znaczniki przechodzą teraz przełączenie na edytor wizualny znacznie wierniej.
-- **Aktualizacja polityki prywatności.** Nowa wersja [Polityki prywatności](https://signature.cat/privacy) wchodzi w życie 17 sierpnia 2026: opisuje opcjonalne przechowywanie [danych użytkowników](/docs/user-data) oraz odczytywanie podpisu ze skrzynki.
+- **Aktualizacja polityki prywatności.** Nowa wersja [Polityki prywatności](https://signature.cat/privacy) obowiązuje od dziś: opisuje opcjonalne przechowywanie [danych użytkowników](/docs/user-data) oraz odczytywanie podpisu ze skrzynki.
 
 ## Lipiec 2026
 

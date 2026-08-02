@@ -1,6 +1,6 @@
 # Politique de confidentialité de Signature.Cat
 
-Version 1.2 - en vigueur à compter du 17.08.2026
+Version 1.2 - en vigueur à compter du 02.08.2026
 
 **La présente Politique de confidentialité est disponible en polonais à l'adresse https://signature.cat/privacy en tant que version juridiquement contraignante. Le présent document est une traduction automatique de l'original polonais, fournie à titre purement informatif, et peut contenir des erreurs ou des inexactitudes. En cas de divergence, la version polonaise prévaut.**
 

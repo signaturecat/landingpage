@@ -19,7 +19,7 @@ Was ist neu in SignatureCat, dem E-Mail-Signatur-Manager für Google Workspace. 
 - **Trennlinien, die Sie gestalten können.** Fügen Sie eine waagerechte Linie zwischen Blöcken ein und legen Sie ihre Farbe und Länge fest - die saubere Art, einen Namen von den Kontaktdaten abzusetzen.
 - **Spalten, die verschwinden, wenn sie leer sind.** Eine ganze Spalte lässt sich jetzt als bedingt markieren, sodass die Fotospalte (oder die Telefonspalte) bei Personen ohne Foto oder ohne Telefon verschwindet, statt eine Lücke in ihrer Signatur zu hinterlassen.
 - **Vorhandene HTML-Signaturen importieren besser.** Mehrzeilige Layout-Tabellen, bedingte Abschnitte um ganze Zellen und handgeschriebenes Markup überstehen den Wechsel in den visuellen Editor jetzt deutlich originalgetreuer.
-- **Aktualisierte Datenschutzerklärung.** Eine neue Fassung der [Datenschutzerklärung](https://signature.cat/privacy) tritt am 17. August 2026 in Kraft: Sie beschreibt die optionale Speicherung von [Benutzerdaten](/docs/user-data) und das Zurücklesen einer Signatur aus einem Postfach.
+- **Aktualisierte Datenschutzerklärung.** Eine neue Fassung der [Datenschutzerklärung](https://signature.cat/privacy) gilt ab heute: Sie beschreibt die optionale Speicherung von [Benutzerdaten](/docs/user-data) und das Zurücklesen einer Signatur aus einem Postfach.
 
 ## Juli 2026
 

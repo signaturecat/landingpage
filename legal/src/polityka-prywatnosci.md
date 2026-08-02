@@ -1,6 +1,6 @@
 # Polityka Prywatności Signature.Cat
 
-Wersja 1.2 - obowiązuje od dnia 17.08.2026
+Wersja 1.2 - obowiązuje od dnia 02.08.2026
 
 Wersja polska niniejszego dokumentu jest wersją wiążącą prawnie. Wersje angielska, niemiecka i francuska są tłumaczeniami automatycznymi udostępnianymi wyłącznie w celach informacyjnych i mogą zawierać błędy; w przypadku rozbieżności rozstrzyga wersja polska.
 

@@ -19,7 +19,7 @@ What's new in SignatureCat, the email signature manager for Google Workspace. We
 - **Dividers you can style.** Insert a horizontal line between blocks and set its color and length - the tidy way to separate a name from contact details.
 - **Columns that disappear when they are empty.** A whole column can now be marked conditional, so the photo column (or the phone column) vanishes for people who have no photo or no phone, instead of leaving a gap in their signature.
 - **Existing HTML signatures import better.** Multi-row layout tables, conditional sections around whole cells and hand-written markup now survive the switch to the visual editor far more faithfully.
-- **Privacy policy update.** A new version of the [Privacy Policy](https://signature.cat/privacy) takes effect on 17 August 2026: it describes the optional [User data](/docs/user-data) storage and the reading of a signature back from a mailbox.
+- **Privacy policy update.** A new version of the [Privacy Policy](https://signature.cat/privacy) is effective as of today: it describes the optional [User data](/docs/user-data) storage and the reading of a signature back from a mailbox.
 
 ## July 2026
 
