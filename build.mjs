@@ -37,6 +37,7 @@ const OG_LOCALE = { en: 'en_US', pl: 'pl_PL', de: 'de_DE', fr: 'fr_FR' };
 const PAGES = [
   { src: 'index.html', slug: '', titleKey: 'meta.title', descKey: 'meta.desc', graph: 'home' },
   { src: 'pricing.html', slug: 'pricing', titleKey: 'pp.meta.title', descKey: 'pp.meta.desc', graph: 'pricing' },
+  { src: 'banners.html', slug: 'banners-generator', titleKey: 'bg.meta.title', descKey: 'bg.meta.desc', graph: 'banners' },
 ];
 
 // Canonical URLs carry NO trailing slash (the edge Worker 301s slashed
@@ -202,6 +203,56 @@ function jsonLdPricingGraph(loc, tr) {
   return JSON.stringify(graph, null, 2);
 }
 
+// /banners-generator: the free banner tool as a WebApplication (price 0 makes
+// the "free" claim machine-readable) + a WebPage about it + a FAQPage built
+// from the SAME bg.faq.* keys the visible FAQ section renders from - markup
+// and structured data can never diverge (same rule as the home FAQ).
+const BG_FAQ_COUNT = 4;
+function jsonLdBannersGraph(loc, tr) {
+  const url = urlFor(loc, 'banners-generator');
+  const graph = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      orgNode(),
+      webSiteNode(loc),
+      {
+        '@type': 'WebPage',
+        '@id': `${url}#webpage`,
+        url,
+        name: tr('bg.meta.title'),
+        description: tr('bg.meta.desc'),
+        inLanguage: loc,
+        isPartOf: { '@id': `${BASE}/#website` },
+        about: { '@id': `${url}#app` },
+      },
+      {
+        '@type': 'WebApplication',
+        '@id': `${url}#app`,
+        name: tr('bg.hero.title'),
+        description: tr('bg.meta.desc'),
+        url,
+        applicationCategory: 'DesignApplication',
+        operatingSystem: 'Web',
+        inLanguage: loc,
+        isPartOf: { '@id': `${BASE}/#website` },
+        publisher: { '@id': ORG_ID },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        inLanguage: loc,
+        mainEntity: Array.from({ length: BG_FAQ_COUNT }, (_v, i) => ({
+          '@type': 'Question',
+          name: tr(`bg.faq.q${i + 1}`),
+          acceptedAnswer: { '@type': 'Answer', text: tr(`bg.faq.a${i + 1}`) },
+        })),
+      },
+    ],
+  };
+  return JSON.stringify(graph, null, 2);
+}
+
 /** Produce the fully localized HTML for `loc` from the page's English source. */
 function render(src, loc, I18N, page) {
   const dict = I18N[loc];
@@ -287,7 +338,8 @@ function render(src, loc, I18N, page) {
 
   // JSON-LD: the whole block is regenerated per locale from the i18n dict -
   // no field-level regex patching (deterministic, hence idempotent).
-  const graph = page.graph === 'pricing' ? jsonLdPricingGraph(loc, tr) : jsonLdGraph(loc, tr);
+  const graphBuilders = { home: jsonLdGraph, pricing: jsonLdPricingGraph, banners: jsonLdBannersGraph };
+  const graph = graphBuilders[page.graph](loc, tr);
   html = html.replace(
     /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
     `<script type="application/ld+json">\n${graph}\n  </script>`,
@@ -310,7 +362,7 @@ function render(src, loc, I18N, page) {
   // /pl/pricing no longer match the English patterns.
   if (loc !== 'en') {
     html = html.replace(/href="\/#/g, `href="/${loc}#`);
-    for (const target of ['/', '/pricing']) {
+    for (const target of ['/', '/pricing', '/banners-generator']) {
       html = html.replace(/<a\b[^>]*>/g, (tag) => {
         if (tag.includes('data-lang')) return tag;
         return tag.replace(`href="${target}"`, `href="${pathFor(loc, target.slice(1))}"`);
@@ -382,6 +434,11 @@ const FORBIDDEN =
 for (const loc of SUPPORTED) {
   for (let i = 1; i <= FAQ_COUNT; i += 1) {
     for (const k of [`faq.q${i}`, `faq.a${i}`]) {
+      if (I18N[loc][k] == null) throw new Error(`FAQ key "${k}" missing from ${loc} dictionary`);
+    }
+  }
+  for (let i = 1; i <= BG_FAQ_COUNT; i += 1) {
+    for (const k of [`bg.faq.q${i}`, `bg.faq.a${i}`]) {
       if (I18N[loc][k] == null) throw new Error(`FAQ key "${k}" missing from ${loc} dictionary`);
     }
   }

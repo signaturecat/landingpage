@@ -48,6 +48,14 @@
  *    AND removes the _ga / _ga_* cookies. No requests reach Google before
  *    opt-in (we deliberately do NOT use "advanced" consent mode pings).
  *
+ * 5. BANNER-GENERATOR LEAD CAPTURE (POST /api/banner-leads): the email gate
+ *    on /banners-generator posts {email, consent, locale, source} here and
+ *    the Worker creates the address as a Resend audience contact
+ *    (subscriber). Requires two bindings set in the Cloudflare dashboard
+ *    (see handleBannerLead below); until they exist the endpoint answers
+ *    503 and the front-end proceeds without storing the lead (best-effort
+ *    by design - the gate must never block the tool).
+ *
  * Rollback: remove the route / `wrangler delete`. Per-locale pages, hreflang
  * and legal pages keep working; you lose the auto-redirect, the security
  * headers and the consent banner.
@@ -289,10 +297,63 @@ export function routePath(pathname) {
   return { type: 'pass' };
 }
 
+// ---- banner-generator lead capture ----------------------------------------------
+// POST /api/banner-leads -> create the address as a Resend audience contact.
+// Configuration (set by DevOps in the Cloudflare dashboard - never in the
+// repo): RESEND_API_KEY (secret) and RESEND_AUDIENCE_ID (variable). Consent
+// is required in the payload - the front-end gate has a mandatory marketing
+// consent checkbox; requests without consent === true are rejected.
+export async function handleBannerLead(request, env) {
+  const respond = (status, body) => {
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store',
+    });
+    applyBaseHeaders(headers);
+    return new Response(JSON.stringify(body), { status, headers });
+  };
+  if (request.method !== 'POST') {
+    return respond(405, { ok: false, error: 'method_not_allowed' });
+  }
+  let payload;
+  try {
+    payload = await request.json();
+  } catch (e) {
+    return respond(400, { ok: false, error: 'invalid_json' });
+  }
+  const email = typeof payload?.email === 'string' ? payload.email.trim() : '';
+  const emailOk = email.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  if (!emailOk || payload?.consent !== true) {
+    return respond(400, { ok: false, error: 'invalid_payload' });
+  }
+  if (!env?.RESEND_API_KEY || !env?.RESEND_AUDIENCE_ID) {
+    return respond(503, { ok: false, error: 'lead_capture_unconfigured' });
+  }
+  const res = await fetch(
+    `https://api.resend.com/audiences/${env.RESEND_AUDIENCE_ID}/contacts`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, unsubscribed: false }),
+    },
+  );
+  if (!res.ok) return respond(502, { ok: false, error: 'lead_capture_failed' });
+  return respond(200, { ok: true });
+}
+
 // ---- worker -------------------------------------------------------------------
 export default {
-  async fetch(request) {
+  async fetch(request, env) {
     const url = new URL(request.url);
+
+    // API routes are handled before URL canonicalization (an extension-less
+    // /api/* path must never be rewritten to <path>/index.html on the origin).
+    if (url.pathname === '/api/banner-leads') {
+      return handleBannerLead(request, env);
+    }
 
     if (url.pathname === '/' || url.pathname === '/index.html') {
       const loc = pickLocale(request);
