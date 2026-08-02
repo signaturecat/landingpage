@@ -2,7 +2,7 @@
 title: Assign templates to groups, OUs or everyone
 navTitle: Assign templates
 description: Bind SignatureCat templates to Google groups, organizational units or every active user in the Workspace, and sync signatures on demand.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # Assign templates to groups, OUs or everyone
@@ -36,6 +36,8 @@ Click **Assign to everyone**, pick the template and save the form.
 
 - Click **Sync now** on the Assignments page to apply everything immediately, or
 - wait for the **daily background sync**, which re-applies all assignments once a day and picks up new group members, OU moves and new hires automatically.
+
+Editing one user's values on the **Data** tab re-applies that user's signature immediately, without waiting for the daily sync - see [User data](/docs/user-data).
 
 If a user matches several assignments, exactly one wins: group beats OU, OU beats the everyone-assignment, and a user's own [self-service](/docs/self-service/) choice beats them all unless the assignment has **Override self-service** enabled. The precise rules are in the [Assignments reference](/docs/assignments/#how-precedence-works).
 

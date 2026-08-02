@@ -202,7 +202,7 @@ Les présentes Conditions constituent un règlement de fourniture de services pa
 1. Le droit applicable au Contrat est **le droit polonais**.
 2. Le tribunal compétent pour les litiges découlant du Contrat est le tribunal de droit commun territorialement compétent pour le siège du Prestataire. La phrase précédente ne porte pas atteinte aux dispositions impératives en matière de compétence juridictionnelle.
 3. Si certaines dispositions des Conditions s'avèrent nulles ou inefficaces, les autres dispositions restent en vigueur et la disposition nulle est remplacée par une disposition valable la plus proche de son objectif économique.
-4. La présente version (1.1) des Conditions entre en vigueur le **17.07.2026** ; la version 1.0 était en vigueur à compter du 16.07.2026.
+4. La présente version (1.2) des Conditions entre en vigueur le **02.08.2026** ; la version 1.1 était en vigueur à compter du 17.07.2026 et la version 1.0 à compter du 16.07.2026.
 
 ---
 

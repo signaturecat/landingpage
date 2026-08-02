@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>User data overrides | SignatureCat Docs</title>
+  <meta name="description" content="Store per-user values that override your Google Workspace directory in Gmail signatures - consent, the nine fields, self-service editing and deletion." />
+  <link rel="canonical" href="https://signature.cat/docs/user-data" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/user-data" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/user-data" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/user-data" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/user-data" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/user-data" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="User data overrides | SignatureCat Docs" />
+  <meta property="og:description" content="Store per-user values that override your Google Workspace directory in Gmail signatures - consent, the nine fields, self-service editing and deletion." />
+  <meta property="og:url" content="https://signature.cat/docs/user-data" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="User data overrides | SignatureCat Docs" />
+  <meta name="twitter:description" content="Store per-user values that override your Google Workspace directory in Gmail signatures - consent, the nine fields, self-service editing and deletion." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "User data overrides",
+      "description": "Store per-user values that override your Google Workspace directory in Gmail signatures - consent, the nine fields, self-service editing and deletion.",
+      "url": "https://signature.cat/docs/user-data",
+      "inLanguage": "en",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Docs",
+          "item": "https://signature.cat/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Advanced setup",
+          "item": "https://signature.cat/docs/user-data"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "User data overrides",
+          "item": "https://signature.cat/docs/user-data"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Skip to content</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Toggle documentation menu" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Search documentation" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Search docs</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Theme: system" title="Theme: system">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Help</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Open app</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">What's new</p>
+        <ul>
+        <li><a href="/docs/changelog">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Getting started</p>
+        <ul>
+        <li><a href="/docs">Introduction</a></li>
+        <li><a href="/docs/connect-google-workspace">Connect Google Workspace</a></li>
+        <li><a href="/docs/create-your-first-template">Create your first template</a></li>
+        <li><a href="/docs/assign-templates">Assign templates</a></li>
+        <li><a href="/docs/verify-assignments">Verify assignment jobs</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Advanced setup</p>
+        <ul>
+        <li><a href="/docs/user-management">User management</a></li>
+        <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data" aria-current="page">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
+        <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
+        <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Billing</p>
+        <ul>
+        <li><a href="/docs/invoices">Invoices</a></li>
+        <li><a href="/docs/billing-details">Billing details</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Reference</p>
+        <ul>
+        <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/docs/templates">Templates</a></li>
+        <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
+        <li><a href="/docs/template-variables">Template variables</a></li>
+        <li><a href="/docs/assignments">Assignments</a></li>
+        <li><a href="/docs/apply-jobs">Apply jobs</a></li>
+        <li><a href="/docs/logs">Logs</a></li>
+        <li><a href="/docs/images">Images</a></li>
+        <li><a href="/docs/notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Support</p>
+        <ul>
+        <li><a href="/docs/support-access">Support access</a></li>
+        <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
+        <li><a href="/docs/service-status">Service status</a></li>
+        <li><a href="/docs/legal">Legal</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Breadcrumb"><a href="/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Advanced setup</span><span class="crumb-sep">/</span><span aria-current="page">User data</span></nav>
+      <article class="docs-article">
+<h1>User data overrides</h1>
+<p>The <strong>Data</strong> tab lets you store your own value for a single user and use it in signatures instead of what the Google directory returns. The feature is off until an Admin turns it on, it covers the same nine person <a href="/docs/template-variables">variables</a> your templates already use, and it never writes anything back to Google. The page is <a href="https://app.signature.cat/data" target="_blank" rel="noopener">app.signature.cat/data</a>, Admins only.</p>
+<h2 id="when-to-use-overrides">When to use overrides<a class="h-anchor" href="#when-to-use-overrides" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Use overrides for gaps you cannot fix at the source quickly. Fixing the data in Google stays the recommended path, and the consent screen says so: <strong>Directory first - overrides second</strong>. The best place for employee data is the Google directory itself (in the Google Admin Console: <strong>Directory</strong>, <strong>Users</strong>, select a user, <strong>User information</strong>). Data kept there flows into signatures automatically, no overrides needed, and every other Workspace tool benefits from it too.</p>
+<p>Good reasons to override anyway:</p>
+<ul>
+<li>a job title or department is wrong today and the process that owns it will not be fixed this week;</li>
+<li>a contractor has no phone number in the directory but needs one in the signature;</li>
+<li>one person should appear under a preferred first name in email, but not in the directory record.</li>
+</ul>
+<p>Fixing the directory record later is always safe: switch the field back to the directory value and the override disappears.</p>
+<h2 id="turning-it-on">Turning it on<a class="h-anchor" href="#turning-it-on" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Nothing is stored until an Admin enables the feature. Open <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Data</a> and read the consent screen <strong>Store signature data for selected users?</strong>, which states under <strong>What we store, and when</strong>:</p>
+<ul>
+<li>nothing is stored until you enable the feature - and then only the values you explicitly enter, only for the users you override;</li>
+<li>every change is recorded in the audit log (who, when and which fields - never the values);</li>
+<li>turning the feature off permanently deletes every stored value, and users removed from your Workspace are cleaned up automatically.</li>
+</ul>
+<p>Click <strong>Enable and store data</strong> to switch it on. Until you do, the data screens hold nothing and the feature makes no directory calls at all.</p>
+<aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Important</p><div class="callout-body">
+<p>The values you enter here are stored by SignatureCat, in SignatureCat's own database - not in your Google Workspace. Your Google directory records are never changed by this feature.</p>
+</div></aside>
+<p>The Data page needs a verified Workspace connection; if the setup wizard is unfinished you are sent to <a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a> first.</p>
+<h2 id="fields-you-can-override">Fields you can override<a class="h-anchor" href="#fields-you-can-override" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Nine fields, one per person variable. A stored value wins over the directory value on every render path - editor preview, test apply, manual apply and the daily sync - so what the editor shows is what ships. A field you leave alone keeps its directory value.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Field</th><th scope="col">Variable</th><th scope="col">Falls back to</th><th scope="col">Limit</th></tr></thead>
+<tbody>
+<tr><td><strong>First name</strong></td><td><code>{{firstname}}</code></td><td>Given name in the directory</td><td>120 characters</td></tr>
+<tr><td><strong>Last name</strong></td><td><code>{{lastname}}</code></td><td>Family name in the directory</td><td>120 characters</td></tr>
+<tr><td><strong>Email (displayed)</strong></td><td><code>{{email}}</code></td><td>Primary email address</td><td>320 characters, must be a valid address</td></tr>
+<tr><td><strong>Domain (displayed)</strong></td><td><code>{{domain}}</code></td><td>Domain part of the primary address</td><td>253 characters, bare domain such as <code>yourcompany.com</code></td></tr>
+<tr><td><strong>Job title</strong></td><td><code>{{jobtitle}}</code></td><td>Title on the user's primary organization entry</td><td>200 characters</td></tr>
+<tr><td><strong>Department</strong></td><td><code>{{department}}</code></td><td>Department on the same entry</td><td>200 characters</td></tr>
+<tr><td><strong>Photo URL</strong></td><td><code>{{photo}}</code></td><td>Directory profile photo</td><td>2048 characters, <code>https://</code> link only</td></tr>
+<tr><td><strong>Address</strong></td><td><code>{{address}}</code></td><td>The user's primary address, formatted</td><td>300 characters</td></tr>
+<tr><td><strong>Phone</strong></td><td><code>{{phone}}</code></td><td>First non-empty of work, mobile, home</td><td>60 characters</td></tr>
+</tbody>
+</table></div>
+<aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Warning</p><div class="callout-body">
+<p><strong>Email (displayed)</strong> and <strong>Domain (displayed)</strong> change only what the signature shows. They never change the mailbox address emails are sent from, and they create nothing in Google.</p>
+</div></aside>
+<p>Two more rules worth knowing:</p>
+<ul>
+<li><strong>Photo URL</strong> takes a public <code>https://</code> link to an image you host - SignatureCat hosts no employee photos.</li>
+<li>When a signature is written to a send-as alias, <code>{{email}}</code> and <code>{{domain}}</code> follow the alias address even if you stored an override for that user; every other field keeps its override. See <a href="/docs/assignments#alias-modes">Alias modes</a>.</li>
+</ul>
+<h2 id="override-one-user">Override one user<a class="h-anchor" href="#override-one-user" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ol>
+<li>On <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Data</a>, type into <strong>Find a user</strong> - at least one character. Results come live from your Workspace directory; an empty search returns nothing on purpose, so the page never lists your whole Workspace.</li>
+<li>Pick the user from the results. The editor opens with every field showing its live directory value, read-only, marked with a cloud icon.</li>
+<li>Click the icon next to a field to switch it from <strong>Use the directory value</strong> to <strong>Override this field</strong>, then type your value. Directory mode is the default for every field, and switching a field back to it removes the stored value when you save.</li>
+<li>If the data is wrong at the source, follow <strong>Edit this user in Google Admin Console</strong> - it opens that user's profile in Google.</li>
+<li>Click <strong>Save data</strong>.</li>
+</ol>
+<p>After saving, the app says what happened to the mailbox:</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">What the app says</th><th scope="col">What it means</th></tr></thead>
+<tbody>
+<tr><td>"Saved. The signature of jane@yourcompany.com will refresh in a moment."</td><td>A one-off refresh of that user's signature was queued.</td></tr>
+<tr><td>"Saved, but jane@yourcompany.com has no signature assigned - nothing was applied to their mailbox."</td><td>The user matches no assignment and has made no self-service choice, so there is nothing to refresh.</td></tr>
+<tr><td>"Saved. The change will apply with the next signature sync."</td><td>Nothing could be queued right now; the daily sync picks the change up.</td></tr>
+</tbody>
+</table></div>
+<p>Every user you overrode is listed under <strong>Users with overridden data</strong>, with the fields that carry a value, the date and <strong>Last change by</strong> (<strong>Admin</strong>, <strong>Self-service</strong> or <strong>CSV import</strong>). That list comes from SignatureCat's own database and makes no calls to Google.</p>
+<p>For dozens or hundreds of users at once, use <strong>Import from CSV</strong> instead - see <a href="/docs/user-data-import">Import user data from a CSV</a>.</p>
+<h2 id="remove-an-override">Remove an override<a class="h-anchor" href="#remove-an-override" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Clearing every field for a user deletes their stored entry:</p>
+<ul>
+<li>in the editor, <strong>Back to directory data</strong> removes all their stored values at once;</li>
+<li>in the list, <strong>Remove override</strong> on the row does the same;</li>
+<li>saving a user whose fields are all back in directory mode removes the entry too.</li>
+</ul>
+<p>There is no way to force an empty value: an empty override always means "use the directory". If a signature should hide a missing field entirely, wrap that line in a <a href="/docs/template-variables#conditional-blocks-del-and-delete">conditional block</a> instead.</p>
+<p>A user who is already gone from your Workspace can still be cleaned up by hand - the editor says "This user no longer exists in your Workspace." and offers <strong>Remove the override now</strong>. The automatic cleanup would remove the entry anyway.</p>
+<h2 id="letting-people-fill-in-their-own-data">Letting people fill in their own data<a class="h-anchor" href="#letting-people-fill-in-their-own-data" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Open the <strong>Self-service editing</strong> padlock on the Data page to let users enter their own values on the My signature page. A <strong>My signature data</strong> button then appears at <a href="https://app.signature.cat/self-service" target="_blank" rel="noopener">app.signature.cat/self-service</a> and opens <strong>Fill in your data</strong>, the same per-field editor with <strong>Save my data</strong> and <strong>Use directory data</strong>.</p>
+<ul>
+<li>Any access level from <strong>Self-service</strong> upward can use it, and only ever on their own record.</li>
+<li>Their entries show up in your list with <strong>Self-service</strong> in the <strong>Last change by</strong> column, next to the address of whoever saved them.</li>
+<li>You can overwrite or delete any of them; an admin save moves the entry's source to <strong>Admin</strong>.</li>
+<li>Every self-service change lands in the audit log like your own.</li>
+</ul>
+<p>More about the My signature page: <a href="/docs/self-service">Self-service</a>.</p>
+<h2 id="who-can-do-what">Who can do what<a class="h-anchor" href="#who-can-do-what" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>The <strong>Data</strong> tab is Admin only, like <a href="/docs/user-management">User management</a>. Everyone else can at most edit their own record.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Who</th><th scope="col">What they can do</th></tr></thead>
+<tbody>
+<tr><td>Admin</td><td>Turn the feature on and off, override any user, <a href="/docs/user-data-import">import a CSV</a>, open or close self-service editing.</td></tr>
+<tr><td><strong>Self-service</strong> level and above</td><td>Edit their own values only, and only while the feature is on and self-service editing is open.</td></tr>
+</tbody>
+</table></div>
+<h2 id="turning-it-off">Turning it off<a class="h-anchor" href="#turning-it-off" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>The <strong>Turn off and delete</strong> section at the bottom of the Data page removes everything. Click <strong>Turn off data overrides</strong>, then in <strong>Delete all stored data?</strong> follow <strong>Type your Workspace domain to confirm</strong> and click <strong>Delete everything and turn off</strong>.</p>
+<p>Every stored value for your workspace is deleted immediately, and self-service editing is switched off with the feature. Signatures fall back to directory data with the next apply.</p>
+<aside class="callout callout-caution" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.9 4.9l14.2 14.2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/></svg>Caution</p><div class="callout-body">
+<p>The deletion is permanent and cannot be undone. Export or write down anything you want to keep before you confirm.</p>
+</div></aside>
+<p>The Data page stays reachable even when a subscription has lapsed, so the off switch is always available to you.</p>
+<h2 id="lifecycle-and-privacy">Lifecycle and privacy<a class="h-anchor" href="#lifecycle-and-privacy" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ul>
+<li>Entries exist only for the users someone actually overrode - SignatureCat never mirrors your directory.</li>
+<li>Suspended users keep their stored values.</li>
+<li>Users deleted from your Workspace have their entries removed automatically, once a day.</li>
+<li>Deleting your SignatureCat account deletes every stored value with it.</li>
+<li>Every change is written to the audit log with who, when and which field names - never the values themselves.</li>
+<li>Turning the feature off deletes everything, immediately.</li>
+</ul>
+<p>The binding documents and the privacy summary are on the <a href="/docs/legal">Legal and privacy</a> page.</p>
+      </article>
+<nav class="docs-pager" aria-label="Pagination">
+<a class="pager-card pager-prev" href="/docs/self-service" rel="prev">
+      <span class="pager-label">Previous</span>
+      <span class="pager-title">Self-service</span>
+    </a>
+<a class="pager-card pager-next" href="/docs/user-data-import" rel="next">
+      <span class="pager-label">Next</span>
+      <span class="pager-title">Import user data</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Language">
+            <option value="/docs/user-data" data-lang="en" lang="en" selected>English</option>
+            <option value="/pl/docs/user-data" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/user-data" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/user-data" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Legal</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page">
+      <nav>
+        <p class="docs-toc-title">On this page</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#when-to-use-overrides">When to use overrides</a></li>
+        <li class="toc-l2"><a href="#turning-it-on">Turning it on</a></li>
+        <li class="toc-l2"><a href="#fields-you-can-override">Fields you can override</a></li>
+        <li class="toc-l2"><a href="#override-one-user">Override one user</a></li>
+        <li class="toc-l2"><a href="#remove-an-override">Remove an override</a></li>
+        <li class="toc-l2"><a href="#letting-people-fill-in-their-own-data">Letting people fill in their own data</a></li>
+        <li class="toc-l2"><a href="#who-can-do-what">Who can do what</a></li>
+        <li class="toc-l2"><a href="#turning-it-off">Turning it off</a></li>
+        <li class="toc-l2"><a href="#lifecycle-and-privacy">Lifecycle and privacy</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Search documentation" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Search documentation" autocomplete="off" spellcheck="false" aria-label="Search documentation" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Close search">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>No results. Try different keywords or email <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

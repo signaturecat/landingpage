@@ -1,8 +1,8 @@
 ---
 title: Servir les images depuis votre propre domaine
 navTitle: Domaine d'images personnalisé
-description: Pointez un sous-domaine comme images.yourcompany.com vers SignatureCat avec deux enregistrements DNS pour que les images de signature se chargent depuis votre propre domaine.
-updated: 2026-07-17
+description: Pointez un sous-domaine comme images.yourcompany.com vers SignatureCat avec un seul enregistrement CNAME pour que les images de signature dans Gmail se chargent depuis votre propre domaine.
+updated: 2026-08-02
 ---
 
 # Servir les images depuis votre propre domaine
@@ -21,10 +21,8 @@ La configuration ne casse rien : tant que le domaine n'est pas actif, les images
 
 1. Ouvrez la bibliothèque d'images depuis l'éditeur de n'importe quel modèle sur [Signatures](https://app.signature.cat/signatures) (bouton Logo ou Bannière) et choisissez **Utiliser votre domaine** dans la barre de diffusion.
 2. **Saisissez un sous-domaine** - par exemple `images.yourcompany.com` - et cliquez sur **Générer l'enregistrement DNS**.
-3. **Ajoutez deux enregistrements DNS** chez votre fournisseur DNS, exactement comme indiqué :
-   - un enregistrement **CNAME** pointant le sous-domaine vers `cdn.signature.cat` (pointe le sous-domaine vers nous),
-   - un enregistrement **TXT** prouvant la propriété du domaine.
-4. **Attendez la vérification.** SignatureCat vérifie les enregistrements automatiquement toutes les quelques minutes ; vous pouvez aussi cliquer sur **Vérifier maintenant**. L'activation prend en général quelques minutes, parfois jusqu'à une heure le temps que le DNS se rafraîchisse. Le certificat TLS est émis pour vous.
+3. **Ajoutez un enregistrement DNS** chez votre fournisseur DNS, exactement comme indiqué : un **CNAME** pointant votre sous-domaine vers `cdn.signature.cat`. Ce seul enregistrement est tout ce dont SignatureCat a besoin. Certains fournisseurs n'attendent que la partie qui précède votre domaine dans le champ Nom, et l'assistant affiche cette forme courte pour vous.
+4. **Attendez la vérification.** SignatureCat vérifie l'enregistrement automatiquement toutes les quelques minutes ; vous pouvez aussi cliquer sur **Vérifier maintenant**. L'activation prend en général quelques minutes, parfois jusqu'à une heure le temps que le DNS se rafraîchisse. Le certificat TLS est émis pour vous.
 
 L'assistant affiche l'un des trois statuts : **En attente des enregistrements DNS**, **Domaine actif** ou **Vérification échouée**.
 
@@ -33,9 +31,15 @@ Une fois actif : "Les nouveaux e-mails chargent les images depuis votre domaine.
 > [!NOTE]
 > Les e-mails déjà envoyés ne sont pas affectés - ils continuent de charger les images depuis l'URL avec laquelle ils ont été rendus.
 
+### La vérification ne passe pas ?
+
+Si le domaine reste en attente après une vérification, ou si la vérification échoue, l'assistant révèle un enregistrement **TXT** sous le titre **La vérification ne passe pas ?**. C'est une solution de repli pour deux cas rares : un enregistrement CAA sur votre domaine bloque l'autorité de certification utilisée par SignatureCat, ou le nom d'hôte est déjà servi via une autre zone Cloudflare. Ajoutez l'enregistrement TXT à côté du CNAME, puis cliquez de nouveau sur **Vérifier maintenant**. Dans tous les autres cas, le CNAME suffit à lui seul.
+
 ## Supprimer le domaine
 
 Supprimer le domaine dans l'assistant rebascule automatiquement la diffusion des images vers `images.signature.cat` pour les nouveaux e-mails. Rien ne casse.
 
 > [!WARNING]
-> L'inverse n'est pas surveillé : si vous supprimez l'enregistrement CNAME chez votre fournisseur DNS **alors que le domaine est encore actif dans SignatureCat**, les images des signatures nouvellement envoyées cesseront silencieusement de se charger. Supprimez toujours d'abord le domaine dans SignatureCat, puis nettoyez le DNS.
+> Si vous supprimez l'enregistrement CNAME chez votre fournisseur DNS **alors que le domaine est encore actif dans SignatureCat**, toutes les images déjà servies depuis ce sous-domaine cessent de se charger - y compris les images des e-mails envoyés plus tôt. Supprimez toujours d'abord le domaine dans SignatureCat, puis nettoyez le DNS.
+
+Les domaines actifs sont revérifiés automatiquement, un CNAME qui disparaît est donc repéré en environ un jour : le domaine sort de l'état actif et les signatures nouvellement rendues rebasculent d'elles-mêmes vers `images.signature.cat`. C'est un filet de sécurité pour les signatures à venir, pas une réparation pour celles qui sont déjà dans les boîtes des destinataires - d'où l'ordre indiqué ci-dessus.

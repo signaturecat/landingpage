@@ -47,8 +47,8 @@
       "description": "SignatureCat-Zuweisungen-Referenz - Zielarten, Vorrang bei mehreren zutreffenden Zuweisungen, Alias-Modi und Konfliktbehandlung.",
       "url": "https://signature.cat/de/docs/assignments",
       "inLanguage": "de",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
         <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/user-data">Benutzerdaten</a></li>
+        <li><a href="/de/docs/user-data-import">Benutzerdaten importieren</a></li>
         <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
         <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates">Vorlagen</a></li>
         <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
+        <li><a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a></li>
         <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments" aria-current="page">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
         <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/gmail-sanitization">Gmail-Kürzung</a></li>
         <li><a href="/de/docs/service-status">Dienststatus</a></li>
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
@@ -208,7 +212,7 @@
 <p>Nutzer passen oft auf mehrere Zuweisungen. Jede Synchronisierung ermittelt genau <strong>einen Gewinner pro Nutzer</strong>, Ebene für Ebene, von unten nach oben:</p>
 <ol>
 <li><strong>Alle</strong> - die Basisebene für jeden aktiven Nutzer.</li>
-<li><strong>OU-Zuweisungen</strong> überschreiben die Zuweisung an alle für Nutzer in der OU.</li>
+<li><strong>OU-Zuweisungen</strong> überschreiben die Zuweisung an alle für Nutzer in der OU. Wird ein Nutzer von zwei zugewiesenen OUs erfasst, gewinnt die <strong>zuletzt aktualisierte</strong> Zuweisung.</li>
 <li><strong>Gruppen-Zuweisungen</strong> überschreiben die OU-Vorlage für ihre Mitglieder. Gehört ein Nutzer zu mehreren zugewiesenen Gruppen, gewinnt die <strong>zuletzt aktualisierte</strong> Zuweisung.</li>
 <li><strong>Self-Service</strong> - die eigene Wahl eines Nutzers gewinnt über jede Zuweisung, <strong>außer</strong> die gewinnende Zuweisung hat <strong>Self-Service überschreiben</strong> aktiviert.</li>
 </ol>
@@ -217,7 +221,7 @@
 <p>Bewährtes Muster: eine Zuweisung an alle als Unternehmensstandard, OU-Zuweisungen pro Land oder Marke, Gruppen-Zuweisungen für Ausnahmen (Vertriebskampagne, Führungsteam). Die Ebenenlogik erledigt den Rest.</p>
 </div></aside>
 <h2 id="alias-modi">Alias-Modi<a class="h-anchor" href="#alias-modi" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Jede Zuweisung hat eine Einstellung <strong>Aliasse</strong>, die steuert, welche Adressen die Signatur erhalten. Das Schreiben auf Aliasse erfordert den optionalen Bereich <code>gmail.settings.sharing</code> - siehe <a href="/de/docs/domain-wide-delegation#what-exactly-do-i-authorize">Domain-Wide Delegation</a>.</p>
+<p>Jede Zuweisung hat eine Einstellung <strong>Aliasse</strong>, die steuert, welche Adressen die Signatur erhalten. Das Schreiben auf Aliasse erfordert den optionalen Bereich <code>gmail.settings.sharing</code> - siehe <a href="/de/docs/domain-wide-delegation#was-genau-autorisiere-ich">Domain-Wide Delegation</a>.</p>
 <div class="tbl"><table>
 <thead><tr><th scope="col">Modus</th><th scope="col">Verhalten</th></tr></thead>
 <tbody>
@@ -236,7 +240,7 @@
 <h2 id="self-service-berschreiben">Self-Service überschreiben<a class="h-anchor" href="#self-service-berschreiben" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Pro Zuweisung sorgt der Schalter <strong>Self-Service überschreiben</strong> dafür, dass die Zuweisung über die eigene Self-Service-Wahl der Nutzer gewinnt. Die Zeile zeigt das Badge "überschreibt Self-Service". Nutzen Sie ihn für compliance-kritische Signaturen (rechtliche Disclaimer), bei denen individuelle Anpassung nicht akzeptabel ist.</p>
 <h2 id="wenn-ziele-verschwinden">Wenn Ziele verschwinden<a class="h-anchor" href="#wenn-ziele-verschwinden" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Wird eine zugewiesene Gruppe oder OU in Google Workspace gelöscht, markiert die nächste Synchronisierung die Zuweisung mit dem Badge "nicht im Workspace gefunden", überspringt das Ziel, benachrichtigt Admins (in der App + per E-Mail, einmal pro Fehlerserie) und versucht es bei folgenden Synchronisierungen erneut. Korrigieren Sie das Ziel im Bearbeitungsbereich oder entfernen Sie die Zuweisung. Siehe <a href="/de/docs/verify-assignments#what-the-per-user-rows-tell-you">Einen Zuweisungsauftrag prüfen</a>.</p>
+<p>Wird eine zugewiesene Gruppe oder OU in Google Workspace gelöscht, markiert die nächste Synchronisierung die Zuweisung mit dem Badge "nicht im Workspace gefunden", überspringt das Ziel, benachrichtigt Admins (in der App + per E-Mail, einmal pro Fehlerserie) und versucht es bei folgenden Synchronisierungen erneut. Korrigieren Sie das Ziel im Bearbeitungsbereich oder entfernen Sie die Zuweisung. Siehe <a href="/de/docs/verify-assignments#was-die-zeilen-pro-nutzer-aussagen">Einen Zuweisungsauftrag prüfen</a>.</p>
 <h2 id="bearbeiten-und-entfernen">Bearbeiten und Entfernen<a class="h-anchor" href="#bearbeiten-und-entfernen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Zeilen werden direkt bearbeitet (Vorlage, Zielwert, Umfang, Alias-Modus, Überschreiben). Das Entfernen einer Zuweisung beendet die Verwaltung dieser Nutzer - bereits angewendete Signaturen bleiben in Gmail, bis etwas anderes (eine andere Zuweisung, Self-Service oder die Standardvorlage) sie bei einer späteren Synchronisierung überschreibt.</p>
       </article>

@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Signatures self-service | SignatureCat Docs</title>
-  <meta name="description" content="Laissez les utilisateurs finaux choisir et appliquer leur propre signature Gmail à partir des modèles SignatureCat approuvés par les administrateurs - configuration, parcours et règles de priorité." />
+  <meta name="description" content="Laissez les utilisateurs finaux choisir et appliquer leur propre signature Gmail à partir des modèles SignatureCat approuvés par les administrateurs - configuration, parcours, données personnelles et règles de priorité." />
   <link rel="canonical" href="https://signature.cat/fr/docs/self-service" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/self-service" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/self-service" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Signatures self-service | SignatureCat Docs" />
-  <meta property="og:description" content="Laissez les utilisateurs finaux choisir et appliquer leur propre signature Gmail à partir des modèles SignatureCat approuvés par les administrateurs - configuration, parcours et règles de priorité." />
+  <meta property="og:description" content="Laissez les utilisateurs finaux choisir et appliquer leur propre signature Gmail à partir des modèles SignatureCat approuvés par les administrateurs - configuration, parcours, données personnelles et règles de priorité." />
   <meta property="og:url" content="https://signature.cat/fr/docs/self-service" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Signatures self-service | SignatureCat Docs" />
-  <meta name="twitter:description" content="Laissez les utilisateurs finaux choisir et appliquer leur propre signature Gmail à partir des modèles SignatureCat approuvés par les administrateurs - configuration, parcours et règles de priorité." />
+  <meta name="twitter:description" content="Laissez les utilisateurs finaux choisir et appliquer leur propre signature Gmail à partir des modèles SignatureCat approuvés par les administrateurs - configuration, parcours, données personnelles et règles de priorité." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Signatures self-service",
-      "description": "Laissez les utilisateurs finaux choisir et appliquer leur propre signature Gmail à partir des modèles SignatureCat approuvés par les administrateurs - configuration, parcours et règles de priorité.",
+      "description": "Laissez les utilisateurs finaux choisir et appliquer leur propre signature Gmail à partir des modèles SignatureCat approuvés par les administrateurs - configuration, parcours, données personnelles et règles de priorité.",
       "url": "https://signature.cat/fr/docs/self-service",
       "inLanguage": "fr",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
         <li><a href="/fr/docs/self-service" aria-current="page">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
         <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
         <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
         <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/fr/docs/support-access">Accès du support</a></li>
         <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
         <li><a href="/fr/docs/service-status">État du service</a></li>
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
@@ -210,8 +214,27 @@
 <li>Cliquer sur <strong>Enregistrer la signature</strong>. La signature est appliquée immédiatement à la boîte de l'utilisateur ("Enregistré - appliqué à votre boîte mail"), y compris à ses alias send-as acceptés.</li>
 </ol>
 <p>Si la liste déroulante est vide, aucun modèle n'a encore le self-service activé : "Votre organisation n'a encore publié aucun modèle self-service. Demandez à un administrateur d'en activer un."</p>
+<h2 id="mes-donnes-de-signature">Mes données de signature<a class="h-anchor" href="#mes-donnes-de-signature" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p><strong>Mes données de signature</strong> est un bouton sur la page <strong>Ma signature</strong> où un utilisateur saisit ses propres valeurs pour les variables de sa signature - poste, téléphone, adresse et le reste. Il apparaît une fois qu'un Admin a activé les données utilisateur pour l'organisation et ouvert le cadenas <strong>Édition en self-service</strong> ; voir <a href="/fr/docs/user-data">Données utilisateur</a>.</p>
+<p>Pour l'utilisateur, cela se passe ainsi :</p>
+<ol>
+<li>Ouvrir <a href="https://app.signature.cat/self-service" target="_blank" rel="noopener">Ma signature</a> et cliquer sur <strong>Mes données de signature</strong>.</li>
+<li>La fenêtre <strong>Complétez vos données</strong> s'ouvre : "Ces valeurs remplissent les variables de votre signature."</li>
+<li>Chaque champ affiche la valeur issue de l'annuaire de votre entreprise jusqu'à ce que vous cliquiez sur l'icône à côté et saisissiez la vôtre.</li>
+<li>Cliquer sur <strong>Enregistrer mes données</strong>. <strong>Utiliser les données de l'annuaire</strong> fait l'inverse : cela supprime tout ce que vous avez saisi et remet chaque champ sur la valeur de l'annuaire.</li>
+</ol>
+<p>Ce que cela change :</p>
+<ul>
+<li>Les valeurs alimentent les mêmes <a href="/fr/docs/template-variables">variables de modèle</a> que partout ailleurs - le modèle de l'organisation que vous avez choisi, l'aperçu sur la page et la signature dans votre boîte mail les utilisent tous.</li>
+<li>L'enregistrement réapplique immédiatement votre signature à votre boîte mail ("Enregistré. Votre signature est en cours de mise à jour."). Si rien ne peut être appliqué à cet instant, le changement partira avec la prochaine mise à jour de la signature.</li>
+<li>Vous ne pouvez jamais modifier que votre <strong>propre</strong> fiche. La fenêtre travaille toujours sur votre propre adresse.</li>
+<li>Votre Admin voit chaque entrée, y compris qui l'a modifiée en dernier, et peut l'écraser ou la supprimer.</li>
+</ul>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
+<p>Pas de bouton <strong>Mes données de signature</strong> sur la page ? Alors les données utilisateur sont désactivées pour votre organisation, ou l'édition en self-service est encore verrouillée. Demandez à un Admin.</p>
+</div></aside>
 <h2 id="comment-le-self-service-interagit-avec-les-affectations">Comment le self-service interagit avec les affectations<a class="h-anchor" href="#comment-le-self-service-interagit-avec-les-affectations" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Le choix self-service d'un utilisateur se situe au <strong>sommet</strong> de l'échelle de priorité : il l'emporte sur les affectations de groupe, d'OU et pour tous. La seule exception est une affectation avec <strong>Remplacer le self-service</strong> activé, qui inverse la règle pour les utilisateurs qu'elle couvre. Détails : <a href="/fr/docs/assignments#how-precedence-works">Affectations</a>.</p>
+<p>Le choix self-service d'un utilisateur se situe au <strong>sommet</strong> de l'échelle de priorité : il l'emporte sur les affectations de groupe, d'OU et pour tous. La seule exception est une affectation avec <strong>Remplacer le self-service</strong> activé, qui inverse la règle pour les utilisateurs qu'elle couvre. Détails : <a href="/fr/docs/assignments#fonctionnement-de-la-priorit">Affectations</a>.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Les utilisateurs self-service ne peuvent jamais définir que leur <strong>propre</strong> signature. Ils ne voient que les modèles que vous avez activés, jamais les données des autres utilisateurs ni les pages d'administration.</p>
 </div></aside>
@@ -221,9 +244,9 @@
       <span class="pager-label">Précédent</span>
       <span class="pager-title">Gestion des accès</span>
     </a>
-<a class="pager-card pager-next" href="/fr/docs/custom-image-domain" rel="next">
+<a class="pager-card pager-next" href="/fr/docs/user-data" rel="next">
       <span class="pager-label">Suivant</span>
-      <span class="pager-title">Domaine d'images personnalisé</span>
+      <span class="pager-title">Données utilisateur</span>
     </a>
 </nav>
       <footer class="docs-foot">
@@ -248,6 +271,7 @@
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#ce-que-les-administrateurs-configurent">Ce que les administrateurs configurent</a></li>
         <li class="toc-l2"><a href="#ce-que-fait-lutilisateur">Ce que fait l'utilisateur</a></li>
+        <li class="toc-l2"><a href="#mes-donnes-de-signature">Mes données de signature</a></li>
         <li class="toc-l2"><a href="#comment-le-self-service-interagit-avec-les-affectations">Comment le self-service interagit avec les affectations</a></li>
         </ul>
       </nav>

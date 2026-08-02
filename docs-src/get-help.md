@@ -1,8 +1,8 @@
 ---
 title: Get help
 navTitle: Get help
-description: How to reach SignatureCat support, what to include in a report, and where to check before writing - status page, logs and common fixes.
-updated: 2026-07-17
+description: How to reach SignatureCat support about Gmail signature problems - what to check first in status, logs and Google Workspace access, and what to include.
+updated: 2026-08-02
 ---
 
 # Get help
@@ -11,10 +11,11 @@ Support is provided by email at [contact@signature.cat](mailto:contact@signature
 
 ## Quick self-check
 
-1. **Is it a platform incident?** Check [status.signature.cat](https://status.signature.cat/) - incidents and maintenance are announced there. See [Service status](/docs/service-status/).
-2. **Did a job fail?** Open [Task logs](https://app.signature.cat/assignments/logs) and look at the per-user error codes - [Verify an assignment job](/docs/verify-assignments/#what-the-per-user-rows-tell-you) explains each one and its fix.
-3. **Is Domain-Wide Delegation healthy?** If syncs are paused, admins will have a "Domain-Wide Delegation access lost" notification - re-run the wizard from [Settings](https://app.signature.cat/settings). See [Domain-Wide Delegation](/docs/domain-wide-delegation/#what-happens-if-dwd-is-removed-or-a-scope-revoked).
-4. **Billing paused?** A red banner and "Past due" status on [Billing](https://app.signature.cat/billing) mean a failed payment ran out its grace window - updating the card restores everything. See [Billing details](/docs/billing-details/).
+1. **Is it a platform incident?** Check [status.signature.cat](https://status.signature.cat/) - incidents and maintenance are announced there. See [Service status](/docs/service-status).
+2. **Did a job fail?** Open [Task logs](https://app.signature.cat/logs) and look at the per-user error codes - [Verify an assignment job](/docs/verify-assignments#what-the-per-user-rows-tell-you) explains each one and its fix.
+3. **Is Domain-Wide Delegation healthy?** If syncs are paused, admins will have a "Domain-Wide Delegation access lost" notification - re-run the wizard from [Settings](https://app.signature.cat/settings). See [Domain-Wide Delegation](/docs/domain-wide-delegation#what-happens-if-dwd-is-removed-or-a-scope-revoked).
+4. **Billing paused?** A red banner and "Past due" status on [Billing](https://app.signature.cat/billing) mean a failed payment ran out its grace window - updating the card restores everything. See [Billing details](/docs/billing-details).
+5. **Applied, but cut off in Gmail?** If the job succeeded and the signature still looks incomplete in the mailbox, look for the amber **trimmed by Gmail** badge on the result row - Gmail rewrote the signature while saving it. See [When Gmail trims your signature](/docs/gmail-sanitization).
 
 ## Writing to support
 
@@ -22,7 +23,7 @@ Email [contact@signature.cat](mailto:contact@signature.cat) from an address at y
 
 - your **Workspace domain** (for example `yourcompany.com`),
 - **what you expected vs what happened**, with timestamps and your timezone,
-- the **job link** (`app.signature.cat/jobs/...`) or a screenshot of the [Task logs](https://app.signature.cat/assignments/logs) row, if a job is involved,
+- the **job link** (`app.signature.cat/jobs/...`) or a screenshot of the [Task logs](https://app.signature.cat/logs) row, if a job is involved,
 - any **error code** shown in the app (error notices can be expanded to reveal a code, HTTP status and request id - include all three).
 
 > [!TIP]

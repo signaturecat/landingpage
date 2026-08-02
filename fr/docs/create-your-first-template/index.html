@@ -47,8 +47,8 @@
       "description": "Créez un modèle de signature Gmail dans SignatureCat, personnalisez-le avec les variables Google Directory, prévisualisez-le et testez-le sur votre propre boîte.",
       "url": "https://signature.cat/fr/docs/create-your-first-template",
       "inLanguage": "fr",
-      "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
         <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
         <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
         <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
         <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/fr/docs/support-access">Accès du support</a></li>
         <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
         <li><a href="/fr/docs/service-status">État du service</a></li>
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
@@ -220,6 +224,7 @@
 <p>Le volet d'aperçu rend la signature résolue en direct pendant que vous tapez. Utilisez le contrôle <strong>Rendre comme</strong> pour substituer la fiche Directory de n'importe quel utilisateur réel - par défaut, le rendu s'appuie sur la vôtre. L'aperçu vous indique exactement quelle fiche a été utilisée : "Rendu à partir des données Directory de {email}."</p>
 <h2 id="le-tester-sur-votre-propre-bote">Le tester sur votre propre boîte<a class="h-anchor" href="#le-tester-sur-votre-propre-bote" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Cliquez sur <strong>Me définir une signature de test</strong> dans la barre d'outils de l'éditeur. SignatureCat rend le modèle à partir de votre propre fiche Directory et l'écrit dans votre propre signature Gmail - personne d'autre n'est affecté. Envoyez-vous un e-mail ou vérifiez les paramètres Gmail pour voir le résultat réel.</p>
+<p>SignatureCat relit ensuite la signature depuis votre boîte. Si Gmail l'a réécrite lors de l'enregistrement, un avis ambre apparaît : "Signature appliquée, mais Gmail a enregistré une copie tronquée." (ou "Signature appliquée, mais Gmail a enregistré une signature vide."). Ouvrez <strong>Détails techniques</strong> pour connaître les éléments supprimés et les décomptes de caractères avant et après. C'est le moyen le plus rapide de trouver la construction que Gmail refuse de conserver - voir <a href="/fr/docs/gmail-sanitization">Quand Gmail tronque votre signature</a>.</p>
 <p>Quand le modèle vous convient, continuez avec <a href="/fr/docs/assign-templates">Affecter des modèles</a>.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>L'enregistrement d'un modèle le valide : les <code>{{tokens}}</code> inconnus et les balises <code>{{del}}</code> / <code>{{delete}}</code> non équilibrées sont rejetés, et le HTML est assaini (les scripts, les iframes et les gestionnaires d'événements en ligne sont retirés). Voir <a href="/fr/docs/templates">Modèles</a> pour la référence complète.</p>

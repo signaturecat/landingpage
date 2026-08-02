@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Éditeur visuel | SignatureCat Docs</title>
-  <meta name="description" content="Concevez des signatures Gmail sans écrire de HTML - l'éditeur visuel de SignatureCat avec puces de variables, redimensionnement d'images, colonnes, polices et un rendu garanti compatible Gmail." />
+  <meta name="description" content="Concevez des modèles de signature Gmail sans écrire de HTML - puces de variables, colonnes, séparateurs, images personnalisées et mise en forme compatible e-mail sur un seul canevas." />
   <link rel="canonical" href="https://signature.cat/fr/docs/visual-editor" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/visual-editor" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/visual-editor" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Éditeur visuel | SignatureCat Docs" />
-  <meta property="og:description" content="Concevez des signatures Gmail sans écrire de HTML - l'éditeur visuel de SignatureCat avec puces de variables, redimensionnement d'images, colonnes, polices et un rendu garanti compatible Gmail." />
+  <meta property="og:description" content="Concevez des modèles de signature Gmail sans écrire de HTML - puces de variables, colonnes, séparateurs, images personnalisées et mise en forme compatible e-mail sur un seul canevas." />
   <meta property="og:url" content="https://signature.cat/fr/docs/visual-editor" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Éditeur visuel | SignatureCat Docs" />
-  <meta name="twitter:description" content="Concevez des signatures Gmail sans écrire de HTML - l'éditeur visuel de SignatureCat avec puces de variables, redimensionnement d'images, colonnes, polices et un rendu garanti compatible Gmail." />
+  <meta name="twitter:description" content="Concevez des modèles de signature Gmail sans écrire de HTML - puces de variables, colonnes, séparateurs, images personnalisées et mise en forme compatible e-mail sur un seul canevas." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Éditeur visuel",
-      "description": "Concevez des signatures Gmail sans écrire de HTML - l'éditeur visuel de SignatureCat avec puces de variables, redimensionnement d'images, colonnes, polices et un rendu garanti compatible Gmail.",
+      "description": "Concevez des modèles de signature Gmail sans écrire de HTML - puces de variables, colonnes, séparateurs, images personnalisées et mise en forme compatible e-mail sur un seul canevas.",
       "url": "https://signature.cat/fr/docs/visual-editor",
       "inLanguage": "fr",
-      "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
         <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
         <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
         <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
         <li><a href="/fr/docs/visual-editor" aria-current="page">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/fr/docs/support-access">Accès du support</a></li>
         <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
         <li><a href="/fr/docs/service-status">État du service</a></li>
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
@@ -192,43 +196,64 @@
       <nav class="docs-breadcrumb" aria-label="Fil d'Ariane"><a href="/fr/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Référence</span><span class="crumb-sep">/</span><span aria-current="page">Éditeur visuel</span></nav>
       <article class="docs-article">
 <h1>Éditeur visuel</h1>
-<p>L'éditeur visuel vous permet de concevoir un modèle de signature sans écrire une ligne de HTML. Vous travaillez sur un canevas avec mise en forme du texte, puces de variables et images affichées à leur taille réelle - et tout ce qu'il produit est garanti compatible e-mail : l'éditeur ne peut émettre que du balisage qui se rend correctement dans Gmail, il est donc impossible de construire une signature qui casse dans la boîte de réception.</p>
-<p>L'éditeur se trouve sur la même page que l'<a href="/fr/docs/templates#the-editor">éditeur HTML</a> : ouvrez n'importe quel modèle sur <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signatures</a> et basculez entre les onglets <strong>Visuel</strong> et <strong>HTML</strong>.</p>
+<p>L'éditeur visuel vous permet de concevoir un modèle de signature sans écrire une ligne de HTML. Vous travaillez sur un canevas avec mise en forme du texte, puces de variables et images affichées à leur taille réelle, et l'éditeur ne peut produire que du balisage issu d'une liste blanche compatible e-mail - ce que le canevas émet est exactement ce que SignatureCat stocke et envoie à Gmail, rien n'est réécrit dans votre dos.</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
+<p>Gmail a le dernier mot : il applique son propre assainissement quand il enregistre une signature, une mise en page très compliquée peut donc revenir tronquée. Voir <a href="/fr/docs/gmail-sanitization">Quand Gmail tronque votre signature</a>.</p>
+</div></aside>
+<p>L'éditeur se trouve sur la même page que l'<a href="/fr/docs/templates#lditeur">éditeur HTML</a> : ouvrez n'importe quel modèle sur <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signatures</a> et basculez entre les onglets <strong>Visuel</strong> et <strong>HTML</strong>.</p>
 <h2 id="modes-ddition">Modes d'édition<a class="h-anchor" href="#modes-ddition" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Chaque modèle est édité dans l'un de deux modes, et l'éditeur s'ouvre dans le mode dans lequel le modèle a été enregistré pour la dernière fois :</p>
 <ul>
 <li><strong>Visuel</strong> - le canevas décrit sur cette page. L'enregistrement stocke à la fois le document visuel et le HTML généré.</li>
-<li><strong>HTML</strong> - l'éditeur de code classique avec autocomplétion des jetons ; voir <a href="/fr/docs/templates#the-editor">Modèles</a>.</li>
+<li><strong>HTML</strong> - l'éditeur de code classique avec autocomplétion des jetons ; voir <a href="/fr/docs/templates#lditeur">Modèles</a>.</li>
 </ul>
 <p>Basculer de l'un à l'autre est possible à tout moment, avec deux réserves :</p>
 <ul>
-<li><strong>HTML vers Visuel est une conversion à sens unique.</strong> L'importateur traduit votre balisage en blocs de canevas au mieux - les mises en page simples (y compris les tableaux à une seule ligne, qui deviennent des <a href="#colonnes">colonnes</a>) se convertissent proprement, tandis que les mises en page à tableaux profondément imbriqués sont aplaties. L'éditeur vous avertit avant une conversion avec perte.</li>
+<li><strong>HTML vers Visuel est une conversion à sens unique.</strong> L'importateur traduit votre balisage en blocs de canevas au mieux, et une signature écrite à la main survit désormais bien mieux au trajet : chaque ligne d'un tableau de mise en page à plusieurs lignes devient sa propre <a href="#colonnes">rangée de colonnes</a>, et les gardes <code>{{del}}</code> ou <code>{{delete}}</code> enveloppant une cellule entière, une suite de cellules voisines ou une ligne entière sont conservées au lieu d'être silencieusement abandonnées. Les mises en page à tableaux profondément imbriqués sont toujours aplaties, et l'éditeur vous avertit avant une conversion avec perte.</li>
 <li><strong>Visuel vers HTML est un déclassement.</strong> Vous obtenez le HTML généré à modifier librement, mais enregistrer depuis l'onglet HTML abandonne le document visuel - y revenir plus tard signifie convertir à nouveau.</li>
 </ul>
 <h2 id="texte-polices-et-couleurs">Texte, polices et couleurs<a class="h-anchor" href="#texte-polices-et-couleurs" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Le canevas prend en charge la mise en forme qui survit de manière fiable aux clients mail : paragraphes, <strong>gras</strong>, <em>italique</em>, souligné, listes à puces et numérotées, une palette de couleurs de texte compatible e-mail, des liens (web, mailto et tel) et annuler/rétablir.</p>
 <p>Deux menus déroulants contrôlent la typographie :</p>
 <ul>
-<li><strong>Taille de police</strong> - de 10 à 24 px.</li>
-<li><strong>Police</strong> - "Default (mail client)" plus sept familles web-safe : Arial, Verdana, Tahoma, Trebuchet MS, Georgia, Times New Roman et Courier New. L'option par défaut n'émet aucune police du tout, laissant le client mail de chaque destinataire utiliser la sienne - le choix le plus sûr.</li>
+<li><strong>Taille de police</strong> - sept tailles fixes plus <strong>Taille par défaut</strong> : 10, 12, 14, 16, 18, 20 et 24 px. Rien d'autre n'est proposé, et la valeur par défaut du canevas est 14 px.</li>
+<li><strong>Police</strong> - "Default (mail client)" plus sept familles web-safe : Arial, Verdana, Tahoma, Trebuchet MS, Georgia, Times New Roman et Courier New. L'option par défaut n'émet aucune police du tout, laissant le client mail de chaque destinataire utiliser la sienne - le choix le plus sûr. La police s'applique à toute la signature, pas à la sélection.</li>
 </ul>
+<p><strong>Couleur du texte</strong> propose huit échantillons compatibles e-mail plus <strong>Couleur par défaut</strong>, qui retire à nouveau la couleur.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Les polices web-safe se rendent de manière cohérente parce qu'elles sont livrées avec le système du destinataire, pas avec l'e-mail. La première fois que vous choisissez une police autre que celle par défaut, l'éditeur affiche une courte note de compatibilité.</p>
 </div></aside>
 <h2 id="colonnes">Colonnes<a class="h-anchor" href="#colonnes" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Insérez une rangée de 2 ou 3 colonnes depuis la barre d'outils pour placer du contenu côte à côte - par exemple une photo à gauche et les coordonnées à droite. Les colonnes sont stockées comme un tableau à une seule ligne dans le HTML généré, la seule technique de mise en page que chaque client mail rend correctement. Les tableaux à une seule ligne présents dans du HTML importé deviennent automatiquement des colonnes.</p>
+<p>Insérez une rangée de 2 ou 3 colonnes depuis la barre d'outils (<strong>Insérer 2 colonnes</strong>, <strong>Insérer 3 colonnes</strong>) pour placer du contenu côte à côte - par exemple une photo à gauche et les coordonnées à droite. Les colonnes sont stockées comme un tableau à une seule ligne dans le HTML généré, la seule technique de mise en page que chaque client mail rend correctement. Il n'est pas possible d'ajouter une colonne à une rangée existante : insérez une rangée avec le nombre de colonnes dont vous avez besoin.</p>
+<p>Une fois la rangée sur le canevas :</p>
+<ul>
+<li><strong>Changez les proportions.</strong> Faites glisser la barre d'accentuation dans la gouttière entre deux colonnes (<strong>Largeur de colonne (glisser; les flèches ajustent)</strong>). Chaque colonne conserve au moins 10 pour cent de la largeur, et la poignée fonctionne aussi au clavier - les flèches la déplacent par pas de 5 pour cent. Un seul glissement fixe les proportions de toute la rangée, une rangée est donc soit un partage égal, soit entièrement personnalisée.</li>
+<li><strong>Déplacez toute la rangée.</strong> La poignée en haut à gauche de la rangée (<strong>Déplacer cette ligne (déposer entre les lignes)</strong>) la fait glisser entre les autres blocs, avec un trait qui montre où elle va atterrir.</li>
+<li><strong>Supprimez une seule colonne.</strong> Le bouton corbeille dans la surcouche de la colonne la retire ; une colonne qui contient encore du contenu demande d'abord une confirmation. Une rangée qui ne garde qu'une seule colonne est automatiquement désenveloppée, supprimer ne peut donc jamais laisser derrière soi une mise en page cassée.</li>
+<li><strong>Rendez une colonne conditionnelle.</strong> L'interrupteur dans la surcouche de la colonne fait passer la colonne par aucun garde, puis <code>{{del}}</code>, puis <code>{{delete}}</code> (<strong>Rendre cette colonne conditionnelle (elle disparaît si ses variables sont vides)</strong>). Toute la colonne disparaît alors pour les utilisateurs dont les variables qu'elle contient sont vides - une colonne photo pour les personnes sans photo, par exemple. Une colonne conditionnelle est dessinée avec un contour en pointillés et une étiquette de coin qui montre le jeton ; les règles sont exactement celles des <a href="/fr/docs/template-variables#blocs-conditionnels-del-et-delete">blocs conditionnels</a>.</li>
+</ul>
+<p>Le HTML importé conserve sa mise en page : chaque ligne d'un tableau à plusieurs cellules devient sa propre rangée de colonnes, une rangée photo-et-nom au-dessus d'une rangée séparateur reste donc deux rangées au lieu de se replier en une seule.</p>
+<h2 id="sparateurs">Séparateurs<a class="h-anchor" href="#sparateurs" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Un séparateur est une ligne horizontale entre deux blocs - la façon nette de séparer un nom des coordonnées. Insérez-en un avec <strong>Insérer un séparateur</strong> ; par défaut, c'est un fin trait gris clair avec un peu d'espace au-dessus et en dessous.</p>
+<p>Sur le canevas, c'est un bloc sélectionnable appelé <strong>Ligne de séparation</strong>. Survolez-le pour faire apparaître une poignée qui le fait glisser entre les autres blocs et un bouton qui le retire. Deux propriétés sont à votre main :</p>
+<ul>
+<li><strong>Couleur</strong> - sélectionnez la ligne, puis choisissez un échantillon dans la palette de la barre d'outils (<strong>Couleur de la ligne (sélectionnez la ligne, puis choisissez une couleur)</strong>).</li>
+<li><strong>Longueur</strong> - faites glisser la poignée au bout de la ligne (<strong>Longueur de la ligne (glisser ; double-clic = pleine largeur)</strong>) entre 10 et 100 pour cent de la largeur de la signature. Un double-clic restaure la pleine largeur.</li>
+</ul>
+<p>Un séparateur que vous avez écrit à la main en HTML conserve le style que vous lui avez donné lors de la conversion du modèle en mode visuel.</p>
 <h2 id="les-variables-sous-forme-de-puces">Les variables sous forme de puces<a class="h-anchor" href="#les-variables-sous-forme-de-puces" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Les variables de personne comme <code>{{firstname}}</code> ou <code>{{phone}}</code> apparaissent sur le canevas sous forme de <strong>puces</strong> - des jetons pleins que vous ne pouvez pas casser accidentellement en tapant dedans. Les puces peuvent être :</p>
 <ul>
 <li>insérées depuis le menu <strong>Insérer une variable</strong>,</li>
-<li>mises en forme comme du texte (gras, italique et souligné s'appliquent à la valeur résolue),</li>
+<li>mises en forme comme le texte qui les entoure - gras, italique, souligné, plus <strong>Couleur du texte</strong> et <strong>Taille de police</strong>, qui se répercutent sur la valeur livrée dans la signature finale,</li>
 <li>glissées-déposées n'importe où sur le canevas,</li>
 <li>retirées avec le bouton corbeille qui apparaît au survol.</li>
 </ul>
+<p>Sélectionnez la puce, ou une portion de texte qui la contient, avant de choisir une taille ou une couleur : poser le curseur à côté d'une puce ne change rien. Les puces d'image (<code>{{logo}}</code>, <code>{{banner}}</code>, <code>{{photo}}</code>) ne se restylent jamais ainsi - elles se dimensionnent avec leurs poignées de redimensionnement.</p>
 <p>La liste complète des variables et les règles de résolution se trouvent dans <a href="/fr/docs/template-variables">Variables de modèle</a>.</p>
 <h2 id="images-logo-bannire-et-photo">Images : logo, bannière et photo<a class="h-anchor" href="#images-logo-bannire-et-photo" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p><code>{{logo}}</code>, <code>{{banner}}</code> et <code>{{photo}}</code> sont rendus sur le canevas comme des puces d'image à leur taille réelle - les puces logo et bannière montrent l'image réellement sélectionnée dans votre <a href="/fr/docs/banners-and-logos">bibliothèque</a>, la puce photo montre un avatar circulaire en espace réservé (les vraies photos sont substituées par utilisateur au moment du rendu).</p>
-<p>Sélectionnez une puce d'image et faites glisser ses <strong>poignées de redimensionnement</strong> (bords et coin) pour la dimensionner pour ce modèle - comme on redimensionne une fenêtre. Un double-clic restaure la taille par défaut ; les poignées fonctionnent aussi au clavier (les flèches avancent de 10 px, Maj+flèches de 50 px, Début/Fin sautent aux limites). Plages autorisées :</p>
+<p><code>{{logo}}</code>, <code>{{banner}}</code> et <code>{{photo}}</code> sont rendus sur le canevas comme des puces d'image à leur taille réelle - les puces logo et bannière montrent l'image réellement sélectionnée dans votre <a href="/fr/docs/banners-and-logos">bibliothèque</a>, la puce photo montre un avatar en espace réservé (les vraies photos sont substituées par utilisateur au moment du rendu).</p>
+<p>Sélectionnez une puce d'image et faites glisser ses <strong>poignées de redimensionnement</strong> (bords et coin) pour la dimensionner pour ce modèle - comme on redimensionne une fenêtre. Un double-clic restaure la taille par défaut. Les poignées s'utilisent à la souris ; il n'y a pas de déplacement au clavier. Plages autorisées :</p>
 <div class="tbl"><table>
 <thead><tr><th scope="col">Image</th><th scope="col">Taille par défaut</th><th scope="col">Plage de redimensionnement</th></tr></thead>
 <tbody>
@@ -237,27 +262,40 @@
 <tr><td>Photo</td><td>115x115 px, circulaire</td><td>24-300 px par côté</td></tr>
 </tbody>
 </table></div>
+<p>La photo de profil est ronde par défaut. Le petit interrupteur sur la poignée de la puce photo la passe en carrée pour ce modèle (<strong>Passer à une photo carrée</strong>) et inversement (<strong>Passer à une photo ronde</strong>).</p>
 <p>Les tailles sont stockées <strong>par modèle</strong> : redimensionner une bannière dans un modèle ne change jamais les autres modèles qui utilisent la même image de bibliothèque.</p>
 <p>Une puce de logo ou de bannière sélectionnée expose aussi un bouton <strong>Lien</strong> : conservez le lien de clic de l'image de bibliothèque, retirez le lien pour ce modèle uniquement, ou pointez-le vers une autre URL - sans toucher à l'entrée de bibliothèque que partagent les autres modèles.</p>
+<h2 id="images-personnalises">Images personnalisées<a class="h-anchor" href="#images-personnalises" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Toute image que vous hébergez déjà à une adresse <code>https://</code> peut aller directement dans un modèle, sans l'ajouter à la bibliothèque partagée. Cliquez sur <strong>Insérer une image (URL)</strong> dans la barre d'outils et remplissez :</p>
+<ul>
+<li><strong>URL de l'image (https)</strong> - l'adresse de l'image. Elle doit commencer par <code>https://</code>.</li>
+<li><strong>Description (ALT, facultatif)</strong> - ce que les destinataires voient quand leur programme de messagerie ne peut pas afficher l'image. Elle ne peut pas contenir de jetons de modèle <code>{{ }}</code>.</li>
+<li><strong>Forme</strong> - <strong>Carrée</strong> ou <strong>Ronde</strong>.</li>
+</ul>
+<p>Sur le canevas, le bloc se comporte comme les autres images : la poignée le déplace entre les blocs, les poignées de bord et de coin le redimensionnent (16 à 600 px de large, 16 à 400 px de haut), le crayon (<strong>Modifier l'image</strong>) rouvre l'adresse, la description et la forme, et le bouton corbeille le retire. Si vous le placez dans un lien, le lien est conservé.</p>
+<p>Une image personnalisée appartient à ce seul modèle. Ce n'est pas une entrée de bibliothèque : elle n'apparaît pas dans les galeries Logo et Bannière, les autres modèles ne peuvent pas la choisir, et elle n'est pas gérée dans <a href="/fr/docs/banners-and-logos">Bannières et logos</a>. SignatureCat ne téléverse ni ne stocke le fichier - l'image reste chez votre hébergeur, l'adresse doit donc continuer de fonctionner aussi longtemps que la signature est utilisée.</p>
+<aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Astuce</p><div class="callout-body">
+<p>Utilisez la bibliothèque pour le logo et la bannière de campagne que toute votre entreprise partage, et une image personnalisée pour un cas unique - un badge de récompense ou un logo d'événement qui ne vit que dans un seul modèle.</p>
+</div></aside>
 <h2 id="blocs-conditionnels">Blocs conditionnels<a class="h-anchor" href="#blocs-conditionnels" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Les enveloppes <code>{{del}}</code> et <code>{{delete}}</code> apparaissent comme des blocs encadrés sur le canevas, pour que vous voyiez exactement ce qui disparaît quand les données d'un utilisateur manquent. Quand un enregistrement est rejeté à cause de balises non équilibrées, l'éditeur affiche deux micro-démos en boucle qui contrastent le comportement de <code>{{del}}</code> et <code>{{delete}}</code> - les règles exactes se trouvent dans <a href="/fr/docs/template-variables#conditional-blocks-del-and-delete">Variables de modèle</a>.</p>
+<p>Les enveloppes <code>{{del}}</code> et <code>{{delete}}</code> apparaissent comme des blocs encadrés sur le canevas, pour que vous voyiez exactement ce qui disparaît quand les données d'un utilisateur manquent. Une <a href="#colonnes">colonne</a> entière peut porter le même garde. Quand un enregistrement est rejeté à cause de balises non équilibrées, l'éditeur affiche deux micro-démos en boucle qui contrastent le comportement de <code>{{del}}</code> et <code>{{delete}}</code> - les règles exactes se trouvent dans <a href="/fr/docs/template-variables#blocs-conditionnels-del-et-delete">Variables de modèle</a>.</p>
 <h2 id="rester-dans-les-limites-de-gmail">Rester dans les limites de Gmail<a class="h-anchor" href="#rester-dans-les-limites-de-gmail" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Gmail plafonne les signatures à 10 000 caractères. Un compteur de budget en direct sous le canevas suit la taille du HTML généré, pour que vous le sachiez bien avant que Gmail ne rejette la signature.</p>
 <h2 id="rinitialisation-et-validation">Réinitialisation et validation<a class="h-anchor" href="#rinitialisation-et-validation" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
-<li><strong>Rétablir la version enregistrée</strong> (visible dès que vous avez des modifications non enregistrées) restaure le modèle à son dernier état enregistré, y compris le mode d'édition enregistré, après une confirmation.</li>
+<li><strong>Annuler les modifications</strong> (visible dès que vous avez des modifications non enregistrées, infobulle "Restaurer la dernière version enregistrée") restaure le modèle à son dernier état enregistré, y compris le mode d'édition enregistré, après une confirmation.</li>
 <li>Les erreurs de validation sont précises : un jeton inconnu est nommé, les balises conditionnelles non équilibrées viennent avec leurs décomptes d'ouverture/fermeture - pas de devinettes.</li>
 </ul>
-<p>Quand votre modèle vous convient, prévisualisez-le avec de vrais utilisateurs et testez-le sur votre propre boîte - voir <a href="/fr/docs/create-your-first-template#preview-as-a-real-user">Créer votre premier modèle</a>.</p>
+<p>Quand votre modèle vous convient, vérifiez-le sur les clients simulés au-dessus de l'aperçu (<a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a>), prévisualisez-le avec de vrais utilisateurs et testez-le sur votre propre boîte - voir <a href="/fr/docs/create-your-first-template#prvisualiser-comme-un-utilisateur-rel">Créer votre premier modèle</a>.</p>
       </article>
 <nav class="docs-pager" aria-label="Pagination">
 <a class="pager-card pager-prev" href="/fr/docs/templates" rel="prev">
       <span class="pager-label">Précédent</span>
       <span class="pager-title">Modèles</span>
     </a>
-<a class="pager-card pager-next" href="/fr/docs/template-variables" rel="next">
+<a class="pager-card pager-next" href="/fr/docs/mail-client-preview" rel="next">
       <span class="pager-label">Suivant</span>
-      <span class="pager-title">Variables de modèle</span>
+      <span class="pager-title">Aperçu par client de messagerie</span>
     </a>
 </nav>
       <footer class="docs-foot">
@@ -283,8 +321,10 @@
         <li class="toc-l2"><a href="#modes-ddition">Modes d'édition</a></li>
         <li class="toc-l2"><a href="#texte-polices-et-couleurs">Texte, polices et couleurs</a></li>
         <li class="toc-l2"><a href="#colonnes">Colonnes</a></li>
+        <li class="toc-l2"><a href="#sparateurs">Séparateurs</a></li>
         <li class="toc-l2"><a href="#les-variables-sous-forme-de-puces">Les variables sous forme de puces</a></li>
         <li class="toc-l2"><a href="#images-logo-bannire-et-photo">Images : logo, bannière et photo</a></li>
+        <li class="toc-l2"><a href="#images-personnalises">Images personnalisées</a></li>
         <li class="toc-l2"><a href="#blocs-conditionnels">Blocs conditionnels</a></li>
         <li class="toc-l2"><a href="#rester-dans-les-limites-de-gmail">Rester dans les limites de Gmail</a></li>
         <li class="toc-l2"><a href="#rinitialisation-et-validation">Réinitialisation et validation</a></li>

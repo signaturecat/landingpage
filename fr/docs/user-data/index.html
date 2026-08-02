@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Remplacement des données utilisateur | SignatureCat Docs</title>
+  <meta name="description" content="Stockez des valeurs par utilisateur qui remplacent votre annuaire Google Workspace dans les signatures Gmail - consentement, les neuf champs, édition en self-service et suppression." />
+  <link rel="canonical" href="https://signature.cat/fr/docs/user-data" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/user-data" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/user-data" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/user-data" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/user-data" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/user-data" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Remplacement des données utilisateur | SignatureCat Docs" />
+  <meta property="og:description" content="Stockez des valeurs par utilisateur qui remplacent votre annuaire Google Workspace dans les signatures Gmail - consentement, les neuf champs, édition en self-service et suppression." />
+  <meta property="og:url" content="https://signature.cat/fr/docs/user-data" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Remplacement des données utilisateur | SignatureCat Docs" />
+  <meta name="twitter:description" content="Stockez des valeurs par utilisateur qui remplacent votre annuaire Google Workspace dans les signatures Gmail - consentement, les neuf champs, édition en self-service et suppression." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Remplacement des données utilisateur",
+      "description": "Stockez des valeurs par utilisateur qui remplacent votre annuaire Google Workspace dans les signatures Gmail - consentement, les neuf champs, édition en self-service et suppression.",
+      "url": "https://signature.cat/fr/docs/user-data",
+      "inLanguage": "fr",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Docs",
+          "item": "https://signature.cat/fr/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Configuration avancée",
+          "item": "https://signature.cat/fr/docs/user-data"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Remplacement des données utilisateur",
+          "item": "https://signature.cat/fr/docs/user-data"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Aller au contenu</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Basculer le menu de la documentation" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/fr/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Rechercher dans la documentation" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Rechercher dans la doc</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Thème : système" title="Thème : système">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Aide</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Ouvrir l'app</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Nouveautés</p>
+        <ul>
+        <li><a href="/fr/docs/changelog">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Premiers pas</p>
+        <ul>
+        <li><a href="/fr/docs">Introduction</a></li>
+        <li><a href="/fr/docs/connect-google-workspace">Connecter Google Workspace</a></li>
+        <li><a href="/fr/docs/create-your-first-template">Créer votre premier modèle</a></li>
+        <li><a href="/fr/docs/assign-templates">Affecter des modèles</a></li>
+        <li><a href="/fr/docs/verify-assignments">Vérifier les tâches d'affectation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Configuration avancée</p>
+        <ul>
+        <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
+        <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data" aria-current="page">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
+        <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
+        <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Facturation</p>
+        <ul>
+        <li><a href="/fr/docs/invoices">Factures</a></li>
+        <li><a href="/fr/docs/billing-details">Informations de facturation</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Référence</p>
+        <ul>
+        <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/fr/docs/templates">Modèles</a></li>
+        <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
+        <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
+        <li><a href="/fr/docs/assignments">Affectations</a></li>
+        <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
+        <li><a href="/fr/docs/logs">Journaux</a></li>
+        <li><a href="/fr/docs/images">Images</a></li>
+        <li><a href="/fr/docs/notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Assistance</p>
+        <ul>
+        <li><a href="/fr/docs/support-access">Accès du support</a></li>
+        <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
+        <li><a href="/fr/docs/service-status">État du service</a></li>
+        <li><a href="/fr/docs/legal">Informations légales</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Fil d'Ariane"><a href="/fr/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Configuration avancée</span><span class="crumb-sep">/</span><span aria-current="page">Données utilisateur</span></nav>
+      <article class="docs-article">
+<h1>Remplacement des données utilisateur</h1>
+<p>L'onglet <strong>Données</strong> permet de stocker votre propre valeur pour un utilisateur précis et de l'utiliser dans les signatures à la place de ce que renvoie l'annuaire Google. La fonction est désactivée tant qu'un Admin ne l'active pas, elle couvre les mêmes neuf <a href="/fr/docs/template-variables">variables</a> de personne que vos modèles utilisent déjà, et elle n'écrit jamais rien en retour dans Google. La page est <a href="https://app.signature.cat/data" target="_blank" rel="noopener">app.signature.cat/data</a>, réservée aux Admins.</p>
+<h2 id="quand-utiliser-les-remplacements">Quand utiliser les remplacements<a class="h-anchor" href="#quand-utiliser-les-remplacements" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Utilisez les remplacements pour les manques que vous ne pouvez pas corriger rapidement à la source. Corriger les données dans Google reste la voie recommandée, et l'écran de consentement le dit : <strong>L'annuaire d'abord - les remplacements ensuite</strong>. Le meilleur endroit pour les données des collaborateurs reste l'annuaire Google lui-même (dans la Google Admin console : <strong>Annuaire</strong>, <strong>Utilisateurs</strong>, choisir un utilisateur, <strong>Informations utilisateur</strong>). Les données qui y sont tenues alimentent les signatures automatiquement, sans aucun remplacement, et tous les autres outils Workspace en profitent aussi.</p>
+<p>Les bonnes raisons de recourir malgré tout à un remplacement :</p>
+<ul>
+<li>un poste ou un service est erroné aujourd'hui et le processus qui en a la charge ne sera pas corrigé cette semaine ;</li>
+<li>un prestataire n'a pas de numéro de téléphone dans l'annuaire mais en a besoin dans la signature ;</li>
+<li>une personne doit apparaître dans les e-mails sous un prénom d'usage, mais pas dans sa fiche d'annuaire.</li>
+</ul>
+<p>Corriger la fiche d'annuaire plus tard ne pose jamais de problème : remettez le champ sur la valeur de l'annuaire et le remplacement disparaît.</p>
+<h2 id="activer-la-fonction">Activer la fonction<a class="h-anchor" href="#activer-la-fonction" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Rien n'est stocké avant qu'un Admin n'active la fonction. Ouvrez <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Données</a> et lisez l'écran de consentement <strong>Stocker des données de signature pour certains utilisateurs ?</strong>, qui précise sous <strong>Ce que nous stockons, et quand</strong> :</p>
+<ul>
+<li>rien n'est stocké avant l'activation de la fonction - et ensuite uniquement les valeurs que vous saisissez explicitement, seulement pour les utilisateurs que vous remplacez ;</li>
+<li>chaque modification est consignée dans le journal d'audit (qui, quand et quels champs - jamais les valeurs) ;</li>
+<li>désactiver la fonction supprime définitivement toutes les valeurs stockées, et les utilisateurs retirés de votre Workspace sont nettoyés automatiquement.</li>
+</ul>
+<p>Cliquez sur <strong>Activer et stocker les données</strong> pour l'activer. Tant que vous ne le faites pas, les écrans de données ne contiennent rien et la fonction n'effectue aucun appel à l'annuaire.</p>
+<aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Important</p><div class="callout-body">
+<p>Les valeurs que vous saisissez ici sont stockées par SignatureCat, dans sa propre base de données - pas dans votre Google Workspace. Cette fonction ne modifie jamais vos fiches d'annuaire Google.</p>
+</div></aside>
+<p>La page Données nécessite une connexion Workspace vérifiée ; si l'assistant de configuration n'est pas terminé, vous êtes d'abord redirigé vers <a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a>.</p>
+<h2 id="les-champs-que-vous-pouvez-remplacer">Les champs que vous pouvez remplacer<a class="h-anchor" href="#les-champs-que-vous-pouvez-remplacer" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Neuf champs, un par variable de personne. Une valeur stockée l'emporte sur la valeur de l'annuaire à chaque rendu - aperçu de l'éditeur, application de test, application manuelle et synchronisation quotidienne - donc ce que montre l'éditeur est bien ce qui part. Un champ auquel vous ne touchez pas conserve sa valeur d'annuaire.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Champ</th><th scope="col">Variable</th><th scope="col">Valeur de repli</th><th scope="col">Limite</th></tr></thead>
+<tbody>
+<tr><td><strong>Prénom</strong></td><td><code>{{firstname}}</code></td><td>Prénom dans l'annuaire</td><td>120 caractères</td></tr>
+<tr><td><strong>Nom</strong></td><td><code>{{lastname}}</code></td><td>Nom de famille dans l'annuaire</td><td>120 caractères</td></tr>
+<tr><td><strong>E-mail (affiché)</strong></td><td><code>{{email}}</code></td><td>Adresse e-mail principale</td><td>320 caractères, doit être une adresse valide</td></tr>
+<tr><td><strong>Domaine (affiché)</strong></td><td><code>{{domain}}</code></td><td>Partie domaine de l'adresse principale</td><td>253 caractères, domaine seul comme <code>yourcompany.com</code></td></tr>
+<tr><td><strong>Poste</strong></td><td><code>{{jobtitle}}</code></td><td>Intitulé sur l'entrée d'organisation principale de l'utilisateur</td><td>200 caractères</td></tr>
+<tr><td><strong>Service</strong></td><td><code>{{department}}</code></td><td>Service sur la même entrée</td><td>200 caractères</td></tr>
+<tr><td><strong>URL de la photo</strong></td><td><code>{{photo}}</code></td><td>Photo de profil de l'annuaire</td><td>2048 caractères, lien <code>https://</code> uniquement</td></tr>
+<tr><td><strong>Adresse</strong></td><td><code>{{address}}</code></td><td>L'adresse principale de l'utilisateur, formatée</td><td>300 caractères</td></tr>
+<tr><td><strong>Téléphone</strong></td><td><code>{{phone}}</code></td><td>Le premier non vide parmi professionnel, mobile, domicile</td><td>60 caractères</td></tr>
+</tbody>
+</table></div>
+<aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Avertissement</p><div class="callout-body">
+<p><strong>E-mail (affiché)</strong> et <strong>Domaine (affiché)</strong> ne changent que ce que la signature affiche. Ils ne changent jamais l'adresse de la boîte depuis laquelle les e-mails sont envoyés, et ils ne créent rien dans Google.</p>
+</div></aside>
+<p>Deux autres règles à connaître :</p>
+<ul>
+<li><strong>URL de la photo</strong> attend un lien public <code>https://</code> vers une image que vous hébergez - SignatureCat n'héberge aucune photo de collaborateur.</li>
+<li>Lorsqu'une signature est écrite sur un alias send-as, <code>{{email}}</code> et <code>{{domain}}</code> suivent l'adresse de l'alias même si vous avez stocké un remplacement pour cet utilisateur ; tous les autres champs conservent leur remplacement. Voir <a href="/fr/docs/assignments#modes-dalias">Modes d'alias</a>.</li>
+</ul>
+<h2 id="remplacer-les-donnes-dun-utilisateur">Remplacer les données d'un utilisateur<a class="h-anchor" href="#remplacer-les-donnes-dun-utilisateur" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ol>
+<li>Sur <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Données</a>, tapez dans <strong>Trouver un utilisateur</strong> - au moins un caractère. Les résultats viennent en direct de votre annuaire Workspace ; une recherche vide ne renvoie volontairement rien, la page ne liste donc jamais tout votre Workspace.</li>
+<li>Choisissez l'utilisateur dans les résultats. L'éditeur s'ouvre avec chaque champ affichant sa valeur d'annuaire en direct, en lecture seule, marquée d'une icône nuage.</li>
+<li>Cliquez sur l'icône à côté d'un champ pour le faire passer de <strong>Utiliser la valeur de l'annuaire</strong> à <strong>Remplacer ce champ</strong>, puis saisissez votre valeur. Le mode annuaire est celui par défaut pour chaque champ, et y ramener un champ supprime la valeur stockée à l'enregistrement.</li>
+<li>Si la donnée est fausse à la source, suivez <strong>Modifier cet utilisateur dans la console d'administration Google</strong> - le lien ouvre la fiche de cet utilisateur dans Google.</li>
+<li>Cliquez sur <strong>Enregistrer les données</strong>.</li>
+</ol>
+<p>Après l'enregistrement, l'application indique ce qui s'est passé pour la boîte mail :</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Ce que dit l'application</th><th scope="col">Ce que cela signifie</th></tr></thead>
+<tbody>
+<tr><td>"Enregistré. La signature de jane@yourcompany.com sera actualisée dans un instant."</td><td>Une actualisation ponctuelle de la signature de cet utilisateur a été mise en file.</td></tr>
+<tr><td>"Enregistré, mais jane@yourcompany.com n'a pas de signature attribuée - rien n'a été appliqué à sa boîte mail."</td><td>L'utilisateur ne correspond à aucune affectation et n'a fait aucun choix self-service : il n'y a donc rien à actualiser.</td></tr>
+<tr><td>"Enregistré. Le changement s'appliquera à la prochaine synchronisation des signatures."</td><td>Rien n'a pu être mis en file pour l'instant ; la synchronisation quotidienne reprendra le changement.</td></tr>
+</tbody>
+</table></div>
+<p>Chaque utilisateur que vous avez remplacé apparaît sous <strong>Utilisateurs avec des données remplacées</strong>, avec les champs qui portent une valeur, la date et <strong>Dernière modification</strong> (<strong>Administrateur</strong>, <strong>Self-service</strong> ou <strong>Import CSV</strong>). Cette liste provient de la base de données de SignatureCat et n'effectue aucun appel à Google.</p>
+<p>Pour des dizaines ou des centaines d'utilisateurs d'un coup, utilisez plutôt <strong>Importer depuis un CSV</strong> - voir <a href="/fr/docs/user-data-import">Importer des données utilisateur depuis un CSV</a>.</p>
+<h2 id="supprimer-un-remplacement">Supprimer un remplacement<a class="h-anchor" href="#supprimer-un-remplacement" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Vider tous les champs d'un utilisateur supprime son entrée stockée :</p>
+<ul>
+<li>dans l'éditeur, <strong>Revenir aux données de l'annuaire</strong> supprime toutes ses valeurs stockées d'un coup ;</li>
+<li>dans la liste, <strong>Supprimer le remplacement</strong> sur la ligne fait la même chose ;</li>
+<li>enregistrer un utilisateur dont tous les champs sont revenus en mode annuaire supprime aussi l'entrée.</li>
+</ul>
+<p>Il n'existe aucun moyen de forcer une valeur vide : un remplacement vide signifie toujours "utiliser l'annuaire". Si une signature doit masquer complètement un champ manquant, enveloppez plutôt cette ligne dans un <a href="/fr/docs/template-variables#blocs-conditionnels-del-et-delete">bloc conditionnel</a>.</p>
+<p>Un utilisateur déjà parti de votre Workspace peut encore être nettoyé à la main - l'éditeur indique "Cet utilisateur n'existe plus dans votre Workspace." et propose <strong>Supprimer le remplacement maintenant</strong>. Le nettoyage automatique supprimerait l'entrée de toute façon.</p>
+<h2 id="laisser-chacun-complter-ses-propres-donnes">Laisser chacun compléter ses propres données<a class="h-anchor" href="#laisser-chacun-complter-ses-propres-donnes" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Ouvrez le cadenas <strong>Édition en self-service</strong> sur la page Données pour laisser les utilisateurs saisir leurs propres valeurs sur la page Ma signature. Un bouton <strong>Mes données de signature</strong> apparaît alors sur <a href="https://app.signature.cat/self-service" target="_blank" rel="noopener">app.signature.cat/self-service</a> et ouvre <strong>Complétez vos données</strong>, le même éditeur champ par champ avec <strong>Enregistrer mes données</strong> et <strong>Utiliser les données de l'annuaire</strong>.</p>
+<ul>
+<li>Tout niveau d'accès à partir de <strong>Self-service</strong> peut s'en servir, et uniquement sur sa propre fiche.</li>
+<li>Leurs saisies apparaissent dans votre liste avec <strong>Self-service</strong> dans la colonne <strong>Dernière modification</strong>, à côté de l'adresse de la personne qui les a enregistrées.</li>
+<li>Vous pouvez écraser ou supprimer chacune d'elles ; un enregistrement par un administrateur bascule la source de l'entrée sur <strong>Administrateur</strong>.</li>
+<li>Chaque modification en self-service atterrit dans le journal d'audit, comme les vôtres.</li>
+</ul>
+<p>Plus d'informations sur la page Ma signature : <a href="/fr/docs/self-service">Self-service</a>.</p>
+<h2 id="qui-peut-faire-quoi">Qui peut faire quoi<a class="h-anchor" href="#qui-peut-faire-quoi" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>L'onglet <strong>Données</strong> est réservé aux Admins, comme <a href="/fr/docs/user-management">Gestion des accès</a>. Tous les autres peuvent au mieux modifier leur propre fiche.</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Qui</th><th scope="col">Ce qu'il peut faire</th></tr></thead>
+<tbody>
+<tr><td>Admin</td><td>Activer et désactiver la fonction, remplacer les données de n'importe quel utilisateur, <a href="/fr/docs/user-data-import">importer un CSV</a>, ouvrir ou fermer l'édition en self-service.</td></tr>
+<tr><td>Niveau <strong>Self-service</strong> et au-dessus</td><td>Modifier uniquement ses propres valeurs, et seulement tant que la fonction est active et l'édition en self-service ouverte.</td></tr>
+</tbody>
+</table></div>
+<h2 id="dsactiver-la-fonction">Désactiver la fonction<a class="h-anchor" href="#dsactiver-la-fonction" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>La section <strong>Désactiver et supprimer</strong> en bas de la page Données efface tout. Cliquez sur <strong>Désactiver le remplacement des données</strong>, puis dans <strong>Supprimer toutes les données stockées ?</strong> suivez <strong>Retapez votre domaine Workspace pour confirmer</strong> et cliquez sur <strong>Tout supprimer et désactiver</strong>.</p>
+<p>Toutes les valeurs stockées de votre espace de travail sont supprimées immédiatement, et l'édition en self-service est désactivée avec la fonction. Les signatures reviennent aux données de l'annuaire à la prochaine application.</p>
+<aside class="callout callout-caution" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.9 4.9l14.2 14.2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/></svg>Attention</p><div class="callout-body">
+<p>La suppression est définitive et irréversible. Exportez ou notez tout ce que vous voulez conserver avant de confirmer.</p>
+</div></aside>
+<p>La page Données reste accessible même lorsqu'un abonnement a expiré : l'interrupteur d'arrêt vous est donc toujours accessible.</p>
+<h2 id="cycle-de-vie-et-confidentialit">Cycle de vie et confidentialité<a class="h-anchor" href="#cycle-de-vie-et-confidentialit" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ul>
+<li>Des entrées n'existent que pour les utilisateurs que quelqu'un a réellement remplacés - SignatureCat ne duplique jamais votre annuaire.</li>
+<li>Les utilisateurs suspendus conservent leurs valeurs stockées.</li>
+<li>Les utilisateurs supprimés de votre Workspace voient leurs entrées retirées automatiquement, une fois par jour.</li>
+<li>Supprimer votre compte SignatureCat supprime avec lui toutes les valeurs stockées.</li>
+<li>Chaque modification est inscrite au journal d'audit avec qui, quand et quels noms de champs - jamais les valeurs elles-mêmes.</li>
+<li>Désactiver la fonction supprime tout, immédiatement.</li>
+</ul>
+<p>Les documents contractuels et le résumé sur la confidentialité se trouvent sur la page <a href="/fr/docs/legal">Informations légales</a>.</p>
+      </article>
+<nav class="docs-pager" aria-label="Pagination">
+<a class="pager-card pager-prev" href="/fr/docs/self-service" rel="prev">
+      <span class="pager-label">Précédent</span>
+      <span class="pager-title">Self-service</span>
+    </a>
+<a class="pager-card pager-next" href="/fr/docs/user-data-import" rel="next">
+      <span class="pager-label">Suivant</span>
+      <span class="pager-title">Import de données</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Langue">
+            <option value="/docs/user-data" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/user-data" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/user-data" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/user-data" data-lang="fr" lang="fr" selected>Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Mentions légales</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Sur cette page">
+      <nav>
+        <p class="docs-toc-title">Sur cette page</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#quand-utiliser-les-remplacements">Quand utiliser les remplacements</a></li>
+        <li class="toc-l2"><a href="#activer-la-fonction">Activer la fonction</a></li>
+        <li class="toc-l2"><a href="#les-champs-que-vous-pouvez-remplacer">Les champs que vous pouvez remplacer</a></li>
+        <li class="toc-l2"><a href="#remplacer-les-donnes-dun-utilisateur">Remplacer les données d'un utilisateur</a></li>
+        <li class="toc-l2"><a href="#supprimer-un-remplacement">Supprimer un remplacement</a></li>
+        <li class="toc-l2"><a href="#laisser-chacun-complter-ses-propres-donnes">Laisser chacun compléter ses propres données</a></li>
+        <li class="toc-l2"><a href="#qui-peut-faire-quoi">Qui peut faire quoi</a></li>
+        <li class="toc-l2"><a href="#dsactiver-la-fonction">Désactiver la fonction</a></li>
+        <li class="toc-l2"><a href="#cycle-de-vie-et-confidentialit">Cycle de vie et confidentialité</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Rechercher dans la documentation" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Rechercher dans la documentation" autocomplete="off" spellcheck="false" aria-label="Rechercher dans la documentation" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Fermer la recherche">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Aucun résultat. Essayez d'autres mots-clés ou écrivez à <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

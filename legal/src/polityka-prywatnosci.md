@@ -1,6 +1,6 @@
 # Polityka Prywatności Signature.Cat
 
-Wersja 1.1 - obowiązuje od dnia 02.08.2026
+Wersja 1.2 - obowiązuje od dnia 02.08.2026
 
 Wersja polska niniejszego dokumentu jest wersją wiążącą prawnie. Wersje angielska, niemiecka i francuska są tłumaczeniami automatycznymi udostępnianymi wyłącznie w celach informacyjnych i mogą zawierać błędy; w przypadku rozbieżności rozstrzyga wersja polska.
 
@@ -35,9 +35,15 @@ W zależności od kategorii danych występujemy w jednej z dwóch ról:
 
 **b) Podmiot przetwarzający (procesor)** - w odniesieniu do danych osobowych pracowników i współpracowników Klienta, przetwarzanych w ramach Usługi na polecenie Klienta. Administratorem tych danych jest Klient. Przetwarzanie polega na:
 - odczycie danych z katalogu użytkowników Google Workspace Klienta (imię, nazwisko, adres e-mail wraz z aliasami, stanowisko, dział, numery telefonów, adres, adres URL zdjęcia profilowego) **wyłącznie na bieżąco, w chwili podglądu lub wdrażania sygnatury** - wartości te nie są przez nas przechowywane po zakończeniu operacji;
+- przechowywaniu wartości pól sygnatury wprowadzonych przez Klienta w ramach funkcji **Dane użytkowników** - funkcji opcjonalnej, domyślnie wyłączonej, uruchamianej samodzielną decyzją administratora Klienta (opis niżej);
 - zapisie wyrenderowanej sygnatury w ustawieniach Gmail danego użytkownika (sygnatura pozostaje w środowisku Google Klienta);
+- odczycie sygnatury zapisanej w ustawieniach Gmail danego użytkownika - automatycznie po każdym wdrożeniu oraz na żądanie osoby upoważnionej przez Klienta (opis niżej);
 - krótkotrwałym przechowywaniu adresów e-mail objętych wdrożeniem w historii zadań (30 dni, na potrzeby raportu z wdrożenia);
 - przechowywaniu treści, które Klient samodzielnie umieści w szablonach sygnatur lub obrazkach.
+
+**Dane użytkowników (wartości wprowadzane przez Klienta).** Funkcja jest domyślnie wyłączona i do jej uruchomienia konieczna jest wyraźna decyzja administratora Klienta. Po włączeniu przechowujemy w naszej bazie danych wartości pól sygnatury dotyczące osób wskazanych przez Klienta: imię, nazwisko, wyświetlany adres e-mail, wyświetlaną domenę, stanowisko, dział, adres URL zdjęcia, adres i numer telefonu, wraz z informacją, kto i kiedy wprowadził ostatnią zmianę. Wartości wprowadza administrator Klienta, sam użytkownik (jeżeli Klient na to zezwoli) albo import pliku CSV; zastępują one dane z katalogu Google Workspace wyłącznie na potrzeby renderowania sygnatury. Wpis istnieje tylko dla osób, dla których Klient wprowadził co najmniej jedną wartość. Wyłączenie funkcji przez Klienta trwale usuwa wszystkie przechowywane wartości, a wpisy osób usuniętych z Google Workspace Klienta kasujemy automatycznie (pkt 8). W dzienniku audytu odnotowujemy, kto, kiedy i które pola zmienił - nigdy same wartości.
+
+**Odczyt zapisanej sygnatury.** Google może samodzielnie zmodyfikować sygnaturę przy zapisie, dlatego po każdym wdrożeniu sprawdzamy, jaką treść sygnatury zapisał Gmail. Ten sam odczyt jest dostępny na żądanie osoby upoważnionej przez Klienta (podgląd sygnatury aktualnie ustawionej w skrzynce wskazanego użytkownika). Treść odczytanej sygnatury nie jest przez nas przechowywana ani buforowana - prezentujemy ją wyłącznie w przeglądarce osoby wykonującej odczyt. W dzienniku audytu odnotowujemy adres sprawdzanej skrzynki, moment odczytu i długość sygnatury.
 
 Powierzenie przetwarzania reguluje umowa powierzenia (DPA), zawierana wyłącznie w języku angielskim - jej zawarcie następuje na wniosek Klienta skierowany na contact@signature.cat. Pełna lista dalszych podmiotów przetwarzających (podprocesorów) udostępniana jest Klientom w ramach DPA oraz na żądanie.
 
@@ -103,6 +109,7 @@ Podstawą takich transferów są standardowe klauzule umowne (SCC) zawarte w umo
 | Usunięcie Konta (samoobsługowe, w ustawieniach) | trwałe usunięcie danych następuje po upływie 7 dni od zgłoszenia żądania |
 | Sesje logowania | 7 dni od ostatniej aktywności, maksymalnie 14 dni od zalogowania |
 | Historia wdrożeń sygnatur (w tym adresy e-mail objęte wdrożeniem) | 30 dni od zakończenia zadania |
+| Wartości pól sygnatury wprowadzone przez Klienta (funkcja Dane użytkowników) | przez czas korzystania przez Klienta z funkcji; usunięcie następuje natychmiast po skasowaniu wpisu albo wyłączeniu funkcji przez Klienta, a wpisy osób usuniętych z Google Workspace Klienta kasowane są automatycznie w codziennym przeglądzie |
 | Dziennik audytu | 365 dni w bazie produkcyjnej; kopia archiwalna na potrzeby bezpieczeństwa i obrony roszczeń - nie dłużej niż 6 lat |
 | Wyniki automatycznych testów połączenia z Workspace (preflight) | 90 dni |
 | Wewnętrzne zdarzenia operacyjne (powiadomienia zespołu) | 30 dni od dostarczenia |
@@ -113,7 +120,7 @@ Podstawą takich transferów są standardowe klauzule umowne (SCC) zawarte w umo
 | Dane statystyczne Google Analytics | do 14 miesięcy |
 | Dane w trakcie Okresu Próbnego | jak dane Konta (pkt 10) |
 
-Dane pracowników Klienta pobierane z katalogu Workspace nie są przechowywane - przetwarzamy je wyłącznie w chwili renderowania lub wdrażania sygnatury (pkt 3 lit. b).
+Dane pracowników Klienta pobierane z katalogu Workspace nie są przechowywane - przetwarzamy je wyłącznie w chwili renderowania lub wdrażania sygnatury (pkt 3 lit. b). Wyjątkiem są wartości, które Klient wprowadza samodzielnie w ramach funkcji Dane użytkowników; okres ich przechowywania wskazuje tabela powyżej.
 
 ## 9. Prawa osób, których dane dotyczą
 
@@ -153,7 +160,7 @@ Nie stosujemy cookies marketingowych ani nie sprzedajemy danych osobowych.
 
 ## 12. Dane z interfejsów API Google
 
-Usługa korzysta z interfejsów API Google (logowanie Google OAuth oraz interfejsy Google Workspace: ustawienia Gmail i katalog użytkowników - w zakresach wskazanych w Regulaminie). Wykorzystanie informacji otrzymanych z interfejsów API Google jest zgodne z Google API Services User Data Policy, w tym z wymogami ograniczonego wykorzystania (Limited Use): dane te wykorzystujemy wyłącznie do świadczenia i ulepszania funkcji Usługi widocznych dla użytkownika (zarządzanie sygnaturami), nie wykorzystujemy ich do celów reklamowych, nie sprzedajemy ich, nie przekazujemy podmiotom trzecim poza zakresem niezbędnym do świadczenia Usługi ani nie wykorzystujemy do trenowania modeli sztucznej inteligencji.
+Usługa korzysta z interfejsów API Google (logowanie Google OAuth oraz interfejsy Google Workspace: ustawienia Gmail - zapis i odczyt sygnatury - oraz katalog użytkowników, w zakresach wskazanych w Regulaminie; Usługa nie korzysta z uprawnień dających dostęp do treści wiadomości). Wykorzystanie informacji otrzymanych z interfejsów API Google jest zgodne z Google API Services User Data Policy, w tym z wymogami ograniczonego wykorzystania (Limited Use): dane te wykorzystujemy wyłącznie do świadczenia i ulepszania funkcji Usługi widocznych dla użytkownika (zarządzanie sygnaturami), nie wykorzystujemy ich do celów reklamowych, nie sprzedajemy ich, nie przekazujemy podmiotom trzecim poza zakresem niezbędnym do świadczenia Usługi ani nie wykorzystujemy do trenowania modeli sztucznej inteligencji.
 
 ## 13. Bezpieczeństwo danych (środki techniczne i organizacyjne)
 
@@ -164,14 +171,15 @@ Stosujemy m.in. następujące środki:
 - klucze prywatne kont serwisowych przechowywane wyłącznie w usłudze zarządzania sekretami (nigdy w bazie danych, logach ani odpowiedziach API), z pamięciowym buforem wygasającym do 5 minut oraz automatyczną, okresową rotacją kluczy;
 - izolację klientów: jedno dedykowane konto serwisowe Google na Klienta oraz ograniczenie każdej operacji na danych do środowiska danego Klienta;
 - kontrolę dostępu opartą na poziomach uprawnień, egzekwowaną po stronie serwera dla każdej operacji;
-- dostęp serwisowy personelu SignatureCat: zmiany ustawień Konta przez nasz zespół supportu wymagają uprzedniej zgody Klienta, udzielanej przez administratora dedykowanym przełącznikiem w ustawieniach aplikacji; każde działanie supportu oraz włączenie i wyłączenie zgody są odnotowywane w dzienniku audytu Konta wraz z imieniem i nazwiskiem pracownika, a dostęp w trybie odczytu (diagnostyka) ogranicza się do zakresu niezbędnego do utrzymania Usługi;
+- dostęp serwisowy personelu SignatureCat: zmiany ustawień Konta przez nasz zespół supportu wymagają uprzedniej zgody Klienta, udzielanej przez administratora dedykowanym przełącznikiem w ustawieniach aplikacji; tej samej zgody wymaga podgląd sygnatury zapisanej w skrzynce wskazanego użytkownika, mimo że jest to wyłącznie odczyt; każde działanie supportu, każdy taki podgląd oraz włączenie i wyłączenie zgody są odnotowywane w dzienniku audytu Konta wraz z imieniem i nazwiskiem pracownika, a dostęp w trybie odczytu (diagnostyka) ogranicza się do zakresu niezbędnego do utrzymania Usługi;
 - uwierzytelnianie wyłącznie przez Google OAuth (Usługa nie przechowuje haseł); dodatkowe zabezpieczenia logowania, w tym MFA, wynikają z polityki Google Workspace Klienta;
 - nagłówki bezpieczeństwa przeglądarki, w tym egzekwowaną politykę Content Security Policy;
 - limitowanie ruchu per adres IP na brzegu sieci;
 - sanityzację treści sygnatur po stronie serwera (blokada skryptów i niebezpiecznych konstrukcji) oraz weryfikację przesyłanych plików graficznych (wyłącznie PNG/JPEG, kontrola rzeczywistego typu pliku, limit 5 MB, blokada SVG);
 - bazę danych w sieci prywatnej, bez publicznego punktu dostępu; kopie zapasowe z możliwością odtwarzania do punktu w czasie;
 - dziennik audytu w modelu „tylko dopisywanie" (append-only) oraz wewnętrzne powiadomienia o istotnych zdarzeniach na kontach;
-- minimalizację danych: atrybuty pracowników Klienta nie są przechowywane, a dane kart płatniczych przetwarza wyłącznie operator płatności.
+- minimalizację danych: atrybuty pracowników Klienta pobierane z katalogu Workspace nie są przechowywane, a dane kart płatniczych przetwarza wyłącznie operator płatności;
+- funkcja Dane użytkowników, stanowiąca świadomy wyjątek od powyższej zasady, jest domyślnie wyłączona, uruchamiana wyłącznie decyzją administratora Klienta, obejmuje tylko osoby wskazane przez Klienta, a jej wyłączenie trwale usuwa wszystkie przechowywane wartości.
 
 ## 14. Naruszenia ochrony danych
 

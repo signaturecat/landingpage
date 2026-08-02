@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Template variables | SignatureCat Docs</title>
-  <meta name="description" content="Complete reference of SignatureCat template variables - Google Directory person fields, logo and banner tokens, and del/delete conditional blocks." />
+  <meta name="description" content="Every SignatureCat signature variable - Google Workspace directory fields, per-user data overrides, logo and banner tokens and del/delete conditional blocks." />
   <link rel="canonical" href="https://signature.cat/docs/template-variables" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/template-variables" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/template-variables" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Template variables | SignatureCat Docs" />
-  <meta property="og:description" content="Complete reference of SignatureCat template variables - Google Directory person fields, logo and banner tokens, and del/delete conditional blocks." />
+  <meta property="og:description" content="Every SignatureCat signature variable - Google Workspace directory fields, per-user data overrides, logo and banner tokens and del/delete conditional blocks." />
   <meta property="og:url" content="https://signature.cat/docs/template-variables" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Template variables | SignatureCat Docs" />
-  <meta name="twitter:description" content="Complete reference of SignatureCat template variables - Google Directory person fields, logo and banner tokens, and del/delete conditional blocks." />
+  <meta name="twitter:description" content="Every SignatureCat signature variable - Google Workspace directory fields, per-user data overrides, logo and banner tokens and del/delete conditional blocks." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Template variables",
-      "description": "Complete reference of SignatureCat template variables - Google Directory person fields, logo and banner tokens, and del/delete conditional blocks.",
+      "description": "Every SignatureCat signature variable - Google Workspace directory fields, per-user data overrides, logo and banner tokens and del/delete conditional blocks.",
       "url": "https://signature.cat/docs/template-variables",
       "inLanguage": "en",
-      "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/docs/user-management">User management</a></li>
         <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
         <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
         <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
         <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
         <li><a href="/docs/template-variables" aria-current="page">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/docs/support-access">Support access</a></li>
         <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
         <li><a href="/docs/service-status">Service status</a></li>
         <li><a href="/docs/legal">Legal</a></li>
         </ul>
@@ -195,6 +199,7 @@
 <p>SignatureCat templates use <code>{{variable}}</code> tokens that resolve per user at apply time. There are nine person variables (filled from Google Directory), two image tokens and two conditional tags. Token names are lowercase and matched case-insensitively - <code>{{Phone}}</code> works the same as <code>{{phone}}</code>. Unknown tokens are rejected when the template is saved.</p>
 <h2 id="person-variables-google-directory">Person variables (Google Directory)<a class="h-anchor" href="#person-variables-google-directory" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Values come from each user's record in your Google Workspace directory. Keep the directory tidy and every signature stays accurate automatically.</p>
+<p>A value stored for a user on the <strong>Data</strong> tab takes precedence over the directory for that user and that field alone, everywhere the signature is rendered: the preview, <strong>Set me a test signature</strong> and the real rollout to mailboxes. Fields you leave to the directory keep coming from the directory. See <a href="/docs/user-data">User data</a>. One exception: when a signature is written to a send-as alias, <code>{{email}}</code> and <code>{{domain}}</code> always follow the alias address, even if they are overridden.</p>
 <div class="tbl"><table>
 <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Notes</th></tr></thead>
 <tbody>
@@ -204,7 +209,7 @@
 <tr><td><code>{{domain}}</code></td><td>Domain part of the email</td><td>Follows the alias when applying to an alias.</td></tr>
 <tr><td><code>{{jobtitle}}</code></td><td>Job title</td><td>From the user's primary organization entry in Directory.</td></tr>
 <tr><td><code>{{department}}</code></td><td>Department</td><td>From the same organization entry.</td></tr>
-<tr><td><code>{{photo}}</code></td><td>Profile photo</td><td>Standalone, the token renders a circular profile photo (default 115x115 px, <a href="/docs/visual-editor#images-logo-banner-and-photo">resizable per template</a>); users without a Directory photo get no image at all instead of a broken icon. Inside your own <code>&lt;img src="{{photo}}"&gt;</code> it resolves to the HTTPS photo URL (auto-scaled to 400 px) and your markup is untouched.</td></tr>
+<tr><td><code>{{photo}}</code></td><td>Profile photo</td><td>Standalone, the token renders a ready-made profile photo - round by default, square if the template is switched to that shape (default 115x115 px, <a href="/docs/visual-editor#images-logo-banner-and-photo">shape and size are set per template</a>); users without a Directory photo get no image at all instead of a broken icon. Inside your own <code>&lt;img src="{{photo}}"&gt;</code> it resolves to the HTTPS photo URL (auto-scaled to 400 px) and your markup is untouched.</td></tr>
 <tr><td><code>{{address}}</code></td><td>Formatted address</td><td>The user's primary address entry.</td></tr>
 <tr><td><code>{{phone}}</code></td><td>Phone number</td><td>First non-empty of: work, then mobile, then home.</td></tr>
 </tbody>
@@ -219,6 +224,7 @@
 </tbody>
 </table></div>
 <p>Images come from the per-workspace library and are selected per template; if nothing is selected, a neutral placeholder renders. If the library image has a click-through link, the image is wrapped in it automatically - and each template can <a href="/docs/visual-editor#images-logo-banner-and-photo">override that link</a>. Sizing details and the resize handles are described in the <a href="/docs/visual-editor">visual editor</a> and <a href="/docs/banners-and-logos">Banners and logos</a>.</p>
+<p>If the library entry carries an <strong>Image description (ALT)</strong>, that text is emitted as the <code>alt</code> attribute of the rendered image - for images you uploaded and for entries that point at your own URL alike. It is what recipients read when their mail program blocks or cannot load images. The description belongs to the library entry, so every template using that image shows the same one; an entry without a description renders an empty <code>alt</code>.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Image tokens always render something (image or placeholder), so they do not count as "empty" for the conditional blocks below.</p>
 </div></aside>
@@ -231,6 +237,7 @@
 <p>Example - a phone line that disappears for users without any phone number:</p>
 <pre><code class="language-html">{{del}}&lt;tr&gt;&lt;td&gt;Tel: {{phone}}&lt;/td&gt;&lt;/tr&gt;{{/del}}</code></pre>
 <p>Blocks can be nested; inner blocks are evaluated first. Unbalanced tags are rejected at save time, and the tags themselves are never written into the final Gmail signature.</p>
+<p>A guard can also wrap a whole table cell, a run of neighbouring cells or an entire table row. In the <a href="/docs/visual-editor#columns">visual editor</a> that is a conditional column, set from the column's own toggle.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tip</p><div class="callout-body">
 <p>Rule of thumb: wrap every optional line (phone, address, department) in <code>{{del}}</code> tags. Signatures of users with sparse Directory records then shrink gracefully instead of showing empty labels.</p>
 </div></aside>
@@ -238,9 +245,9 @@
 <p>Use <strong>Render as</strong> in the <a href="/docs/templates#the-editor">template editor</a> to preview against any real user's record, and <strong>Set me a test signature</strong> to apply the result to your own mailbox. Both are described in <a href="/docs/create-your-first-template">Create your first template</a>.</p>
       </article>
 <nav class="docs-pager" aria-label="Pagination">
-<a class="pager-card pager-prev" href="/docs/visual-editor" rel="prev">
+<a class="pager-card pager-prev" href="/docs/mail-client-preview" rel="prev">
       <span class="pager-label">Previous</span>
-      <span class="pager-title">Visual editor</span>
+      <span class="pager-title">Mail client preview</span>
     </a>
 <a class="pager-card pager-next" href="/docs/assignments" rel="next">
       <span class="pager-label">Next</span>

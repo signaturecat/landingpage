@@ -2,7 +2,7 @@
 title: Créer votre premier modèle
 navTitle: Créer votre premier modèle
 description: Créez un modèle de signature Gmail dans SignatureCat, personnalisez-le avec les variables Google Directory, prévisualisez-le et testez-le sur votre propre boîte.
-updated: 2026-07-26
+updated: 2026-08-02
 ---
 
 # Créer votre premier modèle
@@ -16,9 +16,9 @@ Un modèle est une signature HTML unique que SignatureCat personnalise par utili
    - **Par défaut** - photo du Directory plus coordonnées.
    - **Avec logo d'entreprise** - votre logo (115x115 px) à la place de la photo personnelle, cohérent pour toute l'entreprise.
    - **Avec bannière** - la signature plus une bannière de campagne (450x100 px) en dessous.
-3. Pour les starters logo ou bannière, choisissez une image dans votre bibliothèque ou téléversez-en une - ou passez cette étape et un espace réservé sera utilisé jusqu'à ce que vous en choisissiez une. Voir [Bannières et logos](/docs/banners-and-logos/).
+3. Pour les starters logo ou bannière, choisissez une image dans votre bibliothèque ou téléversez-en une - ou passez cette étape et un espace réservé sera utilisé jusqu'à ce que vous en choisissiez une. Voir [Bannières et logos](/docs/banners-and-logos).
 
-L'éditeur s'ouvre immédiatement. Tout ce qui vient du starter peut être ajusté plus tard - soit directement dans le HTML, soit sur le canevas de l'[éditeur visuel](/docs/visual-editor/) sans aucun HTML (basculez sur l'onglet **Visuel** ; la page en question décrit la conversion initiale).
+L'éditeur s'ouvre immédiatement. Tout ce qui vient du starter peut être ajusté plus tard - soit directement dans le HTML, soit sur le canevas de l'[éditeur visuel](/docs/visual-editor) sans aucun HTML (basculez sur l'onglet **Visuel** ; la page en question décrit la conversion initiale).
 
 ## Personnaliser avec des variables
 
@@ -29,7 +29,7 @@ Enveloppez les lignes facultatives dans des balises conditionnelles pour que les
 - `{{del}} ... {{/del}}` retire le bloc enveloppé uniquement lorsque **toutes** les variables à l'intérieur sont vides.
 - `{{delete}} ... {{/delete}}` retire le bloc lorsque **l'une** des variables à l'intérieur est vide.
 
-La liste complète des variables, l'origine de chaque valeur et les règles conditionnelles exactes se trouvent dans la référence des [variables de modèle](/docs/template-variables/).
+La liste complète des variables, l'origine de chaque valeur et les règles conditionnelles exactes se trouvent dans la référence des [variables de modèle](/docs/template-variables).
 
 > [!TIP]
 > Gardez les données du Directory propres avant le déploiement - les intitulés de poste, les services et les numéros de téléphone viennent directement de Google Directory. Les champs vides sont simplement rendus comme du texte vide, sauf si vous les enveloppez dans des balises `{{del}}`.
@@ -42,7 +42,9 @@ Le volet d'aperçu rend la signature résolue en direct pendant que vous tapez. 
 
 Cliquez sur **Me définir une signature de test** dans la barre d'outils de l'éditeur. SignatureCat rend le modèle à partir de votre propre fiche Directory et l'écrit dans votre propre signature Gmail - personne d'autre n'est affecté. Envoyez-vous un e-mail ou vérifiez les paramètres Gmail pour voir le résultat réel.
 
-Quand le modèle vous convient, continuez avec [Affecter des modèles](/docs/assign-templates/).
+SignatureCat relit ensuite la signature depuis votre boîte. Si Gmail l'a réécrite lors de l'enregistrement, un avis ambre apparaît : "Signature appliquée, mais Gmail a enregistré une copie tronquée." (ou "Signature appliquée, mais Gmail a enregistré une signature vide."). Ouvrez **Détails techniques** pour connaître les éléments supprimés et les décomptes de caractères avant et après. C'est le moyen le plus rapide de trouver la construction que Gmail refuse de conserver - voir [Quand Gmail tronque votre signature](/docs/gmail-sanitization).
+
+Quand le modèle vous convient, continuez avec [Affecter des modèles](/docs/assign-templates).
 
 > [!NOTE]
-> L'enregistrement d'un modèle le valide : les `{{tokens}}` inconnus et les balises `{{del}}` / `{{delete}}` non équilibrées sont rejetés, et le HTML est assaini (les scripts, les iframes et les gestionnaires d'événements en ligne sont retirés). Voir [Modèles](/docs/templates/) pour la référence complète.
+> L'enregistrement d'un modèle le valide : les `{{tokens}}` inconnus et les balises `{{del}}` / `{{delete}}` non équilibrées sont rejetés, et le HTML est assaini (les scripts, les iframes et les gestionnaires d'événements en ligne sont retirés). Voir [Modèles](/docs/templates) pour la référence complète.

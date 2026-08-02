@@ -2,7 +2,7 @@
 title: Utwórz swój pierwszy szablon
 navTitle: Utwórz swój pierwszy szablon
 description: Utwórz szablon podpisu Gmail w SignatureCat, spersonalizuj go zmiennymi z Google Directory, obejrzyj podgląd i przetestuj na własnej skrzynce.
-updated: 2026-07-26
+updated: 2026-08-02
 ---
 
 # Utwórz swój pierwszy szablon
@@ -16,9 +16,9 @@ Szablon to jeden podpis HTML, który SignatureCat personalizuje per użytkownik 
    - **Domyślny** - zdjęcie z Directory plus dane kontaktowe.
    - **Z logo firmy** - Twoje logo (115x115 px) zamiast zdjęcia osobistego, spójne w całej firmie.
    - **Z banerem** - podpis plus baner kampanii (450x100 px) pod spodem.
-3. Dla starterów z logo lub banerem wybierz obrazek z biblioteki albo wgraj nowy - albo pomiń ten krok, a do czasu wyboru używany będzie placeholder. Zobacz [Banery i logo](/docs/banners-and-logos/).
+3. Dla starterów z logo lub banerem wybierz obrazek z biblioteki albo wgraj nowy - albo pomiń ten krok, a do czasu wyboru używany będzie placeholder. Zobacz [Banery i logo](/docs/banners-and-logos).
 
-Edytor otwiera się od razu. Wszystko ze startera możesz później dostosować - bezpośrednio w HTML albo na kanwie [edytora wizualnego](/docs/visual-editor/) zupełnie bez HTML (przełącz się na kartę **Wizualny**; jednorazowa konwersja jest opisana na tamtej stronie).
+Edytor otwiera się od razu. Wszystko ze startera możesz później dostosować - bezpośrednio w HTML albo na kanwie [edytora wizualnego](/docs/visual-editor) zupełnie bez HTML, gdzie tekst, chipy zmiennych, kolumny, separatory oraz obrazki z Twojej biblioteki lub spod dowolnego adresu `https://` są blokami, które układasz (przełącz się na kartę **Wizualny**; jednorazowa konwersja jest opisana na tamtej stronie).
 
 ## Personalizuj zmiennymi
 
@@ -29,7 +29,7 @@ Owijaj opcjonalne linie w tagi warunkowe, aby podpisy pozostały czyste przy bra
 - `{{del}} ... {{/del}}` usuwa owinięty blok tylko wtedy, gdy **wszystkie** zmienne wewnątrz są puste.
 - `{{delete}} ... {{/delete}}` usuwa blok, gdy **choć jedna** zmienna wewnątrz jest pusta.
 
-Pełna lista zmiennych, źródło każdej wartości i dokładne reguły warunków znajdują się w referencji [Zmienne szablonów](/docs/template-variables/).
+Pełna lista zmiennych, źródło każdej wartości i dokładne reguły warunków znajdują się w referencji [Zmienne szablonów](/docs/template-variables).
 
 > [!TIP]
 > Zadbaj o porządek w danych Directory przed wdrożeniem - stanowiska, działy i numery telefonów pochodzą wprost z Google Directory. Puste pola renderują się po prostu jako pusty tekst, chyba że owiniesz je w tagi `{{del}}`.
@@ -42,7 +42,9 @@ Panel podglądu renderuje rozwiązany podpis na żywo w trakcie pisania. Użyj k
 
 Kliknij **Ustaw mi testowy podpis** w pasku narzędzi edytora. SignatureCat wyrenderuje szablon na podstawie Twojego rekordu Directory i zapisze go do Twojego własnego podpisu Gmail - nikt inny nie zostaje objęty. Wyślij do siebie e-mail albo zajrzyj do ustawień Gmail, żeby zobaczyć realny efekt.
 
-Gdy szablon Ci odpowiada, przejdź do [Przypisz szablony](/docs/assign-templates/).
+SignatureCat odczytuje potem podpis z powrotem z Twojej skrzynki. Jeśli Gmail przepisał go przy zapisie, pojawia się bursztynowe powiadomienie: "Podpis ustawiony, ale Gmail zapisał okrojoną wersję." (albo "Podpis ustawiony, ale Gmail zapisał pustą stopkę."). Rozwiń **Szczegóły techniczne**, aby zobaczyć utracone elementy oraz liczniki znaków przed i po. To najszybszy sposób na znalezienie konstrukcji, której Gmail nie chce zachować - zobacz [Kiedy Gmail okraja Twój podpis](/docs/gmail-sanitization).
+
+Gdy szablon Ci odpowiada, przejdź do [Przypisz szablony](/docs/assign-templates).
 
 > [!NOTE]
-> Zapisanie szablonu waliduje go: nieznane `{{tokens}}` oraz niezbalansowane tagi `{{del}}` / `{{delete}}` są odrzucane, a HTML jest sanityzowany (skrypty, iframe'y i inline'owe handlery zdarzeń są usuwane). Zobacz [Szablony](/docs/templates/), aby poznać pełną referencję.
+> Zapisanie szablonu waliduje go: nieznane `{{tokens}}` oraz niezbalansowane tagi `{{del}}` / `{{delete}}` są odrzucane, a HTML jest sanityzowany (skrypty, iframe'y i inline'owe handlery zdarzeń są usuwane). Zobacz [Szablony](/docs/templates), aby poznać pełną referencję.

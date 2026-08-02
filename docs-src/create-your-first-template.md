@@ -2,7 +2,7 @@
 title: Create your first template
 navTitle: Create your first template
 description: Create a Gmail signature template in SignatureCat, personalize it with Google Directory variables, preview it and test it on your own mailbox.
-updated: 2026-07-26
+updated: 2026-08-02
 ---
 
 # Create your first template
@@ -18,7 +18,7 @@ A template is one HTML signature that SignatureCat personalizes per user with da
    - **With banner** - the signature plus a campaign banner (450x100 px) below it.
 3. For the logo or banner starters, pick an image from your library or upload one - or skip and a placeholder is used until you choose one. See [Banners and logos](/docs/banners-and-logos/).
 
-The editor opens immediately. Everything from the starter can be adjusted later - either directly in the HTML, or on the [visual editor](/docs/visual-editor/) canvas with no HTML at all (switch to the **Visual** tab; the one-time conversion is described on that page).
+The editor opens immediately. Everything from the starter can be adjusted later - either directly in the HTML, or on the [visual editor](/docs/visual-editor/) canvas with no HTML at all, where text, variable chips, columns, dividers and images from your library or from any `https://` address are blocks you arrange (switch to the **Visual** tab; the one-time conversion is described on that page).
 
 ## Personalize with variables
 
@@ -41,6 +41,8 @@ The preview pane renders the resolved signature live as you type. Use the **Rend
 ## Test it on your own mailbox
 
 Click **Set me a test signature** in the editor toolbar. SignatureCat renders the template against your own Directory record and writes it to your own Gmail signature - no one else is affected. Send yourself an email or check Gmail settings to see the real result.
+
+SignatureCat then reads the signature back from your mailbox. If Gmail rewrote it while saving, an amber notice appears: "Applied, but Gmail stored a trimmed copy of this signature." (or "Applied, but Gmail stored an empty signature."). Open **Technical details** for the dropped elements and the character counts before and after. This is the fastest way to find the construct Gmail refuses to keep - see [When Gmail trims your signature](/docs/gmail-sanitization).
 
 When you are happy with the template, continue to [Assign templates](/docs/assign-templates/).
 

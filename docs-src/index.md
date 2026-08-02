@@ -2,7 +2,7 @@
 title: Introduction
 navTitle: Introduction
 description: What SignatureCat is and how it manages Gmail signatures across your Google Workspace - templates, assignments and automatic daily sync.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # SignatureCat documentation
@@ -16,7 +16,8 @@ The app runs at [app.signature.cat](https://app.signature.cat). This documentati
 1. **Connect your Google Workspace.** A Workspace super admin authorizes SignatureCat through [Domain-Wide Delegation](/docs/domain-wide-delegation/), so it can read your user directory and write Gmail signatures.
 2. **Create a template.** One HTML template with [variables](/docs/template-variables/) like `{{firstname}}` or `{{jobtitle}}` that resolve per user from your Google Directory.
 3. **Assign it.** Bind templates to groups, organizational units or everyone at once on the [Assignments](https://app.signature.cat/assignments) page.
-4. **Stay up to date.** A background sync re-applies assignments once a day, so new hires and team changes get the right signature without anyone lifting a finger.
+4. **Fill the gaps.** Where the directory is incomplete, an admin can store per-user values on the **Data** tab that win over the directory in signatures. See [User data](/docs/user-data).
+5. **Stay up to date.** A background sync re-applies assignments once a day, so new hires and team changes get the right signature without anyone lifting a finger.
 
 ## What you need
 
@@ -41,5 +42,8 @@ Follow the Getting started guides in order:
 - [Templates](/docs/templates/) and [Template variables](/docs/template-variables/) - the full editor and variable reference.
 - [Assignments](/docs/assignments/) - precedence rules and alias modes.
 - [Apply jobs](/docs/apply-jobs/) and [Logs](/docs/logs/) - how signature rollout is tracked.
+- [User data](/docs/user-data) and [Import user data](/docs/user-data-import) - per-user values that override the directory, one by one or from a CSV file.
+- [Mail client preview](/docs/mail-client-preview) - how the preview simulates Gmail, Outlook and Apple Mail in light and dark.
+- [When Gmail trims your signature](/docs/gmail-sanitization) - what the "trimmed by Gmail" warning means and how to fix it.
 - [Notifications](/docs/notifications/) - which alerts arrive by email and which appear in the app.
 - [Get help](/docs/get-help/) - support contact and [service status](/docs/service-status/).

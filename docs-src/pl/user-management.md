@@ -1,8 +1,8 @@
 ---
 title: Zarządzanie dostępem i poziomy dostępu
 navTitle: Zarządzanie dostępem
-description: Kto może logować się do SignatureCat, na co pozwala każdy poziom dostępu i jak nadawać dostęp pojedynczym użytkownikom lub całym grupom Google.
-updated: 2026-07-17
+description: Kto może logować się do SignatureCat, na co pozwala każdy poziom dostępu Google Workspace i kto może edytować dane do podpisu lub nadawać dostęp grupom.
+updated: 2026-08-02
 ---
 
 # Zarządzanie dostępem i poziomy dostępu
@@ -17,14 +17,18 @@ Do SignatureCat mogą logować się tylko osoby, które jawnie wpuścisz: supera
 | Self-service + edycja | Self-service plus własny kod HTML podpisu. |
 | Designer | Edytuje szablony podpisów organizacji. |
 | Editor | Designer plus zarządzanie przypisaniami i zadaniami zastosowania oraz powiadomienia w aplikacji. |
-| Admin | Pełny dostęp, łącznie z płatnościami, zarządzaniem dostępem, domenami obrazków i kreatorem DWD. |
+| Admin | Pełny dostęp, łącznie z płatnościami, zarządzaniem dostępem, danymi użytkowników, dostępem dla supportu, domenami obrazków i kreatorem DWD. |
+
+Użytkownicy każdego poziomu od **Self-service** wzwyż mogą też edytować **własne** dane do podpisu, ale dopiero wtedy, gdy Admin włączy tę funkcję i otworzy kłódkę **Edycja self-service** - zobacz [Dane użytkowników](/docs/user-data).
 
 Kilka praktycznych konsekwencji:
 
 - **Szablony** ([Podpisy](https://app.signature.cat/signatures)): Designer, Editor, Admin.
 - **Przypisania i Zastosuj** ([Przypisania](https://app.signature.cat/assignments), [Zastosuj](https://app.signature.cat/apply)): Editor, Admin.
+- **Dane użytkowników** (zakładka [Dane](https://app.signature.cat/data), gdzie zapisane wartości per użytkownik nadpisują w podpisach katalog Google): tylko Admin.
+- **Dostęp dla supportu** (przełącznik, który pozwala supportowi SignatureCat pomagać w praktyce): tylko Admin - zobacz [Dostęp dla supportu](/docs/support-access).
 - **Płatności, zarządzanie dostępem, własna domena obrazków**: tylko Admin.
-- Użytkownicy z poziomem Editor widzą [powiadomienia](/docs/notifications/) w aplikacji; **e-maile** alertowe i rozliczeniowe trafiają wyłącznie do administratorów.
+- Użytkownicy z poziomem Editor widzą [powiadomienia](/docs/notifications) w aplikacji; **e-maile** alertowe i rozliczeniowe trafiają wyłącznie do administratorów.
 
 > [!NOTE]
 > **Superadmini** Workspace zawsze mają poziom Admin. Jest to egzekwowane przy każdym logowaniu i nie da się tego odebrać w SignatureCat - aby to zmienić, zmień ich status administratora w samym Google Workspace.
@@ -64,4 +68,4 @@ Bezpośredni grant użytkownika zawsze **nadpisuje** grant grupowy dla tej osoby
 
 ## Pozwól użytkownikom zarządzać własnym podpisem
 
-Nadaj użytkownikom (lub grupie) poziom **Self-service** i włącz co najmniej jeden szablon do self-service - pełny przebieg jest opisany w [Self-service](/docs/self-service/).
+Nadaj użytkownikom (lub grupie) poziom **Self-service** i włącz co najmniej jeden szablon do self-service - pełny przebieg jest opisany w [Self-service](/docs/self-service). Jeśli chcesz też, aby użytkownicy uzupełniali własne wartości zmiennych, włącz dane użytkowników i otwórz **Edycja self-service** na zakładce [Dane](https://app.signature.cat/data); wpisane przez nich wartości widzisz u siebie i możesz każdą z nich nadpisać albo usunąć.

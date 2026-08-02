@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>When Gmail trims your signature | SignatureCat Docs</title>
+  <meta name="description" content="Why Gmail can store a trimmed copy of a signature SignatureCat applied in your Google Workspace, how to spot it and how to fix the template." />
+  <link rel="canonical" href="https://signature.cat/docs/gmail-sanitization" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/gmail-sanitization" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/gmail-sanitization" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/gmail-sanitization" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/gmail-sanitization" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/gmail-sanitization" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="When Gmail trims your signature | SignatureCat Docs" />
+  <meta property="og:description" content="Why Gmail can store a trimmed copy of a signature SignatureCat applied in your Google Workspace, how to spot it and how to fix the template." />
+  <meta property="og:url" content="https://signature.cat/docs/gmail-sanitization" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="When Gmail trims your signature | SignatureCat Docs" />
+  <meta name="twitter:description" content="Why Gmail can store a trimmed copy of a signature SignatureCat applied in your Google Workspace, how to spot it and how to fix the template." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "When Gmail trims your signature",
+      "description": "Why Gmail can store a trimmed copy of a signature SignatureCat applied in your Google Workspace, how to spot it and how to fix the template.",
+      "url": "https://signature.cat/docs/gmail-sanitization",
+      "inLanguage": "en",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Docs",
+          "item": "https://signature.cat/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Support",
+          "item": "https://signature.cat/docs/gmail-sanitization"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "When Gmail trims your signature",
+          "item": "https://signature.cat/docs/gmail-sanitization"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Skip to content</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Toggle documentation menu" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Search documentation" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Search docs</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Theme: system" title="Theme: system">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Help</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">Open app</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">What's new</p>
+        <ul>
+        <li><a href="/docs/changelog">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Getting started</p>
+        <ul>
+        <li><a href="/docs">Introduction</a></li>
+        <li><a href="/docs/connect-google-workspace">Connect Google Workspace</a></li>
+        <li><a href="/docs/create-your-first-template">Create your first template</a></li>
+        <li><a href="/docs/assign-templates">Assign templates</a></li>
+        <li><a href="/docs/verify-assignments">Verify assignment jobs</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Advanced setup</p>
+        <ul>
+        <li><a href="/docs/user-management">User management</a></li>
+        <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
+        <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
+        <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Billing</p>
+        <ul>
+        <li><a href="/docs/invoices">Invoices</a></li>
+        <li><a href="/docs/billing-details">Billing details</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Reference</p>
+        <ul>
+        <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/docs/templates">Templates</a></li>
+        <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
+        <li><a href="/docs/template-variables">Template variables</a></li>
+        <li><a href="/docs/assignments">Assignments</a></li>
+        <li><a href="/docs/apply-jobs">Apply jobs</a></li>
+        <li><a href="/docs/logs">Logs</a></li>
+        <li><a href="/docs/images">Images</a></li>
+        <li><a href="/docs/notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Support</p>
+        <ul>
+        <li><a href="/docs/support-access">Support access</a></li>
+        <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization" aria-current="page">Gmail trimming</a></li>
+        <li><a href="/docs/service-status">Service status</a></li>
+        <li><a href="/docs/legal">Legal</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Breadcrumb"><a href="/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Support</span><span class="crumb-sep">/</span><span aria-current="page">Gmail trimming</span></nav>
+      <article class="docs-article">
+<h1>When Gmail trims your signature</h1>
+<p>If SignatureCat reports a successful apply but the signature in Gmail looks cut off, Gmail trimmed it after the write. Gmail runs its own sanitizer on Google's servers whenever it saves a signature, so the copy Gmail keeps can be structurally different from the one SignatureCat sent - the write succeeds and the stored result is still shorter. SignatureCat compares the two on every write and tells you when they differ.</p>
+<h2 id="why-gmail-changes-a-signature-that-applied-successfully">Why Gmail changes a signature that applied successfully<a class="h-anchor" href="#why-gmail-changes-a-signature-that-applied-successfully" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Gmail sanitizes signature HTML on its own servers, by rules Google does not publish. The API call can return success and Gmail can still keep a reduced copy, dropping elements it did not want to store. The rewrite happens inside Google, after your template left SignatureCat, so neither the template validation nor the preview can predict it.</p>
+<p>SignatureCat catches it immediately after the fact. Every signature write reads the copy Gmail returns in its own write response - that response body is the saved signature, already sanitized - and compares its structure with what was sent. The check costs no extra Google API calls, and it runs on all four write paths: one-shot applies, the daily assignment sync, and both alias write paths. Cosmetic rewrites do not raise a warning: re-encoded entities, whitespace, <code>b</code> swapped for <code>strong</code> or <code>i</code> for <code>em</code>, or Gmail wrapping your signature in markup of its own are all treated as benign. The warning fires only when structural elements actually went missing.</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
+<p>This is Gmail's behavior on Google's side, not a SignatureCat setting, and it cannot be switched off. SignatureCat's own sanitizer is a different thing that runs earlier, when you save a template, stripping scripts, iframes and inline event handlers - see <a href="/docs/templates">Templates</a>.</p>
+</div></aside>
+<h2 id="where-you-see-the-warning">Where you see the warning<a class="h-anchor" href="#where-you-see-the-warning" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Two surfaces report it: the job results in <a href="/docs/logs">Logs</a>, and the test apply in the template editor.</p>
+<h3 id="in-logs-and-on-the-job-view">In Logs and on the job view<a class="h-anchor" href="#in-logs-and-on-the-job-view" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
+<p>The per-user row keeps its green tick and gains an amber <strong>trimmed by Gmail</strong> badge with the line "Applied, but Gmail stored a trimmed copy of this signature." The same badge and line appear on the full job view at <code>app.signature.cat/jobs/{id}</code>.</p>
+<p>Open <strong>Technical details</strong> on the row for the raw facts: how many characters were sent, how many Gmail stored, and which elements were dropped with their before and after counts, for example:</p>
+<pre><code>Gmail stored a sanitized copy of the signature (2712 -&gt; 1580 chars; dropped tags: tr 5-&gt;3, img 2-&gt;1)</code></pre>
+<p>A signature Gmail stored as completely empty carries the same badge and the same line - only the technical details say that the stored signature is empty. The per-user error code behind the badge is <code>GMAIL_SIGNATURE_SANITIZED</code>; unlike the codes in <a href="/docs/verify-assignments">Verify an assignment job</a>, it sits on a successful row and is a warning, not a failure.</p>
+<h3 id="after-a-test-apply-in-the-editor">After a test apply in the editor<a class="h-anchor" href="#after-a-test-apply-in-the-editor" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
+<p>Click <strong>Set me a test signature</strong> in the template editor and SignatureCat writes the template to your own Gmail signature, then reads your mailbox back. If Gmail trimmed it, an amber, dismissible notice appears with one of two titles:</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Title</th><th scope="col">What Gmail stored</th></tr></thead>
+<tbody>
+<tr><td>Applied, but Gmail stored a trimmed copy of this signature.</td><td>A structurally different, reduced copy.</td></tr>
+<tr><td>Applied, but Gmail stored an empty signature.</td><td>Nothing at all.</td></tr>
+</tbody>
+</table></div>
+<p>The body reads "Gmail rewrites signatures on its servers while saving them. Check your mailbox and simplify the affected parts if something is missing." The details disclosure shows "Sent {sent} characters, Gmail stored {stored}." and "Dropped elements: {list}". <strong>Dismiss warning</strong> closes the notice.</p>
+<aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tip</p><div class="callout-body">
+<p>This is the fastest way to find the construct Gmail rejects: it touches only your own mailbox and it verifies the result after every write, so each attempt is one click.</p>
+</div></aside>
+<h2 id="why-the-row-still-counts-as-a-success">Why the row still counts as a success<a class="h-anchor" href="#why-the-row-still-counts-as-a-success" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>The write worked, so the row stays a success. Gmail accepted the request and saved a signature; applying the same template again sends the same HTML, and Gmail stores the same trimmed copy. Re-running the rollout therefore changes nothing.</p>
+<p>The fix is the template, not the job:</p>
+<ol>
+<li>Read the dropped elements in the technical details - they name the parts that went missing.</li>
+<li>Simplify that part of the template: flatten nesting, split one complicated block into simple ones, remove the element that sits where the signature gets cut.</li>
+<li>Apply it to yourself with <strong>Set me a test signature</strong> and check whether the warning is gone.</li>
+<li>Read the mailbox back to confirm what Gmail really kept.</li>
+<li>Re-apply to the affected users once the test comes back clean.</li>
+</ol>
+<h2 id="check-what-is-really-in-the-mailbox">Check what is really in the mailbox<a class="h-anchor" href="#check-what-is-really-in-the-mailbox" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Two actions on <a href="/docs/logs">Logs</a> read a signature live from the mailbox instead of showing what SignatureCat last sent:</p>
+<ul>
+<li><strong>View current signature</strong> - on a successful per-user row. Opens a read-only preview of the signature currently stored on that address.</li>
+<li><strong>Check an employee's signature</strong> - in the Logs page header. Search for any user in your Workspace and click <strong>Show signature</strong>.</li>
+</ul>
+<p>Both reach into Gmail at the moment you click, so they also catch signatures a user edited by hand in Gmail, not only Gmail's own trimming. If the mailbox has no signature at all, the popup says "{email} has no signature set in Gmail." The lookup is available to Editors and Admins, and each one is recorded in your activity log with the address that was read.</p>
+<h2 id="what-tends-to-survive-what-tends-to-get-trimmed">What tends to survive, what tends to get trimmed<a class="h-anchor" href="#what-tends-to-survive-what-tends-to-get-trimmed" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Google does not document the rules, so treat this as observation rather than a specification.</p>
+<ul>
+<li><strong>The one case seen in production:</strong> a hand-written template combining a nested table, a horizontal rule, a banner image and italic legal text applied successfully - and Gmail kept only the part above the horizontal rule. Everything below it was gone from the mailbox.</li>
+<li><strong>Deep nesting is the usual suspect.</strong> Layouts built from tables inside tables inside tables give Gmail the most to rewrite.</li>
+<li><strong>Cosmetic differences are not trimming.</strong> If your signature looks right in the mailbox and no warning appeared, Gmail re-serializing your markup is harmless.</li>
+</ul>
+<p>SignatureCat watches the structural elements for disappearance: links, line breaks, <code>div</code>, <code>hr</code>, images, lists and list items, paragraphs, <code>span</code>, tables with their rows and cells, plus bold and italic. Those are the names you will see in the dropped-elements list.</p>
+<p>When something is flagged, simplify the flagged part, test it on your own mailbox, and read the mailbox back rather than trusting the preview - the preview renders the HTML SignatureCat sends, which is exactly the copy Gmail may reduce.</p>
+<h2 id="gmails-10000-character-limit">Gmail's 10,000 character limit<a class="h-anchor" href="#gmails-10000-character-limit" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Gmail caps a signature at 10,000 characters of HTML, and that is a separate, earlier failure mode: it is about size, not structure, and it stops you before anything reaches Gmail. The <a href="/docs/visual-editor">visual editor</a> shows a live budget counter in the corner of the canvas reading "{used} / {max} characters", which changes color as you approach the cap. Over the limit the editor states "The signature exceeds the Gmail limit of 10,000 characters of HTML. Shorten it to save." and the save is rejected.</p>
+<p>A template that fits the budget can still be trimmed by Gmail, and a trimmed signature is usually well under the cap - the two problems are unrelated.</p>
+<h2 id="when-to-contact-support">When to contact support<a class="h-anchor" href="#when-to-contact-support" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Write to support when a signature is trimmed and simplifying it does not help, or when the same template is stored correctly for some users and trimmed for others. See <a href="/docs/get-help">Get help</a> for the address and the general checklist, and include:</p>
+<ul>
+<li>the <strong>job link</strong> (<code>app.signature.cat/jobs/...</code>) or a screenshot of the row with the <strong>trimmed by Gmail</strong> badge,</li>
+<li>the full text behind <strong>Technical details</strong> (character counts and dropped elements),</li>
+<li>the template involved, and which part of it disappears in the mailbox,</li>
+<li>whether <strong>Set me a test signature</strong> on your own mailbox reproduces it.</li>
+</ul>
+<aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Important</p><div class="callout-body">
+<p>Support cannot make Gmail keep markup it decided to drop - Google controls that. What support can help with is identifying which construct in the template triggers the trimming.</p>
+</div></aside>
+      </article>
+<nav class="docs-pager" aria-label="Pagination">
+<a class="pager-card pager-prev" href="/docs/get-help" rel="prev">
+      <span class="pager-label">Previous</span>
+      <span class="pager-title">Get help</span>
+    </a>
+<a class="pager-card pager-next" href="/docs/service-status" rel="next">
+      <span class="pager-label">Next</span>
+      <span class="pager-title">Service status</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Language">
+            <option value="/docs/gmail-sanitization" data-lang="en" lang="en" selected>English</option>
+            <option value="/pl/docs/gmail-sanitization" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/gmail-sanitization" data-lang="de" lang="de">Deutsch</option>
+            <option value="/fr/docs/gmail-sanitization" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Contact</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Legal</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page">
+      <nav>
+        <p class="docs-toc-title">On this page</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#why-gmail-changes-a-signature-that-applied-successfully">Why Gmail changes a signature that applied successfully</a></li>
+        <li class="toc-l2"><a href="#where-you-see-the-warning">Where you see the warning</a></li>
+        <li class="toc-l3"><a href="#in-logs-and-on-the-job-view">In Logs and on the job view</a></li>
+        <li class="toc-l3"><a href="#after-a-test-apply-in-the-editor">After a test apply in the editor</a></li>
+        <li class="toc-l2"><a href="#why-the-row-still-counts-as-a-success">Why the row still counts as a success</a></li>
+        <li class="toc-l2"><a href="#check-what-is-really-in-the-mailbox">Check what is really in the mailbox</a></li>
+        <li class="toc-l2"><a href="#what-tends-to-survive-what-tends-to-get-trimmed">What tends to survive, what tends to get trimmed</a></li>
+        <li class="toc-l2"><a href="#gmails-10000-character-limit">Gmail's 10,000 character limit</a></li>
+        <li class="toc-l2"><a href="#when-to-contact-support">When to contact support</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Search documentation" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Search documentation" autocomplete="off" spellcheck="false" aria-label="Search documentation" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Close search">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>No results. Try different keywords or email <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

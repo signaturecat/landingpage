@@ -2,7 +2,7 @@
 title: Connect your Google Workspace
 navTitle: Connect Google Workspace
 description: Register SignatureCat as a Google Workspace super admin, provision your isolated service account and authorize Domain-Wide Delegation.
-updated: 2026-07-17
+updated: 2026-08-02
 ---
 
 # Connect your Google Workspace
@@ -14,20 +14,28 @@ To connect a Google Workspace to SignatureCat, a **Workspace super admin** signs
 
 ## Step 1: Sign in with Google
 
-Open [app.signature.cat](https://app.signature.cat) and click **Sign in with Google** using your company account. SignatureCat only requests the basic `openid email profile` sign-in scopes at this point - the Workspace permissions are granted separately in step 3, and only to your own isolated service account.
+Open [app.signature.cat](https://app.signature.cat) and click **Sign in with Google** using your company account. SignatureCat only requests the basic `openid email profile` sign-in scopes at this point - the Workspace permissions are granted separately in step 4, and only to your own isolated service account.
 
 Personal Gmail accounts are rejected: SignatureCat requires a Google Workspace account.
 
-## Step 2: Set up your workspace
+## Step 2: Accept the terms
 
-Right after the first sign-in you land on the **Set up your workspace** screen. Clicking **Set up workspace** creates a dedicated, isolated Google Cloud service account for your organization - this is the identity that will manage Gmail signatures on your behalf. It usually takes a few seconds (up to 15).
+After the first sign-in you land on **Accept the terms to get started**. Tick "I have read and accept the Terms of Service and the Privacy Policy." (both open in a new tab) and click **Accept and continue**.
+
+This step is mandatory and comes first by design: nothing is provisioned for your organization until the terms are accepted.
+
+Only the administrator who created the organization can accept them. Anyone else from your domain who signs in before that sees a **Waiting for your administrator** card and gets access as soon as the founding admin has completed this step.
+
+## Step 3: Set up your workspace
+
+Once the terms are accepted you land on the **Set up your workspace** screen. Clicking **Set up workspace** creates a dedicated, isolated Google Cloud service account for your organization - this is the identity that will manage Gmail signatures on your behalf. It usually takes a few seconds (up to 15).
 
 > [!NOTE]
 > Each customer gets their **own** service account. Its credentials are stored in a secrets vault, never in the application database, and keys are rotated automatically. Rotation never changes the Client ID, so you will never have to re-authorize because of it.
 
 Only the administrator who created the organization can complete this step.
 
-## Step 3: Authorize Domain-Wide Delegation
+## Step 4: Authorize Domain-Wide Delegation
 
 Next, the wizard **Authorize SignatureCat in your Workspace** at [app.signature.cat/onboarding/dwd](https://app.signature.cat/onboarding/dwd) walks you through the Google Admin console:
 
@@ -52,7 +60,7 @@ The last scope, `gmail.settings.sharing`, is **optional**: it is only needed to 
 
 Google needs a moment to propagate a fresh DWD grant - typically seconds, sometimes up to about 30 seconds. The **Check** button already waits out most of this window. If you still see the yellow "access may still be propagating" card, wait a moment and click **Check** again. This is not an error.
 
-## Step 4: Billing
+## Step 5: Billing
 
 After DWD verifies, you are taken to [Billing](https://app.signature.cat/billing) to start the 7-day free trial (card collected up front, charged when the trial ends). See [Invoices](/docs/invoices/) for the pricing tiers.
 

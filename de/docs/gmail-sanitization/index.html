@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <title>Wenn Gmail Ihre Signatur kürzt | SignatureCat Docs</title>
+  <meta name="description" content="Warum Gmail eine gekürzte Kopie einer Signatur speichern kann, die SignatureCat in Ihrem Google Workspace angewendet hat, wie Sie das erkennen und wie Sie die Vorlage korrigieren." />
+  <link rel="canonical" href="https://signature.cat/de/docs/gmail-sanitization" />
+  <link rel="alternate" hreflang="en" href="https://signature.cat/docs/gmail-sanitization" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/gmail-sanitization" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de/docs/gmail-sanitization" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr/docs/gmail-sanitization" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/docs/gmail-sanitization" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SignatureCat Docs" />
+  <meta property="og:title" content="Wenn Gmail Ihre Signatur kürzt | SignatureCat Docs" />
+  <meta property="og:description" content="Warum Gmail eine gekürzte Kopie einer Signatur speichern kann, die SignatureCat in Ihrem Google Workspace angewendet hat, wie Sie das erkennen und wie Sie die Vorlage korrigieren." />
+  <meta property="og:url" content="https://signature.cat/de/docs/gmail-sanitization" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
+  <meta name="twitter:title" content="Wenn Gmail Ihre Signatur kürzt | SignatureCat Docs" />
+  <meta name="twitter:description" content="Warum Gmail eine gekürzte Kopie einer Signatur speichern kann, die SignatureCat in Ihrem Google Workspace angewendet hat, wie Sie das erkennen und wie Sie die Vorlage korrigieren." />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <script>try{var t=localStorage.getItem('sigcat-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/docs.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Wenn Gmail Ihre Signatur kürzt",
+      "description": "Warum Gmail eine gekürzte Kopie einer Signatur speichern kann, die SignatureCat in Ihrem Google Workspace angewendet hat, wie Sie das erkennen und wie Sie die Vorlage korrigieren.",
+      "url": "https://signature.cat/de/docs/gmail-sanitization",
+      "inLanguage": "de",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "SignatureCat Docs",
+        "url": "https://signature.cat/docs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://signature.cat/#organization",
+        "name": "SignatureCat",
+        "url": "https://signature.cat/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://signature.cat/assets/img/logo-mark.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Doku",
+          "item": "https://signature.cat/de/docs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Support",
+          "item": "https://signature.cat/de/docs/gmail-sanitization"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Wenn Gmail Ihre Signatur kürzt",
+          "item": "https://signature.cat/de/docs/gmail-sanitization"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#docs-content">Zum Inhalt springen</a>
+
+  <header class="site-header docs-header">
+    <div class="docs-topbar">
+      <div class="docs-topbar-left">
+        <button class="docs-menu-btn" id="docs-menu-btn" aria-label="Dokumentationsmenü umschalten" aria-expanded="false" aria-controls="docs-sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
+        </a>
+        <a href="/de/docs" class="docs-wordmark">Docs</a>
+      </div>
+      <button class="docs-search-btn" id="docs-search-btn" aria-label="Dokumentation durchsuchen" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="docs-search-text">Doku durchsuchen</span>
+        <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+      </button>
+      <div class="docs-topbar-right">
+        <a class="status-pill" id="status-pill" href="https://status.signature.cat/" target="_blank" rel="noopener">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          <span class="status-pill-text">Status</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-mode="system" aria-label="Design: System" title="Design: System">
+          <svg class="i-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+        </button>
+        <a class="btn-help" href="mailto:contact@signature.cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.6M12 17h.01"/></svg><span>Hilfe</span></a>
+        <a class="btn btn-primary docs-app-btn" href="https://app.signature.cat">App öffnen</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Dokumentation">
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Neuigkeiten</p>
+        <ul>
+        <li><a href="/de/docs/changelog">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Erste Schritte</p>
+        <ul>
+        <li><a href="/de/docs">Einführung</a></li>
+        <li><a href="/de/docs/connect-google-workspace">Google Workspace verbinden</a></li>
+        <li><a href="/de/docs/create-your-first-template">Ihre erste Vorlage erstellen</a></li>
+        <li><a href="/de/docs/assign-templates">Vorlagen zuweisen</a></li>
+        <li><a href="/de/docs/verify-assignments">Zuweisungsaufträge prüfen</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Erweiterte Einrichtung</p>
+        <ul>
+        <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
+        <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/user-data">Benutzerdaten</a></li>
+        <li><a href="/de/docs/user-data-import">Benutzerdaten importieren</a></li>
+        <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
+        <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Abrechnung</p>
+        <ul>
+        <li><a href="/de/docs/invoices">Rechnungen</a></li>
+        <li><a href="/de/docs/billing-details">Rechnungsdaten</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Referenz</p>
+        <ul>
+        <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
+        <li><a href="/de/docs/templates">Vorlagen</a></li>
+        <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
+        <li><a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a></li>
+        <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
+        <li><a href="/de/docs/assignments">Zuweisungen</a></li>
+        <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
+        <li><a href="/de/docs/logs">Protokolle</a></li>
+        <li><a href="/de/docs/images">Bilder</a></li>
+        <li><a href="/de/docs/notifications">Benachrichtigungen</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-group">
+        <p class="docs-nav-label">Support</p>
+        <ul>
+        <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
+        <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/gmail-sanitization" aria-current="page">Gmail-Kürzung</a></li>
+        <li><a href="/de/docs/service-status">Dienststatus</a></li>
+        <li><a href="/de/docs/legal">Rechtliches</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="docs-sidebar-backdrop" id="docs-sidebar-backdrop" hidden></div>
+
+    <main class="docs-main" id="docs-content">
+      <nav class="docs-breadcrumb" aria-label="Brotkrümelnavigation"><a href="/de/docs">Doku</a><span class="crumb-sep">/</span><span class="crumb-section">Support</span><span class="crumb-sep">/</span><span aria-current="page">Gmail-Kürzung</span></nav>
+      <article class="docs-article">
+<h1>Wenn Gmail Ihre Signatur kürzt</h1>
+<p>Wenn SignatureCat ein erfolgreiches Anwenden meldet, die Signatur in Gmail aber abgeschnitten aussieht, hat Gmail sie nach dem Schreibvorgang gekürzt. Gmail führt beim Speichern jeder Signatur seine eigene Bereinigung auf den Servern von Google aus, sodass die von Gmail behaltene Kopie strukturell von der abweichen kann, die SignatureCat gesendet hat - der Schreibvorgang gelingt, und das gespeicherte Ergebnis ist trotzdem kürzer. SignatureCat vergleicht beide bei jedem Schreibvorgang und sagt Ihnen, wenn sie sich unterscheiden.</p>
+<h2 id="warum-gmail-eine-erfolgreich-angewendete-signatur-verndert">Warum Gmail eine erfolgreich angewendete Signatur verändert<a class="h-anchor" href="#warum-gmail-eine-erfolgreich-angewendete-signatur-verndert" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Gmail bereinigt Signatur-HTML auf den eigenen Servern, nach Regeln, die Google nicht veröffentlicht. Der API-Aufruf kann Erfolg melden, und Gmail behält trotzdem eine reduzierte Kopie, in der Elemente fehlen, die es nicht speichern wollte. Das Umschreiben passiert innerhalb von Google, nachdem Ihre Vorlage SignatureCat verlassen hat - weder die Vorlagenvalidierung noch die Vorschau können es vorhersagen.</p>
+<p>SignatureCat erkennt das unmittelbar danach. Bei jedem Signatur-Schreibvorgang liest SignatureCat die Kopie, die Gmail in seiner eigenen Schreibantwort zurückgibt - dieser Antwortinhalt ist die gespeicherte, bereits bereinigte Signatur - und vergleicht deren Struktur mit dem Gesendeten. Die Prüfung kostet keine zusätzlichen Google-API-Aufrufe und läuft auf allen vier Schreibwegen: Einmal-Anwendungen, die tägliche Zuweisungssynchronisierung und beide Alias-Schreibwege. Kosmetische Umschreibungen lösen keine Warnung aus: neu kodierte Entities, Leerraum, <code>b</code> gegen <code>strong</code> oder <code>i</code> gegen <code>em</code> getauscht oder eine Signatur, die Gmail in eigenes Markup einpackt, gelten alle als harmlos. Die Warnung erscheint nur, wenn tatsächlich strukturelle Elemente verschwunden sind.</p>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
+<p>Das ist ein Verhalten von Gmail auf Googles Seite, keine SignatureCat-Einstellung, und es lässt sich nicht abschalten. Die eigene Bereinigung von SignatureCat ist etwas anderes: Sie läuft früher, beim Speichern einer Vorlage, und entfernt Skripte, iframes und Inline-Event-Handler - siehe <a href="/de/docs/templates">Vorlagen</a>.</p>
+</div></aside>
+<h2 id="wo-sie-die-warnung-sehen">Wo Sie die Warnung sehen<a class="h-anchor" href="#wo-sie-die-warnung-sehen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Zwei Stellen melden sie: die Auftragsergebnisse in den <a href="/de/docs/logs">Protokollen</a> und die Test-Anwendung im Vorlagen-Editor.</p>
+<h3 id="in-den-protokollen-und-in-der-auftragsansicht">In den Protokollen und in der Auftragsansicht<a class="h-anchor" href="#in-den-protokollen-und-in-der-auftragsansicht" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
+<p>Die Zeile pro Nutzer behält ihren grünen Haken und erhält zusätzlich ein bernsteinfarbenes Badge <strong>von Gmail gekürzt</strong> mit der Zeile "Angewendet, aber Gmail hat eine gekürzte Kopie dieser Signatur gespeichert." Dasselbe Badge und dieselbe Zeile erscheinen in der vollständigen Auftragsansicht unter <code>app.signature.cat/jobs/{id}</code>.</p>
+<p>Öffnen Sie <strong>Technische Details</strong> in der Zeile für die Rohdaten: wie viele Zeichen gesendet wurden, wie viele Gmail gespeichert hat und welche Elemente entfernt wurden, mit den Zählern davor und danach, zum Beispiel:</p>
+<pre><code>Gmail stored a sanitized copy of the signature (2712 -&gt; 1580 chars; dropped tags: tr 5-&gt;3, img 2-&gt;1)</code></pre>
+<p>Eine Signatur, die Gmail vollständig leer gespeichert hat, trägt dasselbe Badge und dieselbe Zeile - nur die technischen Details nennen die gespeicherte Signatur leer. Der Fehlercode pro Nutzer hinter dem Badge lautet <code>GMAIL_SIGNATURE_SANITIZED</code>; anders als die Codes in <a href="/de/docs/verify-assignments">Einen Zuweisungsauftrag prüfen</a> steht er in einer erfolgreichen Zeile und ist eine Warnung, kein Fehlschlag.</p>
+<h3 id="nach-einer-test-anwendung-im-editor">Nach einer Test-Anwendung im Editor<a class="h-anchor" href="#nach-einer-test-anwendung-im-editor" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
+<p>Klicken Sie im Vorlagen-Editor auf <strong>Mir eine Testsignatur setzen</strong>: SignatureCat schreibt die Vorlage in Ihre eigene Gmail-Signatur und liest Ihr Postfach anschließend zurück. Hat Gmail gekürzt, erscheint ein bernsteinfarbener, schließbarer Hinweis mit einem von zwei Titeln:</p>
+<div class="tbl"><table>
+<thead><tr><th scope="col">Titel</th><th scope="col">Was Gmail gespeichert hat</th></tr></thead>
+<tbody>
+<tr><td>Angewendet, aber Gmail hat eine gekürzte Kopie dieser Signatur gespeichert.</td><td>Eine strukturell abweichende, reduzierte Kopie.</td></tr>
+<tr><td>Angewendet, aber Gmail hat eine leere Signatur gespeichert.</td><td>Gar nichts.</td></tr>
+</tbody>
+</table></div>
+<p>Der Text lautet "Gmail schreibt Signaturen beim Speichern auf seinen Servern um. Prüfen Sie Ihr Postfach und vereinfachen Sie die betroffenen Stellen, falls etwas fehlt." Die aufklappbaren Details zeigen "{sent} Zeichen gesendet, Gmail hat {stored} gespeichert." und "Entfernte Elemente: {list}". <strong>Warnung schließen</strong> blendet den Hinweis aus.</p>
+<aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tipp</p><div class="callout-body">
+<p>Das ist der schnellste Weg, das von Gmail abgelehnte Konstrukt zu finden: Es betrifft nur Ihr eigenes Postfach und prüft das Ergebnis nach jedem Schreibvorgang, sodass jeder Versuch ein Klick ist.</p>
+</div></aside>
+<h2 id="warum-die-zeile-trotzdem-als-erfolg-zhlt">Warum die Zeile trotzdem als Erfolg zählt<a class="h-anchor" href="#warum-die-zeile-trotzdem-als-erfolg-zhlt" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Der Schreibvorgang hat funktioniert, also bleibt die Zeile ein Erfolg. Gmail hat die Anfrage angenommen und eine Signatur gespeichert; dieselbe Vorlage erneut anzuwenden sendet dasselbe HTML, und Gmail speichert dieselbe gekürzte Kopie. Ein erneuter Rollout ändert daher nichts.</p>
+<p>Die Korrektur liegt in der Vorlage, nicht im Auftrag:</p>
+<ol>
+<li>Lesen Sie die entfernten Elemente in den technischen Details - sie benennen die verschwundenen Teile.</li>
+<li>Vereinfachen Sie diesen Teil der Vorlage: Verschachtelung abflachen, einen komplizierten Block in einfache aufteilen, das Element entfernen, das an der Stelle sitzt, an der die Signatur abgeschnitten wird.</li>
+<li>Wenden Sie sie mit <strong>Mir eine Testsignatur setzen</strong> auf sich selbst an und prüfen Sie, ob die Warnung verschwunden ist.</li>
+<li>Lesen Sie das Postfach zurück, um zu bestätigen, was Gmail wirklich behalten hat.</li>
+<li>Wenden Sie sie erneut auf die betroffenen Nutzer an, sobald der Test sauber zurückkommt.</li>
+</ol>
+<h2 id="prfen-was-wirklich-im-postfach-steht">Prüfen, was wirklich im Postfach steht<a class="h-anchor" href="#prfen-was-wirklich-im-postfach-steht" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Zwei Aktionen in den <a href="/de/docs/logs">Protokollen</a> lesen eine Signatur live aus dem Postfach, statt zu zeigen, was SignatureCat zuletzt gesendet hat:</p>
+<ul>
+<li><strong>Aktuelle Signatur anzeigen</strong> - in einer erfolgreichen Zeile pro Nutzer. Öffnet eine schreibgeschützte Vorschau der Signatur, die derzeit auf dieser Adresse gespeichert ist.</li>
+<li><strong>Signatur eines Mitarbeiters prüfen</strong> - im Kopfbereich der Protokollseite. Suchen Sie einen beliebigen Nutzer in Ihrem Workspace und klicken Sie auf <strong>Signatur anzeigen</strong>.</li>
+</ul>
+<p>Beide greifen im Moment des Klicks auf Gmail zu und erfassen damit auch Signaturen, die ein Nutzer in Gmail von Hand bearbeitet hat, nicht nur die Kürzungen von Gmail selbst. Hat das Postfach gar keine Signatur, meldet das Fenster "{email} hat in Gmail keine Signatur gesetzt." Die Abfrage steht Editoren und Admins offen, und jede einzelne wird mit der gelesenen Adresse in Ihrem Aktivitätsprotokoll festgehalten.</p>
+<h2 id="was-meist-berlebt-und-was-meist-gekrzt-wird">Was meist überlebt und was meist gekürzt wird<a class="h-anchor" href="#was-meist-berlebt-und-was-meist-gekrzt-wird" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Google dokumentiert die Regeln nicht, betrachten Sie das Folgende also als Beobachtung und nicht als Spezifikation.</p>
+<ul>
+<li><strong>Der eine in der Praxis beobachtete Fall:</strong> Eine handgeschriebene Vorlage aus verschachtelter Tabelle, horizontaler Linie, Bannerbild und kursivem Rechtstext wurde erfolgreich angewendet - und Gmail behielt nur den Teil oberhalb der horizontalen Linie. Alles darunter fehlte im Postfach.</li>
+<li><strong>Tiefe Verschachtelung ist der übliche Verdächtige.</strong> Layouts aus Tabellen in Tabellen in Tabellen geben Gmail am meisten zum Umschreiben.</li>
+<li><strong>Kosmetische Unterschiede sind keine Kürzung.</strong> Sieht Ihre Signatur im Postfach richtig aus und ist keine Warnung erschienen, ist das erneute Serialisieren Ihres Markups durch Gmail harmlos.</li>
+</ul>
+<p>SignatureCat überwacht diese strukturellen Elemente auf Verschwinden: Links, Zeilenumbrüche, <code>div</code>, <code>hr</code>, Bilder, Listen und Listeneinträge, Absätze, <code>span</code>, Tabellen mit ihren Zeilen und Zellen sowie Fett und Kursiv. Das sind die Namen, die Sie in der Liste der entfernten Elemente sehen.</p>
+<p>Wird etwas markiert, vereinfachen Sie den markierten Teil, testen Sie ihn auf Ihrem eigenen Postfach und lesen Sie das Postfach zurück, statt der Vorschau zu vertrauen - die Vorschau rendert das HTML, das SignatureCat sendet, und genau diese Kopie kann Gmail reduzieren.</p>
+<h2 id="das-10000-zeichen-limit-von-gmail">Das 10.000-Zeichen-Limit von Gmail<a class="h-anchor" href="#das-10000-zeichen-limit-von-gmail" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Gmail begrenzt eine Signatur auf 10.000 HTML-Zeichen, und das ist ein eigener, früherer Fehlerfall: Es geht um Größe, nicht um Struktur, und er stoppt Sie, bevor überhaupt etwas Gmail erreicht. Der <a href="/de/docs/visual-editor">visuelle Editor</a> zeigt in der Ecke der Arbeitsfläche einen Live-Zähler "{used} / {max} Zeichen", der die Farbe wechselt, je näher Sie der Grenze kommen. Oberhalb des Limits meldet der Editor "Die Signatur überschreitet das Gmail-Limit von 10.000 HTML-Zeichen. Kürze sie, um zu speichern." und das Speichern wird abgelehnt.</p>
+<p>Eine Vorlage, die in das Budget passt, kann trotzdem von Gmail gekürzt werden, und eine gekürzte Signatur liegt meist deutlich unter der Grenze - die beiden Probleme haben nichts miteinander zu tun.</p>
+<h2 id="wann-sie-den-support-kontaktieren-sollten">Wann Sie den Support kontaktieren sollten<a class="h-anchor" href="#wann-sie-den-support-kontaktieren-sollten" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Schreiben Sie dem Support, wenn eine Signatur gekürzt wird und das Vereinfachen nicht hilft, oder wenn dieselbe Vorlage bei manchen Nutzern korrekt und bei anderen gekürzt gespeichert wird. Die Adresse und die allgemeine Checkliste stehen unter <a href="/de/docs/get-help">Hilfe erhalten</a>; legen Sie außerdem bei:</p>
+<ul>
+<li>den <strong>Auftragslink</strong> (<code>app.signature.cat/jobs/...</code>) oder einen Screenshot der Zeile mit dem Badge <strong>von Gmail gekürzt</strong>,</li>
+<li>den vollständigen Text hinter <strong>Technische Details</strong> (Zeichenzahlen und entfernte Elemente),</li>
+<li>die betroffene Vorlage und die Angabe, welcher Teil davon im Postfach verschwindet,</li>
+<li>ob <strong>Mir eine Testsignatur setzen</strong> auf Ihrem eigenen Postfach das Problem reproduziert.</li>
+</ul>
+<aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Wichtig</p><div class="callout-body">
+<p>Der Support kann Gmail nicht dazu bringen, Markup zu behalten, das es verwerfen wollte - das steuert Google. Wobei der Support helfen kann, ist die Frage, welches Konstrukt in der Vorlage die Kürzung auslöst.</p>
+</div></aside>
+      </article>
+<nav class="docs-pager" aria-label="Seitennavigation">
+<a class="pager-card pager-prev" href="/de/docs/get-help" rel="prev">
+      <span class="pager-label">Zurück</span>
+      <span class="pager-title">Hilfe erhalten</span>
+    </a>
+<a class="pager-card pager-next" href="/de/docs/service-status" rel="next">
+      <span class="pager-label">Weiter</span>
+      <span class="pager-title">Dienststatus</span>
+    </a>
+</nav>
+      <footer class="docs-foot">
+        <span>&copy; 2026 SignatureCat</span>
+        <span class="docs-foot-links">
+          <select class="docs-lang-select" id="docs-lang-select" aria-label="Sprache">
+            <option value="/docs/gmail-sanitization" data-lang="en" lang="en">English</option>
+            <option value="/pl/docs/gmail-sanitization" data-lang="pl" lang="pl">Polski</option>
+            <option value="/de/docs/gmail-sanitization" data-lang="de" lang="de" selected>Deutsch</option>
+            <option value="/fr/docs/gmail-sanitization" data-lang="fr" lang="fr">Français</option>
+          </select>
+          <a href="mailto:contact@signature.cat">Kontakt</a>
+          <a href="https://status.signature.cat/" target="_blank" rel="noopener">Status</a>
+          <a href="/legal">Rechtliches</a>
+        </span>
+      </footer>
+    </main>
+
+    <aside class="docs-toc" aria-label="Auf dieser Seite">
+      <nav>
+        <p class="docs-toc-title">Auf dieser Seite</p>
+        <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#warum-gmail-eine-erfolgreich-angewendete-signatur-verndert">Warum Gmail eine erfolgreich angewendete Signatur verändert</a></li>
+        <li class="toc-l2"><a href="#wo-sie-die-warnung-sehen">Wo Sie die Warnung sehen</a></li>
+        <li class="toc-l3"><a href="#in-den-protokollen-und-in-der-auftragsansicht">In den Protokollen und in der Auftragsansicht</a></li>
+        <li class="toc-l3"><a href="#nach-einer-test-anwendung-im-editor">Nach einer Test-Anwendung im Editor</a></li>
+        <li class="toc-l2"><a href="#warum-die-zeile-trotzdem-als-erfolg-zhlt">Warum die Zeile trotzdem als Erfolg zählt</a></li>
+        <li class="toc-l2"><a href="#prfen-was-wirklich-im-postfach-steht">Prüfen, was wirklich im Postfach steht</a></li>
+        <li class="toc-l2"><a href="#was-meist-berlebt-und-was-meist-gekrzt-wird">Was meist überlebt und was meist gekürzt wird</a></li>
+        <li class="toc-l2"><a href="#das-10000-zeichen-limit-von-gmail">Das 10.000-Zeichen-Limit von Gmail</a></li>
+        <li class="toc-l2"><a href="#wann-sie-den-support-kontaktieren-sollten">Wann Sie den Support kontaktieren sollten</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="docs-search-overlay" id="docs-search" role="dialog" aria-modal="true" aria-label="Dokumentation durchsuchen" hidden>
+    <div class="docs-search-panel">
+      <div class="docs-search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="docs-search-input" placeholder="Dokumentation durchsuchen" autocomplete="off" spellcheck="false" aria-label="Dokumentation durchsuchen" />
+        <button type="button" class="docs-search-close" id="docs-search-close" aria-label="Suche schließen">Esc</button>
+      </div>
+      <ul class="docs-search-results" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+      <p class="docs-search-empty" id="docs-search-empty" hidden>Keine Ergebnisse. Versuchen Sie andere Suchbegriffe oder schreiben Sie an <a href="mailto:contact@signature.cat">contact@signature.cat</a>.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/docs.js" defer></script>
+</body>
+</html>

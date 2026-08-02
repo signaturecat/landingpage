@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Verify an assignment job | SignatureCat Docs</title>
-  <meta name="description" content="Check that a SignatureCat sync or apply job succeeded - job statuses, per-user results and what the common error codes mean." />
+  <meta name="description" content="Check that a SignatureCat signature job succeeded in Google Workspace - job statuses, per-user results, error codes and reading a live Gmail mailbox." />
   <link rel="canonical" href="https://signature.cat/docs/verify-assignments" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/verify-assignments" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/verify-assignments" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Verify an assignment job | SignatureCat Docs" />
-  <meta property="og:description" content="Check that a SignatureCat sync or apply job succeeded - job statuses, per-user results and what the common error codes mean." />
+  <meta property="og:description" content="Check that a SignatureCat signature job succeeded in Google Workspace - job statuses, per-user results, error codes and reading a live Gmail mailbox." />
   <meta property="og:url" content="https://signature.cat/docs/verify-assignments" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Verify an assignment job | SignatureCat Docs" />
-  <meta name="twitter:description" content="Check that a SignatureCat sync or apply job succeeded - job statuses, per-user results and what the common error codes mean." />
+  <meta name="twitter:description" content="Check that a SignatureCat signature job succeeded in Google Workspace - job statuses, per-user results, error codes and reading a live Gmail mailbox." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Verify an assignment job",
-      "description": "Check that a SignatureCat sync or apply job succeeded - job statuses, per-user results and what the common error codes mean.",
+      "description": "Check that a SignatureCat signature job succeeded in Google Workspace - job statuses, per-user results, error codes and reading a live Gmail mailbox.",
       "url": "https://signature.cat/docs/verify-assignments",
       "inLanguage": "en",
-      "datePublished": "2026-07-19",
-      "dateModified": "2026-07-19",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/docs/user-management">User management</a></li>
         <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
         <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
         <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
         <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/docs/support-access">Support access</a></li>
         <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
         <li><a href="/docs/service-status">Service status</a></li>
         <li><a href="/docs/legal">Legal</a></li>
         </ul>
@@ -192,10 +196,11 @@
       <nav class="docs-breadcrumb" aria-label="Breadcrumb"><a href="/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Getting started</span><span class="crumb-sep">/</span><span aria-current="page">Verify assignment jobs</span></nav>
       <article class="docs-article">
 <h1>Verify an assignment job</h1>
-<p>Every sync and manual apply runs as a job with a per-user result you can inspect. The quickest check is the <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Task logs</a> page; a live job also has its own detail view at <code>app.signature.cat/jobs/{id}</code> that updates in real time.</p>
+<p>Every sync and manual apply runs as a job with a per-user result you can inspect. The quickest check is the <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Task logs</a> page; a live job also has its own detail view at <code>app.signature.cat/jobs/{id}</code> that updates in real time.</p>
 <h2 id="check-the-task-logs">Check the task logs<a class="h-anchor" href="#check-the-task-logs" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Open <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Task logs</a> (Editors and Admins). Each row is one finished job - an <strong>Assignment sync</strong> or a <strong>Manual apply</strong> - with its status, start and finish time, who triggered it ("Automatic" for the daily sync) and a summary like "42 succeeded, 1 failed, 2 skipped".</p>
+<p>Open <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Task logs</a> (Editors and Admins). Each row is one finished job - an <strong>Assignment sync</strong> or a <strong>Manual apply</strong> - with its status, start and finish time, who triggered it ("Automatic" for the daily sync) and a summary like "42 succeeded, 1 failed, 2 skipped".</p>
 <p>Expand a row to see the per-user drill-down, or click <strong>Open full job view</strong> for the complete result table.</p>
+<p>The full job view also carries an <strong>Execution details</strong> panel once the job has finished: <strong>Primary addresses updated</strong>, <strong>Send-as aliases updated</strong>, <strong>Groups expanded</strong> (with the number of subgroups, when the assignment included them), <strong>Organizational units (OU) expanded</strong>, and for a whole-Workspace target the number of users it resolved to. Use it to confirm a job covered the population you expected.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Task logs are kept for a limited time (by default the last 30 days) and older entries are removed automatically. Check jobs soon after large rollouts.</p>
 </div></aside>
@@ -216,15 +221,17 @@
 <ul>
 <li><strong>TARGET_NOT_FOUND</strong> - the assigned group or OU no longer exists in the Workspace (deleted or a wrong identifier). The target was skipped, admins get a notification, and the assignment row shows a "not found in Workspace" badge. Fix or remove the assignment on <a href="https://app.signature.cat/assignments" target="_blank" rel="noopener">Assignments</a>.</li>
 <li><strong>USER_NOT_FOUND</strong> - the user no longer exists in the directory.</li>
-<li><strong>ALIAS_SCOPE_MISSING</strong> - alias signatures require the optional <code>gmail.settings.sharing</code> scope, which has not been granted. See <a href="/docs/connect-google-workspace#step-3-authorize-domain-wide-delegation">Connect your Google Workspace</a>.</li>
+<li><strong>ALIAS_SCOPE_MISSING</strong> - alias signatures require the optional <code>gmail.settings.sharing</code> scope, which has not been granted. See <a href="/docs/connect-google-workspace#step-4-authorize-domain-wide-delegation">Connect your Google Workspace</a>.</li>
 <li><strong>DWD_NOT_CONFIGURED / DWD_SCOPE_MISSING</strong> - Domain-Wide Delegation is broken or missing a scope. Re-run the wizard from <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Settings</a>. See <a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a>.</li>
 <li><strong>RATE_LIMITED</strong> - Google throttled the requests; the worker retries automatically before surfacing this.</li>
 </ul>
+<p>One code is a warning rather than a failure: <strong>GMAIL_SIGNATURE_SANITIZED</strong> sits on rows that <strong>succeeded</strong>, shown as the amber <strong>trimmed by Gmail</strong> badge with "Applied, but Gmail stored a trimmed copy of this signature." Gmail accepted the write and then rewrote the HTML while storing it, so a retry stores exactly the same thing. The fix is to simplify the flagged markup - <strong>Technical details</strong> on the row names the dropped elements - and test the template again. See <a href="/docs/gmail-sanitization">When Gmail trims your signature</a>.</p>
 <p>A row can also note "overrode N other assignment(s) for this user" - the user matched several assignments and this one won. Precedence rules are in the <a href="/docs/assignments#how-precedence-works">Assignments reference</a>.</p>
 <h2 id="verify-inside-gmail">Verify inside Gmail<a class="h-anchor" href="#verify-inside-gmail" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>For a spot check, ask a covered user to open Gmail Settings and look at the signature, or send yourself a test message. Remember that a user's own <a href="/docs/self-service">self-service</a> signature wins over assignments unless the assignment overrides it.</p>
+<p>The fastest check is <strong>View current signature</strong> on a successful row in <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Task logs</a>: it reads that user's Gmail mailbox live and shows you what is really stored there, including anything the user changed by hand. See <a href="/docs/logs#read-the-current-mailbox-signature">Read the current mailbox signature</a>.</p>
+<p>For a check in the mail client itself, ask a covered user to open Gmail Settings and look at the signature, or send yourself a test message. Remember that a user's own <a href="/docs/self-service">self-service</a> signature wins over assignments unless the assignment overrides it.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tip</p><div class="callout-body">
-<p>Failed rows on a finished job can be retried from the job detail view with <strong>Re-run failed</strong> - no need to re-apply to everyone.</p>
+<p>A finished job has no retry button. Once you have fixed what the error code points at, dispatch a fresh apply from the <a href="https://app.signature.cat/apply" target="_blank" rel="noopener">Apply</a> page for just those addresses - there is no need to re-apply to everyone.</p>
 </div></aside>
       </article>
 <nav class="docs-pager" aria-label="Pagination">

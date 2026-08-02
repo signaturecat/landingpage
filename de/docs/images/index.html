@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Bilder | SignatureCat Docs</title>
-  <meta name="description" content="SignatureCat-Bilder-Referenz - die Bibliothek pro Workspace, Hosting auf images.signature.cat oder der eigenen Domain, Formate, Limits und Lebenszyklus." />
+  <meta name="description" content="Referenz für Bilder in SignatureCat-E-Mail-Signaturen für Google Workspace - die Bibliothek, ALT-Beschreibungen, Hosting, Formate, Limits und das Löschen." />
   <link rel="canonical" href="https://signature.cat/de/docs/images" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/images" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/images" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Bilder | SignatureCat Docs" />
-  <meta property="og:description" content="SignatureCat-Bilder-Referenz - die Bibliothek pro Workspace, Hosting auf images.signature.cat oder der eigenen Domain, Formate, Limits und Lebenszyklus." />
+  <meta property="og:description" content="Referenz für Bilder in SignatureCat-E-Mail-Signaturen für Google Workspace - die Bibliothek, ALT-Beschreibungen, Hosting, Formate, Limits und das Löschen." />
   <meta property="og:url" content="https://signature.cat/de/docs/images" />
   <meta property="og:locale" content="de_DE" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Bilder | SignatureCat Docs" />
-  <meta name="twitter:description" content="SignatureCat-Bilder-Referenz - die Bibliothek pro Workspace, Hosting auf images.signature.cat oder der eigenen Domain, Formate, Limits und Lebenszyklus." />
+  <meta name="twitter:description" content="Referenz für Bilder in SignatureCat-E-Mail-Signaturen für Google Workspace - die Bibliothek, ALT-Beschreibungen, Hosting, Formate, Limits und das Löschen." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Bilder",
-      "description": "SignatureCat-Bilder-Referenz - die Bibliothek pro Workspace, Hosting auf images.signature.cat oder der eigenen Domain, Formate, Limits und Lebenszyklus.",
+      "description": "Referenz für Bilder in SignatureCat-E-Mail-Signaturen für Google Workspace - die Bibliothek, ALT-Beschreibungen, Hosting, Formate, Limits und das Löschen.",
       "url": "https://signature.cat/de/docs/images",
       "inLanguage": "de",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
         <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/user-data">Benutzerdaten</a></li>
+        <li><a href="/de/docs/user-data-import">Benutzerdaten importieren</a></li>
         <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
         <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates">Vorlagen</a></li>
         <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
+        <li><a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a></li>
         <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
         <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/gmail-sanitization">Gmail-Kürzung</a></li>
         <li><a href="/de/docs/service-status">Dienststatus</a></li>
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
@@ -202,7 +206,15 @@
 <tr><td>Banner</td><td>450x100 px, max-width 100%</td><td><code>{{banner}}</code></td><td>200 Einträge</td></tr>
 </tbody>
 </table></div>
-<p>Bibliothekseinträge tragen einen optionalen Namen und einen optionalen <strong>Klick-Link</strong>. Jede Vorlage wählt ihr eigenes Logo und ihren eigenen Banner aus der Bibliothek; Vorlagen ohne Auswahl rendern einen neutralen Platzhalter. Uploads sind PNG oder JPG, bis 5 MB (200 KB empfohlen); SVG wird nicht akzeptiert.</p>
+<p>Bibliothekseinträge tragen einen optionalen Namen, einen optionalen <strong>Klick-Link</strong> und eine optionale <strong>Bildbeschreibung (ALT)</strong>. Jede Vorlage wählt ihr eigenes Logo und ihren eigenen Banner aus der Bibliothek; Vorlagen ohne Auswahl rendern einen neutralen Platzhalter. Uploads sind PNG oder JPG, bis 5 MB (200 KB empfohlen); SVG wird nicht akzeptiert.</p>
+<h2 id="bildbeschreibung-alt">Bildbeschreibung (ALT)<a class="h-anchor" href="#bildbeschreibung-alt" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Die <strong>Bildbeschreibung (ALT)</strong> ist das, was ein Empfänger statt des Bildes sieht, wenn sein Mail-Client Bilder blockiert, und was ein Screenreader vorliest. Sie ist optional und auf 300 Zeichen begrenzt.</p>
+<ul>
+<li><strong>Wo Sie sie festlegen:</strong> im Hinzufügen-Formular, wenn Sie eine Datei hochladen oder einen Link einfügen, im Bildschritt des Assistenten für neue Vorlagen und später im Bereich <strong>Details des gewählten Bildes</strong> der Bibliothek.</li>
+<li><strong>Wofür sie gilt:</strong> für jeden Bibliothekseintrag, egal ob SignatureCat die Datei hostet oder Sie auf Ihre eigene verlinken.</li>
+<li><strong>Wohin sie mitwandert:</strong> mit dem Bibliothekseintrag, genau wie der Klick-Link - ändern Sie sie einmal, und jede Vorlage, die dieses Bild verwendet, liefert die neue Beschreibung beim nächsten Rendern aus.</li>
+<li><strong>Wenn Sie sie leer lassen:</strong> wird das Bild als dekorativ gerendert und erhält keine Beschreibung.</li>
+</ul>
 <h2 id="woher-bilder-ausgeliefert-werden">Woher Bilder ausgeliefert werden<a class="h-anchor" href="#woher-bilder-ausgeliefert-werden" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
 <li><strong>Bibliotheks-Uploads</strong> werden von SignatureCat gespeichert und über ein CDN mit langlebigem Caching von <code>https://images.signature.cat/...</code> ausgeliefert.</li>
@@ -210,15 +222,17 @@
 <li><strong>Bilder aus externen URLs</strong> ("Ich habe einen Link") werden direkt von dort geladen, wo Sie sie hosten. Sie müssen öffentlich und HTTPS sein; idealerweise hosten Sie sie auf Ihrer eigenen Domain.</li>
 </ul>
 <aside class="callout callout-important" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5h.01"/></svg>Wichtig</p><div class="callout-body">
-<p>Bild-URLs werden fest in jede gerenderte Signatur eingebettet. E-Mails, die bereits in den Postfächern der Empfänger liegen, laden weiterhin die URL, mit der sie gesendet wurden - deshalb löscht SignatureCat die zugrunde liegenden Dateien entfernter Bibliotheksbilder nie, und deshalb erscheint ein externes Bild, das Sie offline nehmen, in alten E-Mails als defekt.</p>
+<p>Bild-URLs werden fest in jede gerenderte Signatur eingebettet, deshalb laden E-Mails, die bereits in den Postfächern der Empfänger liegen, weiterhin die URL, mit der sie gesendet wurden: Das Löschen eines Bibliothekseintrags, den SignatureCat hostet, gibt die gespeicherte Datei frei, und das Bild lädt irgendwann auch in bereits zugestellter Post nicht mehr.</p>
 </div></aside>
 <h2 id="profilfotos">Profilfotos<a class="h-anchor" href="#profilfotos" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Die Variable <code>{{photo}}</code> verwendet das Google-Profilfoto des Nutzers aus dem Directory (automatisch auf 400 px skaliert). Es ist nicht Teil der Bibliothek - Nutzer und Admins verwalten Profilfotos in Google Workspace. Siehe <a href="/de/docs/template-variables#person-variables-google-directory">Vorlagenvariablen</a>.</p>
+<p>Die Variable <code>{{photo}}</code> verwendet das Google-Profilfoto des Nutzers aus dem Directory (automatisch auf 400 px skaliert). Es ist nicht Teil der Bibliothek - Nutzer und Admins verwalten Profilfotos in Google Workspace. Siehe <a href="/de/docs/template-variables#personenvariablen-google-directory">Vorlagenvariablen</a>.</p>
 <h2 id="hinweise-zum-lebenszyklus">Hinweise zum Lebenszyklus<a class="h-anchor" href="#hinweise-zum-lebenszyklus" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
-<li><strong>Ein Bild ersetzen:</strong> Fügen Sie die neue Datei zur Bibliothek hinzu und wählen Sie sie in der Vorlage aus - oder behalten Sie denselben Bibliothekseintrag und aktualisieren Sie nur dessen Klick-Link (wird beim nächsten Rendern übernommen).</li>
-<li><strong>Das Löschen eines Bibliothekseintrags</strong> trennt ihn von den Vorlagen, die ihn verwenden (sie fallen auf den Platzhalter zurück) - nach einer Warnung mit der Anzahl der Verwendungen.</li>
-<li><strong>Bereits gesendete E-Mails</strong> sind von Bibliotheksänderungen nie betroffen.</li>
+<li><strong>Ein Bild ersetzen:</strong> Laden Sie die neue Datei hoch, wählen Sie sie in jeder Vorlage aus, die die alte verwendet hat, und löschen Sie den alten Eintrag erst, wenn Sie sicher sind - oder behalten Sie denselben Bibliothekseintrag und aktualisieren Sie nur dessen Klick-Link oder ALT-Beschreibung, was jede Vorlage beim nächsten Rendern übernimmt.</li>
+<li><strong>Das Löschen eines Bibliothekseintrags</strong> trennt ihn von den Vorlagen, die ihn verwenden (sie fallen auf den Platzhalter zurück) - nach einer Warnung mit der Anzahl der Verwendungen. Diese Signaturen werden in der Zwischenzeit weiterhin gesetzt.</li>
+<li><strong>Das Löschen eines verwendeten Bildes benachrichtigt den Workspace:</strong> Eine Benachrichtigung erscheint in der Glocke in der App, und eine E-Mail geht an die Admins und den Inhaber, die die betroffenen Vorlagen nennt. Siehe <a href="/de/docs/notifications">Benachrichtigungen</a>.</li>
+<li><strong>Gehostete Dateien werden freigegeben:</strong> Ist der Bibliothekseintrag weg, räumt SignatureCat die gespeicherte Datei beim nächsten täglichen Durchlauf auf, sodass das Bild auch in bereits zugestellten E-Mails nicht mehr lädt. Das Löschen ist endgültig, und es gibt kein Rückgängig im Self-Service.</li>
+<li><strong>Externe Bilder sind vom Löschen nicht betroffen.</strong> Sie hosten die Datei, das Entfernen des Bibliothekseintrags entfernt also nur den Eintrag - alte E-Mails laden das Bild weiter, bis Sie es selbst offline nehmen.</li>
 </ul>
 <h2 id="tipps-zur-zustellbarkeit">Tipps zur Zustellbarkeit<a class="h-anchor" href="#tipps-zur-zustellbarkeit" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
@@ -258,6 +272,7 @@
         <p class="docs-toc-title">Auf dieser Seite</p>
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#die-bildbibliothek">Die Bildbibliothek</a></li>
+        <li class="toc-l2"><a href="#bildbeschreibung-alt">Bildbeschreibung (ALT)</a></li>
         <li class="toc-l2"><a href="#woher-bilder-ausgeliefert-werden">Woher Bilder ausgeliefert werden</a></li>
         <li class="toc-l2"><a href="#profilfotos">Profilfotos</a></li>
         <li class="toc-l2"><a href="#hinweise-zum-lebenszyklus">Hinweise zum Lebenszyklus</a></li>

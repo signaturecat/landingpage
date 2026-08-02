@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Serve images from your own domain | SignatureCat Docs</title>
-  <meta name="description" content="Point a subdomain like images.yourcompany.com at SignatureCat with two DNS records so signature images load from your own domain." />
+  <meta name="description" content="Point a subdomain like images.yourcompany.com at SignatureCat with one CNAME record so signature images in Gmail load from your own domain." />
   <link rel="canonical" href="https://signature.cat/docs/custom-image-domain" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/custom-image-domain" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/custom-image-domain" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Serve images from your own domain | SignatureCat Docs" />
-  <meta property="og:description" content="Point a subdomain like images.yourcompany.com at SignatureCat with two DNS records so signature images load from your own domain." />
+  <meta property="og:description" content="Point a subdomain like images.yourcompany.com at SignatureCat with one CNAME record so signature images in Gmail load from your own domain." />
   <meta property="og:url" content="https://signature.cat/docs/custom-image-domain" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Serve images from your own domain | SignatureCat Docs" />
-  <meta name="twitter:description" content="Point a subdomain like images.yourcompany.com at SignatureCat with two DNS records so signature images load from your own domain." />
+  <meta name="twitter:description" content="Point a subdomain like images.yourcompany.com at SignatureCat with one CNAME record so signature images in Gmail load from your own domain." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Serve images from your own domain",
-      "description": "Point a subdomain like images.yourcompany.com at SignatureCat with two DNS records so signature images load from your own domain.",
+      "description": "Point a subdomain like images.yourcompany.com at SignatureCat with one CNAME record so signature images in Gmail load from your own domain.",
       "url": "https://signature.cat/docs/custom-image-domain",
       "inLanguage": "en",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/docs/user-management">User management</a></li>
         <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
         <li><a href="/docs/custom-image-domain" aria-current="page">Custom image domain</a></li>
         <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
         <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/docs/support-access">Support access</a></li>
         <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
         <li><a href="/docs/service-status">Service status</a></li>
         <li><a href="/docs/legal">Legal</a></li>
         </ul>
@@ -203,29 +207,28 @@
 <h2 id="set-it-up">Set it up<a class="h-anchor" href="#set-it-up" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ol>
 <li>Open the image library from any template editor on <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signatures</a> (Logo or Banner button) and choose <strong>Use your own domain</strong> in the serving bar.</li>
-<li><strong>Enter a subdomain</strong> - for example <code>images.yourcompany.com</code> - and click <strong>Generate DNS records</strong>.</li>
-<li><strong>Add two DNS records</strong> at your DNS provider, exactly as shown:
-<ul>
-<li>a <strong>CNAME</strong> record pointing the subdomain to <code>cdn.signature.cat</code> (points the subdomain to us),</li>
-<li>a <strong>TXT</strong> record proving domain ownership.</li>
-</ul></li>
-<li><strong>Wait for verification.</strong> SignatureCat checks the records automatically every few minutes; you can also click <strong>Check now</strong>. Activation usually takes a few minutes, sometimes up to an hour while DNS refreshes. The TLS certificate is issued for you.</li>
+<li><strong>Enter a subdomain</strong> - for example <code>images.yourcompany.com</code> - and click <strong>Generate DNS record</strong>.</li>
+<li><strong>Add one DNS record</strong> at your DNS provider, exactly as shown: a <strong>CNAME</strong> pointing your subdomain to <code>cdn.signature.cat</code>. That single record is all SignatureCat needs. Some providers want only the part before your domain in the Name field, and the wizard prints that short form for you.</li>
+<li><strong>Wait for verification.</strong> SignatureCat checks the record automatically every few minutes; you can also click <strong>Check now</strong>. Activation usually takes a few minutes, sometimes up to an hour while DNS refreshes. The TLS certificate is issued for you.</li>
 </ol>
 <p>The wizard shows one of three statuses: <strong>Waiting for DNS records</strong>, <strong>Domain active</strong> or <strong>Verification failed</strong>.</p>
 <p>Once active: "New emails fetch images from your domain. Templates stay unchanged - the switch happens automatically."</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Emails that were already sent are not affected - they keep loading images from the URL they were rendered with.</p>
 </div></aside>
+<h3 id="verification-not-going-through">Verification not going through?<a class="h-anchor" href="#verification-not-going-through" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
+<p>If the domain stays pending after a check, or verification fails, the wizard reveals a <strong>TXT</strong> record under the heading <strong>Verification not going through?</strong>. It is a fallback for two rare cases: a CAA record on your domain blocks the certificate authority SignatureCat uses, or the hostname is already proxied through another Cloudflare zone. Add the TXT record alongside the CNAME, then click <strong>Check now</strong> again. In every other case the CNAME on its own is enough.</p>
 <h2 id="removing-the-domain">Removing the domain<a class="h-anchor" href="#removing-the-domain" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Removing the domain in the wizard switches image serving back to <code>images.signature.cat</code> automatically for new emails. Nothing breaks.</p>
 <aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Warning</p><div class="callout-body">
-<p>The reverse is not monitored: if you delete the CNAME record at your DNS provider <strong>while the domain is still active in SignatureCat</strong>, images in newly sent signatures will silently stop loading. Always remove the domain in SignatureCat first, then clean up DNS.</p>
+<p>If you delete the CNAME record at your DNS provider <strong>while the domain is still active in SignatureCat</strong>, every image already served from that subdomain stops loading - including images in emails that were sent earlier. Always remove the domain in SignatureCat first, then clean up DNS.</p>
 </div></aside>
+<p>Active domains are re-checked automatically, so a CNAME that disappears is noticed within about a day: the domain drops out of the active state and newly rendered signatures fall back to <code>images.signature.cat</code> on their own. That is a safety net for future signatures, not a repair for the ones already in recipients' inboxes - hence the order above.</p>
       </article>
 <nav class="docs-pager" aria-label="Pagination">
-<a class="pager-card pager-prev" href="/docs/self-service" rel="prev">
+<a class="pager-card pager-prev" href="/docs/user-data-import" rel="prev">
       <span class="pager-label">Previous</span>
-      <span class="pager-title">Self-service</span>
+      <span class="pager-title">Import user data</span>
     </a>
 <a class="pager-card pager-next" href="/docs/banners-and-logos" rel="next">
       <span class="pager-label">Next</span>
@@ -254,6 +257,7 @@
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#requirements">Requirements</a></li>
         <li class="toc-l2"><a href="#set-it-up">Set it up</a></li>
+        <li class="toc-l3"><a href="#verification-not-going-through">Verification not going through?</a></li>
         <li class="toc-l2"><a href="#removing-the-domain">Removing the domain</a></li>
         </ul>
       </nav>

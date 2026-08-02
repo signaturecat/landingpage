@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Vorlagenvariablen | SignatureCat Docs</title>
-  <meta name="description" content="Vollständige Referenz der SignatureCat-Vorlagenvariablen - Personenfelder aus Google Directory, Logo- und Banner-Token sowie bedingte del/delete-Blöcke." />
+  <meta name="description" content="Alle SignatureCat-Signaturvariablen - Felder aus dem Google Workspace-Verzeichnis, Datenüberschreibungen pro Nutzer, Logo- und Banner-Token sowie bedingte del/delete-Blöcke." />
   <link rel="canonical" href="https://signature.cat/de/docs/template-variables" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/template-variables" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/template-variables" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Vorlagenvariablen | SignatureCat Docs" />
-  <meta property="og:description" content="Vollständige Referenz der SignatureCat-Vorlagenvariablen - Personenfelder aus Google Directory, Logo- und Banner-Token sowie bedingte del/delete-Blöcke." />
+  <meta property="og:description" content="Alle SignatureCat-Signaturvariablen - Felder aus dem Google Workspace-Verzeichnis, Datenüberschreibungen pro Nutzer, Logo- und Banner-Token sowie bedingte del/delete-Blöcke." />
   <meta property="og:url" content="https://signature.cat/de/docs/template-variables" />
   <meta property="og:locale" content="de_DE" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Vorlagenvariablen | SignatureCat Docs" />
-  <meta name="twitter:description" content="Vollständige Referenz der SignatureCat-Vorlagenvariablen - Personenfelder aus Google Directory, Logo- und Banner-Token sowie bedingte del/delete-Blöcke." />
+  <meta name="twitter:description" content="Alle SignatureCat-Signaturvariablen - Felder aus dem Google Workspace-Verzeichnis, Datenüberschreibungen pro Nutzer, Logo- und Banner-Token sowie bedingte del/delete-Blöcke." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Vorlagenvariablen",
-      "description": "Vollständige Referenz der SignatureCat-Vorlagenvariablen - Personenfelder aus Google Directory, Logo- und Banner-Token sowie bedingte del/delete-Blöcke.",
+      "description": "Alle SignatureCat-Signaturvariablen - Felder aus dem Google Workspace-Verzeichnis, Datenüberschreibungen pro Nutzer, Logo- und Banner-Token sowie bedingte del/delete-Blöcke.",
       "url": "https://signature.cat/de/docs/template-variables",
       "inLanguage": "de",
-      "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
         <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/user-data">Benutzerdaten</a></li>
+        <li><a href="/de/docs/user-data-import">Benutzerdaten importieren</a></li>
         <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
         <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates">Vorlagen</a></li>
         <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
+        <li><a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a></li>
         <li><a href="/de/docs/template-variables" aria-current="page">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
         <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/gmail-sanitization">Gmail-Kürzung</a></li>
         <li><a href="/de/docs/service-status">Dienststatus</a></li>
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
@@ -195,6 +199,7 @@
 <p>SignatureCat-Vorlagen verwenden <code>{{variable}}</code>-Token, die zum Anwendungszeitpunkt pro Nutzer aufgelöst werden. Es gibt neun Personenvariablen (befüllt aus Google Directory), zwei Bild-Token und zwei bedingte Tags. Token-Namen sind kleingeschrieben und werden unabhängig von Groß-/Kleinschreibung erkannt - <code>{{Phone}}</code> funktioniert genauso wie <code>{{phone}}</code>. Unbekannte Token werden beim Speichern der Vorlage abgelehnt.</p>
 <h2 id="personenvariablen-google-directory">Personenvariablen (Google Directory)<a class="h-anchor" href="#personenvariablen-google-directory" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Die Werte stammen aus dem Datensatz jedes Nutzers in Ihrem Google Workspace-Directory. Halten Sie das Directory gepflegt, und jede Signatur bleibt automatisch korrekt.</p>
+<p>Ein für einen Nutzer im Tab <strong>Daten</strong> gespeicherter Wert hat Vorrang vor dem Verzeichnis - nur für diesen Nutzer und nur für dieses Feld, und zwar überall dort, wo die Signatur gerendert wird: in der Vorschau, bei <strong>Mir eine Testsignatur setzen</strong> und beim echten Rollout in die Postfächer. Felder, die Sie dem Verzeichnis überlassen, kommen weiterhin aus dem Verzeichnis. Siehe <a href="/de/docs/user-data">Benutzerdaten-Überschreibungen</a>. Eine Ausnahme: Wird eine Signatur auf einen Sendealias geschrieben, folgen <code>{{email}}</code> und <code>{{domain}}</code> immer der Alias-Adresse, auch wenn sie überschrieben sind.</p>
 <div class="tbl"><table>
 <thead><tr><th scope="col">Token</th><th scope="col">Wert</th><th scope="col">Hinweise</th></tr></thead>
 <tbody>
@@ -204,7 +209,7 @@
 <tr><td><code>{{domain}}</code></td><td>Domain-Teil der E-Mail</td><td>Folgt dem Alias, wenn auf einen Alias angewendet wird.</td></tr>
 <tr><td><code>{{jobtitle}}</code></td><td>Position</td><td>Aus dem primären Organisationseintrag des Nutzers im Directory.</td></tr>
 <tr><td><code>{{department}}</code></td><td>Abteilung</td><td>Aus demselben Organisationseintrag.</td></tr>
-<tr><td><code>{{photo}}</code></td><td>Profilbild</td><td>Allein stehend rendert das Token ein rundes Profilbild (standardmäßig 115x115 px, <a href="/de/docs/visual-editor#images-logo-banner-and-photo">pro Vorlage in der Größe änderbar</a>); Nutzer ohne Directory-Foto erhalten gar kein Bild statt eines defekten Symbols. Innerhalb Ihres eigenen <code>&lt;img src="{{photo}}"&gt;</code> löst es zur HTTPS-Foto-URL auf (automatisch auf 400 px skaliert), und Ihr Markup bleibt unangetastet.</td></tr>
+<tr><td><code>{{photo}}</code></td><td>Profilbild</td><td>Allein stehend rendert das Token ein fertiges Profilbild - standardmäßig rund, eckig, wenn die Vorlage auf diese Form umgestellt ist (standardmäßig 115x115 px, <a href="/de/docs/visual-editor#bilder-logo-banner-und-foto">Form und Größe werden pro Vorlage festgelegt</a>); Nutzer ohne Directory-Foto erhalten gar kein Bild statt eines defekten Symbols. Innerhalb Ihres eigenen <code>&lt;img src="{{photo}}"&gt;</code> löst es zur HTTPS-Foto-URL auf (automatisch auf 400 px skaliert), und Ihr Markup bleibt unangetastet.</td></tr>
 <tr><td><code>{{address}}</code></td><td>Formatierte Adresse</td><td>Der primäre Adresseintrag des Nutzers.</td></tr>
 <tr><td><code>{{phone}}</code></td><td>Telefonnummer</td><td>Die erste nicht leere von: Arbeit, dann Mobil, dann Privat.</td></tr>
 </tbody>
@@ -218,7 +223,8 @@
 <tr><td><code>{{banner}}</code></td><td>Der für die Vorlage gewählte Kampagnenbanner - standardmäßig 450x100 px (ein Bibliothekseintrag kann eine eigene Größe definieren), pro Vorlage in der Größe änderbar, auf schmalen Bildschirmen verkleinert.</td></tr>
 </tbody>
 </table></div>
-<p>Bilder stammen aus der Bibliothek pro Workspace und werden pro Vorlage ausgewählt; ist nichts ausgewählt, wird ein neutraler Platzhalter gerendert. Hat das Bibliotheksbild einen Klick-Link, wird das Bild automatisch darin eingeschlossen - und jede Vorlage kann <a href="/de/docs/visual-editor#images-logo-banner-and-photo">diesen Link überschreiben</a>. Größendetails und die Ziehpunkte sind im <a href="/de/docs/visual-editor">visuellen Editor</a> und in <a href="/de/docs/banners-and-logos">Banner und Logos</a> beschrieben.</p>
+<p>Bilder stammen aus der Bibliothek pro Workspace und werden pro Vorlage ausgewählt; ist nichts ausgewählt, wird ein neutraler Platzhalter gerendert. Hat das Bibliotheksbild einen Klick-Link, wird das Bild automatisch darin eingeschlossen - und jede Vorlage kann <a href="/de/docs/visual-editor#bilder-logo-banner-und-foto">diesen Link überschreiben</a>. Größendetails und die Ziehpunkte sind im <a href="/de/docs/visual-editor">visuellen Editor</a> und in <a href="/de/docs/banners-and-logos">Banner und Logos</a> beschrieben.</p>
+<p>Trägt der Bibliothekseintrag eine <strong>Bildbeschreibung (ALT)</strong>, wird dieser Text als <code>alt</code>-Attribut des gerenderten Bildes ausgegeben - für hochgeladene Bilder ebenso wie für Einträge, die auf Ihre eigene URL zeigen. Es ist das, was Empfänger lesen, wenn ihr Mail-Programm Bilder blockiert oder nicht laden kann. Die Beschreibung gehört zum Bibliothekseintrag, also zeigt jede Vorlage, die dieses Bild verwendet, dieselbe; ein Eintrag ohne Beschreibung rendert ein leeres <code>alt</code>.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
 <p>Bild-Token rendern immer etwas (Bild oder Platzhalter) und zählen daher für die bedingten Blöcke unten nicht als "leer".</p>
 </div></aside>
@@ -231,16 +237,17 @@
 <p>Beispiel - eine Telefonzeile, die für Nutzer ohne Telefonnummer verschwindet:</p>
 <pre><code class="language-html">{{del}}&lt;tr&gt;&lt;td&gt;Tel: {{phone}}&lt;/td&gt;&lt;/tr&gt;{{/del}}</code></pre>
 <p>Blöcke können verschachtelt werden; innere Blöcke werden zuerst ausgewertet. Unausgeglichene Tags werden beim Speichern abgelehnt, und die Tags selbst werden nie in die endgültige Gmail-Signatur geschrieben.</p>
+<p>Ein Wächter kann auch eine ganze Tabellenzelle, mehrere benachbarte Zellen oder eine komplette Tabellenzeile umschließen. Im <a href="/de/docs/visual-editor#spalten">visuellen Editor</a> ist das eine bedingte Spalte, eingestellt über den Schalter der Spalte selbst.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tipp</p><div class="callout-body">
 <p>Faustregel: Schließen Sie jede optionale Zeile (Telefon, Adresse, Abteilung) in <code>{{del}}</code>-Tags ein. Signaturen von Nutzern mit spärlichen Directory-Datensätzen schrumpfen dann elegant, statt leere Labels zu zeigen.</p>
 </div></aside>
 <h2 id="testen-wie-variablen-aufgelst-werden">Testen, wie Variablen aufgelöst werden<a class="h-anchor" href="#testen-wie-variablen-aufgelst-werden" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Nutzen Sie <strong>Rendern als</strong> im <a href="/de/docs/templates#the-editor">Vorlagen-Editor</a> für eine Vorschau anhand des Datensatzes eines beliebigen echten Nutzers und <strong>Mir eine Testsignatur setzen</strong>, um das Ergebnis auf Ihr eigenes Postfach anzuwenden. Beides ist in <a href="/de/docs/create-your-first-template">Ihre erste Vorlage erstellen</a> beschrieben.</p>
+<p>Nutzen Sie <strong>Rendern als</strong> im <a href="/de/docs/templates#der-editor">Vorlagen-Editor</a> für eine Vorschau anhand des Datensatzes eines beliebigen echten Nutzers und <strong>Mir eine Testsignatur setzen</strong>, um das Ergebnis auf Ihr eigenes Postfach anzuwenden. Beides ist in <a href="/de/docs/create-your-first-template">Ihre erste Vorlage erstellen</a> beschrieben.</p>
       </article>
 <nav class="docs-pager" aria-label="Seitennavigation">
-<a class="pager-card pager-prev" href="/de/docs/visual-editor" rel="prev">
+<a class="pager-card pager-prev" href="/de/docs/mail-client-preview" rel="prev">
       <span class="pager-label">Zurück</span>
-      <span class="pager-title">Visueller Editor</span>
+      <span class="pager-title">E-Mail-Client-Vorschau</span>
     </a>
 <a class="pager-card pager-next" href="/de/docs/assignments" rel="next">
       <span class="pager-label">Weiter</span>

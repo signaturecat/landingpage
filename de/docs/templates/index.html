@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Vorlagen | SignatureCat Docs</title>
-  <meta name="description" content="SignatureCat-Vorlagen-Referenz - der visuelle und der HTML-Editor, Starter, Vorschau, Test-Anwendung, Self-Service-Schalter, Standardvorlage und sicheres Löschen." />
+  <meta name="description" content="So funktionieren SignatureCat-Signaturvorlagen - der visuelle und der HTML-Editor, Live-Vorschau, Test-Anwendung auf Gmail, die Standardvorlage und sicheres Löschen." />
   <link rel="canonical" href="https://signature.cat/de/docs/templates" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/templates" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/templates" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Vorlagen | SignatureCat Docs" />
-  <meta property="og:description" content="SignatureCat-Vorlagen-Referenz - der visuelle und der HTML-Editor, Starter, Vorschau, Test-Anwendung, Self-Service-Schalter, Standardvorlage und sicheres Löschen." />
+  <meta property="og:description" content="So funktionieren SignatureCat-Signaturvorlagen - der visuelle und der HTML-Editor, Live-Vorschau, Test-Anwendung auf Gmail, die Standardvorlage und sicheres Löschen." />
   <meta property="og:url" content="https://signature.cat/de/docs/templates" />
   <meta property="og:locale" content="de_DE" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Vorlagen | SignatureCat Docs" />
-  <meta name="twitter:description" content="SignatureCat-Vorlagen-Referenz - der visuelle und der HTML-Editor, Starter, Vorschau, Test-Anwendung, Self-Service-Schalter, Standardvorlage und sicheres Löschen." />
+  <meta name="twitter:description" content="So funktionieren SignatureCat-Signaturvorlagen - der visuelle und der HTML-Editor, Live-Vorschau, Test-Anwendung auf Gmail, die Standardvorlage und sicheres Löschen." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Vorlagen",
-      "description": "SignatureCat-Vorlagen-Referenz - der visuelle und der HTML-Editor, Starter, Vorschau, Test-Anwendung, Self-Service-Schalter, Standardvorlage und sicheres Löschen.",
+      "description": "So funktionieren SignatureCat-Signaturvorlagen - der visuelle und der HTML-Editor, Live-Vorschau, Test-Anwendung auf Gmail, die Standardvorlage und sicheres Löschen.",
       "url": "https://signature.cat/de/docs/templates",
       "inLanguage": "de",
-      "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
         <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/user-data">Benutzerdaten</a></li>
+        <li><a href="/de/docs/user-data-import">Benutzerdaten importieren</a></li>
         <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
         <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates" aria-current="page">Vorlagen</a></li>
         <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
+        <li><a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a></li>
         <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
         <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/gmail-sanitization">Gmail-Kürzung</a></li>
         <li><a href="/de/docs/service-status">Dienststatus</a></li>
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
@@ -193,20 +197,22 @@
       <article class="docs-article">
 <h1>Vorlagen</h1>
 <p>Eine Vorlage ist ein einzelnes HTML-Dokument mit <code>{{variable}}</code>-Token, das SignatureCat pro Nutzer rendert. Vorlagen liegen auf der Seite <a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signaturen</a> (Designer, Editoren und Admins) und werden entweder im <a href="/de/docs/visual-editor">visuellen Editor</a> oder in einem Code-Editor bearbeitet, beide mit Live-Vorschau.</p>
+<p>Jeder Eintrag der Liste trägt seinen Namen, sein Symbol und seine Farbe, dort wo sie zutrifft die Markierung <strong>Standard</strong> sowie <strong>Zuletzt bearbeitet von</strong> mit der Person, die ihn zuletzt geändert hat - praktisch, wenn sich mehrere Admins die Arbeit teilen. <strong>Duplizieren</strong> erstellt eine eigenständige Kopie einer Vorlage, sodass Sie eine Variante ausprobieren können, ohne das Original anzufassen.</p>
 <p>Für einen geführten ersten Durchlauf siehe <a href="/de/docs/create-your-first-template">Ihre erste Vorlage erstellen</a>. Der Variablensatz hat eine eigene Seite: <a href="/de/docs/template-variables">Vorlagenvariablen</a>.</p>
 <h2 id="der-editor">Der Editor<a class="h-anchor" href="#der-editor" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Der Editor unter <code>app.signature.cat/signatures/{id}</code> hat zwei Tabs und öffnet sich in dem Modus, in dem die Vorlage zuletzt gespeichert wurde:</p>
 <ul>
-<li><strong>Visuell</strong> - gestalten auf einer Arbeitsfläche, ohne HTML zu schreiben: Variablen-Chips, Ziehpunkte für Bildgrößen, Spalten, Schriften und eine garantiert Gmail-sichere Ausgabe. Er hat eine <a href="/de/docs/visual-editor">eigene Seite</a>.</li>
+<li><strong>Visuell</strong> - gestalten auf einer Arbeitsfläche, ohne HTML zu schreiben: Variablen-Chips, Ziehpunkte für Bildgrößen, Spalten, Trennlinien, einmalige Bilder aus einer URL, Schriften und eine E-Mail-sichere Farbpalette. Er hat eine <a href="/de/docs/visual-editor">eigene Seite</a>.</li>
 <li><strong>HTML</strong> - das Signatur-Markup direkt bearbeiten, mit Autovervollständigung für alle <code>{{variable}}</code>-Token.</li>
 </ul>
 <p>Die Konvertierung von HTML zu Visuell ist eine Einbahnstraße und erfolgt nach bestem Bemühen (komplexe Tabellen-Layouts werden abgeflacht; der Editor warnt vorher); das Speichern aus dem HTML-Tab verwirft das visuelle Dokument. In beiden Modi erhalten Sie:</p>
 <ul>
-<li><strong>Vorschau</strong> - Live-Rendering der aufgelösten Signatur, in einer Sandbox. <strong>Rendern als</strong> setzt den Directory-Datensatz eines beliebigen echten Nutzers ein, damit Sie Grenzfälle prüfen können (lange Namen, fehlende Telefonnummern).</li>
+<li><strong>Vorschau</strong> - Live-Rendering der aufgelösten Signatur, in einer Sandbox. <strong>Rendern als</strong> setzt den Directory-Datensatz eines beliebigen echten Nutzers ein, damit Sie Grenzfälle prüfen können (lange Namen, fehlende Telefonnummern), und die Vorschau kann fünf Mail-Clients in Hell und Dunkel nachbilden; siehe <a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a>.</li>
 <li><strong>Variable einfügen</strong> - Menü aller Personenvariablen, gruppiert und mit Hinweisen.</li>
 <li><strong>Logo / Banner</strong> - die Bildgalerien pro Art; siehe <a href="/de/docs/banners-and-logos">Banner und Logos</a>.</li>
 <li><strong>In {{del}} einschließen / In {{delete}} einschließen</strong> - schließt die aktuelle Auswahl in bedingte Tags ein.</li>
-<li><strong>Mir eine Testsignatur setzen</strong> - rendert anhand Ihres eigenen Directory-Datensatzes und wendet nur auf Ihr eigenes Gmail-Postfach an.</li>
+<li><strong>Mir eine Testsignatur setzen</strong> - rendert anhand Ihres eigenen Directory-Datensatzes und wendet nur auf Ihr eigenes Gmail-Postfach an. SignatureCat liest anschließend zurück, was Gmail tatsächlich gespeichert hat, sodass eine von Gmail beim Speichern gekürzte Signatur gemeldet wird, statt unauffällig zu bleiben; siehe <a href="/de/docs/gmail-sanitization">Wenn Gmail Ihre Signatur kürzt</a>.</li>
+<li><strong>Änderungen verwerfen</strong> - erscheint, sobald Sie ungespeicherte Änderungen haben, und stellt nach einer Bestätigung die zuletzt gespeicherte Version wieder her.</li>
 <li><strong>Name und Symbol</strong> - ein Name, Symbol und eine Farbe für Vorlagenlisten (werden nie in Signaturen gerendert).</li>
 </ul>
 <h2 id="validierung-und-bereinigung">Validierung und Bereinigung<a class="h-anchor" href="#validierung-und-bereinigung" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
@@ -217,6 +223,7 @@
 </ul>
 <p>Fehlermeldungen sind konkret: Ein unbekanntes Token wird beim Namen genannt, und unausgeglichene bedingte Tags kommen mit ihren Öffnungs-/Schließzählern. Ein Live-Zähler verfolgt Gmails Signatur-Limit von 10.000 Zeichen.</p>
 <p>Das HTML wird beim Speichern bereinigt: Skripte, iframes, Event-Handler (<code>onclick=</code> und Verwandte) und <code>javascript:</code>-URLs werden entfernt. Signaturen sind von Natur aus statisches HTML - Gmail würde aktive Inhalte ohnehin entfernen.</p>
+<p>Auch Gmail bereinigt, auf den eigenen Servern, wenn es die Signatur ablegt: Ein Schreibvorgang kann gelingen, und Gmail behält trotzdem eine vereinfachte Kopie eines komplizierten Layouts. SignatureCat vergleicht beides und sagt Ihnen, wenn das passiert ist - was dann zu tun ist, steht in <a href="/de/docs/gmail-sanitization">Wenn Gmail Ihre Signatur kürzt</a>.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Tipp</p><div class="callout-body">
 <p>Gmail-Signaturen rendern am besten mit tabellenbasierten Layouts und Inline-Styles. Vermeiden Sie externe CSS-Dateien und Webfonts; die meisten Mail-Clients ignorieren sie.</p>
 </div></aside>

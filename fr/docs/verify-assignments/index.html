@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Vérifier une tâche d'affectation | SignatureCat Docs</title>
-  <meta name="description" content="Vérifiez qu'une tâche de synchronisation ou d'application SignatureCat a réussi - statuts des tâches, résultats par utilisateur et signification des codes d'erreur courants." />
+  <meta name="description" content="Vérifiez qu'une tâche de signature SignatureCat a réussi dans Google Workspace - statuts des tâches, résultats par utilisateur, codes d'erreur et lecture en direct d'une boîte Gmail." />
   <link rel="canonical" href="https://signature.cat/fr/docs/verify-assignments" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/verify-assignments" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/verify-assignments" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Vérifier une tâche d'affectation | SignatureCat Docs" />
-  <meta property="og:description" content="Vérifiez qu'une tâche de synchronisation ou d'application SignatureCat a réussi - statuts des tâches, résultats par utilisateur et signification des codes d'erreur courants." />
+  <meta property="og:description" content="Vérifiez qu'une tâche de signature SignatureCat a réussi dans Google Workspace - statuts des tâches, résultats par utilisateur, codes d'erreur et lecture en direct d'une boîte Gmail." />
   <meta property="og:url" content="https://signature.cat/fr/docs/verify-assignments" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Vérifier une tâche d'affectation | SignatureCat Docs" />
-  <meta name="twitter:description" content="Vérifiez qu'une tâche de synchronisation ou d'application SignatureCat a réussi - statuts des tâches, résultats par utilisateur et signification des codes d'erreur courants." />
+  <meta name="twitter:description" content="Vérifiez qu'une tâche de signature SignatureCat a réussi dans Google Workspace - statuts des tâches, résultats par utilisateur, codes d'erreur et lecture en direct d'une boîte Gmail." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Vérifier une tâche d'affectation",
-      "description": "Vérifiez qu'une tâche de synchronisation ou d'application SignatureCat a réussi - statuts des tâches, résultats par utilisateur et signification des codes d'erreur courants.",
+      "description": "Vérifiez qu'une tâche de signature SignatureCat a réussi dans Google Workspace - statuts des tâches, résultats par utilisateur, codes d'erreur et lecture en direct d'une boîte Gmail.",
       "url": "https://signature.cat/fr/docs/verify-assignments",
       "inLanguage": "fr",
-      "datePublished": "2026-07-19",
-      "dateModified": "2026-07-19",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
         <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
         <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
         <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
         <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/fr/docs/support-access">Accès du support</a></li>
         <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
         <li><a href="/fr/docs/service-status">État du service</a></li>
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
@@ -192,10 +196,11 @@
       <nav class="docs-breadcrumb" aria-label="Fil d'Ariane"><a href="/fr/docs">Docs</a><span class="crumb-sep">/</span><span class="crumb-section">Premiers pas</span><span class="crumb-sep">/</span><span aria-current="page">Vérifier les tâches d'affectation</span></nav>
       <article class="docs-article">
 <h1>Vérifier une tâche d'affectation</h1>
-<p>Chaque synchronisation et chaque application manuelle s'exécute comme une tâche avec un résultat par utilisateur que vous pouvez inspecter. La vérification la plus rapide est la page <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Journaux des tâches</a> ; une tâche en cours a aussi sa propre vue de détail sur <code>app.signature.cat/jobs/{id}</code> qui se met à jour en temps réel.</p>
+<p>Chaque synchronisation et chaque application manuelle s'exécute comme une tâche avec un résultat par utilisateur que vous pouvez inspecter. La vérification la plus rapide est la page <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Journaux des tâches</a> ; une tâche en cours a aussi sa propre vue de détail sur <code>app.signature.cat/jobs/{id}</code> qui se met à jour en temps réel.</p>
 <h2 id="consulter-les-journaux-des-tches">Consulter les journaux des tâches<a class="h-anchor" href="#consulter-les-journaux-des-tches" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Ouvrez les <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Journaux des tâches</a> (niveaux Editor et Admin). Chaque ligne est une tâche terminée - une <strong>Synchronisation des attributions</strong> ou une <strong>Application manuelle</strong> - avec son statut, ses heures de début et de fin, qui l'a déclenchée ("Automatique" pour la synchronisation quotidienne) et un résumé comme "42 réussies, 1 échouée, 2 ignorées".</p>
+<p>Ouvrez les <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Journaux des tâches</a> (niveaux Editor et Admin). Chaque ligne est une tâche terminée - une <strong>Synchronisation des attributions</strong> ou une <strong>Application manuelle</strong> - avec son statut, ses heures de début et de fin, qui l'a déclenchée ("Automatique" pour la synchronisation quotidienne) et un résumé comme "42 réussies, 1 échouée, 2 ignorées".</p>
 <p>Dépliez une ligne pour voir le détail par utilisateur, ou cliquez sur <strong>Ouvrir la vue complète de la tâche</strong> pour le tableau de résultats complet.</p>
+<p>La vue complète de la tâche porte aussi un panneau <strong>Détails de l'exécution</strong> une fois la tâche terminée : <strong>Adresses principales mises à jour</strong>, <strong>Alias send-as mis à jour</strong>, <strong>Groupes traités</strong> (avec le nombre de sous-groupes, quand l'affectation les incluait), <strong>Unités organisationnelles (OU) traitées</strong>, et pour une cible couvrant tout le Workspace le nombre d'utilisateurs auquel elle s'est résolue. Servez-vous-en pour confirmer qu'une tâche a bien couvert la population attendue.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Les journaux des tâches sont conservés pendant une durée limitée (par défaut les 30 derniers jours) et les entrées plus anciennes sont supprimées automatiquement. Vérifiez les tâches peu après les grands déploiements.</p>
 </div></aside>
@@ -216,15 +221,17 @@
 <ul>
 <li><strong>TARGET_NOT_FOUND</strong> - le groupe ou l'OU affecté n'existe plus dans le Workspace (supprimé ou identifiant erroné). La cible a été ignorée, les administrateurs reçoivent une notification, et la ligne d'affectation affiche un badge "introuvable dans le Workspace". Corrigez ou supprimez l'affectation sur <a href="https://app.signature.cat/assignments" target="_blank" rel="noopener">Affectations</a>.</li>
 <li><strong>USER_NOT_FOUND</strong> - l'utilisateur n'existe plus dans l'annuaire.</li>
-<li><strong>ALIAS_SCOPE_MISSING</strong> - les signatures d'alias nécessitent le scope optionnel <code>gmail.settings.sharing</code>, qui n'a pas été accordé. Voir <a href="/fr/docs/connect-google-workspace#step-3-authorize-domain-wide-delegation">Connecter votre Google Workspace</a>.</li>
+<li><strong>ALIAS_SCOPE_MISSING</strong> - les signatures d'alias nécessitent le scope optionnel <code>gmail.settings.sharing</code>, qui n'a pas été accordé. Voir <a href="/fr/docs/connect-google-workspace#tape-4-autoriser-la-domain-wide-delegation">Connecter votre Google Workspace</a>.</li>
 <li><strong>DWD_NOT_CONFIGURED / DWD_SCOPE_MISSING</strong> - la Domain-Wide Delegation est cassée ou un scope manque. Relancez l'assistant depuis <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Paramètres</a>. Voir <a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a>.</li>
 <li><strong>RATE_LIMITED</strong> - Google a limité les requêtes ; le worker réessaie automatiquement avant de faire remonter ce code.</li>
 </ul>
-<p>Une ligne peut aussi porter la note "a remplacé N autres affectations pour cet utilisateur" - l'utilisateur correspondait à plusieurs affectations et celle-ci l'a emporté. Les règles de priorité sont dans la <a href="/fr/docs/assignments#how-precedence-works">référence des affectations</a>.</p>
+<p>Un code est un avertissement plutôt qu'un échec : <strong>GMAIL_SIGNATURE_SANITIZED</strong> figure sur des lignes qui ont <strong>réussi</strong>, sous la forme du badge ambre <strong>tronquée par Gmail</strong> avec la phrase "Signature appliquée, mais Gmail a enregistré une copie tronquée." Gmail a accepté l'écriture puis a réécrit le HTML au moment de l'enregistrer : une nouvelle tentative stocke donc exactement la même chose. Le correctif consiste à simplifier le balisage signalé - <strong>Détails techniques</strong> sur la ligne nomme les éléments supprimés - et à tester le modèle à nouveau. Voir <a href="/fr/docs/gmail-sanitization">Quand Gmail tronque votre signature</a>.</p>
+<p>Une ligne peut aussi porter la note "a remplacé N autres affectations pour cet utilisateur" - l'utilisateur correspondait à plusieurs affectations et celle-ci l'a emporté. Les règles de priorité sont dans la <a href="/fr/docs/assignments#fonctionnement-de-la-priorit">référence des affectations</a>.</p>
 <h2 id="vrifier-dans-gmail">Vérifier dans Gmail<a class="h-anchor" href="#vrifier-dans-gmail" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Pour un contrôle ponctuel, demandez à un utilisateur couvert d'ouvrir les paramètres Gmail et de regarder la signature, ou envoyez-vous un message de test. N'oubliez pas que la signature <a href="/fr/docs/self-service">self-service</a> propre à un utilisateur l'emporte sur les affectations, sauf si l'affectation la remplace.</p>
+<p>La vérification la plus rapide est <strong>Afficher la signature actuelle</strong> sur une ligne réussie dans les <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Journaux des tâches</a> : elle lit en direct la boîte Gmail de cet utilisateur et vous montre ce qui y est réellement stocké, y compris ce que l'utilisateur a modifié à la main. Voir <a href="/fr/docs/logs#lire-la-signature-actuelle-de-la-bote">Lire la signature actuelle de la boîte</a>.</p>
+<p>Pour un contrôle dans le client de messagerie lui-même, demandez à un utilisateur couvert d'ouvrir les paramètres Gmail et de regarder la signature, ou envoyez-vous un message de test. N'oubliez pas que la signature <a href="/fr/docs/self-service">self-service</a> propre à un utilisateur l'emporte sur les affectations, sauf si l'affectation la remplace.</p>
 <aside class="callout callout-tip" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3z"/></svg>Astuce</p><div class="callout-body">
-<p>Les lignes en échec d'une tâche terminée peuvent être relancées depuis la vue de détail de la tâche avec <strong>Relancer les échecs</strong> - inutile de tout réappliquer à tout le monde.</p>
+<p>Une tâche terminée n'a pas de bouton de relance. Une fois corrigé ce que le code d'erreur indique, lancez une nouvelle application depuis la page <a href="https://app.signature.cat/apply" target="_blank" rel="noopener">Appliquer</a> pour ces seules adresses - inutile de tout réappliquer à tout le monde.</p>
 </div></aside>
       </article>
 <nav class="docs-pager" aria-label="Pagination">

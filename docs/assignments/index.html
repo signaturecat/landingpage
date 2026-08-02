@@ -47,8 +47,8 @@
       "description": "SignatureCat assignments reference - target kinds, precedence when a user matches several assignments, alias modes and conflict handling.",
       "url": "https://signature.cat/docs/assignments",
       "inLanguage": "en",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/docs/user-management">User management</a></li>
         <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
         <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
         <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
         <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments" aria-current="page">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/docs/support-access">Support access</a></li>
         <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
         <li><a href="/docs/service-status">Service status</a></li>
         <li><a href="/docs/legal">Legal</a></li>
         </ul>
@@ -208,7 +212,7 @@
 <p>Users often match several assignments. Every sync computes exactly <strong>one winner per user</strong>, layer by layer, from bottom to top:</p>
 <ol>
 <li><strong>Everyone</strong> - the base layer for every active user.</li>
-<li><strong>OU assignments</strong> override the everyone-assignment for users in the OU.</li>
+<li><strong>OU assignments</strong> override the everyone-assignment for users in the OU. If a user is covered by two assigned OUs, the <strong>most recently updated</strong> assignment wins.</li>
 <li><strong>Group assignments</strong> override the OU template for their members. If a user belongs to multiple assigned groups, the <strong>most recently updated</strong> assignment wins.</li>
 <li><strong>Self-service</strong> - a user's own choice wins over every assignment, <strong>unless</strong> the winning assignment has <strong>Override self-service</strong> enabled.</li>
 </ol>

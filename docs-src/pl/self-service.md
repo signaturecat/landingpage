@@ -1,8 +1,8 @@
 ---
 title: Podpisy self-service
 navTitle: Self-service
-description: Pozwól użytkownikom wybrać i zastosować własny podpis Gmail z zatwierdzonych przez administratora szablonów SignatureCat - konfiguracja, przebieg i reguły pierwszeństwa.
-updated: 2026-07-17
+description: Pozwól użytkownikom wybrać i zastosować własny podpis Gmail z zatwierdzonych przez administratora szablonów SignatureCat - konfiguracja, przebieg, własne dane i reguły pierwszeństwa.
+updated: 2026-08-02
 ---
 
 # Podpisy self-service
@@ -14,7 +14,7 @@ Self-service pozwala każdemu użytkownikowi wybrać własny podpis spośród za
 Self-service udostępniają dwa przełączniki:
 
 1. **Włącz szablony do self-service.** Na stronie [Podpisy](https://app.signature.cat/signatures) włącz self-service dla każdego szablonu, który użytkownicy mogą wybierać. Tylko te szablony są widoczne na stronie self-service.
-2. **Nadaj użytkownikom dostęp.** W [Zarządzaniu dostępem](https://app.signature.cat/user-management) nadaj użytkownikom lub grupom poziom **Self-service** (albo **Self-service + edycja**, aby pozwolić też na własny kod HTML). Zobacz [Zarządzanie dostępem](/docs/user-management/) - w tym ostrzeżenie o grantach grupowych obejmujących przyszłych członków.
+2. **Nadaj użytkownikom dostęp.** W [Zarządzaniu dostępem](https://app.signature.cat/user-management) nadaj użytkownikom lub grupom poziom **Self-service** (albo **Self-service + edycja**, aby pozwolić też na własny kod HTML). Zobacz [Zarządzanie dostępem](/docs/user-management) - w tym ostrzeżenie o grantach grupowych obejmujących przyszłych członków.
 
 > [!WARNING]
 > Wyłączenie self-service na szablonie czyści wybory każdego użytkownika, który go wybrał, a ich oczekujące zadania są anulowane. Aplikacja najpierw prosi o potwierdzenie.
@@ -23,14 +23,35 @@ Self-service udostępniają dwa przełączniki:
 
 1. Loguje się na [app.signature.cat](https://app.signature.cat) i otwiera **Mój podpis**.
 2. Wybiera **Szablon organizacji** z listy. Podgląd na żywo renderuje się na podstawie danych Directory tego użytkownika.
-3. Użytkownicy z poziomem edycji mogą przełączyć się na **Własny HTML** i dostosować kod, z tymi samymi dostępnymi [zmiennymi](/docs/template-variables/); **Przywróć szablon** przywraca oryginał.
+3. Użytkownicy z poziomem edycji mogą przełączyć się na **Własny HTML** i dostosować kod, z tymi samymi dostępnymi [zmiennymi](/docs/template-variables); **Przywróć szablon** przywraca oryginał.
 4. Klika **Zapisz podpis**. Podpis jest stosowany do skrzynki użytkownika od razu ("Zapisano - zastosowano w Twojej skrzynce"), łącznie z jego zaakceptowanymi aliasami send-as.
 
 Jeśli lista jest pusta, żaden szablon nie ma jeszcze włączonego self-service: "Twoja organizacja nie opublikowała jeszcze żadnych szablonów self-service. Poproś administratora o włączenie szablonu."
 
+## Moje dane do podpisu
+
+**Moje dane do podpisu** to przycisk na stronie **Mój podpis**, w którym użytkownik wpisuje własne wartości zmiennych ze swojego podpisu - stanowisko, telefon, adres i resztę. Pojawia się, gdy Admin włączy dane użytkowników dla organizacji i otworzy kłódkę **Edycja self-service**; zobacz [Dane użytkowników](/docs/user-data).
+
+Dla użytkownika wygląda to tak:
+
+1. Otwórz [Mój podpis](https://app.signature.cat/self-service) i kliknij **Moje dane do podpisu**.
+2. Otworzy się okno **Uzupełnij swoje dane**: "Te wartości wypełniają zmienne w Twoim podpisie."
+3. Każde pole pokazuje wartość z firmowego katalogu, dopóki nie klikniesz ikony obok niego i nie wpiszesz własnej.
+4. Kliknij **Zapisz moje dane**. **Użyj danych z katalogu** robi odwrotnie: usuwa wszystkie wprowadzone przez Ciebie wartości i przywraca w każdym polu wartość z katalogu.
+
+Co to zmienia:
+
+- Wartości zasilają te same [zmienne szablonów](/docs/template-variables) co wszędzie indziej - korzysta z nich wybrany przez Ciebie szablon organizacji, podgląd na stronie i podpis w Twojej skrzynce.
+- Zapis od razu ponownie stosuje Twój podpis w skrzynce ("Zapisano. Twój podpis właśnie się aktualizuje."). Jeśli w tym momencie nie da się nic zastosować, zmiana pojawi się przy najbliższej aktualizacji podpisu.
+- Możesz edytować wyłącznie **własny** rekord. Okno zawsze działa na Twoim własnym adresie.
+- Twój Admin widzi każdy wpis, łącznie z tym, kto zmienił go ostatnio, i może go nadpisać albo usunąć.
+
+> [!NOTE]
+> Nie widzisz na stronie przycisku **Moje dane do podpisu**? To znaczy, że dane użytkowników są wyłączone dla Twojej organizacji albo edycja self-service jest wciąż zamknięta. Zapytaj Admina.
+
 ## Jak self-service współgra z przypisaniami
 
-Wybór self-service użytkownika siedzi na **szczycie** drabiny pierwszeństwa: wygrywa z przypisaniami grup, OU i przypisaniem dla wszystkich. Jedyny wyjątek to przypisanie z włączonym **Nadpisuj self-service**, które odwraca tę regułę dla objętych nim użytkowników. Szczegóły: [Przypisania](/docs/assignments/#how-precedence-works).
+Wybór self-service użytkownika siedzi na **szczycie** drabiny pierwszeństwa: wygrywa z przypisaniami grup, OU i przypisaniem dla wszystkich. Jedyny wyjątek to przypisanie z włączonym **Nadpisuj self-service**, które odwraca tę regułę dla objętych nim użytkowników. Szczegóły: [Przypisania](/docs/assignments#jak-dziaa-pierwszestwo).
 
 > [!NOTE]
 > Użytkownicy self-service mogą ustawić wyłącznie **własny** podpis. Widzą tylko te szablony, które włączysz - nigdy dane innych użytkowników ani strony administracyjne.

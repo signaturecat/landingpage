@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Tâches d'application | SignatureCat Docs</title>
-  <meta name="description" content="Comment SignatureCat applique les signatures - la synchronisation quotidienne des affectations, les applications manuelles ponctuelles depuis la page Appliquer et le suivi des tâches." />
+  <meta name="description" content="Comment SignatureCat écrit les signatures Gmail dans tout Google Workspace - la synchronisation quotidienne des affectations, les applications ponctuelles depuis la page Appliquer et le suivi des tâches." />
   <link rel="canonical" href="https://signature.cat/fr/docs/apply-jobs" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/apply-jobs" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/apply-jobs" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Tâches d'application | SignatureCat Docs" />
-  <meta property="og:description" content="Comment SignatureCat applique les signatures - la synchronisation quotidienne des affectations, les applications manuelles ponctuelles depuis la page Appliquer et le suivi des tâches." />
+  <meta property="og:description" content="Comment SignatureCat écrit les signatures Gmail dans tout Google Workspace - la synchronisation quotidienne des affectations, les applications ponctuelles depuis la page Appliquer et le suivi des tâches." />
   <meta property="og:url" content="https://signature.cat/fr/docs/apply-jobs" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Tâches d'application | SignatureCat Docs" />
-  <meta name="twitter:description" content="Comment SignatureCat applique les signatures - la synchronisation quotidienne des affectations, les applications manuelles ponctuelles depuis la page Appliquer et le suivi des tâches." />
+  <meta name="twitter:description" content="Comment SignatureCat écrit les signatures Gmail dans tout Google Workspace - la synchronisation quotidienne des affectations, les applications ponctuelles depuis la page Appliquer et le suivi des tâches." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Tâches d'application",
-      "description": "Comment SignatureCat applique les signatures - la synchronisation quotidienne des affectations, les applications manuelles ponctuelles depuis la page Appliquer et le suivi des tâches.",
+      "description": "Comment SignatureCat écrit les signatures Gmail dans tout Google Workspace - la synchronisation quotidienne des affectations, les applications ponctuelles depuis la page Appliquer et le suivi des tâches.",
       "url": "https://signature.cat/fr/docs/apply-jobs",
       "inLanguage": "fr",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
         <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
         <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
         <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
         <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs" aria-current="page">Tâches d'application</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/fr/docs/support-access">Accès du support</a></li>
         <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
         <li><a href="/fr/docs/service-status">État du service</a></li>
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
@@ -207,13 +211,15 @@
 </ul>
 <p>L'envoi redirige vers la vue en direct de la tâche.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
-<p>Une application ponctuelle écrit la signature <strong>une seule fois</strong>. Si l'utilisateur est couvert par une affectation ou un choix self-service, la prochaine synchronisation quotidienne écrasera le résultat ponctuel selon les <a href="/fr/docs/assignments#how-precedence-works">règles de priorité</a>.</p>
+<p>Une application ponctuelle écrit la signature <strong>une seule fois</strong>. Si l'utilisateur est couvert par une affectation ou un choix self-service, la prochaine synchronisation quotidienne écrasera le résultat ponctuel selon les <a href="/fr/docs/assignments#fonctionnement-de-la-priorit">règles de priorité</a>.</p>
 </div></aside>
 <h2 id="suivre-une-tche">Suivre une tâche<a class="h-anchor" href="#suivre-une-tche" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>La vue de la tâche sur <code>app.signature.cat/jobs/{id}</code> se met à jour en direct pendant l'exécution : statut, progression et tableau de résultats par utilisateur avec les codes d'erreur. Les tâches terminées figurent aussi dans les <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Journaux des tâches</a>. <strong>Relancer les échecs</strong> ne réessaie que les lignes en échec.</p>
-<p>Les statuts et les codes d'erreur sont documentés dans <a href="/fr/docs/verify-assignments#job-statuses">Vérifier une tâche d'affectation</a>.</p>
+<p>La vue de la tâche sur <code>app.signature.cat/jobs/{id}</code> se met à jour en direct pendant l'exécution : statut, progression et tableau de résultats par utilisateur avec les codes d'erreur. Les tâches terminées figurent aussi dans les <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Journaux des tâches</a>. Une tâche terminée n'a pas de bouton de relance : corrigez d'abord la cause, puis lancez une nouvelle application depuis la page <a href="https://app.signature.cat/apply" target="_blank" rel="noopener">Appliquer</a> pour les adresses en échec, ou laissez faire la synchronisation quotidienne.</p>
+<p>Quand la tâche se termine, la même vue ajoute un panneau <strong>Détails de l'exécution</strong> : <strong>Adresses principales mises à jour</strong>, <strong>Alias send-as mis à jour</strong>, <strong>Groupes traités</strong> (avec le nombre de sous-groupes le cas échéant), <strong>Unités organisationnelles (OU) traitées</strong> et, pour une cible couvrant tout le Workspace, le nombre d'utilisateurs auquel elle s'est résolue.</p>
+<p>Les statuts et les codes d'erreur sont documentés dans <a href="/fr/docs/verify-assignments#statuts-des-tches">Vérifier une tâche d'affectation</a>.</p>
 <h2 id="en-combien-de-temps-les-changements-sont-ils-visibles">En combien de temps les changements sont-ils visibles ?<a class="h-anchor" href="#en-combien-de-temps-les-changements-sont-ils-visibles" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Les applications manuelles et les enregistrements self-service sont quasi instantanés (de quelques secondes à quelques minutes pour les grandes cibles). Les modifications d'affectations s'appliquent à la prochaine synchronisation quotidienne, sauf si vous cliquez sur <strong>Synchroniser maintenant</strong>. Gmail affiche la nouvelle signature à la prochaine rédaction de message - les e-mails déjà envoyés ne changent jamais.</p>
+<p>La modification des données utilisateur se comporte différemment selon la manière dont vous procédez. Enregistrer ou supprimer les valeurs d'un utilisateur sur l'onglet <strong>Données</strong> met en file une actualisation immédiate de la signature de cette seule personne : le changement arrive donc en quelques instants. Un import CSV ne met rien en file : la dernière étape de l'import propose un bouton <strong>Synchroniser les signatures maintenant</strong> que vous pouvez sauter, et sans lui les valeurs importées atteignent les boîtes mail à la prochaine synchronisation quotidienne. Voir <a href="/fr/docs/user-data">Remplacement des données utilisateur</a>.</p>
       </article>
 <nav class="docs-pager" aria-label="Pagination">
 <a class="pager-card pager-prev" href="/fr/docs/assignments" rel="prev">

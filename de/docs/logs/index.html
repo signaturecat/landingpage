@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Protokolle | SignatureCat Docs</title>
-  <meta name="description" content="Wo SignatureCat festhält, was passiert ist - Aufgabenprotokolle für Synchronisierungs- und Anwendungs-Aufträge, Ergebnisse pro Nutzer, Aufbewahrung und Audit-Trail." />
+  <meta name="description" content="Wo SignatureCat jeden Gmail-Signatur-Auftrag festhält - Aufgabenprotokolle, Ergebnisse pro Nutzer, das Badge von Gmail gekürzt, Live-Prüfungen im Postfach und Aufbewahrung." />
   <link rel="canonical" href="https://signature.cat/de/docs/logs" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/logs" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/logs" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Protokolle | SignatureCat Docs" />
-  <meta property="og:description" content="Wo SignatureCat festhält, was passiert ist - Aufgabenprotokolle für Synchronisierungs- und Anwendungs-Aufträge, Ergebnisse pro Nutzer, Aufbewahrung und Audit-Trail." />
+  <meta property="og:description" content="Wo SignatureCat jeden Gmail-Signatur-Auftrag festhält - Aufgabenprotokolle, Ergebnisse pro Nutzer, das Badge von Gmail gekürzt, Live-Prüfungen im Postfach und Aufbewahrung." />
   <meta property="og:url" content="https://signature.cat/de/docs/logs" />
   <meta property="og:locale" content="de_DE" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Protokolle | SignatureCat Docs" />
-  <meta name="twitter:description" content="Wo SignatureCat festhält, was passiert ist - Aufgabenprotokolle für Synchronisierungs- und Anwendungs-Aufträge, Ergebnisse pro Nutzer, Aufbewahrung und Audit-Trail." />
+  <meta name="twitter:description" content="Wo SignatureCat jeden Gmail-Signatur-Auftrag festhält - Aufgabenprotokolle, Ergebnisse pro Nutzer, das Badge von Gmail gekürzt, Live-Prüfungen im Postfach und Aufbewahrung." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Protokolle",
-      "description": "Wo SignatureCat festhält, was passiert ist - Aufgabenprotokolle für Synchronisierungs- und Anwendungs-Aufträge, Ergebnisse pro Nutzer, Aufbewahrung und Audit-Trail.",
+      "description": "Wo SignatureCat jeden Gmail-Signatur-Auftrag festhält - Aufgabenprotokolle, Ergebnisse pro Nutzer, das Badge von Gmail gekürzt, Live-Prüfungen im Postfach und Aufbewahrung.",
       "url": "https://signature.cat/de/docs/logs",
       "inLanguage": "de",
-      "datePublished": "2026-07-19",
-      "dateModified": "2026-07-19",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/de/docs/user-management">Benutzerverwaltung</a></li>
         <li><a href="/de/docs/self-service">Self-Service</a></li>
+        <li><a href="/de/docs/user-data">Benutzerdaten</a></li>
+        <li><a href="/de/docs/user-data-import">Benutzerdaten importieren</a></li>
         <li><a href="/de/docs/custom-image-domain">Eigene Bilddomain</a></li>
         <li><a href="/de/docs/banners-and-logos">Banner und Logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/de/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/de/docs/templates">Vorlagen</a></li>
         <li><a href="/de/docs/visual-editor">Visueller Editor</a></li>
+        <li><a href="/de/docs/mail-client-preview">E-Mail-Client-Vorschau</a></li>
         <li><a href="/de/docs/template-variables">Vorlagenvariablen</a></li>
         <li><a href="/de/docs/assignments">Zuweisungen</a></li>
         <li><a href="/de/docs/apply-jobs">Anwendungs-Aufträge</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/de/docs/support-access">Support-Zugriff</a></li>
         <li><a href="/de/docs/get-help">Hilfe erhalten</a></li>
+        <li><a href="/de/docs/gmail-sanitization">Gmail-Kürzung</a></li>
         <li><a href="/de/docs/service-status">Dienststatus</a></li>
         <li><a href="/de/docs/legal">Rechtliches</a></li>
         </ul>
@@ -192,9 +196,9 @@
       <nav class="docs-breadcrumb" aria-label="Brotkrümelnavigation"><a href="/de/docs">Doku</a><span class="crumb-sep">/</span><span class="crumb-section">Referenz</span><span class="crumb-sep">/</span><span aria-current="page">Protokolle</span></nav>
       <article class="docs-article">
 <h1>Protokolle</h1>
-<p>SignatureCat führt ein Betriebsprotokoll über jeden Signatur-Auftrag, pro Nutzer und pro Adresse, damit Sie jederzeit beantworten können: "Wurde sie angewendet, und wenn nicht, warum?" Der Haupteinstiegspunkt sind die <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Aufgabenprotokolle</a>.</p>
+<p>SignatureCat führt ein Betriebsprotokoll über jeden Signatur-Auftrag, pro Nutzer und pro Adresse, damit Sie jederzeit beantworten können: "Wurde sie angewendet, und wenn nicht, warum?" Der Einstiegspunkt ist der Tab <strong>Protokolle</strong> in der oberen Navigation: <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Aufgabenprotokolle</a>.</p>
 <h2 id="aufgabenprotokolle">Aufgabenprotokolle<a class="h-anchor" href="#aufgabenprotokolle" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Die <a href="https://app.signature.cat/assignments/logs" target="_blank" rel="noopener">Aufgabenprotokolle</a> (Editoren und Admins) listen die zuletzt abgeschlossenen Aufträge Ihres Workspace, neueste zuerst:</p>
+<p>Die <a href="https://app.signature.cat/logs" target="_blank" rel="noopener">Aufgabenprotokolle</a> (Editoren und Admins) listen die zuletzt abgeschlossenen Aufträge Ihres Workspace, neueste zuerst:</p>
 <ul>
 <li><strong>Art</strong> - Zuweisungssynchronisierung (der tägliche Auftrag oder <strong>Jetzt synchronisieren</strong>) oder Manuelles Anwenden (von der <a href="https://app.signature.cat/apply" target="_blank" rel="noopener">Anwenden</a>-Seite und Self-Service-Speichervorgängen).</li>
 <li><strong>Status</strong> - Erfolgreich, Teilweise, Fehlgeschlagen oder Abgebrochen.</li>
@@ -203,14 +207,27 @@
 </ul>
 <p>Das Aufklappen einer Zeile zeigt die Ergebnisse pro Nutzer direkt an; <strong>Vollständige Aufgabenansicht öffnen</strong> öffnet die komplette Ergebnistabelle unter <code>app.signature.cat/jobs/{id}</code>.</p>
 <h2 id="was-eine-ergebniszeile-enthlt">Was eine Ergebniszeile enthält<a class="h-anchor" href="#was-eine-ergebniszeile-enthlt" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Eine Zeile pro geschriebener Adresse: der Nutzer (oder Alias, markiert mit einem "Alias"-Badge), das Ergebnis und ein Fehlercode bei Fehlschlägen oder Überspringungen. Häufige Codes und ihre Lösungen sind in <a href="/de/docs/verify-assignments#what-the-per-user-rows-tell-you">Einen Zuweisungsauftrag prüfen</a> aufgeführt. Zeilen können zusätzlich den Vermerk "N andere Zuweisung(en) für diesen Nutzer überschrieben" tragen - für <a href="/de/docs/assignments#how-precedence-works">Vorrang</a>-Audits.</p>
+<p>Eine Zeile pro geschriebener Adresse: der Nutzer (oder Alias, markiert mit einem "Alias"-Badge), das Ergebnis und ein Fehlercode bei Fehlschlägen oder Überspringungen. Häufige Codes und ihre Lösungen sind in <a href="/de/docs/verify-assignments#was-die-zeilen-pro-nutzer-aussagen">Einen Zuweisungsauftrag prüfen</a> aufgeführt. Zeilen können zusätzlich den Vermerk "N andere Zuweisung(en) für diesen Nutzer überschrieben" tragen - für <a href="/de/docs/assignments#wie-der-vorrang-funktioniert">Vorrang</a>-Audits.</p>
+<p>Eine erfolgreiche Zeile kann zusätzlich ein bernsteinfarbenes Badge <strong>von Gmail gekürzt</strong> tragen, mit der Zeile "Angewendet, aber Gmail hat eine gekürzte Kopie dieser Signatur gespeichert." Das Anwenden selbst hat funktioniert - Gmail hat den Schreibvorgang angenommen und das HTML anschließend beim Speichern auf den eigenen Servern umgeschrieben. <strong>Technische Details</strong> in der Zeile nennt die entfernten Elemente und die Zeichenzahlen davor und danach. Siehe <a href="/de/docs/gmail-sanitization">Wenn Gmail Ihre Signatur kürzt</a>.</p>
+<h2 id="die-aktuelle-signatur-aus-dem-postfach-lesen">Die aktuelle Signatur aus dem Postfach lesen<a class="h-anchor" href="#die-aktuelle-signatur-aus-dem-postfach-lesen" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Zwei Aktionen auf dieser Seite lesen ein Postfach live: <strong>Aktuelle Signatur anzeigen</strong> in einer erfolgreichen Ergebniszeile und <strong>Signatur eines Mitarbeiters prüfen</strong> im Kopfbereich der Seite. Beide öffnen dasselbe schreibgeschützte Fenster mit dem Titel "Aktuelle Signatur aus dem Postfach" und dem Untertitel "Liest die Signatur direkt aus dem Gmail-Postfach des Nutzers."</p>
+<ul>
+<li><strong>Aktuelle Signatur anzeigen</strong> wird in erfolgreichen Zeilen angeboten und startet die Abfrage für diese Adresse sofort.</li>
+<li>Mit <strong>Signatur eines Mitarbeiters prüfen</strong> wählen Sie im Feld <strong>Mitarbeiter</strong> eine beliebige Person in Ihrem Workspace und klicken auf <strong>Signatur anzeigen</strong>.</li>
+<li>Beide stehen Editoren und Admins offen.</li>
+<li>Das Fenster zeigt die Signatur, es bearbeitet sie nicht. Weil es Gmail liest und nicht die eigenen Aufzeichnungen von SignatureCat, zeigt es auch Signaturen, die ein Nutzer in seinen Gmail-Einstellungen von Hand geändert hat.</li>
+<li>Ist nichts gespeichert, erscheint statt einer Vorschau "{email} hat in Gmail keine Signatur gesetzt."</li>
+</ul>
+<aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
+<p>Jede Abfrage wird im Aktivitätsprotokoll Ihres Kontos in den <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Einstellungen</a> festgehalten, mit der geprüften Adresse und der Länge der Signatur - nie ihrem Inhalt. Die Signatur selbst wird von SignatureCat nicht gespeichert.</p>
+</div></aside>
 <h2 id="aufbewahrung">Aufbewahrung<a class="h-anchor" href="#aufbewahrung" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Auftragsprotokolle werden für ein begrenztes Zeitfenster aufbewahrt (standardmäßig <strong>30 Tage</strong> nach Abschluss eines Auftrags) und dann automatisch entfernt - die Seite nennt das aktuelle Zeitfenster. Exportieren oder prüfen Sie alles Nötige zeitnah nach großen Rollouts.</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Hinweis</p><div class="callout-body">
 <p>Das Aufbewahrungsfenster gilt für die Ausführungsprotokolle der Aufträge. Ihre Vorlagen, Zuweisungen und Einstellungen sind selbstverständlich dauerhaft.</p>
 </div></aside>
 <h2 id="laufende-auftrge">Laufende Aufträge<a class="h-anchor" href="#laufende-auftrge" aria-label="Link zu diesem Abschnitt kopieren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Ein laufender Auftrag lässt sich am besten auf seiner eigenen Seite verfolgen, <code>app.signature.cat/jobs/{id}</code>, die den Fortschritt abfragt - siehe <a href="/de/docs/apply-jobs#watching-a-job">Anwendungs-Aufträge</a>.</p>
+<p>Ein laufender Auftrag lässt sich am besten auf seiner eigenen Seite verfolgen, <code>app.signature.cat/jobs/{id}</code>, die den Fortschritt abfragt - siehe <a href="/de/docs/apply-jobs#einen-auftrag-verfolgen">Anwendungs-Aufträge</a>.</p>
       </article>
 <nav class="docs-pager" aria-label="Seitennavigation">
 <a class="pager-card pager-prev" href="/de/docs/apply-jobs" rel="prev">
@@ -244,6 +261,7 @@
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#aufgabenprotokolle">Aufgabenprotokolle</a></li>
         <li class="toc-l2"><a href="#was-eine-ergebniszeile-enthlt">Was eine Ergebniszeile enthält</a></li>
+        <li class="toc-l2"><a href="#die-aktuelle-signatur-aus-dem-postfach-lesen">Die aktuelle Signatur aus dem Postfach lesen</a></li>
         <li class="toc-l2"><a href="#aufbewahrung">Aufbewahrung</a></li>
         <li class="toc-l2"><a href="#laufende-auftrge">Laufende Aufträge</a></li>
         </ul>

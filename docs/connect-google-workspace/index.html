@@ -47,8 +47,8 @@
       "description": "Register SignatureCat as a Google Workspace super admin, provision your isolated service account and authorize Domain-Wide Delegation.",
       "url": "https://signature.cat/docs/connect-google-workspace",
       "inLanguage": "en",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/docs/user-management">User management</a></li>
         <li><a href="/docs/self-service">Self-service</a></li>
+        <li><a href="/docs/user-data">User data</a></li>
+        <li><a href="/docs/user-data-import">Import user data</a></li>
         <li><a href="/docs/custom-image-domain">Custom image domain</a></li>
         <li><a href="/docs/banners-and-logos">Banners and logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/docs/templates">Templates</a></li>
         <li><a href="/docs/visual-editor">Visual editor</a></li>
+        <li><a href="/docs/mail-client-preview">Mail client preview</a></li>
         <li><a href="/docs/template-variables">Template variables</a></li>
         <li><a href="/docs/assignments">Assignments</a></li>
         <li><a href="/docs/apply-jobs">Apply jobs</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/docs/support-access">Support access</a></li>
         <li><a href="/docs/get-help">Get help</a></li>
+        <li><a href="/docs/gmail-sanitization">Gmail trimming</a></li>
         <li><a href="/docs/service-status">Service status</a></li>
         <li><a href="/docs/legal">Legal</a></li>
         </ul>
@@ -197,15 +201,19 @@
 <p>The first registration of a company account must be performed by a <strong>Google Workspace super admin</strong>. Only a super admin can open the Domain-Wide Delegation page in the Google Admin console, and SignatureCat needs directory access to count your seats correctly. Regular users can be invited later - they do not need admin privileges. See <a href="/docs/user-management">User management</a>.</p>
 </div></aside>
 <h2 id="step-1-sign-in-with-google">Step 1: Sign in with Google<a class="h-anchor" href="#step-1-sign-in-with-google" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Open <a href="https://app.signature.cat" target="_blank" rel="noopener">app.signature.cat</a> and click <strong>Sign in with Google</strong> using your company account. SignatureCat only requests the basic <code>openid email profile</code> sign-in scopes at this point - the Workspace permissions are granted separately in step 3, and only to your own isolated service account.</p>
+<p>Open <a href="https://app.signature.cat" target="_blank" rel="noopener">app.signature.cat</a> and click <strong>Sign in with Google</strong> using your company account. SignatureCat only requests the basic <code>openid email profile</code> sign-in scopes at this point - the Workspace permissions are granted separately in step 4, and only to your own isolated service account.</p>
 <p>Personal Gmail accounts are rejected: SignatureCat requires a Google Workspace account.</p>
-<h2 id="step-2-set-up-your-workspace">Step 2: Set up your workspace<a class="h-anchor" href="#step-2-set-up-your-workspace" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Right after the first sign-in you land on the <strong>Set up your workspace</strong> screen. Clicking <strong>Set up workspace</strong> creates a dedicated, isolated Google Cloud service account for your organization - this is the identity that will manage Gmail signatures on your behalf. It usually takes a few seconds (up to 15).</p>
+<h2 id="step-2-accept-the-terms">Step 2: Accept the terms<a class="h-anchor" href="#step-2-accept-the-terms" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>After the first sign-in you land on <strong>Accept the terms to get started</strong>. Tick "I have read and accept the Terms of Service and the Privacy Policy." (both open in a new tab) and click <strong>Accept and continue</strong>.</p>
+<p>This step is mandatory and comes first by design: nothing is provisioned for your organization until the terms are accepted.</p>
+<p>Only the administrator who created the organization can accept them. Anyone else from your domain who signs in before that sees a <strong>Waiting for your administrator</strong> card and gets access as soon as the founding admin has completed this step.</p>
+<h2 id="step-3-set-up-your-workspace">Step 3: Set up your workspace<a class="h-anchor" href="#step-3-set-up-your-workspace" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Once the terms are accepted you land on the <strong>Set up your workspace</strong> screen. Clicking <strong>Set up workspace</strong> creates a dedicated, isolated Google Cloud service account for your organization - this is the identity that will manage Gmail signatures on your behalf. It usually takes a few seconds (up to 15).</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Each customer gets their <strong>own</strong> service account. Its credentials are stored in a secrets vault, never in the application database, and keys are rotated automatically. Rotation never changes the Client ID, so you will never have to re-authorize because of it.</p>
 </div></aside>
 <p>Only the administrator who created the organization can complete this step.</p>
-<h2 id="step-3-authorize-domain-wide-delegation">Step 3: Authorize Domain-Wide Delegation<a class="h-anchor" href="#step-3-authorize-domain-wide-delegation" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<h2 id="step-4-authorize-domain-wide-delegation">Step 4: Authorize Domain-Wide Delegation<a class="h-anchor" href="#step-4-authorize-domain-wide-delegation" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Next, the wizard <strong>Authorize SignatureCat in your Workspace</strong> at <a href="https://app.signature.cat/onboarding/dwd" target="_blank" rel="noopener">app.signature.cat/onboarding/dwd</a> walks you through the Google Admin console:</p>
 <ol>
 <li><strong>Open the Admin Console</strong> - the wizard links straight to the <a href="https://admin.google.com/ac/owl/domainwidedelegation" target="_blank" rel="noopener">Domain-wide delegation page</a> (Security, API Controls, Domain-wide delegation). Sign in as a super admin.</li>
@@ -224,7 +232,7 @@
 </div></aside>
 <h3 id="the-check-says-access-is-still-propagating">The check says access is still propagating<a class="h-anchor" href="#the-check-says-access-is-still-propagating" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
 <p>Google needs a moment to propagate a fresh DWD grant - typically seconds, sometimes up to about 30 seconds. The <strong>Check</strong> button already waits out most of this window. If you still see the yellow "access may still be propagating" card, wait a moment and click <strong>Check</strong> again. This is not an error.</p>
-<h2 id="step-4-billing">Step 4: Billing<a class="h-anchor" href="#step-4-billing" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<h2 id="step-5-billing">Step 5: Billing<a class="h-anchor" href="#step-5-billing" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>After DWD verifies, you are taken to <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Billing</a> to start the 7-day free trial (card collected up front, charged when the trial ends). See <a href="/docs/invoices">Invoices</a> for the pricing tiers.</p>
 <p>That's it - continue with <a href="/docs/create-your-first-template">Create your first template</a>.</p>
 <h2 id="renewing-or-re-granting-domain-wide-delegation">Renewing or re-granting Domain-Wide Delegation<a class="h-anchor" href="#renewing-or-re-granting-domain-wide-delegation" aria-label="Copy link to this section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
@@ -265,10 +273,11 @@
         <p class="docs-toc-title">On this page</p>
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#step-1-sign-in-with-google">Step 1: Sign in with Google</a></li>
-        <li class="toc-l2"><a href="#step-2-set-up-your-workspace">Step 2: Set up your workspace</a></li>
-        <li class="toc-l2"><a href="#step-3-authorize-domain-wide-delegation">Step 3: Authorize Domain-Wide Delegation</a></li>
+        <li class="toc-l2"><a href="#step-2-accept-the-terms">Step 2: Accept the terms</a></li>
+        <li class="toc-l2"><a href="#step-3-set-up-your-workspace">Step 3: Set up your workspace</a></li>
+        <li class="toc-l2"><a href="#step-4-authorize-domain-wide-delegation">Step 4: Authorize Domain-Wide Delegation</a></li>
         <li class="toc-l3"><a href="#the-check-says-access-is-still-propagating">The check says access is still propagating</a></li>
-        <li class="toc-l2"><a href="#step-4-billing">Step 4: Billing</a></li>
+        <li class="toc-l2"><a href="#step-5-billing">Step 5: Billing</a></li>
         <li class="toc-l2"><a href="#renewing-or-re-granting-domain-wide-delegation">Renewing or re-granting Domain-Wide Delegation</a></li>
         </ul>
       </nav>

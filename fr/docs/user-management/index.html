@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <title>Gestion des accès et niveaux d'accès | SignatureCat Docs</title>
-  <meta name="description" content="Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès autorise, et comment accorder l'accès à des utilisateurs individuels ou à des groupes Google entiers." />
+  <meta name="description" content="Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès Google Workspace autorise, et qui peut modifier les données de signature ou accorder l'accès à des groupes." />
   <link rel="canonical" href="https://signature.cat/fr/docs/user-management" />
   <link rel="alternate" hreflang="en" href="https://signature.cat/docs/user-management" />
   <link rel="alternate" hreflang="pl" href="https://signature.cat/pl/docs/user-management" />
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SignatureCat Docs" />
   <meta property="og:title" content="Gestion des accès et niveaux d'accès | SignatureCat Docs" />
-  <meta property="og:description" content="Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès autorise, et comment accorder l'accès à des utilisateurs individuels ou à des groupes Google entiers." />
+  <meta property="og:description" content="Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès Google Workspace autorise, et qui peut modifier les données de signature ou accorder l'accès à des groupes." />
   <meta property="og:url" content="https://signature.cat/fr/docs/user-management" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://signature.cat/assets/img/og-docs.png" />
   <meta name="twitter:title" content="Gestion des accès et niveaux d'accès | SignatureCat Docs" />
-  <meta name="twitter:description" content="Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès autorise, et comment accorder l'accès à des utilisateurs individuels ou à des groupes Google entiers." />
+  <meta name="twitter:description" content="Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès Google Workspace autorise, et qui peut modifier les données de signature ou accorder l'accès à des groupes." />
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -44,11 +44,11 @@
     {
       "@type": "TechArticle",
       "headline": "Gestion des accès et niveaux d'accès",
-      "description": "Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès autorise, et comment accorder l'accès à des utilisateurs individuels ou à des groupes Google entiers.",
+      "description": "Qui peut se connecter à SignatureCat, ce que chaque niveau d'accès Google Workspace autorise, et qui peut modifier les données de signature ou accorder l'accès à des groupes.",
       "url": "https://signature.cat/fr/docs/user-management",
       "inLanguage": "fr",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/fr/docs/user-management" aria-current="page">Gestion des accès</a></li>
         <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
         <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
         <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
         <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/fr/docs/support-access">Accès du support</a></li>
         <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
         <li><a href="/fr/docs/service-status">État du service</a></li>
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
@@ -201,13 +205,16 @@
 <tr><td>Self-service + édition</td><td>Self-service plus son propre HTML de signature personnalisé.</td></tr>
 <tr><td>Designer</td><td>Modifie les modèles de signature de l'organisation.</td></tr>
 <tr><td>Editor</td><td>Designer plus la gestion des affectations et des tâches d'application, et les notifications dans l'application.</td></tr>
-<tr><td>Admin</td><td>Accès complet, y compris la facturation, la gestion des accès, les domaines d'images et l'assistant DWD.</td></tr>
+<tr><td>Admin</td><td>Accès complet, y compris la facturation, la gestion des accès, les données utilisateur, l'accès du support, les domaines d'images et l'assistant DWD.</td></tr>
 </tbody>
 </table></div>
+<p>Les utilisateurs à partir du niveau <strong>Self-service</strong> peuvent aussi modifier leurs <strong>propres</strong> données de signature, mais seulement une fois qu'un Admin a activé la fonction et ouvert le cadenas <strong>Édition en self-service</strong> - voir <a href="/fr/docs/user-data">Données utilisateur</a>.</p>
 <p>Quelques conséquences pratiques :</p>
 <ul>
 <li><strong>Modèles</strong> (<a href="https://app.signature.cat/signatures" target="_blank" rel="noopener">Signatures</a>) : Designer, Editor, Admin.</li>
 <li><strong>Affectations et Appliquer</strong> (<a href="https://app.signature.cat/assignments" target="_blank" rel="noopener">Affectations</a>, <a href="https://app.signature.cat/apply" target="_blank" rel="noopener">Appliquer</a>) : Editor, Admin.</li>
+<li><strong>Données utilisateur</strong> (l'onglet <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Données</a>, où des valeurs stockées par utilisateur remplacent l'annuaire Google dans les signatures) : Admin uniquement.</li>
+<li><strong>Accès du support</strong> (l'interrupteur qui permet au support SignatureCat d'aider de façon opérationnelle) : Admin uniquement - voir <a href="/fr/docs/support-access">Accès du support</a>.</li>
 <li><strong>Facturation, gestion des accès, domaine d'images personnalisé</strong> : Admin uniquement.</li>
 <li>Les Editors voient les <a href="/fr/docs/notifications">notifications</a> dans l'application ; les <strong>e-mails</strong> d'alerte et de facturation ne vont qu'aux administrateurs.</li>
 </ul>
@@ -243,7 +250,7 @@
 <li>Les niveaux d'accès ne contrôlent que l'application SignatureCat. Ils n'ont aucun effet sur le compte Google de l'utilisateur.</li>
 </ul>
 <h2 id="laisser-les-utilisateurs-grer-leur-propre-signature">Laisser les utilisateurs gérer leur propre signature<a class="h-anchor" href="#laisser-les-utilisateurs-grer-leur-propre-signature" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Accordez aux utilisateurs (ou à un groupe) le niveau <strong>Self-service</strong> et activez au moins un modèle pour le self-service - le parcours complet est décrit dans <a href="/fr/docs/self-service">Self-service</a>.</p>
+<p>Accordez aux utilisateurs (ou à un groupe) le niveau <strong>Self-service</strong> et activez au moins un modèle pour le self-service - le parcours complet est décrit dans <a href="/fr/docs/self-service">Self-service</a>. Si vous voulez aussi que les utilisateurs renseignent leurs propres valeurs de variables, activez les données utilisateur et ouvrez <strong>Édition en self-service</strong> sur l'onglet <a href="https://app.signature.cat/data" target="_blank" rel="noopener">Données</a> ; les valeurs qu'ils saisissent vous sont visibles et vous pouvez écraser ou supprimer chacune d'elles.</p>
       </article>
 <nav class="docs-pager" aria-label="Pagination">
 <a class="pager-card pager-prev" href="/fr/docs/verify-assignments" rel="prev">

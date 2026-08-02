@@ -202,7 +202,7 @@ Diese AGB stellen ein Reglement für die Erbringung von Dienstleistungen auf ele
 1. Auf den Vertrag findet **polnisches Recht** Anwendung.
 2. Zuständig für Streitigkeiten aus dem Vertrag ist das ordentliche Gericht, das örtlich für den Sitz des Anbieters zuständig ist. Der vorstehende Satz berührt nicht die zwingenden Vorschriften über die gerichtliche Zuständigkeit.
 3. Sollten sich einzelne Bestimmungen der AGB als unwirksam oder undurchsetzbar erweisen, bleiben die übrigen Bestimmungen in Kraft, und an die Stelle der unwirksamen Bestimmung tritt eine wirksame Bestimmung, die ihrem wirtschaftlichen Zweck am nächsten kommt.
-4. Diese Fassung (1.1) der AGB tritt am **17.07.2026** in Kraft; die Fassung 1.0 galt ab dem 16.07.2026.
+4. Diese Fassung (1.2) der AGB tritt am **02.08.2026** in Kraft; die Fassung 1.1 galt ab dem 17.07.2026 und die Fassung 1.0 ab dem 16.07.2026.
 
 ---
 

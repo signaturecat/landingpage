@@ -21,7 +21,7 @@ Następne obciążenie użyje nowej karty. Jeśli jesteś w oknie karencji po ni
 W tym samym portalu Stripe edytujesz prawną **nazwę firmy**, **adres rozliczeniowy** i **identyfikator podatkowy** (VAT / NIP - polskie firmy używają numeru VAT z prefiksem `PL`). Dane te drukują się na każdej fakturze wystawionej po zmianie; już wystawione faktury pozostają bez zmian.
 
 > [!NOTE]
-> **E-mail do faktur** celowo nie jest edytowalny w portalu Stripe - zmieniaj go w [Ustawieniach](https://app.signature.cat/settings), w sekcji Płatności, aby aplikacja i Stripe zawsze były zgodne. Zobacz [Faktury](/docs/invoices/#set-the-invoice-email).
+> **E-mail do faktur** celowo nie jest edytowalny w portalu Stripe - zmieniaj go w [Ustawieniach](https://app.signature.cat/settings), w sekcji Płatności, aby aplikacja i Stripe zawsze były zgodne. Zobacz [Faktury](/docs/invoices#ustaw-e-mail-do-faktur).
 
 ## Sprawdź status subskrypcji
 
@@ -32,4 +32,4 @@ Sekcja Płatności w [Ustawieniach](https://app.signature.cat/settings) pokazuje
 W [Ustawieniach](https://app.signature.cat/settings), w sekcji Płatności, kliknij **Anuluj subskrypcję**. Dostęp trwa do końca bieżącego okresu rozliczeniowego, potem zarządzanie podpisami się zatrzymuje. Twoje podpisy Gmail nie są usuwane - po prostu przestają być zarządzane i aktualizowane.
 
 > [!WARNING]
-> Anulowanie nie usuwa Twoich danych ani wpisu Domain-Wide Delegation. Jeśli odchodzisz na dobre, usuń też konto w Strefie niebezpiecznej w [Ustawieniach](https://app.signature.cat/settings) i usuń wpis DWD w Google Admin console - zobacz [Domain-Wide Delegation](/docs/domain-wide-delegation/#removing-signaturecat).
+> Anulowanie nie usuwa Twoich danych ani wpisu Domain-Wide Delegation. Jeśli odchodzisz na dobre, usuń też konto w Strefie niebezpiecznej w [Ustawieniach](https://app.signature.cat/settings) i usuń wpis DWD w Google Admin console - zobacz [Domain-Wide Delegation](/docs/domain-wide-delegation#usuwanie-signaturecat).

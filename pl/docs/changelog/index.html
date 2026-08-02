@@ -48,7 +48,7 @@
       "url": "https://signature.cat/pl/docs/changelog",
       "inLanguage": "pl",
       "datePublished": "2026-07-24",
-      "dateModified": "2026-07-26",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/pl/docs/user-management">Zarządzanie dostępem</a></li>
         <li><a href="/pl/docs/self-service">Self-service</a></li>
+        <li><a href="/pl/docs/user-data">Dane użytkowników</a></li>
+        <li><a href="/pl/docs/user-data-import">Import danych</a></li>
         <li><a href="/pl/docs/custom-image-domain">Własna domena obrazków</a></li>
         <li><a href="/pl/docs/banners-and-logos">Banery i logo</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/pl/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/pl/docs/templates">Szablony</a></li>
         <li><a href="/pl/docs/visual-editor">Edytor wizualny</a></li>
+        <li><a href="/pl/docs/mail-client-preview">Podgląd w kliencie pocztowym</a></li>
         <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
         <li><a href="/pl/docs/assignments">Przypisania</a></li>
         <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/pl/docs/support-access">Dostęp dla supportu</a></li>
         <li><a href="/pl/docs/get-help">Uzyskaj pomoc</a></li>
+        <li><a href="/pl/docs/gmail-sanitization">Okrajanie przez Gmail</a></li>
         <li><a href="/pl/docs/service-status">Status usługi</a></li>
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
@@ -193,17 +197,36 @@
       <article class="docs-article">
 <h1>Changelog</h1>
 <p>Co nowego w SignatureCat, menedżerze podpisów e-mail dla Google Workspace. Stale ulepszamy szablony podpisów, integrację z Gmailem i administrację Workspace - najważniejsze zmiany zbieramy tutaj, miesiąc po miesiącu.</p>
+<h2 id="sierpie-2026">Sierpień 2026<a class="h-anchor" href="#sierpie-2026" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<ul>
+<li><strong>Sprawdzamy teraz, co naprawdę zapisał Gmail.</strong> Gmail przy zapisie przepisuje podpisy na własnych serwerach i potrafi po cichu wyrzucić fragmenty skomplikowanego układu. SignatureCat porównuje teraz to, co wysłał, z tym, co Gmail zachował: jeśli cokolwiek zostało okrojone, wiersz wyniku dostaje odznakę "okrojony przez Gmail", a testowy podpis w edytorze mówi Ci, które elementy zniknęły. Zobacz <a href="/pl/docs/gmail-sanitization">Gdy Gmail okrawa Twój podpis</a>.</li>
+<li><strong>Zobacz podpis, który skrzynka ma w tej chwili.</strong> Z poziomu <a href="/pl/docs/logs">Logów</a> otworzysz i obejrzysz aktualny podpis Gmail dowolnego pracownika, bez proszenia go o zrzut ekranu. Przydatne, gdy ktoś edytował swój podpis ręcznie w Gmailu albo gdy chcesz mieć dowód, że wdrożenie doszło do skutku.</li>
+<li><strong>Tekst alternatywny dla logo i banerów.</strong> Każdy obrazek w Twojej bibliotece może teraz nieść krótki opis, który odbiorcy zobaczą, gdy ich program pocztowy blokuje obrazki - jedna z najprostszych rzeczy, jakie da się zrobić dla dostępności podpisu e-mail. Zobacz <a href="/pl/docs/banners-and-logos">Banery i logo</a>.</li>
+<li><strong>Dowolny obrazek prosto z adresu URL.</strong> Obok współdzielonej biblioteki obrazków edytor wizualny umieści teraz jednorazowy obrazek hostowany gdziekolwiek - z własnym opisem, kształtem prostokątnym albo zaokrąglonym i zmianą rozmiaru przez przeciąganie. Zdjęcia profilowe dostały ten sam wybór: okrągłe (domyślnie) albo kwadratowe.</li>
+<li><strong>Separatory, które możesz ostylować.</strong> Wstaw poziomą linię między blokami i ustaw jej kolor oraz długość - to schludny sposób na oddzielenie nazwiska od danych kontaktowych.</li>
+<li><strong>Kolumny, które znikają, gdy są puste.</strong> Całą kolumnę można teraz oznaczyć jako warunkową, więc kolumna ze zdjęciem (albo z telefonem) znika u osób bez zdjęcia lub bez numeru, zamiast zostawiać dziurę w ich podpisie.</li>
+<li><strong>Lepszy import istniejących podpisów HTML.</strong> Wielowierszowe tabele układu, sekcje warunkowe wokół całych komórek i ręcznie pisane znaczniki przechodzą teraz przełączenie na edytor wizualny znacznie wierniej.</li>
+<li><strong>Aktualizacja polityki prywatności.</strong> Nowa wersja <a href="https://signature.cat/privacy" target="_blank" rel="noopener">Polityki prywatności</a> obowiązuje od dziś: opisuje opcjonalne przechowywanie <a href="/pl/docs/user-data">danych użytkowników</a> oraz odczytywanie podpisu ze skrzynki.</li>
+</ul>
 <h2 id="lipiec-2026">Lipiec 2026<a class="h-anchor" href="#lipiec-2026" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <ul>
+<li><strong>Uzupełnij luki w danych z katalogu.</strong> Brakujące stanowiska czy numery telefonów nie blokują już dobrego podpisu. Na nowej zakładce <strong>Dane</strong> zapiszesz wartości per użytkownik, które w podpisach nadpisują katalog Google, zaimportujesz ich setki z pliku CSV albo pozwolisz ludziom uzupełnić własne dane. Funkcja jest wyłączona, dopóki jej nie włączysz, a wyłączenie kasuje wszystko, co przechowywała. Zobacz <a href="/pl/docs/user-data">Dane użytkowników</a>.</li>
 <li><strong>Wizualny edytor podpisów.</strong> Projektuj szablony podpisów Gmail bez pisania HTML: chipy zmiennych do przeciągania i upuszczania, układy 2-3 kolumn, czcionki web-safe, bezpieczna dla e-maili paleta kolorów i widoczne bloki warunkowe - z wynikiem gwarantowanie renderującym się poprawnie w Gmailu. Klasyczny edytor HTML pozostaje o jedną kartę obok. Zobacz nowy przewodnik <a href="/pl/docs/visual-editor">Edytor wizualny</a>.</li>
 <li><strong>Zmiana rozmiaru obrazków per szablon.</strong> Przeciągaj narożniki logo, banera lub zdjęcia profilowego wprost na kanwie - każdy szablon podpisu trzyma własny rozmiar, a wpisy banerów w bibliotece mogą definiować własne domyślne wymiary. Szablon może też nadpisać link po kliknięciu obrazka bez dotykania współdzielonej biblioteki.</li>
+<li><strong>Szerokości kolumn do przeciągania.</strong> Chwyć odstęp między dwiema kolumnami, aby zmienić ich proporcje, albo złap cały wiersz i przenieś go. Układ 30/70 ze zdjęciem i danymi to teraz jedno przeciągnięcie, a nie zgadywanka.</li>
+<li><strong>Formatowanie, które trzyma się zmiennych.</strong> Powiększenie <code>{{firstname}}</code> albo nadanie mu koloru naprawdę trafia teraz w takiej postaci do dostarczonego podpisu, zamiast po cichu wracać do stylu otaczającego tekstu.</li>
 <li><strong>Mądrzejsza zmienna {{photo}}.</strong> Użyty samodzielnie, <code>{{photo}}</code> renderuje teraz gotowe okrągłe zdjęcie profilowe o rozmiarze per szablon - a użytkownicy bez zdjęcia w Google Workspace Directory nie dostają zepsutego obrazka: zdjęcie po prostu znika z ich podpisu.</li>
 <li><strong>Czytelniejsza walidacja szablonów.</strong> Błędy zapisu wymieniają teraz z nazwy konkretny nieznany token albo liczą niezbalansowane tagi warunkowe, a edytor wyjaśnia różnicę między <code>{{del}}</code> i <code>{{delete}}</code> dwoma animowanymi mini-demo.</li>
+<li><strong>Zobacz swój podpis tak, jak pokazuje go każdy klient poczty.</strong> Podgląd potrafi teraz symulować Gmaila w przeglądarce, Gmaila na telefonie, klasycznego Outlooka na Windows, Outlook.com i Apple Mail, w trybie jasnym i ciemnym - więc niespodziankę z trybem ciemnym złapiesz przed swoimi współpracownikami. Szablon wyrenderujesz też na rekordzie katalogu dowolnego prawdziwego użytkownika polem <strong>Renderuj jako</strong>. Zobacz <a href="/pl/docs/mail-client-preview">Podgląd w kliencie poczty</a>.</li>
+<li><strong>Startery przebudowane pod Outlooka - i jest ich więcej.</strong> Wbudowane punkty startowe napisaliśmy od nowa, żeby świeżo utworzony podpis nie zwijał się już do jednej linii w klasycznym Outlooku, a kreator nowego szablonu może teraz proponować dodatkowe gotowe projekty ponad trzy wbudowane.</li>
 <li><strong>Dokumentacja w czterech językach.</strong> To centrum pomocy jest teraz dostępne po angielsku, polsku, niemiecku i francusku. Przełącznik języka w stopce prowadzi do tego samego artykułu, więc cały zespół może czytać o zarządzaniu podpisami w Google Workspace w swoim języku.</li>
 <li><strong>Zobacz, kto edytował szablon podpisu.</strong> Każdy szablon podpisu pokazuje teraz, kto ostatnio go edytował i kiedy - na liście szablonów i w edytorze podpisu. Przydatne, gdy podpisami e-mail zarządza kilku administratorów Workspace.</li>
 <li><strong>Prostsza własna domena obrazków.</strong> Hostowanie banerów i logo podpisów na własnej domenie wymaga teraz tylko jednego rekordu CNAME. Kreator sam sprawdza konfigurację - zobacz <a href="/pl/docs/custom-image-domain">Własna domena obrazków</a>.</li>
+<li><strong>Ostrzeżenie, gdy usuwasz używany obrazek.</strong> Usunięcie logo albo banera, z którego wciąż korzystają szablony podpisów, wysyła teraz powiadomienie w aplikacji i e-mail do administratorów, więc brakujący obrazek nigdy nie będzie cichą niespodzianką w czyjejś skrzynce.</li>
 <li><strong>Czytelniejsze wyniki wdrażania podpisów.</strong> Widok zadania przeszedł odświeżenie: kolorowy pasek postępu, ikony wyników per użytkownik i sekcja szczegółów realizacji, która pokazuje dokładnie, które konta Gmail otrzymały nowy podpis.</li>
 <li><strong>Osobna strona Logi.</strong> Historia przypisań podpisów ma własną stronę <a href="/pl/docs/logs">Logi</a>, więc sprawdzenie, kto i kiedy dostał dany podpis e-mail, to jedno kliknięcie.</li>
+<li><strong>Ostrzeżenie, gdy psuje się dostęp do Workspace.</strong> Jeśli SignatureCat straci dostęp, którego potrzebuje do Twojego Google Workspace, administratorzy zobaczą teraz czerwony pasek przez całą aplikację z przyciskiem <strong>Sprawdź dostęp teraz</strong>, zamiast dowiadywać się o wszystkim z nieudanego wdrożenia kilka dni później.</li>
+<li><strong>Przewodnik przy pierwszej wizycie.</strong> Nowi administratorzy dostają krótkie oprowadzenie po nawigacji na stronie Podpisy, które można pominąć - nikt nie musi zgadywać, co kryje się za każdą zakładką.</li>
 <li><strong>Start publicznej dokumentacji.</strong> signature.cat/docs wystartowało z ponad 20 przewodnikami - od <a href="/pl/docs/connect-google-workspace">podłączenia Google Workspace</a> po <a href="/pl/docs/create-your-first-template">pierwszy szablon podpisu</a>. Linki pomocy w aplikacji prowadzą teraz prosto do właściwego artykułu.</li>
 <li><strong>Lepsze komunikaty błędów w całej aplikacji.</strong> Każdy ekran pokazuje teraz czytelny komunikat w Twoim języku, gdy coś pójdzie nie tak, ze szczegółami technicznymi na wyciągnięcie ręki - przydatne przy kontakcie z pomocą.</li>
 <li><strong>Bezpieczniejsze usuwanie szablonów.</strong> Usunięcie szablonu podpisu, który wciąż jest przypisany do grup lub jednostek organizacyjnych, pokazuje najpierw ostrzeżenie z dokładnymi licznikami.</li>
@@ -249,6 +272,7 @@
       <nav>
         <p class="docs-toc-title">Na tej stronie</p>
         <ul class="docs-toc-list">
+        <li class="toc-l2"><a href="#sierpie-2026">Sierpień 2026</a></li>
         <li class="toc-l2"><a href="#lipiec-2026">Lipiec 2026</a></li>
         <li class="toc-l2"><a href="#czerwiec-2026">Czerwiec 2026</a></li>
         <li class="toc-l2"><a href="#maj-2026">Maj 2026</a></li>

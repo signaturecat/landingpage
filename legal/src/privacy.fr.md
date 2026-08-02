@@ -1,6 +1,6 @@
 # Politique de confidentialité de Signature.Cat
 
-Version 1.1 - en vigueur à compter du 02.08.2026
+Version 1.2 - en vigueur à compter du 02.08.2026
 
 **La présente Politique de confidentialité est disponible en polonais à l'adresse https://signature.cat/privacy en tant que version juridiquement contraignante. Le présent document est une traduction automatique de l'original polonais, fournie à titre purement informatif, et peut contenir des erreurs ou des inexactitudes. En cas de divergence, la version polonaise prévaut.**
 
@@ -35,9 +35,15 @@ Selon la catégorie de données, nous intervenons dans l'un des deux rôles suiv
 
 **b) Sous-traitant (processeur)** - en ce qui concerne les données personnelles des employés et collaborateurs du Client, traitées dans le cadre du Service sur instruction du Client. Le responsable du traitement de ces données est le Client. Le traitement consiste en :
 - la lecture des données du répertoire des utilisateurs Google Workspace du Client (prénom, nom, adresse e-mail avec les alias, poste, service, numéros de téléphone, adresse, adresse URL de la photo de profil) **exclusivement en temps réel, au moment de l'aperçu ou du déploiement de la signature** - ces valeurs ne sont pas conservées par nous après la fin de l'opération ;
+- la conservation des valeurs des champs de signature saisies par le Client dans le cadre de la fonction **Données des utilisateurs** - fonction optionnelle, désactivée par défaut, activée par une décision autonome de l'administrateur du Client (description ci-dessous) ;
 - l'écriture de la signature rendue dans les paramètres Gmail de l'utilisateur concerné (la signature reste dans l'environnement Google du Client) ;
+- la lecture de la signature enregistrée dans les paramètres Gmail de l'utilisateur concerné - automatiquement après chaque déploiement ainsi qu'à la demande d'une personne autorisée par le Client (description ci-dessous) ;
 - la conservation de courte durée des adresses e-mail concernées par le déploiement dans l'historique des tâches (30 jours, aux fins du rapport de déploiement) ;
 - la conservation des contenus que le Client place lui-même dans les modèles de signatures ou les images.
+
+**Données des utilisateurs (valeurs saisies par le Client).** La fonction est désactivée par défaut et son activation nécessite une décision expresse de l'administrateur du Client. Une fois la fonction activée, nous conservons dans notre base de données les valeurs des champs de signature relatives aux personnes désignées par le Client : prénom, nom, adresse e-mail affichée, domaine affiché, poste, service, adresse URL de la photo, adresse et numéro de téléphone, ainsi que l'indication de la personne ayant effectué la dernière modification et de la date de celle-ci. Les valeurs sont saisies par l'administrateur du Client, par l'utilisateur lui-même (si le Client l'y autorise) ou par l'import d'un fichier CSV ; elles remplacent les données du répertoire Google Workspace exclusivement aux fins du rendu de la signature. Une entrée n'existe que pour les personnes pour lesquelles le Client a saisi au moins une valeur. La désactivation de la fonction par le Client supprime définitivement toutes les valeurs conservées, et les entrées des personnes supprimées du Google Workspace du Client sont effacées automatiquement par nos soins (pt 8). Dans le journal d'audit, nous consignons qui a modifié quels champs et quand - jamais les valeurs elles-mêmes.
+
+**Lecture de la signature enregistrée.** Google peut modifier de lui-même la signature lors de son enregistrement, c'est pourquoi, après chaque déploiement, nous vérifions quel contenu de signature Gmail a enregistré. Cette même lecture est disponible à la demande d'une personne autorisée par le Client (aperçu de la signature actuellement définie dans la boîte aux lettres de l'utilisateur indiqué). Le contenu de la signature ainsi lue n'est ni conservé ni mis en cache par nous - nous le présentons exclusivement dans le navigateur de la personne qui effectue la lecture. Dans le journal d'audit, nous consignons l'adresse de la boîte aux lettres vérifiée, le moment de la lecture et la longueur de la signature.
 
 La sous-traitance du traitement est régie par un contrat de sous-traitance (DPA), conclu exclusivement en langue anglaise - sa conclusion intervient à la demande du Client adressée à contact@signature.cat. La liste complète des sous-traitants ultérieurs est mise à la disposition des Clients dans le cadre du DPA ainsi que sur demande.
 
@@ -103,6 +109,7 @@ Ces transferts sont fondés sur les clauses contractuelles types (SCC) incluses 
 | Suppression du Compte (en libre-service, dans les paramètres) | la suppression définitive des données intervient après un délai de 7 jours à compter de la soumission de la demande |
 | Sessions de connexion | 7 jours à compter de la dernière activité, au maximum 14 jours à compter de la connexion |
 | Historique des déploiements de signatures (y compris les adresses e-mail concernées par le déploiement) | 30 jours à compter de la fin de la tâche |
+| Valeurs des champs de signature saisies par le Client (fonction Données des utilisateurs) | pendant la durée d'utilisation de la fonction par le Client ; la suppression intervient immédiatement après l'effacement de l'entrée ou la désactivation de la fonction par le Client, et les entrées des personnes supprimées du Google Workspace du Client sont effacées automatiquement lors du balayage quotidien |
 | Journal d'audit | 365 jours dans la base de production ; copie d'archive à des fins de sécurité et de défense de droits - au plus 6 ans |
 | Résultats des tests automatiques de connexion au Workspace (preflight) | 90 jours |
 | Événements opérationnels internes (notifications de l'équipe) | 30 jours à compter de la remise |
@@ -113,7 +120,7 @@ Ces transferts sont fondés sur les clauses contractuelles types (SCC) incluses 
 | Données statistiques Google Analytics | jusqu'à 14 mois |
 | Données pendant la Période d'essai | comme les données du Compte (pt 10) |
 
-Les données des employés du Client récupérées depuis le répertoire Workspace ne sont pas conservées - nous les traitons exclusivement au moment du rendu ou du déploiement de la signature (pt 3, let. b).
+Les données des employés du Client récupérées depuis le répertoire Workspace ne sont pas conservées - nous les traitons exclusivement au moment du rendu ou du déploiement de la signature (pt 3, let. b). Font exception les valeurs que le Client saisit lui-même dans le cadre de la fonction Données des utilisateurs ; leur durée de conservation est indiquée dans le tableau ci-dessus.
 
 ## 9. Droits des personnes concernées
 
@@ -153,7 +160,7 @@ Nous n'utilisons pas de cookies marketing et ne vendons pas de données personne
 
 ## 12. Données issues des interfaces API Google
 
-Le Service utilise les interfaces API Google (connexion Google OAuth ainsi que les interfaces Google Workspace : paramètres Gmail et répertoire des utilisateurs - dans les périmètres indiqués dans les Conditions). L'utilisation des informations reçues des interfaces API Google est conforme à la Google API Services User Data Policy, y compris aux exigences d'utilisation limitée (Limited Use) : nous utilisons ces données exclusivement pour fournir et améliorer les fonctions du Service visibles pour l'utilisateur (gestion des signatures), nous ne les utilisons pas à des fins publicitaires, nous ne les vendons pas, nous ne les transmettons pas à des tiers au-delà de ce qui est nécessaire à la fourniture du Service et nous ne les utilisons pas pour entraîner des modèles d'intelligence artificielle.
+Le Service utilise les interfaces API Google (connexion Google OAuth ainsi que les interfaces Google Workspace : paramètres Gmail - écriture et lecture de la signature - et répertoire des utilisateurs, dans les périmètres indiqués dans les Conditions ; le Service n'utilise aucune autorisation donnant accès au contenu des messages). L'utilisation des informations reçues des interfaces API Google est conforme à la Google API Services User Data Policy, y compris aux exigences d'utilisation limitée (Limited Use) : nous utilisons ces données exclusivement pour fournir et améliorer les fonctions du Service visibles pour l'utilisateur (gestion des signatures), nous ne les utilisons pas à des fins publicitaires, nous ne les vendons pas, nous ne les transmettons pas à des tiers au-delà de ce qui est nécessaire à la fourniture du Service et nous ne les utilisons pas pour entraîner des modèles d'intelligence artificielle.
 
 ## 13. Sécurité des données (mesures techniques et organisationnelles)
 
@@ -164,14 +171,15 @@ Nous appliquons notamment les mesures suivantes :
 - clés privées des comptes de service conservées exclusivement dans le service de gestion des secrets (jamais dans la base de données, les journaux ni les réponses API), avec un cache en mémoire expirant au bout de 5 minutes au maximum ainsi qu'une rotation automatique et périodique des clés ;
 - isolation des clients : un compte de service Google dédié par Client ainsi que la limitation de chaque opération sur les données à l'environnement du Client concerné ;
 - contrôle d'accès fondé sur des niveaux de droits, appliqué côté serveur pour chaque opération ;
-- accès de service par le personnel de SignatureCat : toute modification des paramètres du Compte par notre équipe support nécessite le consentement préalable du Client, accordé par un administrateur au moyen d'un interrupteur dédié dans les paramètres de l'application ; chaque action du support ainsi que chaque activation ou désactivation du consentement est consignée dans le journal d'audit du Compte avec le nom du collaborateur, et l'accès en lecture (diagnostic) est limité à ce qui est nécessaire au maintien du Service ;
+- accès de service par le personnel de SignatureCat : toute modification des paramètres du Compte par notre équipe support nécessite le consentement préalable du Client, accordé par un administrateur au moyen d'un interrupteur dédié dans les paramètres de l'application ; le même consentement est requis pour l'aperçu de la signature enregistrée dans la boîte aux lettres de l'utilisateur indiqué, bien qu'il s'agisse d'une simple lecture ; chaque action du support, chaque aperçu de ce type ainsi que chaque activation ou désactivation du consentement est consignée dans le journal d'audit du Compte avec le nom du collaborateur, et l'accès en lecture (diagnostic) est limité à ce qui est nécessaire au maintien du Service ;
 - authentification exclusivement via Google OAuth (le Service ne stocke pas de mots de passe) ; les protections de connexion supplémentaires, y compris la MFA, relèvent de la politique Google Workspace du Client ;
 - en-têtes de sécurité du navigateur, y compris une politique Content Security Policy appliquée ;
 - limitation du trafic par adresse IP en périphérie du réseau ;
 - sanitisation du contenu des signatures côté serveur (blocage des scripts et des constructions dangereuses) ainsi que vérification des fichiers graphiques téléversés (exclusivement PNG/JPEG, contrôle du type réel du fichier, limite de 5 Mo, blocage du SVG) ;
 - base de données dans un réseau privé, sans point d'accès public ; sauvegardes avec possibilité de restauration à un point dans le temps ;
 - journal d'audit en mode « ajout uniquement » (append-only) ainsi que notifications internes relatives aux événements importants sur les comptes ;
-- minimisation des données : les attributs des employés du Client ne sont pas conservés et les données des cartes de paiement sont traitées exclusivement par l'opérateur de paiement.
+- minimisation des données : les attributs des employés du Client récupérés depuis le répertoire Workspace ne sont pas conservés et les données des cartes de paiement sont traitées exclusivement par l'opérateur de paiement ;
+- la fonction Données des utilisateurs, qui constitue une exception assumée à la règle ci-dessus, est désactivée par défaut, n'est activée que par une décision de l'administrateur du Client, ne couvre que les personnes désignées par le Client, et sa désactivation supprime définitivement toutes les valeurs conservées.
 
 ## 14. Violations de la protection des données
 

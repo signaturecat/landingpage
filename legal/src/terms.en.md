@@ -202,7 +202,7 @@ These Terms constitute terms and conditions for the provision of services by ele
 1. The Agreement is governed by **Polish law**.
 2. The court having jurisdiction over disputes arising from the Agreement is the common court with territorial jurisdiction over the Provider's registered office. The preceding sentence does not affect mandatory provisions on jurisdiction.
 3. If individual provisions of the Terms prove invalid or ineffective, the remaining provisions remain in force, and the invalid provision is replaced by a valid provision closest to its economic purpose.
-4. This version (1.1) of the Terms enters into force on **17.07.2026**; version 1.0 was effective from 16.07.2026.
+4. This version (1.2) of the Terms enters into force on **02.08.2026**; version 1.1 was effective from 17.07.2026 and version 1.0 from 16.07.2026.
 
 ---
 

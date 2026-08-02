@@ -1,6 +1,6 @@
 # Datenschutzerklärung Signature.Cat
 
-Version 1.1 - gültig ab 02.08.2026
+Version 1.2 - gültig ab 02.08.2026
 
 **Diese Datenschutzerklärung ist in polnischer Sprache unter https://signature.cat/privacy als rechtsverbindliche Fassung verfügbar. Dieses Dokument ist eine automatische Übersetzung des polnischen Originals, dient ausschließlich Informationszwecken und kann Fehler oder Ungenauigkeiten enthalten. Im Falle von Abweichungen ist die polnische Fassung maßgeblich.**
 
@@ -35,9 +35,15 @@ Je nach Datenkategorie treten wir in einer von zwei Rollen auf:
 
 **b) Auftragsverarbeiter (Prozessor)** - in Bezug auf personenbezogene Daten der Mitarbeiter und freien Mitarbeiter des Kunden, die im Rahmen des Dienstes auf Weisung des Kunden verarbeitet werden. Verantwortlicher für diese Daten ist der Kunde. Die Verarbeitung besteht in:
 - dem Auslesen von Daten aus dem Google Workspace-Nutzerverzeichnis des Kunden (Vorname, Nachname, E-Mail-Adresse samt Aliassen, Position, Abteilung, Telefonnummern, Adresse, URL des Profilfotos) **ausschließlich laufend, im Moment der Vorschau oder der Bereitstellung der Signatur** - diese Werte werden von uns nach Abschluss des Vorgangs nicht gespeichert;
+- der Speicherung der Werte der Signaturfelder, die der Kunde im Rahmen der Funktion **Nutzerdaten** eingegeben hat - einer optionalen, standardmäßig deaktivierten Funktion, die durch eine selbständige Entscheidung des Administrators des Kunden aktiviert wird (Beschreibung unten);
 - dem Speichern der gerenderten Signatur in den Gmail-Einstellungen des jeweiligen Nutzers (die Signatur verbleibt in der Google-Umgebung des Kunden);
+- dem Auslesen der in den Gmail-Einstellungen des jeweiligen Nutzers gespeicherten Signatur - automatisch nach jeder Bereitstellung sowie auf Verlangen einer vom Kunden bevollmächtigten Person (Beschreibung unten);
 - der kurzzeitigen Speicherung der von einer Bereitstellung erfassten E-Mail-Adressen im Aufgabenverlauf (30 Tage, für die Zwecke des Bereitstellungsberichts);
 - der Speicherung der Inhalte, die der Kunde selbständig in Signaturvorlagen oder Bildern platziert.
+
+**Nutzerdaten (vom Kunden eingegebene Werte).** Die Funktion ist standardmäßig deaktiviert, und zu ihrer Aktivierung ist eine ausdrückliche Entscheidung des Administrators des Kunden erforderlich. Nach der Aktivierung speichern wir in unserer Datenbank die Werte der Signaturfelder betreffend die vom Kunden angegebenen Personen: Vorname, Nachname, angezeigte E-Mail-Adresse, angezeigte Domain, Position, Abteilung, URL des Fotos, Adresse und Telefonnummer, samt der Information, wer wann die letzte Änderung vorgenommen hat. Die Werte gibt der Administrator des Kunden, der Nutzer selbst (sofern der Kunde dies zulässt) oder ein Import einer CSV-Datei ein; sie ersetzen die Daten aus dem Google Workspace-Verzeichnis ausschließlich für die Zwecke des Renderings der Signatur. Ein Eintrag besteht nur für Personen, für die der Kunde mindestens einen Wert eingegeben hat. Die Deaktivierung der Funktion durch den Kunden löscht dauerhaft alle gespeicherten Werte, und die Einträge der aus dem Google Workspace des Kunden entfernten Personen löschen wir automatisch (Ziff. 8). Im Audit-Log vermerken wir, wer wann welche Felder geändert hat - niemals die Werte selbst.
+
+**Auslesen der gespeicherten Signatur.** Google kann die Signatur beim Speichern selbständig verändern, daher prüfen wir nach jeder Bereitstellung, welchen Inhalt der Signatur Gmail gespeichert hat. Dasselbe Auslesen ist auf Verlangen einer vom Kunden bevollmächtigten Person verfügbar (Vorschau der aktuell im Postfach des angegebenen Nutzers eingestellten Signatur). Der Inhalt der ausgelesenen Signatur wird von uns weder gespeichert noch zwischengespeichert - wir stellen ihn ausschließlich im Browser der das Auslesen durchführenden Person dar. Im Audit-Log vermerken wir die Adresse des geprüften Postfachs, den Zeitpunkt des Auslesens und die Länge der Signatur.
 
 Die Auftragsverarbeitung regelt ein Auftragsverarbeitungsvertrag (DPA), der ausschließlich in englischer Sprache geschlossen wird - sein Abschluss erfolgt auf Antrag des Kunden an contact@signature.cat. Die vollständige Liste der weiteren Auftragsverarbeiter (Unterauftragsverarbeiter) wird den Kunden im Rahmen des DPA sowie auf Anfrage zur Verfügung gestellt.
 
@@ -103,6 +109,7 @@ Grundlage solcher Übermittlungen sind die Standardvertragsklauseln (SCC), die i
 | Löschung des Kontos (Self-Service, in den Einstellungen) | die dauerhafte Löschung der Daten erfolgt nach Ablauf von 7 Tagen ab der Stellung des Antrags |
 | Anmeldesitzungen | 7 Tage ab der letzten Aktivität, maximal 14 Tage ab der Anmeldung |
 | Verlauf der Signaturbereitstellungen (einschließlich der von der Bereitstellung erfassten E-Mail-Adressen) | 30 Tage nach Abschluss der Aufgabe |
+| Vom Kunden eingegebene Werte der Signaturfelder (Funktion Nutzerdaten) | für die Dauer der Nutzung der Funktion durch den Kunden; die Löschung erfolgt unmittelbar nach dem Löschen des Eintrags oder der Deaktivierung der Funktion durch den Kunden, und die Einträge der aus dem Google Workspace des Kunden entfernten Personen werden automatisch im täglichen Durchlauf gelöscht |
 | Audit-Log | 365 Tage in der Produktionsdatenbank; Archivkopie für Sicherheitszwecke und zur Verteidigung von Ansprüchen - nicht länger als 6 Jahre |
 | Ergebnisse automatischer Verbindungstests mit dem Workspace (Preflight) | 90 Tage |
 | Interne operative Ereignisse (Team-Benachrichtigungen) | 30 Tage ab der Zustellung |
@@ -113,7 +120,7 @@ Grundlage solcher Übermittlungen sind die Standardvertragsklauseln (SCC), die i
 | Statistische Daten von Google Analytics | bis zu 14 Monate |
 | Daten während des Testzeitraums | wie Kontodaten (Ziff. 10) |
 
-Die aus dem Workspace-Verzeichnis abgerufenen Daten der Mitarbeiter des Kunden werden nicht gespeichert - wir verarbeiten sie ausschließlich im Moment des Renderings oder der Bereitstellung der Signatur (Ziff. 3 lit. b).
+Die aus dem Workspace-Verzeichnis abgerufenen Daten der Mitarbeiter des Kunden werden nicht gespeichert - wir verarbeiten sie ausschließlich im Moment des Renderings oder der Bereitstellung der Signatur (Ziff. 3 lit. b). Eine Ausnahme bilden die Werte, die der Kunde selbständig im Rahmen der Funktion Nutzerdaten eingibt; ihre Speicherfrist ist in der Tabelle oben angegeben.
 
 ## 9. Rechte der betroffenen Personen
 
@@ -153,7 +160,7 @@ Wir verwenden keine Marketing-Cookies und verkaufen keine personenbezogenen Date
 
 ## 12. Daten aus Google-APIs
 
-Der Dienst nutzt Google-APIs (Google OAuth-Anmeldung sowie Google Workspace-Schnittstellen: Gmail-Einstellungen und Nutzerverzeichnis - in den in den AGB genannten Scopes). Die Verwendung der aus den Google-APIs erhaltenen Informationen entspricht der Google API Services User Data Policy, einschließlich der Anforderungen der eingeschränkten Nutzung (Limited Use): Diese Daten verwenden wir ausschließlich zur Erbringung und Verbesserung der für den Nutzer sichtbaren Funktionen des Dienstes (Signaturverwaltung); wir verwenden sie nicht zu Werbezwecken, verkaufen sie nicht, geben sie nicht über den zur Erbringung des Dienstes erforderlichen Umfang hinaus an Dritte weiter und verwenden sie nicht zum Training von Modellen künstlicher Intelligenz.
+Der Dienst nutzt Google-APIs (Google OAuth-Anmeldung sowie Google Workspace-Schnittstellen: Gmail-Einstellungen - Speichern und Auslesen der Signatur - sowie Nutzerverzeichnis, in den in den AGB genannten Scopes; der Dienst nutzt keine Berechtigung, die Zugriff auf die Inhalte der Nachrichten gewährt). Die Verwendung der aus den Google-APIs erhaltenen Informationen entspricht der Google API Services User Data Policy, einschließlich der Anforderungen der eingeschränkten Nutzung (Limited Use): Diese Daten verwenden wir ausschließlich zur Erbringung und Verbesserung der für den Nutzer sichtbaren Funktionen des Dienstes (Signaturverwaltung); wir verwenden sie nicht zu Werbezwecken, verkaufen sie nicht, geben sie nicht über den zur Erbringung des Dienstes erforderlichen Umfang hinaus an Dritte weiter und verwenden sie nicht zum Training von Modellen künstlicher Intelligenz.
 
 ## 13. Datensicherheit (technische und organisatorische Maßnahmen)
 
@@ -164,14 +171,15 @@ Wir setzen u. a. die folgenden Maßnahmen ein:
 - private Schlüssel der Dienstkonten werden ausschließlich im Secret-Management-Dienst aufbewahrt (niemals in der Datenbank, in Logs oder in API-Antworten), mit einem Cache im Arbeitsspeicher, der nach bis zu 5 Minuten abläuft, sowie einer automatischen, regelmäßigen Schlüsselrotation;
 - Kundenisolierung: ein dediziertes Google-Dienstkonto pro Kunde sowie die Beschränkung jeder Datenoperation auf die Umgebung des jeweiligen Kunden;
 - Zugriffskontrolle auf Grundlage von Berechtigungsstufen, serverseitig für jede Operation durchgesetzt;
-- Servicezugriff durch SignatureCat-Personal: Änderungen an Kontoeinstellungen durch unser Support-Team erfordern die vorherige Zustimmung des Kunden, die ein Administrator über einen dedizierten Schalter in den Anwendungseinstellungen erteilt; jede Support-Aktion sowie jedes Aktivieren und Deaktivieren der Zustimmung wird im Audit-Protokoll des Kontos zusammen mit dem Namen des Mitarbeiters vermerkt, und der Lesezugriff (Diagnose) ist auf den zur Aufrechterhaltung des Dienstes erforderlichen Umfang beschränkt;
+- Servicezugriff durch SignatureCat-Personal: Änderungen an Kontoeinstellungen durch unser Support-Team erfordern die vorherige Zustimmung des Kunden, die ein Administrator über einen dedizierten Schalter in den Anwendungseinstellungen erteilt; dieselbe Zustimmung erfordert die Vorschau der im Postfach des angegebenen Nutzers gespeicherten Signatur, obwohl es sich dabei ausschließlich um einen Lesevorgang handelt; jede Support-Aktion, jede solche Vorschau sowie jedes Aktivieren und Deaktivieren der Zustimmung werden im Audit-Protokoll des Kontos zusammen mit dem Namen des Mitarbeiters vermerkt, und der Lesezugriff (Diagnose) ist auf den zur Aufrechterhaltung des Dienstes erforderlichen Umfang beschränkt;
 - Authentifizierung ausschließlich über Google OAuth (der Dienst speichert keine Passwörter); zusätzliche Anmeldesicherungen, einschließlich MFA, ergeben sich aus der Google Workspace-Richtlinie des Kunden;
 - Browser-Sicherheitsheader, einschließlich einer durchgesetzten Content Security Policy;
 - Begrenzung des Datenverkehrs pro IP-Adresse am Netzwerkrand;
 - serverseitige Sanitisierung der Signaturinhalte (Blockierung von Skripten und gefährlichen Konstruktionen) sowie Prüfung der hochgeladenen Grafikdateien (ausschließlich PNG/JPEG, Kontrolle des tatsächlichen Dateityps, Limit 5 MB, Blockierung von SVG);
 - Datenbank in einem privaten Netzwerk, ohne öffentlichen Zugangspunkt; Backups mit der Möglichkeit der Wiederherstellung zu einem Zeitpunkt (Point-in-Time);
 - Audit-Log im Modell „nur Anfügen“ (append-only) sowie interne Benachrichtigungen über wesentliche Kontoereignisse;
-- Datenminimierung: Attribute der Mitarbeiter des Kunden werden nicht gespeichert, und Zahlungskartendaten verarbeitet ausschließlich der Zahlungsdienstleister.
+- Datenminimierung: die aus dem Workspace-Verzeichnis abgerufenen Attribute der Mitarbeiter des Kunden werden nicht gespeichert, und Zahlungskartendaten verarbeitet ausschließlich der Zahlungsdienstleister;
+- die Funktion Nutzerdaten, die eine bewusste Ausnahme von dem vorstehenden Grundsatz darstellt, ist standardmäßig deaktiviert, wird ausschließlich durch eine Entscheidung des Administrators des Kunden aktiviert, umfasst nur die vom Kunden angegebenen Personen, und ihre Deaktivierung löscht dauerhaft alle gespeicherten Werte.
 
 ## 14. Verletzungen des Schutzes personenbezogener Daten
 

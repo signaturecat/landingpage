@@ -47,8 +47,8 @@
       "description": "Enregistrez SignatureCat en tant que super administrateur Google Workspace, provisionnez votre compte de service isolé et autorisez la Domain-Wide Delegation.",
       "url": "https://signature.cat/fr/docs/connect-google-workspace",
       "inLanguage": "fr",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/fr/docs/user-management">Gestion des accès</a></li>
         <li><a href="/fr/docs/self-service">Self-service</a></li>
+        <li><a href="/fr/docs/user-data">Données utilisateur</a></li>
+        <li><a href="/fr/docs/user-data-import">Import de données</a></li>
         <li><a href="/fr/docs/custom-image-domain">Domaine d'images personnalisé</a></li>
         <li><a href="/fr/docs/banners-and-logos">Bannières et logos</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/fr/docs/domain-wide-delegation">Domain-Wide Delegation</a></li>
         <li><a href="/fr/docs/templates">Modèles</a></li>
         <li><a href="/fr/docs/visual-editor">Éditeur visuel</a></li>
+        <li><a href="/fr/docs/mail-client-preview">Aperçu par client de messagerie</a></li>
         <li><a href="/fr/docs/template-variables">Variables de modèle</a></li>
         <li><a href="/fr/docs/assignments">Affectations</a></li>
         <li><a href="/fr/docs/apply-jobs">Tâches d'application</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/fr/docs/support-access">Accès du support</a></li>
         <li><a href="/fr/docs/get-help">Obtenir de l'aide</a></li>
+        <li><a href="/fr/docs/gmail-sanitization">Troncature par Gmail</a></li>
         <li><a href="/fr/docs/service-status">État du service</a></li>
         <li><a href="/fr/docs/legal">Informations légales</a></li>
         </ul>
@@ -197,15 +201,19 @@
 <p>Le premier enregistrement d'un compte d'entreprise doit être effectué par un <strong>super administrateur Google Workspace</strong>. Seul un super administrateur peut ouvrir la page Domain-Wide Delegation dans la Google Admin console, et SignatureCat a besoin d'un accès à l'annuaire pour compter correctement vos utilisateurs. Les utilisateurs ordinaires peuvent être invités ensuite - ils n'ont pas besoin de privilèges d'administrateur. Voir <a href="/fr/docs/user-management">Gestion des accès</a>.</p>
 </div></aside>
 <h2 id="tape-1-se-connecter-avec-google">Étape 1 : Se connecter avec Google<a class="h-anchor" href="#tape-1-se-connecter-avec-google" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Ouvrez <a href="https://app.signature.cat" target="_blank" rel="noopener">app.signature.cat</a> et cliquez sur <strong>Se connecter avec Google</strong> avec votre compte d'entreprise. À ce stade, SignatureCat ne demande que les scopes de connexion de base <code>openid email profile</code> - les autorisations Workspace sont accordées séparément à l'étape 3, et uniquement à votre propre compte de service isolé.</p>
+<p>Ouvrez <a href="https://app.signature.cat" target="_blank" rel="noopener">app.signature.cat</a> et cliquez sur <strong>Se connecter avec Google</strong> avec votre compte d'entreprise. À ce stade, SignatureCat ne demande que les scopes de connexion de base <code>openid email profile</code> - les autorisations Workspace sont accordées séparément à l'étape 4, et uniquement à votre propre compte de service isolé.</p>
 <p>Les comptes Gmail personnels sont refusés : SignatureCat nécessite un compte Google Workspace.</p>
-<h2 id="tape-2-configurer-votre-espace-de-travail">Étape 2 : Configurer votre espace de travail<a class="h-anchor" href="#tape-2-configurer-votre-espace-de-travail" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Juste après la première connexion, vous arrivez sur l'écran <strong>Configurez votre espace de travail</strong>. Cliquer sur <strong>Configurer l'espace de travail</strong> crée un compte de service Google Cloud dédié et isolé pour votre organisation - c'est l'identité qui gérera les signatures Gmail en votre nom. Cela prend en général quelques secondes (jusqu'à 15).</p>
+<h2 id="tape-2-accepter-les-conditions">Étape 2 : Accepter les conditions<a class="h-anchor" href="#tape-2-accepter-les-conditions" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Après la première connexion, vous arrivez sur <strong>Acceptez les conditions pour commencer</strong>. Cochez "J'ai lu et j'accepte les Conditions d'utilisation et la Politique de confidentialité." (les deux s'ouvrent dans un nouvel onglet) et cliquez sur <strong>Accepter et continuer</strong>.</p>
+<p>Cette étape est obligatoire et vient en premier par conception : rien n'est provisionné pour votre organisation tant que les conditions ne sont pas acceptées.</p>
+<p>Seul l'administrateur qui a créé l'organisation peut les accepter. Toute autre personne de votre domaine qui se connecte avant cela voit une carte <strong>En attente de votre administrateur</strong> et obtient l'accès dès que l'administrateur fondateur a terminé cette étape.</p>
+<h2 id="tape-3-configurer-votre-espace-de-travail">Étape 3 : Configurer votre espace de travail<a class="h-anchor" href="#tape-3-configurer-votre-espace-de-travail" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<p>Une fois les conditions acceptées, vous arrivez sur l'écran <strong>Configurez votre espace de travail</strong>. Cliquer sur <strong>Configurer l'espace de travail</strong> crée un compte de service Google Cloud dédié et isolé pour votre organisation - c'est l'identité qui gérera les signatures Gmail en votre nom. Cela prend en général quelques secondes (jusqu'à 15).</p>
 <aside class="callout callout-note" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Note</p><div class="callout-body">
 <p>Chaque client obtient son <strong>propre</strong> compte de service. Ses identifiants sont stockés dans un coffre de secrets, jamais dans la base de données de l'application, et les clés sont rotées automatiquement. La rotation ne change jamais l'identifiant client, vous n'aurez donc jamais à réautoriser à cause d'elle.</p>
 </div></aside>
 <p>Seul l'administrateur qui a créé l'organisation peut terminer cette étape.</p>
-<h2 id="tape-3-autoriser-la-domain-wide-delegation">Étape 3 : Autoriser la Domain-Wide Delegation<a class="h-anchor" href="#tape-3-autoriser-la-domain-wide-delegation" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<h2 id="tape-4-autoriser-la-domain-wide-delegation">Étape 4 : Autoriser la Domain-Wide Delegation<a class="h-anchor" href="#tape-4-autoriser-la-domain-wide-delegation" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Ensuite, l'assistant <strong>Autoriser SignatureCat dans votre Workspace</strong> sur <a href="https://app.signature.cat/onboarding/dwd" target="_blank" rel="noopener">app.signature.cat/onboarding/dwd</a> vous guide à travers la Google Admin console :</p>
 <ol>
 <li><strong>Ouvrir la Console d'administration</strong> - l'assistant renvoie directement à la <a href="https://admin.google.com/ac/owl/domainwidedelegation" target="_blank" rel="noopener">page Domain-wide delegation</a> (Sécurité, Contrôles API, Délégation au niveau du domaine). Connectez-vous en tant que super administrateur.</li>
@@ -218,13 +226,13 @@
 <li><strong>Autoriser</strong> - cliquez sur <strong>Autoriser</strong> dans l'Admin console.</li>
 <li><strong>Vérifier</strong> - de retour dans SignatureCat, cliquez sur <strong>Vérifier</strong>. L'application exécute un test de connectivité pour chaque scope et affiche un résultat OK / Échec par scope.</li>
 </ol>
-<p>Le dernier scope, <code>gmail.settings.sharing</code>, est <strong>optionnel</strong> : il n'est nécessaire que pour écrire les signatures sur les alias send-as. Vous pouvez le sauter maintenant et l'ajouter plus tard - tout le reste fonctionne, et l'assistant affichera l'avis "Les signatures d'alias sont désactivées". Voir <a href="/fr/docs/assignments#alias-modes">Affectations</a> pour ce que les alias débloquent.</p>
+<p>Le dernier scope, <code>gmail.settings.sharing</code>, est <strong>optionnel</strong> : il n'est nécessaire que pour écrire les signatures sur les alias send-as. Vous pouvez le sauter maintenant et l'ajouter plus tard - tout le reste fonctionne, et l'assistant affichera l'avis "Les signatures d'alias sont désactivées". Voir <a href="/fr/docs/assignments#modes-dalias">Affectations</a> pour ce que les alias débloquent.</p>
 <aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Avertissement</p><div class="callout-body">
 <p>Collez la chaîne de scopes exactement telle que copiée. Un scope manquant ou modifié fait échouer la vérification avec une erreur par scope telle que "Cette habilitation n'a pas été autorisée. Refaites l'étape 4 avec la chaîne exacte."</p>
 </div></aside>
 <h3 id="la-vrification-indique-que-laccs-se-propage-encore">La vérification indique que l'accès se propage encore<a class="h-anchor" href="#la-vrification-indique-que-laccs-se-propage-encore" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h3>
 <p>Google a besoin d'un moment pour propager une nouvelle autorisation DWD - en général quelques secondes, parfois jusqu'à environ 30 secondes. Le bouton <strong>Vérifier</strong> attend déjà la majeure partie de cette fenêtre. Si vous voyez toujours la carte jaune "l'accès est peut-être encore en cours de propagation", patientez un instant et cliquez à nouveau sur <strong>Vérifier</strong>. Ce n'est pas une erreur.</p>
-<h2 id="tape-4-facturation">Étape 4 : Facturation<a class="h-anchor" href="#tape-4-facturation" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
+<h2 id="tape-5-facturation">Étape 5 : Facturation<a class="h-anchor" href="#tape-5-facturation" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Après la vérification de la DWD, vous êtes dirigé vers <a href="https://app.signature.cat/billing" target="_blank" rel="noopener">Facturation</a> pour démarrer l'essai gratuit de 7 jours (carte collectée dès l'inscription, débitée à la fin de l'essai). Voir <a href="/fr/docs/invoices">Factures</a> pour les paliers de tarification.</p>
 <p>C'est tout - continuez avec <a href="/fr/docs/create-your-first-template">Créer votre premier modèle</a>.</p>
 <h2 id="renouveler-ou-raccorder-la-domain-wide-delegation">Renouveler ou réaccorder la Domain-Wide Delegation<a class="h-anchor" href="#renouveler-ou-raccorder-la-domain-wide-delegation" aria-label="Copier le lien vers cette section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
@@ -265,10 +273,11 @@
         <p class="docs-toc-title">Sur cette page</p>
         <ul class="docs-toc-list">
         <li class="toc-l2"><a href="#tape-1-se-connecter-avec-google">Étape 1 : Se connecter avec Google</a></li>
-        <li class="toc-l2"><a href="#tape-2-configurer-votre-espace-de-travail">Étape 2 : Configurer votre espace de travail</a></li>
-        <li class="toc-l2"><a href="#tape-3-autoriser-la-domain-wide-delegation">Étape 3 : Autoriser la Domain-Wide Delegation</a></li>
+        <li class="toc-l2"><a href="#tape-2-accepter-les-conditions">Étape 2 : Accepter les conditions</a></li>
+        <li class="toc-l2"><a href="#tape-3-configurer-votre-espace-de-travail">Étape 3 : Configurer votre espace de travail</a></li>
+        <li class="toc-l2"><a href="#tape-4-autoriser-la-domain-wide-delegation">Étape 4 : Autoriser la Domain-Wide Delegation</a></li>
         <li class="toc-l3"><a href="#la-vrification-indique-que-laccs-se-propage-encore">La vérification indique que l'accès se propage encore</a></li>
-        <li class="toc-l2"><a href="#tape-4-facturation">Étape 4 : Facturation</a></li>
+        <li class="toc-l2"><a href="#tape-5-facturation">Étape 5 : Facturation</a></li>
         <li class="toc-l2"><a href="#renouveler-ou-raccorder-la-domain-wide-delegation">Renouveler ou réaccorder la Domain-Wide Delegation</a></li>
         </ul>
       </nav>

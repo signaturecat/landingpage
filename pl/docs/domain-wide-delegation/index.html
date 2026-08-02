@@ -47,8 +47,8 @@
       "description": "Jak SignatureCat korzysta z Google Domain-Wide Delegation - zakresy, Client ID per klient, propagacja, wykrywanie odebrania dostępu i ponowne nadawanie.",
       "url": "https://signature.cat/pl/docs/domain-wide-delegation",
       "inLanguage": "pl",
-      "datePublished": "2026-07-17",
-      "dateModified": "2026-07-17",
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-02",
       "isPartOf": {
         "@type": "WebSite",
         "name": "SignatureCat Docs",
@@ -151,6 +151,8 @@
         <ul>
         <li><a href="/pl/docs/user-management">Zarządzanie dostępem</a></li>
         <li><a href="/pl/docs/self-service">Self-service</a></li>
+        <li><a href="/pl/docs/user-data">Dane użytkowników</a></li>
+        <li><a href="/pl/docs/user-data-import">Import danych</a></li>
         <li><a href="/pl/docs/custom-image-domain">Własna domena obrazków</a></li>
         <li><a href="/pl/docs/banners-and-logos">Banery i logo</a></li>
         </ul>
@@ -168,6 +170,7 @@
         <li><a href="/pl/docs/domain-wide-delegation" aria-current="page">Domain-Wide Delegation</a></li>
         <li><a href="/pl/docs/templates">Szablony</a></li>
         <li><a href="/pl/docs/visual-editor">Edytor wizualny</a></li>
+        <li><a href="/pl/docs/mail-client-preview">Podgląd w kliencie pocztowym</a></li>
         <li><a href="/pl/docs/template-variables">Zmienne szablonów</a></li>
         <li><a href="/pl/docs/assignments">Przypisania</a></li>
         <li><a href="/pl/docs/apply-jobs">Zadania zastosowania</a></li>
@@ -181,6 +184,7 @@
         <ul>
         <li><a href="/pl/docs/support-access">Dostęp dla supportu</a></li>
         <li><a href="/pl/docs/get-help">Uzyskaj pomoc</a></li>
+        <li><a href="/pl/docs/gmail-sanitization">Okrajanie przez Gmail</a></li>
         <li><a href="/pl/docs/service-status">Status usługi</a></li>
         <li><a href="/pl/docs/legal">Kwestie prawne</a></li>
         </ul>
@@ -200,7 +204,7 @@
 <div class="tbl"><table>
 <thead><tr><th scope="col">Zakres</th><th scope="col">Wymagany</th><th scope="col">Używany do</th></tr></thead>
 <tbody>
-<tr><td><code>gmail.settings.basic</code></td><td>Tak</td><td>Zapisywanie podpisu na adresie głównym każdego użytkownika.</td></tr>
+<tr><td><code>gmail.settings.basic</code></td><td>Tak</td><td>Zapisywanie podpisu na adresie głównym każdego użytkownika oraz odczytywanie zapisanego podpisu z powrotem - sprawdzenie, które porównuje to, co zachował Gmail, z tym, co zostało wysłane, oraz odczyt skrzynki na żądanie w <a href="/pl/docs/logs#odczytaj-aktualn-stopk-ze-skrzynki">Logach</a>.</td></tr>
 <tr><td><code>admin.directory.user.readonly</code></td><td>Tak</td><td>Odczyt profili użytkowników - imion i nazwisk, stanowisk, telefonów - na potrzeby <a href="/pl/docs/template-variables">zmiennych szablonów</a>.</td></tr>
 <tr><td><code>admin.directory.group.member.readonly</code></td><td>Tak</td><td>Rozwijanie przypisań grup do listy członków.</td></tr>
 <tr><td><code>admin.directory.customer.readonly</code></td><td>Tak</td><td>Odczyt liczby użytkowników workspace na potrzeby rozliczeń.</td></tr>
@@ -217,14 +221,16 @@
 <ul>
 <li>synchronizacje podpisów są <strong>natychmiast wstrzymywane</strong> (nic nie zostaje zastosowane połowicznie),</li>
 <li>administratorzy dostają w aplikacji powiadomienie "Utracono dostęp Domain-Wide Delegation" oraz e-mail "Wymagane działanie",</li>
+<li>administratorzy widzą w całej aplikacji czerwony baner: "Ostatnia weryfikacja dostępu do Google Workspace nie powiodła się. Synchronizacja podpisów jest wstrzymana do czasu naprawy dostępu.",</li>
 <li>aplikacja kieruje administratorów z powrotem do kreatora DWD.</li>
 </ul>
+<p>Baner niesie wbudowany przycisk <strong>Sprawdź dostęp teraz</strong>, który uruchamia sprawdzenie dostępu od razu, bez otwierania kreatora: jeśli przejdzie, baner znika; jeśli nadal oblewa, trafiasz do kreatora. Jest tam też link <strong>Otwórz kreator DWD</strong>. Baner widzą wyłącznie administratorzy, bo tylko oni mogą autoryzować dostęp ponownie, i pojawia się on dopiero wtedy, gdy sprawdzenie faktycznie się nie powiodło - nigdy tylko dlatego, że sprawdzenie jest stare.</p>
 <p>Ponowne nadanie brakującego wpisu lub zakresu i zaliczenie <strong>Sprawdź</strong> wznawia wszystko - stan naprawia się sam, niczego nie trzeba odbudowywać. Aby otworzyć kreator w dowolnym momencie, użyj <strong>Uruchom ponownie kreator DWD</strong> w <a href="https://app.signature.cat/settings" target="_blank" rel="noopener">Ustawieniach</a>, w sekcji Konto usługi.</p>
 <aside class="callout callout-warning" role="note"><p class="callout-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.1 2.9 17a2 2 0 0 0 1.7 3h14.8a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Ostrzeżenie</p><div class="callout-body">
 <p>Grant DWD obowiązuje w całej organizacji, a jego usunięcie zatrzymuje zarządzanie podpisami w całym workspace naraz. Jeśli chcesz tylko zrezygnować z obsługi aliasów, usuń wyłącznie zakres <code>gmail.settings.sharing</code> i ponownie uruchom <strong>Sprawdź</strong>.</p>
 </div></aside>
 <h2 id="dodanie-opcjonalnego-zakresu-aliasw-pniej">Dodanie opcjonalnego zakresu aliasów później<a class="h-anchor" href="#dodanie-opcjonalnego-zakresu-aliasw-pniej" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
-<p>Dodaj <code>https://www.googleapis.com/auth/gmail.settings.sharing</code> do istniejącego wpisu w Admin console (zachowaj pozostałe cztery zakresy), potem użyj <strong>Uruchom ponownie kreator DWD</strong> i kliknij <strong>Sprawdź</strong>. Funkcje aliasów odblokują się automatycznie - zobacz <a href="/pl/docs/assignments#alias-modes">tryby aliasów</a>.</p>
+<p>Dodaj <code>https://www.googleapis.com/auth/gmail.settings.sharing</code> do istniejącego wpisu w Admin console (zachowaj pozostałe cztery zakresy), potem użyj <strong>Uruchom ponownie kreator DWD</strong> i kliknij <strong>Sprawdź</strong>. Funkcje aliasów odblokują się automatycznie - zobacz <a href="/pl/docs/assignments#tryby-aliasw">tryby aliasów</a>.</p>
 <h2 id="usuwanie-signaturecat">Usuwanie SignatureCat<a class="h-anchor" href="#usuwanie-signaturecat" aria-label="Skopiuj link do tej sekcji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></a></h2>
 <p>Gdy usuwasz konto, SignatureCat usuwa własną infrastrukturę, ale nie może edytować Twojej Admin console: <strong>usuń wpis klienta API samodzielnie</strong> na <a href="https://admin.google.com/ac/owl/domainwidedelegation" target="_blank" rel="noopener">stronie Domain-wide delegation</a> po zniknięciu konta.</p>
       </article>
