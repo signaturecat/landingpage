@@ -24,7 +24,7 @@
   // empty sitekey disables the widget client-side (the gate still works);
   // fill it in once the widget exists in the Cloudflare dashboard - and set
   // TURNSTILE_SECRET on the Worker, which is what enforces verification.
-  var TURNSTILE_SITE_KEY = '';
+  var TURNSTILE_SITE_KEY = '0x4AAAAAAEFN8TmQTXTz8or4';
   var TURNSTILE_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
   var turnstileInjected = false;
   var PAD = 20; // inner horizontal text padding (px, at banner scale)
