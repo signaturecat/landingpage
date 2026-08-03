@@ -14,3 +14,11 @@ routes = [
 ]
 
 # account_id is taken from `wrangler login` / CLOUDFLARE_ACCOUNT_ID; do not hardcode.
+
+# Lead capture for /banners-generator (POST /api/banner-leads -> Resend
+# audience contact). Both values are set in the Cloudflare dashboard by
+# DevOps (Workers -> landingpage -> Settings -> Variables), NEVER here:
+#   RESEND_API_KEY     - secret (encrypt!)
+#   RESEND_AUDIENCE_ID - plain variable (the target Resend audience id)
+# Until they exist the endpoint answers 503 and the generator keeps working
+# without storing leads.

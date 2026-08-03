@@ -2,6 +2,58 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-02 - Free banner generator at /banners-generator (x4 languages)
+
+- **What:** New public tool page `/banners-generator` (+ `/pl`, `/de`, `/fr`
+  variants): a free, client-side banner generator for email signatures.
+  - **Generator (`assets/js/banner-generator.js`, loaded only on this page):**
+    canvas-based live preview with three background modes - solid colors with
+    an optional left accent bar (default look: cream + coral, per PM's
+    reference shot), a two-color linear/radial gradient with color pickers and
+    angle, or an uploaded photo with drag-to-reposition and a zoom slider
+    (cover-crop to the banner size; the photo never leaves the browser -
+    FileReader data: URL, which the Worker CSP `img-src` already allows).
+    Custom width/height (default 450 x 100 px, recommended in the UI), title +
+    description with per-text color and size, eight email-safe font stacks,
+    corner radius and an optional solid/dashed/dotted border with width and
+    color. Export: PNG download at exact pixel size, copy-image to the
+    clipboard, and - for color/gradient banners - copy of email-ready
+    table-based HTML (copied as both `text/html` and `text/plain`).
+  - **Email gate:** the first download/copy opens a modal asking for an email
+    address with a mandatory marketing-consent checkbox (links the Privacy
+    Policy). Submit POSTs `{email, consent, locale, source}` to the new Worker
+    endpoint `POST /api/banner-leads`, which creates the address as a Resend
+    audience contact; the `sigcat_bg_lead` cookie (12 months) suppresses the
+    gate afterwards. Lead capture is best-effort by design: a transport or
+    configuration error never blocks the export. The endpoint requires
+    `RESEND_API_KEY` (secret) + `RESEND_AUDIENCE_ID` set on the Worker in the
+    Cloudflare dashboard (DevOps); until then it answers 503.
+  - **SEO:** localized title/description targeting "email signature banner
+    generator" (PL "generator banerów do podpisów email"), self-canonical +
+    reciprocal hreflang like every landing page, JSON-LD graph with a
+    WebApplication node (price 0 - the "free" claim machine-readable), a
+    WebPage node and a FAQPage built from the same `bg.faq.*` keys the visible
+    FAQ renders from; how-to steps and two SEO copy cards; sitemap now carries
+    12 landing URLs. Footer "Resources" on all pages links the tool
+    (internal linking).
+  - **build.mjs:** third entry in the PAGES manifest; `/banners-generator`
+    added to the localized cross-page link rewrite; per-page FAQ key
+    assertion for `bg.faq.*`.
+- **Why:** PM request: a free SEO tool page to attract organic traffic around
+  Gmail/email signature banner searches, funneling to SignatureCat (bottom
+  CTA band) and collecting marketing leads (Resend) behind a consent gate.
+- **Scope:** landingpage + cloudflare worker
+- **Design impact:** new `bg-*` component styles on existing tokens
+  (Light/Dark verified); segmented control, form fields, color inputs, modal.
+  No token changes.
+- **Performance impact:** zero-dependency vanilla JS (~14 KB raw, page-scoped
+  script tag; other pages unaffected). No new external origins - CSP
+  untouched. Canvas renders at devicePixelRatio for crisp preview.
+- **A11y:** labelled fields/fieldsets, segmented control is real radios,
+  canvas has role="img" + localized aria-label, status line is
+  role="status"/aria-live, gate modal is role="dialog" with Escape close and
+  focus restore, focus-visible states on custom controls.
+
 ## 2026-08-02 - Docs: August refresh (user data, Gmail trimming, mail client preview) + privacy 1.2
 
 - **What:** Public docs and the legal documents brought up to date with
