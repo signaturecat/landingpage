@@ -4,7 +4,7 @@
  * The uploaded photo never leaves the browser (FileReader data: URL - allowed
  * by the Worker CSP img-src, unlike blob:). The email gate opens once per
  * device before the first download/copy; the lead is forwarded to Resend by
- * the edge Worker (POST /api/banner-leads) and the sigcat_bg_lead cookie
+ * the edge Worker (LEAD_ENDPOINT below) and the sigcat_bg_lead cookie
  * suppresses the gate afterwards.
  */
 (function () {
@@ -14,8 +14,25 @@
   if (!canvas) return; // not the generator page
 
   var LEAD_COOKIE = 'sigcat_bg_lead';
-  var LEAD_ENDPOINT = '/api/banner-leads';
-  var PAD = 20; // inner text padding (px, at banner scale)
+  // Assembled at runtime so the endpoint never appears verbatim in the served
+  // source. Defense-in-depth against naive scrapers ONLY - the URL is public
+  // by nature (visible in the network tab); what actually stops bots is the
+  // Turnstile check + validation on the Worker side.
+  var LEAD_ENDPOINT = '/api/' + ['banner', 'leads'].join('-');
+  // Cloudflare Turnstile (managed widget). Lazy-loaded the first time the
+  // gate opens, so regular visitors never fetch the challenge script. An
+  // empty sitekey disables the widget client-side (the gate still works);
+  // fill it in once the widget exists in the Cloudflare dashboard - and set
+  // TURNSTILE_SECRET on the Worker, which is what enforces verification.
+  var TURNSTILE_SITE_KEY = '0x4AAAAAAEFN8TmQTXTz8or4';
+  var TURNSTILE_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+  var turnstileInjected = false;
+  var PAD = 20; // inner horizontal text padding (px, at banner scale)
+  var PAD_Y = 14; // vertical text padding for top/bottom positions
+  // PNG exports render at 2x the banner size: a 1x bitmap looks soft next to
+  // the devicePixelRatio-scaled preview (and on every retina screen). PNG is
+  // lossless, so resolution is the only sharpness lever.
+  var EXPORT_SCALE = 2;
 
   function t(key) { return window.I18N_T ? window.I18N_T(key) : key; }
   function $(id) { return document.getElementById(id); }
@@ -39,6 +56,7 @@
     title: $('bg-title'),
     desc: $('bg-desc'),
     font: $('bg-font'),
+    textPos: $('bg-text-pos'),
     titleColor: $('bg-title-color'),
     titleSize: $('bg-title-size'),
     descColor: $('bg-desc-color'),
@@ -62,7 +80,8 @@
     gateForm: $('bg-gate-form'),
     gateEmail: $('bg-gate-email'),
     gateConsent: $('bg-gate-consent'),
-    gateError: $('bg-gate-error')
+    gateError: $('bg-gate-error'),
+    gateTurnstile: $('bg-gate-turnstile')
   };
 
   // Uploaded photo state: the Image element plus the visible crop - focus is
@@ -100,6 +119,7 @@
       title: els.title.value,
       desc: els.desc.value,
       font: els.font.value,
+      textPos: els.textPos.value,
       titleColor: els.titleColor.value,
       titleSize: num(els.titleSize, 26),
       descColor: els.descColor.value,
@@ -181,7 +201,11 @@
     var titleH = s.title ? Math.round(s.titleSize * 1.15) : 0;
     var descH = s.desc ? Math.round(s.descSize * 1.3) : 0;
     var gap = s.title && s.desc ? 6 : 0;
-    var top = Math.round((s.h - (titleH + gap + descH)) / 2);
+    var block = titleH + gap + descH;
+    var top;
+    if (s.textPos === 'top') top = PAD_Y;
+    else if (s.textPos === 'bottom') top = s.h - block - PAD_Y;
+    else top = Math.round((s.h - block) / 2);
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
     if (s.title) {
@@ -269,6 +293,8 @@
     } else {
       background = 'background-color:' + s.bg + ';';
     }
+    var vAlign = s.textPos === 'top' ? 'top' : s.textPos === 'bottom' ? 'bottom' : 'middle';
+    var vPad = vAlign === 'middle' ? '0' : PAD_Y + 'px';
     var titleHtml = s.title
       ? '<div style="font-size:' + s.titleSize + 'px;line-height:1.15;font-weight:bold;color:' + s.titleColor + ';">' + escHtml(s.title) + '</div>'
       : '';
@@ -276,13 +302,14 @@
       ? '<div style="font-size:' + s.descSize + 'px;line-height:1.3;color:' + s.descColor + ';' + (s.title ? 'padding-top:6px;' : '') + '">' + escHtml(s.desc) + '</div>'
       : '';
     var cells;
+    var cellCommon = 'padding:' + vPad + ' ' + PAD + 'px;font-family:' + s.font.replace(/"/g, "'") + ';vertical-align:' + vAlign + ';';
     if (s.mode === 'color' && s.barEnabled && s.barWidth > 0) {
       cells =
         '<td width="' + s.barWidth + '" style="width:' + s.barWidth + 'px;background-color:' + s.bar + ';border-radius:' + innerRadius + 'px 0 0 ' + innerRadius + 'px;">&nbsp;</td>' +
-        '<td style="padding:0 ' + PAD + 'px;font-family:' + s.font.replace(/"/g, "'") + ';vertical-align:middle;border-radius:0 ' + innerRadius + 'px ' + innerRadius + 'px 0;">' + titleHtml + descHtml + '</td>';
+        '<td style="' + cellCommon + 'border-radius:0 ' + innerRadius + 'px ' + innerRadius + 'px 0;">' + titleHtml + descHtml + '</td>';
     } else {
       cells =
-        '<td style="padding:0 ' + PAD + 'px;font-family:' + s.font.replace(/"/g, "'") + ';vertical-align:middle;border-radius:' + innerRadius + 'px;">' + titleHtml + descHtml + '</td>';
+        '<td style="' + cellCommon + 'border-radius:' + innerRadius + 'px;">' + titleHtml + descHtml + '</td>';
     }
     return '<table cellpadding="0" cellspacing="0" border="0" role="presentation" width="' + s.w + '" height="' + s.h + '" ' +
       'style="border-collapse:separate;width:' + s.w + 'px;height:' + s.h + 'px;' + background + border + 'border-radius:' + s.radius + 'px;">' +
@@ -300,9 +327,11 @@
   // ---- export actions ---------------------------------------------------------
   function exportCanvas(s) {
     var out = document.createElement('canvas');
-    out.width = s.w;
-    out.height = s.h;
-    drawBanner(out.getContext('2d'), s);
+    out.width = s.w * EXPORT_SCALE;
+    out.height = s.h * EXPORT_SCALE;
+    var ctx = out.getContext('2d');
+    ctx.scale(EXPORT_SCALE, EXPORT_SCALE);
+    drawBanner(ctx, s);
     return out;
   }
 
@@ -312,7 +341,7 @@
       if (!blob) return;
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'signature-banner-' + s.w + 'x' + s.h + '.png';
+      a.download = 'signature-banner-' + s.w + 'x' + s.h + '@2x.png';
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -369,9 +398,36 @@
   var pendingAction = null;
   var lastFocused = null;
 
+  // Mount the managed Turnstile widget on first open (implicit render: the
+  // api.js script scans for .cf-turnstile once it loads). data-action is the
+  // Spin telemetry marker - keep it.
+  function mountTurnstile() {
+    if (turnstileInjected || !TURNSTILE_SITE_KEY || !els.gateTurnstile) return;
+    turnstileInjected = true;
+    var widget = document.createElement('div');
+    widget.className = 'cf-turnstile';
+    widget.setAttribute('data-sitekey', TURNSTILE_SITE_KEY);
+    widget.setAttribute('data-action', 'turnstile-spin-v2');
+    widget.setAttribute('data-theme', 'auto');
+    els.gateTurnstile.appendChild(widget);
+    var s = document.createElement('script');
+    s.src = TURNSTILE_SRC;
+    s.async = true;
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+
+  function turnstileToken() {
+    if (!TURNSTILE_SITE_KEY) return '';
+    try {
+      return window.turnstile ? window.turnstile.getResponse() || '' : '';
+    } catch (e) { return ''; }
+  }
+
   function openGate(action) {
     pendingAction = action;
     els.gateError.hidden = true;
+    mountTurnstile();
     lastFocused = document.activeElement;
     els.gate.hidden = false;
     els.gateEmail.focus();
@@ -400,19 +456,31 @@
       (valid ? els.gateConsent : els.gateEmail).focus();
       return;
     }
+    // Turnstile: if the widget is up and the challenge is not solved yet,
+    // hold the submit (sending a token-less request would be rejected by the
+    // Worker anyway). If the script never loaded (blocked/offline), fall
+    // through - the export must not depend on a third-party script.
+    var tsToken = turnstileToken();
+    if (TURNSTILE_SITE_KEY && window.turnstile && !tsToken) {
+      els.gateError.textContent = t('bg.gate.turnstile');
+      els.gateError.hidden = false;
+      return;
+    }
     // Best-effort lead capture: the Worker forwards to Resend; a transport or
     // configuration error must never block the tool (same rule as in-app
     // notifications - the side channel never fails the primary action).
     try {
+      var lead = {
+        email: email,
+        consent: true,
+        locale: (location.pathname.split('/')[1] || 'en'),
+        source: 'banners-generator'
+      };
+      if (tsToken) lead['cf-turnstile-response'] = tsToken;
       fetch(LEAD_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: email,
-          consent: true,
-          locale: (location.pathname.split('/')[1] || 'en'),
-          source: 'banners-generator'
-        }),
+        body: JSON.stringify(lead),
         keepalive: true
       }).catch(function () {});
     } catch (err) { /* ignore */ }
@@ -484,7 +552,7 @@
     var inputs = [
       els.width, els.height, els.colorBg, els.colorBar, els.barEnabled, els.barWidth,
       els.gradType, els.gradAngle, els.gradFrom, els.gradTo, els.title, els.desc,
-      els.font, els.titleColor, els.titleSize, els.descColor, els.descSize,
+      els.font, els.textPos, els.titleColor, els.titleSize, els.descColor, els.descSize,
       els.radius, els.borderStyle, els.borderWidth, els.borderColor
     ];
     inputs.forEach(function (el) {
@@ -501,6 +569,11 @@
     els.imageFile.addEventListener('change', function () {
       loadPhoto(els.imageFile.files && els.imageFile.files[0]);
     });
+
+    // No context menu on the preview: "Save image as..." would route around
+    // the email gate (best-effort only - it cannot stop a determined user,
+    // but it closes the one-click path in mainstream browsers).
+    canvas.addEventListener('contextmenu', function (e) { e.preventDefault(); });
 
     els.download.addEventListener('click', gated(doDownload));
     els.copyPng.addEventListener('click', gated(doCopyPng));

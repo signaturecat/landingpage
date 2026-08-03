@@ -39,6 +39,27 @@
   - **build.mjs:** third entry in the PAGES manifest; `/banners-generator`
     added to the localized cross-page link rewrite; per-page FAQ key
     assertion for `bg.faq.*`.
+  - **PM review follow-ups (same PR):** neutral sample copy ("Title" /
+    "Example Description", localized); side-by-side inputs share one
+    baseline (spacing selectors scoped with child combinators so a field
+    inside a row never inherits the stacked margin, plus bottom-anchored
+    controls so a wrapping label cannot push its input down); PNG export
+    at 2x resolution (retina-sharp, note added under the actions;
+    filename carries `@2x`); "Choose a photo" icon+text laid out in one
+    row; new text-position control (top/middle/bottom, middle default;
+    carried into the HTML export as vertical-align + padding); context
+    menu disabled on the preview canvas ("Save image as" no longer
+    bypasses the email gate in mainstream browsers).
+  - **Bot protection:** Cloudflare Turnstile on the gate - a managed
+    widget mounts inside the modal (lazy-loaded on first open, so regular
+    visitors never fetch the challenge script; empty
+    `TURNSTILE_SITE_KEY` = widget off) and the Worker enforces canonical
+    siteverify whenever `TURNSTILE_SECRET` is set, rejecting token-less
+    or failed requests with 403 before touching Resend. CSP extended
+    with `challenges.cloudflare.com` (script-src + new frame-src, which
+    keeps `'self'`). The lead endpoint path is additionally assembled at
+    runtime so it never appears verbatim in served HTML/JS (anti-scraper
+    hygiene; the URL is public by nature - Turnstile is the actual gate).
 - **Why:** PM request: a free SEO tool page to attract organic traffic around
   Gmail/email signature banner searches, funneling to SignatureCat (bottom
   CTA band) and collecting marketing leads (Resend) behind a consent gate.

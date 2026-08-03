@@ -238,6 +238,7 @@
                 <button type="button" class="btn btn-ghost" id="bg-copy-png" data-i18n="bg.actions.copyPng">Skopiuj obraz</button>
                 <button type="button" class="btn btn-ghost" id="bg-copy-html" data-i18n="bg.actions.copyHtml">Skopiuj HTML</button>
               </div>
+              <p class="bg-note" data-i18n="bg.actions.retinaNote">PNG eksportuje się w podwójnej rozdzielczości, aby był ostry na ekranach retina - w edytorze podpisu ustaw szerokość wyświetlania równą szerokości baneru.</p>
               <p class="bg-note" id="bg-html-note" data-i18n="bg.actions.htmlNote">Kopiowanie HTML jest dostępne dla teł kolorowych i gradientowych - wklej je prosto do edytora podpisu. W niektórych klientach poczty gradient może zostać zastąpiony jednolitym kolorem.</p>
               <p class="bg-status" id="bg-status" role="status" aria-live="polite"></p>
             </div>
@@ -340,11 +341,11 @@
               <legend data-i18n="bg.text.legend">Tekst</legend>
               <div class="bg-field">
                 <label for="bg-title" data-i18n="bg.text.title">Tytuł</label>
-                <input type="text" id="bg-title" maxlength="80" value="The Leaderboard" data-i18n-attr="value:bg.sample.title" />
+                <input type="text" id="bg-title" maxlength="80" value="Title" data-i18n-attr="value:bg.sample.title" />
               </div>
               <div class="bg-field">
                 <label for="bg-desc" data-i18n="bg.text.desc">Opis</label>
-                <input type="text" id="bg-desc" maxlength="120" value="Sunday, Aug 02" data-i18n-attr="value:bg.sample.desc" />
+                <input type="text" id="bg-desc" maxlength="120" value="Example Description" data-i18n-attr="value:bg.sample.desc" />
               </div>
               <div class="bg-row">
                 <div class="bg-field">
@@ -358,6 +359,14 @@
                     <option value="Georgia, 'Times New Roman', serif">Georgia</option>
                     <option value="'Times New Roman', Times, serif">Times New Roman</option>
                     <option value="'Courier New', Courier, monospace">Courier New</option>
+                  </select>
+                </div>
+                <div class="bg-field">
+                  <label for="bg-text-pos" data-i18n="bg.text.position">Pozycja tekstu</label>
+                  <select id="bg-text-pos">
+                    <option value="top" data-i18n="bg.pos.top">Góra</option>
+                    <option value="middle" selected data-i18n="bg.pos.middle">Środek</option>
+                    <option value="bottom" data-i18n="bg.pos.bottom">Dół</option>
                   </select>
                 </div>
               </div>
@@ -505,10 +514,8 @@
   </main>
 
   <!-- ==================== EMAIL GATE (download / copy) ====================
-       Shown once per device before the first download/copy; a successful
-       submit stores the sigcat_bg_lead cookie and the lead is forwarded to
-       Resend by the edge Worker (POST /api/banner-leads). Markup ships
-       hidden; banner-generator.js drives it. -->
+       Shown once per device before the first download/copy. Markup ships
+       hidden; banner-generator.js drives it (see there for the lead flow). -->
   <div class="bg-modal" id="bg-gate" hidden role="dialog" aria-modal="true" aria-labelledby="bg-gate-title">
     <div class="bg-modal-backdrop" data-gate-close></div>
     <form class="bg-modal-card" id="bg-gate-form" novalidate>
@@ -522,6 +529,9 @@
         <input type="checkbox" id="bg-gate-consent" required />
         <span><span data-i18n="bg.gate.consent">Zgadzam się na otrzymywanie od SignatureCat okazjonalnych wiadomości marketingowych. Zgodę mogę wycofać w każdej chwili. Szczegóły:</span> <a href="/legal#privacy" target="_blank" rel="noopener" data-i18n="bg.gate.privacy">Polityka prywatności</a></span>
       </label>
+      <!-- Cloudflare Turnstile mounts here (banner-generator.js injects the
+           cf-turnstile div and lazy-loads the script when the gate opens) -->
+      <div class="bg-gate-turnstile" id="bg-gate-turnstile"></div>
       <p class="bg-gate-error" id="bg-gate-error" role="alert" hidden></p>
       <div class="bg-actions">
         <button type="submit" class="btn btn-primary" data-i18n="bg.gate.submit">Odblokuj i kontynuuj</button>
