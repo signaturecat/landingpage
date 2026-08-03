@@ -123,11 +123,15 @@ export const BANNER_I18N = {
 export function buildCsp(nonce) {
   return [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com`,
+    // challenges.cloudflare.com: Turnstile widget on /banners-generator
+    // (script + challenge iframe; frame-src keeps 'self' because it stops
+    // inheriting from default-src once declared)
+    `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com https://challenges.cloudflare.com`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com",
     // status.signature.cat: the /docs status pill fetches /en/index.json
     "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://status.signature.cat",
+    "frame-src 'self' https://challenges.cloudflare.com",
     "font-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",
@@ -325,6 +329,32 @@ export async function handleBannerLead(request, env) {
   const emailOk = email.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
   if (!emailOk || payload?.consent !== true) {
     return respond(400, { ok: false, error: 'invalid_payload' });
+  }
+  // Cloudflare Turnstile (canonical siteverify - the server-side check is
+  // what actually stops bots; the on-page widget is just the token source).
+  // Enforced whenever TURNSTILE_SECRET is configured on the Worker.
+  if (env?.TURNSTILE_SECRET) {
+    const token =
+      typeof payload?.['cf-turnstile-response'] === 'string'
+        ? payload['cf-turnstile-response']
+        : '';
+    if (!token) return respond(403, { ok: false, error: 'turnstile_required' });
+    const verify = await fetch(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          secret: env.TURNSTILE_SECRET,
+          response: token,
+          remoteip: request.headers.get('CF-Connecting-IP') || '',
+        }),
+      },
+    );
+    const outcome = await verify.json();
+    if (!outcome.success) {
+      return respond(403, { ok: false, error: 'turnstile_failed' });
+    }
   }
   if (!env?.RESEND_API_KEY || !env?.RESEND_AUDIENCE_ID) {
     return respond(503, { ok: false, error: 'lead_capture_unconfigured' });

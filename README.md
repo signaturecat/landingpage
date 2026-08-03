@@ -133,9 +133,20 @@ locales like every landing page). Logic lives in
   then sets `sigcat_bg_lead` (12 months) and never asks again on the device.
   The lead goes to `POST /api/banner-leads` (edge Worker) which creates a
   Resend audience contact. Best-effort: any error still lets the user export.
-- **Worker config (DevOps):** set `RESEND_API_KEY` (secret) and
-  `RESEND_AUDIENCE_ID` on the `landingpage` Worker in the Cloudflare
-  dashboard. Until then the endpoint answers 503 and no leads are stored.
+  The endpoint path is assembled at runtime in `banner-generator.js` and
+  never appears verbatim in served HTML/JS (anti-scraper hygiene only - the
+  real bot protection is Turnstile below).
+- **Bot protection (Cloudflare Turnstile):** a managed widget mounts inside
+  the gate modal (lazy-loaded on first open; regular visitors never fetch the
+  challenge script) and the Worker runs canonical siteverify before touching
+  Resend. Two-part config: `TURNSTILE_SITE_KEY` const in
+  `assets/js/banner-generator.js` (empty = widget off) and `TURNSTILE_SECRET`
+  on the Worker (unset = verification skipped). CSP already allowlists
+  `challenges.cloudflare.com` (script-src + frame-src).
+- **Worker config (DevOps):** set `RESEND_API_KEY` (secret),
+  `RESEND_AUDIENCE_ID` and `TURNSTILE_SECRET` (secret) on the `landingpage`
+  Worker in the Cloudflare dashboard. Until then the endpoint answers 503
+  (Resend) / skips the Turnstile check, and no leads are stored.
 
 ## Placeholders to replace
 

@@ -719,7 +719,16 @@ section[id] { scroll-margin-top: 88px; }
 }
 .bg-group legend { font-weight: 700; font-size: .98rem; padding: 0 6px; margin-left: -6px; }
 .bg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.bg-row + .bg-row, .bg-panel .bg-field + .bg-field, .bg-group .bg-field + .bg-field, .bg-row + .bg-field, .bg-field + .bg-row { margin-top: 12px; }
+/* Vertical rhythm between stacked blocks only - child combinators on purpose:
+   a field INSIDE .bg-row must never get a top margin (it would push the
+   second column down and misalign side-by-side inputs). */
+.bg-row + .bg-row,
+.bg-group > .bg-field + .bg-field, .bg-panel > .bg-field + .bg-field,
+.bg-row + .bg-field, .bg-field + .bg-row { margin-top: 12px; }
+/* Side-by-side fields: anchor the control to the field's bottom edge so the
+   two inputs stay on one line even when one label wraps to two lines at
+   narrow widths (localized labels differ in length). */
+.bg-row > .bg-field { display: flex; flex-direction: column; justify-content: flex-end; }
 .bg-field { min-width: 0; }
 .bg-field > label { display: block; font-size: .84rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
 .bg-field input[type="text"], .bg-field input[type="number"], .bg-field input[type="email"], .bg-field select {
@@ -759,12 +768,17 @@ section[id] { scroll-margin-top: 88px; }
 .bg-seg-opt input:checked + span { background: var(--ink); color: var(--cream); }
 .bg-panel { margin-top: 14px; }
 
-/* File picker (label wraps the sr-only input) */
-.bg-file {
+/* File picker (label wraps the sr-only input). Written as `.bg-field > .bg-file`
+   so it OUTRANKS the generic `.bg-field > label { display:block }` - as a block
+   the global `img,svg { display:block }` reset would stack the icon above the
+   text instead of laying them out in one row. */
+.bg-field > .bg-file, .bg-file {
   display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 16px;
   border: 1px solid var(--border); border-radius: 999px; background: transparent;
   font-size: 14px; font-weight: 600; color: var(--ink); cursor: pointer; transition: border-color .18s;
+  margin-bottom: 0;
 }
+.bg-file svg { flex: none; }
 .bg-file:hover { border-color: var(--accent); }
 .bg-hint { margin-top: 10px; font-size: .82rem; color: var(--muted-2); }
 .bg-card-title { font-size: 1.2rem; margin-bottom: 10px; }
@@ -795,3 +809,7 @@ section[id] { scroll-margin-top: 88px; }
   .bg-layout { grid-template-columns: 1fr; grid-template-areas: "preview" "controls"; }
   .bg-preview-col { position: static; }
 }
+
+/* Turnstile container in the email gate (widget is ~300x65 when visible) */
+.bg-gate-turnstile { margin-top: 14px; }
+.bg-gate-turnstile:empty { margin-top: 0; }
