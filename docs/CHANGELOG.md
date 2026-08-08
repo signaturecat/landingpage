@@ -2,6 +2,83 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-08 - Home page copy rewrite, new section order, "book a call" band (x4 languages)
+
+- **What:** The home page was rewritten section by section from PM's copy deck
+  and re-ordered; `/pricing` got a new hero subtitle; the language switcher lost
+  its flag emoji.
+  - **New section order** (the numbering PM asked for): hero -> trust ->
+    features -> how it works -> **contact (new)** -> employer branding ->
+    Workspace admin -> security -> pricing -> docs -> FAQ. Only the section
+    blocks moved; each keeps its own `id`, so `#features`, `#branding`,
+    `#security`, `#faq` links and the nav stay valid. Vertical rhythm
+    (`padding-top:0` on continuation sections) was re-balanced so the full-size
+    gaps now fall before branding, security and pricing.
+  - **Copy** (all four languages, English authored in `index.html` + `i18n.js`,
+    Polish is PM's wording verbatim): hero title now covers signatures **and**
+    branding; features head plus all six cards rewritten as second-person
+    outcomes (one-click updates, self-updating employee data, different
+    signature versions, consistent company image, no manual fixes, control and
+    change history); employer branding got a new title/subtitle and a **fifth**
+    bullet (`brand.p5`, banner hosting on your own domain); the "Designed by a
+    Google Workspace Administrator" section lost its purple **Built by** kicker
+    (`admin.kicker` deleted in all locales) and all three cards were rewritten;
+    security subtitle now leads with least privilege + EU storage; the three
+    steps are "Set up company email signatures in three steps"; pricing head is
+    "One plan. Every feature. Simple billing." with the "no bill ballooning"
+    sentence dropped per PM; docs band is now "Take a look at the
+    documentation"; `/pricing` hero subtitle shortened to one sentence.
+  - **New contact band** (`#contact`, reuses the existing `.band` component):
+    "Questions before you roll it out?" with a single primary CTA that is a
+    `mailto:contact@signature.cat` link. The subject line lives in the
+    dictionary as copy (`contact.subject`) and `build.mjs` percent-encodes it
+    per locale, so `/pl` ships the Polish subject in the served HTML, not only
+    after `app.js` runs.
+  - **FAQ keywords:** the four phrases PM listed (central email signature
+    management, Gmail signatures, Gmail signature management, email signature
+    management across Google Workspace) are woven into answers 1, 4, 5 and 7 as
+    natural sentences. The FAQPage JSON-LD is generated from the same keys, so
+    schema and markup cannot diverge.
+  - **Language switcher without flags:** flag emoji removed from both switchers
+    (header dropdown + mobile menu) on all three page sources and from
+    `app.js`; each language is now labelled with a `.lang-code` badge (EN / PL /
+    DE / FR) in `--muted` so 11px text still passes AA. Windows has no flag
+    glyphs and renders a regional-indicator pair as bare letters ("GB EN"),
+    which read as broken.
+  - **Mobile footer:** `.footer-bottom` stacks below 680px, so the copyright,
+    "Servers in the EU" and "Made in Poland" each own a line and share one left
+    edge (they used to be right-aligned with ragged starts).
+  - **Translation and typo pass** over the rest of the landing copy: Polish
+    "reconciliacja" (not a word) -> "synchronizacja", "Szyfrowanie at rest" ->
+    "Szyfrowanie przechowywanych danych", "customowe templatki stopek" ->
+    "szablony podpisów na zamówienie", "Imiona" -> "Imiona i nazwiska";
+    French "Chiffré at rest" -> "Chiffrement des données stockées",
+    "Résistant au code injection" -> "Résistant à l'injection de code",
+    "fonctions" -> "fonctionnalités" on /pricing; German "Verschlüsselt at
+    rest" -> "Verschlüsselung gespeicherter Daten", "Hergestellt in Polen" ->
+    "Entwickelt in Polen"; "append-only audit log" localized in pl/de/fr
+    (it stays English only in the English copy). One `U+2019` apostrophe left
+    in English copy replaced with the ASCII one (anti-AI-tell rule).
+- **Why:** PM's copy deck (2026-08-08): the previous wording described
+  mechanisms ("smart variables", "conditional blocks"), not outcomes, and read
+  as translated marketing text. The new copy speaks to a Workspace admin in
+  their own words, adds the missing "talk to us" step before the branding
+  pitch, and carries the keyword phrases the page should rank for.
+- **Scope:** landingpage
+- **Design impact:** no new tokens. One new rule pair (`.lang-code` badge,
+  Light/Dark via `--muted`/`--border`) and the mobile `.footer-bottom` stack;
+  the contact section reuses `.band` and `.btn-primary` exactly as the docs band
+  does. Feature card order in row 1 was rearranged so each existing demo sits
+  under the copy it illustrates (name auto-fill, variable carousel, conditional
+  tags); the dead `.varlist-hidden` block in the third card was removed.
+- **Performance impact:** none measurable - copy-only plus one extra card demo
+  moved. No new assets, no new requests, no JS added (one dead `LANG_NAMES`
+  constant removed from `app.js`).
+- **A11y:** the locale-code badge uses `--muted` (5.3:1 on cream, AA at 11px)
+  rather than `--muted-2` (3.4:1); `aria-current` on the switcher links is
+  unchanged and now also tints the badge. The contact CTA is a real link with
+  visible text. No motion added.
+
 ## 2026-08-02 - Free banner generator at /banners-generator (x4 languages)
 
 - **What:** New public tool page `/banners-generator` (+ `/pl`, `/de`, `/fr`

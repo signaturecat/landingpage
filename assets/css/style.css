@@ -155,6 +155,18 @@ html { scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--ink) 32%
 }
 .lang-menu a:hover, .lang-menu a[aria-current="true"] { background: color-mix(in srgb, var(--accent) 22%, transparent); }
 
+/* Locale code badge that replaced the flag emoji in both switchers (Windows
+   has no flag glyphs, so the emoji rendered as bare letters). Fixed width so
+   the language names line up in a column. */
+.lang-code {
+  /* --muted (not --muted-2): the code IS the label, so it needs AA at 11px. */
+  flex: none; min-width: 2.1em; text-align: center; font-size: 11px; font-weight: 700;
+  letter-spacing: .06em; line-height: 1.7; color: var(--muted);
+  border: 1px solid var(--border); border-radius: 6px; padding: 0 5px;
+}
+.lang-menu a[aria-current="true"] .lang-code,
+.nav-lang-opts a[aria-current="true"] .lang-code { color: var(--ink); border-color: var(--accent); }
+
 .nav-toggle { display: none; background: transparent; border: 1px solid var(--border); border-radius: 10px; padding: 8px; cursor: pointer; color: var(--ink); }
 
 /* Hero -------------------------------------------------------------------- */
@@ -674,7 +686,10 @@ section[id] { scroll-margin-top: 88px; }
   /* Move language selection into the hamburger menu on mobile */
   .nav-right .lang { display: none; }
   .nav-lang { display: block; border-top: 1px solid var(--border); padding-top: 14px; margin-top: 2px; }
-  .footer-loc { flex-direction: column; align-items: flex-end; gap: 4px; }
+  /* Stack the bottom bar so "Servers in the EU" and "Made in Poland" each own
+     a line and start at the same left edge (PM 2026-08-08). */
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .footer-loc { flex-direction: column; align-items: flex-start; gap: 4px; }
 }
 
 /* Banner generator (/banners-generator) ------------------------------------ */

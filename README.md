@@ -57,6 +57,14 @@ index every language (the old single-URL setup could not).
   served), so the client matches the pre-rendered HTML. The language switcher is
   **crawlable `<a href="/pl/">` links** (work without JS); on click, JS records a
   `sigcat_locale` cookie (manual override) and the `<a>` handles navigation.
+  The switcher labels each language with a locale-code badge (`.lang-code`:
+  EN / PL / DE / FR) and **no flag emoji** - Windows has no flag glyphs and
+  renders the regional-indicator pair as bare letters (PM 2026-08-08).
+- **Localized `mailto:` subjects:** the "book a call" CTA on the home page keeps
+  its subject line in the dictionary as plain copy (`contact.subject`);
+  `build.mjs` composes and percent-encodes `mailto:contact@signature.cat?subject=`
+  per locale, so the served HTML already carries the translated subject. Adding
+  another mailto CTA means extending that rule in `render()`.
 - **Browser-language redirect:** done **server-side** by the Cloudflare Worker
   (`cloudflare/`), not a client redirect (which would risk SEO). On `/` it reads
   the cookie (manual choice wins) else `Accept-Language` and 302s to the locale;
@@ -65,7 +73,11 @@ index every language (the old single-URL setup could not).
   deployed the per-locale pages + `hreflang` already work; only the auto-redirect
   + `Content-Language` are absent.
 - Proper names are never translated: SignatureCat, Google, Workspace, Gmail, Stripe, GCP, Secret Manager, Directory API, Domain-Wide Delegation, RODO/GDPR.
-- **No "AI-tell" typography** in copy: plain ASCII `-`, no em/en dashes or invisible characters (locale curly quotes `„ "`, `« »` are fine - correct per-language typography).
+- **No "AI-tell" typography** in copy: plain ASCII `-` only, no em/en dashes, no
+  invisible characters and **no typographic double quotes** in any language
+  (`„ "`, `« »`, `" "` are forbidden since PM's 2026-07-23 decision - quote with
+  the plain keyboard `"`; the apostrophe `'` stays allowed). `build.mjs` and
+  `build-docs.mjs` fail the build on any of them.
 
 ## Legal pages (/legal, terms, policy)
 
