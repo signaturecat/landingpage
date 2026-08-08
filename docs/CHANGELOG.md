@@ -15,8 +15,10 @@
     (`padding-top:0` on continuation sections) was re-balanced so the full-size
     gaps now fall before branding, security and pricing.
   - **Copy** (all four languages, English authored in `index.html` + `i18n.js`,
-    Polish is PM's wording verbatim): hero title now covers signatures **and**
-    branding; features head plus all six cards rewritten as second-person
+    Polish is PM's wording verbatim): new hero lede (create, assign by
+    department or role, update from one place - the title itself stays as it
+    was, PM dropped the "and branding" half on review); features head plus all
+    six cards rewritten as second-person
     outcomes (one-click updates, self-updating employee data, different
     signature versions, consistent company image, no manual fixes, control and
     change history); employer branding got a new title/subtitle and a **fifth**
