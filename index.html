@@ -122,7 +122,7 @@ https://signature.cat/docs
           "name": "How does SignatureCat update Gmail signatures?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The tool connects to your Google Workspace via API, so the data is always up to date and comes straight from your Workspace Directory."
+            "text": "The tool connects to your Google Workspace via API, so central email signature management happens in a single panel: every Gmail signature is rebuilt from data that comes straight from your Workspace Directory."
           }
         },
         {
@@ -146,7 +146,7 @@ https://signature.cat/docs
           "name": "Can I target only some users?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. You can target specific users, entire Groups or Organizational Units. Targets are expanded to the right people at apply time."
+            "text": "Yes. Gmail signature management is as granular as your structure: you can target specific users, entire Groups or Organizational Units. Targets are expanded to the right people at apply time."
           }
         },
         {
@@ -154,7 +154,7 @@ https://signature.cat/docs
           "name": "What happens when someone changes their job title?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Because variables resolve live from the Directory, a daily reconciliation keeps signatures current automatically. Update the title once in Workspace and it propagates everywhere."
+            "text": "Because variables resolve live from the Directory, a daily sync keeps every Gmail signature current automatically. Update the title once in Workspace and it propagates everywhere."
           }
         },
         {
@@ -170,7 +170,7 @@ https://signature.cat/docs
           "name": "Do you offer support with rolling the tool out in my company?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. We provide professional support for implementing the tool in your company. Our experience as Google Workspace administrators makes the rollout quick and smooth. We also create custom signature templates on request - just write to contact@signature.cat."
+            "text": "Yes. We provide professional support for implementing the tool in your company, from connecting your domain to email signature management across the whole Google Workspace. Our experience as Google Workspace administrators makes the rollout quick and smooth. We also create custom signature templates on request - just write to contact@signature.cat."
           }
         }
       ]
@@ -199,10 +199,10 @@ https://signature.cat/docs
         <div class="nav-lang" role="group" aria-label="Language">
           <span class="nav-lang-label" data-i18n="nav.language">Language</span>
           <div class="nav-lang-opts">
-            <a href="/" data-lang="en">🇬🇧 English</a>
-            <a href="/pl" data-lang="pl">🇵🇱 Polski</a>
-            <a href="/de" data-lang="de">🇩🇪 Deutsch</a>
-            <a href="/fr" data-lang="fr">🇫🇷 Français</a>
+            <a href="/" data-lang="en"><span class="lang-code">EN</span> English</a>
+            <a href="/pl" data-lang="pl"><span class="lang-code">PL</span> Polski</a>
+            <a href="/de" data-lang="de"><span class="lang-code">DE</span> Deutsch</a>
+            <a href="/fr" data-lang="fr"><span class="lang-code">FR</span> Français</a>
           </div>
         </div>
       </nav>
@@ -210,13 +210,13 @@ https://signature.cat/docs
       <div class="nav-right">
         <div class="lang">
           <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-label="Change language">
-            <span id="lang-current">🇬🇧 EN</span>
+            <span id="lang-current">EN</span>
           </button>
           <div class="lang-menu" id="lang-menu" role="menu">
-            <a href="/" data-lang="en" role="menuitem">🇬🇧 English</a>
-            <a href="/pl" data-lang="pl" role="menuitem">🇵🇱 Polski</a>
-            <a href="/de" data-lang="de" role="menuitem">🇩🇪 Deutsch</a>
-            <a href="/fr" data-lang="fr" role="menuitem">🇫🇷 Français</a>
+            <a href="/" data-lang="en" role="menuitem"><span class="lang-code">EN</span> English</a>
+            <a href="/pl" data-lang="pl" role="menuitem"><span class="lang-code">PL</span> Polski</a>
+            <a href="/de" data-lang="de" role="menuitem"><span class="lang-code">DE</span> Deutsch</a>
+            <a href="/fr" data-lang="fr" role="menuitem"><span class="lang-code">FR</span> Français</a>
           </div>
         </div>
         <a href="https://app.signature.cat" class="btn btn-primary" data-i18n="nav.cta">Get started</a>
@@ -234,7 +234,7 @@ https://signature.cat/docs
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <h1 data-i18n="hero.title">Centrally manage Gmail signatures in your Google Workspace.</h1>
-          <p class="lede" data-i18n="hero.lede">Design one signature template, target users, groups or org units, and let SignatureCat keep every Gmail signature personalized and always up to date - automatically.</p>
+          <p class="lede" data-i18n="hero.lede">Create consistent email signatures for your employees, assign them by department or role, and update them across the whole organization from one place.</p>
           <div class="hero-cta">
             <a href="https://app.signature.cat" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Get started</a>
             <a href="https://signature.cat/docs" class="btn btn-ghost btn-lg" data-i18n="hero.cta2">Read the docs</a>
@@ -295,15 +295,28 @@ https://signature.cat/docs
       <div class="container">
         <div class="section-head reveal">
           <span class="kicker" data-i18n="feat.kicker">Features</span>
-          <h2 data-i18n="feat.title">Everything you need for consistent company-wide signatures</h2>
-          <p class="sub" data-i18n="feat.sub">A focused toolset that turns one template into perfectly personalized signatures for every person in your Workspace.</p>
+          <h2 data-i18n="feat.title">Everything you need to manage email signatures across your company</h2>
+          <p class="sub" data-i18n="feat.sub">One place to create, assign and update email signatures for your whole organization.</p>
         </div>
 
         <div class="grid grid-3">
+          <article class="card card-compact card-personalize reveal">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
+            <h3 data-i18n="feat.c1.t">Update signatures in one click</h3>
+            <p data-i18n="feat.c1.d">Change the text, an image or the data in your template, and SignatureCat rolls the new version out to your employees automatically.</p>
+            <!-- {{firstname}} {{lastname}} auto-fill demo from a created template -->
+            <div class="pers-demo" aria-hidden="true">
+              <div class="pers-line">
+                <span class="pers-var" data-var="firstname">{{firstname}}</span>
+                <span class="pers-var" data-var="lastname">{{lastname}}</span>
+              </div>
+            </div>
+          </article>
+
           <article class="card card-compact card-vars reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v2M16 21h2a2 2 0 0 0 2-2v-2"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg></span>
-            <h3 data-i18n="feat.c1.t">Smart variables</h3>
-            <p data-i18n="feat.c1.d">Drop in placeholders that resolve live from your Directory - name, title, department, phone, photo and more. No manual editing per person.</p>
+            <h3 data-i18n="feat.c2.t">Employee details update themselves</h3>
+            <p data-i18n="feat.c2.d">Pull data from Google Workspace straight into the signature. Someone changes their job title, phone number or department? The signature follows.</p>
             <!-- Carousel: variable tokens that flip to a sample value on hover -->
             <div class="var-carousel" aria-hidden="true">
               <div class="var-track">
@@ -329,23 +342,10 @@ https://signature.cat/docs
             </div>
           </article>
 
-          <article class="card card-compact card-personalize reveal">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/><path d="m17 11 2 2 4-4"/></svg></span>
-            <h3 data-i18n="feat.c2.t">Personalized per user</h3>
-            <p data-i18n="feat.c2.d">Every signature is rendered individually from live Directory data, so each employee gets their own correct details - all from the template you created.</p>
-            <!-- {{firstname}} {{lastname}} auto-fill demo from a created template -->
-            <div class="pers-demo" aria-hidden="true">
-              <div class="pers-line">
-                <span class="pers-var" data-var="firstname">{{firstname}}</span>
-                <span class="pers-var" data-var="lastname">{{lastname}}</span>
-              </div>
-            </div>
-          </article>
-
           <article class="card card-compact card-conditional reveal">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M7 8h10M7 12h6"/><path d="M5 4h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-4 4z"/></svg></span>
-            <h3 data-i18n="feat.c3.t">Conditional blocks</h3>
-            <p data-i18n="feat.c3.d">Use {{del}} and {{delete}} to gracefully hide blocks when a field is missing - no empty lines, no orphaned labels, ever.</p>
+            <span class="icon-box"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg></span>
+            <h3 data-i18n="feat.c3.t">Build different signature versions</h3>
+            <p data-i18n="feat.c3.d">Use the HTML editor to tailor signatures to specific needs: a sales banner for the sales team, a legal disclaimer for the legal department.</p>
             <!-- {{del}} animation: when the value is present only the {{del}}/{{/del}} tags disappear and the section stays -->
             <div class="cond-demo" aria-hidden="true">
               <div class="cond-sig" id="cond-block">
@@ -359,43 +359,84 @@ https://signature.cat/docs
               </div>
               <div class="cond-status" id="cond-status" data-i18n="feat.c3.statusPresent">Phone present - section kept</div>
             </div>
-            <div class="varlist varlist-hidden"><code>{{del}} … {{/del}}</code><code>{{delete}} … {{/delete}}</code></div>
           </article>
 
           <article class="card reveal">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
-            <h3 data-i18n="feat.c4.t">Precise targeting</h3>
-            <p data-i18n="feat.c4.d">Apply to specific users, whole Groups or Organizational Units. Targets expand to the right people at apply time.</p>
+            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m9 14-1.5 7L12 18l4.5 3L15 14"/></svg></span>
+            <h3 data-i18n="feat.c4.t">Keep a consistent company image</h3>
+            <p data-i18n="feat.c4.d">One signature standard across every message your employees send.</p>
           </article>
 
           <article class="card reveal">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
-            <h3 data-i18n="feat.c5.t">Automated rollout</h3>
-            <p data-i18n="feat.c5.d">A daily reconciliation keeps signatures in sync as people join, move teams or update their details - set it once.</p>
+            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/><path d="m17 11 2 2 4-4"/></svg></span>
+            <h3 data-i18n="feat.c5.t">No more manual fixes or stale details</h3>
+            <p data-i18n="feat.c5.d">You no longer have to ask people to update their signature or check who is still using the old footer.</p>
           </article>
 
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <h3 data-i18n="feat.c6.t">Always up to date</h3>
-            <p data-i18n="feat.c6.d">Because values are pulled live from the Directory, signatures never go stale. Change a title once and it propagates everywhere.</p>
+            <h3 data-i18n="feat.c6.t">Stay in control of your signatures</h3>
+            <p data-i18n="feat.c6.d">See the signatures you rolled out and the full change history in the admin panel.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- =========================== HOW IT WORKS =========================== -->
+    <section id="how" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="kicker" data-i18n="how.kicker">How it works</span>
+          <h2 data-i18n="how.title">Set up company email signatures in three steps</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <h3 data-i18n="how.s1.t">Connect Google Workspace</h3>
+            <p data-i18n="how.s1.d">Connect SignatureCat to your Google Workspace with Domain-Wide Delegation. Grant only the permissions it needs and start managing signatures from one place.</p>
+          </div>
+          <div class="step reveal">
+            <h3 data-i18n="how.s2.t">Create a signature template</h3>
+            <p data-i18n="how.s2.d">Design the signature and add employee details, variables and conditional content. Preview it on a real user before you roll it out to the organization.</p>
+          </div>
+          <div class="step reveal">
+            <h3 data-i18n="how.s3.t">Choose who gets it and apply</h3>
+            <p data-i18n="how.s3.d">Pick the employees, groups or organizational units the signature applies to. SignatureCat fills it in with each user's data and keeps it up to date.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CONTACT ============================== -->
+    <!-- The CTA is a mailto: link; build.mjs bakes the localized ?subject= per
+         locale from the contact.subject key (see render() in build.mjs). -->
+    <section id="contact" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="band reveal">
+          <div>
+            <h2 data-i18n="contact.title">Questions before you roll it out?</h2>
+            <p data-i18n="contact.desc">Want to know how SignatureCat would work in your organization? Book a call with our team.</p>
+          </div>
+          <div class="hero-cta" style="margin-top:0">
+            <a href="mailto:contact@signature.cat?subject=I%20would%20like%20to%20book%20a%20call" class="btn btn-primary btn-lg" data-i18n="contact.cta">Book a call</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ========================= EMPLOYER BRANDING ========================= -->
-    <section id="branding" class="section" style="padding-top:0">
+    <section id="branding" class="section">
       <div class="container">
         <div class="brand-grid">
           <div class="brand-copy reveal">
             <span class="kicker" data-i18n="brand.kicker">Employer branding</span>
-            <h2 data-i18n="brand.title">Employer branding in every email</h2>
-            <p class="sub" data-i18n="brand.sub">Turn every employee's signature into media space. Add a marketing banner for your current campaign and swap it for everyone at once - no email to staff, no manual edits.</p>
+            <h2 data-i18n="brand.title">Employer branding in every email signature</h2>
+            <p class="sub" data-i18n="brand.sub">Use your company signatures as an extra channel for communication and promotion.</p>
             <ul class="brand-points">
               <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p1">Promote campaigns, events, reports or hiring across thousands of outgoing emails.</span></li>
-              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p2">Change the banner once - it updates in every targeted employee's signature.</span></li>
-              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p3">A free, always-on channel that reaches every recipient you already write to.</span></li>
-              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p4">React in real time: launch a promo, event or announcement and have it live in everyone’s signature within minutes.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p2">Swap banners across the whole organization without contacting a single employee.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p3">Tailor the message to a department, a team or a specific audience.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p4">Host banners on your own domain through SignatureCat, so they are always available and there is nothing for you to maintain.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p5">Update promotional content from one place and keep your company image consistent.</span></li>
             </ul>
           </div>
 
@@ -431,7 +472,7 @@ https://signature.cat/docs
                     <span class="ad-eyebrow" data-i18n="brand.ad2.e">New release</span>
                     <span class="ad-head" data-i18n="brand.ad2.h">Meet our 2.0 platform</span>
                     <span class="ad-sub" data-i18n="brand.ad2.s">Faster, simpler, built for teams.</span>
-                    <span class="ad-cta" data-i18n="brand.ad2.c">Discover what’s new</span>
+                    <span class="ad-cta" data-i18n="brand.ad2.c">Discover what's new</span>
                   </div>
                   <div class="ad-slide" data-brand="event">
                     <span class="ad-eyebrow" data-i18n="brand.ad3.e">webinar · free</span>
@@ -452,25 +493,24 @@ https://signature.cat/docs
     <section id="admin" class="section" style="padding-top:0">
       <div class="container">
         <div class="section-head reveal">
-          <span class="kicker" data-i18n="admin.kicker">Built by</span>
           <h2 data-i18n="admin.title">Designed by a Google Workspace Administrator</h2>
-          <p class="sub" data-i18n="admin.sub">Built by someone who manages Workspace daily, so this tool fits how your organization is already managed - not the other way around.</p>
+          <p class="sub" data-i18n="admin.sub">The tool is built by an administrator who knows the daily challenges of managing signatures in a company: from keeping details current to keeping every signature consistent across the organization.</p>
         </div>
         <div class="grid grid-3">
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
             <h3 data-i18n="admin.c1.t">Group management</h3>
-            <p data-i18n="admin.c1.d">Target whole Google Groups. People joining or leaving a group are picked up automatically - no list to maintain by hand.</p>
+            <p data-i18n="admin.c1.d">Assign a signature to a whole Google Group instead of adding people one by one. When someone joins or leaves the group, SignatureCat updates their signature automatically.</p>
           </article>
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg></span>
-            <h3 data-i18n="admin.c2.t">Per-locale signature languages</h3>
-            <p data-i18n="admin.c2.d">Give foreign branches signatures in their own language. Set a different signature language per group, department or Organizational Unit - each office gets a native-language signature.</p>
+            <h3 data-i18n="admin.c2.t">Match the Gmail signature to the location and language</h3>
+            <p data-i18n="admin.c2.d">Set the right language, address and contact details for every branch. People in Warsaw can use a Polish signature while the team in Berlin uses a German one.</p>
           </article>
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 8h18"/></svg></span>
-            <h3 data-i18n="admin.c3.t">Organizational Units</h3>
-            <p data-i18n="admin.c3.d">Apply by Organizational Unit and inherit your existing Workspace structure - rollout maps onto how your org is already set up.</p>
+            <h3 data-i18n="admin.c3.t">Use the structure you already have in Google Workspace</h3>
+            <p data-i18n="admin.c3.d">Assign signatures to Organizational Units (OU) and reuse your company's existing structure. There is nothing to rebuild in SignatureCat: the tool works with the setup you already keep in Google Workspace.</p>
           </article>
         </div>
       </div>
@@ -482,7 +522,7 @@ https://signature.cat/docs
         <div class="section-head reveal">
           <span class="kicker" data-i18n="sec.kicker">Security</span>
           <h2 data-i18n="sec.title">Security and privacy built into the foundation</h2>
-          <p class="sub" data-i18n="sec.sub">SignatureCat is designed around least-privilege access, strong encryption and EU data residency - so you can roll it out with confidence.</p>
+          <p class="sub" data-i18n="sec.sub">SignatureCat is built on the principle of least privilege. Data is encrypted and stored in the European Union, so you can use the tool without worrying about your organization's data.</p>
         </div>
 
         <div class="sec-list reveal">
@@ -504,37 +544,13 @@ https://signature.cat/docs
       </div>
     </section>
 
-    <!-- =========================== HOW IT WORKS =========================== -->
-    <section id="how" class="section" style="padding-top:0">
-      <div class="container">
-        <div class="section-head center reveal">
-          <span class="kicker" data-i18n="how.kicker">How it works</span>
-          <h2 data-i18n="how.title">From template to every inbox in three steps</h2>
-        </div>
-        <div class="steps">
-          <div class="step reveal">
-            <h3 data-i18n="how.s1.t">Connect your Workspace</h3>
-            <p data-i18n="how.s1.d">Authorize Domain-Wide Delegation once. SignatureCat impersonates only the scopes it needs to write signatures.</p>
-          </div>
-          <div class="step reveal">
-            <h3 data-i18n="how.s2.t">Design your template</h3>
-            <p data-i18n="how.s2.d">Build one signature with variables and conditional blocks. Preview it against a real user before you ship.</p>
-          </div>
-          <div class="step reveal">
-            <h3 data-i18n="how.s3.t">Target &amp; apply</h3>
-            <p data-i18n="how.s3.d">Pick users, groups or org units. SignatureCat renders and applies each personalized signature - and keeps them current.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ============================== PRICING ============================== -->
     <section id="pricing" class="section">
       <div class="container">
         <div class="section-head center reveal">
           <span class="kicker" data-i18n="pricing.kicker">Pricing</span>
-          <h2 data-i18n="pricing.title">Simple pricing that supports your company's growth</h2>
-          <p class="sub" data-i18n="pricing.sub">Pay only for active users in your Workspace. The more seats, the lower the per-seat rate. No need to worry about your bill ballooning as your business grows.</p>
+          <h2 data-i18n="pricing.title">One plan. Every feature. Simple billing.</h2>
+          <p class="sub" data-i18n="pricing.sub">Pay only for active users in your Workspace. The more seats, the lower the per-seat rate.</p>
         </div>
 
         <div class="pricing-wrap">
@@ -590,7 +606,7 @@ https://signature.cat/docs
       <div class="container">
         <div class="band reveal">
           <div>
-            <h2 data-i18n="docs.title">Read the full documentation</h2>
+            <h2 data-i18n="docs.title">Take a look at the documentation</h2>
             <p data-i18n="docs.desc">Architecture, the signature engine, variables, security and compliance - everything is documented and publicly available.</p>
           </div>
           <div class="hero-cta" style="margin-top:0">
@@ -609,13 +625,13 @@ https://signature.cat/docs
           <h2 data-i18n="faq.title">Frequently asked questions</h2>
         </div>
         <div class="faq reveal">
-          <details><summary data-i18n="faq.q1">How does SignatureCat update Gmail signatures?</summary><p data-i18n="faq.a1">The tool connects to your Google Workspace via API, so the data is always up to date and comes straight from your Workspace Directory.</p></details>
+          <details><summary data-i18n="faq.q1">How does SignatureCat update Gmail signatures?</summary><p data-i18n="faq.a1">The tool connects to your Google Workspace via API, so central email signature management happens in a single panel: every Gmail signature is rebuilt from data that comes straight from your Workspace Directory.</p></details>
           <details><summary data-i18n="faq.q2">Do you offer a free trial?</summary><p data-i18n="faq.a2">Yes. Every new Workspace starts with a 7-day free trial with full access. We collect a card at sign-up but do not charge during the trial - cancel any time before it ends and you are not billed. After the trial, billing is per active user, starting at $0.80 / user / month.</p></details>
           <details><summary data-i18n="faq.q3">Where is my data stored?</summary><p data-i18n="faq.a3">All data lives in EU regions. We don't store your end-users' personal attributes - names, phones and photos are fetched live at apply time and discarded.</p></details>
-          <details><summary data-i18n="faq.q4">Can I target only some users?</summary><p data-i18n="faq.a4">Yes. You can target specific users, entire Groups or Organizational Units. Targets are expanded to the right people at apply time.</p></details>
-          <details><summary data-i18n="faq.q5">What happens when someone changes their job title?</summary><p data-i18n="faq.a5">Because variables resolve live from the Directory, a daily reconciliation keeps signatures current automatically. Update the title once in Workspace and it propagates everywhere.</p></details>
+          <details><summary data-i18n="faq.q4">Can I target only some users?</summary><p data-i18n="faq.a4">Yes. Gmail signature management is as granular as your structure: you can target specific users, entire Groups or Organizational Units. Targets are expanded to the right people at apply time.</p></details>
+          <details><summary data-i18n="faq.q5">What happens when someone changes their job title?</summary><p data-i18n="faq.a5">Because variables resolve live from the Directory, a daily sync keeps every Gmail signature current automatically. Update the title once in Workspace and it propagates everywhere.</p></details>
           <details><summary data-i18n="faq.q6">What if I need signatures in multiple languages?</summary><p data-i18n="faq.a6">You can set a separate signature language for each foreign branch - dedicated templates and assignments per branch. The tool is built for multilingual organizations.</p></details>
-          <details><summary data-i18n="faq.q7">Do you offer support with rolling the tool out in my company?</summary><p data-i18n="faq.a7">Yes. We provide professional support for implementing the tool in your company. Our experience as Google Workspace administrators makes the rollout quick and smooth. We also create custom signature templates on request - just write to contact@signature.cat.</p></details>
+          <details><summary data-i18n="faq.q7">Do you offer support with rolling the tool out in my company?</summary><p data-i18n="faq.a7">Yes. We provide professional support for implementing the tool in your company, from connecting your domain to email signature management across the whole Google Workspace. Our experience as Google Workspace administrators makes the rollout quick and smooth. We also create custom signature templates on request - just write to contact@signature.cat.</p></details>
         </div>
       </div>
     </section>

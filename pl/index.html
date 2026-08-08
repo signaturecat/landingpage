@@ -122,7 +122,7 @@ https://signature.cat/docs
           "name": "Jak SignatureCat aktualizuje podpisy Gmail?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Narzędzie łączy się po API z konkretnym Google Workspace, dzięki czemu dane są zawsze aktualne i pochodzą z Directory Workspace."
+            "text": "Narzędzie łączy się po API z Twoim Google Workspace, dzięki czemu centralne zarządzanie stopkami e-mail odbywa się w jednym panelu, a każdy podpis Gmail powstaje z danych pochodzących wprost z Directory Workspace."
           }
         },
         {
@@ -138,7 +138,7 @@ https://signature.cat/docs
           "name": "Gdzie przechowywane są moje dane?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Wszystkie dane znajdują się w regionach UE. Nie przechowujemy atrybutów osobowych użytkowników - imiona, telefony i zdjęcia pobierane są na żywo w momencie wdrożenia i odrzucane."
+            "text": "Wszystkie dane znajdują się w regionach UE. Nie przechowujemy danych osobowych Twoich pracowników - imiona i nazwiska, telefony oraz zdjęcia pobierane są na żywo w momencie wdrożenia i odrzucane."
           }
         },
         {
@@ -146,7 +146,7 @@ https://signature.cat/docs
           "name": "Czy mogę wskazać tylko część użytkowników?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Tak. Możesz wskazać wybranych użytkowników, całe Grupy lub Jednostki Organizacyjne. Cele rozwijane są do właściwych osób w momencie wdrożenia."
+            "text": "Tak. Zarządzanie podpisami Gmail jest tak szczegółowe, jak struktura Twojej firmy: możesz wskazać wybranych użytkowników, całe Grupy lub Jednostki Organizacyjne. Cele rozwijane są do właściwych osób w momencie wdrożenia."
           }
         },
         {
@@ -154,7 +154,7 @@ https://signature.cat/docs
           "name": "Co się dzieje, gdy ktoś zmieni stanowisko?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ponieważ zmienne pobierane są na żywo z Directory, codzienna reconciliacja automatycznie utrzymuje podpisy aktualnymi. Zaktualizuj stanowisko raz w Workspace, a zmiana propaguje się wszędzie."
+            "text": "Ponieważ zmienne pobierane są na żywo z Directory, codzienna synchronizacja automatycznie utrzymuje podpisy Gmail w aktualnym stanie. Zaktualizuj stanowisko raz w Workspace, a zmiana propaguje się wszędzie."
           }
         },
         {
@@ -170,7 +170,7 @@ https://signature.cat/docs
           "name": "Czy oferujecie wsparcie przy wdrożeniu narzędzia w firmie?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Tak, profesjonalnie wspomożemy przy implementacji narzędzia w firmie. Nasze doświadczenie jako administratorów Google Workspace umożliwia szybką i sprawną implementację. Tworzymy również customowe templatki stopek na zamówienie klientów - wystarczy napisać na contact@signature.cat."
+            "text": "Tak, profesjonalnie wspieramy wdrożenie narzędzia w firmie: od podłączenia domeny po zarządzanie stopkami w całym Google Workspace. Nasze doświadczenie administratorów Google Workspace sprawia, że wdrożenie jest szybkie i sprawne. Tworzymy też szablony podpisów na zamówienie - wystarczy napisać na contact@signature.cat."
           }
         }
       ]
@@ -199,10 +199,10 @@ https://signature.cat/docs
         <div class="nav-lang" role="group" aria-label="Language">
           <span class="nav-lang-label" data-i18n="nav.language">Język</span>
           <div class="nav-lang-opts">
-            <a href="/" data-lang="en">🇬🇧 English</a>
-            <a href="/pl" data-lang="pl">🇵🇱 Polski</a>
-            <a href="/de" data-lang="de">🇩🇪 Deutsch</a>
-            <a href="/fr" data-lang="fr">🇫🇷 Français</a>
+            <a href="/" data-lang="en"><span class="lang-code">EN</span> English</a>
+            <a href="/pl" data-lang="pl"><span class="lang-code">PL</span> Polski</a>
+            <a href="/de" data-lang="de"><span class="lang-code">DE</span> Deutsch</a>
+            <a href="/fr" data-lang="fr"><span class="lang-code">FR</span> Français</a>
           </div>
         </div>
       </nav>
@@ -210,13 +210,13 @@ https://signature.cat/docs
       <div class="nav-right">
         <div class="lang">
           <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-label="Change language">
-            <span id="lang-current">🇬🇧 EN</span>
+            <span id="lang-current">EN</span>
           </button>
           <div class="lang-menu" id="lang-menu" role="menu">
-            <a href="/" data-lang="en" role="menuitem">🇬🇧 English</a>
-            <a href="/pl" data-lang="pl" role="menuitem">🇵🇱 Polski</a>
-            <a href="/de" data-lang="de" role="menuitem">🇩🇪 Deutsch</a>
-            <a href="/fr" data-lang="fr" role="menuitem">🇫🇷 Français</a>
+            <a href="/" data-lang="en" role="menuitem"><span class="lang-code">EN</span> English</a>
+            <a href="/pl" data-lang="pl" role="menuitem"><span class="lang-code">PL</span> Polski</a>
+            <a href="/de" data-lang="de" role="menuitem"><span class="lang-code">DE</span> Deutsch</a>
+            <a href="/fr" data-lang="fr" role="menuitem"><span class="lang-code">FR</span> Français</a>
           </div>
         </div>
         <a href="https://app.signature.cat" class="btn btn-primary" data-i18n="nav.cta">Zacznij teraz</a>
@@ -234,7 +234,7 @@ https://signature.cat/docs
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <h1 data-i18n="hero.title">Centralnie zarządzaj podpisami Gmail w Twoim Google Workspace.</h1>
-          <p class="lede" data-i18n="hero.lede">Zaprojektuj jeden szablon podpisu, wskaż użytkowników, grupy lub jednostki organizacyjne, a SignatureCat sam utrzyma każdy podpis Gmail spersonalizowany i zawsze aktualny.</p>
+          <p class="lede" data-i18n="hero.lede">Twórz spójne podpisy e-mail dla pracowników, przypisuj je według działu lub roli i aktualizuj je w całej organizacji z jednego miejsca.</p>
           <div class="hero-cta">
             <a href="https://app.signature.cat" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Zacznij teraz</a>
             <a href="https://signature.cat/pl/docs" class="btn btn-ghost btn-lg" data-i18n="hero.cta2">Przeczytaj dokumentację</a>
@@ -295,15 +295,28 @@ https://signature.cat/docs
       <div class="container">
         <div class="section-head reveal">
           <span class="kicker" data-i18n="feat.kicker">Funkcje</span>
-          <h2 data-i18n="feat.title">Wszystko, czego potrzebujesz do spójnych podpisów w całej firmie</h2>
-          <p class="sub" data-i18n="feat.sub">Skoncentrowany zestaw narzędzi, który z jednego szablonu tworzy idealnie spersonalizowane podpisy dla każdej osoby w Workspace.</p>
+          <h2 data-i18n="feat.title">Wszystko, czego potrzebujesz do zarządzania podpisami e-mail w firmie</h2>
+          <p class="sub" data-i18n="feat.sub">Jedno miejsce, w którym tworzysz, przypisujesz i aktualizujesz podpisy e-mail dla całej organizacji.</p>
         </div>
 
         <div class="grid grid-3">
+          <article class="card card-compact card-personalize reveal">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
+            <h3 data-i18n="feat.c1.t">Aktualizujesz podpisy jednym kliknięciem</h3>
+            <p data-i18n="feat.c1.d">Zmieniasz treść, grafikę lub dane w szablonie, a SignatureCat automatycznie stosuje nową wersję podpisu u pracowników.</p>
+            <!-- {{firstname}} {{lastname}} auto-fill demo from a created template -->
+            <div class="pers-demo" aria-hidden="true">
+              <div class="pers-line">
+                <span class="pers-var" data-var="firstname">{{firstname}}</span>
+                <span class="pers-var" data-var="lastname">{{lastname}}</span>
+              </div>
+            </div>
+          </article>
+
           <article class="card card-compact card-vars reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v2M16 21h2a2 2 0 0 0 2-2v-2"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg></span>
-            <h3 data-i18n="feat.c1.t">Inteligentne zmienne</h3>
-            <p data-i18n="feat.c1.d">Wstawiaj symbole, które na żywo pobierają dane z Directory - imię, stanowisko, dział, telefon, zdjęcie i więcej. Bez ręcznej edycji dla każdej osoby.</p>
+            <h3 data-i18n="feat.c2.t">Automatycznie aktualizujesz dane pracowników</h3>
+            <p data-i18n="feat.c2.d">Pobierasz dane z Google Workspace i automatycznie umieszczasz je w podpisie. Zmienia się stanowisko, numer telefonu czy dział? Podpis również się aktualizuje.</p>
             <!-- Carousel: variable tokens that flip to a sample value on hover -->
             <div class="var-carousel" aria-hidden="true">
               <div class="var-track">
@@ -329,23 +342,10 @@ https://signature.cat/docs
             </div>
           </article>
 
-          <article class="card card-compact card-personalize reveal">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/><path d="m17 11 2 2 4-4"/></svg></span>
-            <h3 data-i18n="feat.c2.t">Personalizacja per użytkownik</h3>
-            <p data-i18n="feat.c2.d">Każdy podpis jest renderowany indywidualnie z aktualnych danych Directory, więc każdy pracownik dostaje swoje poprawne dane - wszystko ze stworzonego przez Ciebie szablonu.</p>
-            <!-- {{firstname}} {{lastname}} auto-fill demo from a created template -->
-            <div class="pers-demo" aria-hidden="true">
-              <div class="pers-line">
-                <span class="pers-var" data-var="firstname">{{firstname}}</span>
-                <span class="pers-var" data-var="lastname">{{lastname}}</span>
-              </div>
-            </div>
-          </article>
-
           <article class="card card-compact card-conditional reveal">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M7 8h10M7 12h6"/><path d="M5 4h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-4 4z"/></svg></span>
-            <h3 data-i18n="feat.c3.t">Bloki warunkowe</h3>
-            <p data-i18n="feat.c3.d">Użyj {{del}} i {{delete}}, aby elegancko ukryć bloki, gdy brakuje pola - żadnych pustych linii ani osieroconych etykiet.</p>
+            <span class="icon-box"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg></span>
+            <h3 data-i18n="feat.c3.t">Tworzysz różne wersje podpisów</h3>
+            <p data-i18n="feat.c3.d">Korzystasz z edytora HTML i tworzysz podpisy dopasowane do konkretnych potrzeb. Możesz np. dodać baner sprzedażowy dla handlowców albo klauzulę prawną dla działu prawnego.</p>
             <!-- {{del}} animation: when the value is present only the {{del}}/{{/del}} tags disappear and the section stays -->
             <div class="cond-demo" aria-hidden="true">
               <div class="cond-sig" id="cond-block">
@@ -359,43 +359,84 @@ https://signature.cat/docs
               </div>
               <div class="cond-status" id="cond-status" data-i18n="feat.c3.statusPresent">Telefon obecny - sekcja zostaje</div>
             </div>
-            <div class="varlist varlist-hidden"><code>{{del}} … {{/del}}</code><code>{{delete}} … {{/delete}}</code></div>
           </article>
 
           <article class="card reveal">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
-            <h3 data-i18n="feat.c4.t">Precyzyjne targetowanie</h3>
-            <p data-i18n="feat.c4.d">Zastosuj do wybranych użytkowników, całych Grup lub Jednostek Organizacyjnych. Cele rozwijają się do właściwych osób w momencie wdrożenia.</p>
+            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m9 14-1.5 7L12 18l4.5 3L15 14"/></svg></span>
+            <h3 data-i18n="feat.c4.t">Dbasz o spójny wizerunek firmy</h3>
+            <p data-i18n="feat.c4.d">Utrzymujesz jeden standard podpisów we wszystkich wiadomościach wysyłanych przez pracowników.</p>
           </article>
 
           <article class="card reveal">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
-            <h3 data-i18n="feat.c5.t">Automatyczne wdrażanie</h3>
-            <p data-i18n="feat.c5.d">Codzienna reconciliacja utrzymuje podpisy w synchronizacji, gdy ktoś dołącza, zmienia zespół lub aktualizuje dane - ustaw raz.</p>
+            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/><path d="m17 11 2 2 4-4"/></svg></span>
+            <h3 data-i18n="feat.c5.t">Eliminujesz ręczne poprawki i nieaktualne dane</h3>
+            <p data-i18n="feat.c5.d">Nie musisz już prosić pracowników o zmianę podpisu ani sprawdzać, kto nadal korzysta ze starej wersji stopki.</p>
           </article>
 
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <h3 data-i18n="feat.c6.t">Zawsze aktualne</h3>
-            <p data-i18n="feat.c6.d">Ponieważ wartości pobierane są na żywo z Directory, podpisy nigdy się nie dezaktualizują. Zmień stanowisko raz, a propaguje się wszędzie.</p>
+            <h3 data-i18n="feat.c6.t">Masz kontrolę nad działaniem podpisów</h3>
+            <p data-i18n="feat.c6.d">Sprawdzasz w panelu administracyjnym wdrożone podpisy oraz historię zmian.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- =========================== HOW IT WORKS =========================== -->
+    <section id="how" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="kicker" data-i18n="how.kicker">Jak to działa</span>
+          <h2 data-i18n="how.title">Ustaw firmowe podpisy e-mail w 3 krokach</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <h3 data-i18n="how.s1.t">Podłącz Google Workspace</h3>
+            <p data-i18n="how.s1.d">Połącz SignatureCat ze swoim Google Workspace za pomocą Domain-Wide Delegation. Nadaj tylko niezbędne uprawnienia i zacznij zarządzać podpisami z jednego miejsca.</p>
+          </div>
+          <div class="step reveal">
+            <h3 data-i18n="how.s2.t">Stwórz szablon podpisu</h3>
+            <p data-i18n="how.s2.d">Zaprojektuj podpis, dodaj dane pracownika, zmienne i treści warunkowe. Możesz sprawdzić, jak będzie wyglądał na przykładzie konkretnego użytkownika, zanim wdrożysz go w organizacji.</p>
+          </div>
+          <div class="step reveal">
+            <h3 data-i18n="how.s3.t">Wybierz odbiorców i zastosuj</h3>
+            <p data-i18n="how.s3.d">Wskaż pracowników, grupy lub jednostki organizacyjne, którym chcesz przypisać podpis. SignatureCat automatycznie uzupełnia podpis danymi użytkownika i dba o jego aktualność.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CONTACT ============================== -->
+    <!-- The CTA is a mailto: link; build.mjs bakes the localized ?subject= per
+         locale from the contact.subject key (see render() in build.mjs). -->
+    <section id="contact" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="band reveal">
+          <div>
+            <h2 data-i18n="contact.title">Masz pytania przed wdrożeniem?</h2>
+            <p data-i18n="contact.desc">Chcesz dowiedzieć się, jak SignatureCat sprawdzi się w Twojej organizacji? Umów rozmowę z naszym zespołem.</p>
+          </div>
+          <div class="hero-cta" style="margin-top:0">
+            <a href="mailto:contact@signature.cat?subject=Chcia%C5%82bym%20um%C3%B3wi%C4%87%20si%C4%99%20na%20rozmow%C4%99" class="btn btn-primary btn-lg" data-i18n="contact.cta">Umów rozmowę</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ========================= EMPLOYER BRANDING ========================= -->
-    <section id="branding" class="section" style="padding-top:0">
+    <section id="branding" class="section">
       <div class="container">
         <div class="brand-grid">
           <div class="brand-copy reveal">
             <span class="kicker" data-i18n="brand.kicker">Employer branding</span>
-            <h2 data-i18n="brand.title">Employer branding w każdym mailu</h2>
-            <p class="sub" data-i18n="brand.sub">Zamień podpis każdego pracownika w przestrzeń reklamową. Dodaj baner marketingowy aktualnej kampanii i zmień go u wszystkich na raz - bez maila do zespołu, bez ręcznych edycji.</p>
+            <h2 data-i18n="brand.title">Employer branding w każdej stopce e-mail</h2>
+            <p class="sub" data-i18n="brand.sub">Wykorzystaj firmowe podpisy jako dodatkowy kanał komunikacji i promocji.</p>
             <ul class="brand-points">
               <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p1">Promuj kampanie, wydarzenia, raporty czy rekrutacje w tysiącach wychodzących maili.</span></li>
-              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p2">Zmień baner raz - zaktualizuje się w podpisie każdego wskazanego pracownika.</span></li>
-              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p3">Darmowy, zawsze aktywny kanał docierający do każdego odbiorcy, do którego już piszesz.</span></li>
-              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p4">Reaguj w czasie rzeczywistym: uruchom promocję, wydarzenie lub ogłoszenie i miej je w podpisach wszystkich w kilka minut.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p2">Zmieniaj banery w całej organizacji bez kontaktowania się z pracownikami.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p3">Dopasuj komunikat do działu, zespołu lub grupy odbiorców.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p4">Hostuj banery na własnej domenie za pośrednictwem SignatureCat, dzięki czemu są zawsze dostępne i nie musisz zajmować się ich utrzymaniem.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p5">Aktualizuj treści promocyjne z jednego miejsca i utrzymuj spójny wizerunek firmy.</span></li>
             </ul>
           </div>
 
@@ -452,25 +493,24 @@ https://signature.cat/docs
     <section id="admin" class="section" style="padding-top:0">
       <div class="container">
         <div class="section-head reveal">
-          <span class="kicker" data-i18n="admin.kicker">Stworzone przez</span>
           <h2 data-i18n="admin.title">Zaprojektowane przez Administratora Google Workspace</h2>
-          <p class="sub" data-i18n="admin.sub">Stworzone przez kogoś, kto na co dzień zarządza Workspace, więc to narzędzie pasuje do tego, jak Twoja organizacja jest już zarządzana - a nie na odwrót.</p>
+          <p class="sub" data-i18n="admin.sub">Narzędzie stworzone jest przez administratora, który zna codzienne wyzwania związane z zarządzaniem podpisami w firmie: od aktualizacji danych po pilnowanie spójności podpisów w całej organizacji.</p>
         </div>
         <div class="grid grid-3">
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
             <h3 data-i18n="admin.c1.t">Zarządzanie grupami</h3>
-            <p data-i18n="admin.c1.d">Wskazuj całe Grupy Google. Osoby dołączające i odchodzące z grupy są wykrywane automatycznie - żadnej listy do ręcznego utrzymania.</p>
+            <p data-i18n="admin.c1.d">Przypisz podpis do całej Grupy Google zamiast dodawać pracowników pojedynczo. Gdy ktoś dołącza do grupy lub z niej odchodzi, SignatureCat automatycznie zaktualizuje podpis.</p>
           </article>
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg></span>
-            <h3 data-i18n="admin.c2.t">Języki podpisów per lokalizacja</h3>
-            <p data-i18n="admin.c2.d">Daj zagranicznym oddziałom podpisy w ich języku. Ustaw inny język podpisu dla grupy, działu lub jednostki organizacyjnej - każde biuro dostaje podpis w swoim języku.</p>
+            <h3 data-i18n="admin.c2.t">Dopasuj podpis Gmail do lokalizacji i języka</h3>
+            <p data-i18n="admin.c2.d">Ustaw odpowiedni język, adres i dane kontaktowe dla każdego oddziału. Pracownicy w Warszawie mogą korzystać z polskiego podpisu, a zespół w Berlinie z niemieckiego.</p>
           </article>
           <article class="card reveal">
             <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 8h18"/></svg></span>
-            <h3 data-i18n="admin.c3.t">Jednostki Organizacyjne (OU)</h3>
-            <p data-i18n="admin.c3.d">Stosuj według Jednostek Organizacyjnych i dziedzicz istniejącą strukturę Workspace - wdrożenie odwzorowuje to, jak Twoja organizacja jest już ustawiona.</p>
+            <h3 data-i18n="admin.c3.t">Wykorzystaj strukturę organizacji w Google Workspace</h3>
+            <p data-i18n="admin.c3.d">Przypisuj podpisy do Jednostek Organizacyjnych (OU) i wykorzystuj istniejącą strukturę swojej firmy. Nie musisz tworzyć jej od nowa w SignatureCat, narzędzie korzysta z konfiguracji, którą już masz w Google Workspace.</p>
           </article>
         </div>
       </div>
@@ -482,48 +522,24 @@ https://signature.cat/docs
         <div class="section-head reveal">
           <span class="kicker" data-i18n="sec.kicker">Bezpieczeństwo</span>
           <h2 data-i18n="sec.title">Bezpieczeństwo i prywatność wbudowane w fundament</h2>
-          <p class="sub" data-i18n="sec.sub">SignatureCat jest zaprojektowany wokół dostępu o najmniejszych uprawnieniach, silnego szyfrowania i przechowywania danych w UE - możesz wdrożyć go z pełnym zaufaniem.</p>
+          <p class="sub" data-i18n="sec.sub">SignatureCat został zaprojektowany zgodnie z zasadą minimalnych uprawnień. Dane są szyfrowane i przechowywane w Unii Europejskiej, dzięki czemu możesz korzystać z narzędzia bez obaw o bezpieczeństwo danych swojej organizacji.</p>
         </div>
 
         <div class="sec-list reveal">
           <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i1.t">Klucze w Secret Manager</h4><p data-i18n="sec.i1.d">Klucze prywatne kont serwisowych przechowywane są wyłącznie w Secret Manager - nigdy w naszej bazie, logach ani odpowiedziach.</p></div></div>
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i2.t">Szyfrowanie at rest</h4><p data-i18n="sec.i2.d">Tokeny OAuth szyfrowane są algorytmem AES-256-GCM. Pamięciowy cache kluczy wygasa w ≤ 5 minut i nigdy nie trafia na dysk.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i2.t">Szyfrowanie przechowywanych danych</h4><p data-i18n="sec.i2.d">Tokeny OAuth szyfrowane są algorytmem AES-256-GCM. Cache kluczy w pamięci wygasa w ≤ 5 minut i nigdy nie trafia na dysk.</p></div></div>
           <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i3.t">Izolacja danych organizacji</h4><p data-i18n="sec.i3.d">Każda operacja jest ograniczona do Twojego Workspace i całkowicie izolowana ze względów bezpieczeństwa.</p></div></div>
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i4.t">Nie przechowujemy danych Twoich pracowników</h4><p data-i18n="sec.i4.d">Imiona, telefony i zdjęcia pobierane są na żywo w momencie wdrożenia i kasowane - przechowujemy tylko to, co konieczne do historii i audytu.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i4.t">Nie przechowujemy danych Twoich pracowników</h4><p data-i18n="sec.i4.d">Imiona i nazwiska, telefony oraz zdjęcia pobierane są na żywo w momencie wdrożenia i kasowane - przechowujemy tylko to, co konieczne do historii i audytu.</p></div></div>
           <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i5.t">Dane w UE</h4><p data-i18n="sec.i5.d">Baza danych, sekrety i serwery działają w regionach UE (Frankfurt / Amsterdam), aby Twoje dane pozostały w UE.</p></div></div>
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i6.t">Renderowanie odporne na code injection</h4><p data-i18n="sec.i6.d">Szablony podpisów są sanityzowane przy zapisie, celem odporności na próbę wstrzyknięcia złośliwego kodu.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i6.t">Odporność na wstrzyknięcie kodu</h4><p data-i18n="sec.i6.d">Szablony podpisów są sanityzowane przy zapisie, aby były odporne na próby wstrzyknięcia złośliwego kodu.</p></div></div>
           <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i7.t">Poziomy uprawnień użytkowników</h4><p data-i18n="sec.i7.d">Zarządzaj tym, kto i co może robić w signature.cat - szczegółowe poziomy dostępu, dzięki którym administratorzy, edytorzy i przeglądający dostają tylko te uprawnienia, których potrzebują.</p></div></div>
-          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i8.t">Rozliczalność gotowa na audyt</h4><p data-i18n="sec.i8.d">Każda akcja jest powiązana z poziomem uprawnień i zapisywana w append-only audit log, więc zmiany są zawsze możliwe do prześledzenia.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i8.t">Rozliczalność gotowa na audyt</h4><p data-i18n="sec.i8.d">Każda akcja jest powiązana z poziomem uprawnień i zapisywana w niezmiennym dzienniku audytu, więc zmiany są zawsze możliwe do prześledzenia.</p></div></div>
         </div>
 
         <div class="sec-badges reveal">
           <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg><span data-i18n="sec.b1">RODO / GDPR - DPA dostępne</span></span>
-          <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span data-i18n="sec.b2">Append-only audit log</span></span>
+          <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span data-i18n="sec.b2">Niezmienny dziennik audytu</span></span>
           <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg><span data-i18n="sec.b4">Disaster recovery (PITR)</span></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================== HOW IT WORKS =========================== -->
-    <section id="how" class="section" style="padding-top:0">
-      <div class="container">
-        <div class="section-head center reveal">
-          <span class="kicker" data-i18n="how.kicker">Jak to działa</span>
-          <h2 data-i18n="how.title">Od szablonu do każdej skrzynki w trzech krokach</h2>
-        </div>
-        <div class="steps">
-          <div class="step reveal">
-            <h3 data-i18n="how.s1.t">Podłącz swój Workspace</h3>
-            <p data-i18n="how.s1.d">Autoryzuj Domain-Wide Delegation raz. SignatureCat używa tylko tych uprawnień, które są potrzebne do ustawiania podpisów.</p>
-          </div>
-          <div class="step reveal">
-            <h3 data-i18n="how.s2.t">Zaprojektuj szablon</h3>
-            <p data-i18n="how.s2.d">Zbuduj jeden podpis ze zmiennymi i blokami warunkowymi. Podejrzyj go na danych prawdziwego użytkownika przed wdrożeniem.</p>
-          </div>
-          <div class="step reveal">
-            <h3 data-i18n="how.s3.t">Wskaż cel i zastosuj</h3>
-            <p data-i18n="how.s3.d">Wybierz użytkowników, grupy lub jednostki organizacyjne. SignatureCat renderuje i stosuje każdy spersonalizowany podpis - i utrzymuje go aktualnym.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -533,8 +549,8 @@ https://signature.cat/docs
       <div class="container">
         <div class="section-head center reveal">
           <span class="kicker" data-i18n="pricing.kicker">Cennik</span>
-          <h2 data-i18n="pricing.title">Proste rozliczenie, które wspiera rozwój Twojej firmy</h2>
-          <p class="sub" data-i18n="pricing.sub">Płać tylko za aktywnych użytkowników w Workspace. Im więcej miejsc, tym niższa stawka za miejsce. Nie musisz obawiać się wzrostu cennika wraz ze wzrostem działalności.</p>
+          <h2 data-i18n="pricing.title">Jeden plan. Wszystkie funkcje. Proste rozliczenie.</h2>
+          <p class="sub" data-i18n="pricing.sub">Płać tylko za aktywnych użytkowników w Workspace. Im więcej miejsc, tym niższa stawka za miejsce.</p>
         </div>
 
         <div class="pricing-wrap">
@@ -590,7 +606,7 @@ https://signature.cat/docs
       <div class="container">
         <div class="band reveal">
           <div>
-            <h2 data-i18n="docs.title">Przeczytaj pełną dokumentację</h2>
+            <h2 data-i18n="docs.title">Zapoznaj się z dokumentacją</h2>
             <p data-i18n="docs.desc">Architektura, silnik podpisów, zmienne, bezpieczeństwo i zgodność - wszystko jest udokumentowane i publicznie dostępne.</p>
           </div>
           <div class="hero-cta" style="margin-top:0">
@@ -609,13 +625,13 @@ https://signature.cat/docs
           <h2 data-i18n="faq.title">Najczęściej zadawane pytania</h2>
         </div>
         <div class="faq reveal">
-          <details><summary data-i18n="faq.q1">Jak SignatureCat aktualizuje podpisy Gmail?</summary><p data-i18n="faq.a1">Narzędzie łączy się po API z konkretnym Google Workspace, dzięki czemu dane są zawsze aktualne i pochodzą z Directory Workspace.</p></details>
+          <details><summary data-i18n="faq.q1">Jak SignatureCat aktualizuje podpisy Gmail?</summary><p data-i18n="faq.a1">Narzędzie łączy się po API z Twoim Google Workspace, dzięki czemu centralne zarządzanie stopkami e-mail odbywa się w jednym panelu, a każdy podpis Gmail powstaje z danych pochodzących wprost z Directory Workspace.</p></details>
           <details><summary data-i18n="faq.q2">Czy oferujecie darmowy okres próbny?</summary><p data-i18n="faq.a2">Tak. Każdy nowy Workspace zaczyna od 7-dniowego okresu próbnego z pełnym dostępem. Kartę pobieramy przy rejestracji, ale nie naliczamy opłat w trakcie okresu próbnego - anuluj przed jego końcem, a nic nie zapłacisz. Po okresie próbnym rozliczamy za aktywnego użytkownika, od 0,80 USD / użytkownik / miesiąc.</p></details>
-          <details><summary data-i18n="faq.q3">Gdzie przechowywane są moje dane?</summary><p data-i18n="faq.a3">Wszystkie dane znajdują się w regionach UE. Nie przechowujemy atrybutów osobowych użytkowników - imiona, telefony i zdjęcia pobierane są na żywo w momencie wdrożenia i odrzucane.</p></details>
-          <details><summary data-i18n="faq.q4">Czy mogę wskazać tylko część użytkowników?</summary><p data-i18n="faq.a4">Tak. Możesz wskazać wybranych użytkowników, całe Grupy lub Jednostki Organizacyjne. Cele rozwijane są do właściwych osób w momencie wdrożenia.</p></details>
-          <details><summary data-i18n="faq.q5">Co się dzieje, gdy ktoś zmieni stanowisko?</summary><p data-i18n="faq.a5">Ponieważ zmienne pobierane są na żywo z Directory, codzienna reconciliacja automatycznie utrzymuje podpisy aktualnymi. Zaktualizuj stanowisko raz w Workspace, a zmiana propaguje się wszędzie.</p></details>
+          <details><summary data-i18n="faq.q3">Gdzie przechowywane są moje dane?</summary><p data-i18n="faq.a3">Wszystkie dane znajdują się w regionach UE. Nie przechowujemy danych osobowych Twoich pracowników - imiona i nazwiska, telefony oraz zdjęcia pobierane są na żywo w momencie wdrożenia i odrzucane.</p></details>
+          <details><summary data-i18n="faq.q4">Czy mogę wskazać tylko część użytkowników?</summary><p data-i18n="faq.a4">Tak. Zarządzanie podpisami Gmail jest tak szczegółowe, jak struktura Twojej firmy: możesz wskazać wybranych użytkowników, całe Grupy lub Jednostki Organizacyjne. Cele rozwijane są do właściwych osób w momencie wdrożenia.</p></details>
+          <details><summary data-i18n="faq.q5">Co się dzieje, gdy ktoś zmieni stanowisko?</summary><p data-i18n="faq.a5">Ponieważ zmienne pobierane są na żywo z Directory, codzienna synchronizacja automatycznie utrzymuje podpisy Gmail w aktualnym stanie. Zaktualizuj stanowisko raz w Workspace, a zmiana propaguje się wszędzie.</p></details>
           <details><summary data-i18n="faq.q6">Co jeśli potrzebuję podpisów w wielu językach?</summary><p data-i18n="faq.a6">Dla każdego zagranicznego oddziału możesz ustawić stopki w osobnym języku - dedykowane szablony i przypisania per oddział. Narzędzie jest na to przygotowane.</p></details>
-          <details><summary data-i18n="faq.q7">Czy oferujecie wsparcie przy wdrożeniu narzędzia w firmie?</summary><p data-i18n="faq.a7">Tak, profesjonalnie wspomożemy przy implementacji narzędzia w firmie. Nasze doświadczenie jako administratorów Google Workspace umożliwia szybką i sprawną implementację. Tworzymy również customowe templatki stopek na zamówienie klientów - wystarczy napisać na contact@signature.cat.</p></details>
+          <details><summary data-i18n="faq.q7">Czy oferujecie wsparcie przy wdrożeniu narzędzia w firmie?</summary><p data-i18n="faq.a7">Tak, profesjonalnie wspieramy wdrożenie narzędzia w firmie: od podłączenia domeny po zarządzanie stopkami w całym Google Workspace. Nasze doświadczenie administratorów Google Workspace sprawia, że wdrożenie jest szybkie i sprawne. Tworzymy też szablony podpisów na zamówienie - wystarczy napisać na contact@signature.cat.</p></details>
         </div>
       </div>
     </section>

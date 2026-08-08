@@ -4,8 +4,9 @@
 
   var SUPPORTED = ['en', 'pl', 'de', 'fr'];
   var FALLBACK = 'en';
-  var LANG_NAMES = { en: 'English', pl: 'Polski', de: 'Deutsch', fr: 'Français' };
-  var LANG_FLAGS = { en: '🇬🇧', pl: '🇵🇱', de: '🇩🇪', fr: '🇫🇷' };
+  // No flag emoji in the language switcher: Windows has no flag glyphs and
+  // renders the regional-indicator pair as bare letters (GB EN), which reads
+  // as broken. The locale code alone is the label (PM 2026-08-08).
 
   // Graduated tiers (from app/docs 06_stripe_billing.md). No free tier: every
   // Workspace pays after the 7-day trial, the 1st seat included.
@@ -73,7 +74,7 @@
 
     // language switcher label
     var label = document.getElementById('lang-current');
-    if (label) label.textContent = LANG_FLAGS[currentLocale] + ' ' + currentLocale.toUpperCase();
+    if (label) label.textContent = currentLocale.toUpperCase();
 
     document.querySelectorAll('.lang-menu [data-lang], .nav-lang-opts [data-lang]').forEach(function (b) {
       b.setAttribute('aria-current', b.getAttribute('data-lang') === currentLocale ? 'true' : 'false');

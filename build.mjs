@@ -370,6 +370,16 @@ function render(src, loc, I18N, page) {
     }
   }
 
+  // "Book a call" CTA: the mailto subject is copy, so it lives in the
+  // dictionary as plain text (contact.subject) and the URL is composed here,
+  // percent-encoded. Baking it means the localized subject is in the served
+  // HTML too, not only after app.js runs. Idempotent: an existing ?subject=
+  // is replaced, not appended.
+  html = html.replace(
+    /(<a\b[^>]*\bhref=")mailto:contact@signature\.cat(?:\?subject=[^"]*)?(")/,
+    `$1mailto:contact@signature.cat?subject=${encodeURIComponent(tr('contact.subject'))}$2`,
+  );
+
   // page-level relative asset refs -> root-absolute so /pl/ resolves them
   html = html.replace(/(\s(?:href|src)=")assets\//g, '$1/assets/');
 
