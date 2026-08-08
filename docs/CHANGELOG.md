@@ -2,6 +2,51 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-08 - Trial is now 14 days (site, docs and Terms), trust row relabelled, band hovers
+
+- **What:** PM follow-ups on top of the copy rewrite.
+  - **Trial length 7 -> 14 days everywhere we publish it:** hero badge, FAQ
+    answer 2 (and therefore the FAQPage JSON-LD, which is generated from the
+    same key), `/pricing` plan bullet and closing band, and the `/docs` pages
+    that state it (`index`, `invoices` incl. its heading and front-matter
+    description, `connect-google-workspace`) in all four languages. Every other
+    "7 days" on the site is a different fact (session lifetime, account-deletion
+    grace period, notice periods, notification throttle) and was left alone.
+  - **Terms: the trial length is no longer pinned to a number.** § 1 pt 9 and
+    § 7(1) in all four language versions now say the length follows the
+    Provider's current offer as presented on signature.cat and in the Platform
+    at the moment of activation, and that a later change to the offer neither
+    shortens nor extends an already active trial. **No version bump** (PM has
+    this agreed with tenants), so `TERMS_VERSION` in the app stays untouched and
+    no acceptance screen is triggered. The Privacy Policy needed no change - it
+    describes the trial but never states its length.
+  - **Hero H1** dropped the possessive ("w **Twoim** Google Workspace" ->
+    "w Google Workspace", same in en/de/fr). `<title>`, OG and the footer
+    tagline keep their wording.
+  - **Trust row relabelled from API names to what they mean:** Gmail API ->
+    Gmail, Admin SDK Directory -> Admin Directory, Domain-Wide Delegation ->
+    Google Workspace integration (new link icon), GCP Secret Manager -> Least
+    privilege (shield icon, freed by the previous pill). Names are localized now
+    that they are no longer product names.
+  - **Pink kicker back above "Designed by a Google Workspace Administrator"**,
+    this time reading Environment / Środowisko / Umgebung / Environnement, so
+    the section matches every other one.
+  - **Band CTAs got a real hover:** `.band .btn-primary` lifts 2px and gains an
+    accent glow, `.band .btn-ghost` fills in and takes an accent border. Both
+    the documentation band and the new "book a call" button use it; the old
+    hover (a slightly softer pink, invisible on the dark panel) is gone.
+- **Why:** PM batch 2026-08-08. The trial is being extended to 14 days, and the
+  Terms should not need a legal edit the next time it changes - the staff panel
+  can already set the trial length per environment.
+- **Scope:** landingpage (+ legal sources, no version bump)
+- **Design impact:** two new hover rules on `.band .btn` (transform + box-shadow
+  only, flattened by the global reduced-motion rule); two swapped trust icons;
+  the admin kicker reuses `.kicker` (`--accent-ink`, AA in both themes).
+- **Performance impact:** none - copy, two inline SVG paths and one CSS block.
+- **A11y:** hover states are colour + elevation + border, never colour alone;
+  the trust pills keep their text labels; no motion added beyond a 2px
+  transform.
+
 ## 2026-08-08 - Home page copy rewrite, new section order, "book a call" band (x4 languages)
 
 - **What:** The home page was rewritten section by section from PM's copy deck

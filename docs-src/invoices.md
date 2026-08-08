@@ -1,7 +1,7 @@
 ---
 title: Invoices
 navTitle: Invoices
-description: How SignatureCat billing works - pricing tiers, the 7-day trial, where invoices are sent and how to set a dedicated invoice email.
+description: How SignatureCat billing works - pricing tiers, the 14-day trial, where invoices are sent and how to set a dedicated invoice email.
 updated: 2026-07-17
 ---
 
@@ -24,9 +24,9 @@ For example, 60 users cost 50 x $0.80 + 10 x $0.70 = $47.00 per month. Prices ar
 
 **What counts as a billable user:** the number of active (non-suspended) users in your Google Workspace directory - not the number of SignatureCat logins. Seat increases are reflected immediately with prorations; when your headcount drops, the lower count takes effect from the next billing period.
 
-## The 7-day trial
+## The 14-day trial
 
-Every workspace starts with a 7-day free trial. A card is collected at sign-up and charged for the first time when the trial ends. In the last 3 days of the trial the app shows a reminder banner, and you also get a "Your signature.cat trial ends soon" email about 3 days before the end.
+Every workspace starts with a 14-day free trial. A card is collected at sign-up and charged for the first time when the trial ends. In the last 3 days of the trial the app shows a reminder banner, and you also get a "Your signature.cat trial ends soon" email about 3 days before the end.
 
 > [!NOTE]
 > The trial is granted **once per Workspace domain**. Deleting the account and registering the same domain again does not start a new trial.

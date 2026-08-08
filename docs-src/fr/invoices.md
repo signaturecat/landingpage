@@ -1,7 +1,7 @@
 ---
 title: Factures
 navTitle: Factures
-description: Comment fonctionne la facturation SignatureCat - paliers de tarification, essai de 7 jours, où les factures sont envoyées et comment définir un e-mail de facturation dédié.
+description: Comment fonctionne la facturation SignatureCat - paliers de tarification, essai de 14 jours, où les factures sont envoyées et comment définir un e-mail de facturation dédié.
 updated: 2026-07-17
 ---
 
@@ -24,9 +24,9 @@ Par exemple, 60 utilisateurs coûtent 50 x 0,80 $ + 10 x 0,70 $ = 47,00 $ par mo
 
 **Ce qui compte comme utilisateur facturable :** le nombre d'utilisateurs actifs (non suspendus) dans votre annuaire Google Workspace - pas le nombre de connexions à SignatureCat. Les augmentations d'effectif sont répercutées immédiatement avec prorata ; quand votre effectif baisse, le nombre inférieur prend effet à partir de la période de facturation suivante.
 
-## L'essai de 7 jours
+## L'essai de 14 jours
 
-Chaque espace de travail démarre avec un essai gratuit de 7 jours. Une carte est collectée à l'inscription et débitée pour la première fois à la fin de l'essai. Dans les 3 derniers jours de l'essai, l'application affiche une bannière de rappel, et vous recevez aussi un e-mail "Votre essai signature.cat se termine bientôt" environ 3 jours avant la fin.
+Chaque espace de travail démarre avec un essai gratuit de 14 jours. Une carte est collectée à l'inscription et débitée pour la première fois à la fin de l'essai. Dans les 3 derniers jours de l'essai, l'application affiche une bannière de rappel, et vous recevez aussi un e-mail "Votre essai signature.cat se termine bientôt" environ 3 jours avant la fin.
 
 > [!NOTE]
 > L'essai est accordé **une fois par domaine Workspace**. Supprimer le compte et enregistrer à nouveau le même domaine ne démarre pas un nouvel essai.

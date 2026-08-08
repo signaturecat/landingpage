@@ -26,7 +26,7 @@ L'application fonctionne sur [app.signature.cat](https://app.signature.cat). Cet
 - Environ **10 minutes** pour toute la première configuration.
 
 > [!NOTE]
-> Chaque espace de travail démarre avec un essai gratuit de 7 jours. Une carte est collectée à l'inscription et débitée pour la première fois à la fin de l'essai. Voir [Factures](/docs/invoices) pour les tarifs et les détails de facturation.
+> Chaque espace de travail démarre avec un essai gratuit de 14 jours. Une carte est collectée à l'inscription et débitée pour la première fois à la fin de l'essai. Voir [Factures](/docs/invoices) pour les tarifs et les détails de facturation.
 
 ## Premiers pas
 

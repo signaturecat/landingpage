@@ -24,7 +24,7 @@ Diese AGB stellen ein Reglement für die Erbringung von Dienstleistungen auf ele
 6. **Nutzer** - eine natürliche Person, die im Namen des Kunden handelt und sich mit einem Google-Konto aus dem Workspace des Kunden bei der Plattform anmeldet.
 7. **Workspace-Administrator** - ein Nutzer, der im Workspace des Kunden über Google-Super-Administrator-Rechte verfügt.
 8. **Zugriffsstufe** - der Umfang der Berechtigungen des Nutzers in der Plattform, vergeben gemäß § 6 Abs. 6.
-9. **Testzeitraum (Trial)** - der 7-tägige Testzeitraum, beschrieben in § 7.
+9. **Testzeitraum (Trial)** - der kostenlose Testzeitraum, beschrieben in § 7.
 10. **Abonnementplan** - das monatliche, sich verlängernde Abonnement, abgerechnet nach der Anzahl der Seats, beschrieben in § 8.
 11. **Seat** - ein aktiver (nicht gesperrter) Nutzer im Workspace des Kunden, ermittelt auf Grundlage des Google-Nutzerverzeichnisses (Directory).
 12. **DWD (Domain-Wide Delegation)** - ein Google-Mechanismus, bei dem der Workspace-Administrator ein dediziertes Dienstkonto autorisiert, im Workspace des Kunden in genau festgelegten Bereichen (Scopes) zu handeln (§ 5 Abs. 3).
@@ -86,7 +86,7 @@ Diese AGB stellen ein Reglement für die Erbringung von Dienstleistungen auf ele
 
 ## § 7. Testzeitraum
 
-1. Einem neuen Kunden steht ein kostenloser Testzeitraum von **7 Tagen** ab Aktivierung zu, der - zum Zeitpunkt des Inkrafttretens der AGB - die volle Funktionalität des Dienstes umfasst, vorbehaltlich Abs. 8.
+1. Einem neuen Kunden steht ein kostenloser Testzeitraum zu, der - zum Zeitpunkt des Inkrafttretens der AGB - die volle Funktionalität des Dienstes umfasst, vorbehaltlich Abs. 8. **Die Dauer des Testzeitraums, gerechnet ab seiner Aktivierung, richtet sich nach dem jeweils aktuellen Angebot des Anbieters, wie es auf signature.cat und in der Plattform zum Zeitpunkt der Aktivierung dargestellt wird**; eine spätere Änderung des Angebots verkürzt oder verlängert einen bereits aktivierten Testzeitraum nicht.
 2. Die Aktivierung des Testzeitraums erfordert die Angabe einer gültigen Zahlungskarte im Formular des Zahlungsdienstleisters. **Während des Testzeitraums wird die Karte nicht belastet.**
 3. **Nach Ablauf des Testzeitraums wandelt sich das Abonnement automatisch in einen kostenpflichtigen Abonnementplan um, und die Karte des Kunden wird mit der ersten Monatsgebühr belastet** - es sei denn, der Kunde kündigt das Abonnement vor Ablauf des Testzeitraums. Eine Kündigung vor dem Ende des Testzeitraums ist mit keinerlei Gebühren verbunden.
 4. Der Anbieter erinnert an das bevorstehende Ende des Testzeitraums mit einer E-Mail-Nachricht, die etwa 3 Tage vor dessen Ablauf versandt wird.

@@ -368,8 +368,24 @@ section[id] { scroll-margin-top: 88px; }
 .band h2 { font-size: 1.7rem; margin-bottom: 8px; }
 .band p { color: rgba(250,245,239,.72); max-width: 48ch; }
 .band .btn-primary { background: var(--accent); color: #1c1917; }
-.band .btn-primary:hover { background: var(--accent-soft); }
 .band .btn-ghost { border-color: rgba(250,245,239,.3); color: var(--panel-text); }
+/* Band CTAs sit on the dark panel, where the default hover (a slightly softer
+   pink / an accent border) is almost invisible. Give them a real lift plus a
+   glow, and let the ghost button fill in. Motion is transform/opacity-only and
+   the global prefers-reduced-motion rule already flattens the transition. */
+.band .btn {
+  transition: transform .18s var(--ease), background .2s var(--ease),
+              border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.band .btn-primary:hover {
+  background: var(--accent-soft); transform: translateY(-2px);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.band .btn-ghost:hover {
+  background: rgba(250,245,239,.14); border-color: var(--accent);
+  color: var(--panel-text); transform: translateY(-2px);
+}
+.band .btn:active { transform: translateY(0); box-shadow: none; }
 
 /* FAQ --------------------------------------------------------------------- */
 .faq { max-width: 760px; margin-inline: auto; }

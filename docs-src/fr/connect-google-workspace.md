@@ -62,7 +62,7 @@ Google a besoin d'un moment pour propager une nouvelle autorisation DWD - en gé
 
 ## Étape 5 : Facturation
 
-Après la vérification de la DWD, vous êtes dirigé vers [Facturation](https://app.signature.cat/billing) pour démarrer l'essai gratuit de 7 jours (carte collectée dès l'inscription, débitée à la fin de l'essai). Voir [Factures](/docs/invoices) pour les paliers de tarification.
+Après la vérification de la DWD, vous êtes dirigé vers [Facturation](https://app.signature.cat/billing) pour démarrer l'essai gratuit de 14 jours (carte collectée dès l'inscription, débitée à la fin de l'essai). Voir [Factures](/docs/invoices) pour les paliers de tarification.
 
 C'est tout - continuez avec [Créer votre premier modèle](/docs/create-your-first-template).
 

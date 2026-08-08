@@ -62,7 +62,7 @@ Google braucht einen Moment, um eine frische DWD-Erteilung zu übernehmen - typi
 
 ## Schritt 5: Abrechnung
 
-Nachdem DWD verifiziert ist, gelangen Sie zur [Abrechnung](https://app.signature.cat/billing), um die kostenlose 7-Tage-Testphase zu starten (Karte wird vorab erfasst, belastet erst nach Ende der Testphase). Siehe [Rechnungen](/docs/invoices/) für die Preisstufen.
+Nachdem DWD verifiziert ist, gelangen Sie zur [Abrechnung](https://app.signature.cat/billing), um die kostenlose 14-Tage-Testphase zu starten (Karte wird vorab erfasst, belastet erst nach Ende der Testphase). Siehe [Rechnungen](/docs/invoices/) für die Preisstufen.
 
 Das war's - machen Sie weiter mit [Ihre erste Vorlage erstellen](/docs/create-your-first-template/).
 

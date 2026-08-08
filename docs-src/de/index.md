@@ -26,7 +26,7 @@ Die App läuft unter [app.signature.cat](https://app.signature.cat). Diese Dokum
 - Etwa **10 Minuten** für die gesamte Ersteinrichtung.
 
 > [!NOTE]
-> Jeder Workspace startet mit einer kostenlosen 7-Tage-Testphase. Eine Karte wird bei der Registrierung erfasst und erstmals belastet, wenn die Testphase endet. Siehe [Rechnungen](/docs/invoices/) für Preise und Abrechnungsdetails.
+> Jeder Workspace startet mit einer kostenlosen 14-Tage-Testphase. Eine Karte wird bei der Registrierung erfasst und erstmals belastet, wenn die Testphase endet. Siehe [Rechnungen](/docs/invoices/) für Preise und Abrechnungsdetails.
 
 ## Erste Schritte
 

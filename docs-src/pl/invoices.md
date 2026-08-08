@@ -1,7 +1,7 @@
 ---
 title: Faktury
 navTitle: Faktury
-description: Jak działają rozliczenia SignatureCat - progi cenowe, 7-dniowy okres próbny, dokąd wysyłane są faktury i jak ustawić dedykowany e-mail do faktur.
+description: Jak działają rozliczenia SignatureCat - progi cenowe, 14-dniowy okres próbny, dokąd wysyłane są faktury i jak ustawić dedykowany e-mail do faktur.
 updated: 2026-07-17
 ---
 
@@ -24,9 +24,9 @@ Na przykład 60 użytkowników kosztuje 50 x 0,80 USD + 10 x 0,70 USD = 47,00 US
 
 **Co liczy się jako rozliczany użytkownik:** liczba aktywnych (niezawieszonych) użytkowników w katalogu Twojego Google Workspace - nie liczba logowań do SignatureCat. Wzrost liczby użytkowników jest odzwierciedlany od razu z rozliczeniem proporcjonalnym; gdy zatrudnienie spada, niższa liczba obowiązuje od następnego okresu rozliczeniowego.
 
-## 7-dniowy okres próbny
+## 14-dniowy okres próbny
 
-Każdy workspace zaczyna od 7-dniowego bezpłatnego okresu próbnego. Karta jest pobierana przy rejestracji, a pierwsze obciążenie następuje po zakończeniu okresu próbnego. W ostatnich 3 dniach okresu próbnego aplikacja pokazuje baner przypominający, a około 3 dni przed końcem dostajesz też e-mail "Twój okres próbny signature.cat wkrótce się kończy".
+Każdy workspace zaczyna od 14-dniowego bezpłatnego okresu próbnego. Karta jest pobierana przy rejestracji, a pierwsze obciążenie następuje po zakończeniu okresu próbnego. W ostatnich 3 dniach okresu próbnego aplikacja pokazuje baner przypominający, a około 3 dni przed końcem dostajesz też e-mail "Twój okres próbny signature.cat wkrótce się kończy".
 
 > [!NOTE]
 > Okres próbny jest przyznawany **raz na domenę Workspace**. Usunięcie konta i ponowna rejestracja tej samej domeny nie rozpoczyna nowego okresu próbnego.

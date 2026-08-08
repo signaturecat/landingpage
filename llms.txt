@@ -23,7 +23,7 @@ Full documentation content in one file: https://signature.cat/llms-full.txt
 
 ## Billing
 
-- [Invoices](https://signature.cat/docs/invoices): How SignatureCat billing works - pricing tiers, the 7-day trial, where invoices are sent and how to set a dedicated invoice email.
+- [Invoices](https://signature.cat/docs/invoices): How SignatureCat billing works - pricing tiers, the 14-day trial, where invoices are sent and how to set a dedicated invoice email.
 - [Change billing info and payment details](https://signature.cat/docs/billing-details): Update your card, company name, billing address and tax ID for SignatureCat invoices through the Stripe billing portal.
 
 ## Reference

@@ -62,7 +62,7 @@ Google needs a moment to propagate a fresh DWD grant - typically seconds, someti
 
 ## Step 5: Billing
 
-After DWD verifies, you are taken to [Billing](https://app.signature.cat/billing) to start the 7-day free trial (card collected up front, charged when the trial ends). See [Invoices](/docs/invoices/) for the pricing tiers.
+After DWD verifies, you are taken to [Billing](https://app.signature.cat/billing) to start the 14-day free trial (card collected up front, charged when the trial ends). See [Invoices](/docs/invoices/) for the pricing tiers.
 
 That's it - continue with [Create your first template](/docs/create-your-first-template/).
 
