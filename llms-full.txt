@@ -27,7 +27,7 @@ The app runs at [app.signature.cat](https://app.signature.cat). This documentati
 - About **10 minutes** for the whole first setup.
 
 > [!NOTE]
-> Every workspace starts with a 7-day free trial. A card is collected at sign-up and first charged when the trial ends. See [Invoices](/docs/invoices) for pricing and billing details.
+> Every workspace starts with a 14-day free trial. A card is collected at sign-up and first charged when the trial ends. See [Invoices](/docs/invoices) for pricing and billing details.
 
 ## First steps
 
@@ -112,7 +112,7 @@ Google needs a moment to propagate a fresh DWD grant - typically seconds, someti
 
 ## Step 5: Billing
 
-After DWD verifies, you are taken to [Billing](https://app.signature.cat/billing) to start the 7-day free trial (card collected up front, charged when the trial ends). See [Invoices](/docs/invoices) for the pricing tiers.
+After DWD verifies, you are taken to [Billing](https://app.signature.cat/billing) to start the 14-day free trial (card collected up front, charged when the trial ends). See [Invoices](/docs/invoices) for the pricing tiers.
 
 That's it - continue with [Create your first template](/docs/create-your-first-template).
 
@@ -798,9 +798,9 @@ For example, 60 users cost 50 x $0.80 + 10 x $0.70 = $47.00 per month. Prices ar
 
 **What counts as a billable user:** the number of active (non-suspended) users in your Google Workspace directory - not the number of SignatureCat logins. Seat increases are reflected immediately with prorations; when your headcount drops, the lower count takes effect from the next billing period.
 
-## The 7-day trial
+## The 14-day trial
 
-Every workspace starts with a 7-day free trial. A card is collected at sign-up and charged for the first time when the trial ends. In the last 3 days of the trial the app shows a reminder banner, and you also get a "Your signature.cat trial ends soon" email about 3 days before the end.
+Every workspace starts with a 14-day free trial. A card is collected at sign-up and charged for the first time when the trial ends. In the last 3 days of the trial the app shows a reminder banner, and you also get a "Your signature.cat trial ends soon" email about 3 days before the end.
 
 > [!NOTE]
 > The trial is granted **once per Workspace domain**. Deleting the account and registering the same domain again does not start a new trial.

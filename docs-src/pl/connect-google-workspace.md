@@ -62,7 +62,7 @@ Google potrzebuje chwili, aby rozpropagować świeży grant DWD - zwykle sekund,
 
 ## Krok 5: Płatności
 
-Po zweryfikowaniu DWD trafiasz na [Płatności](https://app.signature.cat/billing), aby rozpocząć 7-dniowy bezpłatny okres próbny (karta jest pobierana z góry, a obciążana po zakończeniu okresu próbnego). Zobacz [Faktury](/docs/invoices), aby poznać progi cenowe.
+Po zweryfikowaniu DWD trafiasz na [Płatności](https://app.signature.cat/billing), aby rozpocząć 14-dniowy bezpłatny okres próbny (karta jest pobierana z góry, a obciążana po zakończeniu okresu próbnego). Zobacz [Faktury](/docs/invoices), aby poznać progi cenowe.
 
 To wszystko - przejdź do [Utwórz swój pierwszy szablon](/docs/create-your-first-template).
 

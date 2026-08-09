@@ -24,7 +24,7 @@ Les présentes Conditions constituent un règlement de fourniture de services pa
 6. **Utilisateur** - une personne physique agissant au nom du Client, qui se connecte à la Plateforme avec un compte Google appartenant au Workspace du Client.
 7. **Administrateur Workspace** - un Utilisateur disposant, dans le Workspace du Client, des droits de super administrateur Google.
 8. **Niveau d'accès** - l'étendue des droits de l'Utilisateur dans la Plateforme, attribuée conformément au § 6, al. 6.
-9. **Période d'essai (Trial)** - la période de test de 7 jours décrite au § 7.
+9. **Période d'essai (Trial)** - la période de test gratuite décrite au § 7.
 10. **Plan d'abonnement** - un abonnement mensuel renouvelable, facturé selon le nombre de Seats, décrit au § 8.
 11. **Seat** - un utilisateur actif (non suspendu) dans le Workspace du Client, déterminé sur la base du répertoire des utilisateurs Google (Directory).
 12. **DWD (Domain-Wide Delegation)** - un mécanisme de Google consistant en l'autorisation, par l'Administrateur Workspace, d'un compte de service dédié à agir dans le Workspace du Client dans des périmètres strictement définis (§ 5, al. 3).
@@ -86,7 +86,7 @@ Les présentes Conditions constituent un règlement de fourniture de services pa
 
 ## § 7. Période d'essai
 
-1. Tout nouveau Client bénéficie d'une seule Période d'essai gratuite de **7 jours** à compter de l'activation, comprenant - à la date d'entrée en vigueur des Conditions - la pleine fonctionnalité du Service, sous réserve de l'al. 8.
+1. Tout nouveau Client bénéficie d'une seule Période d'essai gratuite, comprenant - à la date d'entrée en vigueur des Conditions - la pleine fonctionnalité du Service, sous réserve de l'al. 8. **La durée de la Période d'essai, comptée à partir de son activation, correspond à l'offre en vigueur du Prestataire telle que présentée sur signature.cat et dans la Plateforme au moment de l'activation** ; une modification ultérieure de l'offre ne raccourcit ni ne prolonge une Période d'essai déjà activée.
 2. L'activation de la Période d'essai requiert la saisie d'une carte de paiement valide dans le formulaire de l'Opérateur de paiement. **Pendant la Période d'essai, la carte n'est pas débitée.**
 3. **À l'expiration de la Période d'essai, l'abonnement se transforme automatiquement en Plan d'abonnement payant et la carte du Client est débitée de la première redevance mensuelle** - sauf si le Client annule l'abonnement avant l'expiration de la Période d'essai. L'annulation avant la fin de la Période d'essai n'entraîne aucuns frais.
 4. Le Prestataire rappelle l'approche de la fin de la Période d'essai par un e-mail envoyé environ 3 jours avant son expiration.

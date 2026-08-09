@@ -26,7 +26,7 @@ Aplikacja działa pod adresem [app.signature.cat](https://app.signature.cat). Ta
 - Około **10 minut** na całą pierwszą konfigurację.
 
 > [!NOTE]
-> Każdy workspace zaczyna od 7-dniowego bezpłatnego okresu próbnego. Karta jest pobierana przy rejestracji, a pierwsze obciążenie następuje po zakończeniu okresu próbnego. Zobacz [Faktury](/docs/invoices), aby poznać cennik i szczegóły rozliczeń.
+> Każdy workspace zaczyna od 14-dniowego bezpłatnego okresu próbnego. Karta jest pobierana przy rejestracji, a pierwsze obciążenie następuje po zakończeniu okresu próbnego. Zobacz [Faktury](/docs/invoices), aby poznać cennik i szczegóły rozliczeń.
 
 ## Pierwsze kroki
 

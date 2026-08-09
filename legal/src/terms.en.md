@@ -24,7 +24,7 @@ These Terms constitute terms and conditions for the provision of services by ele
 6. **User** - a natural person acting on behalf of the Customer who signs in to the Platform with a Google account belonging to the Customer's Workspace.
 7. **Workspace Administrator** - a User holding Google super administrator privileges in the Customer's Workspace.
 8. **Access Level** - the scope of a User's permissions in the Platform, granted in accordance with § 6(6).
-9. **Trial Period (Trial)** - the 7-day test period described in § 7.
+9. **Trial Period (Trial)** - the free test period described in § 7.
 10. **Subscription Plan** - a monthly, renewable subscription billed according to the number of Seats, described in § 8.
 11. **Seat** - one active (non-suspended) user in the Customer's Workspace, determined on the basis of the Google user directory (Directory).
 12. **DWD (Domain-Wide Delegation)** - a Google mechanism whereby the Workspace Administrator authorizes a dedicated service account to act within the Customer's Workspace within strictly defined scopes (§ 5(3)).
@@ -86,7 +86,7 @@ These Terms constitute terms and conditions for the provision of services by ele
 
 ## § 7. Trial Period
 
-1. A new Customer is entitled to one free Trial Period lasting **7 days** from activation, covering - as at the effective date of the Terms - the full functionality of the Service, subject to paragraph 8.
+1. A new Customer is entitled to one free Trial Period covering - as at the effective date of the Terms - the full functionality of the Service, subject to paragraph 8. **The length of the Trial Period, counted from its activation, follows the Provider's current offer as presented on signature.cat and in the Platform at the moment of activation**; a later change to the offer neither shortens nor extends a Trial Period that has already been activated.
 2. Activation of the Trial Period requires providing a valid payment card in the Payment Operator's form. **The card is not charged during the Trial Period.**
 3. **After the Trial Period expires, the subscription automatically converts into a paid Subscription Plan and the Customer's card is charged the first monthly fee** - unless the Customer cancels the subscription before the end of the Trial Period. Cancellation before the end of the Trial Period does not involve any fees.
 4. The Provider reminds the Customer of the approaching end of the Trial Period by an e-mail message sent approximately 3 days before its expiry.

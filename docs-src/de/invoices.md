@@ -1,7 +1,7 @@
 ---
 title: Rechnungen
 navTitle: Rechnungen
-description: Wie die SignatureCat-Abrechnung funktioniert - Preisstufen, die 7-Tage-Testphase, wohin Rechnungen gesendet werden und wie Sie eine eigene Rechnungs-E-Mail festlegen.
+description: Wie die SignatureCat-Abrechnung funktioniert - Preisstufen, die 14-Tage-Testphase, wohin Rechnungen gesendet werden und wie Sie eine eigene Rechnungs-E-Mail festlegen.
 updated: 2026-07-17
 ---
 
@@ -24,9 +24,9 @@ Beispiel: 60 Nutzer kosten 50 x 0,80 $ + 10 x 0,70 $ = 47,00 $ pro Monat. Preise
 
 **Was als abrechenbarer Nutzer zählt:** die Zahl der aktiven (nicht gesperrten) Nutzer in Ihrem Google Workspace-Directory - nicht die Zahl der SignatureCat-Anmeldungen. Zuwächse werden sofort mit anteiliger Berechnung berücksichtigt; sinkt Ihre Nutzerzahl, gilt der niedrigere Wert ab dem nächsten Abrechnungszeitraum.
 
-## Die 7-Tage-Testphase
+## Die 14-Tage-Testphase
 
-Jeder Workspace startet mit einer kostenlosen 7-Tage-Testphase. Eine Karte wird bei der Registrierung erfasst und erstmals belastet, wenn die Testphase endet. In den letzten 3 Tagen der Testphase zeigt die App ein Erinnerungsbanner, und Sie erhalten außerdem etwa 3 Tage vor dem Ende eine E-Mail "Ihre signature.cat-Testphase endet bald".
+Jeder Workspace startet mit einer kostenlosen 14-Tage-Testphase. Eine Karte wird bei der Registrierung erfasst und erstmals belastet, wenn die Testphase endet. In den letzten 3 Tagen der Testphase zeigt die App ein Erinnerungsbanner, und Sie erhalten außerdem etwa 3 Tage vor dem Ende eine E-Mail "Ihre signature.cat-Testphase endet bald".
 
 > [!NOTE]
 > Die Testphase wird **einmal pro Workspace-Domain** gewährt. Das Löschen des Kontos und die erneute Registrierung derselben Domain startet keine neue Testphase.

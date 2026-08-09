@@ -26,7 +26,7 @@ The app runs at [app.signature.cat](https://app.signature.cat). This documentati
 - About **10 minutes** for the whole first setup.
 
 > [!NOTE]
-> Every workspace starts with a 7-day free trial. A card is collected at sign-up and first charged when the trial ends. See [Invoices](/docs/invoices/) for pricing and billing details.
+> Every workspace starts with a 14-day free trial. A card is collected at sign-up and first charged when the trial ends. See [Invoices](/docs/invoices/) for pricing and billing details.
 
 ## First steps
 

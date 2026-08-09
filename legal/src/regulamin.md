@@ -22,7 +22,7 @@ Niniejszy Regulamin jest regulaminem świadczenia usług drogą elektroniczną w
 6. **Użytkownik** - osoba fizyczna działająca w imieniu Klienta, która loguje się do Platformy kontem Google należącym do Workspace Klienta.
 7. **Administrator Workspace** - Użytkownik posiadający w Workspace Klienta uprawnienia super administratora Google.
 8. **Poziom dostępu** - zakres uprawnień Użytkownika w Platformie, nadawany zgodnie z § 6 ust. 6.
-9. **Okres Próbny (Trial)** - 7-dniowy okres testowy opisany w § 7.
+9. **Okres Próbny (Trial)** - bezpłatny okres testowy opisany w § 7.
 10. **Plan Subskrypcyjny** - miesięczna, odnawialna subskrypcja rozliczana według liczby Seatów, opisana w § 8.
 11. **Seat** - jeden aktywny (niezawieszony) użytkownik w Workspace Klienta, ustalany na podstawie katalogu użytkowników Google (Directory).
 12. **DWD (Domain-Wide Delegation)** - mechanizm Google polegający na autoryzowaniu przez Administratora Workspace dedykowanego konta serwisowego do działania w Workspace Klienta w ściśle określonych zakresach (§ 5 ust. 3).
@@ -84,7 +84,7 @@ Niniejszy Regulamin jest regulaminem świadczenia usług drogą elektroniczną w
 
 ## § 7. Okres Próbny
 
-1. Nowemu Klientowi przysługuje jeden bezpłatny Okres Próbny trwający **7 dni** od aktywacji, obejmujący - na dzień wejścia w życie Regulaminu - pełną funkcjonalność Usługi, z zastrzeżeniem ust. 8.
+1. Nowemu Klientowi przysługuje jeden bezpłatny Okres Próbny, obejmujący - na dzień wejścia w życie Regulaminu - pełną funkcjonalność Usługi, z zastrzeżeniem ust. 8. **Długość Okresu Próbnego, liczona od jego aktywacji, odpowiada aktualnej ofercie Usługodawcy prezentowanej na stronie signature.cat oraz w Platformie w chwili aktywacji**; późniejsza zmiana oferty nie skraca ani nie wydłuża Okresu Próbnego już aktywowanego.
 2. Aktywacja Okresu Próbnego wymaga podania ważnej karty płatniczej w formularzu Operatora Płatności. **W trakcie Okresu Próbnego karta nie jest obciążana.**
 3. **Po upływie Okresu Próbnego subskrypcja przekształca się automatycznie w płatny Plan Subskrypcyjny, a karta Klienta zostaje obciążona pierwszą opłatą miesięczną** - chyba że Klient anuluje subskrypcję przed upływem Okresu Próbnego. Anulowanie przed końcem Okresu Próbnego nie wiąże się z żadnymi opłatami.
 4. Usługodawca przypomina o zbliżającym się końcu Okresu Próbnego wiadomością e-mail wysyłaną około 3 dni przed jego upływem.
