@@ -238,10 +238,46 @@
     }
 
     initSignatureDemo();
+    initTileVeils();
     initPersonalizeCard();
     initConditionalCard();
     initAdBanner();
     initFoundersBar();
+  }
+
+  // -------- Feature tiles 1-3: liquid-glass reveal -------------------------
+  // Each .card-compact hides its content behind a frosted veil (.tile-veil,
+  // CSS) showing only the title. This controller owns the single source of
+  // truth for "revealed": hover/focus on pointer devices, IntersectionObserver
+  // on touch devices (the tiles reveal themselves while scrolling past). Demo
+  // animations subscribe via the 'tilereveal' CustomEvent so they run exactly
+  // while their tile is uncovered and freeze the moment it is veiled again.
+  function initTileVeils() {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.card-compact'));
+    if (!cards.length) return;
+    var noHover = window.matchMedia('(hover: none)').matches;
+
+    cards.forEach(function (card) {
+      function set(on) {
+        if (card.classList.contains('is-revealed') === on) return;
+        card.classList.toggle('is-revealed', on);
+        card.dispatchEvent(new CustomEvent('tilereveal', { detail: { revealed: on } }));
+      }
+      if (noHover && 'IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (e) {
+          set(e[0].isIntersecting);
+        }, { threshold: 0.55 });
+        io.observe(card);
+      } else {
+        card.addEventListener('mouseenter', function () { set(true); });
+        card.addEventListener('mouseleave', function () { set(false); });
+        // Keyboard parity: the tiles carry tabindex="0"
+        card.addEventListener('focusin', function () { set(true); });
+        card.addEventListener('focusout', function (ev) {
+          if (!card.contains(ev.relatedTarget)) set(false);
+        });
+      }
+    });
   }
 
   // -------- Founders edition progress (/pricing) ---------------------------
@@ -265,7 +301,11 @@
     if (pctEl) pctEl.textContent = fmtNum(Math.round(pct)) + '%';
   }
 
-  // -------- Card 2: {{firstname}} {{lastname}} auto-fill on hover ----------
+  // -------- Card 1: {{firstname}} {{lastname}} auto-fill loop --------------
+  // Runs while the tile is revealed (see initTileVeils): variables fill with
+  // sample data, hold, revert to placeholders, pause, and repeat - a continuous
+  // loop instead of the old one-shot hover fill. Veiling the tile freezes and
+  // resets the demo so every reveal starts from the raw template.
   function initPersonalizeCard() {
     var card = document.querySelector('.card-personalize');
     if (!card) return;
@@ -273,13 +313,23 @@
     if (!vars.length) return;
     var VALUES = { firstname: 'Anna', lastname: 'Kowalska' };
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var SWAP = 280; // ms - matches the .pers-var fade/blur transition (same as hero preview)
+    var SWAP = 280;        // ms - matches the .pers-var fade/blur transition
+    var STAGGER = 260;     // ms between the two variables filling
+    var HOLD_FILLED = 2400;
+    var HOLD_RAW = 1100;
 
-    // Smooth swap of one variable's content (fade out -> change text -> fade in)
+    var timers = [];
+    var running = false;
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+    function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+
+    function placeholderText(el) { return '{{' + el.getAttribute('data-var') + '}}'; }
+
+    // Smooth swap of one variable's content (fade out -> change text -> fade in).
+    // The inner timeout is tracked so stop() can never leave a stale swap behind.
     function swapVar(el, text, asValue) {
-      if (reduce) { el.textContent = text; el.classList.toggle('filled', !!asValue); return; }
       el.classList.add('swapping');
-      setTimeout(function () {
+      later(function () {
         el.textContent = text;
         el.classList.toggle('filled', !!asValue);
         requestAnimationFrame(function () {
@@ -288,40 +338,53 @@
       }, SWAP);
     }
 
-    function fill() {
-      vars.forEach(function (el, i) {
-        var key = el.getAttribute('data-var');
-        if (reduce) { swapVar(el, VALUES[key], true); return; }
-        setTimeout(function () { swapVar(el, VALUES[key], true); }, i * 260);
-      });
-    }
-    function clear() {
+    function snapToRaw() {
       vars.forEach(function (el) {
-        swapVar(el, '{{' + el.getAttribute('data-var') + '}}', false);
+        el.classList.remove('swapping', 'filled');
+        el.textContent = placeholderText(el);
       });
     }
-    card.addEventListener('mouseenter', fill);
-    card.addEventListener('mouseleave', clear);
-    card.addEventListener('focusin', fill);
-    card.addEventListener('focusout', clear);
 
-    // Touch / no-hover devices (mobile): auto-cycle fill <-> clear while on screen,
-    // since there is no hover to trigger the swap.
-    var noHover = window.matchMedia('(hover: none)').matches;
-    if (noHover && !reduce && 'IntersectionObserver' in window) {
-      var timer = null, filled = false, onscreen = false;
-      function tick() { if (filled) clear(); else fill(); filled = !filled; }
-      function run() { if (timer) return; tick(); timer = setInterval(tick, 2600); }
-      function halt() { if (timer) { clearInterval(timer); timer = null; } }
-      var io2 = new IntersectionObserver(function (e) {
-        onscreen = e[0].isIntersecting;
-        if (onscreen && !document.hidden) run(); else halt();
-      }, { threshold: 0.4 });
-      io2.observe(card);
-      document.addEventListener('visibilitychange', function () {
-        if (onscreen && !document.hidden) run(); else halt();
+    function cycle() {
+      if (!running) return;
+      var t = 0;
+      vars.forEach(function (el, i) {
+        later(function () { swapVar(el, VALUES[el.getAttribute('data-var')], true); }, t + i * STAGGER);
       });
+      t += (vars.length - 1) * STAGGER + SWAP + HOLD_FILLED;
+      later(function () {
+        vars.forEach(function (el) { swapVar(el, placeholderText(el), false); });
+      }, t);
+      t += SWAP + HOLD_RAW;
+      later(cycle, t);
     }
+
+    function start() {
+      if (running) return;
+      running = true;
+      if (reduce) {
+        // Reduced motion: show the resolved values statically, no looping
+        vars.forEach(function (el) {
+          el.textContent = VALUES[el.getAttribute('data-var')];
+          el.classList.add('filled');
+        });
+        return;
+      }
+      snapToRaw();
+      later(cycle, 320);
+    }
+    function stop() {
+      if (!running) return;
+      running = false;
+      clearTimers();
+      snapToRaw();
+    }
+
+    var revealed = card.classList.contains('is-revealed');
+    function evaluate() { if (revealed && !document.hidden) start(); else stop(); }
+    card.addEventListener('tilereveal', function (e) { revealed = e.detail.revealed; evaluate(); });
+    document.addEventListener('visibilitychange', evaluate);
+    evaluate();
   }
 
   // -------- Card 3: {{del}} conditional block animation -------------------
@@ -355,6 +418,13 @@
     function showPresent() { if (line) { line.classList.remove('line-gone'); line.classList.add('tags-hidden'); } setStatus('present'); }
     function showAbsent() { if (line) line.classList.add('line-gone'); setStatus('absent'); }
 
+    // Pin the demo box to its tallest (raw, all rows visible) height BEFORE
+    // any phase runs: when the "absent" phase collapses the conditional line,
+    // the rows above still slide together but the box - and therefore the
+    // card and the whole grid row - never changes height. Measured at init,
+    // so it is correct for every locale and platform font.
+    if (block.offsetHeight) block.style.height = block.offsetHeight + 'px';
+
     if (reduce) { showPresent(); return; }
 
     var card = block.closest('.card-conditional');
@@ -363,7 +433,7 @@
     function clearTimers() { timers.forEach(clearTimeout); timers = []; }
     function later(fn, ms) { var id = setTimeout(fn, ms); timers.push(id); return id; }
 
-    // Four-phase loop (no hover needed - works on mobile/touch via IntersectionObserver):
+    // Four-phase loop:
     //  0s raw -> 2.5s value present (tags fade, green) -> 5s raw again -> 7.5s value absent (section gone, red) -> 10s repeat
     function loop() {
       if (!running) return;
@@ -374,15 +444,15 @@
       later(loop, 10000);
     }
     function start() { if (running) return; running = true; loop(); }
-    function stop() { running = false; clearTimers(); }
+    function stop() { if (!running) return; running = false; clearTimers(); showRaw(); }
 
-    var onscreen = true, visible = true;
-    function evaluate() { if (onscreen && visible) start(); else stop(); }
-    document.addEventListener('visibilitychange', function () { visible = !document.hidden; evaluate(); });
-    if ('IntersectionObserver' in window && card) {
-      var io = new IntersectionObserver(function (e) { onscreen = e[0].isIntersecting; evaluate(); }, { threshold: 0.3 });
-      io.observe(card);
-    } else { evaluate(); }
+    // Runs while the tile is revealed (see initTileVeils) and the tab visible;
+    // veiling the tile freezes the demo back on the raw template.
+    var revealed = card ? card.classList.contains('is-revealed') : true;
+    function evaluate() { if (revealed && !document.hidden) start(); else stop(); }
+    document.addEventListener('visibilitychange', evaluate);
+    if (card) card.addEventListener('tilereveal', function (e) { revealed = e.detail.revealed; evaluate(); });
+    evaluate();
   }
 
   // -------- Rotating marketing banner (employer branding section) ---------
