@@ -179,7 +179,7 @@ https://signature.cat/docs
 }
   </script>
 </head>
-<body>
+<body class="home">
 
   <!-- ============================== HEADER ============================== -->
   <header class="site-header">
@@ -233,7 +233,7 @@ https://signature.cat/docs
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <h1 data-i18n="hero.title">Centralnie zarządzaj podpisami Gmail w Google Workspace.</h1>
+          <h1><span data-i18n="hero.titlePre">Centralnie zarządzaj</span> <mark class="hl-accent" data-i18n="hero.titleHl">podpisami Gmail</mark> <span data-i18n="hero.titlePost">w Twoim Google Workspace.</span></h1>
           <p class="lede" data-i18n="hero.lede">Twórz spójne podpisy e-mail dla pracowników, przypisuj je według działu lub roli i aktualizuj je w całej organizacji z jednego miejsca.</p>
           <div class="hero-cta">
             <a href="https://app.signature.cat" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Zacznij teraz</a>
@@ -241,7 +241,6 @@ https://signature.cat/docs
           </div>
           <div class="hero-meta">
             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta1">Darmowy 14-dniowy okres próbny</span></span>
-            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta2">Bez opłat w okresie próbnym</span></span>
             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta3">Serwery w UE</span></span>
           </div>
         </div>
@@ -626,13 +625,13 @@ https://signature.cat/docs
           <h2 data-i18n="faq.title">Najczęściej zadawane pytania</h2>
         </div>
         <div class="faq reveal">
-          <details><summary data-i18n="faq.q1">Jak SignatureCat aktualizuje podpisy Gmail?</summary><p data-i18n="faq.a1">Narzędzie łączy się po API z Twoim Google Workspace, dzięki czemu centralne zarządzanie stopkami e-mail odbywa się w jednym panelu, a każdy podpis Gmail powstaje z danych pochodzących wprost z Directory Workspace.</p></details>
-          <details><summary data-i18n="faq.q2">Czy oferujecie darmowy okres próbny?</summary><p data-i18n="faq.a2">Tak. Każdy nowy Workspace zaczyna od 14-dniowego okresu próbnego z pełnym dostępem. Kartę pobieramy przy rejestracji, ale nie naliczamy opłat w trakcie okresu próbnego - anuluj przed jego końcem, a nic nie zapłacisz. Po okresie próbnym rozliczamy za aktywnego użytkownika, od 0,80 USD / użytkownik / miesiąc.</p></details>
-          <details><summary data-i18n="faq.q3">Gdzie przechowywane są moje dane?</summary><p data-i18n="faq.a3">Wszystkie dane znajdują się w regionach UE. Nie przechowujemy danych osobowych Twoich pracowników - imiona i nazwiska, telefony oraz zdjęcia pobierane są na żywo w momencie wdrożenia i odrzucane.</p></details>
-          <details><summary data-i18n="faq.q4">Czy mogę wskazać tylko część użytkowników?</summary><p data-i18n="faq.a4">Tak. Zarządzanie podpisami Gmail jest tak szczegółowe, jak struktura Twojej firmy: możesz wskazać wybranych użytkowników, całe Grupy lub Jednostki Organizacyjne. Cele rozwijane są do właściwych osób w momencie wdrożenia.</p></details>
-          <details><summary data-i18n="faq.q5">Co się dzieje, gdy ktoś zmieni stanowisko?</summary><p data-i18n="faq.a5">Ponieważ zmienne pobierane są na żywo z Directory, codzienna synchronizacja automatycznie utrzymuje podpisy Gmail w aktualnym stanie. Zaktualizuj stanowisko raz w Workspace, a zmiana propaguje się wszędzie.</p></details>
-          <details><summary data-i18n="faq.q6">Co jeśli potrzebuję podpisów w wielu językach?</summary><p data-i18n="faq.a6">Dla każdego zagranicznego oddziału możesz ustawić stopki w osobnym języku - dedykowane szablony i przypisania per oddział. Narzędzie jest na to przygotowane.</p></details>
-          <details><summary data-i18n="faq.q7">Czy oferujecie wsparcie przy wdrożeniu narzędzia w firmie?</summary><p data-i18n="faq.a7">Tak, profesjonalnie wspieramy wdrożenie narzędzia w firmie: od podłączenia domeny po zarządzanie stopkami w całym Google Workspace. Nasze doświadczenie administratorów Google Workspace sprawia, że wdrożenie jest szybkie i sprawne. Tworzymy też szablony podpisów na zamówienie - wystarczy napisać na contact@signature.cat.</p></details>
+          <details name="faq"><summary data-i18n="faq.q1">Jak SignatureCat aktualizuje podpisy Gmail?</summary><p data-i18n="faq.a1">Narzędzie łączy się po API z Twoim Google Workspace, dzięki czemu centralne zarządzanie stopkami e-mail odbywa się w jednym panelu, a każdy podpis Gmail powstaje z danych pochodzących wprost z Directory Workspace.</p></details>
+          <details name="faq"><summary data-i18n="faq.q2">Czy oferujecie darmowy okres próbny?</summary><p data-i18n="faq.a2">Tak. Każdy nowy Workspace zaczyna od 14-dniowego okresu próbnego z pełnym dostępem. Kartę pobieramy przy rejestracji, ale nie naliczamy opłat w trakcie okresu próbnego - anuluj przed jego końcem, a nic nie zapłacisz. Po okresie próbnym rozliczamy za aktywnego użytkownika, od 0,80 USD / użytkownik / miesiąc.</p></details>
+          <details name="faq"><summary data-i18n="faq.q3">Gdzie przechowywane są moje dane?</summary><p data-i18n="faq.a3">Wszystkie dane znajdują się w regionach UE. Nie przechowujemy danych osobowych Twoich pracowników - imiona i nazwiska, telefony oraz zdjęcia pobierane są na żywo w momencie wdrożenia i odrzucane.</p></details>
+          <details name="faq"><summary data-i18n="faq.q4">Czy mogę wskazać tylko część użytkowników?</summary><p data-i18n="faq.a4">Tak. Zarządzanie podpisami Gmail jest tak szczegółowe, jak struktura Twojej firmy: możesz wskazać wybranych użytkowników, całe Grupy lub Jednostki Organizacyjne. Cele rozwijane są do właściwych osób w momencie wdrożenia.</p></details>
+          <details name="faq"><summary data-i18n="faq.q5">Co się dzieje, gdy ktoś zmieni stanowisko?</summary><p data-i18n="faq.a5">Ponieważ zmienne pobierane są na żywo z Directory, codzienna synchronizacja automatycznie utrzymuje podpisy Gmail w aktualnym stanie. Zaktualizuj stanowisko raz w Workspace, a zmiana propaguje się wszędzie.</p></details>
+          <details name="faq"><summary data-i18n="faq.q6">Co jeśli potrzebuję podpisów w wielu językach?</summary><p data-i18n="faq.a6">Dla każdego zagranicznego oddziału możesz ustawić stopki w osobnym języku - dedykowane szablony i przypisania per oddział. Narzędzie jest na to przygotowane.</p></details>
+          <details name="faq"><summary data-i18n="faq.q7">Czy oferujecie wsparcie przy wdrożeniu narzędzia w firmie?</summary><p data-i18n="faq.a7">Tak, profesjonalnie wspieramy wdrożenie narzędzia w firmie: od podłączenia domeny po zarządzanie stopkami w całym Google Workspace. Nasze doświadczenie administratorów Google Workspace sprawia, że wdrożenie jest szybkie i sprawne. Tworzymy też szablony podpisów na zamówienie - wystarczy napisać na contact@signature.cat.</p></details>
         </div>
       </div>
     </section>

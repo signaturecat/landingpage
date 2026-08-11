@@ -179,7 +179,7 @@ https://signature.cat/docs
 }
   </script>
 </head>
-<body>
+<body class="home">
 
   <!-- ============================== HEADER ============================== -->
   <header class="site-header">
@@ -233,7 +233,7 @@ https://signature.cat/docs
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <h1 data-i18n="hero.title">Centrally manage Gmail signatures in Google Workspace.</h1>
+          <h1><span data-i18n="hero.titlePre">Centrally manage</span> <mark class="hl-accent" data-i18n="hero.titleHl">Gmail signatures</mark> <span data-i18n="hero.titlePost">in your Google Workspace.</span></h1>
           <p class="lede" data-i18n="hero.lede">Create consistent email signatures for your employees, assign them by department or role, and update them across the whole organization from one place.</p>
           <div class="hero-cta">
             <a href="https://app.signature.cat" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Get started</a>
@@ -241,7 +241,6 @@ https://signature.cat/docs
           </div>
           <div class="hero-meta">
             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta1">14-day free trial</span></span>
-            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta2">No charge during the trial</span></span>
             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta3">Servers in the EU</span></span>
           </div>
         </div>
@@ -626,13 +625,13 @@ https://signature.cat/docs
           <h2 data-i18n="faq.title">Frequently asked questions</h2>
         </div>
         <div class="faq reveal">
-          <details><summary data-i18n="faq.q1">How does SignatureCat update Gmail signatures?</summary><p data-i18n="faq.a1">The tool connects to your Google Workspace via API, so central email signature management happens in a single panel: every Gmail signature is rebuilt from data that comes straight from your Workspace Directory.</p></details>
-          <details><summary data-i18n="faq.q2">Do you offer a free trial?</summary><p data-i18n="faq.a2">Yes. Every new Workspace starts with a 14-day free trial with full access. We collect a card at sign-up but do not charge during the trial - cancel any time before it ends and you are not billed. After the trial, billing is per active user, starting at $0.80 / user / month.</p></details>
-          <details><summary data-i18n="faq.q3">Where is my data stored?</summary><p data-i18n="faq.a3">All data lives in EU regions. We don't store your end-users' personal attributes - names, phones and photos are fetched live at apply time and discarded.</p></details>
-          <details><summary data-i18n="faq.q4">Can I target only some users?</summary><p data-i18n="faq.a4">Yes. Gmail signature management is as granular as your structure: you can target specific users, entire Groups or Organizational Units. Targets are expanded to the right people at apply time.</p></details>
-          <details><summary data-i18n="faq.q5">What happens when someone changes their job title?</summary><p data-i18n="faq.a5">Because variables resolve live from the Directory, a daily sync keeps every Gmail signature current automatically. Update the title once in Workspace and it propagates everywhere.</p></details>
-          <details><summary data-i18n="faq.q6">What if I need signatures in multiple languages?</summary><p data-i18n="faq.a6">You can set a separate signature language for each foreign branch - dedicated templates and assignments per branch. The tool is built for multilingual organizations.</p></details>
-          <details><summary data-i18n="faq.q7">Do you offer support with rolling the tool out in my company?</summary><p data-i18n="faq.a7">Yes. We provide professional support for implementing the tool in your company, from connecting your domain to email signature management across the whole Google Workspace. Our experience as Google Workspace administrators makes the rollout quick and smooth. We also create custom signature templates on request - just write to contact@signature.cat.</p></details>
+          <details name="faq"><summary data-i18n="faq.q1">How does SignatureCat update Gmail signatures?</summary><p data-i18n="faq.a1">The tool connects to your Google Workspace via API, so central email signature management happens in a single panel: every Gmail signature is rebuilt from data that comes straight from your Workspace Directory.</p></details>
+          <details name="faq"><summary data-i18n="faq.q2">Do you offer a free trial?</summary><p data-i18n="faq.a2">Yes. Every new Workspace starts with a 14-day free trial with full access. We collect a card at sign-up but do not charge during the trial - cancel any time before it ends and you are not billed. After the trial, billing is per active user, starting at $0.80 / user / month.</p></details>
+          <details name="faq"><summary data-i18n="faq.q3">Where is my data stored?</summary><p data-i18n="faq.a3">All data lives in EU regions. We don't store your end-users' personal attributes - names, phones and photos are fetched live at apply time and discarded.</p></details>
+          <details name="faq"><summary data-i18n="faq.q4">Can I target only some users?</summary><p data-i18n="faq.a4">Yes. Gmail signature management is as granular as your structure: you can target specific users, entire Groups or Organizational Units. Targets are expanded to the right people at apply time.</p></details>
+          <details name="faq"><summary data-i18n="faq.q5">What happens when someone changes their job title?</summary><p data-i18n="faq.a5">Because variables resolve live from the Directory, a daily sync keeps every Gmail signature current automatically. Update the title once in Workspace and it propagates everywhere.</p></details>
+          <details name="faq"><summary data-i18n="faq.q6">What if I need signatures in multiple languages?</summary><p data-i18n="faq.a6">You can set a separate signature language for each foreign branch - dedicated templates and assignments per branch. The tool is built for multilingual organizations.</p></details>
+          <details name="faq"><summary data-i18n="faq.q7">Do you offer support with rolling the tool out in my company?</summary><p data-i18n="faq.a7">Yes. We provide professional support for implementing the tool in your company, from connecting your domain to email signature management across the whole Google Workspace. Our experience as Google Workspace administrators makes the rollout quick and smooth. We also create custom signature templates on request - just write to contact@signature.cat.</p></details>
         </div>
       </div>
     </section>

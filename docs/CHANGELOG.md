@@ -2,6 +2,50 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-11 - Home hero: accent highlight + possessive back, trial check dropped, scroll-following smudges, one-at-a-time FAQ
+
+- **What:** Home page only, all four locales (PM batch 2026-08-11):
+  - **Hero H1 accent highlight.** The key phrase ("Gmail signatures" / "podpisami
+    Gmail" / "Gmail-Signaturen" / "signatures Gmail") sits on a marker-style
+    accent bar (sample-driven): a `<mark class="hl-accent">` whose background is
+    a bottom-44% linear-gradient, with a small inline bleed
+    (`padding-inline` + negative margin) and `box-decoration-break: clone` so a
+    wrapped phrase highlights both fragments. The build's `[data-i18n]` applier
+    asserts text-only elements, so `hero.title` was retired and the H1 is now
+    three fragments: `hero.titlePre` / `hero.titleHl` / `hero.titlePost`.
+  - **Possessive restored in the H1** (PM decision, reverses the 2026-08-08
+    tweak): "in your Google Workspace" / "w Twoim Google Workspace" /
+    "in Ihrem Google Workspace"; French returns to its earlier word order
+    "de votre Google Workspace de façon centralisée".
+  - **Hero badge "No charge during the trial" (`hero.meta2`) removed** in all
+    four locales; "14-day free trial" and "Servers in the EU" stay. The FAQ
+    answer about trial billing is untouched (it is the fuller statement).
+  - **Background smudges follow the scroll.** New `body.home::before` fixed
+    layer (two subtle accent radial-gradients, 12% / 9% mix) keeps the colour
+    wash in the viewport below the fold; the hero's own smudges got stronger
+    (18/10% -> 26/15%) so the very top stays the most saturated. Scoped by the
+    new `class="home"` on the home page body - /pricing and /banners-generator
+    are untouched.
+  - **FAQ opens one answer at a time.** The seven `<details>` share
+    `name="faq"` - the native exclusive-accordion attribute, zero JS. Browsers
+    without support just keep the previous multi-open behaviour.
+- **Why:** PM request: stronger hero emphasis, less claim duplication in the
+  trust row, colour presence while scrolling, FAQ that does not stretch the
+  page while reading one answer.
+- **Scope:** landingpage (home page x4 locales)
+- **Design impact:** new `.hl-accent` highlight (light: `--accent` #f2a8ff
+  under ink text, ~9.2:1; dark: #ad32c1 under stone-50 text, ~4.8:1 = AA);
+  smudge layer defined for Light and Dark via the same `--accent` token.
+- **Performance impact:** zero JS added; the fixed smudge layer is one
+  composited element with two static gradients (no scroll repaints, no
+  `background-attachment: fixed`); LCP element (H1) markup grew by two spans
+  and one mark only.
+- **A11y:** highlight contrast AA in both schemes (large heading text);
+  `<mark>` is not announced by mainstream screen readers and the heading text
+  is unchanged for AT; FAQ exclusivity is native `<details name>` semantics,
+  keyboard and screen-reader flows unchanged; nothing animates, so there is
+  nothing new to gate behind `prefers-reduced-motion`.
+
 ## 2026-08-08 - Trial is now 14 days (site, docs and Terms), trust row relabelled, band hovers
 
 - **What:** PM follow-ups on top of the copy rewrite.
