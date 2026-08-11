@@ -49,8 +49,8 @@ https://signature.cat/docs
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
-  <link rel="preload" href="/assets/css/style.css?v=8a127dec37" as="style" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=8a127dec37" />
+  <link rel="preload" href="/assets/css/style.css?v=0bf1ddcc63" as="style" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=0bf1ddcc63" />
 
   <!-- SEO structured data -->
   <script type="application/ld+json">
@@ -379,6 +379,29 @@ https://signature.cat/docs
             <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
             <h3 data-i18n="feat.c6.t">Gardez le contrôle de vos signatures</h3>
             <p data-i18n="feat.c6.d">Consultez les signatures déployées et tout l'historique des modifications dans le panneau d'administration.</p>
+          </article>
+        </div>
+
+        <!-- Polish-only tile set (PM 2026-08-11): on /pl the interactive grid
+             above is replaced by the four self-contained marketing graphics
+             below (carousel slides). The swap is pure CSS keyed off the
+             <html lang> the build stamps per locale (see .feat-shots in
+             style.css) - one authored source, no build-time branching.
+             Polish copy lives inline (no data-i18n): the block is only ever
+             visible on the Polish page, and the lazy images inside the
+             display:none variant are never downloaded on other locales. -->
+        <div class="grid grid-2 feat-shots" lang="pl">
+          <article class="card card-shot reveal">
+            <img data-featsrc="/assets/img/feat/pl-ustaw-spojne-podpisy.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Ustaw spójne podpisy w całej organizacji kilkoma kliknięciami - panel SignatureCat stosuje szablon podpisu email do 104 osób z automatyczną synchronizacją" />
+          </article>
+          <article class="card card-shot reveal">
+            <img data-featsrc="/assets/img/feat/pl-dopasuj-podpisy.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Dopasuj podpisy do działu, stanowiska, języka lub lokalizacji - wybór szablonu podpisu Gmail: ze zdjęciem, z logo firmy albo z banerem reklamowym" />
+          </article>
+          <article class="card card-shot reveal">
+            <img data-featsrc="/assets/img/feat/pl-aktualizuj-dane.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Automatycznie aktualizuj dane pracowników z Google Workspace - imię, stanowisko i telefon synchronizują się same do podpisu Gmail" />
+          </article>
+          <article class="card card-shot reveal">
+            <img data-featsrc="/assets/img/feat/pl-deleguj-zarzadzanie.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Deleguj zarządzanie podpisami wybranym osobom lub zespołom - rola Designer edytuje szablony stopek bez dostępu do ustawień organizacji" />
           </article>
         </div>
       </div>
