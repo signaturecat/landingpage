@@ -191,19 +191,47 @@ body.home::before {
 }
 .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 54px; align-items: center; }
 .hero h1 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); margin: 0 0 18px; max-width: 17ch; }
-/* Marker-style accent highlight behind key words of the H1: covers the lower
-   half of the glyphs and the descender space (background box of the inline
-   element). In dark mode the pale pink would sit behind light glyphs, so it
-   swaps to the deep accent (#ad32c1 = light-mode --accent-ink; 4.8:1 under
-   --ink #faf5ef, AA even for body text). box-decoration-break keeps the
-   bleed on both fragments if the phrase ever wraps. */
+/* Marker-style accent highlight behind key words of the H1: a rounded bar
+   over the lower half of the glyphs and the descender space, anchored to the
+   bottom of the inline background box. border-radius cannot round a bar that
+   is only PART of an inline box's background, so the rounded rectangle is
+   composed from bottom-anchored layers: a full-width band between the corner
+   arcs + a full-height band between them + four quarter-circle corners.
+   Same-color overlaps are invisible; box-decoration-break keeps the bar (and
+   its corners) on each fragment if the phrase ever wraps. In dark mode the
+   pale pink would sit behind light glyphs, so it swaps to the deep accent
+   (#ad32c1 = light-mode --accent-ink; 4.8:1 under --ink #faf5ef, AA even for
+   body text). */
 .hero h1 .hl-accent {
   --hl: var(--accent);
+  --hl-h: .48em;  /* bar height (bottom-anchored, ~= the previous 44% look) */
+  --hl-r: .13em;  /* corner radius */
   background-color: transparent; /* <mark>: kill the UA yellow */
   color: inherit;
-  background-image: linear-gradient(to top, var(--hl) 44%, transparent 44%);
-  padding-inline: .09em;
-  margin-inline: -.09em;
+  background-image:
+    linear-gradient(var(--hl) 0 0),
+    linear-gradient(var(--hl) 0 0),
+    radial-gradient(circle var(--hl-r) at 100% 0,    var(--hl) calc(100% - .5px), transparent 100%),
+    radial-gradient(circle var(--hl-r) at 0 0,       var(--hl) calc(100% - .5px), transparent 100%),
+    radial-gradient(circle var(--hl-r) at 100% 100%, var(--hl) calc(100% - .5px), transparent 100%),
+    radial-gradient(circle var(--hl-r) at 0 100%,    var(--hl) calc(100% - .5px), transparent 100%);
+  background-size:
+    100% calc(var(--hl-h) - 2*var(--hl-r)),
+    calc(100% - 2*var(--hl-r)) var(--hl-h),
+    var(--hl-r) var(--hl-r),
+    var(--hl-r) var(--hl-r),
+    var(--hl-r) var(--hl-r),
+    var(--hl-r) var(--hl-r);
+  background-position:
+    left 0 bottom var(--hl-r),                        /* band between the arcs */
+    left var(--hl-r) bottom 0,                        /* full-height middle    */
+    left 0 bottom 0,                                  /* corner: bottom-left   */
+    right 0 bottom 0,                                 /* corner: bottom-right  */
+    left 0 bottom calc(var(--hl-h) - var(--hl-r)),    /* corner: top-left      */
+    right 0 bottom calc(var(--hl-h) - var(--hl-r));   /* corner: top-right     */
+  background-repeat: no-repeat;
+  padding-inline: .12em;
+  margin-inline: -.12em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }

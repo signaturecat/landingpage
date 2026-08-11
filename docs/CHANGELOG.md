@@ -7,10 +7,15 @@
 - **What:** Home page only, all four locales (PM batch 2026-08-11):
   - **Hero H1 accent highlight.** The key phrase ("Gmail signatures" / "podpisami
     Gmail" / "Gmail-Signaturen" / "signatures Gmail") sits on a marker-style
-    accent bar (sample-driven): a `<mark class="hl-accent">` whose background is
-    a bottom-44% linear-gradient, with a small inline bleed
-    (`padding-inline` + negative margin) and `box-decoration-break: clone` so a
-    wrapped phrase highlights both fragments. The build's `[data-i18n]` applier
+    accent bar with rounded corners (sample-driven; corners rounded on PM
+    follow-up): a `<mark class="hl-accent">` whose background is a
+    bottom-anchored rounded bar (0.48em tall, 0.13em radius). `border-radius`
+    cannot round a bar that is only part of an inline box's background, so the
+    rounded rectangle is composed from bottom-anchored background layers (two
+    bands + four quarter-circle corners; same-color overlaps are invisible).
+    A small inline bleed (`padding-inline` + negative margin) and
+    `box-decoration-break: clone` give a wrapped phrase a complete rounded bar
+    on each fragment. The build's `[data-i18n]` applier
     asserts text-only elements, so `hero.title` was retired and the H1 is now
     three fragments: `hero.titlePre` / `hero.titleHl` / `hero.titlePost`.
   - **Possessive restored in the H1** (PM decision, reverses the 2026-08-08
