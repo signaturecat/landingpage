@@ -2,6 +2,46 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-11 - Polish home page: feature tiles replaced with four marketing graphics
+
+- **What:** On `/pl` only, the interactive feature grid (six tiles incl. the
+  liquid-glass demos) is replaced by four self-contained marketing graphics
+  (the PM's carousel slides 2-5, in the carousel's own order): "Ustaw spójne
+  podpisy", "Dopasuj podpisy do działu...", "Automatycznie aktualizuj dane...",
+  "Deleguj zarządzanie podpisami...". Implementation:
+  - **Pure-CSS locale gate:** both grids ship in the one authored source;
+    `html:lang(pl)` shows `.feat-shots` and hides the `.grid-3`, every other
+    locale the inverse. No per-locale markup branching in the build beyond
+    one attribute swap (below).
+  - **No wasted bytes on other locales:** Chrome downloads `loading="lazy"`
+    images even inside `display:none` subtrees, so the authored markup
+    carries the URL in `data-featsrc` (no `src`) and `build.mjs`
+    materializes the real `src` only in the Polish render - the served
+    Polish HTML keeps real `src` for image SEO, en/de/fr fetch nothing
+    (verified: 0 requests).
+  - **Assets:** carousel PDF pages rendered at 1080x1080 and encoded as
+    WebP q82 (28-40 KB each, ~140 KB total) at
+    `assets/img/feat/pl-*.webp`; `width`/`height` + `loading="lazy"` +
+    `decoding="async"` on every image (no CLS).
+  - **SEO/A11y alt text (Polish)** on each image: the slide's visible
+    headline plus a short description of the pictured UI.
+  - Tiles are `.card.card-shot` (zero padding, image fills the rounded
+    card); 2x2 grid on desktop, 1 column under 752px (existing `.grid-2`
+    breakpoints).
+- **Why:** PM request 2026-08-11 - the Polish market page tests the
+  carousel graphics as the feature presentation; other locales keep the
+  interactive tiles.
+- **Scope:** landingpage (Polish home page; en/de/fr rendering unchanged)
+- **Design impact:** graphics are baked light-theme (cream) - on dark mode
+  /pl they render as bright cards, accepted for this test.
+- **Performance impact:** +4 lazy WebP images (~140 KB) on /pl only; zero
+  new requests on other locales; demo JS stays idle on /pl (its grid is
+  display:none, observers never fire).
+- **A11y:** descriptive Polish alt text on every graphic (the slides carry
+  their text baked into the image, so alt restates it); no interactive
+  content lost - the graphics are static and the veiled demos remain on the
+  other locales.
+
 ## 2026-08-11 - Feature tiles: liquid-glass reveal, demo loops tied to reveal, constant tile height
 
 - **What:** Home page feature tiles 1-3 (all four locales):

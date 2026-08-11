@@ -393,6 +393,16 @@ function render(src, loc, I18N, page) {
     `$1mailto:contact@signature.cat?subject=${encodeURIComponent(tr('contact.subject'))}$2`,
   );
 
+  // Polish-only feature shots: the authored markup carries the image URL in
+  // data-featsrc (and no src), so the display:none variant on the other
+  // locales never downloads the files - Chrome fetches loading="lazy" images
+  // even inside display:none subtrees. Only the Polish render materializes
+  // the real src (image SEO needs it in the served HTML). Idempotent: the
+  // pl output has no data-featsrc left to rewrite.
+  if (loc === 'pl') {
+    html = html.replace(/(<img\b[^>]*?)\bdata-featsrc="/g, '$1src="');
+  }
+
   // page-level relative asset refs -> root-absolute so /pl/ resolves them
   html = html.replace(/(\s(?:href|src)=")assets\//g, '$1/assets/');
 
