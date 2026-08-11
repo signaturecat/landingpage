@@ -2,6 +2,61 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-11 - Feature tiles: liquid-glass reveal, demo loops tied to reveal, constant tile height
+
+- **What:** Home page feature tiles 1-3 (all four locales):
+  - **Liquid-glass veil.** Each demo tile hides its content behind a frosted
+    layer (`.tile-veil`: `backdrop-filter: blur(14px) saturate(150%)` over a
+    translucent `--surface` wash) showing only the centred tile title.
+    Hovering (or focusing - the tiles now carry `tabindex="0"` with a visible
+    `:focus-visible` ring) melts the veil away and hides the title; leaving
+    the tile brings the glass and the title back. On touch devices
+    (`hover: none`) the tiles reveal themselves while scrolled into view
+    (IntersectionObserver, threshold 0.55) and veil again on the way out.
+    One controller (`initTileVeils` in `app.js`) owns the `.is-revealed`
+    state and broadcasts a `tilereveal` CustomEvent the demos subscribe to.
+  - **Demos run only while revealed.** Tile 1's fill demo and tile 3's
+    conditional-tags demo start on reveal and freeze (and reset) when the
+    tile is veiled; tile 2's variables marquee toggles
+    `animation-play-state` and its value chips expand under `.is-revealed`
+    (the old `:hover` / `(hover: none)` rules are gone). Under the veil
+    nothing animates, so the permanent blur layers cost nothing extra.
+  - **Tile 1 loops.** The `{{firstname}}/{{lastname}}` demo now cycles
+    continuously while revealed: staggered fill -> hold ~2.4s -> revert to
+    placeholders -> pause ~1.1s -> repeat (it used to fill once on hover and
+    stop). Every pending timeout is tracked, so veiling the tile can never
+    leave a stale half-swap behind.
+  - **Tile 3 keeps a constant height.** The demo box is pinned at init to
+    its tallest (raw) height, measured live (`block.offsetHeight`), so the
+    "value absent" phase that collapses the phone line no longer shrinks the
+    card or the whole grid row - correct for every locale and platform font
+    without magic numbers.
+  - **Guaranteed description/demo distance.** The demos sit at the card
+    bottom via `margin-top: auto`, which collapsed to zero once a locale's
+    copy filled the card; the description paragraph now carries
+    `margin-bottom: 14px` as a floor (verified: 14px on the Polish tile 3).
+  - **Tile 3 description rewritten** in all four locales to describe what
+    the animation actually shows (conditional tags keeping or removing the
+    phone section) instead of the old HTML-editor/versions copy.
+- **Why:** PM batch 2026-08-11: tiles should read as calm glass cards until
+  the visitor asks for the demo; the delete animation resized the grid row;
+  tile 1's demo dead-ended after one fill; tile 3's copy did not match its
+  animation.
+- **Scope:** landingpage (home page x4 locales)
+- **Design impact:** new `.tile-veil` glass layer (Light: translucent
+  surface wash; Dark: same tokens over stone-800) consistent with the hero
+  glassmorphism; `@supports` fallback to a near-opaque wash where
+  `backdrop-filter` is unsupported.
+- **Performance impact:** no new JS libraries; one IntersectionObserver on
+  touch devices; demos pause under the veil (less continuous animation than
+  before, when the marquee and the conditional loop ran whenever on
+  screen); the veil fade is opacity-only.
+- **A11y:** tiles are keyboard-focusable with a visible focus ring and the
+  veil melts on focus; the veil layer is `aria-hidden` (SR users read the
+  unchanged card content); reduced motion keeps the static presentations
+  (filled values / "present" state) and the global transition kill makes
+  the veil toggle instant.
+
 ## 2026-08-11 - Cache-busting for first-party CSS/JS in built pages
 
 - **What:** `build.mjs` now appends a content-hash query string
