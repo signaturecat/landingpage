@@ -24,8 +24,21 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { createHash } from 'node:crypto';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
+
+/* Content hash for first-party assets referenced from the built pages (cache
+   busting - see the rewrite step in render()). One read per file per run;
+   deterministic, so the build stays idempotent. */
+const assetHashes = new Map();
+function assetHash(path) {
+  if (!assetHashes.has(path)) {
+    const body = readFileSync(join(ROOT, path.slice(1)));
+    assetHashes.set(path, createHash('sha256').update(body).digest('hex').slice(0, 10));
+  }
+  return assetHashes.get(path);
+}
 const BASE = 'https://signature.cat';
 const SUPPORTED = ['en', 'pl', 'de', 'fr'];
 const OG_LOCALE = { en: 'en_US', pl: 'pl_PL', de: 'de_DE', fr: 'fr_FR' };
@@ -382,6 +395,20 @@ function render(src, loc, I18N, page) {
 
   // page-level relative asset refs -> root-absolute so /pl/ resolves them
   html = html.replace(/(\s(?:href|src)=")assets\//g, '$1/assets/');
+
+  // Cache-busting for first-party CSS/JS: documents are served no-cache by
+  // the edge Worker, but /assets/* sits under the zone's 4h browser TTL - so
+  // a deploy that changes a stylesheet would serve NEW markup with STALE
+  // styles for hours (bit us on 2026-08-11: the fresh H1 <mark> rendered
+  // with the UA's yellow until the cache expired). A content-hash query
+  // string gives every asset revision its own URL: cold cache at the edge
+  // AND in browsers the moment the new HTML lands. The Worker passes query
+  // strings through to the origin and GitHub Pages ignores them. Idempotent:
+  // an existing ?v=... is replaced with the current hash.
+  html = html.replace(
+    /(\s(?:href|src)=")(\/assets\/[^"?]+\.(?:css|js))(?:\?v=[0-9a-f]+)?(")/g,
+    (_m, pre, path, post) => `${pre}${path}?v=${assetHash(path)}${post}`,
+  );
 
   // The GENERATED banner is no longer emitted into served HTML (PM request
   // 2026-07-18) - keep stripping the historical one so re-renders of older

@@ -2,6 +2,30 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-11 - Cache-busting for first-party CSS/JS in built pages
+
+- **What:** `build.mjs` now appends a content-hash query string
+  (`?v=<sha256[0..10]>`) to every root-absolute `/assets/*.css|js` reference
+  in the pages it renders (stylesheet + preload + scripts, x4 locales x3
+  pages). Hashes are deterministic, so the build stays idempotent; an
+  existing `?v=` is replaced, never stacked. The edge Worker already passes
+  query strings to the origin and GitHub Pages ignores them - no infra
+  change.
+- **Why:** documents are served `no-cache` by the Worker, but `/assets/*`
+  sits under the zone's 4h browser TTL. Deploying PR #35 served the NEW
+  markup with the STALE stylesheet for a while: the fresh H1 `<mark>`
+  rendered with the UA's yellow highlight until the edge entry expired.
+  With versioned URLs every asset revision is a cold cache key in the edge
+  AND in browsers the moment the new HTML lands, closing this whole class
+  of deploy mismatch (including clients that cached the stale file during
+  the window).
+- **Scope:** landingpage (build pipeline; served pages change only by the
+  query strings)
+- **Design impact:** none
+- **Performance impact:** none at runtime (same files, same caching TTLs);
+  first visit after a CSS/JS change re-downloads only the changed file.
+- **A11y:** n/a
+
 ## 2026-08-11 - Home hero: accent highlight + possessive back, trial check dropped, scroll-following smudges, one-at-a-time FAQ
 
 - **What:** Home page only, all four locales (PM batch 2026-08-11):
