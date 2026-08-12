@@ -2,6 +2,27 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-12 - Polish branding mockup shows the real employer-branding banner
+
+- **What:** On `/pl` the rotating three-slide text banner inside the branding
+  section's signature mockup is replaced by the real employer-branding banner
+  graphic ("Employer branding w każdym wysłanym mailu / Sprawdź
+  signature.cat"), sized to the same slot (full card width, same top margin,
+  radius and glass border; `width`/`height` attributes keep the aspect - no
+  CLS). Same locale gate (`html:lang(pl)`) and `data-featsrc` mechanism as
+  the feature deck: other locales keep the animation and never download the
+  image. Asset: 1350x300 PNG resized to 1000px and encoded as WebP q82
+  (14 KB) with a descriptive Polish alt.
+- **Why:** PM request 2026-08-12 - show the real banner on the Polish page.
+- **Scope:** landingpage (Polish home page; en/de/fr unchanged)
+- **Design impact:** none outside /pl; the animated demo stays elsewhere.
+- **Performance impact:** +14 KB lazy WebP on /pl; the banner animation
+  (initAdBanner) stays idle there (its element is display:none, the
+  IntersectionObserver never fires).
+- **A11y:** static image with descriptive Polish alt replaces a decorative
+  animation; reduced-motion users on /pl now see identical content to
+  everyone else.
+
 ## 2026-08-12 - Wordmark reverted to "SignatureCat"
 
 - **What:** The brand lockups go back to "SignatureCat" everywhere (landing
