@@ -49,8 +49,8 @@ https://signature.cat/docs
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
-  <link rel="preload" href="/assets/css/style.css?v=0bf1ddcc63" as="style" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=0bf1ddcc63" />
+  <link rel="preload" href="/assets/css/style.css?v=dd75c7236b" as="style" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=dd75c7236b" />
 
   <!-- SEO structured data -->
   <script type="application/ld+json">
@@ -382,27 +382,32 @@ https://signature.cat/docs
           </article>
         </div>
 
-        <!-- Polish-only tile set (PM 2026-08-11): on /pl the interactive grid
-             above is replaced by the four self-contained marketing graphics
-             below (carousel slides). The swap is pure CSS keyed off the
-             <html lang> the build stamps per locale (see .feat-shots in
-             style.css) - one authored source, no build-time branching.
-             Polish copy lives inline (no data-i18n): the block is only ever
-             visible on the Polish page, and the lazy images inside the
-             display:none variant are never downloaded on other locales. -->
-        <div class="grid grid-2 feat-shots" lang="pl">
-          <article class="card card-shot reveal">
+        <!-- Polish-only tile deck (PM 2026-08-11): on /pl the interactive grid
+             above is replaced by a horizontal card-deck carousel of the four
+             marketing graphics. The visible card follows the cursor position
+             over the deck (left edge = first card, right edge = last), the
+             remaining cards always peek out like a fanned deck of playing
+             cards; wheel steps through the cards and touch devices swipe.
+             Behaviour lives in initFeatDeck() (app.js), layout in .feat-shots
+             / .feat-card (style.css). The locale swap is pure CSS keyed off
+             the <html lang> the build stamps per locale. Polish copy lives
+             inline (no data-i18n): the block is only ever visible on the
+             Polish page, and the images carry data-featsrc (no src) so the
+             display:none variant never downloads them on other locales -
+             build.mjs materializes the real src only in the Polish render. -->
+        <div class="feat-shots feat-deck reveal" lang="pl" role="region" aria-roledescription="karuzela" aria-label="Podgląd funkcji SignatureCat: 4 plansze, strzałki w lewo i w prawo przełączają" tabindex="0">
+          <figure class="feat-card is-active">
             <img data-featsrc="/assets/img/feat/pl-ustaw-spojne-podpisy.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Ustaw spójne podpisy w całej organizacji kilkoma kliknięciami - panel SignatureCat stosuje szablon podpisu email do 104 osób z automatyczną synchronizacją" />
-          </article>
-          <article class="card card-shot reveal">
+          </figure>
+          <figure class="feat-card">
             <img data-featsrc="/assets/img/feat/pl-dopasuj-podpisy.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Dopasuj podpisy do działu, stanowiska, języka lub lokalizacji - wybór szablonu podpisu Gmail: ze zdjęciem, z logo firmy albo z banerem reklamowym" />
-          </article>
-          <article class="card card-shot reveal">
+          </figure>
+          <figure class="feat-card">
             <img data-featsrc="/assets/img/feat/pl-aktualizuj-dane.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Automatycznie aktualizuj dane pracowników z Google Workspace - imię, stanowisko i telefon synchronizują się same do podpisu Gmail" />
-          </article>
-          <article class="card card-shot reveal">
+          </figure>
+          <figure class="feat-card">
             <img data-featsrc="/assets/img/feat/pl-deleguj-zarzadzanie.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Deleguj zarządzanie podpisami wybranym osobom lub zespołom - rola Designer edytuje szablony stopek bez dostępu do ustawień organizacji" />
-          </article>
+          </figure>
         </div>
       </div>
     </section>
@@ -709,7 +714,7 @@ https://signature.cat/docs
   </footer>
 
   <script src="/assets/js/i18n.js?v=a016adae2a"></script>
-  <script src="/assets/js/app.js?v=f5a3651eca"></script>
+  <script src="/assets/js/app.js?v=014ac1709d"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
