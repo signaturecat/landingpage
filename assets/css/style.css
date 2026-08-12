@@ -510,7 +510,9 @@ html:lang(pl) #ad-banner { display: none; }
 .feat-deck {
   --deck-peek: 56px;
   position: relative;
-  max-width: 860px;
+  /* 688px = 519px card + 3 slivers: cards 1/4 smaller than the previous
+     860px deck (PM 2026-08-12); the sliver width stays readable. */
+  max-width: 688px;
   margin-inline: auto;
   touch-action: pan-y;
   border-radius: var(--radius);
