@@ -496,6 +496,17 @@ section[id] { scroll-margin-top: 88px; }
    the deck snap instead. */
 html:not(:lang(pl)) .feat-shots { display: none; }
 html:lang(pl) #features .grid-3 { display: none; }
+/* Same gate for the branding mockup's banner slot: /pl shows the real
+   employer-branding banner instead of the rotating text demo (PM
+   2026-08-12). Sized to the slot the demo occupies (full card width,
+   same top margin/radius/border). */
+html:not(:lang(pl)) .pl-ad-banner { display: none; }
+html:lang(pl) #ad-banner { display: none; }
+.pl-ad-banner {
+  display: block; width: 100%; height: auto;
+  margin-top: 14px; border-radius: 10px;
+  border: 1px solid var(--glass-border);
+}
 .feat-deck {
   --deck-peek: 56px;
   position: relative;

@@ -49,8 +49,8 @@ https://signature.cat/docs
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
-  <link rel="preload" href="/assets/css/style.css?v=f1c86d5941" as="style" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=f1c86d5941" />
+  <link rel="preload" href="/assets/css/style.css?v=5b5a751490" as="style" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=5b5a751490" />
 
   <!-- SEO structured data -->
   <script type="application/ld+json">
@@ -511,6 +511,12 @@ https://signature.cat/docs
                     <span class="ad-cta" data-i18n="brand.ad3.c">Zapisz się</span>
                   </div>
                 </div>
+                <!-- Polish-only static campaign banner (PM 2026-08-12): on /pl
+                     the rotating demo above is replaced by the real
+                     employer-branding banner. Same locale gate (html:lang in
+                     CSS) + data-featsrc mechanism as the feature deck, so the
+                     other locales neither show nor download it. -->
+                <img class="pl-ad-banner" src="/assets/img/feat/pl-baner-employer-branding.webp" width="1000" height="223" loading="lazy" decoding="async" alt="Baner employer branding w podpisie email: Employer branding w każdym wysłanym mailu - sprawdź signature.cat" />
               </div>
               <span class="glass-chip" data-i18n="brand.chip">Real-time marketing</span>
             </div>
