@@ -2,6 +2,15 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-12 - Polish deck: cards 1/4 smaller
+
+- **What:** the deck narrows 860px -> 688px, so each card renders ~520px
+instead of ~692px (exactly 75%); sliver width unchanged (still 56px / 30px
+mobile), mobile layout untouched (viewport-bound below the new max-width).
+- **Why:** PM request 2026-08-12.
+- **Scope:** landingpage (Polish home page)
+- **Design impact / Performance / A11y:** none beyond the size.
+
 ## 2026-08-12 - Polish branding mockup shows the real employer-branding banner
 
 - **What:** On `/pl` the rotating three-slide text banner inside the branding
