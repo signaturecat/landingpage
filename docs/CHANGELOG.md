@@ -2,6 +2,20 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-12 - Wordmark reverted to "SignatureCat"
+
+- **What:** The brand lockups go back to "SignatureCat" everywhere (landing
+  header/footer x3 pages, docs header, legal header) - a clean revert of
+  yesterday's wordmark change (PM decision; the deck changes from the same
+  PR stay). The rebuilt pages also re-stamp the `?v=` asset hashes, which
+  the plain revert had rolled back to pre-deck values (they would have
+  pointed the pages at the stale cached stylesheet).
+- **Why:** PM 2026-08-12: keep "SignatureCat" as the written logo.
+- **Scope:** landingpage (all locales incl. docs and legal)
+- **Design impact:** wordmark back to the product-name form.
+- **Performance impact:** none.
+- **A11y:** logo alts/aria-labels restored with the wordmark.
+
 ## 2026-08-11 - Polish feature tiles become a fanned card-deck carousel
 
 - **What:** The four Polish marketing graphics no longer sit in a 2x2 grid:
