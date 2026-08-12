@@ -276,9 +276,15 @@
       if (!w) return; // display:none (the deck only renders on /pl)
       var p = peek();
       cards.forEach(function (c, j) {
-        var x = j <= active ? j * p : w - (n - j) * p;
-        c.style.transform = 'translateX(' + x + 'px)';
-        c.style.zIndex = String(j === active ? n + 1 : j + 1);
+        // Static fan: every card keeps x = j*peek - the fan never slides.
+        // Only the stacking order follows the active card, with MIRRORED
+        // piles: the closer a card is to the active one, the higher it
+        // lies, so a card leaving the active spot lands ON TOP of the pile
+        // it joins (left pile shows left edges, right pile right edges).
+        // The x position rides the `translate` property so the deckPull
+        // keyframe (transform) can compose with it.
+        c.style.translate = (j * p) + 'px';
+        c.style.zIndex = String(j === active ? n + 1 : j < active ? j + 1 : n + 1 - (j - active));
         c.classList.toggle('is-active', j === active);
       });
     }
