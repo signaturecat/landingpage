@@ -211,7 +211,7 @@ function head({ lang, title, desc, canonicalPath, index, extra = '' }) {
 ${extra}</head>
 <body class="legal-body">
 <header class="legal-top">
-  <a class="legal-brand" href="/"><img src="/assets/img/logo-mark.png" alt="" width="26" height="26" /> signature.cat</a>
+  <a class="legal-brand" href="/"><img src="/assets/img/logo-mark.png" alt="" width="26" height="26" /> SignatureCat</a>
   <nav><a class="legal-hub-link" href="/legal">Legal</a></nav>
 </header>
 `;

@@ -655,9 +655,9 @@ ${jsonLd(meta, slug, sectionName, loc)}
         <button class="docs-menu-btn" id="docs-menu-btn" aria-label="${escAttr(ui.menu)}" aria-expanded="false" aria-controls="docs-sidebar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
-        <a href="/" class="brand" aria-label="signature.cat home">
-          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="" />
-          <span class="brand-name">signature.cat</span>
+        <a href="/" class="brand" aria-label="SignatureCat home">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          <span class="brand-name">SignatureCat</span>
         </a>
         <a href="${urlFor('', loc)}" class="docs-wordmark">Docs</a>
       </div>
