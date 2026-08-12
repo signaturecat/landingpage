@@ -2,6 +2,41 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-11 - Deck mirror stacking + wider deck; wordmark becomes "signature.cat"
+
+- **What:**
+  - **Polish deck: mirrored piles (PM fix).** A card stepping off the
+    active spot used to slide UNDER the right-hand pile; now both piles
+    mirror each other - the closer a card is to the active one, the higher
+    it lies, so a card always lands ON TOP of the pile it joins and the
+    right pile reads as the mirror image of the left one (left pile shows
+    left edges, right pile shows right edges). Implementation simplified
+    to a **static fan**: every card sits permanently at `x = index*peek`
+    and only the z-order follows the active card; activating a card plays
+    a "pull out of the fan" lift (transform keyframe, reduced-motion
+    snaps). The deck was also widened 760px -> 860px, and the clip box
+    gained top headroom for the lift.
+  - **Wordmark: "SignatureCat" -> "signature.cat"** in the brand lockups
+    of every language version, matching the carousel slides: landing
+    header + footer (home, /pricing, /banners-generator), docs header
+    (`brand-name` in build-docs.mjs, 116 pages), legal header
+    (build-legal.mjs). The logo-mark `<img>` alts became empty
+    (decorative - the adjacent wordmark text carries the accessible
+    name) and the `aria-label`s follow. Prose, meta titles and the
+    copyright line intentionally keep the "SignatureCat" product name.
+- **Why:** PM 2026-08-11: the right pile should mirror the left one and
+  arriving cards must land on top; the written logo should match the
+  brand lockup used in the graphics.
+- **Scope:** landingpage (deck: Polish home page; wordmark: all pages,
+  all locales incl. docs and legal)
+- **Design impact:** deck 860px wide; new deckPull keyframe; brand
+  lockup text lowercase domain form.
+- **Performance impact:** none (fewer moving parts than before - cards
+  no longer translate horizontally).
+- **A11y:** logo image alt="" removes double-announcement of the brand;
+  deck keyboard/wheel/swipe behaviour unchanged; lift animation is
+  killed by prefers-reduced-motion.
+
 ## 2026-08-11 - Polish feature tiles become a fanned card-deck carousel
 
 - **What:** The four Polish marketing graphics no longer sit in a 2x2 grid:
