@@ -480,48 +480,62 @@ section[id] { scroll-margin-top: 88px; }
    never intersect (demos stay idle) and the images carry data-featsrc, so
    they never download on other locales.
 
-   Deck geometry: every card is (100% - 3*peek) wide; the first card stays in
-   flow (it gives the container its height), the rest are absolute. JS
-   (initFeatDeck) only moves cards with translateX: the active card sits
-   fully visible, cards before it stack as `peek`-wide slivers on the left,
-   cards after it as slivers pinned to the right edge - a fanned deck laid
-   flat. Cursor position over the deck picks the card (left edge = first,
-   right edge = last), wheel steps, touch swipes (touch-action keeps
-   vertical page scroll native). Transitions are transform/box-shadow only;
-   the global prefers-reduced-motion kill makes the deck snap instead. */
+   Deck geometry (static fan): every card is (100% - 3*peek) wide and sits
+   permanently at x = index*peek - the fan NEVER slides. What changes with
+   the active card is the STACKING ORDER: the active card is pulled to the
+   top (with a small lift animation), and both side piles mirror each other
+   - the closer a card is to the active one, the higher it lies, so a card
+   stepped off the active spot always lands ON TOP of the pile it joins.
+   Visible slivers are therefore the LEFT edges of the left pile and the
+   RIGHT edges of the right pile, like a hand of cards fanned flat on a
+   table. The first card stays in flow (it gives the container its height),
+   the rest are absolute. Cursor position over the deck picks the card
+   (left edge = first, right edge = last), wheel steps, touch swipes
+   (touch-action keeps vertical page scroll native). Motion is a transform
+   keyframe + box-shadow only; the global prefers-reduced-motion kill makes
+   the deck snap instead. */
 html:not(:lang(pl)) .feat-shots { display: none; }
 html:lang(pl) #features .grid-3 { display: none; }
 .feat-deck {
   --deck-peek: 56px;
   position: relative;
-  max-width: 760px;
+  max-width: 860px;
   margin-inline: auto;
   touch-action: pan-y;
   border-radius: var(--radius);
-  /* The right-hand cards are full-size cards shifted right - the deck box
-     clips them to their `peek` slivers (and keeps the page from growing a
-     horizontal scrollbar). The bottom padding leaves room inside the clip
-     box for the active card's drop shadow. */
+  /* Clip box: the top padding gives the pull-up animation headroom, the
+     bottom padding leaves room for the active card's drop shadow. */
   overflow: hidden;
+  padding-top: 22px;
   padding-bottom: 26px;
 }
 .feat-deck:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 4px; }
 .feat-card {
-  position: absolute; top: 0; left: 0; margin: 0;
+  position: absolute; top: 22px; left: 0; margin: 0;
   /* 3 = cards - 1 (four slides): the active card + three visible slivers */
   width: calc(100% - 3 * var(--deck-peek));
   border-radius: var(--radius); overflow: hidden;
   border: 1px solid var(--border);
   background: var(--surface);
   box-shadow: var(--shadow);
-  transition: transform .38s var(--ease), box-shadow .3s var(--ease);
+  transition: box-shadow .3s var(--ease);
   will-change: transform;
 }
 /* The first card stays in flow so the deck has intrinsic height (the cards
    are square 1080x1080 images, so height follows the computed card width). */
-.feat-card:first-child { position: relative; }
+.feat-card:first-child { position: relative; top: 0; }
 .feat-card img { display: block; width: 100%; height: auto; }
-.feat-card.is-active { box-shadow: 0 18px 44px color-mix(in srgb, var(--ink) 16%, transparent); }
+.feat-card.is-active {
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--ink) 16%, transparent);
+  /* "Pull the card out of the fan": a quick lift while it jumps to the top
+     of the stack (z-index switches at the start of the pull). */
+  animation: deckPull .42s var(--ease);
+}
+@keyframes deckPull {
+  0% { transform: translateY(0); }
+  45% { transform: translateY(-16px); }
+  100% { transform: translateY(0); }
+}
 @media (max-width: 752px) { .feat-deck { --deck-peek: 30px; } }
 
 /* Feature card interactions (cards 1-3) ----------------------------------- */
