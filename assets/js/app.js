@@ -239,10 +239,109 @@
 
     initSignatureDemo();
     initTileVeils();
+    initFeatDeck();
     initPersonalizeCard();
     initConditionalCard();
     initAdBanner();
     initFoundersBar();
+  }
+
+  // -------- Polish feature deck: fanned-cards carousel ---------------------
+  // The four /pl marketing graphics behave like a deck of playing cards laid
+  // flat: the active card is fully visible, the cards before it stack as
+  // slivers anchored to the left edge, the cards after it as slivers pinned
+  // to the right edge. The cursor's X position over the deck picks the card
+  // (equal zones: far left = first, far right = last - zones do not move
+  // with the cards, so there is no feedback jitter), the wheel steps one
+  // card per gesture (page scroll is only captured when a step actually
+  // happens, so the ends never trap scrolling), arrow keys work when the
+  // deck is focused, and touch devices swipe horizontally (vertical pans
+  // stay native via touch-action: pan-y). Cards only ever move with
+  // translateX + z-index - one formula, no layout thrash; the global
+  // reduced-motion kill turns the glide into a snap.
+  function initFeatDeck() {
+    var deck = document.querySelector('.feat-deck');
+    if (!deck) return;
+    var cards = Array.prototype.slice.call(deck.querySelectorAll('.feat-card'));
+    var n = cards.length;
+    if (n < 2) return;
+    var active = 0;
+
+    function peek() {
+      var v = parseFloat(getComputedStyle(deck).getPropertyValue('--deck-peek'));
+      return isNaN(v) ? 56 : v;
+    }
+    function layout() {
+      var w = deck.clientWidth;
+      if (!w) return; // display:none (the deck only renders on /pl)
+      var p = peek();
+      cards.forEach(function (c, j) {
+        var x = j <= active ? j * p : w - (n - j) * p;
+        c.style.transform = 'translateX(' + x + 'px)';
+        c.style.zIndex = String(j === active ? n + 1 : j + 1);
+        c.classList.toggle('is-active', j === active);
+      });
+    }
+    function setActive(i) {
+      i = Math.max(0, Math.min(n - 1, i));
+      if (i === active) return false;
+      active = i;
+      layout();
+      return true;
+    }
+
+    // Cursor position picks the card (pointer devices only)
+    if (!window.matchMedia('(hover: none)').matches) {
+      deck.addEventListener('mousemove', function (e) {
+        var r = deck.getBoundingClientRect();
+        if (!r.width) return;
+        setActive(Math.floor(((e.clientX - r.left) / r.width) * n));
+      });
+    }
+
+    // Wheel steps through the deck; once at either end the page scrolls on
+    var wheelAcc = 0, wheelLock = 0;
+    deck.addEventListener('wheel', function (e) {
+      var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      var now = Date.now();
+      if (now < wheelLock) { e.preventDefault(); return; }
+      if (wheelAcc * d < 0) wheelAcc = 0; // direction flip resets the gesture
+      wheelAcc += d;
+      if (Math.abs(wheelAcc) < 40) return;
+      var step = wheelAcc > 0 ? 1 : -1;
+      wheelAcc = 0;
+      if (setActive(active + step)) {
+        wheelLock = now + 350; // swallow the same gesture's inertia tail
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    // Touch swipe: horizontal drags step the deck (multiple cards per drag
+    // when the finger keeps travelling); vertical pans scroll the page
+    var startX = null;
+    deck.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse') return;
+      startX = e.clientX;
+    });
+    deck.addEventListener('pointermove', function (e) {
+      if (startX == null || e.pointerType === 'mouse') return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) < 42) return;
+      setActive(active + (dx < 0 ? 1 : -1)); // swipe left = next card
+      startX = e.clientX;
+    });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (t) {
+      deck.addEventListener(t, function () { startX = null; });
+    });
+
+    // Keyboard parity: the deck carries tabindex="0"
+    deck.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { if (setActive(active + 1)) e.preventDefault(); }
+      else if (e.key === 'ArrowLeft') { if (setActive(active - 1)) e.preventDefault(); }
+    });
+
+    window.addEventListener('resize', layout);
+    layout();
   }
 
   // -------- Feature tiles 1-3: liquid-glass reveal -------------------------

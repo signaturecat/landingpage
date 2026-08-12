@@ -2,6 +2,43 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-11 - Polish feature tiles become a fanned card-deck carousel
+
+- **What:** The four Polish marketing graphics no longer sit in a 2x2 grid:
+  they form a horizontal deck of cards laid flat (`.feat-deck`). The active
+  card is fully visible; every other card always peeks out as a
+  `--deck-peek`-wide sliver (56px desktop / 30px under 752px) - cards
+  before the active one anchored to the left edge, cards after it pinned to
+  the right, like a fanned deck. Interactions (`initFeatDeck` in app.js):
+  - **Cursor position picks the card**: the deck is split into four equal
+    zones - far left shows the first card, far right the last. Zones do
+    not move with the cards, so there is no feedback jitter.
+  - **Wheel steps one card per gesture** (direction-aware, inertia tail
+    swallowed); the page only stops scrolling when a step actually
+    happens, so the deck never traps scrolling at its ends.
+  - **Touch devices swipe horizontally** (42px threshold, multiple steps
+    per long drag); vertical pans stay native via `touch-action: pan-y`.
+  - **Arrow keys** work when the deck is focused (`tabindex="0"`, visible
+    focus ring, `aria-roledescription="karuzela"` + Polish label).
+  - Cards move with `translateX` + z-index only (one formula, no layout
+    thrash); transitions are transform/box-shadow, so the global
+    `prefers-reduced-motion` kill turns the glide into a snap.
+  - Layout trick: the first card stays in flow (gives the deck its
+    height), the rest are absolute; the deck clips overflowing right-hand
+    cards to their slivers (`overflow: hidden` + bottom padding so the
+    active card's drop shadow survives the clip).
+- **Why:** PM request 2026-08-11 (follow-up to the 2x2 grid): a playful,
+  browsable presentation of the four slides that keeps the section compact.
+- **Scope:** landingpage (Polish home page only; en/de/fr untouched)
+- **Design impact:** deck max-width 760px centred; active card lifted with
+  a stronger shadow; same locale gate (`html:lang(pl)`) and data-featsrc
+  image mechanism as before.
+- **Performance impact:** no new assets; the same four WebP files; JS adds
+  one mousemove/wheel/pointer listener set on a single element.
+- **A11y:** keyboard operable with visible focus; each slide keeps its
+  descriptive Polish alt text; wheel capture releases at the deck ends;
+  reduced motion snaps instead of gliding.
+
 ## 2026-08-11 - Polish home page: feature tiles replaced with four marketing graphics
 
 - **What:** On `/pl` only, the interactive feature grid (six tiles incl. the
