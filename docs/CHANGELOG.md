@@ -2,6 +2,18 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-08-16 - Polish /pricing band headline: "Zdobądź swój rabat Founders"
+
+- **What:** the Polish closing-band H2 on `/pl/pricing` (`pp.band.title`)
+  changes from "Zablokuj swój rabat Founders" to "Zdobądź swój rabat
+  Founders" (capitalized as a heading). Source edit in `assets/js/i18n.js` +
+  `node build.mjs` rebuild (the wide diff is only the new `?v=` cache-busting
+  stamp of `i18n.js` across pages). EN/DE/FR keep their current "Lock in..."
+  equivalents - flagged to PM whether they should follow.
+- **Why:** PM request 2026-08-16.
+- **Scope:** landingpage (Polish pricing page copy)
+- **Design impact / Performance / A11y:** none.
+
 ## 2026-08-12 - Polish deck: cards 1/4 smaller
 
 - **What:** the deck narrows 860px -> 688px, so each card renders ~520px
