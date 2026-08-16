@@ -545,7 +545,7 @@ window.I18N = {
     "pp.compare.r14": "Kontrola samodzielnych edycji pracowników per przypisanie",
     "pp.compare.r15": "Logi zadań i niezmienny dziennik audytu",
     "pp.compare.r16": "Hosting w UE, gotowość RODO/GDPR i DPA od pierwszego dnia",
-    "pp.band.title": "Zablokuj swój rabat Founders",
+    "pp.band.title": "Zdobądź swój rabat Founders",
     "pp.band.desc": "Rozpocznij 14-dniowy darmowy trial już dziś i zachowaj dożywotnie 10% zniżki na cenę planu.",
     "pp.band.cta1": "Rozpocznij darmowy trial",
     "pp.band.cta2": "Przeczytaj dokumentację",
