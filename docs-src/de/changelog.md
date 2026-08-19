@@ -2,7 +2,7 @@
 title: Changelog
 navTitle: Changelog
 description: Was ist neu in SignatureCat - monatliche Highlights neuer Funktionen und Verbesserungen der E-Mail-Signatur-Verwaltung für Google Workspace und Gmail.
-updated: 2026-08-02
+updated: 2026-08-19
 published: 2026-07-24
 ---
 
@@ -12,6 +12,9 @@ Was ist neu in SignatureCat, dem E-Mail-Signatur-Manager für Google Workspace. 
 
 ## August 2026
 
+- **Animierte GIFs in Ihrer Bildbibliothek.** Logos und Banner können jetzt animiert sein: Laden Sie eine .gif-Datei hoch (bis 20 MB; PNG und JPG bleiben bei 5 MB) und verwenden Sie sie wie jedes andere Bild - mit derselben Größenänderung pro Vorlage, demselben Klick-Link und Alternativtext. Eine Einschränkung: Das klassische Outlook unter Windows zeigt nur das erste Bild einer Animation. Siehe [Banner und Logos](/docs/banners-and-logos).
+- **Zuweisungen heißen jetzt Automatische Zuweisungen.** Die Seite hat einen klareren Namen und sagt jetzt, wie sie wirklich arbeitet: Zuweisungen werden einmal täglich automatisch neu angewendet, und **Jetzt synchronisieren** erzwingt die Synchronisierung sofort. An Zielen und Vorrangregeln hat sich nichts geändert. Siehe [Vorlagen zuweisen](/docs/assign-templates).
+- **Die Workspace-Verbindung abschließen, auch wenn jemand anderes sie begonnen hat.** Die Einrichtung gehört nicht mehr einer einzelnen Person: Ist der Administrator, der das Onboarding begonnen hat, nicht erreichbar, kann ein anderer Administrator übernehmen und sie abschließen - der Bestätigungsbildschirm zeigt, wer begonnen hat, und lässt Sie fortfahren. Auch der Verbindungsassistent spricht klarer: Er sagt Ihnen, wenn das angemeldete Konto kein Google-Workspace-Super-Admin ist, und zeigt, wann die letzte Prüfung lief. Siehe [Google Workspace verbinden](/docs/connect-google-workspace).
 - **Wir prüfen jetzt, was Gmail wirklich gespeichert hat.** Gmail schreibt Signaturen beim Speichern auf den eigenen Servern um und kann dabei Teile eines komplizierten Layouts stillschweigend verwerfen. SignatureCat vergleicht jetzt das Gesendete mit dem, was Gmail behalten hat: Wurde etwas gekürzt, erhält die Ergebniszeile das Kennzeichen "von Gmail gekürzt", und die Testsignatur im Editor nennt Ihnen die verschwundenen Elemente. Siehe [Wenn Gmail Ihre Signatur kürzt](/docs/gmail-sanitization).
 - **Sehen, welche Signatur ein Postfach gerade hat.** Aus den [Protokollen](/docs/logs) heraus öffnen Sie die aktuelle Gmail-Signatur jedes Mitarbeiters und sehen sie sich an, ohne um einen Screenshot bitten zu müssen. Praktisch, wenn jemand seine Signatur in Gmail von Hand bearbeitet hat oder wenn Sie einen Beleg dafür wollen, dass ein Rollout angekommen ist.
 - **Alternativtext für Logos und Banner.** Jedes Bild in Ihrer Bibliothek kann jetzt eine kurze Beschreibung tragen, die Empfänger sehen, wenn ihr Mail-Programm Bilder blockiert - einer der einfachsten Gewinne an Barrierefreiheit in einer E-Mail-Signatur. Siehe [Banner und Logos](/docs/banners-and-logos).

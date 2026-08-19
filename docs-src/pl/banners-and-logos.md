@@ -2,7 +2,7 @@
 title: Wgrywaj i wstawiaj banery oraz logo
 navTitle: Banery i logo
 description: Dodawaj logo firmy i banery kampanii do szablonów podpisów Gmail w SignatureCat - biblioteka obrazków, opisy ALT, rozmiary, linki po kliknięciu i usuwanie.
-updated: 2026-08-02
+updated: 2026-08-19
 ---
 
 # Wgrywaj i wstawiaj banery oraz logo
@@ -15,13 +15,13 @@ SignatureCat przechowuje dwa rodzaje obrazków firmowych w bibliotece per worksp
 2. Kliknij **Logo** lub **Baner** w pasku narzędzi - każdy otwiera własną galerię (logo i banery nigdy się nie mieszają).
 3. Wybierz **Dodaj do biblioteki**, a następnie:
    - **Mam link** - wklej publiczny adres HTTPS obrazka, który już hostujesz, albo
-   - **Wgraj plik** - PNG lub JPG, zalecane do 200 KB (twardy limit 5 MB).
+   - **Wgraj plik** - PNG, JPG lub GIF, zalecane do 200 KB (twardy limit: 5 MB, animowany GIF do 20 MB).
 4. Opcjonalnie ustaw nazwę w bibliotece, link po kliknięciu ("Po kliknięciu prowadzi do") i **Opis obrazka (ALT)**, po czym zapisz. Obrazek zostaje dodany do biblioteki i wybrany dla tego szablonu.
 
 Banerowi możesz też nadać **własny rozmiar wpisu w bibliotece** (checkbox z polami szerokości i wysokości, 24-600 x 24-400 px) - zarówno przy dodawaniu wpisu, jak i później w szczegółach wybranego wpisu. Ten rozmiar staje się domyślnym rozmiarem wpisu wszędzie tam, gdzie jest on używany; wyczyszczenie go przywraca 450x100.
 
 > [!NOTE]
-> Tylko PNG i JPG - pliki SVG nie są przyjmowane (słabe wsparcie klientów pocztowych i względy bezpieczeństwa). Biblioteka mieści do 200 obrazków każdego rodzaju.
+> Tylko PNG, JPG i GIF - pliki SVG nie są przyjmowane (słabe wsparcie klientów pocztowych i względy bezpieczeństwa). Animowane GIF-y odtwarzają się w Gmailu; klasyczny Outlook na Windows pokazuje tylko pierwszą klatkę. Biblioteka mieści do 200 obrazków każdego rodzaju.
 
 ## Wstaw do szablonu
 

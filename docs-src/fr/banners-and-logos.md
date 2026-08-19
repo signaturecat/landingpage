@@ -2,7 +2,7 @@
 title: Téléverser et insérer des bannières et des logos
 navTitle: Bannières et logos
 description: Ajoutez des logos d'entreprise et des bannières de campagne aux modèles de signature Gmail dans SignatureCat - bibliothèque d'images, descriptions ALT, tailles, liens de clic et suppression.
-updated: 2026-08-02
+updated: 2026-08-19
 ---
 
 # Téléverser et insérer des bannières et des logos
@@ -15,13 +15,13 @@ SignatureCat conserve deux types d'images d'entreprise dans une bibliothèque pa
 2. Cliquez sur **Logo** ou **Bannière** dans la barre d'outils - chacun ouvre sa propre galerie (les logos et les bannières ne se mélangent jamais).
 3. Choisissez **Ajouter à la bibliothèque**, puis au choix :
    - **J'ai un lien** - collez l'URL HTTPS publique d'une image que vous hébergez déjà, ou
-   - **Téléverser un fichier** - PNG ou JPG, 200 Ko recommandés (limite stricte de 5 Mo).
+   - **Téléverser un fichier** - PNG, JPG ou GIF, 200 Ko recommandés (limite stricte : 5 Mo, GIF animé jusqu'à 20 Mo).
 4. Définissez éventuellement un nom dans la bibliothèque, un lien de clic ("Au clic, mène vers") et une **Description de l'image (ALT)**, puis enregistrez. L'image est ajoutée à la bibliothèque et sélectionnée pour ce modèle.
 
 Pour les bannières, vous pouvez aussi donner à l'**entrée de bibliothèque sa propre taille** (une case à cocher avec des champs largeur et hauteur, 24-600 x 24-400 px) - à l'ajout de l'entrée comme plus tard dans les détails de l'entrée sélectionnée. Cette taille devient la valeur par défaut de l'entrée partout où elle est utilisée ; l'effacer revient à 450x100.
 
 > [!NOTE]
-> PNG et JPG uniquement - les fichiers SVG ne sont pas acceptés (mauvaise prise en charge par les clients mail et raisons de sécurité). La bibliothèque contient jusqu'à 200 images par type.
+> PNG, JPG et GIF uniquement - les fichiers SVG ne sont pas acceptés (mauvaise prise en charge par les clients mail et raisons de sécurité). Les GIF animés jouent dans Gmail ; l'Outlook classique sous Windows n'affiche que la première image. La bibliothèque contient jusqu'à 200 images par type.
 
 ## Insérer dans un modèle
 

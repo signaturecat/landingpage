@@ -2,7 +2,7 @@
 title: Upload and insert banners and logos
 navTitle: Banners and logos
 description: Add company logos and campaign banners to Gmail signature templates in SignatureCat - image library, ALT descriptions, sizes, click links and deletion.
-updated: 2026-08-02
+updated: 2026-08-19
 ---
 
 # Upload and insert banners and logos
@@ -15,13 +15,13 @@ SignatureCat keeps two kinds of company images in a per-workspace library: **log
 2. Click **Logo** or **Banner** in the toolbar - each opens its own gallery (logos and banners never mix).
 3. Choose **Add to library**, then either:
    - **I have a link** - paste a public HTTPS URL of an image you already host, or
-   - **Upload a file** - PNG or JPG, recommended up to 200 KB (5 MB hard limit).
+   - **Upload a file** - PNG, JPG or GIF, recommended up to 200 KB (hard limit: 5 MB, animated GIF up to 20 MB).
 4. Optionally set a library label, a click-through link ("On click, leads to") and an **Image description (ALT)**, then save. The image is added to the library and selected for this template.
 
 For banners you can also give the **library entry its own size** (a checkbox with width and height fields, 24-600 x 24-400 px) - both when adding the entry and later in the selected entry's details. That size becomes the entry's default wherever it is used; clearing it returns to 450x100.
 
 > [!NOTE]
-> PNG and JPG only - SVG files are not accepted (poor mail-client support and security reasons). The library holds up to 200 images per kind.
+> PNG, JPG and GIF only - SVG files are not accepted (poor mail-client support and security reasons). Animated GIFs play in Gmail; classic Outlook on Windows shows only the first frame. The library holds up to 200 images per kind.
 
 ## Insert into a template
 

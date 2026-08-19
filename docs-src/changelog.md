@@ -2,7 +2,7 @@
 title: Changelog
 navTitle: Changelog
 description: What's new in SignatureCat - monthly highlights of new features and improvements to email signature management for Google Workspace and Gmail.
-updated: 2026-08-02
+updated: 2026-08-19
 published: 2026-07-24
 ---
 
@@ -12,6 +12,9 @@ What's new in SignatureCat, the email signature manager for Google Workspace. We
 
 ## August 2026
 
+- **Animated GIFs in your image library.** Logos and banners can now be animated: upload a .gif file (up to 20 MB; PNG and JPG stay at 5 MB) and use it like any other image - same per-template resizing, click-through link and alternative text. One caveat: classic Outlook on Windows shows only the first frame of an animation. See [Banners and logos](/docs/banners-and-logos).
+- **Assignments is now called Automatic Assignments.** The page got a clearer name and now says how it really works: assignments are re-applied automatically once a day, and **Sync now** forces a sync immediately. Nothing changed in how targets and precedence work. See [Assign templates](/docs/assign-templates).
+- **Finish connecting your Workspace even if a colleague started it.** Setup no longer belongs to one person: when the admin who began onboarding is away, another administrator can take over and finish it - the acceptance screen shows who started and lets you continue. The connection wizard also speaks more plainly: it tells you when the signed-in account is not a Google Workspace super admin, and shows when the last check ran. See [Connect Google Workspace](/docs/connect-google-workspace).
 - **We now check what Gmail actually saved.** Gmail rewrites signatures on its own servers when it stores them, and it can quietly drop parts of a complicated layout. SignatureCat now compares what it sent with what Gmail kept: if anything was trimmed, the result row is flagged "trimmed by Gmail" and the test signature in the editor tells you which elements disappeared. See [When Gmail trims your signature](/docs/gmail-sanitization).
 - **See the signature a mailbox has right now.** From [Logs](/docs/logs) you can open any employee's current Gmail signature and look at it, without asking them for a screenshot. Useful when someone edited their signature by hand in Gmail, or when you want proof that a rollout landed.
 - **Alternative text for logos and banners.** Every image in your library can now carry a short description that recipients see when their mail app blocks images - one of the simplest accessibility wins in an email signature. See [Banners and logos](/docs/banners-and-logos).
