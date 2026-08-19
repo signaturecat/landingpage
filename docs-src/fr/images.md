@@ -2,7 +2,7 @@
 title: Images
 navTitle: Images
 description: Référence des images dans les signatures e-mail SignatureCat pour Google Workspace - la bibliothèque, les descriptions ALT, l'hébergement, les formats, les limites et la suppression.
-updated: 2026-08-02
+updated: 2026-08-19
 ---
 
 # Images
@@ -18,7 +18,7 @@ Chaque espace de travail dispose d'une bibliothèque avec deux types d'entrées 
 | Logo | 115x115 px | `{{logo}}` | 200 entrées |
 | Bannière | 450x100 px, largeur max. 100% | `{{banner}}` | 200 entrées |
 
-Les entrées de la bibliothèque portent un nom facultatif, un **lien de clic** facultatif et une **Description de l'image (ALT)** facultative. Chaque modèle sélectionne son propre logo et sa propre bannière dans la bibliothèque ; les modèles sans sélection rendent un espace réservé neutre. Les téléversements sont en PNG ou JPG, jusqu'à 5 Mo (200 Ko recommandés) ; le SVG n'est pas accepté.
+Les entrées de la bibliothèque portent un nom facultatif, un **lien de clic** facultatif et une **Description de l'image (ALT)** facultative. Chaque modèle sélectionne son propre logo et sa propre bannière dans la bibliothèque ; les modèles sans sélection rendent un espace réservé neutre. Les téléversements sont en PNG, JPG ou GIF - jusqu'à 5 Mo pour PNG/JPG et 20 Mo pour GIF (200 Ko recommandés pour les images statiques) ; le SVG n'est pas accepté.
 
 ## Description de l'image (ALT)
 

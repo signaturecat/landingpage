@@ -711,13 +711,13 @@ SignatureCat keeps two kinds of company images in a per-workspace library: **log
 2. Click **Logo** or **Banner** in the toolbar - each opens its own gallery (logos and banners never mix).
 3. Choose **Add to library**, then either:
    - **I have a link** - paste a public HTTPS URL of an image you already host, or
-   - **Upload a file** - PNG or JPG, recommended up to 200 KB (5 MB hard limit).
+   - **Upload a file** - PNG, JPG or GIF, recommended up to 200 KB (hard limit: 5 MB, animated GIF up to 20 MB).
 4. Optionally set a library label, a click-through link ("On click, leads to") and an **Image description (ALT)**, then save. The image is added to the library and selected for this template.
 
 For banners you can also give the **library entry its own size** (a checkbox with width and height fields, 24-600 x 24-400 px) - both when adding the entry and later in the selected entry's details. That size becomes the entry's default wherever it is used; clearing it returns to 450x100.
 
 > [!NOTE]
-> PNG and JPG only - SVG files are not accepted (poor mail-client support and security reasons). The library holds up to 200 images per kind.
+> PNG, JPG and GIF only - SVG files are not accepted (poor mail-client support and security reasons). Animated GIFs play in Gmail; classic Outlook on Windows shows only the first frame. The library holds up to 200 images per kind.
 
 ## Insert into a template
 
@@ -1486,7 +1486,7 @@ Each workspace has one library with two kinds of entries:
 | Logo | 115x115 px | `{{logo}}` | 200 entries |
 | Banner | 450x100 px, max-width 100% | `{{banner}}` | 200 entries |
 
-Library entries carry an optional label, an optional **click-through link** and an optional **Image description (ALT)**. Each template selects its own logo and banner from the library; templates without a selection render a neutral placeholder. Uploads are PNG or JPG, up to 5 MB (200 KB recommended); SVG is not accepted.
+Library entries carry an optional label, an optional **click-through link** and an optional **Image description (ALT)**. Each template selects its own logo and banner from the library; templates without a selection render a neutral placeholder. Uploads are PNG, JPG or GIF - up to 5 MB for PNG/JPG and 20 MB for GIF (200 KB recommended for static images); SVG is not accepted.
 
 ## Image description (ALT)
 
@@ -1844,6 +1844,10 @@ What's new in SignatureCat, the email signature manager for Google Workspace. We
 
 ## August 2026
 
+- **Find people by name, not just email.** Every user picker in the app - the editor's "render as" field, [Logs](/docs/logs), [User data](/docs/user-data) and a brand-new search when granting access in [User management](/docs/user-management) - now matches by first name, last name and full name: "Tomasz", "Piasecki" and "Tomasz Piasecki" all find the same person, and names with diacritics like "Łukasz" work as typed.
+- **Animated GIFs in your image library.** Logos and banners can now be animated: upload a .gif file (up to 20 MB; PNG and JPG stay at 5 MB) and use it like any other image - same per-template resizing, click-through link and alternative text. One caveat: classic Outlook on Windows shows only the first frame of an animation. See [Banners and logos](/docs/banners-and-logos).
+- **Assignments is now called Automatic Assignments.** The page got a clearer name and now says how it really works: assignments are re-applied automatically once a day, and **Sync now** forces a sync immediately. Nothing changed in how targets and precedence work. See [Assign templates](/docs/assign-templates).
+- **Finish connecting your Workspace even if a colleague started it.** Setup no longer belongs to one person: when the admin who began onboarding is away, another administrator can take over and finish it - the acceptance screen shows who started and lets you continue. The connection wizard also speaks more plainly: it tells you when the signed-in account is not a Google Workspace super admin, and shows when the last check ran. See [Connect Google Workspace](/docs/connect-google-workspace).
 - **We now check what Gmail actually saved.** Gmail rewrites signatures on its own servers when it stores them, and it can quietly drop parts of a complicated layout. SignatureCat now compares what it sent with what Gmail kept: if anything was trimmed, the result row is flagged "trimmed by Gmail" and the test signature in the editor tells you which elements disappeared. See [When Gmail trims your signature](/docs/gmail-sanitization).
 - **See the signature a mailbox has right now.** From [Logs](/docs/logs) you can open any employee's current Gmail signature and look at it, without asking them for a screenshot. Useful when someone edited their signature by hand in Gmail, or when you want proof that a rollout landed.
 - **Alternative text for logos and banners.** Every image in your library can now carry a short description that recipients see when their mail app blocks images - one of the simplest accessibility wins in an email signature. See [Banners and logos](/docs/banners-and-logos).

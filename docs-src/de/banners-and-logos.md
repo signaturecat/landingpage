@@ -2,7 +2,7 @@
 title: Banner und Logos hochladen und einfügen
 navTitle: Banner und Logos
 description: Fügen Sie Firmenlogos und Kampagnenbanner zu Gmail-Signaturvorlagen in SignatureCat hinzu - Bildbibliothek, ALT-Beschreibungen, Größen, Klick-Links und das Löschen.
-updated: 2026-08-02
+updated: 2026-08-19
 ---
 
 # Banner und Logos hochladen und einfügen
@@ -15,13 +15,13 @@ SignatureCat verwaltet zwei Arten von Firmenbildern in einer Bibliothek pro Work
 2. Klicken Sie in der Werkzeugleiste auf **Logo** oder **Banner** - jeder Button öffnet seine eigene Galerie (Logos und Banner mischen sich nie).
 3. Wählen Sie **Zur Bibliothek hinzufügen** und dann entweder:
    - **Ich habe einen Link** - fügen Sie eine öffentliche HTTPS-URL eines Bildes ein, das Sie bereits hosten, oder
-   - **Datei hochladen** - PNG oder JPG, empfohlen bis 200 KB (hartes Limit 5 MB).
+   - **Datei hochladen** - PNG, JPG oder GIF, empfohlen bis 200 KB (hartes Limit: 5 MB, animiertes GIF bis 20 MB).
 4. Legen Sie optional einen Bibliotheksnamen, einen Klick-Link ("Führt beim Klick zu") und eine **Bildbeschreibung (ALT)** fest und speichern Sie. Das Bild wird zur Bibliothek hinzugefügt und für diese Vorlage ausgewählt.
 
 Für Banner können Sie außerdem dem **Bibliothekseintrag eine eigene Größe** geben (eine Checkbox mit Feldern für Breite und Höhe, 24-600 x 24-400 px) - sowohl beim Hinzufügen des Eintrags als auch später in den Details des ausgewählten Eintrags. Diese Größe wird zum Standard des Eintrags, wo immer er verwendet wird; wird sie geleert, gilt wieder 450x100.
 
 > [!NOTE]
-> Nur PNG und JPG - SVG-Dateien werden nicht akzeptiert (schlechte Unterstützung in Mail-Clients und Sicherheitsgründe). Die Bibliothek fasst bis zu 200 Bilder pro Art.
+> Nur PNG, JPG und GIF - SVG-Dateien werden nicht akzeptiert (schlechte Unterstützung in Mail-Clients und Sicherheitsgründe). Animierte GIFs laufen in Gmail; das klassische Outlook unter Windows zeigt nur das erste Bild. Die Bibliothek fasst bis zu 200 Bilder pro Art.
 
 ## In eine Vorlage einfügen
 

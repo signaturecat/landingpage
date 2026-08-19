@@ -2,7 +2,7 @@
 title: Obrazki
 navTitle: Obrazki
 description: Referencja obrazków w podpisach e-mail SignatureCat dla Google Workspace - biblioteka, opisy ALT, hosting, formaty, limity i usuwanie.
-updated: 2026-08-02
+updated: 2026-08-19
 ---
 
 # Obrazki
@@ -18,7 +18,7 @@ Każdy workspace ma jedną bibliotekę z dwoma rodzajami wpisów:
 | Logo | 115x115 px | `{{logo}}` | 200 wpisów |
 | Baner | 450x100 px, max-width 100% | `{{banner}}` | 200 wpisów |
 
-Wpisy w bibliotece mają opcjonalną nazwę, opcjonalny **link po kliknięciu** i opcjonalny **Opis obrazka (ALT)**. Każdy szablon wybiera z biblioteki własne logo i baner; szablony bez wyboru renderują neutralny placeholder. Wgrywane pliki to PNG lub JPG, do 5 MB (zalecane 200 KB); SVG nie jest przyjmowane.
+Wpisy w bibliotece mają opcjonalną nazwę, opcjonalny **link po kliknięciu** i opcjonalny **Opis obrazka (ALT)**. Każdy szablon wybiera z biblioteki własne logo i baner; szablony bez wyboru renderują neutralny placeholder. Wgrywane pliki to PNG, JPG lub GIF - do 5 MB dla PNG/JPG i do 20 MB dla GIF (dla obrazków statycznych zalecane 200 KB); SVG nie jest przyjmowane.
 
 ## Opis obrazka (ALT)
 

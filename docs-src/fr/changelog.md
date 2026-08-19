@@ -2,7 +2,7 @@
 title: Changelog
 navTitle: Changelog
 description: Les nouveautés de SignatureCat - chaque mois, les nouvelles fonctions et améliorations de la gestion des signatures e-mail pour Google Workspace et Gmail.
-updated: 2026-08-02
+updated: 2026-08-19
 published: 2026-07-24
 ---
 
@@ -12,6 +12,10 @@ Les nouveautés de SignatureCat, le gestionnaire de signatures e-mail pour Googl
 
 ## Août 2026
 
+- **Trouvez les personnes par leur nom, pas seulement par e-mail.** Chaque recherche de personne dans l'application - le champ "rendre comme" de l'éditeur, [Journaux](/docs/logs), [Données utilisateur](/docs/user-data) et une toute nouvelle recherche lors de l'attribution d'accès dans la [Gestion des accès](/docs/user-management) - trouve désormais par prénom, nom et nom complet : "Tomasz", "Piasecki" et "Tomasz Piasecki" trouvent la même personne, et les noms avec signes diacritiques comme "Łukasz" fonctionnent tels que vous les tapez.
+- **Des GIF animés dans votre bibliothèque d'images.** Les logos et les bannières peuvent désormais être animés : téléversez un fichier .gif (jusqu'à 20 Mo ; PNG et JPG restent à 5 Mo) et utilisez-le comme n'importe quelle autre image - même redimensionnement par modèle, même lien de clic et même texte alternatif. Une réserve : l'Outlook classique sous Windows n'affiche que la première image d'une animation. Voir [Bannières et logos](/docs/banners-and-logos).
+- **Les affectations s'appellent désormais Affectations automatiques.** La page porte un nom plus clair et dit désormais comment elle fonctionne vraiment : les affectations sont réappliquées automatiquement une fois par jour, et **Synchroniser maintenant** force la synchronisation immédiatement. Rien ne change dans les cibles ni les règles de priorité. Voir [Affecter des modèles](/docs/assign-templates).
+- **Terminez la connexion de votre Workspace même si un collègue l'a commencée.** La configuration n'appartient plus à une seule personne : si l'administrateur qui a commencé l'onboarding est absent, un autre administrateur peut reprendre et terminer - l'écran d'acceptation montre qui a commencé et vous laisse continuer. L'assistant de connexion parle aussi plus clairement : il vous dit quand le compte connecté n'est pas un super-admin Google Workspace, et affiche quand la dernière vérification a eu lieu. Voir [Connecter Google Workspace](/docs/connect-google-workspace).
 - **Nous vérifions désormais ce que Gmail a réellement enregistré.** Gmail réécrit les signatures sur ses propres serveurs au moment de les stocker, et il peut discrètement retirer des parties d'une mise en page compliquée. SignatureCat compare maintenant ce qu'il a envoyé avec ce que Gmail a gardé : si quelque chose a été tronqué, la ligne de résultat porte la mention "tronquée par Gmail" et la signature de test dans l'éditeur vous indique quels éléments ont disparu. Voir [Quand Gmail tronque votre signature](/docs/gmail-sanitization).
 - **Voyez la signature qu'une boîte porte en ce moment.** Depuis [Journaux](/docs/logs), vous pouvez ouvrir la signature Gmail actuelle de n'importe quel collaborateur et la regarder, sans lui demander de capture d'écran. Utile quand quelqu'un a modifié sa signature à la main dans Gmail, ou quand vous voulez la preuve qu'un déploiement est bien arrivé.
 - **Texte alternatif pour les logos et les bannières.** Chaque image de votre bibliothèque peut désormais porter une courte description que les destinataires voient quand leur application de messagerie bloque les images - l'un des gains d'accessibilité les plus simples dans une signature e-mail. Voir [Bannières et logos](/docs/banners-and-logos).

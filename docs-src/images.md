@@ -2,7 +2,7 @@
 title: Images
 navTitle: Images
 description: Reference for images in SignatureCat email signatures for Google Workspace - the library, ALT descriptions, hosting, formats, limits and deletion.
-updated: 2026-08-02
+updated: 2026-08-19
 ---
 
 # Images
@@ -18,7 +18,7 @@ Each workspace has one library with two kinds of entries:
 | Logo | 115x115 px | `{{logo}}` | 200 entries |
 | Banner | 450x100 px, max-width 100% | `{{banner}}` | 200 entries |
 
-Library entries carry an optional label, an optional **click-through link** and an optional **Image description (ALT)**. Each template selects its own logo and banner from the library; templates without a selection render a neutral placeholder. Uploads are PNG or JPG, up to 5 MB (200 KB recommended); SVG is not accepted.
+Library entries carry an optional label, an optional **click-through link** and an optional **Image description (ALT)**. Each template selects its own logo and banner from the library; templates without a selection render a neutral placeholder. Uploads are PNG, JPG or GIF - up to 5 MB for PNG/JPG and 20 MB for GIF (200 KB recommended for static images); SVG is not accepted.
 
 ## Image description (ALT)
 

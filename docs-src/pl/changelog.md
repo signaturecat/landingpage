@@ -2,7 +2,7 @@
 title: Changelog
 navTitle: Changelog
 description: Co nowego w SignatureCat - comiesięczne podsumowanie nowych funkcji i ulepszeń w zarządzaniu podpisami e-mail dla Google Workspace i Gmaila.
-updated: 2026-08-02
+updated: 2026-08-19
 published: 2026-07-24
 ---
 
@@ -12,6 +12,10 @@ Co nowego w SignatureCat, menedżerze podpisów e-mail dla Google Workspace. Sta
 
 ## Sierpień 2026
 
+- **Znajdź osobę po imieniu i nazwisku, nie tylko po e-mailu.** Każda wyszukiwarka osób w aplikacji - pole "renderuj jako" w edytorze, [Logi](/docs/logs), [Dane użytkowników](/docs/user-data) i zupełnie nowa wyszukiwarka przy nadawaniu dostępu w [Zarządzaniu dostępem](/docs/user-management) - dopasowuje teraz po imieniu, nazwisku i pełnym imieniu i nazwisku: "Tomasz", "Piasecki" i "Tomasz Piasecki" znajdą tę samą osobę, a imiona ze znakami diakrytycznymi jak "Łukasz" działają tak, jak je wpisujesz.
+- **Animowane GIF-y w bibliotece obrazków.** Logo i banery mogą być teraz animowane: wgraj plik .gif (do 20 MB; PNG i JPG zostają przy 5 MB) i używaj go jak każdego innego obrazka - z tą samą zmianą rozmiaru per szablon, linkiem po kliknięciu i tekstem alternatywnym. Jedno zastrzeżenie: klasyczny Outlook na Windows pokazuje tylko pierwszą klatkę animacji. Zobacz [Banery i logo](/docs/banners-and-logos).
+- **Przypisania nazywają się teraz Automatyczne przypisania.** Strona dostała czytelniejszą nazwę i mówi wprost, jak naprawdę działa: przypisania są ponawiane automatycznie raz dziennie, a **Synchronizuj teraz** wymusza synchronizację od razu. W celach i regułach pierwszeństwa nic się nie zmieniło. Zobacz [Przypisz szablony](/docs/assign-templates).
+- **Dokończ podłączanie Workspace, nawet jeśli zaczął je ktoś inny.** Konfiguracja nie należy już do jednej osoby: gdy administrator, który rozpoczął onboarding, jest nieosiągalny, inny administrator może przejąć i dokończyć proces - ekran akceptacji pokazuje, kto zaczął, i pozwala kontynuować. Kreator połączenia mówi też jaśniej: informuje, gdy zalogowane konto nie jest superadministratorem Google Workspace, i pokazuje, kiedy wykonano ostatnie sprawdzenie. Zobacz [Połącz Google Workspace](/docs/connect-google-workspace).
 - **Sprawdzamy teraz, co naprawdę zapisał Gmail.** Gmail przy zapisie przepisuje podpisy na własnych serwerach i potrafi po cichu wyrzucić fragmenty skomplikowanego układu. SignatureCat porównuje teraz to, co wysłał, z tym, co Gmail zachował: jeśli cokolwiek zostało okrojone, wiersz wyniku dostaje odznakę "okrojony przez Gmail", a testowy podpis w edytorze mówi Ci, które elementy zniknęły. Zobacz [Gdy Gmail okrawa Twój podpis](/docs/gmail-sanitization).
 - **Zobacz podpis, który skrzynka ma w tej chwili.** Z poziomu [Logów](/docs/logs) otworzysz i obejrzysz aktualny podpis Gmail dowolnego pracownika, bez proszenia go o zrzut ekranu. Przydatne, gdy ktoś edytował swój podpis ręcznie w Gmailu albo gdy chcesz mieć dowód, że wdrożenie doszło do skutku.
 - **Tekst alternatywny dla logo i banerów.** Każdy obrazek w Twojej bibliotece może teraz nieść krótki opis, który odbiorcy zobaczą, gdy ich program pocztowy blokuje obrazki - jedna z najprostszych rzeczy, jakie da się zrobić dla dostępności podpisu e-mail. Zobacz [Banery i logo](/docs/banners-and-logos).
