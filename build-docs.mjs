@@ -55,11 +55,34 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { createHash } from 'node:crypto';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const BASE = 'https://signature.cat';
 const DOCS_BASE = `${BASE}/docs`;
 const APP = 'https://app.signature.cat';
+
+/* Cache-busting for first-party CSS/JS (same mechanism as build.mjs, PR #36):
+   documents are served no-cache by the edge Worker, but /assets/* sits under
+   the zone 4h browser TTL - a deploy that changes docs.css would otherwise
+   pair NEW markup with STALE styles for hours. A content-hash query string
+   gives every asset revision its own URL; the Worker passes query strings to
+   the origin and GitHub Pages ignores them. Deterministic (one read per file
+   per run), so the build stays idempotent: an existing ?v=... is replaced. */
+const assetHashes = new Map();
+function assetHash(path) {
+  if (!assetHashes.has(path)) {
+    const body = readFileSync(join(ROOT, path.slice(1)));
+    assetHashes.set(path, createHash('sha256').update(body).digest('hex').slice(0, 10));
+  }
+  return assetHashes.get(path);
+}
+function stampAssets(html) {
+  return html.replace(
+    /(\s(?:href|src)=")(\/assets\/[^"?]+\.(?:css|js))(?:\?v=[0-9a-f]+)?(")/g,
+    (_m, pre, path, post) => `${pre}${path}?v=${assetHash(path)}${post}`,
+  );
+}
 const SITE_NAME = 'SignatureCat Docs';
 
 /* ---- locales ---------------------------------------------------------------- */
@@ -879,10 +902,11 @@ for (const loc of LOCALES) {
       loc,
       pages,
     });
-    assertClean(urlFor(item.slug, loc), html);
+    const stampedHtml = stampAssets(html);
+    assertClean(urlFor(item.slug, loc), stampedHtml);
     const dir = join(ROOT, ...urlFor(item.slug, loc).split('/').filter(Boolean));
     mkdirSync(dir, { recursive: true });
-    writeFileSync(join(dir, 'index.html'), html);
+    writeFileSync(join(dir, 'index.html'), stampedHtml);
     written.push(urlFor(item.slug, loc));
   });
   // per-locale search index next to that locale's docs root
