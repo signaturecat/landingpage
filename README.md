@@ -78,6 +78,16 @@ index every language (the old single-URL setup could not).
   (`„ "`, `« »`, `" "` are forbidden since PM's 2026-07-23 decision - quote with
   the plain keyboard `"`; the apostrophe `'` stays allowed). `build.mjs` and
   `build-docs.mjs` fail the build on any of them.
+- **Cache-busting:** both builders stamp first-party `/assets/*.css|js`
+  references with `?v=<content hash>` (`build.mjs` since PR #36, `build-docs.mjs`
+  since 2026-09-17). Documents are served `no-cache` by the Worker but `/assets/*`
+  sits under the zone's 4h browser TTL, so a stylesheet change must ship under a
+  new URL. Deterministic - rebuilding without changes yields no diff. After any
+  edit to `assets/css/docs.css` or `assets/js/docs.js` run `node build-docs.mjs`
+  and commit the regenerated docs pages (the diff is query strings only).
+- **Docs layout:** `/docs` is full-bleed (sidebar pinned to the left edge,
+  reading block centred and capped) - tune the `--docs-*` tokens on
+  `.docs-shell` in `assets/css/docs.css`, not the template.
 
 ## Legal pages (/legal, terms, policy)
 

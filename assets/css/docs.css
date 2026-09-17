@@ -40,7 +40,8 @@ html[data-theme="dark"] {
 .docs-topbar {
   display: flex; align-items: center; gap: 14px;
   height: 60px; padding-inline: 18px;
-  max-width: 1440px; margin-inline: auto;
+  /* Full-bleed since 2026-09-17: the brand sits over the pinned sidebar
+     (docs-shell below), not inside a centred 1440px box. */
 }
 .docs-topbar-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .docs-topbar .brand { font-size: 16px; }
@@ -126,11 +127,39 @@ html[data-theme="dark"] {
 .docs-app-btn { padding: 9px 18px; font-size: 14px; }
 
 /* Shell: sidebar | article | toc ------------------------------------------- */
+/* Full-bleed, docs.railway.com-like (PM request 2026-09-17). Before, the whole
+   shell sat in a centred 1440px box, so on a 1920px screen the sidebar
+   floated 240px from the edge and the article was a narrow strip in the
+   middle. Now the sidebar is pinned to the left edge of the viewport and the
+   READING BLOCK (article + TOC) is centred in the remaining width, capped by
+   --docs-article-max so line length stays readable on ultra-wide screens.
+   Five tracks:  sidebar | gutter | article | toc | gutter.  The two 1fr
+   gutters share the leftover space equally (that is what centres the block);
+   the grid algorithm fills the article's fixed cap BEFORE handing anything to
+   the flexible gutters, so when width runs out the gutters sit at their
+   minimum first and only then the article narrows. Tune the tokens, not the
+   template. Items are placed by explicit grid-column (see below). */
 .docs-shell {
-  display: grid; grid-template-columns: 264px minmax(0, 1fr) 220px;
-  gap: 0 40px; max-width: 1440px; margin-inline: auto; padding-inline: 18px;
+  --docs-sidebar-w: 264px;
+  --docs-article-max: 880px;   /* was a hard max-width: 780px on .docs-main */
+  --docs-toc-w: 260px;         /* 220px list + 40px breathing room to the article */
+  --docs-gutter-min: 40px;     /* article never closer than this to the sidebar */
+  --docs-gutter-end-min: 24px; /* TOC (or article) never closer than this to the right edge;
+                                  smaller than the start gutter on purpose: below ~1500px both
+                                  gutters sit at their minimum and every px here is article */
+  display: grid;
+  grid-template-columns:
+    var(--docs-sidebar-w)
+    minmax(var(--docs-gutter-min), 1fr)
+    minmax(0, var(--docs-article-max))
+    var(--docs-toc-w)
+    minmax(var(--docs-gutter-end-min), 1fr);
+  padding-inline: 18px;
   align-items: start;
 }
+.docs-sidebar { grid-column: 1; }
+.docs-main { grid-column: 3; }
+.docs-toc { grid-column: 4; }
 
 /* Sidebar ------------------------------------------------------------------- */
 .docs-sidebar {
@@ -171,7 +200,7 @@ html[data-theme="dark"] {
 }
 
 /* Article -------------------------------------------------------------------- */
-.docs-main { padding: 26px 0 56px; max-width: 780px; min-width: 0; }
+.docs-main { padding: 26px 0 56px; min-width: 0; } /* width = grid track (--docs-article-max) */
 
 .docs-breadcrumb {
   display: flex; flex-wrap: wrap; align-items: center; gap: 7px;
@@ -362,7 +391,7 @@ html[data-theme="light"] .docs-lang-select {
 .docs-toc {
   position: sticky; top: 60px; max-height: calc(100vh - 60px);
   overflow-y: auto; overscroll-behavior: contain;
-  padding: 30px 0 40px 4px; font-size: 13.5px;
+  padding: 30px 0 40px 40px; font-size: 13.5px; /* 40px = former column gap */
 }
 .docs-toc-title {
   font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
@@ -439,7 +468,15 @@ html[data-theme="light"] .docs-lang-select {
 
 /* Responsive --------------------------------------------------------------------------- */
 @media (max-width: 1180px) {
-  .docs-shell { grid-template-columns: 250px minmax(0, 1fr); }
+  /* TOC folds away; the article keeps its centred, capped track. */
+  .docs-shell {
+    --docs-sidebar-w: 250px;
+    grid-template-columns:
+      var(--docs-sidebar-w)
+      minmax(var(--docs-gutter-min), 1fr)
+      minmax(0, var(--docs-article-max))
+      minmax(var(--docs-gutter-end-min), 1fr);
+  }
   .docs-toc { display: none; }
 }
 @media (max-width: 1020px) {
@@ -447,7 +484,11 @@ html[data-theme="light"] .docs-lang-select {
   .docs-search-btn { max-width: 320px; }
 }
 @media (max-width: 860px) {
+  /* Single column: the sidebar becomes the off-canvas drawer (fixed, out of
+     flow), so every item must return to track 1 - a leftover grid-column: 3
+     would spawn implicit auto tracks and push the article off-screen. */
   .docs-shell { grid-template-columns: minmax(0, 1fr); }
+  .docs-sidebar, .docs-main, .docs-toc { grid-column: 1; }
   .docs-menu-btn { display: inline-flex; }
   .brand-name { display: none; }
   /* the Help button gives way; the search trigger docks to the right */

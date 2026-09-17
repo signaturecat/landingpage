@@ -2,6 +2,55 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-09-17 - Docs: full-bleed layout (sidebar pinned to the screen edge, wider reading block)
+
+- **What:** the `/docs` shell no longer sits in a centred 1440px box. The
+  sidebar nav is pinned to the left edge of the viewport (like
+  docs.railway.com) and the reading block (article + "On this page" TOC) is
+  centred in the remaining width, capped by a token so line length stays
+  readable on ultra-wide screens. Implementation in `assets/css/docs.css`
+  only (no template change): `.docs-shell` is a five-track grid
+  `sidebar | gutter | article | toc | gutter` with explicit `grid-column`
+  placement; the two `1fr` gutters share leftover space (that centres the
+  block) and the grid fills the article's fixed cap before the gutters, so
+  when width runs out the gutters hit their minimum first and only then the
+  article narrows. Tokens on `.docs-shell`: `--docs-sidebar-w` 264px (250px
+  under 1180px), `--docs-article-max` 880px (was a hard `max-width: 780px`
+  on `.docs-main`), `--docs-toc-w` 260px (220px list + 40px breathing room,
+  the former column gap now lives in the TOC padding), `--docs-gutter-min`
+  40px, `--docs-gutter-end-min` 24px. Topbar is full-bleed too, so the brand
+  sits over the sidebar. Breakpoints unchanged in behaviour: under 1180px the
+  TOC folds away (four tracks), under 860px the single-column drawer layout
+  resets every item to track 1. Measured: 1920px -> article 880px starting at
+  x=522 (Railway: x=534), TOC 220px at the block's right edge; 1440px ->
+  article 800px; 1280px -> 656px (before 680px); 1024px -> 674px (before
+  698px); 768px -> full width, drawer off-canvas. Sticky sidebar/TOC keep
+  working (same row).
+- **Also:** `build-docs.mjs` now stamps first-party `/assets/*.css|js`
+  references with `?v=<sha256[0..10]>` exactly like `build.mjs` does since
+  PR #36 - docs pages had no cache-busting, so this very stylesheet change
+  would have paired fresh markup with the 4h-cached old `docs.css` at the
+  edge. Deterministic and idempotent (rebuilding twice yields no diff); the
+  wide HTML diff of this change is query strings only. The `style.css` hash
+  matches the one `build.mjs` writes on the home pages (same algorithm, same
+  bytes). Stamped output is what `assertClean` inspects, so the served bytes
+  are the asserted bytes.
+- **Why:** PM request 2026-09-17 - on large screens the docs shrank the
+  content to a narrow strip in the middle with the nav floating 240px from
+  the edge; it should use the screen like Railway's docs do (limits, but a
+  rectangle of content under the navbar, nav pinned to the side).
+- **Scope:** landingpage (docs only: `assets/css/docs.css`, `build-docs.mjs`,
+  regenerated `/docs/**`, `/pl|de|fr/docs/**`).
+- **Design impact:** layout only; tokens/colours untouched, Light/Dark
+  verified. `--docs-article-max` is the knob if PM wants a narrower measure.
+- **Performance impact:** none at runtime (pure CSS grid, no JS); the `?v=`
+  stamps make CSS/JS deploys take effect immediately instead of after the
+  edge/browser TTL.
+- **A11y:** DOM order and focus order unchanged (sidebar, article, TOC);
+  skip link, drawer and scroll-spy untouched. Line length at the cap is
+  about 110 characters at 15.5px - within common docs practice, but wider
+  than the 80-character comfort zone; flagged to PM.
+
 ## 2026-08-16 - Polish /pricing band headline: "Zdobądź swój rabat Founders"
 
 - **What:** the Polish closing-band H2 on `/pl/pricing` (`pp.band.title`)
