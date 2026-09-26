@@ -49,8 +49,8 @@ https://signature.cat/docs
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
-  <link rel="preload" href="/assets/css/style.css?v=911f3c9ae6" as="style" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=911f3c9ae6" />
+  <link rel="preload" href="/assets/css/style.css?v=846d524b7e" as="style" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=846d524b7e" />
 
   <!-- SEO structured data -->
   <script type="application/ld+json">
@@ -437,8 +437,9 @@ https://signature.cat/docs
     </section>
 
     <!-- ============================== CONTACT ============================== -->
-    <!-- The CTA is a mailto: link; build.mjs bakes the localized ?subject= per
-         locale from the contact.subject key (see render() in build.mjs). -->
+    <!-- The CTA opens the contact form (/form, form.html); ?topic= tells the
+         Slack notification which button the visitor came from. build.mjs
+         localizes the href per locale (/pl/form?topic=call). -->
     <section id="contact" class="section" style="padding-top:0">
       <div class="container">
         <div class="band reveal">
@@ -447,7 +448,7 @@ https://signature.cat/docs
             <p data-i18n="contact.desc">Vous voulez savoir ce que SignatureCat peut apporter à votre organisation ? Planifiez un appel avec notre équipe.</p>
           </div>
           <div class="hero-cta" style="margin-top:0">
-            <a href="mailto:contact@signature.cat?subject=Je%20souhaite%20planifier%20un%20appel" class="btn btn-primary btn-lg" data-i18n="contact.cta">Planifier un appel</a>
+            <a href="/fr/form?topic=call" class="btn btn-primary btn-lg" data-i18n="contact.cta">Planifier un appel</a>
           </div>
         </div>
       </div>
@@ -632,7 +633,10 @@ https://signature.cat/docs
               <div class="range"><span data-i18n="pricing.row4">301+ utilisateurs</span><small data-i18n="pricing.row4sub">Grandes entreprises</small></div>
               <div class="price">$0.55 <small data-i18n="pricing.perUser">/ utilis. / mois</small></div>
             </div>
-            <a href="https://app.signature.cat" class="btn btn-primary btn-lg" style="justify-content:center;margin-top:6px" data-i18n="pricing.cta">Démarrer l'essai gratuit</a>
+            <div class="tiers-cta">
+              <a href="https://app.signature.cat" class="btn btn-primary btn-lg" data-i18n="pricing.cta">Démarrer l'essai gratuit</a>
+              <a href="/fr/form?topic=pricing" class="btn btn-ghost btn-lg" data-i18n="pricing.custom">Tarif sur mesure</a>
+            </div>
           </div>
         </div>
       </div>
@@ -719,8 +723,8 @@ https://signature.cat/docs
     </div>
   </footer>
 
-  <script src="/assets/js/i18n.js?v=80762ef388"></script>
-  <script src="/assets/js/app.js?v=4e5e72b184"></script>
+  <script src="/assets/js/i18n.js?v=74c782e7d2"></script>
+  <script src="/assets/js/app.js?v=7236300c33"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

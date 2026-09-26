@@ -46,11 +46,14 @@ const OG_LOCALE = { en: 'en_US', pl: 'pl_PL', de: 'de_DE', fr: 'fr_FR' };
 /* Landing pages rendered by this generator. Each page is authored ONCE in
    English (src) with its own per-page title/description i18n keys and a
    dedicated JSON-LD graph builder (`graph`). Adding a page = a new source
-   file + an entry here (+ the pp.-style keys in i18n.js x4 locales). */
+   file + an entry here (+ the pp.-style keys in i18n.js x4 locales) + the
+   slug in the cross-page link list in render(). `priority` (en, other
+   locales) overrides the sitemap default of 0.8/0.7 for subpages. */
 const PAGES = [
   { src: 'index.html', slug: '', titleKey: 'meta.title', descKey: 'meta.desc', graph: 'home' },
   { src: 'pricing.html', slug: 'pricing', titleKey: 'pp.meta.title', descKey: 'pp.meta.desc', graph: 'pricing' },
   { src: 'banners.html', slug: 'banners-generator', titleKey: 'bg.meta.title', descKey: 'bg.meta.desc', graph: 'banners' },
+  { src: 'form.html', slug: 'form', titleKey: 'cf.meta.title', descKey: 'cf.meta.desc', graph: 'form', priority: ['0.5', '0.4'] },
 ];
 
 // Canonical URLs carry NO trailing slash (the edge Worker 301s slashed
@@ -266,6 +269,30 @@ function jsonLdBannersGraph(loc, tr) {
   return JSON.stringify(graph, null, 2);
 }
 
+// /form: the contact page ("Book a call" / "Custom pricing") as a
+// ContactPage about the Organization (whose ContactPoint carries the email).
+function jsonLdFormGraph(loc, tr) {
+  const url = urlFor(loc, 'form');
+  const graph = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      orgNode(),
+      webSiteNode(loc),
+      {
+        '@type': 'ContactPage',
+        '@id': `${url}#webpage`,
+        url,
+        name: tr('cf.meta.title'),
+        description: tr('cf.meta.desc'),
+        inLanguage: loc,
+        isPartOf: { '@id': `${BASE}/#website` },
+        about: { '@id': ORG_ID },
+      },
+    ],
+  };
+  return JSON.stringify(graph, null, 2);
+}
+
 /** Produce the fully localized HTML for `loc` from the page's English source. */
 function render(src, loc, I18N, page) {
   const dict = I18N[loc];
@@ -351,7 +378,12 @@ function render(src, loc, I18N, page) {
 
   // JSON-LD: the whole block is regenerated per locale from the i18n dict -
   // no field-level regex patching (deterministic, hence idempotent).
-  const graphBuilders = { home: jsonLdGraph, pricing: jsonLdPricingGraph, banners: jsonLdBannersGraph };
+  const graphBuilders = {
+    home: jsonLdGraph,
+    pricing: jsonLdPricingGraph,
+    banners: jsonLdBannersGraph,
+    form: jsonLdFormGraph,
+  };
   const graph = graphBuilders[page.graph](loc, tr);
   html = html.replace(
     /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
@@ -370,26 +402,28 @@ function render(src, loc, I18N, page) {
 
   // Cross-page internal links follow the page language too (subpages link
   // home sections as /#..., the home page as /, and the pricing page as
-  // /pricing). Language-switcher anchors (data-lang) are exempt - they
-  // deliberately point at a SPECIFIC locale's URL. Idempotent: /pl#, /pl and
-  // /pl/pricing no longer match the English patterns.
+  // /pricing). A query string survives the rewrite (/form?topic=call ->
+  // /pl/form?topic=call). Language-switcher anchors (data-lang) are exempt -
+  // they deliberately point at a SPECIFIC locale's URL. Idempotent: /pl#, /pl
+  // and /pl/pricing no longer match the English patterns.
   if (loc !== 'en') {
     html = html.replace(/href="\/#/g, `href="/${loc}#`);
-    for (const target of ['/', '/pricing', '/banners-generator']) {
+    for (const target of ['/', '/pricing', '/banners-generator', '/form']) {
+      const english = new RegExp(`href="${target}(?=["?])`);
       html = html.replace(/<a\b[^>]*>/g, (tag) => {
         if (tag.includes('data-lang')) return tag;
-        return tag.replace(`href="${target}"`, `href="${pathFor(loc, target.slice(1))}"`);
+        return tag.replace(english, `href="${pathFor(loc, target.slice(1))}`);
       });
     }
   }
 
-  // "Book a call" CTA: the mailto subject is copy, so it lives in the
-  // dictionary as plain text (contact.subject) and the URL is composed here,
-  // percent-encoded. Baking it means the localized subject is in the served
-  // HTML too, not only after app.js runs. Idempotent: an existing ?subject=
-  // is replaced, not appended.
+  // mailto: links to contact@signature.cat (the email fallbacks on /form):
+  // the subject is copy, so it lives in the dictionary as plain text
+  // (contact.subject) and the URL is composed here, percent-encoded. Baking
+  // it means the localized subject is in the served HTML too, not only after
+  // app.js runs. Idempotent: an existing ?subject= is replaced, not appended.
   html = html.replace(
-    /(<a\b[^>]*\bhref=")mailto:contact@signature\.cat(?:\?subject=[^"]*)?(")/,
+    /(<a\b[^>]*\bhref=")mailto:contact@signature\.cat(?:\?subject=[^"]*)?(")/g,
     `$1mailto:contact@signature.cat?subject=${encodeURIComponent(tr('contact.subject'))}$2`,
   );
 
@@ -441,11 +475,12 @@ function sitemap() {
       ),
       `    <xhtml:link rel="alternate" hreflang="x-default" href="${urlFor('en', page.slug)}"/>`,
     ].join('\n');
+    const [prioEn, prioLoc] = page.priority || (page.slug === '' ? ['1.0', '0.9'] : ['0.8', '0.7']);
     return SUPPORTED.map(
       (l) => `  <url>
     <loc>${urlFor(l, page.slug)}</loc>
     <changefreq>weekly</changefreq>
-    <priority>${page.slug === '' ? (l === 'en' ? '1.0' : '0.9') : l === 'en' ? '0.8' : '0.7'}</priority>
+    <priority>${l === 'en' ? prioEn : prioLoc}</priority>
 ${alts}
   </url>`,
     );
