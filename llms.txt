@@ -54,5 +54,6 @@ Full documentation content in one file: https://signature.cat/llms-full.txt
 ## Optional
 
 - [Landing page](https://signature.cat/): product overview and pricing
+- [Contact sales](https://signature.cat/form): book a call or ask for custom pricing
 - [Legal](https://signature.cat/legal): Terms of Service, Privacy Policy, DPA information
 - [Service status](https://status.signature.cat/): live availability and incidents

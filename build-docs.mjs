@@ -812,6 +812,7 @@ ${bySection}
 ## Optional
 
 - [Landing page](${BASE}/): product overview and pricing
+- [Contact sales](${BASE}/form): book a call or ask for custom pricing
 - [Legal](${BASE}/legal): Terms of Service, Privacy Policy, DPA information
 - [Service status](https://status.signature.cat/): live availability and incidents
 `;
