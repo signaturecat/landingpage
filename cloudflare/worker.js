@@ -56,6 +56,14 @@
  *    503 and the front-end proceeds without storing the lead (best-effort
  *    by design - the gate must never block the tool).
  *
+ * 6. CONTACT FORM (POST /api/contact-requests): the "Book a call" / "Custom
+ *    pricing" form on /form posts the request here. The Worker verifies
+ *    Turnstile, posts the request to Slack (SLACK_WEBHOOK_URL), adds the
+ *    address to the Resend audience ONLY when the visitor ticked the
+ *    optional marketing opt-in, and answers with the Google Calendar booking
+ *    page (BOOKING_URL) that the form shows as its second step. See
+ *    handleContactRequest below.
+ *
  * Rollback: remove the route / `wrangler delete`. Per-locale pages, hreflang
  * and legal pages keep working; you lose the auto-redirect, the security
  * headers and the consent banner.
@@ -131,7 +139,9 @@ export function buildCsp(nonce) {
     "img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com",
     // status.signature.cat: the /docs status pill fetches /en/index.json
     "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://status.signature.cat",
-    "frame-src 'self' https://challenges.cloudflare.com",
+    // calendar.google.com: the appointment-schedule booking page embedded as
+    // the second step of the /form contact form (BOOKING_URL)
+    "frame-src 'self' https://challenges.cloudflare.com https://calendar.google.com",
     "font-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",
@@ -301,44 +311,31 @@ export function routePath(pathname) {
   return { type: 'pass' };
 }
 
-// ---- banner-generator lead capture ----------------------------------------------
-// POST /api/banner-leads -> create the address as a Resend audience contact.
-// Configuration (set by DevOps in the Cloudflare dashboard - never in the
-// repo): RESEND_API_KEY (secret) and RESEND_AUDIENCE_ID (variable). Consent
-// is required in the payload - the front-end gate has a mandatory marketing
-// consent checkbox; requests without consent === true are rejected.
-export async function handleBannerLead(request, env) {
-  const respond = (status, body) => {
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      'Cache-Control': 'no-store',
-    });
-    applyBaseHeaders(headers);
-    return new Response(JSON.stringify(body), { status, headers });
-  };
-  if (request.method !== 'POST') {
-    return respond(405, { ok: false, error: 'method_not_allowed' });
-  }
-  let payload;
+// ---- shared API plumbing (banner leads + contact form) --------------------------
+function jsonResponse(status, body) {
+  const headers = new Headers({
+    'Content-Type': 'application/json',
+    'Cache-Control': 'no-store',
+  });
+  applyBaseHeaders(headers);
+  return new Response(JSON.stringify(body), { status, headers });
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const isEmail = (email) => email.length <= 254 && EMAIL_RE.test(email);
+
+// Cloudflare Turnstile (canonical siteverify - the server-side check is
+// what actually stops bots; the on-page widget is just the token source).
+// Enforced whenever TURNSTILE_SECRET is configured on the Worker. Resolves
+// to null when the request may proceed, otherwise to the rejection to send.
+async function turnstileRejection(request, env, payload) {
+  if (!env?.TURNSTILE_SECRET) return null;
+  const token =
+    typeof payload?.['cf-turnstile-response'] === 'string'
+      ? payload['cf-turnstile-response']
+      : '';
+  if (!token) return { status: 403, error: 'turnstile_required' };
   try {
-    payload = await request.json();
-  } catch (e) {
-    return respond(400, { ok: false, error: 'invalid_json' });
-  }
-  const email = typeof payload?.email === 'string' ? payload.email.trim() : '';
-  const emailOk = email.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-  if (!emailOk || payload?.consent !== true) {
-    return respond(400, { ok: false, error: 'invalid_payload' });
-  }
-  // Cloudflare Turnstile (canonical siteverify - the server-side check is
-  // what actually stops bots; the on-page widget is just the token source).
-  // Enforced whenever TURNSTILE_SECRET is configured on the Worker.
-  if (env?.TURNSTILE_SECRET) {
-    const token =
-      typeof payload?.['cf-turnstile-response'] === 'string'
-        ? payload['cf-turnstile-response']
-        : '';
-    if (!token) return respond(403, { ok: false, error: 'turnstile_required' });
     const verify = await fetch(
       'https://challenges.cloudflare.com/turnstile/v0/siteverify',
       {
@@ -352,37 +349,249 @@ export async function handleBannerLead(request, env) {
       },
     );
     const outcome = await verify.json();
-    if (!outcome.success) {
-      return respond(403, { ok: false, error: 'turnstile_failed' });
-    }
+    return outcome.success === true ? null : { status: 403, error: 'turnstile_failed' };
+  } catch (e) {
+    return { status: 503, error: 'turnstile_unavailable' };
   }
-  if (!env?.RESEND_API_KEY || !env?.RESEND_AUDIENCE_ID) {
-    return respond(503, { ok: false, error: 'lead_capture_unconfigured' });
-  }
-  const res = await fetch(
-    `https://api.resend.com/audiences/${env.RESEND_AUDIENCE_ID}/contacts`,
+}
+
+// Resend audience contact (subscribed). Callers only reach this with an
+// explicit marketing opt-in from the visitor.
+function addResendContact(env, audienceId, contact) {
+  return fetch(
+    `https://api.resend.com/audiences/${encodeURIComponent(audienceId)}/contacts`,
     {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${env.RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, unsubscribed: false }),
+      body: JSON.stringify({ ...contact, unsubscribed: false }),
     },
   );
-  if (!res.ok) return respond(502, { ok: false, error: 'lead_capture_failed' });
-  return respond(200, { ok: true });
+}
+
+// ---- banner-generator lead capture ----------------------------------------------
+// POST /api/banner-leads -> create the address as a Resend audience contact.
+// Configuration (set by DevOps in the Cloudflare dashboard - never in the
+// repo): RESEND_API_KEY (secret) and RESEND_AUDIENCE_ID (variable). Consent
+// is required in the payload - the front-end gate has a mandatory marketing
+// consent checkbox; requests without consent === true are rejected.
+export async function handleBannerLead(request, env) {
+  if (request.method !== 'POST') {
+    return jsonResponse(405, { ok: false, error: 'method_not_allowed' });
+  }
+  let payload;
+  try {
+    payload = await request.json();
+  } catch (e) {
+    return jsonResponse(400, { ok: false, error: 'invalid_json' });
+  }
+  const email = typeof payload?.email === 'string' ? payload.email.trim() : '';
+  if (!isEmail(email) || payload?.consent !== true) {
+    return jsonResponse(400, { ok: false, error: 'invalid_payload' });
+  }
+  const blocked = await turnstileRejection(request, env, payload);
+  if (blocked) return jsonResponse(blocked.status, { ok: false, error: blocked.error });
+  if (!env?.RESEND_API_KEY || !env?.RESEND_AUDIENCE_ID) {
+    return jsonResponse(503, { ok: false, error: 'lead_capture_unconfigured' });
+  }
+  const res = await addResendContact(env, env.RESEND_AUDIENCE_ID, { email }).catch(() => null);
+  if (!res || !res.ok) return jsonResponse(502, { ok: false, error: 'lead_capture_failed' });
+  return jsonResponse(200, { ok: true });
+}
+
+// ---- contact form (/form) ---------------------------------------------------------
+// POST /api/contact-requests: the "Book a call" / "Custom pricing" form.
+// Configuration (Cloudflare dashboard -> Workers -> landingpage -> Settings ->
+// Variables and Secrets; never in the repo):
+//   SLACK_WEBHOOK_URL  - secret. A Slack incoming webhook; the Slack channel
+//                        is the one the webhook was created for, so moving
+//                        the notifications = a new webhook URL here.
+//   BOOKING_URL        - optional. The Google Calendar appointment schedule
+//                        (Website embed -> Inline booking page -> iframe src);
+//                        returned to the page as the form's second step.
+//   RESEND_API_KEY + RESEND_AUDIENCE_ID - shared with the banner gate;
+//   RESEND_CONTACT_AUDIENCE_ID - optional, a separate audience for form leads.
+// Without SLACK_WEBHOOK_URL the endpoint answers 503 and the page offers the
+// email fallback. Slack is the delivery channel, so a Slack failure fails the
+// request (the visitor sees it and can retry or email us); Resend is a side
+// channel and never fails it.
+export const CONTACT_SIZES = ['1-50', '51-120', '121-300', '301-1000', '1001-5000', '5000+'];
+const CONTACT_TOPICS = { call: 'Book a call', pricing: 'Custom pricing', general: 'General enquiry' };
+const CONTACT_MAX_BODY = 16384;
+const PHONE_RE = /^[+()0-9 ./-]{6,32}$/;
+
+// Single-line field: control characters and whitespace runs become one space.
+const oneLine = (v) =>
+  typeof v === 'string' ? v.replace(/[\u0000-\u001F\u007F\s]+/g, ' ').trim() : '';
+// Multi-line field: keep line breaks (at most one blank line), drop other
+// control characters.
+const multiLine = (v) =>
+  typeof v === 'string'
+    ? v
+        .replace(/\r\n?/g, '\n')
+        .replace(/[\u0000-\u0009\u000B-\u001F\u007F]/g, '')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim()
+    : '';
+
+/** Validate + normalize the form payload. Mirrors contact-form.js; null = invalid. */
+export function parseContact(payload) {
+  const name = oneLine(payload?.name);
+  const email = oneLine(payload?.email);
+  const phone = oneLine(payload?.phone);
+  const size = oneLine(payload?.size);
+  const message = multiLine(payload?.message);
+  const digits = phone.replace(/\D/g, '').length;
+  if (name.length < 2 || name.length > 120) return null;
+  if (!isEmail(email)) return null;
+  if (!PHONE_RE.test(phone) || digits < 6 || digits > 20) return null;
+  if (!CONTACT_SIZES.includes(size)) return null;
+  if (message.length > 2000) return null;
+  const topic =
+    typeof payload?.topic === 'string' && Object.hasOwn(CONTACT_TOPICS, payload.topic)
+      ? payload.topic
+      : 'general';
+  const locale = SUPPORTED.includes(payload?.locale) ? payload.locale : 'en';
+  return { name, email, phone, size, message, topic, locale, marketing: payload?.marketing === true };
+}
+
+/** BOOKING_URL -> the embeddable booking page, or '' when unset/invalid.
+    Only Google Calendar appointment pages pass: that is the one host the CSP
+    frame-src allows, so anything else would render as a blocked frame. */
+export function bookingEmbedUrl(raw) {
+  if (typeof raw !== 'string' || raw.trim() === '') return '';
+  let url;
+  try {
+    url = new URL(raw.trim());
+  } catch (e) {
+    return '';
+  }
+  if (
+    url.protocol !== 'https:' ||
+    url.hostname !== 'calendar.google.com' ||
+    !url.pathname.startsWith('/calendar/appointments/')
+  ) {
+    return '';
+  }
+  url.searchParams.set('gv', 'true'); // Google's embed mode (frameable view)
+  return url.toString();
+}
+
+// Slack mrkdwn: & < > are the only characters that need escaping (this also
+// neutralizes <!channel>-style mentions and <url|label> links in user input).
+const slackEscape = (s) =>
+  String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+/** The Slack message (Block Kit) for one contact request. */
+export function contactSlackMessage(lead, { booking = false } = {}) {
+  const topic = CONTACT_TOPICS[lead.topic];
+  const field = (label, value) => ({ type: 'mrkdwn', text: `*${label}*\n${slackEscape(value)}` });
+  const blocks = [
+    { type: 'header', text: { type: 'plain_text', text: `New contact request: ${topic}` } },
+    {
+      type: 'section',
+      fields: [
+        field('Name', lead.name),
+        field('Email', lead.email),
+        field('Phone', lead.phone),
+        field('Organization size', `${lead.size} employees`),
+        field('Topic', topic),
+        field('Language', lead.locale.toUpperCase()),
+      ],
+    },
+  ];
+  if (lead.message) {
+    // section text caps at 3000 characters; escaping can grow the message
+    const msg = slackEscape(lead.message);
+    blocks.push({
+      type: 'section',
+      text: { type: 'mrkdwn', text: `*Message*\n${msg.length > 2900 ? `${msg.slice(0, 2900)}...` : msg}` },
+    });
+  }
+  blocks.push({
+    type: 'context',
+    elements: [
+      {
+        type: 'mrkdwn',
+        text: `Marketing opt-in: ${lead.marketing ? 'yes' : 'no'} | Booking calendar shown: ${booking ? 'yes' : 'no'} | signature.cat/form`,
+      },
+    ],
+  });
+  return {
+    text: slackEscape(`New contact request (${topic}): ${lead.name}, ${lead.size} employees`),
+    blocks,
+    unfurl_links: false,
+    unfurl_media: false,
+  };
+}
+
+export async function handleContactRequest(request, env, ctx) {
+  if (request.method !== 'POST') {
+    return jsonResponse(405, { ok: false, error: 'method_not_allowed' });
+  }
+  if (Number(request.headers.get('Content-Length') || 0) > CONTACT_MAX_BODY) {
+    return jsonResponse(413, { ok: false, error: 'payload_too_large' });
+  }
+  const raw = await request.text();
+  if (raw.length > CONTACT_MAX_BODY) {
+    return jsonResponse(413, { ok: false, error: 'payload_too_large' });
+  }
+  let payload;
+  try {
+    payload = JSON.parse(raw);
+  } catch (e) {
+    return jsonResponse(400, { ok: false, error: 'invalid_json' });
+  }
+  const lead = parseContact(payload);
+  if (!lead) return jsonResponse(400, { ok: false, error: 'invalid_payload' });
+  const blocked = await turnstileRejection(request, env, payload);
+  if (blocked) return jsonResponse(blocked.status, { ok: false, error: blocked.error });
+  if (!env?.SLACK_WEBHOOK_URL) {
+    return jsonResponse(503, { ok: false, error: 'contact_unconfigured' });
+  }
+  const booking = bookingEmbedUrl(env.BOOKING_URL);
+  const slack = await fetch(env.SLACK_WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(contactSlackMessage(lead, { booking: Boolean(booking) })),
+  }).catch(() => null);
+  if (!slack || !slack.ok) {
+    return jsonResponse(502, { ok: false, error: 'contact_delivery_failed' });
+  }
+  // Marketing audience ONLY with the separate, unticked-by-default opt-in: a
+  // contact request alone is no consent to marketing email (GDPR art. 7(4)).
+  const audienceId = env.RESEND_CONTACT_AUDIENCE_ID || env.RESEND_AUDIENCE_ID;
+  if (lead.marketing && env.RESEND_API_KEY && audienceId) {
+    const [firstName, ...rest] = lead.name.split(' ');
+    const task = addResendContact(env, audienceId, {
+      email: lead.email,
+      first_name: firstName,
+      last_name: rest.join(' '),
+    })
+      .then((res) => {
+        if (!res.ok) console.error(`contact form: Resend answered ${res.status}`);
+      })
+      .catch((e) => console.error('contact form: Resend unreachable', e));
+    if (ctx?.waitUntil) ctx.waitUntil(task);
+    else await task;
+  }
+  return jsonResponse(200, booking ? { ok: true, booking } : { ok: true });
 }
 
 // ---- worker -------------------------------------------------------------------
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     // API routes are handled before URL canonicalization (an extension-less
     // /api/* path must never be rewritten to <path>/index.html on the origin).
     if (url.pathname === '/api/banner-leads') {
       return handleBannerLead(request, env);
+    }
+    if (url.pathname === '/api/contact-requests') {
+      return handleContactRequest(request, env, ctx);
     }
 
     if (url.pathname === '/' || url.pathname === '/index.html') {

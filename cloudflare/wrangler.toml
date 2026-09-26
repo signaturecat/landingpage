@@ -7,6 +7,13 @@ name = "landingpage"
 main = "worker.js"
 compatibility_date = "2024-11-01"
 
+# Every push to main redeploys this Worker (Workers Builds runs
+# `wrangler deploy`). Without keep_vars, each deploy REPLACES the Worker's
+# plain-text variables with the [vars] of this file - there are none, so a
+# variable added in the dashboard would silently vanish on the next merge.
+# Secrets are never touched by deploys either way.
+keep_vars = true
+
 # Bind to the whole apex so the root redirect applies; the Worker passes through
 # every non-root request to the origin.
 routes = [
@@ -15,15 +22,35 @@ routes = [
 
 # account_id is taken from `wrangler login` / CLOUDFLARE_ACCOUNT_ID; do not hardcode.
 
+# Runtime configuration. All values are set in the Cloudflare dashboard by
+# DevOps (Workers -> landingpage -> Settings -> Variables and Secrets), NEVER
+# here. Prefer "Secret" (encrypted) for every entry - it also keeps the value
+# safe from deploys regardless of keep_vars.
+#
 # Lead capture for /banners-generator (POST /api/banner-leads -> Resend
-# audience contact). All values are set in the Cloudflare dashboard by
-# DevOps (Workers -> landingpage -> Settings -> Variables), NEVER here:
+# audience contact):
 #   RESEND_API_KEY     - secret (encrypt!)
-#   RESEND_AUDIENCE_ID - plain variable (the target Resend audience id)
+#   RESEND_AUDIENCE_ID - the target Resend audience id
 #   TURNSTILE_SECRET   - secret (encrypt!); Turnstile widget secret key.
-#                        When set, the endpoint REQUIRES a valid
+#                        When set, the endpoints REQUIRE a valid
 #                        cf-turnstile-response token (bot protection).
 #                        The matching sitekey goes into TURNSTILE_SITE_KEY
-#                        in assets/js/banner-generator.js (frontend PR).
+#                        in assets/js/banner-generator.js and
+#                        assets/js/contact-form.js (same widget).
 # Until they exist the endpoint answers 503 (Resend) / skips the Turnstile
 # check, and the generator keeps working without storing leads.
+#
+# Contact form on /form (POST /api/contact-requests):
+#   SLACK_WEBHOOK_URL  - secret (encrypt!); Slack incoming webhook. The Slack
+#                        channel is the one the webhook was created for - to
+#                        switch channels, create a webhook for the new channel
+#                        and replace this value. Unset = the endpoint answers
+#                        503 and the page offers the email fallback.
+#   BOOKING_URL        - optional; Google Calendar appointment schedule URL
+#                        (Website embed -> Inline booking page -> the iframe
+#                        src). Shown as the form's second step; unset = the
+#                        form ends on a thank-you message.
+#   RESEND_CONTACT_AUDIENCE_ID - optional; a separate Resend audience for
+#                        form leads (default: RESEND_AUDIENCE_ID). A lead only
+#                        reaches Resend when the visitor ticked the optional
+#                        marketing opt-in.
