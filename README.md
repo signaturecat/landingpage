@@ -205,11 +205,17 @@ Logic: `assets/js/contact-form.js` (loaded only on that page).
   schedule) is set on the Worker, the success answer carries it and the page
   embeds the booking calendar in place of the form (full width, with an
   "open in a new tab" fallback). Without it the form ends on a thank-you note.
-- **Turnstile:** same widget and sitekey as the banner gate
+- **Turnstile (mandatory here):** same widget and sitekey as the banner gate
   (`TURNSTILE_SITE_KEY` in `contact-form.js`), loaded on the first interaction
   with the form, rendered explicitly with `appearance: interaction-only`
   (invisible unless a visitor really must click) and reset after a failed
-  submit (tokens are single-use).
+  submit (tokens are single-use). Unlike the best-effort banner gate, the
+  contact endpoint **fails closed**: without `TURNSTILE_SECRET` on the Worker
+  it answers 503 and forwards nothing, and a token only counts when
+  siteverify confirms it was solved on this host, for the widget action
+  `turnstile-spin-v2` and the form's `cData` `contact-form`
+  (`CONTACT_TURNSTILE` in `worker.js` <-> `TURNSTILE_ACTION`/`TURNSTILE_CDATA`
+  in `contact-form.js` - keep in sync).
 - **Analytics:** a GA4 `generate_lead` event (`form_topic` only, no personal
   data) fires on success, and only after the visitor opted into analytics.
 - **Worker config (DevOps):** see `cloudflare/README.md` ("Contact form").

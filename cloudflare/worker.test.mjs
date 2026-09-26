@@ -7,6 +7,7 @@ import assert from 'node:assert/strict';
 import worker, {
   buildCsp,
   bookingEmbedUrl,
+  CONTACT_TURNSTILE,
   contactSlackMessage,
   handleBannerLead,
   handleContactRequest,
@@ -27,6 +28,10 @@ const VALID = {
   'cf-turnstile-response': 'token-ok',
 };
 
+// What siteverify answers for a token solved in the contact form on
+// signature.cat (success + the fields the endpoint binds the token to).
+const VERIFIED = { success: true, hostname: 'signature.cat', ...CONTACT_TURNSTILE };
+
 let calls;
 let replies;
 const realFetch = globalThis.fetch;
@@ -40,7 +45,7 @@ beforeEach(() => {
     const reply = replies[host];
     if (reply instanceof Error) throw reply;
     if (reply) return reply(url, init);
-    if (host === 'challenges.cloudflare.com') return Response.json({ success: true });
+    if (host === 'challenges.cloudflare.com') return Response.json(VERIFIED);
     return new Response('ok', { status: 200 });
   };
 });
@@ -197,7 +202,7 @@ test('contact: request errors', async () => {
   assert.deepEqual(calls, []); // nothing forwarded for any of these
 });
 
-test('contact: Turnstile is enforced when TURNSTILE_SECRET is set', async () => {
+test('contact: a verified Turnstile token is required', async () => {
   const { 'cf-turnstile-response': _drop, ...noToken } = VALID;
   const missing = await handleContactRequest(post(noToken), env());
   assert.deepEqual([missing.status, (await missing.json()).error], [403, 'turnstile_required']);
@@ -211,11 +216,35 @@ test('contact: Turnstile is enforced when TURNSTILE_SECRET is set', async () => 
   const down = await handleContactRequest(post(VALID), env());
   assert.deepEqual([down.status, (await down.json()).error], [503, 'turnstile_unavailable']);
   assert.ok(!hosts().includes('hooks.slack.com'), 'Slack must not be called without a passed check');
+});
+
+test('contact: fails closed without TURNSTILE_SECRET', async () => {
+  const { 'cf-turnstile-response': _drop, ...noToken } = VALID;
+  for (const body of [VALID, noToken]) {
+    const res = await handleContactRequest(post(body), env({ TURNSTILE_SECRET: undefined }));
+    assert.deepEqual([res.status, (await res.json()).error], [503, 'turnstile_unconfigured']);
+  }
+  assert.deepEqual(calls, []); // no siteverify, no Slack, no Resend
+});
+
+test('contact: the token must be bound to this host, the widget action and the form cData', async () => {
+  for (const wrong of [
+    { hostname: 'localhost' }, // solved on a dev page with the same sitekey
+    { hostname: undefined },
+    { action: 'other-action' },
+    { cdata: undefined }, // e.g. a token from the banner gate widget
+    { cdata: 'banner-gate' },
+  ]) {
+    replies['challenges.cloudflare.com'] = () => Response.json({ ...VERIFIED, ...wrong });
+    const res = await handleContactRequest(post(VALID), env());
+    assert.deepEqual([res.status, (await res.json()).error], [403, 'turnstile_mismatch'], JSON.stringify(wrong));
+  }
+  assert.ok(!hosts().includes('hooks.slack.com'), 'a mismatched token must never reach Slack');
 
   calls = [];
-  const noSecret = await handleContactRequest(post(noToken), env({ TURNSTILE_SECRET: undefined }));
-  assert.equal(noSecret.status, 200);
-  assert.deepEqual(hosts(), ['hooks.slack.com']);
+  const huge = await handleContactRequest(post({ ...VALID, 'cf-turnstile-response': 'x'.repeat(2049) }), env());
+  assert.deepEqual([huge.status, (await huge.json()).error], [403, 'turnstile_invalid']);
+  assert.deepEqual(calls, []); // rejected before siteverify
 });
 
 test('contact: Slack missing or failing', async () => {
@@ -263,4 +292,24 @@ test('banner leads keep their contract', async () => {
   replies['api.resend.com'] = () => new Response('x', { status: 500 });
   const failed = await handleBannerLead(lead({ email: 'a@b.co', consent: true, 'cf-turnstile-response': 't' }), cfg);
   assert.equal(failed.status, 502);
+});
+
+test('banner gate stays best-effort: no fail-closed, no token binding', async () => {
+  const lead = (body) =>
+    new Request('https://signature.cat/api/banner-leads', { method: 'POST', body: JSON.stringify(body) });
+  // the gate's implicit widget carries no cData - a plain success must pass
+  replies['challenges.cloudflare.com'] = () => Response.json({ success: true, hostname: 'signature.cat' });
+  const bound = await handleBannerLead(
+    lead({ email: 'a@b.co', consent: true, 'cf-turnstile-response': 't' }),
+    { TURNSTILE_SECRET: 's', RESEND_API_KEY: 'k', RESEND_AUDIENCE_ID: 'aud-1' },
+  );
+  assert.equal(bound.status, 200);
+  // without TURNSTILE_SECRET the gate skips verification (the tool must work)
+  calls = [];
+  const open = await handleBannerLead(lead({ email: 'a@b.co', consent: true }), {
+    RESEND_API_KEY: 'k',
+    RESEND_AUDIENCE_ID: 'aud-1',
+  });
+  assert.equal(open.status, 200);
+  assert.deepEqual(hosts(), ['api.resend.com']);
 });

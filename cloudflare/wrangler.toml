@@ -34,6 +34,8 @@ routes = [
 #   TURNSTILE_SECRET   - secret (encrypt!); Turnstile widget secret key.
 #                        When set, the endpoints REQUIRE a valid
 #                        cf-turnstile-response token (bot protection).
+#                        The contact form endpoint requires the secret
+#                        itself too: without it, it refuses every request.
 #                        The matching sitekey goes into TURNSTILE_SITE_KEY
 #                        in assets/js/banner-generator.js and
 #                        assets/js/contact-form.js (same widget).

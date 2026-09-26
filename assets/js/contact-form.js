@@ -1,11 +1,12 @@
 /* Signature.Cat - contact form (/form, all locales).
  * One form behind the "Book a call" and "Custom pricing" CTAs (?topic=call |
- * pricing). The request goes to the edge Worker (ENDPOINT below), which runs
- * the Turnstile siteverify, posts it to Slack and - only with the optional
- * marketing opt-in - adds the address to the Resend audience. A successful
- * answer may carry the Google Calendar booking page: that is step 2, embedded
- * in place of the form. Personal data never goes into a URL (fetch body only;
- * the form element itself is method=post and cannot submit without JS).
+ * pricing). The request goes to the edge Worker (ENDPOINT below), which
+ * REQUIRES a verified Turnstile token (fail closed), posts it to Slack and -
+ * only with the optional marketing opt-in - adds the address to the Resend
+ * audience. A successful answer may carry the Google Calendar booking page:
+ * that is step 2, embedded in place of the form. Personal data never goes
+ * into a URL (fetch body only; the form element itself is method=post and
+ * cannot submit without JS).
  * Field rules mirror parseContact() in cloudflare/worker.js - keep in sync.
  */
 (function () {
@@ -22,6 +23,11 @@
   // the Worker enforces it via TURNSTILE_SECRET. Empty string = widget off.
   var TURNSTILE_SITE_KEY = '0x4AAAAAAEFN8TmQTXTz8or4';
   var TURNSTILE_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=sigcatContactTurnstile';
+  // The Worker only accepts a token issued for this action + cData on this
+  // host (CONTACT_TURNSTILE in cloudflare/worker.js - keep in sync), and it
+  // fails closed: no verified token, no request.
+  var TURNSTILE_ACTION = 'turnstile-spin-v2'; // Spin telemetry marker, keep
+  var TURNSTILE_CDATA = 'contact-form';
   var TOPICS = ['call', 'pricing'];
   var SIZES = ['1-50', '51-120', '121-300', '301-1000', '1001-5000', '5000+'];
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -129,7 +135,8 @@
       try {
         ts.id = window.turnstile.render(els.turnstile, {
           sitekey: TURNSTILE_SITE_KEY,
-          action: 'turnstile-spin-v2',
+          action: TURNSTILE_ACTION,
+          cData: TURNSTILE_CDATA,
           appearance: 'interaction-only',
           theme: 'auto',
           language: locale,
@@ -150,9 +157,9 @@
     s.src = TURNSTILE_SRC;
     s.async = true;
     s.defer = true;
-    // Blocked or offline: send without a token and let the Worker decide
-    // (it answers 403 when verification is enforced - shown with the email
-    // fallback), instead of leaving the visitor stuck on a spinner.
+    // Blocked or offline: send without a token and let the Worker refuse it
+    // (403 turnstile_required - shown with the email fallback), instead of
+    // leaving the visitor stuck on a spinner.
     s.onerror = function () { ts.state = 'failed'; resumePending(); };
     document.head.appendChild(s);
   }

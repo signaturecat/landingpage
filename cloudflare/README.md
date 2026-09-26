@@ -106,8 +106,18 @@ cf-turnstile-response}` as JSON. `handleContactRequest()`:
 1. validates + normalizes the payload (`parseContact()`, mirrored by
    `assets/js/contact-form.js`) - `400 invalid_payload` otherwise, `413` over
    16 KB;
-2. runs the canonical Turnstile siteverify when `TURNSTILE_SECRET` is set
-   (`403 turnstile_required|turnstile_failed`, `503 turnstile_unavailable`);
+2. **requires** a verified Turnstile token - the endpoint fails closed:
+   `503 turnstile_unconfigured` without `TURNSTILE_SECRET` (nothing is
+   forwarded), `403 turnstile_required` without a token, `403
+   turnstile_invalid` for a token over Cloudflare's 2048-character maximum,
+   `403 turnstile_failed` when siteverify says no, `503 turnstile_unavailable`
+   when siteverify is unreachable, and `403 turnstile_mismatch` unless
+   siteverify confirms the token was solved on this host (`hostname` = the
+   request's host), for the widget action `turnstile-spin-v2` and the form's
+   `cData` `contact-form` (`CONTACT_TURNSTILE`) - so a token solved on
+   another page or domain with the same sitekey cannot be replayed here.
+   The banner gate keeps its best-effort behaviour (verification only when
+   the secret is set, no binding);
 3. posts a Block Kit message to Slack - user input is escaped for Slack
    mrkdwn (`<!channel>`-style mentions and `<url|label>` links are
    neutralized), link unfurling is off. `503 contact_unconfigured` without a
@@ -130,7 +140,7 @@ Variables and Secrets; store every value as **Secret**):
 | `SLACK_WEBHOOK_URL` | yes | Slack incoming webhook. The channel is the one the webhook was created for: to move notifications to another channel, create a webhook for that channel and replace the value. |
 | `BOOKING_URL` | no | Google Calendar appointment schedule: Calendar -> the booking page -> Share -> Website embed -> Inline booking page -> the iframe `src`. Unset = the form ends on a thank-you note. |
 | `RESEND_CONTACT_AUDIENCE_ID` | no | Separate Resend audience for form leads; default `RESEND_AUDIENCE_ID` (shared with the banner gate, as is `RESEND_API_KEY`). |
-| `TURNSTILE_SECRET` | yes (already set) | Same widget as the banner gate. |
+| `TURNSTILE_SECRET` | **yes** (already set for the banner gate) | Same widget. Required: without it the contact endpoint refuses every request (fail closed). |
 
 `wrangler.toml` sets `keep_vars = true`: Workers Builds runs `wrangler deploy`
 on every push to `main`, and without it each deploy would replace the Worker's

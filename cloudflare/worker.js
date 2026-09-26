@@ -58,7 +58,9 @@
  *
  * 6. CONTACT FORM (POST /api/contact-requests): the "Book a call" / "Custom
  *    pricing" form on /form posts the request here. The Worker verifies
- *    Turnstile, posts the request to Slack (SLACK_WEBHOOK_URL), adds the
+ *    Turnstile - REQUIRED here (fail closed without TURNSTILE_SECRET) and
+ *    bound to this host + the form's widget action/cData - posts the
+ *    request to Slack (SLACK_WEBHOOK_URL), adds the
  *    address to the Resend audience ONLY when the visitor ticked the
  *    optional marketing opt-in, and answers with the Google Calendar booking
  *    page (BOOKING_URL) that the form shows as its second step. See
@@ -326,15 +328,28 @@ const isEmail = (email) => email.length <= 254 && EMAIL_RE.test(email);
 
 // Cloudflare Turnstile (canonical siteverify - the server-side check is
 // what actually stops bots; the on-page widget is just the token source).
-// Enforced whenever TURNSTILE_SECRET is configured on the Worker. Resolves
-// to null when the request may proceed, otherwise to the rejection to send.
-async function turnstileRejection(request, env, payload) {
-  if (!env?.TURNSTILE_SECRET) return null;
+// By default enforced whenever TURNSTILE_SECRET is configured on the Worker
+// (the banner gate is best-effort by design). Options for endpoints that
+// must never run unverified:
+//   required - no TURNSTILE_SECRET = 503, fail closed (nothing forwarded);
+//   expect   - {action, cdata}: the token must also have been issued on
+//              this very host, for this widget action and this form's cData
+//              (Cloudflare's recommended hostname/action checks), so a token
+//              solved elsewhere cannot be replayed here.
+// Resolves to null when the request may proceed, otherwise to the
+// rejection to send.
+const TURNSTILE_TOKEN_MAX = 2048; // Cloudflare's documented token maximum
+async function turnstileRejection(request, env, payload, { required = false, expect = null } = {}) {
+  if (!env?.TURNSTILE_SECRET) {
+    return required ? { status: 503, error: 'turnstile_unconfigured' } : null;
+  }
   const token =
     typeof payload?.['cf-turnstile-response'] === 'string'
       ? payload['cf-turnstile-response']
       : '';
   if (!token) return { status: 403, error: 'turnstile_required' };
+  if (token.length > TURNSTILE_TOKEN_MAX) return { status: 403, error: 'turnstile_invalid' };
+  let outcome;
   try {
     const verify = await fetch(
       'https://challenges.cloudflare.com/turnstile/v0/siteverify',
@@ -348,11 +363,20 @@ async function turnstileRejection(request, env, payload) {
         }),
       },
     );
-    const outcome = await verify.json();
-    return outcome.success === true ? null : { status: 403, error: 'turnstile_failed' };
+    outcome = await verify.json();
   } catch (e) {
     return { status: 503, error: 'turnstile_unavailable' };
   }
+  if (outcome?.success !== true) return { status: 403, error: 'turnstile_failed' };
+  if (
+    expect &&
+    (outcome.hostname !== new URL(request.url).hostname ||
+      outcome.action !== expect.action ||
+      outcome.cdata !== expect.cdata)
+  ) {
+    return { status: 403, error: 'turnstile_mismatch' };
+  }
+  return null;
 }
 
 // Resend audience contact (subscribed). Callers only reach this with an
@@ -411,6 +435,9 @@ export async function handleBannerLead(request, env) {
 //   BOOKING_URL        - optional. The Google Calendar appointment schedule
 //                        (Website embed -> Inline booking page -> iframe src);
 //                        returned to the page as the form's second step.
+//   TURNSTILE_SECRET   - secret, REQUIRED (shared with the banner gate). This
+//                        endpoint fails closed: without it every request is
+//                        answered 503 and nothing reaches Slack or Resend.
 //   RESEND_API_KEY + RESEND_AUDIENCE_ID - shared with the banner gate;
 //   RESEND_CONTACT_AUDIENCE_ID - optional, a separate audience for form leads.
 // Without SLACK_WEBHOOK_URL the endpoint answers 503 and the page offers the
@@ -418,6 +445,11 @@ export async function handleBannerLead(request, env) {
 // request (the visitor sees it and can retry or email us); Resend is a side
 // channel and never fails it.
 export const CONTACT_SIZES = ['1-50', '51-120', '121-300', '301-1000', '1001-5000', '5000+'];
+// What a contact-form token must carry (see turnstileRejection `expect`): the
+// widget action is the Spin telemetry marker shared by every widget on the
+// site, so the form itself is identified by the cData the widget is rendered
+// with in assets/js/contact-form.js - keep the two in sync.
+export const CONTACT_TURNSTILE = { action: 'turnstile-spin-v2', cdata: 'contact-form' };
 const CONTACT_TOPICS = { call: 'Book a call', pricing: 'Custom pricing', general: 'General enquiry' };
 const CONTACT_MAX_BODY = 16384;
 const PHONE_RE = /^[+()0-9 ./-]{6,32}$/;
@@ -546,7 +578,11 @@ export async function handleContactRequest(request, env, ctx) {
   }
   const lead = parseContact(payload);
   if (!lead) return jsonResponse(400, { ok: false, error: 'invalid_payload' });
-  const blocked = await turnstileRejection(request, env, payload);
+  // Fail closed + token bound to this host, widget action and form cData.
+  const blocked = await turnstileRejection(request, env, payload, {
+    required: true,
+    expect: CONTACT_TURNSTILE,
+  });
   if (blocked) return jsonResponse(blocked.status, { ok: false, error: blocked.error });
   if (!env?.SLACK_WEBHOOK_URL) {
     return jsonResponse(503, { ok: false, error: 'contact_unconfigured' });

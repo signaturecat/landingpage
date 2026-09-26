@@ -20,7 +20,15 @@
     consent).
   - **Worker:** `POST /api/contact-requests` (`handleContactRequest`):
     validation/normalization, canonical Turnstile siteverify (same widget as
-    the banner gate), Slack Block Kit message to `SLACK_WEBHOOK_URL` (mrkdwn
+    the banner gate) that is MANDATORY for this endpoint (PM follow-up
+    2026-09-26: "zabezpiecz formularz TURNSTILE_SECRET"): it fails closed
+    (`503 turnstile_unconfigured` without the secret, nothing forwarded),
+    caps tokens at Cloudflare's 2048 characters, and binds every token to
+    this host + the widget action `turnstile-spin-v2` + the form's `cData`
+    `contact-form` (`403 turnstile_mismatch` otherwise - a token solved on
+    another page or a dev host with the same sitekey cannot be replayed);
+    the banner gate stays best-effort. Then a Slack Block Kit message to
+    `SLACK_WEBHOOK_URL` (mrkdwn
     escaping, unfurl off; Slack failure = visible 502 so nothing is lost
     silently), Resend audience contact ONLY with the opt-in (background
     `waitUntil`, never fails the request), `booking` in the success answer.
@@ -29,8 +37,10 @@
     siteverify or Resend network error now answers JSON (503/502) instead of
     an uncaught 500. CSP `frame-src` + `https://calendar.google.com`.
     `wrangler.toml`: `keep_vars = true` (see Why). New zero-dep tests:
-    `node --test cloudflare/worker.test.mjs` (14 tests; negative controls
-    run: dropping the opt-in guard and the Slack escaping each fail a test).
+    `node --test cloudflare/worker.test.mjs` (17 tests; negative controls
+    run: dropping the opt-in guard, the Slack escaping, the fail-closed
+    branch, the hostname or cData binding and the token cap each fail a
+    test).
   - **CTAs:** "Book a call" (home band) no longer opens `mailto:` - it goes
     to `/form?topic=call`; the new "Custom pricing" button (`pricing.custom`
     x4: Custom pricing / Indywidualna wycena / Individuelles Angebot / Tarif
