@@ -122,6 +122,46 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/banners-generator"/>
   </url>
   <url>
+    <loc>https://signature.cat/form</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/form"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/form"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/form"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/form"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/form"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/pl/form</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/form"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/form"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/form"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/form"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/form"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/de/form</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/form"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/form"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/form"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/form"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/form"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/fr/form</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/form"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/form"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/form"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/form"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/form"/>
+  </url>
+  <url>
     <loc>https://signature.cat/legal</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>

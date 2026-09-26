@@ -1,7 +1,10 @@
 # Cloudflare edge Worker (signature.cat)
 
 One Worker on the `signature.cat/*` route, in front of the existing static host
-(GitHub Pages) - **no hosting migration needed**. It has three jobs:
+(GitHub Pages) - **no hosting migration needed**. It has three jobs, plus two
+small API endpoints (`POST /api/banner-leads` for the banner generator's email
+gate, `POST /api/contact-requests` for the contact form - see "Contact form"
+below):
 
 1. **Language router** - server-side, SEO-safe browser-language redirect for
    the bare root only (unchanged behaviour).
@@ -38,6 +41,10 @@ The CSP is **enforced** (not report-only) and allowlists only:
 - inline `<script>`s ONLY via the per-request nonce (added automatically to
   every script tag by HTMLRewriter) - a hand-written inline handler attribute
   (`onclick="..."`) is BLOCKED,
+- Cloudflare Turnstile: `challenges.cloudflare.com` (script-src + frame-src),
+- the Google Calendar booking page of the contact form:
+  `calendar.google.com` (frame-src only),
+- `status.signature.cat` (connect-src, the docs status pill),
 - `frame-ancestors 'none'`, `object-src 'none'`, `base-uri 'self'`,
   `form-action 'self'`.
 
@@ -89,6 +96,59 @@ Worker change.
 Googlebot crawls with `Accept-Language: en` (or none), so it is never redirected
 off `/` and the English homepage indexes as x-default. The reciprocal `hreflang`
 in each page (from `build.mjs`) is what exposes the alternates to search engines.
+
+## Contact form (POST /api/contact-requests)
+
+The "Book a call" / "Custom pricing" form on `/form` (x4 locales) posts
+`{name, email, phone, size, message?, topic, locale, marketing,
+cf-turnstile-response}` as JSON. `handleContactRequest()`:
+
+1. validates + normalizes the payload (`parseContact()`, mirrored by
+   `assets/js/contact-form.js`) - `400 invalid_payload` otherwise, `413` over
+   16 KB;
+2. **requires** a verified Turnstile token - the endpoint fails closed:
+   `503 turnstile_unconfigured` without `TURNSTILE_SECRET` (nothing is
+   forwarded), `403 turnstile_required` without a token, `403
+   turnstile_invalid` for a token over Cloudflare's 2048-character maximum,
+   `403 turnstile_failed` when siteverify says no, `503 turnstile_unavailable`
+   when siteverify is unreachable, and `403 turnstile_mismatch` unless
+   siteverify confirms the token was solved on this host (`hostname` = the
+   request's host), for the widget action `turnstile-spin-v2` and the form's
+   `cData` `contact-form` (`CONTACT_TURNSTILE`) - so a token solved on
+   another page or domain with the same sitekey cannot be replayed here.
+   The banner gate keeps its best-effort behaviour (verification only when
+   the secret is set, no binding);
+3. posts a Block Kit message to Slack - user input is escaped for Slack
+   mrkdwn (`<!channel>`-style mentions and `<url|label>` links are
+   neutralized), link unfurling is off. `503 contact_unconfigured` without a
+   webhook, `502 contact_delivery_failed` when Slack does not accept it
+   (Slack is the delivery channel, so the visitor sees the failure and can
+   retry or email us);
+4. ONLY when the visitor ticked the optional marketing opt-in: creates a
+   subscribed Resend audience contact (email, first/last name) in the
+   background (`ctx.waitUntil`) - a Resend failure is logged, never returned;
+5. answers `200 {ok: true, booking?}` - `booking` is `BOOKING_URL` normalized
+   to Google's embed mode (`gv=true`) and is returned only for a
+   `https://calendar.google.com/calendar/appointments/...` URL (the one host
+   the CSP lets the page frame).
+
+Configuration (Cloudflare dashboard -> Workers -> `landingpage` -> Settings ->
+Variables and Secrets; store every value as **Secret**):
+
+| Name | Required | What |
+|---|---|---|
+| `SLACK_WEBHOOK_URL` | yes | Slack incoming webhook. The channel is the one the webhook was created for: to move notifications to another channel, create a webhook for that channel and replace the value. |
+| `BOOKING_URL` | no | Google Calendar appointment schedule: Calendar -> the booking page -> Share -> Website embed -> Inline booking page -> the iframe `src`. Unset = the form ends on a thank-you note. |
+| `RESEND_CONTACT_AUDIENCE_ID` | no | Separate Resend audience for form leads; default `RESEND_AUDIENCE_ID` (shared with the banner gate, as is `RESEND_API_KEY`). |
+| `TURNSTILE_SECRET` | **yes** (already set for the banner gate) | Same widget. Required: without it the contact endpoint refuses every request (fail closed). |
+
+`wrangler.toml` sets `keep_vars = true`: Workers Builds runs `wrangler deploy`
+on every push to `main`, and without it each deploy would replace the Worker's
+plain-text dashboard variables with the (empty) `[vars]` of the config.
+Secrets are never touched by deploys.
+
+Tests: `node --test cloudflare/worker.test.mjs` (zero dependencies; Slack,
+Resend and siteverify are stubbed through `globalThis.fetch`).
 
 ## Prerequisites (DevOps)
 

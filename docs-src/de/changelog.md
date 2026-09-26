@@ -2,13 +2,19 @@
 title: Changelog
 navTitle: Changelog
 description: Was ist neu in SignatureCat - monatliche Highlights neuer Funktionen und Verbesserungen der E-Mail-Signatur-Verwaltung für Google Workspace und Gmail.
-updated: 2026-08-19
+updated: 2026-09-26
 published: 2026-07-24
 ---
 
 # Changelog
 
 Was ist neu in SignatureCat, dem E-Mail-Signatur-Manager für Google Workspace. Wir verbessern Signaturvorlagen, die Gmail-Integration und die Workspace-Verwaltung laufend - die Highlights sammeln wir hier, Monat für Monat.
+
+## September 2026
+
+- **Individuelle Angebote für größere Organisationen.** Neben der kostenlosen Testphase bietet die Preisübersicht auf signature.cat jetzt die Schaltfläche **Individuelles Angebot**: Erzählen Sie uns von Ihrer Organisation, und wir erstellen Ihnen ein passendes Angebot. Siehe [Preise](https://signature.cat/de/pricing).
+- **Gespräch vereinbaren, ohne die Website zu verlassen.** "Gespräch vereinbaren" öffnet jetzt ein kurzes Kontaktformular statt Ihres E-Mail-Programms: Geben Sie Namen, geschäftliche E-Mail, Telefon und Größe Ihrer Organisation an und wählen Sie direkt danach einen Termin in unserem Buchungskalender.
+- **Leistungsoptimierungen.** Verbesserungen unter der Haube an der Infrastruktur hinter der SignatureCat-App und signature.cat - für einen schnelleren und zuverlässigeren Betrieb.
 
 ## August 2026
 

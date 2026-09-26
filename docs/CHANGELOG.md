@@ -2,6 +2,98 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-09-26 - Contact form (/form) with Slack delivery + booking step, "Custom pricing" CTA, Founders banner removed (x4)
+
+- **What:**
+  - **New page `/form`** (`/pl|de|fr/form`, source `form.html`, 4th entry in
+    `PAGES`, `ContactPage` JSON-LD, sitemap priority 0.5/0.4, `cf.*` keys x4).
+    Step 1 is a form - full name, work email, phone, organization size
+    (estimated headcount; ranges 1-50 / 51-120 / 121-300 / 301-1000 /
+    1001-5000 / 5000+, aligned with the pricing tiers), optional description
+    and a separate, unticked-by-default marketing opt-in. Step 2, after a
+    successful submit, embeds the Google Calendar appointment schedule
+    returned by the Worker (`BOOKING_URL`), full width, with an "open in a
+    new tab" fallback; without `BOOKING_URL` the form ends on a thank-you
+    note. Logic in the new `assets/js/contact-form.js` (validation mirrors
+    the Worker, Turnstile explicit render + `interaction-only` + reset after
+    a failed submit, 20 s timeout, GA4 `generate_lead` only with analytics
+    consent).
+  - **Worker:** `POST /api/contact-requests` (`handleContactRequest`):
+    validation/normalization, canonical Turnstile siteverify (same widget as
+    the banner gate) that is MANDATORY for this endpoint (PM follow-up
+    2026-09-26: "zabezpiecz formularz TURNSTILE_SECRET"): it fails closed
+    (`503 turnstile_unconfigured` without the secret, nothing forwarded),
+    caps tokens at Cloudflare's 2048 characters, and binds every token to
+    this host + the widget action `turnstile-spin-v2` + the form's `cData`
+    `contact-form` (`403 turnstile_mismatch` otherwise - a token solved on
+    another page or a dev host with the same sitekey cannot be replayed);
+    the banner gate stays best-effort. Then a Slack Block Kit message to
+    `SLACK_WEBHOOK_URL` (mrkdwn
+    escaping, unfurl off; Slack failure = visible 502 so nothing is lost
+    silently), Resend audience contact ONLY with the opt-in (background
+    `waitUntil`, never fails the request), `booking` in the success answer.
+    Shared helpers extracted (`jsonResponse`, `turnstileRejection`,
+    `addResendContact`) - the banner-lead endpoint keeps its contract, and a
+    siteverify or Resend network error now answers JSON (503/502) instead of
+    an uncaught 500. CSP `frame-src` + `https://calendar.google.com`.
+    `wrangler.toml`: `keep_vars = true` (see Why). New zero-dep tests:
+    `node --test cloudflare/worker.test.mjs` (17 tests; negative controls
+    run: dropping the opt-in guard, the Slack escaping, the fail-closed
+    branch, the hostname or cData binding and the token cap each fail a
+    test).
+  - **CTAs:** "Book a call" (home band) no longer opens `mailto:` - it goes
+    to `/form?topic=call`; the new "Custom pricing" button (`pricing.custom`
+    x4: Custom pricing / Indywidualna wycena / Individuelles Angebot / Tarif
+    sur mesure) sits right under "Start free trial" in the tier column on
+    BOTH pricing sections (home `#pricing` + `/pricing`) and goes to
+    `/form?topic=pricing`. The topic reaches the Slack message.
+  - **Pricing column alignment:** the two CTAs live in `.tiers-cta`, pinned
+    to the bottom of the tier column (`margin-top: auto`); with the grid's
+    stretch, the calculator card's bottom edge equals the last button's
+    bottom edge in every locale and width (measured 1440px: 1233 = 1233 on
+    `/pl/pricing`, 5567 = 5567 on `/pl`).
+  - **`/pricing`: Founders edition banner removed** (markup, `.founders*`
+    CSS, `initFoundersBar()` in `app.js`, `pp.founders.*` x4). Founders
+    wording also left `pp.meta.desc`, the EN og:description and the closing
+    band (`pp.band.title/desc` x4 now sell the 14-day trial). The hero head
+    lost its bottom margin so the gap to the next section is the standard
+    section padding again.
+  - `build.mjs`: cross-page link localization keeps query strings and knows
+    `/form`; the mailto subject rule applies to every `mailto:` anchor (the
+    two email fallbacks on `/form`); optional per-page sitemap `priority`.
+  - `build-docs.mjs`: `llms.txt` "Optional" lists the contact page.
+  - Public changelog `/docs/changelog` x4: new "September 2026" section
+    (custom pricing, book a call via the form, and the technical/backend
+    work since 2026-08-19 summarized as "Performance optimizations", per PM).
+- **Why:** PM request 2026-09-26 - a real contact funnel instead of mailto
+  (leads in Slack for the team, opted-in addresses in the Resend marketing
+  audience, a booking step), a custom-pricing path for larger organizations,
+  one consistent pricing block on both pages, and the end of the Founders
+  banner. `keep_vars`: Workers Builds runs `wrangler deploy` on every push to
+  `main`, which by default replaces plain-text dashboard variables with the
+  config's (empty) `[vars]`.
+- **Scope:** landingpage (`form.html` + generated `/form` x4,
+  `assets/js/contact-form.js`, `assets/js/app.js`, `assets/js/i18n.js`,
+  `assets/css/style.css`, `index.html`, `pricing.html`, `build.mjs`,
+  `build-docs.mjs`, `cloudflare/*`, `docs-src/**/changelog.md`, READMEs;
+  regenerated pages, docs and sitemaps - the wide HTML diff is mostly the new
+  `?v=` stamps).
+- **Design impact:** new `.cf-*` block (card + fields on existing tokens,
+  Light/Dark verified); new token `--bad-ink` (red AS TEXT: light #b42318,
+  6.2:1 on cream; dark = `--bad` #ff6b61, 5.4:1) - `--bad` #d6453d was 4.1:1
+  as text; the banner gate's error line moved to `--bad-ink` too. Ghost
+  button for "Custom pricing" (secondary to the trial CTA).
+- **Performance impact:** `contact-form.js` (11 KB, 4 KB gzip, loaded only on `/form`);
+  the Turnstile script loads only on the first interaction with the form; the
+  booking iframe only after a successful submit. Founders JS/CSS removed.
+  No new asset on the home or pricing pages.
+- **A11y:** labels bound to every control, inline errors via
+  `aria-describedby` + `aria-invalid`, focus moves to the first invalid field
+  and, on success, to the step-2 heading; `role=alert` for send errors with a
+  technical-details disclosure; ink-border + pink-halo focus ring with a
+  transparent outline kept for forced-colors mode; mobile 375px: single
+  column, no horizontal overflow; iframe has a localized `title`.
+
 ## 2026-09-17 - Docs: full-bleed layout (sidebar pinned to the screen edge, wider reading block)
 
 - **What:** the `/docs` shell no longer sits in a centred 1440px box. The
