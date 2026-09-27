@@ -460,12 +460,16 @@ export async function handleBannerLead(request, env) {
 //                             emails; falls back to RESEND_API_KEY.
 //   RESEND_API_KEY + RESEND_AUDIENCE_ID (or RESEND_CONTACT_AUDIENCE_ID) - the
 //                             marketing audience, only with the visitor's opt-in.
-//   CONTACT_RL              - Workers rate-limit binding (wrangler.toml), per IP.
+//   CONTACT_RL              - Workers rate-limit binding (wrangler.toml), per IP
+//                             (IPv6 per /64), per endpoint.
+//   CONTACT_RCPT_RL         - rate-limit binding, one confirmation email per
+//                             recipient per minute across both forms.
 // A lead is delivered when Slack OR Notion accepted it (both are tried; each
-// failure is logged, and a Notion failure is flagged in the Slack message), so
-// nothing is lost silently and a retry after a half-failure cannot happen with
-// the lead already stored twice by us. Confirmation email, marketing audience
-// and logging are side channels that never fail the request.
+// failure is logged, and a failed or unconfirmed Notion write is flagged in the
+// Slack message), so nothing is lost silently. After a Notion timeout the row
+// may still exist ("unconfirmed"), so a retry can store it twice - a possible
+// duplicate beats a lost lead. Confirmation email (CONTACT_RCPT_RL-gated),
+// marketing audience and logging are side channels that never fail the request.
 export const CONTACT_SIZES = ['1-50', '51-120', '121-300', '301-1000', '1001-5000', '5000+'];
 // What a token must carry (see turnstileRejection `expect`): the widget action
 // is the Spin telemetry marker shared by every widget on the site, so the form
@@ -487,14 +491,21 @@ const CONTACT_MAX_BODY = 16384;
 const PHONE_RE = /^[+()0-9 ./-]{6,32}$/;
 const SLACK_TIMEOUT_MS = 8000;
 
+// Invisible format characters (soft hyphen, zero-width, bidi overrides and
+// isolates, word joiner, BOM) never belong in a name or a message - they are
+// how "Acme<U+202E>gnp.exe"-style spoofing reaches Slack, Notion and the email.
+const INVISIBLE_RE = /[\u00AD\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u2069\uFEFF]/g;
 // Single-line field: control characters and whitespace runs become one space.
 const oneLine = (v) =>
-  typeof v === 'string' ? v.replace(/[\u0000-\u001F\u007F\s]+/g, ' ').trim() : '';
+  typeof v === 'string'
+    ? v.replace(INVISIBLE_RE, '').replace(/[\u0000-\u001F\u007F\s]+/g, ' ').trim()
+    : '';
 // Multi-line field: keep line breaks (at most one blank line), drop other
-// control characters.
+// control and invisible characters. contact-form.js mirrors this exactly.
 const multiLine = (v) =>
   typeof v === 'string'
     ? v
+        .replace(INVISIBLE_RE, '')
         .replace(/\r\n?/g, '\n')
         .replace(/[\u0000-\u0009\u000B-\u001F\u007F]/g, '')
         .replace(/\n{3,}/g, '\n\n')
@@ -579,16 +590,33 @@ export function bookingEmbedUrl(raw) {
 // neutralizes <!channel>-style mentions and <url|label> links in user input).
 const slackEscape = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const slackField = (label, value) => ({ type: 'mrkdwn', text: `*${label}*\n${slackEscape(value)}` });
+// verbatim: true - Slack must not turn a plain "@channel" / "@here" or a
+// "#channel" in visitor text into a mention (or a URL into a link).
+const slackField = (label, value) => ({
+  type: 'mrkdwn',
+  text: `*${label}*\n${slackEscape(value)}`,
+  verbatim: true,
+});
 // section text caps at 3000 characters; escaping can grow the message
 function slackMessageBlock(label, message) {
   const msg = slackEscape(message);
   return {
     type: 'section',
-    text: { type: 'mrkdwn', text: `*${label}*\n${msg.length > 2900 ? `${msg.slice(0, 2900)}...` : msg}` },
+    text: {
+      type: 'mrkdwn',
+      text: `*${label}*\n${msg.length > 2900 ? `${msg.slice(0, 2900)}...` : msg}`,
+      verbatim: true,
+    },
   };
 }
-const NOTION_NOTE = { off: 'not configured', created: 'row added' };
+const notionNote = (notion) => {
+  if (notion.status === 'off') return 'not configured';
+  if (notion.status === 'created') return 'row added';
+  if (notion.status === 'unknown') {
+    return `:warning: UNCONFIRMED (${notion.detail || 'no answer'}) - check Notion before adding the row by hand`;
+  }
+  return `:warning: FAILED (${notion.detail || 'error'}) - add the row by hand`;
+};
 
 /** The Slack message (Block Kit) for one lead. */
 export function contactSlackMessage(lead, { booking = false, notion = { status: 'off' } } = {}) {
@@ -609,14 +637,12 @@ export function contactSlackMessage(lead, { booking = false, notion = { status: 
     },
   ];
   if (lead.message) blocks.push(slackMessageBlock('Message', lead.message));
-  const notionNote =
-    NOTION_NOTE[notion.status] || `:warning: FAILED (${notion.detail || 'error'}) - add the row by hand`;
   blocks.push({
     type: 'context',
     elements: [
       {
         type: 'mrkdwn',
-        text: `Marketing opt-in: ${lead.marketing ? 'yes' : 'no'} | Booking calendar shown: ${booking ? 'yes' : 'no'} | Notion: ${notionNote} | signature.cat/form`,
+        text: `Marketing opt-in: ${lead.marketing ? 'yes' : 'no'} | Booking calendar shown: ${booking ? 'yes' : 'no'} | Notion: ${notionNote(notion)} | signature.cat/form`,
       },
     ],
   });
@@ -659,20 +685,43 @@ export function helpSlackMessage(req) {
   };
 }
 
+// Read at most `max` bytes as they arrive: a chunked body without
+// Content-Length is cut off at the cap instead of being buffered whole.
+async function readBoundedText(request, max) {
+  const reader = request.body?.getReader();
+  if (!reader) return { raw: '' };
+  const chunks = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > max) {
+      reader.cancel().catch(() => {});
+      return { tooLarge: true };
+    }
+    chunks.push(value);
+  }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return { raw: new TextDecoder().decode(bytes) };
+}
+
 // Method + size + JSON checks shared by both endpoints.
 async function readJsonBody(request) {
+  const tooLarge = () => ({ error: jsonResponse(413, { ok: false, error: 'payload_too_large' }) });
   if (request.method !== 'POST') {
     return { error: jsonResponse(405, { ok: false, error: 'method_not_allowed' }) };
   }
-  if (Number(request.headers.get('Content-Length') || 0) > CONTACT_MAX_BODY) {
-    return { error: jsonResponse(413, { ok: false, error: 'payload_too_large' }) };
-  }
-  const raw = await request.text();
-  if (raw.length > CONTACT_MAX_BODY) {
-    return { error: jsonResponse(413, { ok: false, error: 'payload_too_large' }) };
-  }
+  if (Number(request.headers.get('Content-Length') || 0) > CONTACT_MAX_BODY) return tooLarge();
+  const body = await readBoundedText(request, CONTACT_MAX_BODY);
+  if (body.tooLarge) return tooLarge();
   try {
-    return { payload: JSON.parse(raw) };
+    return { payload: JSON.parse(body.raw) };
   } catch (e) {
     return { error: jsonResponse(400, { ok: false, error: 'invalid_json' }) };
   }
@@ -682,15 +731,46 @@ async function readJsonBody(request) {
 // The confirmation email goes to whatever address the form carries, so this
 // caps how fast anyone who got past Turnstile can make us send mail. Absent
 // binding (tests, local) = no limit; a binding error never blocks a visitor.
-async function rateLimited(request, env, scope) {
-  if (typeof env?.CONTACT_RL?.limit !== 'function') return false;
-  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+// IPv4 as is, IPv6 reduced to its /64 (one subscriber gets a whole /64, so
+// keying on the full address would hand out a fresh bucket per address).
+export function rateLimitIpKey(ip) {
+  if (!ip.includes(':')) return ip; // IPv4 or 'unknown'
+  const [head, tail] = ip.toLowerCase().split('::');
+  const h = head ? head.split(':') : [];
+  const t = tail ? tail.split(':') : [];
+  const groups = tail === undefined ? h : [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t];
+  return `${groups.slice(0, 4).map((g) => g.padStart(4, '0')).join(':')}::/64`;
+}
+
+async function limited(binding, key) {
+  if (typeof binding?.limit !== 'function') return false;
   try {
-    const { success } = await env.CONTACT_RL.limit({ key: `${scope}:${ip}` });
+    const { success } = await binding.limit({ key });
     return success === false;
   } catch (e) {
     return false;
   }
+}
+
+async function rateLimited(request, env, scope) {
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  return limited(env?.CONTACT_RL, `${scope}:${rateLimitIpKey(ip)}`);
+}
+
+// One confirmation email per recipient per minute across both forms
+// (CONTACT_RCPT_RL): the email goes to whatever address a form carries, so
+// this is what protects a third party's inbox - and our sending reputation.
+// A refused confirmation only skips the email; the request still succeeds.
+async function confirmationAllowed(env, email) {
+  return !(await limited(env?.CONTACT_RCPT_RL, `rcpt:${email.toLowerCase()}`));
+}
+
+async function sendConfirmationIfAllowed(env, to, render, meta) {
+  if (!(await confirmationAllowed(env, to))) {
+    console.error('contact form: confirmation skipped (recipient rate limit)');
+    return { status: 'limited' };
+  }
+  return sendConfirmation(env, to, render(), meta);
 }
 
 async function postSlack(webhookUrl, message) {
@@ -756,7 +836,7 @@ export async function handleContactRequest(request, env, ctx) {
           })
           .catch(() => console.error('contact form: Resend audience unreachable'))
       : null,
-    sendConfirmation(env, lead.email, renderLeadConfirmation(lead, { booking }), {
+    sendConfirmationIfAllowed(env, lead.email, () => renderLeadConfirmation(lead, { booking }), {
       kind: 'contact',
       locale: lead.locale,
     }),
@@ -786,7 +866,7 @@ export async function handleHelpRequest(request, env, ctx) {
   // No Notion row and no marketing audience for help requests - only the
   // confirmation email to the requester.
   await inBackground(ctx, [
-    sendConfirmation(env, req.email, renderHelpConfirmation(req), { kind: 'help', locale: req.locale }),
+    sendConfirmationIfAllowed(env, req.email, () => renderHelpConfirmation(req), { kind: 'help', locale: req.locale }),
   ]);
   return jsonResponse(200, { ok: true });
 }

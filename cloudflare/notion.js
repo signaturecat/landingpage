@@ -108,10 +108,15 @@ export function notionLeadPage(lead, parent, now = new Date()) {
 
 /**
  * Create the lead row. Never throws. Resolves to
- *   {status: 'off'}                      - not configured,
- *   {status: 'created', id}              - row created,
- *   {status: 'failed', detail}           - Notion refused or timed out
- *                                          (detail = "HTTP 400 validation_error").
+ *   {status: 'off'}             - not configured,
+ *   {status: 'created', id}     - row created (also a 503 that reports
+ *                                 additional_data.committed_resource_id),
+ *   {status: 'failed', detail}  - Notion refused it (4xx, e.g. "HTTP 400
+ *                                 validation_error" for a renamed column),
+ *   {status: 'unknown', detail} - no definite answer (timeout, dropped
+ *                                 connection, 5xx): Notion documents that a
+ *                                 write can be saved and still time out or
+ *                                 answer 5xx, so the row may exist.
  * POST /v1/pages is not idempotent, so there is no retry here.
  */
 export async function createNotionLead(env, lead, now = new Date()) {
@@ -133,7 +138,7 @@ export async function createNotionLead(env, lead, now = new Date()) {
   } catch (e) {
     const detail = e?.name === 'TimeoutError' ? 'timeout' : 'unreachable';
     console.error(`contact form: Notion ${detail}`);
-    return { status: 'failed', detail };
+    return { status: 'unknown', detail };
   }
   let body = null;
   try {
@@ -142,9 +147,13 @@ export async function createNotionLead(env, lead, now = new Date()) {
     /* non-JSON answer */
   }
   if (res.ok) return { status: 'created', id: typeof body?.id === 'string' ? body.id : '' };
+  const committed = body?.additional_data?.committed_resource_id;
+  if (res.status === 503 && typeof committed === 'string' && committed) {
+    return { status: 'created', id: committed };
+  }
   const detail = `HTTP ${res.status}${body?.code ? ` ${body.code}` : ''}`;
   // The message names the offending column (e.g. a renamed property) - log it
   // for the Worker logs; the Slack note carries the short detail only.
   console.error(`contact form: Notion ${detail}: ${String(body?.message || '').slice(0, 300)}`);
-  return { status: 'failed', detail };
+  return { status: res.status >= 500 ? 'unknown' : 'failed', detail };
 }

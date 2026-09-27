@@ -78,3 +78,15 @@ namespace_id = "1001"
   [ratelimits.simple]
   limit = 5
   period = 60
+
+# Per-recipient cap on confirmation emails: at most one per address per
+# minute, whichever form or IP sends it. Stops the form from being used to
+# mail-bomb a third-party address from rotating IPs. Over the limit the
+# request is still delivered (Slack/Notion); only the email is skipped.
+[[ratelimits]]
+name = "CONTACT_RCPT_RL"
+namespace_id = "1002"
+
+  [ratelimits.simple]
+  limit = 1
+  period = 60

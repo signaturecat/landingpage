@@ -4,6 +4,7 @@
 // through globalThis.fetch - nothing leaves the machine.
 import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import worker, {
   buildCsp,
   bookingEmbedUrl,
@@ -16,6 +17,7 @@ import worker, {
   helpSlackMessage,
   parseContact,
   parseHelp,
+  rateLimitIpKey,
 } from './worker.js';
 import { NOTION_COLUMNS, NOTION_VERSION, notionLeadPage, notionParent, warsawDateTime } from './notion.js';
 import { MAIL_COPY, renderHelpConfirmation, renderLeadConfirmation } from './confirmation-email.js';
@@ -52,7 +54,7 @@ const VERIFIED_HELP = { success: true, hostname: 'signature.cat', ...HELP_TURNST
 // Forbidden "AI-tell" typography (DESIGN_SYSTEM.md): dashes, invisible and
 // bidi characters, typographic double quotes.
 const FORBIDDEN =
-  /[‒–—―​‌‍⁠﻿  ­‎‏«»“”„‟]/;
+  /[\u2012\u2013\u2014\u2015\u200B\u200C\u200D\u2060\uFEFF\u00A0\u202F\u00AD\u200E\u200F\u00AB\u00BB\u201C\u201D\u201E\u201F]/;
 
 let calls;
 let replies;
@@ -603,4 +605,153 @@ test('banner gate stays best-effort: no fail-closed, no token binding', async ()
   const open = await handleBannerLead(lead({ email: 'a@b.co', consent: true }), { RESEND_API_KEY: 'k', RESEND_AUDIENCE_ID: 'aud-1' });
   assert.equal(open.status, 200);
   assert.deepEqual(hosts(), ['api.resend.com']);
+});
+
+// ---- review hardening -------------------------------------------------------------------
+test('invisible, bidi and control characters are stripped before validation', () => {
+  const lead = parseContact({
+    ...VALID,
+    name: 'Jan\u00AD Kowal\u200Bski\u2066',
+    company: 'Acme\u202E\u0007 Co',
+    message: 'a\u200B\u200B\u0000b\r\n\r\n\r\nc',
+  });
+  assert.deepEqual([lead.name, lead.company, lead.message], ['Jan Kowalski', 'Acme Co', 'ab\n\nc']);
+  assert.equal(parseContact({ ...VALID, company: '\u200B\u200B\uFEFF' }), null, 'a company made of invisible characters is empty');
+  assert.equal(parseHelp({ ...HELP, message: '\u200B'.repeat(40) }), null, 'an invisible description is too short');
+  const src = readFileSync(new URL('./worker.js', import.meta.url), 'utf8');
+  const form = readFileSync(new URL('../assets/js/contact-form.js', import.meta.url), 'utf8');
+  const invisible = /INVISIBLE_RE = (\/.*\/g);/;
+  assert.equal(form.match(invisible)[1], src.match(invisible)[1], 'the form mirrors the Worker normalization');
+  const email = readFileSync(new URL('./confirmation-email.js', import.meta.url), 'utf8');
+  const firstName = /(\/\^\[\\p\{L\}\].*?\/u)\.test/;
+  assert.equal(form.match(firstName)[1], email.match(firstName)[1], 'the thank-you screen greets by the same first-name rule');
+  for (const [name, text] of [['worker.js', src], ['contact-form.js', form]]) {
+    assert.ok(!/[\u00AD\u200B-\u200F\u202A-\u202E\u2060-\u2069\uFEFF]/.test(text), `${name}: no raw invisible characters`);
+  }
+});
+
+test('Slack renders user text verbatim (no @channel / #channel / URL linking)', () => {
+  const lead = parseContact({ ...VALID, company: '@channel', message: '@here see #general' });
+  const msg = contactSlackMessage(lead, { notion: { status: 'created' } });
+  assert.ok(msg.blocks[1].fields.every((f) => f.verbatim === true));
+  assert.equal(msg.blocks[2].text.verbatim, true);
+  const help = helpSlackMessage(parseHelp(HELP));
+  assert.ok(help.blocks[1].fields.every((f) => f.verbatim === true) && help.blocks[2].text.verbatim === true);
+});
+
+test('a body without Content-Length is still capped while streaming', async () => {
+  const chunk = new TextEncoder().encode(JSON.stringify({ ...VALID, message: 'x'.repeat(1999) }));
+  const stream = new ReadableStream({
+    pull(c) {
+      c.enqueue(chunk);
+      if (++this.n > 20) c.close();
+    },
+    start() {
+      this.n = 0;
+    },
+  });
+  const req = new Request('https://signature.cat/api/contact-requests', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'CF-Connecting-IP': '203.0.113.7' },
+    body: stream,
+    duplex: 'half',
+  });
+  assert.equal(req.headers.get('Content-Length'), null);
+  const res = await handleContactRequest(req, full());
+  assert.deepEqual([res.status, (await res.json()).error], [413, 'payload_too_large']);
+  assert.deepEqual(calls, []);
+});
+
+test('rate-limit keys: IPv4 as is, IPv6 by /64', async () => {
+  assert.equal(rateLimitIpKey('203.0.113.7'), '203.0.113.7');
+  assert.equal(rateLimitIpKey('2001:db8:1:2:3:4:5:6'), '2001:0db8:0001:0002::/64');
+  assert.equal(rateLimitIpKey('2001:DB8:1:2::99'), '2001:0db8:0001:0002::/64', 'same /64, same bucket');
+  assert.equal(rateLimitIpKey('2001:db8::1'), '2001:0db8:0000:0000::/64');
+  assert.equal(rateLimitIpKey('::1'), '0000:0000:0000:0000::/64');
+  const keys = [];
+  const limiter = { limit: async ({ key }) => (keys.push(key), { success: false }) };
+  await handleContactRequest(post(VALID, undefined, { 'CF-Connecting-IP': '2001:db8:1:2:aaaa::1' }), full({ CONTACT_RL: limiter }));
+  assert.deepEqual(keys, ['contact:2001:0db8:0001:0002::/64']);
+});
+
+test('confirmation emails: one per recipient per minute (CONTACT_RCPT_RL), request still delivered', async () => {
+  const keys = [];
+  const limiter = { limit: async ({ key }) => (keys.push(key), { success: false }) };
+  let res;
+  const logs = await quietErrors(async () => {
+    res = await handleContactRequest(post({ ...VALID, email: 'Jan@Example.com' }), full({ CONTACT_RCPT_RL: limiter }));
+  });
+  assert.equal(res.status, 200);
+  assert.ok(urls().includes(SLACK) && hosts().includes('api.notion.com'), 'lead delivered');
+  assert.ok(!urls().includes('https://api.resend.com/emails'), 'no confirmation email');
+  assert.ok(urls().includes('https://api.resend.com/audiences/aud-1/contacts'), 'the opt-in is not a confirmation');
+  assert.deepEqual(keys, ['rcpt:jan@example.com']);
+  assert.match(logs, /recipient rate limit/);
+  replies['challenges.cloudflare.com'] = () => Response.json(VERIFIED_HELP);
+  calls = [];
+  await quietErrors(async () => {
+    res = await handleHelpRequest(postHelp(HELP), helpEnv({ RESEND_API_KEY: 're_full', CONTACT_RCPT_RL: limiter }));
+  });
+  assert.equal(res.status, 200);
+  assert.deepEqual(urls(), ['https://challenges.cloudflare.com/turnstile/v0/siteverify', SLACK_HELP]);
+});
+
+test('Notion: no definite answer is UNCONFIRMED, a 503 with a committed page is a row', async () => {
+  const note = async () => {
+    calls = [];
+    await quietErrors(async () => {
+      assert.equal((await handleContactRequest(post(VALID), full())).status, 200);
+    });
+    return jsonOf(calls.find((c) => c.url === SLACK)).blocks.at(-1).elements[0].text;
+  };
+  replies['api.notion.com'] = new TypeError('network down');
+  assert.match(await note(), /Notion: :warning: UNCONFIRMED \(unreachable\) - check Notion before adding the row by hand/);
+  replies['api.notion.com'] = () => new Response('bad gateway', { status: 502 });
+  assert.match(await note(), /Notion: :warning: UNCONFIRMED \(HTTP 502/);
+  replies['api.notion.com'] = () =>
+    Response.json({ object: 'error', status: 503, code: 'service_unavailable', additional_data: { committed_resource_id: 'page-9' } }, { status: 503 });
+  assert.match(await note(), /Notion: row added/);
+  replies['api.notion.com'] = () => Response.json({ object: 'error', status: 409, code: 'conflict_error' }, { status: 409 });
+  assert.match(await note(), /Notion: :warning: FAILED \(HTTP 409 conflict_error\) - add the row by hand/);
+});
+
+test('confirmation emails: echoed free text cannot become a link or a spoofed greeting', () => {
+  const lead = renderLeadConfirmation(
+    leadFixture('en', {
+      name: 'www.evil.example Kowalski',
+      company: 'evil-login.com',
+      message: 'Verify at https://evil.example/login now',
+      email: 'jan@example.com',
+    }),
+    { year: 2026 },
+  );
+  assert.match(lead.html, new RegExp(`<h1[^>]*>${MAIL_COPY.en.greetingNoName}</h1>`), 'no first name that looks like a domain');
+  for (const mail of [lead.html, lead.text]) {
+    for (const raw of ['www.evil.example', 'evil-login.com', 'https://evil.example']) assert.ok(!mail.includes(raw), raw);
+    assert.ok(mail.includes('www[.]evil[.]example Kowalski') && mail.includes('evil-login[.]com'));
+    assert.ok(mail.includes('https[://]evil[.]example/login'));
+    assert.ok(mail.includes('jan@example.com'), 'the email row is the real address');
+  }
+  assert.ok(renderLeadConfirmation(leadFixture('en', { company: 'Acme Sp. z o.o.' }), { year: 2026 }).html.includes('Acme Sp. z o.o.'), 'abbreviations stay');
+  for (const [name, greeting] of [['Jean-Luc Picard', 'Jean-Luc'], ["Zoë O'Neil", 'Zoë'], ['Łukasz Nowak', 'Łukasz']]) {
+    const html = renderLeadConfirmation(leadFixture('en', { name }), { year: 2026 }).html;
+    assert.ok(html.includes(`Thank you, ${greeting.replace("'", '&#39;')}!`), name);
+  }
+  for (const locale of ['en', 'pl', 'de', 'fr']) {
+    const help = renderHelpConfirmation(helpFixture(locale, { name: 'http://x.example', message: 'see bit.ly/abc for the screenshot' }), { year: 2026 });
+    assert.ok(help.html.includes(`>${MAIL_COPY[locale].greetingNoName.replace("'", '&#39;')}</h1>`), locale);
+    assert.ok(!help.html.includes('bit.ly/abc') && help.html.includes('bit[.]ly/abc'), locale);
+  }
+});
+
+test('confirmation emails: opt-in footer says how to get removed; long addresses wrap', () => {
+  const optIn = renderLeadConfirmation(leadFixture('en', { marketing: true }), { year: 2026 });
+  const noOptIn = renderLeadConfirmation(leadFixture('en', { marketing: false }), { year: 2026 });
+  assert.ok(optIn.html.includes(MAIL_COPY.en.lead.whyOptIn) && optIn.text.includes(MAIL_COPY.en.lead.whyOptIn));
+  assert.ok(!optIn.html.includes(MAIL_COPY.en.lead.why));
+  assert.ok(noOptIn.html.includes(MAIL_COPY.en.lead.why) && !noOptIn.html.includes(MAIL_COPY.en.lead.whyOptIn));
+  for (const locale of ['en', 'pl', 'de', 'fr']) assert.ok(MAIL_COPY[locale].lead.whyOptIn.length > MAIL_COPY[locale].lead.why.length, locale);
+  const long = renderLeadConfirmation(leadFixture('en', { email: `${'a'.repeat(60)}@${'b'.repeat(60)}.example.com` }), { year: 2026 });
+  const intro = long.html.match(/<p class="sc-text" style="([^"]*)">[^<]*a{60}@/)[1];
+  assert.match(intro, /overflow-wrap:break-word;word-break:break-word/);
 });

@@ -56,6 +56,7 @@ export const MAIL_COPY = {
     detailsHeading: 'Your request',
     note: 'If anything above is wrong, just reply to this email.',
     closing: 'Have a nice day!',
+    greetingNoName: 'Thank you!',
     signoff: 'The SignatureCat team',
     privacy: 'Privacy Policy',
     tagline: 'SignatureCat - centrally managed Gmail signatures for Google Workspace.',
@@ -73,6 +74,7 @@ export const MAIL_COPY = {
       orOpen: 'Or open this link:',
       optIn: 'You also agreed to receive occasional marketing emails from SignatureCat. You can withdraw that consent at any time.',
       why: 'You are receiving this email because this address was entered in the contact form on signature.cat. If it was not you, you can ignore this message.',
+      whyOptIn: 'You are receiving this email because this address was entered in the contact form on signature.cat. If it was not you, reply to this email and we will remove the address from our mailing list and delete these details.',
     },
     help: {
       subject: 'We have received your support request',
@@ -103,6 +105,7 @@ export const MAIL_COPY = {
     detailsHeading: 'Twoje zgłoszenie',
     note: 'Jeśli coś się nie zgadza, po prostu odpowiedz na tę wiadomość.',
     closing: 'Miłego dnia!',
+    greetingNoName: 'Dziękujemy!',
     signoff: 'Zespół SignatureCat',
     privacy: 'Polityka prywatności',
     tagline: 'SignatureCat - centralnie zarządzane podpisy Gmail dla Google Workspace.',
@@ -120,6 +123,7 @@ export const MAIL_COPY = {
       orOpen: 'Albo otwórz ten link:',
       optIn: 'Zapisaliśmy też zgodę na okazjonalne wiadomości marketingowe od SignatureCat. Możesz ją wycofać w każdej chwili.',
       why: 'Otrzymujesz tę wiadomość, ponieważ ten adres został podany w formularzu kontaktowym na signature.cat. Jeśli to nie Ty, zignoruj tę wiadomość.',
+      whyOptIn: 'Otrzymujesz tę wiadomość, ponieważ ten adres został podany w formularzu kontaktowym na signature.cat. Jeśli to nie Ty, odpowiedz na tę wiadomość - usuniemy adres z listy mailingowej i skasujemy te dane.',
     },
     help: {
       subject: 'Otrzymaliśmy Twoją prośbę o pomoc',
@@ -150,6 +154,7 @@ export const MAIL_COPY = {
     detailsHeading: 'Ihre Anfrage',
     note: 'Falls etwas nicht stimmt, antworten Sie einfach auf diese E-Mail.',
     closing: 'Einen schönen Tag noch!',
+    greetingNoName: 'Vielen Dank!',
     signoff: 'Ihr SignatureCat-Team',
     privacy: 'Datenschutzerklärung',
     tagline: 'SignatureCat - zentral verwaltete Gmail-Signaturen für Google Workspace.',
@@ -167,6 +172,7 @@ export const MAIL_COPY = {
       orOpen: 'Oder öffnen Sie diesen Link:',
       optIn: 'Ihre Einwilligung in gelegentliche Marketing-E-Mails von SignatureCat haben wir gespeichert. Sie können sie jederzeit widerrufen.',
       why: 'Sie erhalten diese E-Mail, weil diese Adresse im Kontaktformular auf signature.cat angegeben wurde. Falls Sie das nicht waren, können Sie diese Nachricht ignorieren.',
+      whyOptIn: 'Sie erhalten diese E-Mail, weil diese Adresse im Kontaktformular auf signature.cat angegeben wurde. Falls Sie das nicht waren, antworten Sie auf diese E-Mail - wir entfernen die Adresse aus unserem Verteiler und löschen diese Angaben.',
     },
     help: {
       subject: 'Wir haben Ihre Supportanfrage erhalten',
@@ -197,6 +203,7 @@ export const MAIL_COPY = {
     detailsHeading: 'Votre demande',
     note: 'Si une information est inexacte, répondez simplement à cet e-mail.',
     closing: 'Belle journée !',
+    greetingNoName: 'Merci !',
     signoff: "L'équipe SignatureCat",
     privacy: 'Politique de confidentialité',
     tagline: 'SignatureCat - signatures Gmail gérées de manière centralisée pour Google Workspace.',
@@ -214,6 +221,7 @@ export const MAIL_COPY = {
       orOpen: 'Ou ouvrez ce lien :',
       optIn: 'Votre accord pour recevoir occasionnellement des e-mails marketing de SignatureCat a bien été enregistré. Vous pouvez le retirer à tout moment.',
       why: "Vous recevez cet e-mail car cette adresse a été saisie dans le formulaire de contact de signature.cat. Si ce n'était pas vous, ignorez simplement ce message.",
+      whyOptIn: "Vous recevez cet e-mail car cette adresse a été saisie dans le formulaire de contact de signature.cat. Si ce n'était pas vous, répondez à cet e-mail : nous retirerons l'adresse de notre liste de diffusion et supprimerons ces informations.",
     },
     help: {
       subject: "Nous avons bien reçu votre demande d'assistance",
@@ -242,8 +250,11 @@ const escMultiline = (v) => esc(v).replace(/\n/g, '<br />'); // escape first, th
 const fillText = (tpl, vars) => tpl.replace(/\{(\w+)\}/g, (_m, k) => String(vars[k] ?? ''));
 const fillHtml = (tpl, vars) => esc(tpl).replace(/\{(\w+)\}/g, (_m, k) => esc(vars[k] ?? ''));
 
-const P = `margin:0 0 16px;font-family:${FONT};font-size:16px;line-height:1.6;color:${C.ink}`;
-const P_LAST = `margin:0;font-family:${FONT};font-size:16px;line-height:1.6;color:${C.ink}`;
+// word-break: a long address in the intro must not widen the card at 320px
+// (overflow-wrap alone does not lower a table cell's min-content width).
+const WRAP = 'overflow-wrap:break-word;word-break:break-word';
+const P = `margin:0 0 16px;font-family:${FONT};font-size:16px;line-height:1.6;color:${C.ink};${WRAP}`;
+const P_LAST = `margin:0;font-family:${FONT};font-size:16px;line-height:1.6;color:${C.ink};${WRAP}`;
 const P_MUTED = `margin:0 0 16px;font-family:${FONT};font-size:13px;line-height:1.6;color:${C.muted};overflow-wrap:break-word;word-break:break-word`;
 const H2 = `margin:0 0 12px;font-family:${FONT};font-size:13px;font-weight:700;line-height:1.4;color:${C.ink};text-transform:uppercase;letter-spacing:0.05em`;
 const LINK = `color:${C.ink};text-decoration:underline`;
@@ -369,7 +380,24 @@ function footer(c, why, year) {
   return { html, text };
 }
 
-const firstName = (name) => String(name).split(' ')[0];
+// Greet by first name only when it looks like one: the email goes to whatever
+// address the form carries, so "www.evil.example Kowalski" must not become
+// "Thank you, www.evil.example!". Letters (any script), apostrophe, hyphen.
+const firstName = (name) => {
+  const token = String(name).split(' ')[0];
+  return /^[\p{L}][\p{L}'-]{0,39}$/u.test(token) ? token : '';
+};
+const greeting = (c, m, name) => {
+  const first = firstName(name);
+  return first ? fillText(m.greeting, { name: first }) : c.greetingNoName;
+};
+// Free text echoed back to the recipient (name, company, description) gets
+// its URL- and domain-like tokens defanged ("evil[.]example", "hxxps[://]"),
+// so mail clients do not turn attacker-written text into live links in a
+// message signed by signature.cat. Slack and Notion keep the original text.
+const URLISH_RE = /\b(?:[a-z][a-z0-9+.-]*:\/\/|www\.)\S+|\b(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/\S*)?/gi;
+export const defang = (v) =>
+  String(v ?? '').replace(URLISH_RE, (t) => t.replace('://', '[://]').replace(/\./g, '[.]'));
 const copyFor = (locale) => MAIL_COPY[locale] || MAIL_COPY.en;
 
 /** The booking link for the email: Google's page without the embed flag. */
@@ -389,19 +417,21 @@ function bookingLink(booking) {
 export function renderLeadConfirmation(lead, { booking = '', year = new Date().getUTCFullYear() } = {}) {
   const c = copyFor(lead.locale);
   const m = c.lead;
-  const title = fillText(m.greeting, { name: firstName(lead.name) });
+  const title = greeting(c, m, lead.name);
   const intro = m.intro[lead.topic] || m.intro.general;
   const link = bookingLink(booking);
   const rows = [
     { label: c.labels.topic, value: c.topics[lead.topic] || c.topics.general },
-    { label: c.labels.name, value: lead.name },
-    { label: c.labels.company, value: lead.company },
+    { label: c.labels.name, value: defang(lead.name) },
+    { label: c.labels.company, value: defang(lead.company) },
     { label: c.labels.workEmail, value: lead.email },
     { label: c.labels.phone, value: lead.phone },
     { label: c.labels.size, value: c.sizes[lead.size] || lead.size },
-    { label: c.labels.message, value: lead.message, multiline: true },
+    { label: c.labels.message, value: defang(lead.message), multiline: true },
   ];
-  const foot = footer(c, m.why, year);
+  // With the marketing opt-in, "not you? ignore it" would leave a stranger on
+  // the list - that variant tells them how to get removed instead.
+  const foot = footer(c, lead.marketing ? m.whyOptIn : m.why, year);
   const bodyHtml = [
     `<p class="sc-text" style="${P}">${fillHtml(intro, { email: lead.email })}</p>`,
     link
@@ -442,13 +472,13 @@ ${mailButton(link, m.bookingButton)}
 export function renderHelpConfirmation(req, { year = new Date().getUTCFullYear() } = {}) {
   const c = copyFor(req.locale);
   const m = c.help;
-  const title = fillText(m.greeting, { name: firstName(req.name) });
+  const title = greeting(c, m, req.name);
   const rows = [
     { label: c.labels.urgency, value: c.urgency[req.urgency] || req.urgency },
-    { label: c.labels.name, value: req.name },
+    { label: c.labels.name, value: defang(req.name) },
     { label: c.labels.email, value: req.email },
     { label: c.labels.phone, value: req.phone },
-    { label: c.labels.problem, value: req.message, multiline: true },
+    { label: c.labels.problem, value: defang(req.message), multiline: true },
   ];
   const foot = footer(c, m.why, year);
   const bodyHtml = [
