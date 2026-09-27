@@ -126,7 +126,8 @@ company, size, message?, topic, locale, marketing, cf-turnstile-response}`
    OR Notion accepted it; `502 contact_delivery_failed` only when both failed,
    `503 contact_unconfigured` when neither is configured;
 5. in the background (`ctx.waitUntil`, never fails the request): the Resend
-   audience contact ONLY with the marketing opt-in, and the **confirmation
+   marketing contact ONLY with the marketing opt-in (see "Marketing contacts"
+   below), and the **confirmation
    email** - at most one per recipient address per minute
    (`CONTACT_RCPT_RL`), so the form cannot be used to mail-bomb someone else's
    address from rotating IPs; over the limit only the email is skipped;
@@ -141,7 +142,7 @@ limit and mandatory Turnstile with cData `help-form` (`HELP_TURNSTILE` - a lead
 token is refused here and vice versa), then a Slack message to the SEPARATE
 `SLACK_HELP_WEBHOOK_URL` (`503 help_unconfigured` without it - it never falls
 back to the leads channel; `502 help_delivery_failed`), then the confirmation
-email (same `CONTACT_RCPT_RL` cap). Never Notion, never the marketing audience,
+email (same `CONTACT_RCPT_RL` cap). Never Notion, never the marketing segment,
 no booking step.
 
 User input is escaped for every sink: Slack mrkdwn (`<!channel>`-style
@@ -170,8 +171,8 @@ of `keep_vars`):
 | `NOTION_DATA_SOURCE_ID` / `NOTION_DATABASE_ID` | for Notion | The leads database: the data source id (preferred) or the database id from its URL. |
 | `BOOKING_URL` | no | **Only the link** (the iframe `src`, not the whole `<iframe>` snippet): Google Calendar -> appointment schedule -> Share -> Website embed -> Inline booking page. Unset = the lead form ends on a thank-you note. |
 | `RESEND_SEND_API_KEY` | no | A Resend **Sending access** key limited to the `signature.cat` domain for the confirmation emails (least privilege). Unset = `RESEND_API_KEY` is used. |
-| `RESEND_API_KEY` + `RESEND_AUDIENCE_ID` | shared | Full-access key + audience of the banner gate; used for the opt-in audience contact (and for emails without `RESEND_SEND_API_KEY`). |
-| `RESEND_CONTACT_AUDIENCE_ID` | no | Separate Resend audience for form leads; defaults to `RESEND_AUDIENCE_ID`. |
+| `RESEND_API_KEY` + `RESEND_SEGMENT_ID` | shared | Full-access key + marketing segment of the banner gate; used for the opt-in marketing contact (and for emails without `RESEND_SEND_API_KEY`). The legacy name `RESEND_AUDIENCE_ID` is still read (Resend renamed audiences to segments; confirm the id with `GET /segments/{id}`, see below); `RESEND_SEGMENT_ID` wins when both are set. |
+| `RESEND_CONTACT_SEGMENT_ID` | no | Separate Resend segment for form opt-ins (legacy name `RESEND_CONTACT_AUDIENCE_ID`); defaults to the banner segment. A separate segment keeps the two consent sources apart. |
 
 `CONTACT_RL` (per IP) and `CONTACT_RCPT_RL` (per confirmation recipient) are
 not variables: they are `[[ratelimits]]` bindings in `wrangler.toml` (Workers
@@ -212,6 +213,40 @@ adding the row by hand": Notion may have committed the page anyway. A 503 that
 carries `additional_data.committed_resource_id` counts as a row added. Free
 workspaces with several members have a lifetime block limit (1,000) after
 which creates fail with 403.
+
+### Marketing contacts (Resend Contacts API)
+
+Both opt-in paths (banner gate, contact-form checkbox) use the current Resend
+Contacts API - global contacts + segments. The legacy
+`POST /audiences/{id}/contacts` was removed from Resend's OpenAPI spec on
+2026-02-23 and is no longer documented (no published sunset date; the official
+SDKs still call it only for their deprecated `audienceId` option); a test
+guards against it:
+
+1. `POST https://api.resend.com/contacts` with `{email, first_name?, last_name?,
+   unsubscribed: false, segments: [{id}]}` (names only when present; segments
+   as objects, not strings) - its 2xx decides success (banner gate `200`,
+   form: logged only);
+2. then `POST https://api.resend.com/contacts/{contact id}/segments/{id}` (no
+   body), with the id from the create answer `{object: "contact", id}`; the
+   URL-encoded address is only the fallback for an answer without an id, so
+   the address stays out of URLs. For an address that already exists Resend
+   answers the create with the existing contact, and whether it then applies
+   `segments` is undocumented, so this call makes the membership explicit. A
+   non-2xx is logged and never fatal - it can also mean the address already
+   was a member.
+
+Both calls: full-access key (`RESEND_API_KEY`; a sending-only key is refused
+with `restricted_api_key`, documented as 401), `User-Agent`, 8 s timeout. Log
+lines carry the caller and Resend's error `name`, never the message or the
+address: `banner gate: Resend contact answered 401 restricted_api_key`,
+`contact form: Resend segment membership HTTP 404 not_found`.
+
+**Before merging (DevOps):** confirm the configured id is a segment with a
+read-only `GET https://api.resend.com/segments/{id}` (full-access key). This is
+expected: Resend renamed audiences to segments and its official SDKs already
+send stored audience ids to the segment endpoints - but it is not stated
+verbatim in the docs.
 
 ### Confirmation emails
 

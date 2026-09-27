@@ -19,6 +19,17 @@ import worker, {
   parseHelp,
   rateLimitIpKey,
 } from './worker.js';
+
+// Resend Contacts API (global contacts + segments) - the legacy
+// /audiences/{id}/contacts endpoint must never be called any more.
+const RESEND_CONTACTS = 'https://api.resend.com/contacts';
+// What POST /contacts answers (recorded in the official SDK's API traffic).
+const CONTACT_ID = 'c0ffee00-0000-4000-8000-000000000001';
+const membershipUrl = (who, segment) =>
+  `${RESEND_CONTACTS}/${encodeURIComponent(who)}/segments/${encodeURIComponent(segment)}`;
+const resendCreate = () => calls.find((c) => c.url === RESEND_CONTACTS);
+const noLegacyAudienceCalls = () =>
+  assert.ok(!calls.some((c) => c.url.includes('/audiences/')), 'no legacy /audiences/ endpoint');
 import { NOTION_COLUMNS, NOTION_VERSION, notionLeadPage, notionParent, warsawDateTime } from './notion.js';
 import { MAIL_COPY, renderHelpConfirmation, renderLeadConfirmation } from './confirmation-email.js';
 
@@ -71,6 +82,7 @@ beforeEach(() => {
     if (reply) return reply(url, init);
     if (host === 'challenges.cloudflare.com') return Response.json(VERIFIED);
     if (host === 'api.notion.com') return Response.json({ object: 'page', id: 'page-1' });
+    if (url === RESEND_CONTACTS) return Response.json({ object: 'contact', id: CONTACT_ID }, { status: 201 });
     if (host === 'api.resend.com') return Response.json({ id: 'email-1' });
     return new Response('ok', { status: 200 });
   };
@@ -282,15 +294,28 @@ test('warsawDateTime follows Warsaw time across DST', () => {
 });
 
 // ---- handleContactRequest (lead mode) ------------------------------------------------
-test('lead: happy path - Notion row, Slack, audience (opt-in), confirmation email, booking', async () => {
+test('lead: happy path - Notion row, Slack, marketing segment (opt-in), confirmation email, booking', async () => {
   const pending = [];
-  const res = await handleContactRequest(post(VALID), full({ BOOKING_URL: SCHEDULE }), {
-    waitUntil: (p) => pending.push(p),
-  });
+  // record the timeout of every signal the Worker creates
+  const timeouts = new WeakMap();
+  const realTimeout = AbortSignal.timeout;
+  AbortSignal.timeout = (ms) => {
+    const signal = realTimeout.call(AbortSignal, ms);
+    timeouts.set(signal, ms);
+    return signal;
+  };
+  let res;
+  try {
+    res = await handleContactRequest(post(VALID), full({ BOOKING_URL: SCHEDULE }), {
+      waitUntil: (p) => pending.push(p),
+    });
+    await Promise.all(pending);
+  } finally {
+    AbortSignal.timeout = realTimeout;
+  }
   assert.equal(res.status, 200);
   assert.deepEqual(await res.json(), { ok: true, booking: `${SCHEDULE}?gv=true` });
-  await Promise.all(pending);
-  assert.deepEqual(hosts(), ['challenges.cloudflare.com', 'api.notion.com', 'hooks.slack.com', 'api.resend.com', 'api.resend.com']);
+  assert.deepEqual(hosts(), ['challenges.cloudflare.com', 'api.notion.com', 'hooks.slack.com', 'api.resend.com', 'api.resend.com', 'api.resend.com']);
   // Notion: insert-only create in the configured data source
   const notion = calls[1];
   assert.equal(notion.url, 'https://api.notion.com/v1/pages');
@@ -301,12 +326,35 @@ test('lead: happy path - Notion row, Slack, audience (opt-in), confirmation emai
   // Slack says the Notion row landed
   assert.equal(calls[2].url, SLACK);
   assert.match(jsonOf(calls[2]).blocks.at(-1).elements[0].text, /Notion: row added/);
-  // audience + confirmation (both carry a User-Agent - Resend requires one)
-  const [audience, email] = calls.slice(3).sort((a) => (a.url.includes('/audiences/') ? -1 : 1));
-  assert.equal(audience.url, 'https://api.resend.com/audiences/aud-1/contacts');
-  assert.deepEqual(jsonOf(audience), { email: 'jan@example.com', first_name: 'Jan', last_name: 'Kowalski', unsubscribed: false });
-  assert.ok(audience.init.headers['User-Agent']);
-  assert.equal(email.url, 'https://api.resend.com/emails');
+  // marketing contact: created inside the segment, then the membership made
+  // explicit; plus the confirmation (every call carries a User-Agent - Resend
+  // requires one)
+  noLegacyAudienceCalls();
+  const create = resendCreate();
+  assert.equal(create.init.method, 'POST');
+  assert.deepEqual(jsonOf(create), {
+    email: 'jan@example.com',
+    first_name: 'Jan',
+    last_name: 'Kowalski',
+    unsubscribed: false,
+    segments: [{ id: 'aud-1' }],
+  });
+  // membership by the contact id from the create answer: the address never
+  // appears in a URL
+  const member = calls.find((c) => c.url === membershipUrl(CONTACT_ID, 'aud-1'));
+  assert.ok(member, 'segment membership call by contact id');
+  assert.ok(!urls().some((u) => u.includes(encodeURIComponent('jan@example.com')) || u.includes('jan@example.com')));
+  assert.equal(member.init.method, 'POST');
+  assert.equal(member.init.body, undefined, 'membership call has no body');
+  assert.equal(member.init.headers['Content-Type'], undefined, 'no body, no Content-Type');
+  assert.equal(create.init.headers['Content-Type'], 'application/json');
+  assert.ok(calls.indexOf(create) < calls.indexOf(member), 'membership after the create');
+  for (const c of [create, member]) {
+    assert.equal(c.init.headers.Authorization, 'Bearer re_full');
+    assert.ok(c.init.headers['User-Agent']);
+    assert.equal(timeouts.get(c.init.signal), 8000, 'an 8 s timeout on both Resend calls');
+  }
+  const email = calls.find((c) => c.url === 'https://api.resend.com/emails');
   const mail = jsonOf(email);
   assert.equal(mail.from, 'SignatureCat <contact@signature.cat>');
   assert.deepEqual(mail.to, ['jan@example.com']);
@@ -329,16 +377,128 @@ test('lead: no opt-in = no audience call, confirmation still sent; RESEND_SEND_A
   assert.equal(resend[0].init.headers.Authorization, 'Bearer re_send');
 });
 
-test('lead: RESEND_CONTACT_AUDIENCE_ID wins; Resend failures never fail the request', async () => {
+test('lead: Resend failures never fail the request; no membership call after a failed create', async () => {
   replies['api.resend.com'] = () => new Response(JSON.stringify({ name: 'validation_error' }), { status: 422 });
   let res;
   const logs = await quietErrors(async () => {
     res = await handleContactRequest(post(VALID), full({ RESEND_CONTACT_AUDIENCE_ID: 'aud-2' }));
   });
   assert.equal(res.status, 200);
-  assert.ok(urls().includes('https://api.resend.com/audiences/aud-2/contacts'));
-  assert.match(logs, /Resend audience answered 422/);
+  assert.deepEqual(jsonOf(resendCreate()).segments, [{ id: 'aud-2' }]);
+  assert.ok(!urls().some((u) => u.includes('/segments/')), 'no membership call when the create failed');
+  assert.match(logs, /Resend contact answered 422/);
   assert.match(logs, /confirmation email HTTP 422 validation_error/);
+  noLegacyAudienceCalls();
+});
+
+test('marketing segment: *_SEGMENT_ID names win, the legacy *_AUDIENCE_ID names still work', async () => {
+  const leadSegment = async (extra) => {
+    calls = [];
+    assert.equal((await handleContactRequest(post(VALID), full(extra))).status, 200);
+    return jsonOf(resendCreate()).segments[0].id;
+  };
+  assert.equal(await leadSegment({}), 'aud-1', 'legacy RESEND_AUDIENCE_ID');
+  assert.equal(await leadSegment({ RESEND_SEGMENT_ID: 'seg-1' }), 'seg-1');
+  assert.equal(await leadSegment({ RESEND_SEGMENT_ID: 'seg-1', RESEND_CONTACT_AUDIENCE_ID: 'aud-2' }), 'aud-2', 'form-specific beats shared');
+  assert.equal(
+    await leadSegment({ RESEND_SEGMENT_ID: 'seg-1', RESEND_CONTACT_AUDIENCE_ID: 'aud-2', RESEND_CONTACT_SEGMENT_ID: 'seg-2' }),
+    'seg-2',
+  );
+  assert.equal(await leadSegment({ RESEND_AUDIENCE_ID: '', RESEND_SEGMENT_ID: 'seg-1' }), 'seg-1', 'new name alone is enough');
+  calls = [];
+  const unconfigured = await handleContactRequest(post(VALID), full({ RESEND_AUDIENCE_ID: '' }));
+  assert.equal(unconfigured.status, 200);
+  assert.ok(!resendCreate(), 'no segment configured = no marketing contact');
+  const bannerLead = (extra) =>
+    handleBannerLead(
+      new Request('https://signature.cat/api/banner-leads', { method: 'POST', body: JSON.stringify({ email: 'a@b.co', consent: true }) }),
+      { RESEND_API_KEY: 'k', ...extra },
+    );
+  for (const [extra, expected] of [
+    [{ RESEND_AUDIENCE_ID: 'aud-1' }, 'aud-1'],
+    [{ RESEND_AUDIENCE_ID: 'aud-1', RESEND_SEGMENT_ID: 'seg-1' }, 'seg-1'],
+    [{ RESEND_SEGMENT_ID: 'seg-1', RESEND_CONTACT_SEGMENT_ID: 'seg-2' }, 'seg-1'],
+  ]) {
+    calls = [];
+    assert.equal((await bannerLead(extra)).status, 200);
+    assert.equal(jsonOf(resendCreate()).segments[0].id, expected, JSON.stringify(extra));
+  }
+  const noSegment = await bannerLead({ RESEND_CONTACT_SEGMENT_ID: 'seg-2' });
+  assert.deepEqual([noSegment.status, (await noSegment.json()).error], [503, 'lead_capture_unconfigured'], 'the banner gate never uses the form segment');
+});
+
+test('marketing contact: names only when present; without an id in the create answer the membership goes by the encoded address', async () => {
+  replies[RESEND_CONTACTS] = () => new Response('{}', { status: 201 });
+  await handleContactRequest(post({ ...VALID, name: 'Madonna', email: 'jan+news@example.com' }), full({ RESEND_SEGMENT_ID: 'seg/1?x' }));
+  assert.deepEqual(jsonOf(resendCreate()), { email: 'jan+news@example.com', first_name: 'Madonna', unsubscribed: false, segments: [{ id: 'seg/1?x' }] });
+  assert.ok(urls().includes('https://api.resend.com/contacts/jan%2Bnews%40example.com/segments/seg%2F1%3Fx'));
+  // a malformed (lone surrogate) address cannot even be put in a URL: the
+  // stored contact still counts, the membership is logged as unreachable
+  calls = [];
+  const odd = `a${String.fromCharCode(0xd800)}@b.co`;
+  let res;
+  const logs = await quietErrors(async () => {
+    res = await handleBannerLead(
+      new Request('https://signature.cat/api/banner-leads', { method: 'POST', body: JSON.stringify({ email: odd, consent: true }) }),
+      { RESEND_API_KEY: 'k', RESEND_AUDIENCE_ID: 'aud-1' },
+    );
+  });
+  assert.equal(res.status, 200);
+  assert.deepEqual(urls(), [RESEND_CONTACTS]);
+  assert.match(logs, /banner gate: Resend segment membership unreachable/);
+});
+
+test('marketing contact: a failed membership call is logged (label + error name, never the address), never fatal', async () => {
+  replies[membershipUrl(CONTACT_ID, 'aud-1')] = () =>
+    Response.json({ statusCode: 404, name: 'not_found', message: 'Contact jan@example.com not found' }, { status: 404 });
+  let res;
+  let logs = await quietErrors(async () => {
+    res = await handleContactRequest(post(VALID), full());
+  });
+  assert.equal(res.status, 200);
+  assert.match(logs, /contact form: Resend segment membership HTTP 404 not_found/);
+  assert.doesNotMatch(logs, /jan@example\.com/, 'the address never reaches the logs');
+  assert.doesNotMatch(logs, /Resend contact answered/, 'the create itself succeeded');
+  // banner gate: the create decides the answer, the membership call does not
+  replies = { [membershipUrl(CONTACT_ID, 'aud-1')]: new TypeError('network down') };
+  logs = await quietErrors(async () => {
+    res = await handleBannerLead(
+      new Request('https://signature.cat/api/banner-leads', { method: 'POST', body: JSON.stringify({ email: 'a@b.co', consent: true }) }),
+      { RESEND_API_KEY: 'k', RESEND_AUDIENCE_ID: 'aud-1' },
+    );
+  });
+  assert.equal(res.status, 200);
+  assert.match(logs, /banner gate: Resend segment membership unreachable/);
+  // a failed create is logged with its error name on the banner gate too
+  replies = { [RESEND_CONTACTS]: () => Response.json({ name: 'restricted_api_key', message: 'x' }, { status: 401 }) };
+  logs = await quietErrors(async () => {
+    res = await handleBannerLead(
+      new Request('https://signature.cat/api/banner-leads', { method: 'POST', body: JSON.stringify({ email: 'a@b.co', consent: true }) }),
+      { RESEND_API_KEY: 'k', RESEND_AUDIENCE_ID: 'aud-1' },
+    );
+  });
+  assert.deepEqual([res.status, (await res.json()).error], [502, 'lead_capture_failed']);
+  assert.match(logs, /banner gate: Resend contact answered 401 restricted_api_key/);
+});
+
+test('marketing contact: both paths wait for the membership call before they finish', async () => {
+  let settled = false;
+  replies[membershipUrl(CONTACT_ID, 'aud-1')] = async () => {
+    await new Promise((r) => setTimeout(r, 5));
+    settled = true;
+    return Response.json({ id: 'aud-1' });
+  };
+  const banner = await handleBannerLead(
+    new Request('https://signature.cat/api/banner-leads', { method: 'POST', body: JSON.stringify({ email: 'a@b.co', consent: true }) }),
+    { RESEND_API_KEY: 'k', RESEND_AUDIENCE_ID: 'aud-1' },
+  );
+  assert.equal(banner.status, 200);
+  assert.equal(settled, true, 'banner gate: membership finished before the answer');
+  settled = false;
+  const pending = [];
+  await handleContactRequest(post(VALID), full(), { waitUntil: (p) => pending.push(p) });
+  await Promise.all(pending);
+  assert.equal(settled, true, 'contact form: membership is part of the waitUntil work');
 });
 
 test('lead: Notion failure is flagged in Slack but the lead is still delivered', async () => {
@@ -564,6 +724,11 @@ test('confirmation email copy passes the no-AI-tell typography rule (copy + rend
 });
 
 // ---- routing + CSP -------------------------------------------------------------------
+test('the Worker source never builds a legacy /audiences/ Resend path', () => {
+  const src = readFileSync(new URL('./worker.js', import.meta.url), 'utf8');
+  assert.ok(!/api\.resend\.com\/audiences|\/audiences\/\$\{/.test(src));
+});
+
 test('the Worker routes both form endpoints before canonicalization', async () => {
   for (const path of ['/api/contact-requests', '/api/help-requests']) {
     const res = await worker.fetch(new Request(`https://signature.cat${path}`), env(), {});
@@ -589,11 +754,17 @@ test('banner leads keep their contract (+ User-Agent on the Resend call)', async
   calls = [];
   const ok = await handleBannerLead(lead({ email: 'a@b.co', consent: true, 'cf-turnstile-response': 't' }), cfg);
   assert.equal(ok.status, 200);
-  assert.deepEqual(jsonOf(calls.at(-1)), { email: 'a@b.co', unsubscribed: false });
-  assert.ok(calls.at(-1).init.headers['User-Agent']);
+  assert.deepEqual(jsonOf(resendCreate()), { email: 'a@b.co', unsubscribed: false, segments: [{ id: 'aud-1' }] });
+  assert.equal(calls.at(-1).url, membershipUrl(CONTACT_ID, 'aud-1'));
+  for (const c of calls.filter((x) => x.url.startsWith(RESEND_CONTACTS))) assert.ok(c.init.headers['User-Agent']);
+  noLegacyAudienceCalls();
   replies['api.resend.com'] = () => new Response('x', { status: 500 });
-  const failed = await handleBannerLead(lead({ email: 'a@b.co', consent: true, 'cf-turnstile-response': 't' }), cfg);
+  let failed;
+  const logs = await quietErrors(async () => {
+    failed = await handleBannerLead(lead({ email: 'a@b.co', consent: true, 'cf-turnstile-response': 't' }), cfg);
+  });
   assert.equal(failed.status, 502);
+  assert.match(logs, /banner gate: Resend contact answered 500$/m);
 });
 
 test('banner gate stays best-effort: no fail-closed, no token binding', async () => {
@@ -606,7 +777,7 @@ test('banner gate stays best-effort: no fail-closed, no token binding', async ()
   calls = [];
   const open = await handleBannerLead(lead({ email: 'a@b.co', consent: true }), { RESEND_API_KEY: 'k', RESEND_AUDIENCE_ID: 'aud-1' });
   assert.equal(open.status, 200);
-  assert.deepEqual(hosts(), ['api.resend.com']);
+  assert.deepEqual(urls(), [RESEND_CONTACTS, membershipUrl(CONTACT_ID, 'aud-1')]);
 });
 
 // ---- review hardening -------------------------------------------------------------------
@@ -686,7 +857,8 @@ test('confirmation emails: one per recipient per minute (CONTACT_RCPT_RL), reque
   assert.equal(res.status, 200);
   assert.ok(urls().includes(SLACK) && hosts().includes('api.notion.com'), 'lead delivered');
   assert.ok(!urls().includes('https://api.resend.com/emails'), 'no confirmation email');
-  assert.ok(urls().includes('https://api.resend.com/audiences/aud-1/contacts'), 'the opt-in is not a confirmation');
+  assert.ok(urls().includes(RESEND_CONTACTS), 'the opt-in is not a confirmation');
+  noLegacyAudienceCalls();
   assert.deepEqual(keys, ['rcpt:jan@example.com']);
   assert.match(logs, /recipient rate limit/);
   replies['challenges.cloudflare.com'] = () => Response.json(VERIFIED_HELP);

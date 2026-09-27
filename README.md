@@ -164,7 +164,8 @@ locales like every landing page). Logic lives in
 - **Email gate:** first download/copy asks for an email + marketing consent,
   then sets `sigcat_bg_lead` (12 months) and never asks again on the device.
   The lead goes to `POST /api/banner-leads` (edge Worker) which creates a
-  Resend audience contact. Best-effort: any error still lets the user export.
+  Resend contact in the marketing segment (Resend Contacts API - see
+  `cloudflare/README.md`). Best-effort: any error still lets the user export.
   The endpoint path is assembled at runtime in `banner-generator.js` and
   never appears verbatim in served HTML/JS (anti-scraper hygiene only - the
   real bot protection is Turnstile below).
@@ -176,7 +177,8 @@ locales like every landing page). Logic lives in
   on the Worker (unset = verification skipped). CSP already allowlists
   `challenges.cloudflare.com` (script-src + frame-src).
 - **Worker config (DevOps):** set `RESEND_API_KEY` (secret),
-  `RESEND_AUDIENCE_ID` and `TURNSTILE_SECRET` (secret) on the `landingpage`
+  `RESEND_SEGMENT_ID` (legacy name `RESEND_AUDIENCE_ID` still works) and
+  `TURNSTILE_SECRET` (secret) on the `landingpage`
   Worker in the Cloudflare dashboard. Until then the endpoint answers 503
   (Resend) / skips the Turnstile check, and no leads are stored.
 
@@ -213,9 +215,9 @@ two modes. Logic: `assets/js/contact-form.js` (loaded only on that page).
   and the mode's `cData`), per-IP rate limit (`CONTACT_RL`), then
   - lead: a row in the Notion leads database (insert-only token) and a Slack
     message (`SLACK_WEBHOOK_URL`) - delivered when either accepted it; the
-    Resend marketing audience only with the opt-in;
+    Resend marketing segment only with the opt-in;
   - help: a Slack message in its own channel (`SLACK_HELP_WEBHOOK_URL`) -
-    never Notion, never the marketing audience;
+    never Notion, never the marketing segment;
   - both: a confirmation email to the visitor in the page language, from
     `contact@signature.cat`, with a copy of the request (links in the echoed
     text defanged, at most one per address per minute via `CONTACT_RCPT_RL`).

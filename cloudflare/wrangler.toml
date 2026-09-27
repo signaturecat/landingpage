@@ -28,9 +28,13 @@ routes = [
 # safe from deploys regardless of keep_vars.
 #
 # Lead capture for /banners-generator (POST /api/banner-leads -> Resend
-# audience contact):
-#   RESEND_API_KEY     - secret (encrypt!)
-#   RESEND_AUDIENCE_ID - the target Resend audience id
+# contact in the marketing segment; Resend Contacts API, not the legacy
+# audiences endpoint):
+#   RESEND_API_KEY     - secret (encrypt!); FULL access (contacts)
+#   RESEND_SEGMENT_ID  - the target Resend segment id. Resend renamed
+#                        audiences to segments, so the older
+#                        RESEND_AUDIENCE_ID is expected to keep working
+#                        (SEGMENT wins) - confirm with GET /segments/{id}.
 #   TURNSTILE_SECRET   - secret (encrypt!); Turnstile widget secret key.
 #                        When set, the endpoints REQUIRE a valid
 #                        cf-turnstile-response token (bot protection).
@@ -62,8 +66,9 @@ routes = [
 #                        (Website embed -> Inline booking page -> the iframe
 #                        src). Shown as the form's second step; unset = the
 #                        form ends on a thank-you message.
-#   RESEND_CONTACT_AUDIENCE_ID - optional; a separate Resend audience for
-#                        form leads (default: RESEND_AUDIENCE_ID). A lead only
+#   RESEND_CONTACT_SEGMENT_ID - optional; a separate Resend segment for
+#                        form leads (legacy name RESEND_CONTACT_AUDIENCE_ID;
+#                        default: the banner segment above). A lead only
 #                        reaches Resend when the visitor ticked the optional
 #                        marketing opt-in.
 

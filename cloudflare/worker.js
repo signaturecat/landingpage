@@ -50,8 +50,8 @@
  *
  * 5. BANNER-GENERATOR LEAD CAPTURE (POST /api/banner-leads): the email gate
  *    on /banners-generator posts {email, consent, locale, source} here and
- *    the Worker creates the address as a Resend audience contact
- *    (subscriber). Requires two bindings set in the Cloudflare dashboard
+ *    the Worker creates the address as a Resend contact (subscriber) in the
+ *    marketing segment. Requires two bindings set in the Cloudflare dashboard
  *    (see handleBannerLead below); until they exist the endpoint answers
  *    503 and the front-end proceeds without storing the lead (best-effort
  *    by design - the gate must never block the tool).
@@ -64,14 +64,14 @@
  *    (SLACK_WEBHOOK_URL) - delivered when either accepted it. The visitor
  *    gets a confirmation email in the page language (confirmation-email.js,
  *    Resend, from contact@signature.cat); the address joins the Resend
- *    audience ONLY with the optional marketing opt-in. The answer carries the
+ *    marketing segment ONLY with the optional marketing opt-in. The answer carries the
  *    Google Calendar booking page (BOOKING_URL) for the form's second step.
  *
  * 7. CONTACT FORM, help mode (POST /api/help-requests): the docs "Help"
  *    button opens /form?topic=help - name, email, optional phone, urgency and
  *    a description. Same Turnstile/rate-limit rules (own cData), delivered to
  *    a SEPARATE Slack channel (SLACK_HELP_WEBHOOK_URL), confirmation email to
- *    the requester; never Notion, never the marketing audience.
+ *    the requester; never Notion, never the marketing segment.
  *
  * Rollback: remove the route / `wrangler delete`. Per-locale pages, hreflang
  * and legal pages keep working; you lose the auto-redirect, the security
@@ -393,27 +393,76 @@ async function turnstileRejection(request, env, payload, { required = false, exp
 // User-Agent (403), and it identifies us in the other providers' logs.
 const USER_AGENT = 'signature.cat-worker/1.0 (+https://signature.cat)';
 
-// Resend audience contact (subscribed). Callers only reach this with an
-// explicit marketing opt-in from the visitor.
-function addResendContact(env, audienceId, contact) {
-  return fetch(
-    `https://api.resend.com/audiences/${encodeURIComponent(audienceId)}/contacts`,
-    {
+// Marketing segment for each opt-in source. Resend renamed audiences to
+// segments (the official SDKs send stored audience ids to the segment
+// endpoints), so the older *_AUDIENCE_ID variables are expected to keep
+// working; the *_SEGMENT_ID names win when both are set.
+export const bannerSegmentId = (env) => env?.RESEND_SEGMENT_ID || env?.RESEND_AUDIENCE_ID || '';
+export const contactSegmentId = (env) =>
+  env?.RESEND_CONTACT_SEGMENT_ID || env?.RESEND_CONTACT_AUDIENCE_ID || bannerSegmentId(env);
+
+// Marketing contact in Resend (subscribed). Callers only reach this with an
+// explicit marketing opt-in from the visitor. Resend Contacts API (global
+// contacts + segments; the legacy POST /audiences/{id}/contacts was removed
+// from Resend's OpenAPI spec on 2026-02-23 and is no longer documented):
+// POST /contacts creates the contact inside the segment. For an address that
+// already exists Resend answers 2xx with the existing contact, and whether it
+// then applies `segments` is not documented - so
+// POST /contacts/{id}/segments/{segment} makes the membership explicit. It
+// goes by the contact id from the create answer (the address stays out of
+// URLs); the address is only the fallback for an answer without an id. Only
+// the create decides success; a failed membership call is logged, never fatal
+// (a non-2xx there can also mean the address already was a member).
+const RESEND_API = 'https://api.resend.com';
+const RESEND_CONTACT_TIMEOUT_MS = 8000;
+// Resend's error `name` (e.g. "validation_error") for the logs - never the
+// message, which can echo the submitted address.
+async function resendErrorName(res) {
+  const body = await res.clone().json().catch(() => null);
+  return typeof body?.name === 'string' ? ` ${body.name.slice(0, 60)}` : '';
+}
+export async function addResendContact(env, segmentId, contact, { label = 'marketing contact' } = {}) {
+  const auth = { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'User-Agent': USER_AGENT };
+  const body = { email: contact.email, unsubscribed: false, segments: [{ id: segmentId }] };
+  // Names only when there is one: an empty string would blank the name an
+  // existing contact already has.
+  if (contact.first_name) body.first_name = contact.first_name;
+  if (contact.last_name) body.last_name = contact.last_name;
+  const res = await fetch(`${RESEND_API}/contacts`, {
+    method: 'POST',
+    headers: { ...auth, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(RESEND_CONTACT_TIMEOUT_MS),
+  });
+  if (!res.ok) {
+    console.error(`${label}: Resend contact answered ${res.status}${await resendErrorName(res)}`);
+    return res;
+  }
+  const created = await res.clone().json().catch(() => null);
+  const who = typeof created?.id === 'string' && created.id ? created.id : contact.email;
+  let member = null;
+  try {
+    // URL built inside the try: encodeURIComponent throws on a malformed
+    // (lone surrogate) address, which must not turn a stored contact into an error.
+    member = await fetch(`${RESEND_API}/contacts/${encodeURIComponent(who)}/segments/${encodeURIComponent(segmentId)}`, {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-        'User-Agent': USER_AGENT,
-      },
-      body: JSON.stringify({ ...contact, unsubscribed: false }),
-    },
-  );
+      headers: auth,
+      signal: AbortSignal.timeout(RESEND_CONTACT_TIMEOUT_MS),
+    });
+  } catch (e) {
+    member = null;
+  }
+  if (!member?.ok) {
+    console.error(`${label}: Resend segment membership ${member ? `HTTP ${member.status}${await resendErrorName(member)}` : 'unreachable'}`);
+  }
+  return res;
 }
 
 // ---- banner-generator lead capture ----------------------------------------------
-// POST /api/banner-leads -> create the address as a Resend audience contact.
-// Configuration (set by DevOps in the Cloudflare dashboard - never in the
-// repo): RESEND_API_KEY (secret) and RESEND_AUDIENCE_ID (variable). Consent
+// POST /api/banner-leads -> create the address as a Resend contact in the
+// marketing segment. Configuration (set by DevOps in the Cloudflare dashboard -
+// never in the repo): RESEND_API_KEY (secret, full access) and
+// RESEND_SEGMENT_ID (the legacy RESEND_AUDIENCE_ID still works). Consent
 // is required in the payload - the front-end gate has a mandatory marketing
 // consent checkbox; requests without consent === true are rejected.
 export async function handleBannerLead(request, env) {
@@ -432,10 +481,14 @@ export async function handleBannerLead(request, env) {
   }
   const blocked = await turnstileRejection(request, env, payload);
   if (blocked) return jsonResponse(blocked.status, { ok: false, error: blocked.error });
-  if (!env?.RESEND_API_KEY || !env?.RESEND_AUDIENCE_ID) {
+  const segmentId = bannerSegmentId(env);
+  if (!env?.RESEND_API_KEY || !segmentId) {
     return jsonResponse(503, { ok: false, error: 'lead_capture_unconfigured' });
   }
-  const res = await addResendContact(env, env.RESEND_AUDIENCE_ID, { email }).catch(() => null);
+  const res = await addResendContact(env, segmentId, { email }, { label: 'banner gate' }).catch(() => {
+    console.error('banner gate: Resend contact unreachable');
+    return null;
+  });
   if (!res || !res.ok) return jsonResponse(502, { ok: false, error: 'lead_capture_failed' });
   return jsonResponse(200, { ok: true });
 }
@@ -458,8 +511,9 @@ export async function handleBannerLead(request, env) {
 //                             returned to the page as the lead form's step 2.
 //   RESEND_SEND_API_KEY     - optional "Sending access" key for the confirmation
 //                             emails; falls back to RESEND_API_KEY.
-//   RESEND_API_KEY + RESEND_AUDIENCE_ID (or RESEND_CONTACT_AUDIENCE_ID) - the
-//                             marketing audience, only with the visitor's opt-in.
+//   RESEND_API_KEY + RESEND_CONTACT_SEGMENT_ID (or RESEND_SEGMENT_ID; legacy
+//                             *_AUDIENCE_ID names still work) - the marketing
+//                             segment, only with the visitor's opt-in.
 //   CONTACT_RL              - Workers rate-limit binding (wrangler.toml), per IP
 //                             (IPv6 per /64), per endpoint.
 //   CONTACT_RCPT_RL         - rate-limit binding, one confirmation email per
@@ -469,7 +523,7 @@ export async function handleBannerLead(request, env) {
 // Slack message), so nothing is lost silently. After a Notion timeout the row
 // may still exist ("unconfirmed"), so a retry can store it twice - a possible
 // duplicate beats a lost lead. Confirmation email (CONTACT_RCPT_RL-gated),
-// marketing audience and logging are side channels that never fail the request.
+// marketing segment and logging are side channels that never fail the request.
 export const CONTACT_SIZES = ['1-50', '51-120', '121-300', '301-1000', '1001-5000', '5000+'];
 // What a token must carry (see turnstileRejection `expect`): the widget action
 // is the Spin telemetry marker shared by every widget on the site, so the form
@@ -824,17 +878,18 @@ export async function handleContactRequest(request, env, ctx) {
   if (!slackOk && notion.status !== 'created') {
     return jsonResponse(502, { ok: false, error: 'contact_delivery_failed' });
   }
-  // Marketing audience ONLY with the separate, unticked-by-default opt-in: a
+  // Marketing segment ONLY with the separate, unticked-by-default opt-in: a
   // contact request alone is no consent to marketing email (GDPR art. 7(4)).
-  const audienceId = env.RESEND_CONTACT_AUDIENCE_ID || env.RESEND_AUDIENCE_ID;
+  const segmentId = contactSegmentId(env);
   const [firstName, ...rest] = lead.name.split(' ');
   await inBackground(ctx, [
-    lead.marketing && env.RESEND_API_KEY && audienceId
-      ? addResendContact(env, audienceId, { email: lead.email, first_name: firstName, last_name: rest.join(' ') })
-          .then((res) => {
-            if (!res.ok) console.error(`contact form: Resend audience answered ${res.status}`);
-          })
-          .catch(() => console.error('contact form: Resend audience unreachable'))
+    lead.marketing && env.RESEND_API_KEY && segmentId
+      ? addResendContact(
+          env,
+          segmentId,
+          { email: lead.email, first_name: firstName, last_name: rest.join(' ') },
+          { label: 'contact form' },
+        ).catch(() => console.error('contact form: Resend contact unreachable'))
       : null,
     sendConfirmationIfAllowed(env, lead.email, () => renderLeadConfirmation(lead, { booking }), {
       kind: 'contact',
@@ -863,7 +918,7 @@ export async function handleHelpRequest(request, env, ctx) {
   if (!(await postSlack(env.SLACK_HELP_WEBHOOK_URL, helpSlackMessage(req)))) {
     return jsonResponse(502, { ok: false, error: 'help_delivery_failed' });
   }
-  // No Notion row and no marketing audience for help requests - only the
+  // No Notion row and no marketing segment for help requests - only the
   // confirmation email to the requester.
   await inBackground(ctx, [
     sendConfirmationIfAllowed(env, req.email, () => renderHelpConfirmation(req), { kind: 'help', locale: req.locale }),

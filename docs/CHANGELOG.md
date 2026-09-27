@@ -79,6 +79,22 @@
     generator) now name the channel ("na podany adres e-mail", art. 398 PKE).
   - Confirmation emails x4: a separate footer line on the right to object
     (art. 21(4) GDPR - first communication).
+  - **Resend Contacts API** instead of the legacy
+    `POST /audiences/{id}/contacts` (removed from Resend's OpenAPI spec on
+    2026-02-23, no longer documented, no sunset date): both opt-in paths create
+    the contact with `POST /contacts` + `segments: [{id}]` and then make the
+    membership explicit with `POST /contacts/{contact id}/segments/{id}` (the
+    id from the create answer; the address only as the fallback - it stays
+    out of URLs), because it is undocumented whether a create for an existing
+    address applies `segments`. Names only when present, 8 s timeouts, log
+    lines with the caller and Resend's error name (never the address). New
+    variable names `RESEND_SEGMENT_ID` / `RESEND_CONTACT_SEGMENT_ID`; the
+    `*_AUDIENCE_ID` names are still read (expected to be the same ids after
+    Resend's rename - DevOps confirms with `GET /segments/{id}` before merge).
+    Contract taken from the Resend docs and cross-checked against the official
+    SDK sources and their recorded API traffic; reviewed by two independent
+    lenses (0 confirmed defects; the hardening suggestions applied); 4 new
+    tests plus a source guard, each part with a negative control.
 - **Why:** PM request 2026-09-27 (four points: company field, Notion, confirmation
   email, help form from the docs with its own Slack channel).
 - **Scope:** landingpage (`legal/src/*privacy*` + `/pl/policy`, `/{en,de,fr}/policy`,
@@ -92,7 +108,7 @@
 - **Performance impact:** Worker bundle 22 -> 65 KiB (email copy x4 +
   templates; 19 KiB gzip); `contact-form.js` still only on `/form`. Lead latency + one
   Notion call (<= 5 s timeout) before Slack.
-- **Tests:** `node --test cloudflare/worker.test.mjs` - 35 tests; each
+- **Tests:** `node --test cloudflare/worker.test.mjs` - 40 tests; each
   review fix has a negative control (reverting it fails a test).
 - **A11y:** required flags per mode, explicit label/description binding for
   dual-variant controls, localized page title per mode; emails: lang/dir,
