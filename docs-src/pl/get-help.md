@@ -2,12 +2,12 @@
 title: Uzyskaj pomoc
 navTitle: Uzyskaj pomoc
 description: Jak skontaktować się z supportem SignatureCat w sprawie problemów z podpisami Gmail - co sprawdzić najpierw w statusie, logach i dostępie do Google Workspace oraz co zawrzeć w zgłoszeniu.
-updated: 2026-08-02
+updated: 2026-09-27
 ---
 
 # Uzyskaj pomoc
 
-Support jest dostępny e-mailowo pod adresem [contact@signature.cat](mailto:contact@signature.cat). Zanim napiszesz, szybka samodzielna diagnoza często daje odpowiedź szybciej - większość przypadków "podpisy przestały się stosować" to jedna z trzech znanych przyczyn.
+Zgłoszenie do supportu wyślesz przez [formularz pomocy](https://signature.cat/pl/form?topic=help) - pyta o pilność problemu, więc krytyczne przypadki trafiają na początek kolejki - albo e-mailem na [contact@signature.cat](mailto:contact@signature.cat). Zanim napiszesz, szybka samodzielna diagnoza często daje odpowiedź szybciej - większość przypadków "podpisy przestały się stosować" to jedna z trzech znanych przyczyn.
 
 ## Szybka samodzielna diagnoza
 
@@ -19,7 +19,7 @@ Support jest dostępny e-mailowo pod adresem [contact@signature.cat](mailto:cont
 
 ## Pisanie do supportu
 
-Napisz na [contact@signature.cat](mailto:contact@signature.cat), w miarę możliwości z adresu w domenie Twojego Workspace. Załącz:
+Skorzystaj z [formularza pomocy](https://signature.cat/pl/form?topic=help) (otwiera go przycisk **Pomoc** u góry każdej strony dokumentacji) albo napisz na [contact@signature.cat](mailto:contact@signature.cat), w miarę możliwości z adresu w domenie Twojego Workspace. Formularz wysyła Ci e-mail z potwierdzeniem i kopią zgłoszenia. Załącz:
 
 - swoją **domenę Workspace** (na przykład `yourcompany.com`),
 - **czego się spodziewano, a co się stało**, ze znacznikami czasu i Twoją strefą czasową,
@@ -31,7 +31,7 @@ Napisz na [contact@signature.cat](mailto:contact@signature.cat), w miarę możli
 
 ## Czego oczekiwać w odpowiedzi
 
-Support działa wyłącznie e-mailowo. W okresie próbnym nie ma gwarantowanego czasu odpowiedzi; płacący klienci są obsługiwani priorytetowo. Incydenty dotykające wielu klientów są koordynowane publicznie na [stronie statusu](https://status.signature.cat/).
+Support odpowiada e-mailowo - także na zgłoszenia wysłane przez formularz pomocy. W okresie próbnym nie ma gwarantowanego czasu odpowiedzi; płacący klienci są obsługiwani priorytetowo. Incydenty dotykające wielu klientów są koordynowane publicznie na [stronie statusu](https://status.signature.cat/).
 
 ## Propozycje funkcji i opinie
 

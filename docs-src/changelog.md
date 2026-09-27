@@ -2,7 +2,7 @@
 title: Changelog
 navTitle: Changelog
 description: What's new in SignatureCat - monthly highlights of new features and improvements to email signature management for Google Workspace and Gmail.
-updated: 2026-09-26
+updated: 2026-09-27
 published: 2026-07-24
 ---
 
@@ -13,7 +13,10 @@ What's new in SignatureCat, the email signature manager for Google Workspace. We
 ## September 2026
 
 - **Custom pricing for larger organizations.** Next to the free trial, the pricing on signature.cat now has a **Custom pricing** button: tell us about your organization and we will prepare an individual offer. See [Pricing](https://signature.cat/pricing).
-- **Book a call without leaving the website.** "Book a call" now opens a short contact form instead of your email app: leave your name, work email, phone and organization size, then pick a time for the call right away in our booking calendar.
+- **Book a call without leaving the website.** "Book a call" now opens a short contact form instead of your email app: leave your name, company name, work email, phone and organization size, then pick a time for the call right away in our booking calendar.
+- **Get help without leaving the documentation.** The **Help** button on every docs page now opens a short support form: describe the problem and how urgent it is, and our support team sees critical cases first. See [Get help](/docs/get-help).
+- **A confirmation for every request.** After you send the contact or the help form, you get an email with a copy of your request, in your language.
+- **Privacy policy update.** A new version of the [Privacy Policy](https://signature.cat/privacy) is effective as of today: it describes the contact and help forms, the confirmation emails, the booking calendar, the banner generator mailing list and the cookies used on signature.cat.
 - **Performance optimizations.** Under-the-hood improvements to the infrastructure behind the SignatureCat app and signature.cat, for a faster and more reliable service.
 
 ## August 2026

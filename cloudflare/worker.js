@@ -50,26 +50,36 @@
  *
  * 5. BANNER-GENERATOR LEAD CAPTURE (POST /api/banner-leads): the email gate
  *    on /banners-generator posts {email, consent, locale, source} here and
- *    the Worker creates the address as a Resend audience contact
- *    (subscriber). Requires two bindings set in the Cloudflare dashboard
+ *    the Worker creates the address as a Resend contact (subscriber) in the
+ *    marketing segment. Requires two bindings set in the Cloudflare dashboard
  *    (see handleBannerLead below); until they exist the endpoint answers
  *    503 and the front-end proceeds without storing the lead (best-effort
  *    by design - the gate must never block the tool).
  *
- * 6. CONTACT FORM (POST /api/contact-requests): the "Book a call" / "Custom
- *    pricing" form on /form posts the request here. The Worker verifies
- *    Turnstile - REQUIRED here (fail closed without TURNSTILE_SECRET) and
- *    bound to this host + the form's widget action/cData - posts the
- *    request to Slack (SLACK_WEBHOOK_URL), adds the
- *    address to the Resend audience ONLY when the visitor ticked the
- *    optional marketing opt-in, and answers with the Google Calendar booking
- *    page (BOOKING_URL) that the form shows as its second step. See
- *    handleContactRequest below.
+ * 6. CONTACT FORM, lead mode (POST /api/contact-requests): the "Book a
+ *    call" / "Custom pricing" form on /form. Turnstile is REQUIRED (fail
+ *    closed without TURNSTILE_SECRET) and bound to this host + the form's
+ *    widget action/cData; per-IP rate limit (CONTACT_RL). The lead goes to
+ *    the Notion leads database (notion.js, insert-only token) and to Slack
+ *    (SLACK_WEBHOOK_URL) - delivered when either accepted it. The visitor
+ *    gets a confirmation email in the page language (confirmation-email.js,
+ *    Resend, from contact@signature.cat); the address joins the Resend
+ *    marketing segment ONLY with the optional marketing opt-in. The answer carries the
+ *    Google Calendar booking page (BOOKING_URL) for the form's second step.
+ *
+ * 7. CONTACT FORM, help mode (POST /api/help-requests): the docs "Help"
+ *    button opens /form?topic=help - name, email, optional phone, urgency and
+ *    a description. Same Turnstile/rate-limit rules (own cData), delivered to
+ *    a SEPARATE Slack channel (SLACK_HELP_WEBHOOK_URL), confirmation email to
+ *    the requester; never Notion, never the marketing segment.
  *
  * Rollback: remove the route / `wrangler delete`. Per-locale pages, hreflang
  * and legal pages keep working; you lose the auto-redirect, the security
  * headers and the consent banner.
  */
+import { createNotionLead, notionParent } from './notion.js';
+import { renderHelpConfirmation, renderLeadConfirmation, sendConfirmation } from './confirmation-email.js';
+
 const SUPPORTED = ['en', 'pl', 'de', 'fr'];
 const CONSENT_COOKIE = 'sigcat_consent';
 const CONSENT_MAX_AGE = 31536000; // 12 months
@@ -379,26 +389,80 @@ async function turnstileRejection(request, env, payload, { required = false, exp
   return null;
 }
 
-// Resend audience contact (subscribed). Callers only reach this with an
-// explicit marketing opt-in from the visitor.
-function addResendContact(env, audienceId, contact) {
-  return fetch(
-    `https://api.resend.com/audiences/${encodeURIComponent(audienceId)}/contacts`,
-    {
+// Sent on every outbound API call: Resend rejects requests without a
+// User-Agent (403), and it identifies us in the other providers' logs.
+const USER_AGENT = 'signature.cat-worker/1.0 (+https://signature.cat)';
+
+// Marketing segment for each opt-in source. Resend renamed audiences to
+// segments (the official SDKs send stored audience ids to the segment
+// endpoints), so the older *_AUDIENCE_ID variables are expected to keep
+// working; the *_SEGMENT_ID names win when both are set.
+export const bannerSegmentId = (env) => env?.RESEND_SEGMENT_ID || env?.RESEND_AUDIENCE_ID || '';
+export const contactSegmentId = (env) =>
+  env?.RESEND_CONTACT_SEGMENT_ID || env?.RESEND_CONTACT_AUDIENCE_ID || bannerSegmentId(env);
+
+// Marketing contact in Resend (subscribed). Callers only reach this with an
+// explicit marketing opt-in from the visitor. Resend Contacts API (global
+// contacts + segments; the legacy POST /audiences/{id}/contacts was removed
+// from Resend's OpenAPI spec on 2026-02-23 and is no longer documented):
+// POST /contacts creates the contact inside the segment. For an address that
+// already exists Resend answers 2xx with the existing contact, and whether it
+// then applies `segments` is not documented - so
+// POST /contacts/{id}/segments/{segment} makes the membership explicit. It
+// goes by the contact id from the create answer (the address stays out of
+// URLs); the address is only the fallback for an answer without an id. Only
+// the create decides success; a failed membership call is logged, never fatal
+// (a non-2xx there can also mean the address already was a member).
+const RESEND_API = 'https://api.resend.com';
+const RESEND_CONTACT_TIMEOUT_MS = 8000;
+// Resend's error `name` (e.g. "validation_error") for the logs - never the
+// message, which can echo the submitted address.
+async function resendErrorName(res) {
+  const body = await res.clone().json().catch(() => null);
+  return typeof body?.name === 'string' ? ` ${body.name.slice(0, 60)}` : '';
+}
+export async function addResendContact(env, segmentId, contact, { label = 'marketing contact' } = {}) {
+  const auth = { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'User-Agent': USER_AGENT };
+  const body = { email: contact.email, unsubscribed: false, segments: [{ id: segmentId }] };
+  // Names only when there is one: an empty string would blank the name an
+  // existing contact already has.
+  if (contact.first_name) body.first_name = contact.first_name;
+  if (contact.last_name) body.last_name = contact.last_name;
+  const res = await fetch(`${RESEND_API}/contacts`, {
+    method: 'POST',
+    headers: { ...auth, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(RESEND_CONTACT_TIMEOUT_MS),
+  });
+  if (!res.ok) {
+    console.error(`${label}: Resend contact answered ${res.status}${await resendErrorName(res)}`);
+    return res;
+  }
+  const created = await res.clone().json().catch(() => null);
+  const who = typeof created?.id === 'string' && created.id ? created.id : contact.email;
+  let member = null;
+  try {
+    // URL built inside the try: encodeURIComponent throws on a malformed
+    // (lone surrogate) address, which must not turn a stored contact into an error.
+    member = await fetch(`${RESEND_API}/contacts/${encodeURIComponent(who)}/segments/${encodeURIComponent(segmentId)}`, {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...contact, unsubscribed: false }),
-    },
-  );
+      headers: auth,
+      signal: AbortSignal.timeout(RESEND_CONTACT_TIMEOUT_MS),
+    });
+  } catch (e) {
+    member = null;
+  }
+  if (!member?.ok) {
+    console.error(`${label}: Resend segment membership ${member ? `HTTP ${member.status}${await resendErrorName(member)}` : 'unreachable'}`);
+  }
+  return res;
 }
 
 // ---- banner-generator lead capture ----------------------------------------------
-// POST /api/banner-leads -> create the address as a Resend audience contact.
-// Configuration (set by DevOps in the Cloudflare dashboard - never in the
-// repo): RESEND_API_KEY (secret) and RESEND_AUDIENCE_ID (variable). Consent
+// POST /api/banner-leads -> create the address as a Resend contact in the
+// marketing segment. Configuration (set by DevOps in the Cloudflare dashboard -
+// never in the repo): RESEND_API_KEY (secret, full access) and
+// RESEND_SEGMENT_ID (the legacy RESEND_AUDIENCE_ID still works). Consent
 // is required in the payload - the front-end gate has a mandatory marketing
 // consent checkbox; requests without consent === true are rejected.
 export async function handleBannerLead(request, env) {
@@ -417,76 +481,141 @@ export async function handleBannerLead(request, env) {
   }
   const blocked = await turnstileRejection(request, env, payload);
   if (blocked) return jsonResponse(blocked.status, { ok: false, error: blocked.error });
-  if (!env?.RESEND_API_KEY || !env?.RESEND_AUDIENCE_ID) {
+  const segmentId = bannerSegmentId(env);
+  if (!env?.RESEND_API_KEY || !segmentId) {
     return jsonResponse(503, { ok: false, error: 'lead_capture_unconfigured' });
   }
-  const res = await addResendContact(env, env.RESEND_AUDIENCE_ID, { email }).catch(() => null);
+  const res = await addResendContact(env, segmentId, { email }, { label: 'banner gate' }).catch(() => {
+    console.error('banner gate: Resend contact unreachable');
+    return null;
+  });
   if (!res || !res.ok) return jsonResponse(502, { ok: false, error: 'lead_capture_failed' });
   return jsonResponse(200, { ok: true });
 }
 
-// ---- contact form (/form) ---------------------------------------------------------
-// POST /api/contact-requests: the "Book a call" / "Custom pricing" form.
+// ---- contact form (/form): lead + help requests -------------------------------------
+// POST /api/contact-requests - lead mode ("Book a call" / "Custom pricing").
+// POST /api/help-requests    - help mode (the docs "Help" button).
 // Configuration (Cloudflare dashboard -> Workers -> landingpage -> Settings ->
-// Variables and Secrets; never in the repo):
-//   SLACK_WEBHOOK_URL  - secret. A Slack incoming webhook; the Slack channel
-//                        is the one the webhook was created for, so moving
-//                        the notifications = a new webhook URL here.
-//   BOOKING_URL        - optional. The Google Calendar appointment schedule
-//                        (Website embed -> Inline booking page -> iframe src);
-//                        returned to the page as the form's second step.
-//   TURNSTILE_SECRET   - secret, REQUIRED (shared with the banner gate). This
-//                        endpoint fails closed: without it every request is
-//                        answered 503 and nothing reaches Slack or Resend.
-//   RESEND_API_KEY + RESEND_AUDIENCE_ID - shared with the banner gate;
-//   RESEND_CONTACT_AUDIENCE_ID - optional, a separate audience for form leads.
-// Without SLACK_WEBHOOK_URL the endpoint answers 503 and the page offers the
-// email fallback. Slack is the delivery channel, so a Slack failure fails the
-// request (the visitor sees it and can retry or email us); Resend is a side
-// channel and never fails it.
+// Variables and Secrets; never in the repo; store values as Secret):
+//   TURNSTILE_SECRET        - REQUIRED by both endpoints (shared with the banner
+//                             gate). They fail closed: without it every request
+//                             is answered 503 and nothing is forwarded.
+//   SLACK_WEBHOOK_URL       - leads channel (Slack incoming webhook; the channel
+//                             is the one the webhook was created for).
+//   SLACK_HELP_WEBHOOK_URL  - help channel, a separate webhook. Unset = help
+//                             requests are answered 503 (email fallback).
+//   NOTION_TOKEN + NOTION_DATA_SOURCE_ID (or NOTION_DATABASE_ID) - leads
+//                             database, insert-only (see notion.js). Leads only.
+//   BOOKING_URL             - optional Google Calendar appointment schedule,
+//                             returned to the page as the lead form's step 2.
+//   RESEND_SEND_API_KEY     - optional "Sending access" key for the confirmation
+//                             emails; falls back to RESEND_API_KEY.
+//   RESEND_API_KEY + RESEND_CONTACT_SEGMENT_ID (or RESEND_SEGMENT_ID; legacy
+//                             *_AUDIENCE_ID names still work) - the marketing
+//                             segment, only with the visitor's opt-in.
+//   CONTACT_RL              - Workers rate-limit binding (wrangler.toml), per IP
+//                             (IPv6 per /64), per endpoint.
+//   CONTACT_RCPT_RL         - rate-limit binding, one confirmation email per
+//                             recipient per minute across both forms.
+// A lead is delivered when Slack OR Notion accepted it (both are tried; each
+// failure is logged, and a failed or unconfirmed Notion write is flagged in the
+// Slack message), so nothing is lost silently. After a Notion timeout the row
+// may still exist ("unconfirmed"), so a retry can store it twice - a possible
+// duplicate beats a lost lead. Confirmation email (CONTACT_RCPT_RL-gated),
+// marketing segment and logging are side channels that never fail the request.
 export const CONTACT_SIZES = ['1-50', '51-120', '121-300', '301-1000', '1001-5000', '5000+'];
-// What a contact-form token must carry (see turnstileRejection `expect`): the
-// widget action is the Spin telemetry marker shared by every widget on the
-// site, so the form itself is identified by the cData the widget is rendered
-// with in assets/js/contact-form.js - keep the two in sync.
+// What a token must carry (see turnstileRejection `expect`): the widget action
+// is the Spin telemetry marker shared by every widget on the site, so the form
+// mode is identified by the cData the widget is rendered with in
+// assets/js/contact-form.js (TURNSTILE_CDATA) - keep the two in sync.
 export const CONTACT_TURNSTILE = { action: 'turnstile-spin-v2', cdata: 'contact-form' };
+export const HELP_TURNSTILE = { action: 'turnstile-spin-v2', cdata: 'help-form' };
 const CONTACT_TOPICS = { call: 'Book a call', pricing: 'Custom pricing', general: 'General enquiry' };
+export const HELP_URGENCIES = ['low', 'normal', 'high', 'critical'];
+const HELP_URGENCY = {
+  low: { label: 'Low', emoji: ':white_circle:' },
+  normal: { label: 'Normal', emoji: ':large_blue_circle:' },
+  high: { label: 'High', emoji: ':large_orange_circle:' },
+  critical: { label: 'Critical', emoji: ':red_circle:' },
+};
+// Docs pages a help request can come from (the page's referrer, path only).
+const DOCS_PATH_RE = /^\/(?:(?:pl|de|fr)\/)?docs(?:\/[a-z0-9-]+)?$/;
 const CONTACT_MAX_BODY = 16384;
 const PHONE_RE = /^[+()0-9 ./-]{6,32}$/;
+const SLACK_TIMEOUT_MS = 8000;
 
+// Invisible format characters (soft hyphen, zero-width, bidi overrides and
+// isolates, word joiner, BOM) never belong in a name or a message - they are
+// how "Acme<U+202E>gnp.exe"-style spoofing reaches Slack, Notion and the email.
+const INVISIBLE_RE = /[\u00AD\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u2069\uFEFF]/g;
 // Single-line field: control characters and whitespace runs become one space.
 const oneLine = (v) =>
-  typeof v === 'string' ? v.replace(/[\u0000-\u001F\u007F\s]+/g, ' ').trim() : '';
+  typeof v === 'string'
+    ? v.replace(INVISIBLE_RE, '').replace(/[\u0000-\u001F\u007F\s]+/g, ' ').trim()
+    : '';
 // Multi-line field: keep line breaks (at most one blank line), drop other
-// control characters.
+// control and invisible characters. contact-form.js mirrors this exactly.
 const multiLine = (v) =>
   typeof v === 'string'
     ? v
+        .replace(INVISIBLE_RE, '')
         .replace(/\r\n?/g, '\n')
         .replace(/[\u0000-\u0009\u000B-\u001F\u007F]/g, '')
         .replace(/\n{3,}/g, '\n\n')
         .trim()
     : '';
+const isPhone = (phone) => {
+  const digits = phone.replace(/\D/g, '').length;
+  return PHONE_RE.test(phone) && digits >= 6 && digits <= 20;
+};
+const pickLocaleOf = (payload) => (SUPPORTED.includes(payload?.locale) ? payload.locale : 'en');
 
-/** Validate + normalize the form payload. Mirrors contact-form.js; null = invalid. */
+/** Validate + normalize a lead. Mirrors contact-form.js (lead mode); null = invalid. */
 export function parseContact(payload) {
   const name = oneLine(payload?.name);
   const email = oneLine(payload?.email);
   const phone = oneLine(payload?.phone);
+  const company = oneLine(payload?.company);
   const size = oneLine(payload?.size);
   const message = multiLine(payload?.message);
-  const digits = phone.replace(/\D/g, '').length;
   if (name.length < 2 || name.length > 120) return null;
   if (!isEmail(email)) return null;
-  if (!PHONE_RE.test(phone) || digits < 6 || digits > 20) return null;
+  if (!isPhone(phone)) return null;
+  if (company.length < 1 || company.length > 120) return null;
   if (!CONTACT_SIZES.includes(size)) return null;
   if (message.length > 2000) return null;
   const topic =
     typeof payload?.topic === 'string' && Object.hasOwn(CONTACT_TOPICS, payload.topic)
       ? payload.topic
       : 'general';
-  const locale = SUPPORTED.includes(payload?.locale) ? payload.locale : 'en';
-  return { name, email, phone, size, message, topic, locale, marketing: payload?.marketing === true };
+  return {
+    name,
+    email,
+    phone,
+    company,
+    size,
+    message,
+    topic,
+    locale: pickLocaleOf(payload),
+    marketing: payload?.marketing === true,
+  };
+}
+
+/** Validate + normalize a help request. Mirrors contact-form.js (help mode). */
+export function parseHelp(payload) {
+  const name = oneLine(payload?.name);
+  const email = oneLine(payload?.email);
+  const phone = oneLine(payload?.phone);
+  const urgency = oneLine(payload?.urgency);
+  const message = multiLine(payload?.message);
+  if (name.length < 2 || name.length > 120) return null;
+  if (!isEmail(email)) return null;
+  if (phone && !isPhone(phone)) return null; // optional here
+  if (!HELP_URGENCIES.includes(urgency)) return null;
+  if (message.length < 10 || message.length > 2000) return null;
+  const from = typeof payload?.from === 'string' && DOCS_PATH_RE.test(payload.from) ? payload.from : '';
+  return { name, email, phone, urgency, message, from, locale: pickLocaleOf(payload) };
 }
 
 /** BOOKING_URL -> the embeddable booking page, or '' when unset/invalid.
@@ -515,105 +644,286 @@ export function bookingEmbedUrl(raw) {
 // neutralizes <!channel>-style mentions and <url|label> links in user input).
 const slackEscape = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+// verbatim: true - Slack must not turn a plain "@channel" / "@here" or a
+// "#channel" in visitor text into a mention (or a URL into a link).
+const slackField = (label, value) => ({
+  type: 'mrkdwn',
+  text: `*${label}*\n${slackEscape(value)}`,
+  verbatim: true,
+});
+// section text caps at 3000 characters; escaping can grow the message
+function slackMessageBlock(label, message) {
+  const msg = slackEscape(message);
+  return {
+    type: 'section',
+    text: {
+      type: 'mrkdwn',
+      text: `*${label}*\n${msg.length > 2900 ? `${msg.slice(0, 2900)}...` : msg}`,
+      verbatim: true,
+    },
+  };
+}
+const notionNote = (notion) => {
+  if (notion.status === 'off') return 'not configured';
+  if (notion.status === 'created') return 'row added';
+  if (notion.status === 'unknown') {
+    return `:warning: UNCONFIRMED (${notion.detail || 'no answer'}) - check Notion before adding the row by hand`;
+  }
+  return `:warning: FAILED (${notion.detail || 'error'}) - add the row by hand`;
+};
 
-/** The Slack message (Block Kit) for one contact request. */
-export function contactSlackMessage(lead, { booking = false } = {}) {
+/** The Slack message (Block Kit) for one lead. */
+export function contactSlackMessage(lead, { booking = false, notion = { status: 'off' } } = {}) {
   const topic = CONTACT_TOPICS[lead.topic];
-  const field = (label, value) => ({ type: 'mrkdwn', text: `*${label}*\n${slackEscape(value)}` });
   const blocks = [
     { type: 'header', text: { type: 'plain_text', text: `New contact request: ${topic}` } },
     {
       type: 'section',
       fields: [
-        field('Name', lead.name),
-        field('Email', lead.email),
-        field('Phone', lead.phone),
-        field('Organization size', `${lead.size} employees`),
-        field('Topic', topic),
-        field('Language', lead.locale.toUpperCase()),
+        slackField('Name', lead.name),
+        slackField('Company', lead.company),
+        slackField('Email', lead.email),
+        slackField('Phone', lead.phone),
+        slackField('Organization size', `${lead.size} employees`),
+        slackField('Topic', topic),
+        slackField('Language', lead.locale.toUpperCase()),
       ],
     },
   ];
-  if (lead.message) {
-    // section text caps at 3000 characters; escaping can grow the message
-    const msg = slackEscape(lead.message);
-    blocks.push({
-      type: 'section',
-      text: { type: 'mrkdwn', text: `*Message*\n${msg.length > 2900 ? `${msg.slice(0, 2900)}...` : msg}` },
-    });
-  }
+  if (lead.message) blocks.push(slackMessageBlock('Message', lead.message));
   blocks.push({
     type: 'context',
     elements: [
       {
         type: 'mrkdwn',
-        text: `Marketing opt-in: ${lead.marketing ? 'yes' : 'no'} | Booking calendar shown: ${booking ? 'yes' : 'no'} | signature.cat/form`,
+        text: `Marketing opt-in: ${lead.marketing ? 'yes' : 'no'} | Booking calendar shown: ${booking ? 'yes' : 'no'} | Notion: ${notionNote(notion)} | signature.cat/form`,
       },
     ],
   });
   return {
-    text: slackEscape(`New contact request (${topic}): ${lead.name}, ${lead.size} employees`),
+    text: slackEscape(`New contact request (${topic}): ${lead.company}, ${lead.name}, ${lead.size} employees`),
     blocks,
     unfurl_links: false,
     unfurl_media: false,
   };
 }
 
-export async function handleContactRequest(request, env, ctx) {
+/** The Slack message (Block Kit) for one help request (its own channel). */
+export function helpSlackMessage(req) {
+  const urgency = HELP_URGENCY[req.urgency];
+  return {
+    text: slackEscape(`Help request (${urgency.label}): ${req.name} <${req.email}>`),
+    blocks: [
+      { type: 'header', text: { type: 'plain_text', text: `${urgency.emoji} Help request: ${urgency.label}`, emoji: true } },
+      {
+        type: 'section',
+        fields: [
+          slackField('Name', req.name),
+          slackField('Email', req.email),
+          slackField('Phone', req.phone || '-'),
+          slackField('Urgency', urgency.label),
+          slackField('Language', req.locale.toUpperCase()),
+          slackField('Docs page', req.from ? `signature.cat${req.from}` : '-'),
+        ],
+      },
+      slackMessageBlock('Problem', req.message),
+      {
+        type: 'context',
+        elements: [
+          { type: 'mrkdwn', text: 'Reply to the requester by email | signature.cat/form?topic=help' },
+        ],
+      },
+    ],
+    unfurl_links: false,
+    unfurl_media: false,
+  };
+}
+
+// Read at most `max` bytes as they arrive: a chunked body without
+// Content-Length is cut off at the cap instead of being buffered whole.
+async function readBoundedText(request, max) {
+  const reader = request.body?.getReader();
+  if (!reader) return { raw: '' };
+  const chunks = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > max) {
+      reader.cancel().catch(() => {});
+      return { tooLarge: true };
+    }
+    chunks.push(value);
+  }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return { raw: new TextDecoder().decode(bytes) };
+}
+
+// Method + size + JSON checks shared by both endpoints.
+async function readJsonBody(request) {
+  const tooLarge = () => ({ error: jsonResponse(413, { ok: false, error: 'payload_too_large' }) });
   if (request.method !== 'POST') {
-    return jsonResponse(405, { ok: false, error: 'method_not_allowed' });
+    return { error: jsonResponse(405, { ok: false, error: 'method_not_allowed' }) };
   }
-  if (Number(request.headers.get('Content-Length') || 0) > CONTACT_MAX_BODY) {
-    return jsonResponse(413, { ok: false, error: 'payload_too_large' });
-  }
-  const raw = await request.text();
-  if (raw.length > CONTACT_MAX_BODY) {
-    return jsonResponse(413, { ok: false, error: 'payload_too_large' });
-  }
-  let payload;
+  if (Number(request.headers.get('Content-Length') || 0) > CONTACT_MAX_BODY) return tooLarge();
+  const body = await readBoundedText(request, CONTACT_MAX_BODY);
+  if (body.tooLarge) return tooLarge();
   try {
-    payload = JSON.parse(raw);
+    return { payload: JSON.parse(body.raw) };
   } catch (e) {
-    return jsonResponse(400, { ok: false, error: 'invalid_json' });
+    return { error: jsonResponse(400, { ok: false, error: 'invalid_json' }) };
   }
-  const lead = parseContact(payload);
+}
+
+// Per-IP rate limit (Workers rate-limit binding CONTACT_RL in wrangler.toml).
+// The confirmation email goes to whatever address the form carries, so this
+// caps how fast anyone who got past Turnstile can make us send mail. Absent
+// binding (tests, local) = no limit; a binding error never blocks a visitor.
+// IPv4 as is, IPv6 reduced to its /64 (one subscriber gets a whole /64, so
+// keying on the full address would hand out a fresh bucket per address).
+export function rateLimitIpKey(ip) {
+  if (!ip.includes(':')) return ip; // IPv4 or 'unknown'
+  const [head, tail] = ip.toLowerCase().split('::');
+  const h = head ? head.split(':') : [];
+  const t = tail ? tail.split(':') : [];
+  const groups = tail === undefined ? h : [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t];
+  return `${groups.slice(0, 4).map((g) => g.padStart(4, '0')).join(':')}::/64`;
+}
+
+async function limited(binding, key) {
+  if (typeof binding?.limit !== 'function') return false;
+  try {
+    const { success } = await binding.limit({ key });
+    return success === false;
+  } catch (e) {
+    return false;
+  }
+}
+
+async function rateLimited(request, env, scope) {
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  return limited(env?.CONTACT_RL, `${scope}:${rateLimitIpKey(ip)}`);
+}
+
+// One confirmation email per recipient per minute across both forms
+// (CONTACT_RCPT_RL): the email goes to whatever address a form carries, so
+// this is what protects a third party's inbox - and our sending reputation.
+// A refused confirmation only skips the email; the request still succeeds.
+async function confirmationAllowed(env, email) {
+  return !(await limited(env?.CONTACT_RCPT_RL, `rcpt:${email.toLowerCase()}`));
+}
+
+async function sendConfirmationIfAllowed(env, to, render, meta) {
+  if (!(await confirmationAllowed(env, to))) {
+    console.error('contact form: confirmation skipped (recipient rate limit)');
+    return { status: 'limited' };
+  }
+  return sendConfirmation(env, to, render(), meta);
+}
+
+async function postSlack(webhookUrl, message) {
+  try {
+    const res = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(message),
+      signal: AbortSignal.timeout(SLACK_TIMEOUT_MS),
+    });
+    if (!res.ok) console.error(`contact form: Slack answered ${res.status}`);
+    return res.ok;
+  } catch (e) {
+    console.error('contact form: Slack unreachable');
+    return false;
+  }
+}
+
+// Side channels run after the response (ctx.waitUntil); without a ctx (tests)
+// they are awaited so their effects are observable.
+async function inBackground(ctx, tasks) {
+  const all = Promise.all(tasks.filter(Boolean));
+  if (ctx?.waitUntil) ctx.waitUntil(all);
+  else await all;
+}
+
+export async function handleContactRequest(request, env, ctx) {
+  const read = await readJsonBody(request);
+  if (read.error) return read.error;
+  const lead = parseContact(read.payload);
   if (!lead) return jsonResponse(400, { ok: false, error: 'invalid_payload' });
+  if (await rateLimited(request, env, 'contact')) {
+    return jsonResponse(429, { ok: false, error: 'rate_limited' });
+  }
   // Fail closed + token bound to this host, widget action and form cData.
-  const blocked = await turnstileRejection(request, env, payload, {
+  const blocked = await turnstileRejection(request, env, read.payload, {
     required: true,
     expect: CONTACT_TURNSTILE,
   });
   if (blocked) return jsonResponse(blocked.status, { ok: false, error: blocked.error });
-  if (!env?.SLACK_WEBHOOK_URL) {
+  const notionOn = Boolean(env?.NOTION_TOKEN && notionParent(env));
+  if (!env?.SLACK_WEBHOOK_URL && !notionOn) {
     return jsonResponse(503, { ok: false, error: 'contact_unconfigured' });
   }
   const booking = bookingEmbedUrl(env.BOOKING_URL);
-  const slack = await fetch(env.SLACK_WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(contactSlackMessage(lead, { booking: Boolean(booking) })),
-  }).catch(() => null);
-  if (!slack || !slack.ok) {
+  // Notion first, so the Slack message can say whether the row landed.
+  const notion = notionOn ? await createNotionLead(env, lead) : { status: 'off' };
+  const slackOk = env.SLACK_WEBHOOK_URL
+    ? await postSlack(env.SLACK_WEBHOOK_URL, contactSlackMessage(lead, { booking: Boolean(booking), notion }))
+    : false;
+  if (!slackOk && notion.status !== 'created') {
     return jsonResponse(502, { ok: false, error: 'contact_delivery_failed' });
   }
-  // Marketing audience ONLY with the separate, unticked-by-default opt-in: a
+  // Marketing segment ONLY with the separate, unticked-by-default opt-in: a
   // contact request alone is no consent to marketing email (GDPR art. 7(4)).
-  const audienceId = env.RESEND_CONTACT_AUDIENCE_ID || env.RESEND_AUDIENCE_ID;
-  if (lead.marketing && env.RESEND_API_KEY && audienceId) {
-    const [firstName, ...rest] = lead.name.split(' ');
-    const task = addResendContact(env, audienceId, {
-      email: lead.email,
-      first_name: firstName,
-      last_name: rest.join(' '),
-    })
-      .then((res) => {
-        if (!res.ok) console.error(`contact form: Resend answered ${res.status}`);
-      })
-      .catch((e) => console.error('contact form: Resend unreachable', e));
-    if (ctx?.waitUntil) ctx.waitUntil(task);
-    else await task;
-  }
+  const segmentId = contactSegmentId(env);
+  const [firstName, ...rest] = lead.name.split(' ');
+  await inBackground(ctx, [
+    lead.marketing && env.RESEND_API_KEY && segmentId
+      ? addResendContact(
+          env,
+          segmentId,
+          { email: lead.email, first_name: firstName, last_name: rest.join(' ') },
+          { label: 'contact form' },
+        ).catch(() => console.error('contact form: Resend contact unreachable'))
+      : null,
+    sendConfirmationIfAllowed(env, lead.email, () => renderLeadConfirmation(lead, { booking }), {
+      kind: 'contact',
+      locale: lead.locale,
+    }),
+  ]);
   return jsonResponse(200, booking ? { ok: true, booking } : { ok: true });
+}
+
+export async function handleHelpRequest(request, env, ctx) {
+  const read = await readJsonBody(request);
+  if (read.error) return read.error;
+  const req = parseHelp(read.payload);
+  if (!req) return jsonResponse(400, { ok: false, error: 'invalid_payload' });
+  if (await rateLimited(request, env, 'help')) {
+    return jsonResponse(429, { ok: false, error: 'rate_limited' });
+  }
+  const blocked = await turnstileRejection(request, env, read.payload, {
+    required: true,
+    expect: HELP_TURNSTILE,
+  });
+  if (blocked) return jsonResponse(blocked.status, { ok: false, error: blocked.error });
+  if (!env?.SLACK_HELP_WEBHOOK_URL) {
+    return jsonResponse(503, { ok: false, error: 'help_unconfigured' });
+  }
+  if (!(await postSlack(env.SLACK_HELP_WEBHOOK_URL, helpSlackMessage(req)))) {
+    return jsonResponse(502, { ok: false, error: 'help_delivery_failed' });
+  }
+  // No Notion row and no marketing segment for help requests - only the
+  // confirmation email to the requester.
+  await inBackground(ctx, [
+    sendConfirmationIfAllowed(env, req.email, () => renderHelpConfirmation(req), { kind: 'help', locale: req.locale }),
+  ]);
+  return jsonResponse(200, { ok: true });
 }
 
 // ---- worker -------------------------------------------------------------------
@@ -628,6 +938,9 @@ export default {
     }
     if (url.pathname === '/api/contact-requests') {
       return handleContactRequest(request, env, ctx);
+    }
+    if (url.pathname === '/api/help-requests') {
+      return handleHelpRequest(request, env, ctx);
     }
 
     if (url.pathname === '/' || url.pathname === '/index.html') {

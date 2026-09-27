@@ -991,6 +991,11 @@ html:lang(pl) #ad-banner { display: none; }
    (step 1) turns into the thank-you panel with the Google Calendar booking
    embed (step 2). Tokens only, so Light/Dark follow the palette. */
 .cf-hero .section-head { margin-bottom: 40px; }
+/* Lead vs help mode (html[data-cf-mode="help"] is set by the inline script in
+   form.html's <head> before first paint). !important: the toggled blocks carry
+   their own display values (.cf-row grid, .cf-check flex, .cf-aside ...). */
+html[data-cf-mode="help"] .cf-lead-only,
+html:not([data-cf-mode="help"]) .cf-help-only { display: none !important; }
 .cf-layout {
   display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   gap: 40px; align-items: start; max-width: 1040px; margin-inline: auto;
@@ -1008,7 +1013,7 @@ html:lang(pl) #ad-banner { display: none; }
 .cf-form { display: flex; flex-direction: column; gap: 16px; }
 /* author display values beat the UA [hidden] rule - re-assert it for the
    blocks contact-form.js toggles (same trap as the cookie banner, PR #13) */
-.cf-form[hidden], .cf-done[hidden], .cf-alert[hidden], .cf-booking[hidden], .cf-error[hidden] { display: none; }
+.cf-form[hidden], .cf-done[hidden], .cf-alert[hidden], .cf-booking[hidden], .cf-booking-note[hidden], .cf-error[hidden] { display: none; }
 .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .cf-field { min-width: 0; }
 .cf-field label { display: block; font-size: .88rem; font-weight: 600; margin-bottom: 6px; }
@@ -1018,7 +1023,8 @@ html:lang(pl) #ad-banner { display: none; }
   transition: border-color .18s var(--ease), box-shadow .18s var(--ease);
 }
 .cf-field input, .cf-field select { height: 46px; padding: 0 12px; }
-.cf-field select:invalid { color: var(--muted); } /* placeholder option shown */
+.cf-field select:invalid,
+.cf-field select:has(> option[value=""]:checked) { color: var(--muted); } /* placeholder option shown */
 .cf-field select option { color: var(--ink); }
 .cf-field textarea { min-height: 116px; padding: 10px 12px; line-height: 1.5; resize: vertical; }
 .cf-field input:hover, .cf-field select:hover, .cf-field textarea:hover {
@@ -1048,14 +1054,15 @@ html:lang(pl) #ad-banner { display: none; }
   display: block; margin-top: 6px; overflow-wrap: anywhere;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .8rem;
 }
-.cf-alert a, .cf-privacy a, .cf-aside-mail a, .cf-done-links a {
+.cf-alert a, .cf-privacy a, .cf-aside-mail a, .cf-done-links a, .cf-points a, .cf-booking-note a {
   color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px;
 }
 .cf-submit-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
 .cf-form .btn:disabled { opacity: .6; cursor: default; }
 .cf-form .btn-primary:disabled:hover { background: var(--ink); color: var(--cream); }
 .cf-status { font-size: .88rem; color: var(--muted); }
-.cf-privacy, .cf-noscript { font-size: .82rem; color: var(--muted); }
+.cf-privacy, .cf-noscript, .cf-booking-note { font-size: .82rem; color: var(--muted); }
+.cf-booking-note { margin: 10px 0 0; }
 .cf-noscript { color: var(--bad-ink); font-weight: 600; }
 
 /* Step 2 */

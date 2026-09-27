@@ -28,9 +28,13 @@ routes = [
 # safe from deploys regardless of keep_vars.
 #
 # Lead capture for /banners-generator (POST /api/banner-leads -> Resend
-# audience contact):
-#   RESEND_API_KEY     - secret (encrypt!)
-#   RESEND_AUDIENCE_ID - the target Resend audience id
+# contact in the marketing segment; Resend Contacts API, not the legacy
+# audiences endpoint):
+#   RESEND_API_KEY     - secret (encrypt!); FULL access (contacts)
+#   RESEND_SEGMENT_ID  - the target Resend segment id. Resend renamed
+#                        audiences to segments, so the older
+#                        RESEND_AUDIENCE_ID is expected to keep working
+#                        (SEGMENT wins) - confirm with GET /segments/{id}.
 #   TURNSTILE_SECRET   - secret (encrypt!); Turnstile widget secret key.
 #                        When set, the endpoints REQUIRE a valid
 #                        cf-turnstile-response token (bot protection).
@@ -42,17 +46,52 @@ routes = [
 # Until they exist the endpoint answers 503 (Resend) / skips the Turnstile
 # check, and the generator keeps working without storing leads.
 #
-# Contact form on /form (POST /api/contact-requests):
-#   SLACK_WEBHOOK_URL  - secret (encrypt!); Slack incoming webhook. The Slack
-#                        channel is the one the webhook was created for - to
-#                        switch channels, create a webhook for the new channel
-#                        and replace this value. Unset = the endpoint answers
-#                        503 and the page offers the email fallback.
+# Contact form on /form - lead mode (POST /api/contact-requests) and help
+# mode (POST /api/help-requests, the docs "Help" button):
+#   SLACK_WEBHOOK_URL  - secret (encrypt!); Slack incoming webhook for leads.
+#                        The Slack channel is the one the webhook was created
+#                        for - to switch channels, create a webhook for the
+#                        new channel and replace this value.
+#   SLACK_HELP_WEBHOOK_URL - secret (encrypt!); a SEPARATE incoming webhook for
+#                        help requests (its own channel). Unset = help requests
+#                        are answered 503 and the page offers the email fallback.
+#   NOTION_TOKEN       - secret (encrypt!); Notion internal connection with ONLY
+#                        the "Insert content" capability (leads database).
+#   NOTION_DATA_SOURCE_ID - the leads database's data source id (preferred), or
+#   NOTION_DATABASE_ID - the database id from its URL. Leads only, never help.
+#   RESEND_SEND_API_KEY - optional secret; a Resend "Sending access" key
+#                        (domain signature.cat) for the confirmation emails.
+#                        Unset = RESEND_API_KEY is used.
 #   BOOKING_URL        - optional; Google Calendar appointment schedule URL
 #                        (Website embed -> Inline booking page -> the iframe
 #                        src). Shown as the form's second step; unset = the
 #                        form ends on a thank-you message.
-#   RESEND_CONTACT_AUDIENCE_ID - optional; a separate Resend audience for
-#                        form leads (default: RESEND_AUDIENCE_ID). A lead only
+#   RESEND_CONTACT_SEGMENT_ID - optional; a separate Resend segment for
+#                        form leads (legacy name RESEND_CONTACT_AUDIENCE_ID;
+#                        default: the banner segment above). A lead only
 #                        reaches Resend when the visitor ticked the optional
 #                        marketing opt-in.
+
+# Per-IP rate limit for the contact/help endpoints (they email a confirmation
+# to the address in the form, so this caps abuse by anyone who gets past
+# Turnstile). Workers Rate Limiting API (GA 2025-09), wrangler >= 4.36. The
+# code treats a missing binding as "no limit". period must be 10 or 60.
+[[ratelimits]]
+name = "CONTACT_RL"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 5
+  period = 60
+
+# Per-recipient cap on confirmation emails: at most one per address per
+# minute, whichever form or IP sends it. Stops the form from being used to
+# mail-bomb a third-party address from rotating IPs. Over the limit the
+# request is still delivered (Slack/Notion); only the email is skipped.
+[[ratelimits]]
+name = "CONTACT_RCPT_RL"
+namespace_id = "1002"
+
+  [ratelimits.simple]
+  limit = 1
+  period = 60

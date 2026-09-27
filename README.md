@@ -164,7 +164,8 @@ locales like every landing page). Logic lives in
 - **Email gate:** first download/copy asks for an email + marketing consent,
   then sets `sigcat_bg_lead` (12 months) and never asks again on the device.
   The lead goes to `POST /api/banner-leads` (edge Worker) which creates a
-  Resend audience contact. Best-effort: any error still lets the user export.
+  Resend contact in the marketing segment (Resend Contacts API - see
+  `cloudflare/README.md`). Best-effort: any error still lets the user export.
   The endpoint path is assembled at runtime in `banner-generator.js` and
   never appears verbatim in served HTML/JS (anti-scraper hygiene only - the
   real bot protection is Turnstile below).
@@ -176,48 +177,64 @@ locales like every landing page). Logic lives in
   on the Worker (unset = verification skipped). CSP already allowlists
   `challenges.cloudflare.com` (script-src + frame-src).
 - **Worker config (DevOps):** set `RESEND_API_KEY` (secret),
-  `RESEND_AUDIENCE_ID` and `TURNSTILE_SECRET` (secret) on the `landingpage`
+  `RESEND_SEGMENT_ID` (legacy name `RESEND_AUDIENCE_ID` still works) and
+  `TURNSTILE_SECRET` (secret) on the `landingpage`
   Worker in the Cloudflare dashboard. Until then the endpoint answers 503
   (Resend) / skips the Turnstile check, and no leads are stored.
 
 ## Contact form (/form)
 
-One page (x4 locales, `form.html`, `cf.*` keys in `i18n.js`, `.cf-*` styles)
-behind the **Book a call** band on the home page (`/form?topic=call`) and the
-**Custom pricing** buttons on both pricing sections (`/form?topic=pricing`).
-Logic: `assets/js/contact-form.js` (loaded only on that page).
+One page (x4 locales, `form.html`, `cf.*` keys in `i18n.js`, `.cf-*` styles),
+two modes. Logic: `assets/js/contact-form.js` (loaded only on that page).
 
-- **Step 1 - the form:** full name, work email, phone, organization size
-  (estimated headcount, ranges aligned with the pricing tiers), optional
-  description, and a separate, unticked-by-default marketing opt-in. Client
-  validation mirrors `parseContact()` in `cloudflare/worker.js` (keep them in
-  sync); errors are inline, localized and linked via `aria-describedby`.
-  Personal data never goes into a URL: the form is `method=post`, the script
-  sends a JSON `fetch` body, and the submit button ships `disabled` until the
-  script runs (no-JS visitors get an email fallback instead).
-- **Delivery:** `POST /api/contact-requests` on the edge Worker - Turnstile
-  siteverify, then a Slack message (Block Kit) to `SLACK_WEBHOOK_URL`; the
-  request fails visibly (retry + email fallback) if Slack does not accept it.
-  With the marketing opt-in ticked, the address also becomes a Resend audience
-  contact (never without it - a contact request alone is no consent to
-  marketing email).
-- **Step 2 - booking:** when `BOOKING_URL` (a Google Calendar appointment
-  schedule) is set on the Worker, the success answer carries it and the page
-  embeds the booking calendar in place of the form (full width, with an
-  "open in a new tab" fallback). Without it the form ends on a thank-you note.
-- **Turnstile (mandatory here):** same widget and sitekey as the banner gate
+- **Lead mode (default)** - behind the **Book a call** band on the home page
+  (`/form?topic=call`) and the **Custom pricing** buttons on both pricing
+  sections (`/form?topic=pricing`): full name, work email, phone, **company
+  name**, organization size (estimated headcount, ranges aligned with the
+  pricing tiers), optional description and a separate, unticked-by-default
+  marketing opt-in. Posts to `POST /api/contact-requests`.
+- **Help mode** - `/form?topic=help`, opened by the **Help** button on every
+  docs page (`helpFormHref()` in `build-docs.mjs`, localized): full name,
+  email, optional phone, **urgency** (low / normal / high / critical) and a
+  required description; no company, size or marketing opt-in. The docs page
+  the visitor came from (same-origin referrer, path only) travels as context.
+  Posts to `POST /api/help-requests`.
+- **How the modes switch:** an inline script in `form.html`'s `<head>` sets
+  `html[data-cf-mode="help"]` (and the help `data-i18n-title`) before first
+  paint; CSS hides `.cf-lead-only` / `.cf-help-only`, so both variants are in
+  the served, localized HTML and nothing flashes. Controls with two label
+  variants get `aria-labelledby` pointed at the active one. Mode-specific
+  `mailto:` fallbacks carry their own subject via `data-subject-key`.
+- **Validation:** client rules mirror `parseContact()` / `parseHelp()` in
+  `cloudflare/worker.js` (keep them in sync); errors are inline, localized and
+  linked via `aria-describedby`. Personal data never goes into a URL: the form
+  is `method=post`, the script sends a JSON `fetch` body, and the submit button
+  ships `disabled` until the script runs (no-JS visitors get an email fallback).
+- **What the Worker does with it** (details in `cloudflare/README.md`):
+  mandatory Turnstile (fail closed; tokens bound to the host, the widget action
+  and the mode's `cData`), per-IP rate limit (`CONTACT_RL`), then
+  - lead: a row in the Notion leads database (insert-only token) and a Slack
+    message (`SLACK_WEBHOOK_URL`) - delivered when either accepted it; the
+    Resend marketing segment only with the opt-in;
+  - help: a Slack message in its own channel (`SLACK_HELP_WEBHOOK_URL`) -
+    never Notion, never the marketing segment;
+  - both: a confirmation email to the visitor in the page language, from
+    `contact@signature.cat`, with a copy of the request (links in the echoed
+    text defanged, at most one per address per minute via `CONTACT_RCPT_RL`).
+- **Step 2 - booking (lead mode):** when `BOOKING_URL` (a Google Calendar
+  appointment schedule) is set on the Worker, the success answer carries it and
+  the page embeds the booking calendar in place of the form (full width, with
+  an "open in a new tab" fallback). Without it the form ends on a thank-you note.
+- **Turnstile:** same widget and sitekey as the banner gate
   (`TURNSTILE_SITE_KEY` in `contact-form.js`), loaded on the first interaction
   with the form, rendered explicitly with `appearance: interaction-only`
-  (invisible unless a visitor really must click) and reset after a failed
-  submit (tokens are single-use). Unlike the best-effort banner gate, the
-  contact endpoint **fails closed**: without `TURNSTILE_SECRET` on the Worker
-  it answers 503 and forwards nothing, and a token only counts when
-  siteverify confirms it was solved on this host, for the widget action
-  `turnstile-spin-v2` and the form's `cData` `contact-form`
-  (`CONTACT_TURNSTILE` in `worker.js` <-> `TURNSTILE_ACTION`/`TURNSTILE_CDATA`
-  in `contact-form.js` - keep in sync).
+  (invisible unless a visitor really must click), `cData` `contact-form` or
+  `help-form` (`CONTACT_TURNSTILE` / `HELP_TURNSTILE` in `worker.js` <->
+  `TURNSTILE_CDATA` in `contact-form.js` - keep in sync), and reset after a
+  failed submit (tokens are single-use).
 - **Analytics:** a GA4 `generate_lead` event (`form_topic` only, no personal
-  data) fires on success, and only after the visitor opted into analytics.
+  data) fires on a successful lead, and only after the visitor opted into
+  analytics. Help requests send no event.
 - **Worker config (DevOps):** see `cloudflare/README.md` ("Contact form").
 
 ## Placeholders to replace

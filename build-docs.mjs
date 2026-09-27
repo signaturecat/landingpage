@@ -61,6 +61,9 @@ const ROOT = dirname(fileURLToPath(import.meta.url));
 const BASE = 'https://signature.cat';
 const DOCS_BASE = `${BASE}/docs`;
 const APP = 'https://app.signature.cat';
+// The docs "Help" button opens the landing contact form in help mode
+// (support request with urgency, its own Slack channel) in the page language.
+const helpFormHref = (loc) => `${loc === 'en' ? '' : `/${loc}`}/form?topic=help`;
 
 /* Cache-busting for first-party CSS/JS (same mechanism as build.mjs, PR #36):
    documents are served no-cache by the edge Worker, but /assets/* sits under
@@ -699,7 +702,7 @@ ${jsonLd(meta, slug, sectionName, loc)}
           <svg class="i-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
           <svg class="i-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
         </button>
-        <a class="btn-help" href="mailto:contact@signature.cat">${HELP_ICON}<span>${escHtml(ui.help)}</span></a>
+        <a class="btn-help" href="${helpFormHref(loc)}">${HELP_ICON}<span>${escHtml(ui.help)}</span></a>
         <a class="btn btn-primary docs-app-btn" href="${APP}">${escHtml(ui.openApp)}</a>
       </div>
     </div>

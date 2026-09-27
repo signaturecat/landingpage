@@ -2,12 +2,12 @@
 title: Hilfe erhalten
 navTitle: Hilfe erhalten
 description: So erreichen Sie den SignatureCat-Support bei Problemen mit Gmail-Signaturen - was Sie zuerst in Status, Protokollen und dem Google Workspace-Zugriff prüfen und was in die Meldung gehört.
-updated: 2026-08-02
+updated: 2026-09-27
 ---
 
 # Hilfe erhalten
 
-Support gibt es per E-Mail an [contact@signature.cat](mailto:contact@signature.cat). Vor dem Schreiben führt ein kurzer Selbst-Check oft schneller zur Antwort - die meisten Fälle von "Signaturen werden nicht mehr angewendet" haben eine von drei bekannten Ursachen.
+Eine Supportanfrage senden Sie über das [Hilfeformular](https://signature.cat/de/form?topic=help) - es fragt nach der Dringlichkeit, damit kritische Fälle zuerst bearbeitet werden - oder per E-Mail an [contact@signature.cat](mailto:contact@signature.cat). Vor dem Schreiben führt ein kurzer Selbst-Check oft schneller zur Antwort - die meisten Fälle von "Signaturen werden nicht mehr angewendet" haben eine von drei bekannten Ursachen.
 
 ## Kurzer Selbst-Check
 
@@ -19,7 +19,7 @@ Support gibt es per E-Mail an [contact@signature.cat](mailto:contact@signature.c
 
 ## An den Support schreiben
 
-Schreiben Sie an [contact@signature.cat](mailto:contact@signature.cat), möglichst von einer Adresse Ihrer Workspace-Domain. Geben Sie an:
+Nutzen Sie das [Hilfeformular](https://signature.cat/de/form?topic=help) (die Schaltfläche **Hilfe** oben auf jeder Dokumentationsseite öffnet es) oder schreiben Sie an [contact@signature.cat](mailto:contact@signature.cat), möglichst von einer Adresse Ihrer Workspace-Domain. Das Formular sendet Ihnen eine Bestätigung mit einer Kopie Ihrer Anfrage per E-Mail. Geben Sie an:
 
 - Ihre **Workspace-Domain** (zum Beispiel `yourcompany.com`),
 - **was Sie erwartet haben und was passiert ist**, mit Zeitstempeln und Ihrer Zeitzone,
@@ -31,7 +31,7 @@ Schreiben Sie an [contact@signature.cat](mailto:contact@signature.cat), möglich
 
 ## Antwortzeiten
 
-Support gibt es ausschließlich per E-Mail. Während der Testphase gibt es keine garantierte Antwortzeit; zahlende Kunden werden mit Priorität beantwortet. Vorfälle, die viele Kunden betreffen, werden öffentlich über die [Statusseite](https://status.signature.cat/) koordiniert.
+Der Support antwortet per E-Mail - auch auf Anfragen über das Hilfeformular. Während der Testphase gibt es keine garantierte Antwortzeit; zahlende Kunden werden mit Priorität beantwortet. Vorfälle, die viele Kunden betreffen, werden öffentlich über die [Statusseite](https://status.signature.cat/) koordiniert.
 
 ## Funktionswünsche und Feedback
 

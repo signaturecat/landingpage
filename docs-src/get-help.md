@@ -2,12 +2,12 @@
 title: Get help
 navTitle: Get help
 description: How to reach SignatureCat support about Gmail signature problems - what to check first in status, logs and Google Workspace access, and what to include.
-updated: 2026-08-02
+updated: 2026-09-27
 ---
 
 # Get help
 
-Support is provided by email at [contact@signature.cat](mailto:contact@signature.cat). Before writing, a quick self-check often gets you an answer faster - most "signatures stopped applying" cases are one of three known causes.
+Send a support request through the [help form](https://signature.cat/form?topic=help) - it asks how urgent the problem is, so critical cases are seen first - or email [contact@signature.cat](mailto:contact@signature.cat). Before writing, a quick self-check often gets you an answer faster - most "signatures stopped applying" cases are one of three known causes.
 
 ## Quick self-check
 
@@ -19,7 +19,7 @@ Support is provided by email at [contact@signature.cat](mailto:contact@signature
 
 ## Writing to support
 
-Email [contact@signature.cat](mailto:contact@signature.cat) from an address at your Workspace domain if possible. Include:
+Use the [help form](https://signature.cat/form?topic=help) (the **Help** button at the top of every docs page opens it) or email [contact@signature.cat](mailto:contact@signature.cat), from an address at your Workspace domain if possible. The form sends you a confirmation email with a copy of your request. Include:
 
 - your **Workspace domain** (for example `yourcompany.com`),
 - **what you expected vs what happened**, with timestamps and your timezone,
@@ -31,7 +31,7 @@ Email [contact@signature.cat](mailto:contact@signature.cat) from an address at y
 
 ## Response expectations
 
-Support is email-only. During the trial period there is no guaranteed response time; paying customers are answered with priority. Incidents affecting many customers are coordinated publicly on the [status page](https://status.signature.cat/).
+Support replies by email - also to requests sent through the help form. During the trial period there is no guaranteed response time; paying customers are answered with priority. Incidents affecting many customers are coordinated publicly on the [status page](https://status.signature.cat/).
 
 ## Feature requests and feedback
 

@@ -1,10 +1,10 @@
 # Cloudflare edge Worker (signature.cat)
 
 One Worker on the `signature.cat/*` route, in front of the existing static host
-(GitHub Pages) - **no hosting migration needed**. It has three jobs, plus two
+(GitHub Pages) - **no hosting migration needed**. It has three jobs, plus three
 small API endpoints (`POST /api/banner-leads` for the banner generator's email
-gate, `POST /api/contact-requests` for the contact form - see "Contact form"
-below):
+gate, `POST /api/contact-requests` and `POST /api/help-requests` for the
+contact form - see "Contact form" below):
 
 1. **Language router** - server-side, SEO-safe browser-language redirect for
    the bare root only (unchanged behaviour).
@@ -97,58 +97,176 @@ Googlebot crawls with `Accept-Language: en` (or none), so it is never redirected
 off `/` and the English homepage indexes as x-default. The reciprocal `hreflang`
 in each page (from `build.mjs`) is what exposes the alternates to search engines.
 
-## Contact form (POST /api/contact-requests)
+## Contact form (POST /api/contact-requests, POST /api/help-requests)
 
-The "Book a call" / "Custom pricing" form on `/form` (x4 locales) posts
-`{name, email, phone, size, message?, topic, locale, marketing,
-cf-turnstile-response}` as JSON. `handleContactRequest()`:
+`/form` (x4 locales) runs in two modes; the Worker has one endpoint per mode.
+Code: `worker.js` (handlers, validation, Slack), `notion.js` (Notion leads
+database), `confirmation-email.js` (emails). Tests:
+`node --test cloudflare/worker.test.mjs`.
 
-1. validates + normalizes the payload (`parseContact()`, mirrored by
-   `assets/js/contact-form.js`) - `400 invalid_payload` otherwise, `413` over
-   16 KB;
-2. **requires** a verified Turnstile token - the endpoint fails closed:
-   `503 turnstile_unconfigured` without `TURNSTILE_SECRET` (nothing is
-   forwarded), `403 turnstile_required` without a token, `403
-   turnstile_invalid` for a token over Cloudflare's 2048-character maximum,
-   `403 turnstile_failed` when siteverify says no, `503 turnstile_unavailable`
-   when siteverify is unreachable, and `403 turnstile_mismatch` unless
-   siteverify confirms the token was solved on this host (`hostname` = the
-   request's host), for the widget action `turnstile-spin-v2` and the form's
-   `cData` `contact-form` (`CONTACT_TURNSTILE`) - so a token solved on
-   another page or domain with the same sitekey cannot be replayed here.
-   The banner gate keeps its best-effort behaviour (verification only when
-   the secret is set, no binding);
-3. posts a Block Kit message to Slack - user input is escaped for Slack
-   mrkdwn (`<!channel>`-style mentions and `<url|label>` links are
-   neutralized), link unfurling is off. `503 contact_unconfigured` without a
-   webhook, `502 contact_delivery_failed` when Slack does not accept it
-   (Slack is the delivery channel, so the visitor sees the failure and can
-   retry or email us);
-4. ONLY when the visitor ticked the optional marketing opt-in: creates a
-   subscribed Resend audience contact (email, first/last name) in the
-   background (`ctx.waitUntil`) - a Resend failure is logged, never returned;
-5. answers `200 {ok: true, booking?}` - `booking` is `BOOKING_URL` normalized
-   to Google's embed mode (`gv=true`) and is returned only for a
-   `https://calendar.google.com/calendar/appointments/...` URL (the one host
-   the CSP lets the page frame).
+**Lead mode** - `POST /api/contact-requests` with `{name, email, phone,
+company, size, message?, topic, locale, marketing, cf-turnstile-response}`
+("Book a call" / "Custom pricing"):
 
-Configuration (Cloudflare dashboard -> Workers -> `landingpage` -> Settings ->
-Variables and Secrets; store every value as **Secret**):
+1. `parseContact()` validates + normalizes (invisible and bidi characters
+   dropped, control characters and whitespace runs collapsed; mirrored by
+   `assets/js/contact-form.js`, a test pins the shared regex) -
+   `400 invalid_payload`, `413` over 16 KB (checked while the body streams, not
+   only from `Content-Length`);
+2. per-IP rate limit (`CONTACT_RL`, 5 requests / 60 s, IPv6 counted per /64) -
+   `429 rate_limited`;
+3. **mandatory** Turnstile, fail closed: `503 turnstile_unconfigured` without
+   `TURNSTILE_SECRET`, `403 turnstile_required|invalid|failed`, `503
+   turnstile_unavailable`, `403 turnstile_mismatch` unless siteverify confirms
+   the token was solved on this host with action `turnstile-spin-v2` and cData
+   `contact-form` (`CONTACT_TURNSTILE`);
+4. a **Notion** row (`notion.js`, 5 s timeout, no retry - POST is not
+   idempotent), then a **Slack** message to `SLACK_WEBHOOK_URL` whose footer
+   says whether the Notion row landed. The lead counts as delivered when Slack
+   OR Notion accepted it; `502 contact_delivery_failed` only when both failed,
+   `503 contact_unconfigured` when neither is configured;
+5. in the background (`ctx.waitUntil`, never fails the request): the Resend
+   marketing contact ONLY with the marketing opt-in (see "Marketing contacts"
+   below), and the **confirmation
+   email** - at most one per recipient address per minute
+   (`CONTACT_RCPT_RL`), so the form cannot be used to mail-bomb someone else's
+   address from rotating IPs; over the limit only the email is skipped;
+6. `200 {ok: true, booking?}` - `booking` = `BOOKING_URL` in Google's embed
+   mode, only for `https://calendar.google.com/calendar/appointments/...`.
+
+**Help mode** - `POST /api/help-requests` with `{name, email, phone?, urgency,
+message, from?, locale, cf-turnstile-response}` (the docs "Help" button):
+`parseHelp()` (urgency `low|normal|high|critical`, description 10-2000
+characters, phone optional, `from` = the docs page, allowlisted), the same rate
+limit and mandatory Turnstile with cData `help-form` (`HELP_TURNSTILE` - a lead
+token is refused here and vice versa), then a Slack message to the SEPARATE
+`SLACK_HELP_WEBHOOK_URL` (`503 help_unconfigured` without it - it never falls
+back to the leads channel; `502 help_delivery_failed`), then the confirmation
+email (same `CONTACT_RCPT_RL` cap). Never Notion, never the marketing segment,
+no booking step.
+
+User input is escaped for every sink: Slack mrkdwn (`<!channel>`-style
+mentions and `<url|label>` links neutralized, text blocks `verbatim` so a
+plain `@channel` or `#channel` stays text, unfurling off), HTML email
+(`& < > " ' \``), Notion (JSON values, never markup). The confirmation email
+goes to whatever address the form carries, so the text it echoes back is
+defanged: URL- and domain-like tokens in the name, company and description
+become `evil[.]example` / `https[://]...` (mail clients would otherwise link
+them in a message signed by signature.cat), and the greeting uses the first
+name only when it is letters (else a plain "Thank you!"). With the marketing
+opt-in the footer says how to get the address removed instead of "ignore it".
+
+### Configuration
+
+Cloudflare dashboard -> Workers -> `landingpage` -> Settings -> Variables and
+Secrets; store every value as **Secret** (it also survives deploys regardless
+of `keep_vars`):
 
 | Name | Required | What |
 |---|---|---|
-| `SLACK_WEBHOOK_URL` | yes | Slack incoming webhook. The channel is the one the webhook was created for: to move notifications to another channel, create a webhook for that channel and replace the value. |
-| `BOOKING_URL` | no | Google Calendar appointment schedule: Calendar -> the booking page -> Share -> Website embed -> Inline booking page -> the iframe `src`. Unset = the form ends on a thank-you note. |
-| `RESEND_CONTACT_AUDIENCE_ID` | no | Separate Resend audience for form leads; default `RESEND_AUDIENCE_ID` (shared with the banner gate, as is `RESEND_API_KEY`). |
-| `TURNSTILE_SECRET` | **yes** (already set for the banner gate) | Same widget. Required: without it the contact endpoint refuses every request (fail closed). |
+| `TURNSTILE_SECRET` | **yes** (already set for the banner gate) | Same widget. Without it both form endpoints refuse every request (fail closed). |
+| `SLACK_WEBHOOK_URL` | yes (or Notion) | Slack incoming webhook for leads. The channel is the one the webhook was created for: to move notifications, create a webhook for the new channel and replace the value. |
+| `SLACK_HELP_WEBHOOK_URL` | yes for help | A **separate** incoming webhook (its own channel) for help requests. |
+| `NOTION_TOKEN` | for Notion | Internal connection token with **only** the "Insert content" capability (see below). |
+| `NOTION_DATA_SOURCE_ID` / `NOTION_DATABASE_ID` | for Notion | The leads database: the data source id (preferred) or the database id from its URL. |
+| `BOOKING_URL` | no | **Only the link** (the iframe `src`, not the whole `<iframe>` snippet): Google Calendar -> appointment schedule -> Share -> Website embed -> Inline booking page. Unset = the lead form ends on a thank-you note. |
+| `RESEND_SEND_API_KEY` | no | A Resend **Sending access** key limited to the `signature.cat` domain for the confirmation emails (least privilege). Unset = `RESEND_API_KEY` is used. |
+| `RESEND_API_KEY` + `RESEND_SEGMENT_ID` | shared | Full-access key + marketing segment of the banner gate; used for the opt-in marketing contact (and for emails without `RESEND_SEND_API_KEY`). The legacy name `RESEND_AUDIENCE_ID` is still read (Resend renamed audiences to segments; confirm the id with `GET /segments/{id}`, see below); `RESEND_SEGMENT_ID` wins when both are set. |
+| `RESEND_CONTACT_SEGMENT_ID` | no | Separate Resend segment for form opt-ins (legacy name `RESEND_CONTACT_AUDIENCE_ID`); defaults to the banner segment. A separate segment keeps the two consent sources apart. |
+
+`CONTACT_RL` (per IP) and `CONTACT_RCPT_RL` (per confirmation recipient) are
+not variables: they are `[[ratelimits]]` bindings in `wrangler.toml` (Workers
+Rate Limiting API, GA, wrangler >= 4.36, namespaces `1001` / `1002`); the code
+treats a missing binding or a limiter error as "no limit".
+
+### Notion leads database (one-time setup)
+
+1. Notion (workspace owner): Developer portal -> **Internal connections** ->
+   create one (e.g. "signature.cat leads"). **Capabilities: tick ONLY "Insert
+   content"** - no Read, no Update, no user information. Copy the installation
+   token into `NOTION_TOKEN`.
+2. Open the leads database -> **...** -> **Connections** -> **Add connection**
+   -> the new connection (without it Notion answers 404 `object_not_found`).
+3. Database settings -> **Manage data sources** -> **Copy data source ID** ->
+   `NOTION_DATA_SOURCE_ID` (or put the database id from its URL into
+   `NOTION_DATABASE_ID`; that works while the database has one data source).
+4. The column names must match exactly (Notion matches properties by name):
+   `Klient` (the title column), `Info` (text), `Kanał` (multi-select),
+   `Phone` (phone), `Email` (email), `Wielkość - osoby` (multi-select, with a
+   plain hyphen), `Kontakt` (text), `Status` (multi-select), `Data` (date),
+   `Język` (text). They live in `NOTION_COLUMNS` in `notion.js`.
+5. Create the multi-select options beforehand - `Formularz` (Kanał), `nowy`
+   (Status) and `1-50`, `51-120`, `121-300`, `301-1000`, `1001-5000`, `5000+`
+   (Wielkość - osoby): whether an insert-only connection may add new options
+   on its own is not documented.
+6. `Data` gets the submission time in Europe/Warsaw; the Polish display format
+   is a column setting in Notion (**Date format & timezone** -> Day/Month/Year,
+   24-hour time) - the API cannot set it.
+
+Insert-only means a create can never overwrite an existing row - but it also
+cannot look rows up (querying needs "Read content"), so a company that writes
+again gets a second row. A refused insert (4xx, e.g. a renamed column) is
+logged and flagged in the Slack message as "Notion: FAILED (HTTP 400
+validation_error) - add the row by hand". No definite answer (timeout, dropped
+connection, 5xx) is flagged as "Notion: UNCONFIRMED (...) - check Notion before
+adding the row by hand": Notion may have committed the page anyway. A 503 that
+carries `additional_data.committed_resource_id` counts as a row added. Free
+workspaces with several members have a lifetime block limit (1,000) after
+which creates fail with 403.
+
+### Marketing contacts (Resend Contacts API)
+
+Both opt-in paths (banner gate, contact-form checkbox) use the current Resend
+Contacts API - global contacts + segments. The legacy
+`POST /audiences/{id}/contacts` was removed from Resend's OpenAPI spec on
+2026-02-23 and is no longer documented (no published sunset date; the official
+SDKs still call it only for their deprecated `audienceId` option); a test
+guards against it:
+
+1. `POST https://api.resend.com/contacts` with `{email, first_name?, last_name?,
+   unsubscribed: false, segments: [{id}]}` (names only when present; segments
+   as objects, not strings) - its 2xx decides success (banner gate `200`,
+   form: logged only);
+2. then `POST https://api.resend.com/contacts/{contact id}/segments/{id}` (no
+   body), with the id from the create answer `{object: "contact", id}`; the
+   URL-encoded address is only the fallback for an answer without an id, so
+   the address stays out of URLs. For an address that already exists Resend
+   answers the create with the existing contact, and whether it then applies
+   `segments` is undocumented, so this call makes the membership explicit. A
+   non-2xx is logged and never fatal - it can also mean the address already
+   was a member.
+
+Both calls: full-access key (`RESEND_API_KEY`; a sending-only key is refused
+with `restricted_api_key`, documented as 401), `User-Agent`, 8 s timeout. Log
+lines carry the caller and Resend's error `name`, never the message or the
+address: `banner gate: Resend contact answered 401 restricted_api_key`,
+`contact form: Resend segment membership HTTP 404 not_found`.
+
+**Before merging (DevOps):** confirm the configured id is a segment with a
+read-only `GET https://api.resend.com/segments/{id}` (full-access key). This is
+expected: Resend renamed audiences to segments and its official SDKs already
+send stored audience ids to the segment endpoints - but it is not stated
+verbatim in the docs.
+
+### Confirmation emails
+
+`confirmation-email.js` renders both emails (lead + help) in code - HTML +
+text, 4 locales, the app's email layout, team guidelines in
+`../mailing-wytyczne` - and sends them via `POST https://api.resend.com/emails`
+from `SignatureCat <contact@signature.cat>` (replies land in the contact
+mailbox) with a `User-Agent` (Resend rejects requests without one) and tags
+`category=contact_confirmation|help_confirmation`, `locale=...`. The From
+domain must be verified in Resend: public DNS shows the apex `signature.cat`
+is the Resend sending domain (`resend._domainkey.signature.cat`,
+`send.signature.cat` MX/SPF, `_dmarc` `p=reject`). Why not Resend Templates:
+the copy is versioned and reviewed with the code, the 4 locales share one
+table, all form values are HTML-escaped under our control and the output is
+unit-tested (incl. the no-AI-tell typography rule), with no template ids to
+keep in sync. The email logo is `assets/img/email-logo.png` (80x80, 7.9 KB).
 
 `wrangler.toml` sets `keep_vars = true`: Workers Builds runs `wrangler deploy`
 on every push to `main`, and without it each deploy would replace the Worker's
 plain-text dashboard variables with the (empty) `[vars]` of the config.
-Secrets are never touched by deploys.
-
-Tests: `node --test cloudflare/worker.test.mjs` (zero dependencies; Slack,
-Resend and siteverify are stubbed through `globalThis.fetch`).
 
 ## Prerequisites (DevOps)
 
