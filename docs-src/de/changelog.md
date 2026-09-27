@@ -16,6 +16,7 @@ Was ist neu in SignatureCat, dem E-Mail-Signatur-Manager für Google Workspace. 
 - **Gespräch vereinbaren, ohne die Website zu verlassen.** "Gespräch vereinbaren" öffnet jetzt ein kurzes Kontaktformular statt Ihres E-Mail-Programms: Geben Sie Namen, Firmennamen, geschäftliche E-Mail, Telefon und Größe Ihrer Organisation an und wählen Sie direkt danach einen Termin in unserem Buchungskalender.
 - **Hilfe direkt aus der Dokumentation.** Die Schaltfläche **Hilfe** auf jeder Dokumentationsseite öffnet jetzt ein kurzes Supportformular: Beschreiben Sie das Problem und wie dringend es ist - kritische Fälle sieht unser Support-Team zuerst. Siehe [Hilfe erhalten](/docs/get-help).
 - **Eine Bestätigung für jede Anfrage.** Nach dem Absenden des Kontakt- oder Hilfeformulars erhalten Sie eine E-Mail mit einer Kopie Ihrer Anfrage in Ihrer Sprache.
+- **Aktualisierte Datenschutzerklärung.** Eine neue Fassung der [Datenschutzerklärung](https://signature.cat/privacy) gilt ab heute: Sie beschreibt das Kontakt- und das Hilfeformular, die Bestätigungs-E-Mails, den Buchungskalender, die Mailingliste des Banner-Generators und die auf signature.cat verwendeten Cookies.
 - **Leistungsoptimierungen.** Verbesserungen unter der Haube an der Infrastruktur hinter der SignatureCat-App und signature.cat - für einen schnelleren und zuverlässigeren Betrieb.
 
 ## August 2026

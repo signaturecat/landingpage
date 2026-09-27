@@ -16,6 +16,7 @@ Les nouveautés de SignatureCat, le gestionnaire de signatures e-mail pour Googl
 - **Planifiez un appel sans quitter le site.** "Planifier un appel" ouvre désormais un court formulaire de contact au lieu de votre messagerie : indiquez vos prénom et nom, le nom de votre entreprise, votre e-mail professionnel, votre téléphone et la taille de votre organisation, puis choisissez directement un créneau dans notre calendrier de réservation.
 - **De l'aide sans quitter la documentation.** Le bouton **Aide** de chaque page de la documentation ouvre désormais un court formulaire d'assistance : décrivez le problème et son urgence, notre équipe traite les cas critiques en premier. Voir [Obtenir de l'aide](/docs/get-help).
 - **Une confirmation pour chaque demande.** Après l'envoi du formulaire de contact ou d'aide, vous recevez un e-mail avec une copie de votre demande, dans votre langue.
+- **Mise à jour de la politique de confidentialité.** Une nouvelle version de la [Politique de confidentialité](https://signature.cat/privacy) est en vigueur depuis aujourd'hui : elle décrit les formulaires de contact et d'aide, les e-mails de confirmation, le calendrier de réservation, la liste de diffusion du générateur de bannières et les cookies utilisés sur signature.cat.
 - **Optimisations des performances.** Des améliorations en coulisses de l'infrastructure de l'application SignatureCat et de signature.cat, pour un service plus rapide et plus fiable.
 
 ## Août 2026

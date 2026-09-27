@@ -1,6 +1,6 @@
 # Signature.Cat Privacy Policy
 
-Version 1.2 - effective as of 02.08.2026
+Version 1.3 - effective as of 27.09.2026
 
 **This Privacy Policy is available in Polish at https://signature.cat/privacy as the legally binding version. This document is an automatic translation of the Polish original, provided for informational purposes only, and may contain errors or inaccuracies. In case of any discrepancy, the Polish version shall prevail.**
 
@@ -17,7 +17,8 @@ Contact for all matters concerning personal data: **contact@signature.cat**.
 This Policy applies to:
 
 - the **app.signature.cat** application (the Signature.Cat service - central management of Gmail signatures in Google Workspace, hereinafter: the "Service"),
-- the **signature.cat** informational website together with its language subpages,
+- the **signature.cat** informational website together with its language subpages, documentation and the forms and tools available on that website (contact form, help form, banner generator),
+- the mailing list (commercial information sent by e-mail to persons who have given their consent to it),
 - the hosting of signature images (addresses made available by the Provider and subdomains configured by Customers),
 - correspondence conducted with us (e-mail, reports, complaints).
 
@@ -30,8 +31,8 @@ Depending on the category of data, we act in one of two roles:
 **a) Data controller** - with respect to:
 - data of Users signing in to the Service (persons acting on behalf of the Customer),
 - the Customer's billing and contact data,
-- data of visitors to the signature.cat website,
-- data of persons contacting us.
+- data of visitors to the signature.cat website and of persons using the forms available on it,
+- data of persons contacting us and of persons subscribed to our mailing list.
 
 **b) Processor** - with respect to personal data of the Customer's employees and associates, processed within the Service on the Customer's instructions. The Customer is the controller of this data. The processing consists of:
 - reading data from the user directory of the Customer's Google Workspace (first name, last name, e-mail address including aliases, job title, department, phone numbers, address, profile photo URL) **exclusively on an ongoing basis, at the moment of previewing or deploying a signature** - these values are not stored by us after the operation is completed;
@@ -57,13 +58,25 @@ The entrustment of processing is governed by a data processing agreement (DPA), 
 
 **Audit log** - a record of actions performed in the Account: type of action, User identifier, timestamp and event metadata (which may include the User's e-mail address). The audit log **does not contain IP addresses or browser information**.
 
-**Technical data** - the IP address is processed only transiently (in memory) for the purposes of rate limiting and abuse protection - **we do not save IP addresses in the database**. Standard technical logs of the hosting infrastructure (including HTTP logs) are processed within the hosting platform for diagnostic purposes.
+**Technical data** - we process the IP address only transiently (in memory) for the purposes of rate limiting and abuse protection - **we do not save IP addresses in the database**. Standard technical logs of the hosting infrastructure (including HTTP logs) are processed within the hosting platform for diagnostic purposes. We describe the processing of the IP address by the providers of the signature.cat website, including by Cloudflare and Google as separate controllers, below and in sections 6 and 11.
 
-**Communication** - e-mail messages sent by us (notifications about account events, the trial period, payments, access grants) contain the recipient's e-mail address, their first and last name or name, and information about the event; incoming correspondence is processed for the purpose of handling the matter.
+**Communication** - e-mail messages sent by us (notifications about Account events, the Trial Period, payments, access grants, as well as confirmations of submissions made via the contact form and the help form on the signature.cat website) contain the recipient's e-mail address, their first and last name or name, and information about the event; incoming correspondence is processed for the purpose of handling the matter.
 
 **Trial Period register** - the Workspace domain and the date of use of the trial period (without data of natural persons), maintained for the purpose of preventing abuse; the entry remains effective also after the Account is deleted.
 
-**The signature.cat website** - language preference (cookie) and - after consent is given - Google Analytics statistical data (section 11).
+**The signature.cat website** - preferences saved in the browser (including the selected language and the choice made in the consent banner) and - after consent is given - Google Analytics statistical data (section 11). The documentation pages retrieve the current status of the Service from the status page (status.signature.cat) operated by an external provider, which in doing so receives the IP address and browser data.
+
+**Contact form** (scheduling a call, custom pricing) - first and last name, business e-mail address, phone number, company name, organization size, an optional description of the inquiry, the subject of the inquiry, the website language and the date of submission, as well as information on whether marketing consent was given. We save the inquiry in the sales inquiry database (CRM) and forward it as a notification to the internal team communication tool. Once the inquiry has been accepted, the website automatically displays an embedded Google Calendar booking calendar for calls (section 11); making a booking is voluntary, and the data provided when booking (including first name, last name, e-mail address and the selected time slot) goes directly to Google and to our calendar, with the booking confirmation being sent by Google.
+
+**Help form** (the "Help" button in the documentation) - first and last name, e-mail address, an optional phone number, the urgency of the report, a description of the problem, the address of the documentation page from which the form was opened, and the website language. We forward the report as a notification to the internal team communication tool, to a separate channel of the support team; we do not save it in the sales inquiry database and we do not add the e-mail address provided to the mailing list.
+
+**Submission confirmations** - after the contact form or the help form has been submitted, we send a confirmation of receipt of the submission to the e-mail address provided, with a copy of the data submitted (in the case of the contact form, also with a link to the booking calendar). The confirmation does not contain marketing content, and we limit the number of confirmations sent to a single address (as a rule to one per minute).
+
+**Banner generator** - use of the generator is voluntary. The banner is created entirely in the browser (a photo added to the generator does not leave the device). Downloading or copying the finished banner requires providing an e-mail address and giving consent to receive commercial information from us by e-mail; in a given browser we ask for this only once. We add the address to the mailing list, and in the browser we save information that this step has been completed (section 11). Withdrawal of consent does not limit the ability to use banners already downloaded.
+
+**Mailing list** - the e-mail address (and, when subscribing via the contact form, also the first and last name) of persons who have given consent to receive commercial information from us by e-mail: in the contact form (a separate, voluntary field) or in the banner generator. We send commercial information exclusively to persons who have given such consent.
+
+**Form protection** - we protect the forms on the signature.cat website with the Cloudflare Turnstile mechanism, which, in order to distinguish humans from bots, analyzes, among other things, the IP address and characteristics of the browser and connection (e.g. the User-Agent header, TLS connection parameters); the mechanism does not read the content entered into the forms. In addition, we use the IP address and, in the case of submission confirmations, also the recipient's e-mail address for 60 seconds in rate-limiting counters at the network edge.
 
 ## 5. Purposes of processing and legal bases
 
@@ -72,34 +85,44 @@ The entrustment of processing is governed by a data processing agreement (DPA), 
 | Conclusion and performance of the Agreement: maintaining the Account, providing Service features, Trial Period, transactional notifications | Art. 6(1)(b) |
 | Handling payments and billing (including transferring data to the payment operator) | Art. 6(1)(b) |
 | Fulfillment of tax and accounting obligations | Art. 6(1)(c) |
-| Service security and abuse prevention: rate limiting, content sanitization, audit log, Trial Period register, internal notifications about account events | Art. 6(1)(f) (legitimate interest: protection of the Service and customers) |
-| Handling reports, questions and complaints | Art. 6(1)(b) or (f) |
+| Security of the Service and of the signature.cat website, and abuse prevention: rate limiting, form protection (Cloudflare Turnstile), content sanitization, audit log, Trial Period register, internal notifications about account events | Art. 6(1)(f) (legitimate interest: protection of the Service, the website and customers) |
+| Making the signature.cat website and documentation available, including displaying the current status of the Service retrieved from the status page (status.signature.cat) | Art. 6(1)(f) (legitimate interest: making the website available and informing about the availability of the Service) |
+| Handling reports, questions and complaints, including reports from the help form, and confirming receipt of a report from the help form by e-mail | Art. 6(1)(b) (where the report concerns an Agreement to which the reporting person is a party) or (f) (legitimate interest: handling the report and supporting the Customer and its Users) |
+| Handling inquiries from the contact form: responding, preparing an offer, scheduling a call (including booking a time slot in the calendar), conducting sales discussions, recording in the sales inquiry database and confirming receipt of the inquiry by e-mail | Art. 6(1)(f) (legitimate interest: responding to the inquiry and conducting sales discussions with the entity represented by the person making the inquiry); where the person makes the inquiry in their own name as an entrepreneur - Art. 6(1)(b) (steps taken at their request prior to entering into a contract) |
+| Sending commercial information by e-mail (mailing list) | Art. 6(1)(a) (consent); consent to sending commercial information to the e-mail address provided is also required by Article 398(1) of the Polish Act of 12 July 2024 - Electronic Communications Law (Prawo komunikacji elektronicznej, Journal of Laws of 2024, item 1221, as amended) |
+| Demonstrating that consent was given and withdrawn, and ensuring that we will not send further commercial information after a person has unsubscribed | Art. 6(1)(f) (legitimate interest: accountability and respecting the decision to unsubscribe) |
 | Establishing, pursuing or defending claims | Art. 6(1)(f) |
-| Visit statistics for the signature.cat website (Google Analytics) | Art. 6(1)(a) (consent) |
+| Visit statistics for the signature.cat website, including aggregate measurement of the number of contact forms submitted (Google Analytics) | Art. 6(1)(a) (consent) |
 
-Providing account data and billing data is voluntary but necessary to use the Service. We do not make decisions based solely on automated processing that would produce legal effects. We do not use data to train artificial intelligence models.
+Providing account data and billing data is voluntary but necessary to use the Service. Providing data in the contact form and the help form is voluntary: fields marked as optional may be skipped, but we cannot accept the submission unless the remaining fields are completed; marketing consent in the contact form is entirely voluntary and does not affect the handling of the inquiry. Use of the banner generator is voluntary, although downloading or copying a banner requires providing an e-mail address and giving consent to receive commercial information (section 4). We do not make decisions based solely on automated processing that would produce legal effects or similarly significantly affect the data subject; the automatic form protection (Cloudflare Turnstile) can only prevent a form from being submitted - in such a case you can write to us at contact@signature.cat. We do not use data to train artificial intelligence models.
 
 ## 6. Data recipients and sub-processors
 
-We transfer data only to entities supporting the provision of the Service, to the extent necessary for their tasks. We use the following categories of providers:
+We transfer data only to entities supporting the provision of the Service, the operation of the signature.cat website and the handling of inquiries and reports, to the extent necessary for their tasks; in addition, some of the data is processed by separate controllers to the extent described below the table. We use the following categories of providers:
 
 | Category | Scope of data | Processing location |
 |---|---|---|
 | Application and database hosting provider | all Service data | EU (Amsterdam) |
-| Network services, CDN and image storage provider | network traffic, Customers' images | image storage: EU jurisdiction; network: global edge infrastructure |
+| Network services, CDN, image storage and form protection provider (Cloudflare, including Cloudflare Turnstile) | network traffic, Customers' images, data sent via the forms on the signature.cat website, bot protection signals (IP address, browser and connection characteristics) | image storage: EU jurisdiction; network: global edge infrastructure |
 | Cloud services provider (secret management, audit log archive) | technical keys of service accounts, audit archive | archive: EU region; secrets: multi-region replication |
 | Payment operator (PCI-DSS Level 1 certification) | billing data, card data (held exclusively by the operator) | EU/USA |
-| Transactional e-mail provider | recipient's e-mail address, first and last name or name, notification content | EU/USA |
+| E-mail provider (transactional messages, submission confirmations, mailing list) | recipient's e-mail address, first and last name or name, message content (in submission confirmations: a copy of the form data), mailing list data (e-mail address, first and last name, subscription status) | USA |
 | Google (Google Workspace services and APIs) | OAuth sign-in, operations in the Customer's Workspace | according to the Customer's Workspace configuration |
-| Internal team communication tools (operational notifications) | account-related events (including the Workspace domain and the e-mail address of the Customer's administrator) | EU/USA |
+| Google (call booking calendar embedded on the signature.cat website; Google Analytics - only after consent is given) | data provided when booking, IP address and browser data, Google cookies, data on visits and events on the website linked to the Google Analytics cookie identifier | USA and Google's global infrastructure |
+| Tool for maintaining the sales inquiry database (CRM) | data from the contact form (excluding reports from the help form) | USA |
+| Internal team communication tools (operational notifications, notifications about inquiries and reports) | account-related events (including the Workspace domain and the e-mail address of the Customer's administrator), data and content of inquiries from the contact form and of reports from the help form | EU/USA |
+| Hosting provider for the signature.cat website files | technical data of HTTP requests | USA/global |
+| Service status page provider (status.signature.cat) | IP address and browser data when documentation pages are displayed | EU/USA |
 
-We make the full, named list of sub-processors together with their roles available to Customers within the DPA and upon request (contact@signature.cat). Data may also be disclosed to entities authorized under the law (e.g. public authorities) and to the Provider's legal and accounting advisors to the extent necessary.
+We make the full, named list of sub-processors together with their roles available to Customers within the DPA and upon request (contact@signature.cat); at the request of a data subject, we also indicate to them the names of the recipients of their data (Art. 15(1)(c) GDPR). Data may also be disclosed to entities authorized under the law (e.g. public authorities) and to the Provider's legal and accounting advisors to the extent necessary.
+
+Cloudflare (with respect to improving bot detection mechanisms, see https://www.cloudflare.com/turnstile-privacy-policy/) and Google Ireland Limited (with respect to its own cookies and the Google account of the person making a booking, see https://policies.google.com/privacy) process some of the data indicated in the table above as separate controllers, in accordance with their own privacy policies.
 
 ## 7. Data transfers outside the EEA
 
-The core infrastructure of the Service (application, database, image storage, audit archive) operates in European Union regions. Some of the providers indicated in section 6 (the payment operator, the network services provider, the transactional e-mail provider, Google, internal communication tools) are based in the USA or use global infrastructure - as a result, data may be transferred outside the European Economic Area.
+The core infrastructure of the Service (application, database, image storage, audit archive) operates in European Union regions. Some of the providers indicated in section 6 (the payment operator, the network services provider, the e-mail provider, Google, internal communication tools, the tool for maintaining the sales inquiry database, the hosting provider for the signature.cat website files, the status page provider) are based in the USA or use global infrastructure - as a result, data may be transferred outside the European Economic Area, in particular to the United States.
 
-The basis for such transfers are standard contractual clauses (SCC) included in the data processing agreements with these providers, and, with respect to providers certified under the EU-US Data Privacy Framework - the European Commission's decision confirming an adequate level of protection. Information about transfer safeguards can be obtained at contact@signature.cat.
+The basis for such transfers are standard contractual clauses (SCC) adopted by the European Commission, included in the agreements with these providers (including in the data processing agreements), and, with respect to providers certified under the EU-US Data Privacy Framework - Commission Implementing Decision (EU) 2023/1795 of 10 July 2023 confirming an adequate level of protection. To the extent that Cloudflare and Google process data as separate controllers (section 6), they transfer it outside the EEA on the terms described in their privacy policies. Information about transfer safeguards, including a copy of the safeguards we apply, can be obtained at contact@signature.cat.
 
 ## 8. Data retention periods
 
@@ -113,10 +136,15 @@ The basis for such transfers are standard contractual clauses (SCC) included in 
 | Audit log | 365 days in the production database; an archival copy for security purposes and defense of claims - no longer than 6 years |
 | Results of automatic Workspace connection tests (preflight) | 90 days |
 | Internal operational events (team notifications) | 30 days from delivery |
+| Application e-mail notification queue (recipient's address, notification data) | 90 days from sending (notifications that could not be sent: 90 days from their creation) |
 | Unfinished image uploads (without confirmation) | 30 minutes, then automatic deletion |
 | Trial Period register (Workspace domain + date) | for the period the Signature.Cat service is provided (abuse prevention) |
 | Billing and accounting documents | 5 years, counting from the end of the tax year (legal obligation) |
-| Correspondence and reports | for the duration of handling the matter, then until the expiry of the limitation periods for claims |
+| Correspondence and reports (including reports from the help form) | for the duration of handling the matter, then until the expiry of the limitation periods for claims |
+| Inquiries from the contact form (sales inquiry database, notifications in the internal communication tool, call bookings in the calendar) | up to 12 months from the last contact, if the discussions are not continued or no cooperation is commenced; after the Agreement is concluded - same as Account data and as correspondence and reports |
+| E-mail messages held by the e-mail provider (submission confirmations and application notifications: content and sending data) | up to 30 days from sending (provider's backups: up to 7 days longer) |
+| Mailing list | until consent is withdrawn; after its withdrawal we retain an entry marked as unsubscribed (the e-mail address, and, if provided - also the first and last name, as well as the date of subscription), so as not to send further messages and to be able to demonstrate that consent was given and withdrawn - until the expiry of the limitation periods for claims |
+| Rate-limiting counters at the network edge (IP address, e-mail address of the confirmation recipient) | 60 seconds |
 | Google Analytics statistical data | up to 14 months |
 | Data during the Trial Period | same as Account data (section 10) |
 
@@ -124,7 +152,11 @@ Data of the Customer's employees retrieved from the Workspace directory is not s
 
 ## 9. Rights of data subjects
 
-Every person whose data we process as controller has the following rights: access to data, rectification, erasure, restriction of processing, data portability, objection to processing based on legitimate interest, and withdrawal of consent at any time (without affecting the lawfulness of processing carried out before the withdrawal).
+Every person whose data we process as controller has the following rights: access to data, rectification, erasure, restriction of processing, data portability, objection to processing based on legitimate interest, and withdrawal of consent at any time (without affecting the lawfulness of processing carried out on the basis of consent before its withdrawal).
+
+**Right to object.** Every person has the right to object at any time - on grounds relating to their particular situation - to the processing of their data based on legitimate interest (Art. 6(1)(f) GDPR), including data from the contact form and the help form. An objection to the processing of data from the contact form for the purpose of conducting sales discussions does not require justification. An objection may be submitted to contact@signature.cat.
+
+**Withdrawal of marketing consent.** Consent to receive commercial information can be withdrawn at any time, without giving a reason: by clicking the unsubscribe link in a marketing message, by replying to our message or by writing to contact@signature.cat. Withdrawal of consent does not affect the lawfulness of mailings sent earlier and does not limit the ability to use banners already downloaded.
 
 Requests may be submitted to **contact@signature.cat**. We respond without undue delay, at the latest within one month (with the possibility of extension by two months in complex cases, of which we will inform you).
 
@@ -145,18 +177,28 @@ The Trial Period is a fully binding agreement for the provision of services by e
 | `__Secure-next-auth.session-token` (and technical sign-in cookies) | maintaining the signed-in session (HTTP-only) | up to 7 days from last activity, max. 14 days |
 | `NEXT_LOCALE` | remembering the selected interface language | 12 months |
 
-The application does not use analytics or marketing cookies.
+The application does not use analytics or marketing cookies. In the browser's local storage (localStorage) the application saves only interface settings (e.g. the selected mail client preview or information that the Trial Period message has been hidden) and the technical entry `nextauth.message`, which after signing out synchronizes the session state between open tabs (without personal data).
 
-**The signature.cat website** uses:
+**The signature.cat website** uses the following cookies and browser storage entries:
 
-| Cookie | Purpose | Period |
+| Name | Purpose | Period |
 |---|---|---|
-| `sigcat_locale` | remembering the manually selected website language | 12 months |
-| `_ga`, `_ga_*` (Google Analytics 4) | visit statistics | up to 24 months |
+| `sigcat_consent` (cookie) | remembering the choice made in the consent banner | 12 months |
+| `sigcat_locale` (cookie and local storage) | remembering the manually selected website language | cookie: 12 months; local storage: until the browser data is cleared |
+| `sigcat-theme` (local storage) | remembering the light or dark theme of the documentation | until the browser data is cleared or until switching back to the system setting |
+| `sc.cf.from` (session storage) | keeping the address of the documentation page from which the help form was opened, in case the form language is changed | until the browser tab is closed |
+| `sigcat_bg_lead` (cookie) | remembering that an e-mail address has already been provided in the banner generator in this browser, so as not to ask for it again | 12 months |
+| `_ga`, `_ga_*` (Google Analytics 4) | visit statistics, only after consent is given | up to 24 months |
 
-**Google Analytics 4** (provider: Google Ireland Limited) is used exclusively for aggregate visit statistics of the signature.cat website (including number of visits, traffic sources, approximate location at city level). The tool is activated **only after consent is given** in the consent banner on the website; consent can be withdrawn at any time by changing the consent settings on the website or by deleting cookies. Google Analytics 4 does not store full IP addresses. Event data is stored in the tool for a maximum of 14 months. Google Analytics is not embedded in the app.signature.cat application.
+All items in the table other than Google Analytics serve exclusively the operation of the website and of the features being used, and are not used for tracking or advertising; we save them without separate consent as necessary for providing the service being used (Article 399(3)(2) of the Act - Electronic Communications Law), and the Google Analytics cookies - only after consent is given. Saving cookies and data in browser storage can be restricted or blocked in the browser settings; blocking the necessary items may prevent some features of the website from working.
 
-We do not use marketing cookies and we do not sell personal data.
+**Google Analytics 4** (provider: Google Ireland Limited) is used exclusively for aggregate visit statistics of the signature.cat website (including number of visits, traffic sources, approximate location at city level, as well as the number of contact forms submitted together with the subject of the inquiry - without the content of the forms and without the data entered in them, such as first and last name, e-mail address or phone number). The tool is activated **only after consent is given** in the consent banner on the website; consent can be withdrawn at any time by changing the consent settings on the website or by deleting cookies. Google Analytics 4 does not store full IP addresses. Event data is stored in the tool for a maximum of 14 months. Google Analytics is not embedded in the app.signature.cat application.
+
+**Form protection (Cloudflare Turnstile).** The mechanism is loaded only upon the first interaction with the contact form or the help form, or after the window for entering the e-mail address in the banner generator is opened (on the first attempt to download or copy a banner); the verification script and frame come from Cloudflare servers (challenges.cloudflare.com), and the frame may use browser storage for verification purposes. We do not set any cookies of our own for its purposes. The rules for data processing by Cloudflare are described in the Turnstile Privacy Addendum: https://www.cloudflare.com/turnstile-privacy-policy/.
+
+**Booking calendar (Google).** After the contact form has been successfully submitted, the website automatically, without any additional click, displays an embedded Google Calendar booking calendar for calls. As soon as it is displayed, even if no booking is made, Google receives the IP address and browser data and may save or read its own cookies in the browser (e.g. `NID`, which Google also uses for advertising purposes) in accordance with the Google privacy policy (https://policies.google.com/privacy); if the website visitor is signed in to a Google account, Google may also fill in the booking data on the basis of that account. Directly below the calendar we provide a notice that Google may save its own cookies in the browser. Making a booking is voluntary and is not a condition for handling the inquiry; opening the booking page in a new tab also involves the transfer of this data to Google.
+
+We ourselves do not use marketing cookies and we do not sell personal data; the cookies that Google may save in the embedded booking calendar are described above.
 
 ## 12. Data from Google APIs
 
@@ -174,8 +216,8 @@ We apply, among others, the following measures:
 - service access by SignatureCat personnel: changes to Account settings by our support team require the Customer's prior consent, granted by an administrator with a dedicated switch in the application settings; the same consent is required for previewing the signature stored in the mailbox of a given user, even though this is a read-only operation; every support action, every such preview, as well as each enabling or disabling of the consent, is recorded in the Account's audit log together with the staff member's name, and read-only access (diagnostics) is limited to the scope necessary to maintain the Service;
 - authentication exclusively via Google OAuth (the Service does not store passwords); additional sign-in protections, including MFA, follow from the Customer's Google Workspace policy;
 - browser security headers, including an enforced Content Security Policy;
-- rate limiting per IP address at the network edge;
-- server-side sanitization of signature content (blocking scripts and dangerous constructs) and verification of uploaded image files (PNG/JPEG only, verification of the actual file type, 5 MB limit, SVG blocked);
+- rate limiting per IP address at the network edge and, on the signature.cat website, also form protection with the Cloudflare Turnstile mechanism, a limit on e-mail confirmations sent to a single address and neutralization of links in the content sent back in confirmations;
+- server-side sanitization of signature content (blocking scripts and dangerous constructs) and verification of uploaded image files (PNG, JPEG and GIF only, verification of the actual file type, 5 MB limit for PNG and JPEG and 20 MB for GIF, SVG blocked);
 - database in a private network, with no public access point; backups with point-in-time recovery;
 - an append-only audit log and internal notifications about significant account events;
 - data minimization: attributes of the Customer's employees retrieved from the Workspace directory are not stored, and payment card data is processed exclusively by the payment operator;
@@ -187,7 +229,9 @@ In the event of a personal data breach, we carry out a risk assessment and - whe
 
 ## 15. Changes to this Policy
 
-We give at least **14 days'** advance notice of changes to this Policy - by a notification displayed in the application after signing in. If no User of the Customer has signed in to the application during the 30 days preceding the publication of the notification, we may additionally send an e-mail notification (auxiliary delivery, not guaranteed). Changes resulting from legal provisions may enter into force immediately. We make an archive of previous versions together with their effective dates available upon request sent to contact@signature.cat.
+We give at least **14 days'** advance notice of changes to this Policy - by a notification displayed in the application after signing in. If no User of the Customer has signed in to the application during the 30 days preceding the publication of the notification, we may additionally send an e-mail notification (auxiliary delivery, not guaranteed). Changes resulting from legal provisions may enter into force immediately. Changes that consist solely of supplementing or correcting information about data processing (including processing within new features), that do not change the purposes, legal bases or recipients of the processing of data collected previously, and that do not restrict the rights of data subjects also enter into force on the date of publication; Art. 13 GDPR requires information about new processing to be provided at the time personal data is obtained. This does not apply to changes extending the processing of data entrusted to us by the Customer (section 3(b)) or to the addition or replacement of a sub-processor - such changes are subject to the advance notice indicated in the first sentence or, where a DPA has been concluded, instead to the rules set out in the DPA. We make an archive of previous versions together with their effective dates available upon request sent to contact@signature.cat.
+
+Version 1.3 (effective as of 27.09.2026) supplements the Policy with a description of data processing on the signature.cat website in connection with the contact form and the help form, submission confirmations, the sales inquiry database, the booking calendar, the banner generator, the mailing list, form protection, the status page and the hosting of the website files, as well as cookies and browser storage (also in the application); it sets out separately the information on the right to object and on the withdrawal of consent (section 9), corrects the processing location at the e-mail provider (USA), updates the description of the formats of uploaded images, adds retention periods for messages in the application's e-mail notification queue and at the e-mail provider, and clarifies in section 15 the rules for the entry into force of changes consisting solely of supplementing or correcting information. The changes do not restrict the rights of data subjects.
 
 ---
 

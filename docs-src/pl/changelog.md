@@ -16,6 +16,7 @@ Co nowego w SignatureCat, menedżerze podpisów e-mail dla Google Workspace. Sta
 - **Umów rozmowę bez wychodzenia ze strony.** "Umów rozmowę" otwiera teraz krótki formularz kontaktowy zamiast programu pocztowego: zostaw imię i nazwisko, nazwę firmy, email służbowy, telefon i wielkość organizacji, a potem od razu wybierz termin rozmowy w naszym kalendarzu.
 - **Pomoc prosto z dokumentacji.** Przycisk **Pomoc** na każdej stronie dokumentacji otwiera teraz krótki formularz zgłoszenia: opisz problem i jego pilność, a zespół wsparcia zobaczy krytyczne przypadki w pierwszej kolejności. Zobacz [Uzyskaj pomoc](/docs/get-help).
 - **Potwierdzenie każdego zgłoszenia.** Po wysłaniu formularza kontaktowego lub zgłoszenia pomocy dostajesz e-mail z kopią zgłoszenia, w swoim języku.
+- **Aktualizacja polityki prywatności.** Nowa wersja [Polityki prywatności](https://signature.cat/privacy) obowiązuje od dziś: opisuje formularz kontaktowy i formularz pomocy, potwierdzenia e-mail, kalendarz rezerwacji, listę mailingową generatora banerów oraz pliki cookies używane na signature.cat.
 - **Optymalizacje wydajnościowe.** Usprawnienia pod maską w infrastrukturze aplikacji SignatureCat i strony signature.cat - szybsze i bardziej niezawodne działanie.
 
 ## Sierpień 2026

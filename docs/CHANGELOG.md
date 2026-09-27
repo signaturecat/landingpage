@@ -57,10 +57,32 @@
     language switch on `/form` keeps `?topic=` (a help request stays a help
     request) and the docs page context survives it (sessionStorage).
   - Docs: `get-help.md` x4 points to the help form; public changelog
-    "September 2026" x4 gains the help form and the confirmation email.
+    "September 2026" x4 gains the help form, the confirmation email and the
+    privacy policy update.
+  - **Privacy Policy 1.3** (effective 27.09.2026, PL binding + EN/DE/FR
+    line-aligned translations in `legal/src/`, pages rebuilt with
+    `build-legal.mjs`): describes everything signature.cat does with personal
+    data today - contact form (CRM rows, team notifications, booking calendar),
+    help form, confirmation emails, banner generator + mailing list (consent
+    under art. 6(1)(a) GDPR + art. 398 PKE), Turnstile and rate limits, status
+    page, site hosting, the full cookie/storage table (art. 399 PKE), separate
+    right-to-object and consent-withdrawal paragraphs, Cloudflare and Google as
+    independent controllers, DPF/SCC wording, lead retention (12 months after
+    the last contact without cooperation), a narrowly scoped same-day-effect
+    rule in pkt 15; plus app-side corrections found on the way (GIF uploads
+    20 MB, email outbox 90 days, app localStorage, email provider location
+    USA). Reviewed by three independent lenses (code accuracy, GDPR/PKE,
+    Polish) before translation; each translation verified separately.
+  - Booking step: a note right below the embedded Google calendar says Google
+    may store its own cookies (`cf.done.bookingNote` x4, links the policy).
+  - Consent wording: the Polish marketing opt-ins (contact form, banner
+    generator) now name the channel ("na podany adres e-mail", art. 398 PKE).
+  - Confirmation emails x4: a separate footer line on the right to object
+    (art. 21(4) GDPR - first communication).
 - **Why:** PM request 2026-09-27 (four points: company field, Notion, confirmation
   email, help form from the docs with its own Slack channel).
-- **Scope:** landingpage (`form.html` + `/form` x4, `assets/js/contact-form.js`,
+- **Scope:** landingpage (`legal/src/*privacy*` + `/pl/policy`, `/{en,de,fr}/policy`,
+  `form.html` + `/form` x4, `assets/js/contact-form.js`,
   `assets/js/i18n.js`, `assets/css/style.css`, `build.mjs`, `build-docs.mjs`,
   `cloudflare/*`, `docs-src/**/get-help.md`, `docs-src/**/changelog.md`,
   `assets/img/email-logo.png`, READMEs; regenerated pages/docs).
