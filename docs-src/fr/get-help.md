@@ -2,12 +2,12 @@
 title: Obtenir de l'aide
 navTitle: Obtenir de l'aide
 description: Comment joindre le support SignatureCat au sujet de problèmes de signature Gmail - quoi vérifier d'abord dans l'état du service, les journaux et l'accès Google Workspace, et quoi inclure.
-updated: 2026-08-02
+updated: 2026-09-27
 ---
 
 # Obtenir de l'aide
 
-Le support est assuré par e-mail à l'adresse [contact@signature.cat](mailto:contact@signature.cat). Avant d'écrire, une rapide auto-vérification vous apporte souvent une réponse plus vite - la plupart des cas "les signatures ne s'appliquent plus" relèvent de l'une de trois causes connues.
+Envoyez une demande d'assistance via le [formulaire d'aide](https://signature.cat/fr/form?topic=help) - il vous demande le niveau d'urgence, pour que les cas critiques soient traités en premier - ou par e-mail à [contact@signature.cat](mailto:contact@signature.cat). Avant d'écrire, une rapide auto-vérification vous apporte souvent une réponse plus vite - la plupart des cas "les signatures ne s'appliquent plus" relèvent de l'une de trois causes connues.
 
 ## Auto-vérification rapide
 
@@ -19,7 +19,7 @@ Le support est assuré par e-mail à l'adresse [contact@signature.cat](mailto:co
 
 ## Écrire au support
 
-Écrivez à [contact@signature.cat](mailto:contact@signature.cat) depuis une adresse de votre domaine Workspace si possible. Incluez :
+Utilisez le [formulaire d'aide](https://signature.cat/fr/form?topic=help) (le bouton **Aide** en haut de chaque page de la documentation l'ouvre) ou écrivez à [contact@signature.cat](mailto:contact@signature.cat) depuis une adresse de votre domaine Workspace si possible. Le formulaire vous envoie un e-mail de confirmation avec une copie de votre demande. Incluez :
 
 - votre **domaine Workspace** (par exemple `yourcompany.com`),
 - **ce que vous attendiez et ce qui s'est passé**, avec les horodatages et votre fuseau horaire,
@@ -31,7 +31,7 @@ Le support est assuré par e-mail à l'adresse [contact@signature.cat](mailto:co
 
 ## Délais de réponse
 
-Le support se fait uniquement par e-mail. Pendant la période d'essai, il n'y a pas de délai de réponse garanti ; les clients payants sont traités en priorité. Les incidents affectant de nombreux clients sont coordonnés publiquement sur la [page d'état](https://status.signature.cat/).
+Le support répond par e-mail - y compris aux demandes envoyées via le formulaire d'aide. Pendant la période d'essai, il n'y a pas de délai de réponse garanti ; les clients payants sont traités en priorité. Les incidents affectant de nombreux clients sont coordonnés publiquement sur la [page d'état](https://status.signature.cat/).
 
 ## Demandes de fonctionnalités et retours
 
