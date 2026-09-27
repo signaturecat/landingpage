@@ -991,6 +991,11 @@ html:lang(pl) #ad-banner { display: none; }
    (step 1) turns into the thank-you panel with the Google Calendar booking
    embed (step 2). Tokens only, so Light/Dark follow the palette. */
 .cf-hero .section-head { margin-bottom: 40px; }
+/* Lead vs help mode (html[data-cf-mode="help"] is set by the inline script in
+   form.html's <head> before first paint). !important: the toggled blocks carry
+   their own display values (.cf-row grid, .cf-check flex, .cf-aside ...). */
+html[data-cf-mode="help"] .cf-lead-only,
+html:not([data-cf-mode="help"]) .cf-help-only { display: none !important; }
 .cf-layout {
   display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   gap: 40px; align-items: start; max-width: 1040px; margin-inline: auto;
@@ -1018,7 +1023,8 @@ html:lang(pl) #ad-banner { display: none; }
   transition: border-color .18s var(--ease), box-shadow .18s var(--ease);
 }
 .cf-field input, .cf-field select { height: 46px; padding: 0 12px; }
-.cf-field select:invalid { color: var(--muted); } /* placeholder option shown */
+.cf-field select:invalid,
+.cf-field select:has(> option[value=""]:checked) { color: var(--muted); } /* placeholder option shown */
 .cf-field select option { color: var(--ink); }
 .cf-field textarea { min-height: 116px; padding: 10px 12px; line-height: 1.5; resize: vertical; }
 .cf-field input:hover, .cf-field select:hover, .cf-field textarea:hover {

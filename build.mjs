@@ -419,13 +419,18 @@ function render(src, loc, I18N, page) {
 
   // mailto: links to contact@signature.cat (the email fallbacks on /form):
   // the subject is copy, so it lives in the dictionary as plain text
-  // (contact.subject) and the URL is composed here, percent-encoded. Baking
-  // it means the localized subject is in the served HTML too, not only after
-  // app.js runs. Idempotent: an existing ?subject= is replaced, not appended.
-  html = html.replace(
-    /(<a\b[^>]*\bhref=")mailto:contact@signature\.cat(?:\?subject=[^"]*)?(")/g,
-    `$1mailto:contact@signature.cat?subject=${encodeURIComponent(tr('contact.subject'))}$2`,
-  );
+  // (contact.subject, or the key named by the anchor's data-subject-key - the
+  // help-mode fallbacks use cf.help.mailSubject) and the URL is composed here,
+  // percent-encoded. Baking it means the localized subject is in the served
+  // HTML too, not only after app.js runs. Idempotent: an existing ?subject= is
+  // replaced, not appended.
+  html = html.replace(/<a\b[^>]*\bhref="mailto:contact@signature\.cat[^"]*"[^>]*>/g, (tag) => {
+    const key = (tag.match(/\sdata-subject-key="([^"]+)"/) || [])[1] || 'contact.subject';
+    return tag.replace(
+      /(\bhref=")mailto:contact@signature\.cat(?:\?subject=[^"]*)?(")/,
+      `$1mailto:contact@signature.cat?subject=${encodeURIComponent(tr(key))}$2`,
+    );
+  });
 
   // Polish-only feature shots: the authored markup carries the image URL in
   // data-featsrc (and no src), so the display:none variant on the other

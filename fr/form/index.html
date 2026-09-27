@@ -37,8 +37,12 @@
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
-  <link rel="preload" href="/assets/css/style.css?v=846d524b7e" as="style" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=846d524b7e" />
+  <link rel="preload" href="/assets/css/style.css?v=a96bd6231f" as="style" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=a96bd6231f" />
+  <!-- Help mode (?topic=help) is decided before first paint so the page never
+       flashes the sales variant (see the CONTACT FORM comment in <main>); it
+       also points app.js at the help page title (<html data-i18n-title>). -->
+  <script>(function(){try{if(new URLSearchParams(location.search).get('topic')==='help'){var h=document.documentElement;h.setAttribute('data-cf-mode','help');h.setAttribute('data-i18n-title','cf.help.meta.title')}}catch(e){}})();</script>
 
   <!-- SEO structured data (regenerated per locale by build.mjs) -->
   <script type="application/ld+json">
@@ -147,15 +151,22 @@
   <main id="top">
 
     <!-- ============================ CONTACT FORM ============================
-         One page behind the "Book a call" and "Custom pricing" CTAs (the
-         ?topic= query says which one; contact-form.js forwards it). Step 1 =
-         the form; step 2 = the Google Calendar booking page the Worker
-         returns after a successful submit (BOOKING_URL on the Worker). -->
+         One page, two modes. Lead mode (default): behind the "Book a call"
+         and "Custom pricing" CTAs (?topic=call|pricing) - step 1 = the form,
+         step 2 = the Google Calendar booking page the Worker returns
+         (BOOKING_URL). Help mode (?topic=help, the docs "Help" button): a
+         support request with urgency instead of company data, sent to its own
+         Slack channel. The inline script in <head> sets
+         html[data-cf-mode="help"] before first paint; .cf-lead-only /
+         .cf-help-only blocks are toggled by CSS, so both variants ship in the
+         served (localized) HTML and nothing flashes. -->
     <section class="section cf-hero">
       <div class="container">
         <div class="section-head center reveal">
-          <h1 data-i18n="cf.hero.title">Parlez à l'équipe SignatureCat</h1>
-          <p class="sub" data-i18n="cf.hero.sub">Planifiez un appel ou demandez un tarif sur mesure. Présentez-nous brièvement votre organisation, nous nous occupons du reste.</p>
+          <h1 class="cf-lead-only" data-i18n="cf.hero.title">Parlez à l'équipe SignatureCat</h1>
+          <h1 class="cf-help-only" data-i18n="cf.help.hero.title">Comment pouvons-nous vous aider ?</h1>
+          <p class="sub cf-lead-only" data-i18n="cf.hero.sub">Planifiez un appel ou demandez un tarif sur mesure. Présentez-nous brièvement votre organisation, nous nous occupons du reste.</p>
+          <p class="sub cf-help-only" data-i18n="cf.help.hero.sub">Décrivez le problème et son urgence. Notre équipe d'assistance vous répondra par e-mail.</p>
         </div>
 
         <div class="cf-layout" id="cf-layout">
@@ -165,28 +176,34 @@
                  ships disabled and the script enables it, so without JS the
                  form cannot submit (the noscript note offers email instead). -->
             <form class="cf-form" id="cf-form" method="post" novalidate>
-              <h2 class="cf-card-title" data-i18n="cf.form.title">Vos coordonnées</h2>
+              <h2 class="cf-card-title cf-lead-only" data-i18n="cf.form.title">Vos coordonnées</h2>
+              <h2 class="cf-card-title cf-help-only" data-i18n="cf.help.form.title">Votre demande d'assistance</h2>
+              <div class="cf-field">
+                <label for="cf-name" data-i18n="cf.form.name">Prénom et nom</label>
+                <input type="text" id="cf-name" name="name" autocomplete="name" maxlength="120" required aria-describedby="cf-name-error" />
+                <p class="cf-error" id="cf-name-error" hidden></p>
+              </div>
               <div class="cf-row">
-                <div class="cf-field">
-                  <label for="cf-name" data-i18n="cf.form.name">Prénom et nom</label>
-                  <input type="text" id="cf-name" name="name" autocomplete="name" maxlength="120" required aria-describedby="cf-name-error" />
-                  <p class="cf-error" id="cf-name-error" hidden></p>
-                </div>
                 <div class="cf-field">
                   <label for="cf-email" data-i18n="cf.form.email">E-mail professionnel</label>
                   <input type="email" id="cf-email" name="email" autocomplete="email" maxlength="254" required aria-describedby="cf-email-error" />
                   <p class="cf-error" id="cf-email-error" hidden></p>
                 </div>
-              </div>
-              <div class="cf-row">
                 <div class="cf-field">
-                  <label for="cf-phone" data-i18n="cf.form.phone">Téléphone</label>
-                  <input type="tel" id="cf-phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="32" required aria-describedby="cf-phone-error" />
+                  <label for="cf-phone"><span class="cf-lead-only" id="cf-phone-label-lead" data-i18n="cf.form.phone">Téléphone</span><span class="cf-help-only" id="cf-phone-label-help" data-i18n="cf.help.form.phone">Téléphone (facultatif)</span></label>
+                  <input type="tel" id="cf-phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="32" aria-describedby="cf-phone-error" />
                   <p class="cf-error" id="cf-phone-error" hidden></p>
+                </div>
+              </div>
+              <div class="cf-row cf-lead-only">
+                <div class="cf-field">
+                  <label for="cf-company" data-i18n="cf.form.company">Nom de l'entreprise</label>
+                  <input type="text" id="cf-company" name="company" autocomplete="organization" maxlength="120" aria-describedby="cf-company-error" />
+                  <p class="cf-error" id="cf-company-error" hidden></p>
                 </div>
                 <div class="cf-field">
                   <label for="cf-size" data-i18n="cf.form.size">Taille de l'organisation</label>
-                  <select id="cf-size" name="size" required aria-describedby="cf-size-error">
+                  <select id="cf-size" name="size" aria-describedby="cf-size-error">
                     <option value="" selected disabled hidden data-i18n="cf.form.sizePlaceholder">Nombre estimé de collaborateurs</option>
                     <option value="1-50" data-i18n="cf.form.size1">1-50 collaborateurs</option>
                     <option value="51-120" data-i18n="cf.form.size2">51-120 collaborateurs</option>
@@ -198,12 +215,24 @@
                   <p class="cf-error" id="cf-size-error" hidden></p>
                 </div>
               </div>
-              <div class="cf-field">
-                <label for="cf-message" data-i18n="cf.form.message">Informations complémentaires (facultatif)</label>
-                <textarea id="cf-message" name="message" rows="4" maxlength="2000" aria-describedby="cf-message-hint"></textarea>
-                <p class="cf-hint" id="cf-message-hint" data-i18n="cf.form.messageHint">Par exemple : nombre de domaines, langues des signatures ou date de déploiement prévue.</p>
+              <div class="cf-field cf-help-only">
+                <label for="cf-urgency" data-i18n="cf.help.form.urgency">Urgence</label>
+                <select id="cf-urgency" name="urgency" aria-describedby="cf-urgency-error">
+                  <option value="" selected disabled hidden data-i18n="cf.help.form.urgencyPlaceholder">Choisissez l'urgence</option>
+                  <option value="low" data-i18n="cf.help.form.urgency.low">Faible - une question ou une suggestion</option>
+                  <option value="normal" data-i18n="cf.help.form.urgency.normal">Normale - quelque chose ne fonctionne pas comme prévu</option>
+                  <option value="high" data-i18n="cf.help.form.urgency.high">Élevée - le problème bloque une partie de l'équipe</option>
+                  <option value="critical" data-i18n="cf.help.form.urgency.critical">Critique - les signatures ne fonctionnent plus dans toute l'organisation</option>
+                </select>
+                <p class="cf-error" id="cf-urgency-error" hidden></p>
               </div>
-              <label class="cf-check">
+              <div class="cf-field">
+                <label for="cf-message"><span class="cf-lead-only" id="cf-message-label-lead" data-i18n="cf.form.message">Informations complémentaires (facultatif)</span><span class="cf-help-only" id="cf-message-label-help" data-i18n="cf.help.form.message">Décrivez le problème</span></label>
+                <textarea id="cf-message" name="message" rows="4" maxlength="2000" aria-describedby="cf-message-hint cf-message-error"></textarea>
+                <p class="cf-hint" id="cf-message-hint"><span class="cf-lead-only" id="cf-message-hint-lead" data-i18n="cf.form.messageHint">Par exemple : nombre de domaines, langues des signatures ou date de déploiement prévue.</span><span class="cf-help-only" id="cf-message-hint-help" data-i18n="cf.help.form.messageHint">Ce qui devait se passer, ce qui s'est passé à la place, les utilisateurs ou modèles concernés et le code d'erreur affiché par l'application.</span></p>
+                <p class="cf-error" id="cf-message-error" hidden></p>
+              </div>
+              <label class="cf-check cf-lead-only">
                 <input type="checkbox" id="cf-marketing" name="marketing" />
                 <span data-i18n="cf.form.marketing">J'accepte de recevoir occasionnellement des emails marketing de SignatureCat. Je peux me désinscrire à tout moment.</span>
               </label>
@@ -213,7 +242,7 @@
               <div class="cf-turnstile" id="cf-turnstile" data-action="turnstile-spin-v2"></div>
               <div class="cf-alert" id="cf-alert" role="alert" hidden>
                 <p class="cf-alert-msg" id="cf-alert-msg"></p>
-                <p class="cf-alert-alt"><span data-i18n="cf.err.alt">Vous pouvez aussi nous écrire à</span> <a href="mailto:contact@signature.cat?subject=Je%20souhaite%20planifier%20un%20appel">contact@signature.cat</a></p>
+                <p class="cf-alert-alt"><span data-i18n="cf.err.alt">Vous pouvez aussi nous écrire à</span> <a class="cf-lead-only" href="mailto:contact@signature.cat?subject=Je%20souhaite%20planifier%20un%20appel">contact@signature.cat</a><a class="cf-help-only" data-subject-key="cf.help.mailSubject" href="mailto:contact@signature.cat?subject=Demande%20d'assistance">contact@signature.cat</a></p>
                 <details class="cf-alert-details">
                   <summary data-i18n="cf.err.details">Détails techniques</summary>
                   <code id="cf-alert-code"></code>
@@ -231,7 +260,7 @@
             <div class="cf-done" id="cf-done" hidden>
               <span class="cf-done-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
               <h2 id="cf-done-title" tabindex="-1"></h2>
-              <p class="cf-done-lead" data-i18n="cf.done.lead">Votre demande est bien arrivée chez notre équipe.</p>
+              <p class="cf-done-lead"><span class="cf-lead-only" data-i18n="cf.done.lead">Votre demande est bien arrivée chez notre équipe.</span><span class="cf-help-only" data-i18n="cf.help.done.lead">Votre demande d'assistance est bien arrivée chez notre équipe.</span></p>
               <p class="cf-done-next" id="cf-done-next"></p>
               <div class="cf-booking" id="cf-booking" hidden></div>
               <p class="cf-done-links">
@@ -241,7 +270,7 @@
             </div>
           </div>
 
-          <aside class="cf-aside reveal" aria-labelledby="cf-aside-title">
+          <aside class="cf-aside reveal cf-lead-only" aria-labelledby="cf-aside-title">
             <h2 id="cf-aside-title" data-i18n="cf.aside.title">À quoi vous attendre</h2>
             <ul class="cf-points">
               <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="cf.aside.p1">Une démonstration de SignatureCat sur votre propre cas : modèles, variables et attributions dans votre Google Workspace.</span></li>
@@ -250,6 +279,16 @@
               <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="cf.aside.p4">Des modèles de signature conçus pour votre marque, sur demande.</span></li>
             </ul>
             <p class="cf-aside-mail"><span data-i18n="cf.aside.mail">Vous préférez l'e-mail ?</span> <a href="mailto:contact@signature.cat?subject=Je%20souhaite%20planifier%20un%20appel">contact@signature.cat</a></p>
+          </aside>
+
+          <aside class="cf-aside reveal cf-help-only" aria-labelledby="cf-help-aside-title">
+            <h2 id="cf-help-aside-title" data-i18n="cf.help.aside.title">Avant d'écrire</h2>
+            <ul class="cf-points">
+              <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span><span data-i18n="cf.help.aside.p1">S'agit-il d'un incident ? Consultez la</span> <a href="https://status.signature.cat/" data-i18n="cf.help.aside.p1link">page d'état du service</a></span></li>
+              <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span><span data-i18n="cf.help.aside.p2">De nombreuses réponses se trouvent déjà dans la</span> <a href="https://signature.cat/fr/docs" data-i18n="cf.help.aside.p2link">documentation</a></span></li>
+              <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="cf.help.aside.p3">Dépliez le message d'erreur dans l'application et joignez le code, le statut HTTP et l'identifiant de requête : nous retrouverons ainsi votre requête dans les journaux.</span></li>
+            </ul>
+            <p class="cf-aside-mail"><span data-i18n="cf.aside.mail">Vous préférez l'e-mail ?</span> <a data-subject-key="cf.help.mailSubject" href="mailto:contact@signature.cat?subject=Demande%20d'assistance">contact@signature.cat</a></p>
           </aside>
         </div>
       </div>
@@ -301,9 +340,9 @@
     </div>
   </footer>
 
-  <script src="/assets/js/i18n.js?v=74c782e7d2"></script>
+  <script src="/assets/js/i18n.js?v=35581e4202"></script>
   <script src="/assets/js/app.js?v=7236300c33"></script>
-  <script src="/assets/js/contact-form.js?v=a5ec6bcc8d"></script>
+  <script src="/assets/js/contact-form.js?v=3a6b3c763d"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
