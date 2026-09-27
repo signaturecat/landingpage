@@ -2,6 +2,80 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-09-27 - Contact form v2: company field, help mode from the docs, Notion lead rows, confirmation emails (x4)
+
+- **What:**
+  - **Company name** (required, lead mode) sits right before organization
+    size; the form grid is now Name / Email + Phone / Company + Size /
+    description. `parseContact()` validates it (1-120 characters) and it
+    reaches Slack, Notion and the confirmation email.
+  - **Help mode** `/form?topic=help` - the **Help** button on every docs page
+    (`helpFormHref()` in `build-docs.mjs`, localized per docs locale) opens it:
+    full name, email, optional phone, urgency (low / normal / high / critical)
+    and a required description (10-2000); no company, size or marketing
+    opt-in. An inline `<head>` script sets `html[data-cf-mode="help"]` and the
+    help `data-i18n-title` before first paint; `.cf-lead-only` /
+    `.cf-help-only` are CSS-toggled, so both variants ship baked and localized.
+    Dual-variant controls get `aria-labelledby`/`aria-describedby` pointed at
+    the active variant. The same-origin docs referrer (path only) travels as
+    ticket context. Help-mode `mailto:` fallbacks use their own subject
+    (`data-subject-key`, new build.mjs rule).
+  - **Worker `POST /api/help-requests`** (`parseHelp`, `helpSlackMessage`,
+    `handleHelpRequest`): mandatory Turnstile bound to cData `help-form`,
+    SEPARATE Slack webhook `SLACK_HELP_WEBHOOK_URL` (never falls back to the
+    leads channel), no Notion, no marketing audience, no booking step.
+  - **Notion** (`cloudflare/notion.js`): one row per lead via
+    `POST /v1/pages` (Notion-Version 2026-03-11, data source or database
+    parent), columns Klient / Info / Kanał / Phone / Email / Wielkość - osoby /
+    Kontakt / Status / Data / Język exactly as specified, `Data` = Warsaw local
+    time with `time_zone`, 5 s timeout, no retry. Insert-only token: never
+    overwrites, cannot dedupe (documented). A lead is delivered when Slack OR
+    Notion accepted it; a Notion failure is flagged in the Slack message.
+  - **Confirmation emails** (`cloudflare/confirmation-email.js`): lead + help,
+    4 locales, rendered in code on the app's email layout (team guidelines:
+    tables, role=presentation, one h1, lang/dir x2, hidden preheader, dark
+    mode, 320px stacked summary, text part, legal footer, no marketing, no
+    unsubscribe), sent via Resend from `contact@signature.cat` in the
+    background; `RESEND_SEND_API_KEY` (sending-only) preferred over
+    `RESEND_API_KEY`. New `assets/img/email-logo.png` (80x80, 7.9 KB vs the
+    812 KB logo the app emails load).
+  - `User-Agent` on every Resend call (Resend rejects requests without one -
+    also fixes the banner gate's audience call), timeouts on Slack/Notion/Resend.
+  - Rate limits (`[[ratelimits]]`, optional in code): `CONTACT_RL` 5
+    requests / 60 s per IP (IPv6 per /64) per endpoint, and `CONTACT_RCPT_RL`
+    one confirmation email per recipient address per minute (over it only the
+    email is skipped; the request is still delivered).
+  - Hardening after a multi-agent review (17 confirmed findings): invisible
+    and bidi characters stripped in both the Worker and the form (a test pins
+    the shared regex), request body capped while streaming (not only via
+    `Content-Length`), Slack text blocks `verbatim` (a plain `@channel` stays
+    text), Notion timeouts / 5xx reported as UNCONFIRMED instead of FAILED
+    (and a 503 with `committed_resource_id` counts as added), confirmation
+    emails defang URL- and domain-like tokens in echoed free text, greet by
+    first name only when it is letters, wrap long addresses at 320px and, with
+    the marketing opt-in, tell a stranger how to get the address removed. The
+    language switch on `/form` keeps `?topic=` (a help request stays a help
+    request) and the docs page context survives it (sessionStorage).
+  - Docs: `get-help.md` x4 points to the help form; public changelog
+    "September 2026" x4 gains the help form and the confirmation email.
+- **Why:** PM request 2026-09-27 (four points: company field, Notion, confirmation
+  email, help form from the docs with its own Slack channel).
+- **Scope:** landingpage (`form.html` + `/form` x4, `assets/js/contact-form.js`,
+  `assets/js/i18n.js`, `assets/css/style.css`, `build.mjs`, `build-docs.mjs`,
+  `cloudflare/*`, `docs-src/**/get-help.md`, `docs-src/**/changelog.md`,
+  `assets/img/email-logo.png`, READMEs; regenerated pages/docs).
+- **Design impact:** lead/help variants on existing `.cf-*` tokens; select
+  placeholder colour no longer depends on `required` (`:has`). Email on the
+  app's tokens (light/dark verified, 320px verified).
+- **Performance impact:** Worker bundle 22 -> 65 KiB (email copy x4 +
+  templates; 19 KiB gzip); `contact-form.js` still only on `/form`. Lead latency + one
+  Notion call (<= 5 s timeout) before Slack.
+- **Tests:** `node --test cloudflare/worker.test.mjs` - 35 tests; each
+  review fix has a negative control (reverting it fails a test).
+- **A11y:** required flags per mode, explicit label/description binding for
+  dual-variant controls, localized page title per mode; emails: lang/dir,
+  one h1, role=presentation, AA contrast in both schemes.
+
 ## 2026-09-26 - Contact form (/form) with Slack delivery + booking step, "Custom pricing" CTA, Founders banner removed (x4)
 
 - **What:**

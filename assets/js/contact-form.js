@@ -43,6 +43,7 @@
   // Docs pages the help button lives on (the referrer becomes context in the
   // support ticket): /docs, /docs/<slug>, /pl/docs/<slug> ...
   var DOCS_PATH_RE = /^\/(?:(?:pl|de|fr)\/)?docs(?:\/[a-z0-9-]+)?$/;
+  var FORM_PATH_RE = /^\/(?:(?:pl|de|fr)\/)?form\/?$/;
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   var PHONE_RE = /^[+()0-9 .\/-]{6,32}$/;
   var TIMEOUT_MS = 20000;
@@ -58,11 +59,32 @@
   var topicParam = new URLSearchParams(location.search).get('topic');
   var topic = TOPICS.indexOf(topicParam) !== -1 ? topicParam : 'general';
   // Same-origin docs page the visitor came from (path only), for help mode.
+  // Kept for the tab in sessionStorage: after a language switch the referrer
+  // is the form itself, not the docs page.
+  var FROM_KEY = 'sc.cf.from';
   var fromPage = '';
   try {
     var ref = document.referrer ? new URL(document.referrer) : null;
-    if (ref && ref.origin === location.origin && DOCS_PATH_RE.test(ref.pathname)) fromPage = ref.pathname;
+    if (ref && ref.origin === location.origin && DOCS_PATH_RE.test(ref.pathname)) {
+      fromPage = ref.pathname;
+      sessionStorage.setItem(FROM_KEY, fromPage);
+    } else if (ref && ref.origin === location.origin && FORM_PATH_RE.test(ref.pathname)) {
+      var kept = sessionStorage.getItem(FROM_KEY) || '';
+      if (DOCS_PATH_RE.test(kept)) fromPage = kept;
+    }
   } catch (e) { /* ignore */ }
+  // The language switch links are baked as plain /xx/form: carry the form's
+  // mode or topic over so switching language does not turn a support request
+  // into a sales one.
+  if (topicParam === 'help' || TOPICS.indexOf(topicParam) !== -1) {
+    document.querySelectorAll('.lang-menu a[data-lang], .nav-lang-opts a[data-lang]').forEach(function (a) {
+      try {
+        var u = new URL(a.getAttribute('href'), location.href);
+        u.searchParams.set('topic', topicParam);
+        a.setAttribute('href', u.pathname + u.search);
+      } catch (e) { /* ignore */ }
+    });
+  }
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var els = {
@@ -88,8 +110,20 @@
     bookingLink: $('cf-booking-link')
   };
 
-  // Single-line value as the Worker will see it (whitespace runs collapsed).
-  function value(el) { return el.value.replace(/\s+/g, ' ').trim(); }
+  // Values exactly as the Worker normalizes them (oneLine / multiLine in
+  // cloudflare/worker.js), so a length the form accepts is one the Worker
+  // accepts: invisible and bidi characters dropped, control characters and
+  // whitespace runs collapsed; multi-line keeps at most one blank line.
+  var INVISIBLE_RE = /[\u00AD\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u2069\uFEFF]/g;
+  function value(el) { return el.value.replace(INVISIBLE_RE, '').replace(/[\u0000-\u001F\u007F\s]+/g, ' ').trim(); }
+  function multiLine(el) {
+    return el.value
+      .replace(INVISIBLE_RE, '')
+      .replace(/\r\n?/g, '\n')
+      .replace(/[\u0000-\u0009\u000B-\u001F\u007F]/g, '')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+  }
 
   function isPhone(v) {
     var digits = v.replace(/\D/g, '').length;
@@ -114,7 +148,7 @@
   ];
 
   function validate(field) {
-    var ok = field.ok(field.multiline ? field.el.value.trim() : value(field.el));
+    var ok = field.ok(field.multiline ? multiLine(field.el) : value(field.el));
     var box = $(field.el.id + '-error');
     field.el.setAttribute('aria-invalid', ok ? 'false' : 'true');
     // An empty, hidden message keeps aria-describedby silent.
@@ -239,7 +273,7 @@
       email: value(els.email),
       phone: value(els.phone),
       urgency: els.urgency.value,
-      message: els.message.value.trim(),
+      message: multiLine(els.message),
       locale: locale
     } : {
       name: value(els.name),
@@ -247,7 +281,7 @@
       phone: value(els.phone),
       company: value(els.company),
       size: els.size.value,
-      message: els.message.value.trim(),
+      message: multiLine(els.message),
       marketing: els.marketing.checked,
       topic: topic,
       locale: locale
@@ -287,7 +321,12 @@
 
   // ---- step 2 ----------------------------------------------------------------------
   function showDone(payload, booking) {
-    els.doneTitle.textContent = fill(t('cf.done.title'), '{name}', payload.name.split(' ')[0]);
+    // Same rule as the confirmation email: greet by first name only when it
+    // is letters (a name like "www.example.com Doe" gets the plain thanks).
+    var first = payload.name.split(' ')[0];
+    els.doneTitle.textContent = /^[\p{L}][\p{L}'-]{0,39}$/u.test(first)
+      ? fill(t('cf.done.title'), '{name}', first)
+      : t('cf.done.titleNoName');
     if (booking) {
       els.doneNext.textContent = t('cf.done.book');
       var frame = document.createElement('iframe');
