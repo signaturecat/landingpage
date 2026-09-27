@@ -348,11 +348,13 @@
     els.done.hidden = false;
     els.doneTitle.focus({ preventScroll: true });
     els.done.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
-    // GA4 conversion, only when the visitor opted into analytics (the Worker's
-    // consent script owns gtag). No personal data in the event.
+    // GA4 conversion via Google Tag Manager, only when the visitor opted into
+    // analytics (the Worker's consent script owns the dataLayer and loads GTM
+    // only after opt-in); the container's GA4 Event tag fires on this custom
+    // event. No personal data in the event.
     try {
-      if (mode === 'lead' && window.sigcatConsent && window.sigcatConsent.analytics === true && typeof window.gtag === 'function') {
-        window.gtag('event', 'generate_lead', { form_topic: topic });
+      if (mode === 'lead' && window.sigcatConsent && window.sigcatConsent.analytics === true && Array.isArray(window.dataLayer)) {
+        window.dataLayer.push({ event: 'generate_lead', form_topic: topic });
       }
     } catch (e) { /* ignore */ }
   }

@@ -2,6 +2,55 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-09-27 - Google Tag Manager (GTM-PD5TQCBR) replaces the direct GA4 loader, same consent gate
+
+- **What:**
+  - The injected consent script loads the **Google Tag Manager** container
+    `GTM-PD5TQCBR` (`GTM_CONTAINER_ID` in `cloudflare/worker.js`) instead of
+    `gtag.js` for `G-8M16LHQXQP`; GA4 is now configured inside the container
+    (Google tag). Same BASIC consent mode as before: `gtm.js` is appended ONLY
+    after the analytics opt-in, preceded by `gtag('consent','default')`
+    (analytics granted, every ad signal denied) and the `gtm.js` start event;
+    withdrawal still fires the consent update to denied and deletes the
+    `_ga` / `_ga_*` cookies.
+  - Nonce-aware loader, as in Google's CSP guide: `gtm.js` carries the
+    request nonce and GTM propagates it to the scripts it injects.
+  - No `<noscript>` GTM iframe on purpose: it would load without consent.
+  - Contact form: the `generate_lead` conversion is pushed to the dataLayer
+    (`{event: 'generate_lead', form_topic}`) instead of `gtag('event')`; a GA4
+    Event tag in the container sends it to GA4. `node build.mjs` restamped
+    `contact-form.js?v=` on the form pages.
+  - CSP per Google's "Use Tag Manager with a Content Security Policy" guide
+    (container + GA4 without Ads features + Preview Mode): `connect-src`
+    gets `*.google.com` (subsumes the previous `*.analytics.google.com` and
+    adds `www.google.com`, which the container needs); Preview Mode hosts
+    `tagmanager.google.com` (script + style), `fonts.googleapis.com` (style),
+    `fonts.gstatic.com` + `data:` (font), `ssl.gstatic.com` +
+    `www.gstatic.com` (img). Still no `'unsafe-inline'` scripts and no
+    `'unsafe-eval'`; every other header (HSTS, X-Frame-Options, COOP,
+    Referrer-Policy, Permissions-Policy, `frame-ancestors`) is unchanged.
+  - Tests: 6 new in `cloudflare/worker.test.mjs` (CSP pins; the consent
+    script run against a DOM stub: nothing before opt-in, consent defaults
+    before the container, nonce on `gtm.js`, stored opt-in / opt-out,
+    withdrawal; no noscript / gtag.js markup; the form event), each held by a
+    negative control (7 mutants, all caught).
+- **Why:** PM request 2026-09-27 - GA4 is to be managed from GTM
+  (`GTM-PD5TQCBR`), with the consent behaviour and the security headers kept.
+- **Scope:** landingpage (edge Worker, `assets/js/contact-form.js`, generated
+  `/form` pages x4, docs)
+- **Design impact:** none (banner markup and copy unchanged).
+- **Performance impact:** only for visitors who opted in, loaded async after
+  the banner script: one extra script, `gtm.js` (117 KB gzip for the still
+  empty container, grows with the tags), on top of the gtag.js that GA4
+  needs (195 KB gzip, as before). Visitors without consent still make no
+  Google request at all.
+- **A11y:** none.
+- **Before merge (PM):** the published container is EMPTY today (the live
+  `gtm.js?id=GTM-PD5TQCBR` has no tags). Add the Google tag (`G-8M16LHQXQP`)
+  and the `generate_lead` GA4 Event tag and PUBLISH first, otherwise GA4
+  stops collecting the moment this deploys (`cloudflare/README.md`,
+  "Container rules").
+
 ## 2026-09-27 - Contact form v2: company field, help mode from the docs, Notion lead rows, confirmation emails (x4)
 
 - **What:**

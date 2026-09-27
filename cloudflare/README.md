@@ -35,9 +35,18 @@ contact form - see "Contact form" below):
 The CSP is **enforced** (not report-only) and allowlists only:
 
 - `'self'` for scripts, styles, images, fonts and XHR/fetch,
-- the Google Analytics 4 stack: `www.googletagmanager.com` (gtag.js loader,
-  script + img), `*.google-analytics.com` and `*.analytics.google.com`
-  (beacons, incl. EU regional endpoints; img + connect),
+- Google Tag Manager and the Google Analytics 4 it loads - exactly the host
+  lists of Google's "Use Tag Manager with a Content Security Policy" guide
+  (container, GA4 without Ads features, Preview Mode):
+  `www.googletagmanager.com` (gtm.js + the gtag.js it loads; script, img,
+  connect, style), `*.google-analytics.com` (img + connect), `*.google.com`
+  (connect: GA4 beacons incl. the EU regional `*.analytics.google.com`
+  endpoints, and `www.google.com` for the container); Preview Mode only:
+  `tagmanager.google.com` (script + style), `fonts.googleapis.com` (style),
+  `fonts.gstatic.com` + `data:` (font), `ssl.gstatic.com` + `www.gstatic.com`
+  (img). Deliberately NOT allowed: `'unsafe-eval'` (GTM Custom JavaScript
+  variables evaluate to `undefined` - use Custom Templates) and
+  `'unsafe-inline'` for scripts (GTM propagates the nonce instead),
 - inline `<script>`s ONLY via the per-request nonce (added automatically to
   every script tag by HTMLRewriter) - a hand-written inline handler attribute
   (`onclick="..."`) is BLOCKED,
@@ -72,26 +81,59 @@ Worker change.
 - Banner copy lives in `BANNER_I18N` in `worker.js` (en/pl/de/fr) and links to
   `/{locale}/policy/` + `/legal/`; keep it in sync with the Privacy Policy.
 
-## Google Analytics 4 (built into the injected script)
+## Google Tag Manager -> Google Analytics 4 (built into the injected script)
 
-- Measurement ID: `GA_MEASUREMENT_ID` in `worker.js` (empty string disables
-  GA entirely).
-- **BASIC consent mode, by design:** `gtag.js` is appended to `<head>` ONLY
+- Container: `GTM_CONTAINER_ID` (`GTM-PD5TQCBR`) in `worker.js`; an empty
+  string disables GTM and with it GA4. The GA4 measurement ID
+  (`G-8M16LHQXQP`) is no longer in the code - it lives in the container's
+  Google tag.
+- **BASIC consent mode, by design:** `gtm.js` is appended to `<head>` ONLY
   after the visitor opts in - immediately on page load when the stored cookie
-  is `a1`, or the moment they click accept. Before the config call the loader
-  fires `gtag('consent','default')` with `analytics_storage: granted` and all
-  ad signals (`ad_storage`, `ad_user_data`, `ad_personalization`) denied.
+  is `a1`, or the moment they click accept. Before the container starts, the
+  loader fires `gtag('consent','default')` with `analytics_storage: granted`
+  and all ad signals (`ad_storage`, `ad_user_data`, `ad_personalization`)
+  denied, then pushes the `gtm.js` start event (the order Google requires).
 - **No traffic reaches Google before opt-in.** We deliberately do NOT use
-  "advanced" consent mode (gtag loaded pre-consent sending cookieless pings
+  "advanced" consent mode (tags loaded pre-consent sending cookieless pings
   for behavioral modeling): it would contradict the Privacy Policy statement
   that analytics runs only after consent, and pre-consent pings to a US
   provider are legally contested under ePrivacy/GDPR in the EU. Trade-off: no
-  GA modeled data for visitors who decline - acceptable.
+  GA modeled data for visitors who decline - acceptable. For the same reason
+  there is NO `<noscript>` GTM iframe (`ns.html`): it would load without
+  consent (and `frame-src` blocks it anyway).
+- **Nonce-aware loader:** `gtm.js` gets the request nonce
+  (`setAttribute('nonce', ...)`, as in Google's nonce-aware snippet) and GTM
+  propagates it to every script it injects, so container tags pass the
+  enforced CSP without `'unsafe-inline'`.
 - **Withdrawal:** choosing "necessary only" after a prior opt-in fires
   `gtag('consent','update')` to denied AND deletes the `_ga` / `_ga_*`
   cookies (both host and `.signature.cat` domain variants).
-- CSP already allowlists the GA hosts (loader: `www.googletagmanager.com`;
-  beacons: `*.google-analytics.com`, `*.analytics.google.com`).
+- **Events:** after a successful lead the contact form pushes
+  `{event: 'generate_lead', form_topic}` to `window.dataLayer` (analytics
+  consent only, no personal data); a GA4 Event tag in the container sends it
+  to GA4.
+- CSP: see "Security headers / CSP" above (Google's host lists for the
+  container, GA4 and Preview Mode).
+
+### Container rules (anyone editing GTM-PD5TQCBR)
+
+- Every tag in the container fires under the **analytics** consent: keep it
+  to Google Analytics 4 until the banner gets a marketing category and the
+  Privacy Policy covers more (ads or remarketing tags need both, plus their
+  hosts in `buildCsp()`).
+- Required setup: a **Google tag** with `G-8M16LHQXQP` on *Initialization -
+  All Pages*, and a **GA4 Event** tag `generate_lead` on the custom event
+  `generate_lead` with the parameter `form_topic` = Data Layer Variable
+  `form_topic`. Then **Submit / Publish** - only the published version is
+  served to visitors.
+- No Custom JavaScript variables (the CSP blocks `eval`; use Custom
+  Templates) and no third-party hosts in Custom HTML tags (blocked by the CSP
+  until added to `buildCsp()` in a PR).
+- **Preview Mode (Tag Assistant):** accept analytics in the banner first -
+  GTM loads only after consent. The CSP allows the Preview Mode hosts. Our
+  `Cross-Origin-Opener-Policy: same-origin` isolates the tab Tag Assistant
+  opens; if Tag Assistant cannot connect, try the Tag Assistant Companion
+  browser extension before touching COOP.
 
 Googlebot crawls with `Accept-Language: en` (or none), so it is never redirected
 off `/` and the English homepage indexes as x-default. The reciprocal `hreflang`

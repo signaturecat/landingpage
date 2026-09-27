@@ -5,11 +5,14 @@
 import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import vm from 'node:vm';
 import worker, {
+  bannerHtml,
   buildCsp,
   bookingEmbedUrl,
   CONTACT_TURNSTILE,
   contactSlackMessage,
+  GTM_CONTAINER_ID,
   handleBannerLead,
   handleContactRequest,
   handleHelpRequest,
@@ -741,6 +744,138 @@ test('the Worker routes both form endpoints before canonicalization', async () =
 test('CSP frames only Turnstile and the Google Calendar booking page', () => {
   const frameSrc = buildCsp('n').split('; ').find((d) => d.startsWith('frame-src'));
   assert.equal(frameSrc, "frame-src 'self' https://challenges.cloudflare.com https://calendar.google.com");
+});
+
+test('CSP allows Google Tag Manager, the GA4 it loads and Preview Mode - still no inline or eval scripts', () => {
+  const csp = Object.fromEntries(buildCsp('n').split('; ').map((d) => [d.split(' ')[0], d.split(' ').slice(1)]));
+  // Google's "Use Tag Manager with a Content Security Policy" guide:
+  // container, GA4 without Ads features, Preview Mode.
+  const needed = {
+    'script-src': ["'nonce-n'", 'https://www.googletagmanager.com', 'https://tagmanager.google.com'],
+    'style-src': ['https://www.googletagmanager.com', 'https://tagmanager.google.com', 'https://fonts.googleapis.com'],
+    'img-src': ['https://www.googletagmanager.com', 'https://*.google-analytics.com', 'https://ssl.gstatic.com', 'https://www.gstatic.com'],
+    'connect-src': ['https://www.googletagmanager.com', 'https://*.google-analytics.com', 'https://*.google.com'],
+    'font-src': ['https://fonts.gstatic.com', 'data:'],
+  };
+  for (const [directive, sources] of Object.entries(needed)) {
+    for (const source of sources) assert.ok(csp[directive].includes(source), `${directive} allows ${source}`);
+  }
+  assert.ok(!csp['script-src'].includes("'unsafe-inline'"), 'inline scripts need the nonce');
+  assert.ok(!buildCsp('n').includes("'unsafe-eval'"), 'no eval: GTM Custom JavaScript variables stay off');
+  assert.deepEqual(csp['frame-ancestors'], ["'none'"]);
+});
+
+// ---- consent banner + Google Tag Manager (basic consent mode) ----------------------------
+// Runs the injected consent script against a minimal DOM stub: proves that
+// nothing is requested from Google before opt-in, and that GTM starts after
+// the consent defaults with the request nonce on gtm.js.
+function consentPage({ cookie = '', nonce = 'N0nce+/=' } = {}) {
+  const script = bannerHtml('en', nonce).match(/<script nonce="[^"]*">([\s\S]*?)<\/script>/)[1];
+  let jar = cookie ? cookie.split('; ') : [];
+  const writes = [];
+  const appended = [];
+  const clicks = {};
+  const node = (id) => ({ id, hidden: true, checked: false, focus() {}, addEventListener: (type, fn) => { clicks[id] = fn; } });
+  const nodes = Object.fromEntries(['sigcat-cookies', 'scc-analytics', 'scc-accept', 'scc-necessary', 'scc-save'].map((id) => [id, node(id)]));
+  const document = {
+    getElementById: (id) => nodes[id] || null,
+    createElement: (tag) => ({ tag, attrs: {}, setAttribute(k, v) { this.attrs[k] = v; } }),
+    head: { appendChild: (el) => appended.push(el) },
+    addEventListener() {},
+    dispatchEvent: () => true,
+    get cookie() { return jar.join('; '); },
+    set cookie(value) {
+      writes.push(value);
+      const pair = value.split(';')[0];
+      jar = jar.filter((c) => c.split('=')[0] !== pair.split('=')[0]);
+      if (!/Max-Age=0(;|$)/.test(value)) jar.push(pair);
+    },
+  };
+  const window = {};
+  class CustomEvent { constructor(type, init) { this.type = type; this.detail = init && init.detail; } }
+  vm.runInNewContext(script, { window, document, CustomEvent });
+  return {
+    window,
+    nodes,
+    appended,
+    writes,
+    get jar() { return jar; },
+    click: (id) => clicks[id](),
+    // gtag() pushes `arguments` objects; normalize both entry kinds across the vm realm
+    layer: () => (window.dataLayer || []).map((e) => JSON.parse(JSON.stringify(typeof e.length === 'number' ? Array.from(e) : e))),
+  };
+}
+const GTM_SRC = `https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}`;
+
+test('consent script: nothing reaches Google before opt-in; "Accept all" starts GTM after the consent defaults', () => {
+  const page = consentPage();
+  assert.equal(page.nodes['sigcat-cookies'].hidden, false, 'banner shown without a stored choice');
+  assert.equal(page.window.sigcatConsent.analytics, null);
+  assert.equal(page.appended.length, 0, 'no script before consent');
+  assert.equal(page.window.dataLayer, undefined, 'no dataLayer before consent');
+
+  page.click('scc-accept');
+  assert.equal(page.nodes['sigcat-cookies'].hidden, true);
+  assert.ok(page.writes.includes('sigcat_consent=v1:a1; Max-Age=31536000; Path=/; SameSite=Lax; Secure'));
+  assert.equal(page.appended.length, 1);
+  const [gtm] = page.appended;
+  assert.equal(gtm.tag, 'script');
+  assert.equal(gtm.async, true);
+  assert.equal(gtm.src, GTM_SRC);
+  assert.equal(gtm.attrs.nonce, 'N0nce+/=', 'nonce-aware loader: GTM propagates it to the scripts it injects');
+  const layer = page.layer();
+  assert.deepEqual(
+    layer[0],
+    ['consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' }],
+    'consent defaults come first',
+  );
+  assert.equal(layer[1].event, 'gtm.js', 'then the container start event');
+  assert.equal(typeof layer[1]['gtm.start'], 'number');
+  assert.deepEqual(layer.at(-1), ['consent', 'update', { analytics_storage: 'granted', ad_storage: 'denied' }]);
+
+  page.click('scc-save'); // same choice again
+  assert.equal(page.appended.length, 1, 'the container is loaded once');
+});
+
+test('consent script: a stored opt-in loads GTM at once, a stored opt-out never does', () => {
+  const optedIn = consentPage({ cookie: 'sigcat_consent=v1:a1' });
+  assert.equal(optedIn.nodes['sigcat-cookies'].hidden, true);
+  assert.deepEqual(optedIn.appended.map((s) => s.src), [GTM_SRC]);
+  const optedOut = consentPage({ cookie: 'sigcat_consent=v1:a0' });
+  assert.equal(optedOut.nodes['sigcat-cookies'].hidden, true);
+  assert.equal(optedOut.window.sigcatConsent.analytics, false);
+  assert.equal(optedOut.appended.length, 0);
+  assert.equal(optedOut.window.dataLayer, undefined);
+});
+
+test('consent script: withdrawing consent denies analytics and deletes the GA cookies', () => {
+  const page = consentPage({ cookie: 'sigcat_consent=v1:a1; _ga=GA1.1.1; _ga_8M16LHQXQP=GS1.1; sigcat_locale=pl' });
+  page.click('scc-necessary');
+  assert.deepEqual(page.layer().at(-1), ['consent', 'update', { analytics_storage: 'denied', ad_storage: 'denied' }]);
+  for (const name of ['_ga', '_ga_8M16LHQXQP']) {
+    assert.ok(page.writes.includes(`${name}=; Max-Age=0; Path=/; Domain=.signature.cat; SameSite=Lax; Secure`), name);
+  }
+  assert.deepEqual(page.jar, ['sigcat_locale=pl', 'sigcat_consent=v1:a0']);
+  assert.equal(page.appended.length, 1, 'no second container');
+});
+
+test('consent banner ships no pre-consent Google markup (no <noscript> iframe, no direct gtag.js)', () => {
+  assert.match(GTM_CONTAINER_ID, /^GTM-[A-Z0-9]+$/);
+  for (const lang of ['en', 'pl', 'de', 'fr']) {
+    const html = bannerHtml(lang, 'n');
+    assert.ok(!/<noscript|<iframe|ns\.html/i.test(html), `${lang}: a noscript GTM iframe would load without consent`);
+    assert.ok(!html.includes('gtag/js') && !html.includes("gtag('config'"), `${lang}: GA4 is configured in GTM`);
+    assert.equal(html.match(/googletagmanager\.com/g).length, 1, `${lang}: only the post-consent gtm.js loader`);
+  }
+});
+
+test('contact form sends the lead conversion to the GTM dataLayer, only with analytics consent', () => {
+  const form = readFileSync(new URL('../assets/js/contact-form.js', import.meta.url), 'utf8');
+  assert.match(
+    form,
+    /mode === 'lead' && window\.sigcatConsent && window\.sigcatConsent\.analytics === true && Array\.isArray\(window\.dataLayer\)\) \{\s*window\.dataLayer\.push\(\{ event: 'generate_lead', form_topic: topic \}\);/,
+  );
+  assert.ok(!/gtag\(/.test(form), 'no direct gtag() calls: GA4 is configured in GTM');
 });
 
 // ---- banner-lead gate (regressions) ------------------------------------------------------

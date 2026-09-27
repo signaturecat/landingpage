@@ -21,9 +21,17 @@
  *    per-request nonce. HTMLRewriter stamps that nonce on every <script> of
  *    the page, so the static inline scripts keep working.
  *
- *    CSP allowlist: 'self' plus the Google Analytics 4 / gtag hosts
- *    (www.googletagmanager.com for the loader script; *.google-analytics.com
- *    and *.analytics.google.com - incl. EU regional endpoints - for beacons).
+ *    CSP allowlist: 'self' plus the Google Tag Manager / Google Analytics 4
+ *    hosts from Google's "Use Tag Manager with a Content Security Policy"
+ *    guide (container, GA4 without Ads features, Preview Mode):
+ *    www.googletagmanager.com (gtm.js and the gtag.js it loads),
+ *    *.google-analytics.com and *.google.com (beacons, incl. the EU regional
+ *    *.analytics.google.com endpoints), Preview Mode assets from
+ *    tagmanager.google.com, fonts.googleapis.com, fonts.gstatic.com,
+ *    ssl.gstatic.com and www.gstatic.com. Still NO 'unsafe-inline' for
+ *    scripts (gtm.js carries the nonce and GTM propagates it to the scripts
+ *    it injects) and NO 'unsafe-eval' (GTM Custom JavaScript variables
+ *    evaluate to undefined - use Custom Templates instead).
  *    !!! Any NEW external origin (script, image, fetch/XHR, frame) will be
  *    BLOCKED until it is added to buildCsp() below. Update the allowlist in
  *    the same PR that introduces the resource, then `wrangler deploy`.
@@ -40,13 +48,16 @@
  *    `window.sigcatConsent.analytics` (true/false/null) and dispatches a
  *    `sigcat-consent` CustomEvent.
  *
- * 4. GOOGLE ANALYTICS 4 (GA_MEASUREMENT_ID below), loaded by the same
- *    injected script in BASIC consent mode: gtag.js is appended to <head>
- *    ONLY once the visitor has opted in (cookie a1 on load, or the moment
- *    they accept), preceded by gtag('consent','default') with ad signals
- *    denied. Withdrawing consent fires gtag('consent','update') to denied
- *    AND removes the _ga / _ga_* cookies. No requests reach Google before
- *    opt-in (we deliberately do NOT use "advanced" consent mode pings).
+ * 4. GOOGLE TAG MANAGER (GTM_CONTAINER_ID below), which loads Google
+ *    Analytics 4 - the GA4 measurement ID lives INSIDE the container, not in
+ *    this file. Loaded by the same injected script in BASIC consent mode:
+ *    gtm.js is appended to <head> ONLY once the visitor has opted in (cookie
+ *    a1 on load, or the moment they accept), preceded by
+ *    gtag('consent','default') with ad signals denied and by the 'gtm.js'
+ *    start event. Withdrawing consent fires gtag('consent','update') to
+ *    denied AND removes the _ga / _ga_* cookies. No requests reach Google
+ *    before opt-in (we deliberately do NOT use "advanced" consent mode pings,
+ *    and there is no <noscript> GTM iframe: it would load without consent).
  *
  * 5. BANNER-GENERATOR LEAD CAPTURE (POST /api/banner-leads): the email gate
  *    on /banners-generator posts {email, consent, locale, source} here and
@@ -84,12 +95,17 @@ const SUPPORTED = ['en', 'pl', 'de', 'fr'];
 const CONSENT_COOKIE = 'sigcat_consent';
 const CONSENT_MAX_AGE = 31536000; // 12 months
 
-// Google Analytics 4. BASIC consent mode by design: gtag.js is injected ONLY
-// after the visitor opts in (window.sigcatConsent.analytics === true) - no
-// cookieless pings before consent (that would be "advanced" consent mode,
-// which contradicts our Privacy Policy statement that the tool runs only
-// after consent and is legally riskier in the EU). Empty string disables GA.
-const GA_MEASUREMENT_ID = 'G-8M16LHQXQP';
+// Google Tag Manager container; it loads Google Analytics 4 (the Google tag
+// with the GA4 measurement ID is configured inside the container). BASIC
+// consent mode by design: gtm.js is injected ONLY after the visitor opts in
+// (window.sigcatConsent.analytics === true) - no cookieless pings before
+// consent (that would be "advanced" consent mode, which contradicts our
+// Privacy Policy statement that the tool runs only after consent and is
+// legally riskier in the EU). Every tag in the container fires under the
+// ANALYTICS consent only: keep the container to GA4 until the banner has a
+// marketing category and the Privacy Policy covers more. Empty string
+// disables GTM (and with it GA4).
+export const GTM_CONTAINER_ID = 'GTM-PD5TQCBR';
 
 // ---- consent banner copy --------------------------------------------------
 export const BANNER_I18N = {
@@ -143,18 +159,29 @@ export const BANNER_I18N = {
 export function buildCsp(nonce) {
   return [
     "default-src 'self'",
+    // Google Tag Manager + the GA4 it loads: hosts from Google's "Use Tag
+    // Manager with a Content Security Policy" guide (container, GA4 without
+    // Ads features, Preview Mode). gtm.js gets the nonce and GTM propagates
+    // it to the scripts it injects, so still no 'unsafe-inline' for scripts;
+    // no 'unsafe-eval' either (GTM Custom JavaScript variables stay
+    // undefined - use Custom Templates).
     // challenges.cloudflare.com: Turnstile widget on /banners-generator
     // (script + challenge iframe; frame-src keeps 'self' because it stops
     // inheriting from default-src once declared)
-    `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com https://challenges.cloudflare.com`,
-    "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com",
+    `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com https://tagmanager.google.com https://challenges.cloudflare.com`,
+    // googletagmanager / tagmanager / fonts.*: GTM Preview Mode (Tag Assistant)
+    "style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com",
+    // *.gstatic.com: GTM Preview Mode icons
+    "img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://ssl.gstatic.com https://www.gstatic.com",
+    // *.google.com: GA4 beacons (incl. the EU regional *.analytics.google.com
+    // endpoints) and www.google.com, which the GTM container itself needs;
     // status.signature.cat: the /docs status pill fetches /en/index.json
-    "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://status.signature.cat",
+    "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com https://status.signature.cat",
     // calendar.google.com: the appointment-schedule booking page embedded as
     // the second step of the /form contact form (BOOKING_URL)
     "frame-src 'self' https://challenges.cloudflare.com https://calendar.google.com",
-    "font-src 'self'",
+    // fonts.gstatic.com + data: GTM Preview Mode (Tag Assistant badge)
+    "font-src 'self' https://fonts.gstatic.com data:",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
@@ -226,24 +253,28 @@ export function bannerHtml(lang, nonce) {
   var box = document.getElementById('sigcat-cookies');
   if (!box) return;
   var toggle = document.getElementById('scc-analytics');
-  var GA_ID = '${GA_MEASUREMENT_ID}';
-  var gaLoaded = false;
-  function loadGA() {
-    if (gaLoaded || !GA_ID) return;
-    gaLoaded = true;
+  var GTM_ID = '${GTM_CONTAINER_ID}';
+  var NONCE = '${nonce}';
+  var gtmLoaded = false;
+  function loadGTM() {
+    if (gtmLoaded || !GTM_ID) return;
+    gtmLoaded = true;
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    // Consent defaults go in BEFORE the container starts (Google's order).
     window.gtag('consent', 'default', {
       analytics_storage: 'granted',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
     });
-    window.gtag('js', new Date());
-    window.gtag('config', GA_ID);
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
     var s = document.createElement('script');
     s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    // Google's nonce-aware container snippet: GTM propagates this nonce to
+    // every script it injects, so its tags pass the enforced CSP.
+    s.setAttribute('nonce', NONCE);
     document.head.appendChild(s);
   }
   function clearGaCookies() {
@@ -262,7 +293,7 @@ export function bannerHtml(lang, nonce) {
   }
   function expose(v) {
     window.sigcatConsent = { analytics: v };
-    if (v === true) loadGA();
+    if (v === true) loadGTM();
     if (typeof window.gtag === 'function' && v !== null) {
       window.gtag('consent', 'update', { analytics_storage: v ? 'granted' : 'denied', ad_storage: 'denied' });
     }
