@@ -509,6 +509,8 @@ test('confirmation emails: structure and localization in all 4 locales', () => {
       assert.ok(!/<table(?![^>]*role="presentation")/.test(mail.html), 'every table is role=presentation');
       assert.ok(mail.html.includes(copy.closing) && mail.text.includes(copy.closing), 'thanks + have a nice day');
       assert.ok(mail.html.includes('https://signature.cat/legal#privacy'));
+      // art. 21(4) GDPR: the right to object, in its own paragraph, at the first communication
+      assert.ok(mail.html.includes(`<p style="margin:0 0 6px">${copy.objection.replace("'", '&#39;')}</p>`) && mail.text.includes(copy.objection), `${locale} ${kind} objection`);
       assert.ok(mail.html.length < 80 * 1024, 'well under Gmail clipping');
       assert.ok(!/unsubscribe/i.test(mail.html), 'transactional: no unsubscribe link');
       assert.ok(!mail.html.includes('style="font-family:ui-sans-serif,system-ui,-apple-system,"'), 'font stack never breaks style=""');

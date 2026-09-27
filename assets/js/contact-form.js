@@ -107,6 +107,7 @@
     doneTitle: $('cf-done-title'),
     doneNext: $('cf-done-next'),
     booking: $('cf-booking'),
+    bookingNote: $('cf-booking-note'),
     bookingLink: $('cf-booking-link')
   };
 
@@ -335,6 +336,8 @@
       frame.title = t('cf.done.calendarTitle');
       els.booking.appendChild(frame);
       els.booking.hidden = false;
+      // Google may set its own cookies inside the frame: say so right below it.
+      els.bookingNote.hidden = false;
       els.bookingLink.href = booking;
       els.bookingLink.hidden = false;
       els.layout.classList.add('is-booking');

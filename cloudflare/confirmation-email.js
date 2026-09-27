@@ -59,6 +59,7 @@ export const MAIL_COPY = {
     greetingNoName: 'Thank you!',
     signoff: 'The SignatureCat team',
     privacy: 'Privacy Policy',
+    objection: 'You can object to our processing of these details at any time: just reply to this email.',
     tagline: 'SignatureCat - centrally managed Gmail signatures for Google Workspace.',
     lead: {
       subject: 'We have received your request',
@@ -108,6 +109,7 @@ export const MAIL_COPY = {
     greetingNoName: 'Dziękujemy!',
     signoff: 'Zespół SignatureCat',
     privacy: 'Polityka prywatności',
+    objection: 'W każdej chwili możesz sprzeciwić się przetwarzaniu tych danych: wystarczy odpowiedzieć na tę wiadomość.',
     tagline: 'SignatureCat - centralnie zarządzane podpisy Gmail dla Google Workspace.',
     lead: {
       subject: 'Otrzymaliśmy Twoje zgłoszenie',
@@ -157,6 +159,7 @@ export const MAIL_COPY = {
     greetingNoName: 'Vielen Dank!',
     signoff: 'Ihr SignatureCat-Team',
     privacy: 'Datenschutzerklärung',
+    objection: 'Sie können der Verarbeitung dieser Angaben jederzeit widersprechen: Antworten Sie einfach auf diese E-Mail.',
     tagline: 'SignatureCat - zentral verwaltete Gmail-Signaturen für Google Workspace.',
     lead: {
       subject: 'Wir haben Ihre Anfrage erhalten',
@@ -206,6 +209,7 @@ export const MAIL_COPY = {
     greetingNoName: 'Merci !',
     signoff: "L'équipe SignatureCat",
     privacy: 'Politique de confidentialité',
+    objection: 'Vous pouvez à tout moment vous opposer au traitement de ces informations : il suffit de répondre à cet e-mail.',
     tagline: 'SignatureCat - signatures Gmail gérées de manière centralisée pour Google Workspace.',
     lead: {
       subject: 'Nous avons bien reçu votre demande',
@@ -367,12 +371,14 @@ const nowrap = (v) => `<span style="white-space:nowrap">${esc(v)}</span>`;
 function footer(c, why, year) {
   const html = `<p style="margin:0 0 6px">${esc(c.tagline)}</p>
 <p style="margin:0 0 6px">${esc(why)}</p>
+<p style="margin:0 0 6px">${esc(c.objection)}</p>
 <p style="margin:0 0 6px"><a class="sc-footlink" href="${PRIVACY_URL}" style="color:${C.muted};text-decoration:underline">${esc(c.privacy)}</a> | <a class="sc-footlink" href="mailto:contact@signature.cat" style="color:${C.muted};text-decoration:underline">contact@signature.cat</a></p>
 <p style="margin:0">&copy; ${year} SignatureCat | ${esc(LEGAL.name)}, ${esc(LEGAL.street)}, ${nowrap(LEGAL.city)} | ${nowrap(LEGAL.tax)}</p>`;
   const text = [
     '--',
     c.tagline,
     why,
+    c.objection,
     `${c.privacy}: ${PRIVACY_URL}`,
     'contact@signature.cat',
     `(c) ${year} SignatureCat | ${LEGAL.name}, ${LEGAL.street}, ${LEGAL.city} | ${LEGAL.tax}`,
