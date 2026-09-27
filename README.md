@@ -232,9 +232,11 @@ two modes. Logic: `assets/js/contact-form.js` (loaded only on that page).
   `help-form` (`CONTACT_TURNSTILE` / `HELP_TURNSTILE` in `worker.js` <->
   `TURNSTILE_CDATA` in `contact-form.js` - keep in sync), and reset after a
   failed submit (tokens are single-use).
-- **Analytics:** a GA4 `generate_lead` event (`form_topic` only, no personal
-  data) fires on a successful lead, and only after the visitor opted into
-  analytics. Help requests send no event.
+- **Analytics:** on a successful lead the form pushes the custom event
+  `generate_lead` (`form_topic` only, no personal data) to the Google Tag
+  Manager `dataLayer`, and only after the visitor opted into analytics; the
+  container's GA4 Event tag sends it to GA4 (setup: `cloudflare/README.md`,
+  "Container rules"). Help requests send no event.
 - **Worker config (DevOps):** see `cloudflare/README.md` ("Contact form").
 
 ## Placeholders to replace
@@ -274,9 +276,10 @@ the site still serves (no auto-redirect, no headers, no banner).
 > host, fetch/XHR target) is BLOCKED until added to `buildCsp()` in
 > `cloudflare/worker.js` and merged to `main` (the Worker auto-deploys via
 > Cloudflare Workers Builds - see `cloudflare/README.md`; manual `wrangler
-> deploy` is emergency-only and overrides Git builds). Google Analytics hosts
-> are already allowlisted; the GA loader must run only when
-> `window.sigcatConsent.analytics === true`.
+> deploy` is emergency-only and overrides Git builds). The Google Tag Manager
+> + GA4 hosts are already allowlisted; the GTM loader (`GTM-PD5TQCBR`, which
+> loads GA4) runs only when `window.sigcatConsent.analytics === true`, and no
+> page may load Google tags outside it.
 
 ## Docs link
 
