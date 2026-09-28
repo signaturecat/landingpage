@@ -524,7 +524,12 @@ export function renderHelpConfirmation(req, { year = new Date().getUTCFullYear()
  */
 export async function sendConfirmation(env, to, mail, { kind, locale }) {
   const key = env?.RESEND_SEND_API_KEY || env?.RESEND_API_KEY;
-  if (!key) return { status: 'off' };
+  if (!key) {
+    // Not silent: a Worker without a Resend key (never set, or a plain-text
+    // variable wiped by a deploy) must show up in the logs.
+    console.error('contact form: confirmation email skipped - no RESEND_SEND_API_KEY or RESEND_API_KEY on the Worker');
+    return { status: 'off' };
+  }
   let res;
   try {
     res = await fetch(RESEND_EMAILS_URL, {
@@ -552,7 +557,14 @@ export async function sendConfirmation(env, to, mail, { kind, locale }) {
     console.error(`contact form: confirmation email ${detail}`);
     return { status: 'failed', detail };
   }
-  if (res.ok) return { status: 'sent' };
+  if (res.ok) {
+    // The Resend email id (never the address) ties this line to the
+    // dashboard's Emails / Logs view.
+    const sent = await res.json().catch(() => null);
+    const id = typeof sent?.id === 'string' ? sent.id.slice(0, 64) : '';
+    console.log(`contact form: confirmation email accepted by Resend${id ? ` (id ${id})` : ''}`);
+    return { status: 'sent', id };
+  }
   let body = null;
   try {
     body = await res.json();

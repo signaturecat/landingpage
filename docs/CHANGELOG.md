@@ -2,6 +2,36 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-09-28 - Confirmation emails: no silent skip, persisted Worker logs
+
+- **What:**
+  - `sendConfirmation` logs the case it used to swallow silently: no
+    `RESEND_SEND_API_KEY` / `RESEND_API_KEY` on the Worker
+    (`confirmation email skipped - no ... on the Worker`), and logs every
+    accepted send with the Resend email id (never the address), so a
+    submission can be matched with Resend -> Emails.
+  - `wrangler.toml` enables Workers Logs (`[observability] enabled = true`,
+    sampling 1) with invocation logs OFF: console output is persisted and
+    searchable in the dashboard, request metadata is not. Before, the
+    form's error lines were only visible in a live `wrangler tail`.
+  - `cloudflare/README.md`: a "When confirmation emails do not arrive" table -
+    every log line, what it means and what to do.
+- **Why:** PM report 2026-09-28 - confirmation emails from the contact/help
+  forms do not arrive. The code path is correct (560 render combinations,
+  all tests, DNS of the sending domain verified: DKIM, `send.` MX in
+  eu-west-1, DMARC), so the cause is configuration or a Resend refusal - and
+  neither was visible: a missing key produced no log, and the Worker kept no
+  logs at all.
+- **Scope:** `cloudflare/confirmation-email.js`, `cloudflare/wrangler.toml`,
+  `cloudflare/worker.test.mjs`, `cloudflare/README.md`.
+- **Design impact:** none.
+- **Performance impact:** one `res.json()` on a successful send (the Resend
+  answer is ~60 bytes); Workers Logs within the Free plan quota.
+- **Tests:** 49 (3 new: skip is logged, accepted send logged with the id and
+  without the address, the observability block); each with a negative
+  control.
+- **A11y:** n/a.
+
 ## 2026-09-27 - Google Tag Manager (GTM-PD5TQCBR) replaces the direct GA4 loader, same consent gate
 
 - **What:**

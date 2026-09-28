@@ -1064,3 +1064,48 @@ test('confirmation emails: opt-in footer says how to get removed; long addresses
   const intro = long.html.match(/<p class="sc-text" style="([^"]*)">[^<]*a{60}@/)[1];
   assert.match(intro, /overflow-wrap:break-word;word-break:break-word/);
 });
+
+// ---- confirmation email diagnostics ---------------------------------------------------------
+const captureLogs = async (fn) => {
+  const orig = { log: console.log, error: console.error };
+  const lines = [];
+  console.log = (...a) => lines.push(a.join(' '));
+  console.error = (...a) => lines.push(a.join(' '));
+  try {
+    await fn();
+  } finally {
+    console.log = orig.log;
+    console.error = orig.error;
+  }
+  return lines.join('\n');
+};
+
+test('confirmation email: a Worker without a Resend key says so in the logs (never silent)', async () => {
+  let res;
+  const logs = await captureLogs(async () => {
+    res = await handleContactRequest(post({ ...VALID, marketing: false }), env());
+  });
+  assert.equal(res.status, 200, 'the lead itself is still delivered');
+  assert.ok(!hosts().includes('api.resend.com'));
+  assert.match(logs, /confirmation email skipped - no RESEND_SEND_API_KEY or RESEND_API_KEY on the Worker/);
+});
+
+test('confirmation email: an accepted send is logged with the Resend id, never the address', async () => {
+  replies['https://api.resend.com/emails'] = () => Response.json({ id: 'b1a2c3d4-0000-4000-8000-00000000abcd' });
+  let res;
+  const logs = await captureLogs(async () => {
+    res = await handleContactRequest(post({ ...VALID, marketing: false }), full());
+  });
+  assert.equal(res.status, 200);
+  assert.match(logs, /confirmation email accepted by Resend \(id b1a2c3d4-0000-4000-8000-00000000abcd\)/);
+  assert.doesNotMatch(logs, /jan@example\.com/);
+});
+
+test('wrangler.toml persists Workers Logs (console output) without invocation logs', () => {
+  const toml = readFileSync(new URL('./wrangler.toml', import.meta.url), 'utf8');
+  const block = toml.match(/^\[observability\]\n([\s\S]*?)(?=^\[\[|^\[(?!observability))/m);
+  assert.ok(block, '[observability] block present');
+  assert.match(block[0], /^enabled = true$/m);
+  assert.match(block[0], /^head_sampling_rate = 1$/m);
+  assert.match(block[0], /^\s*\[observability\.logs\]\n\s*invocation_logs = false$/m);
+});

@@ -310,6 +310,29 @@ keep in sync. The email logo is `assets/img/email-logo.png` (80x80, 7.9 KB).
 on every push to `main`, and without it each deploy would replace the Worker's
 plain-text dashboard variables with the (empty) `[vars]` of the config.
 
+### When confirmation emails do not arrive
+
+Every outcome of a confirmation email leaves one log line (never the address,
+never form values). They are persisted by Workers Logs (`[observability]` in
+`wrangler.toml`, console output only - no invocation/request logs): Cloudflare
+dashboard -> Workers -> `landingpage` -> Observability / Logs, search
+`confirmation`. Live alternative: `npx wrangler tail landingpage`.
+
+| Log line | Meaning | What to do |
+|---|---|---|
+| `confirmation email skipped - no RESEND_SEND_API_KEY or RESEND_API_KEY on the Worker` | No Resend key reaches the Worker (never set, or a plain-text variable lost in a deploy before `keep_vars`). | Add `RESEND_SEND_API_KEY` (Resend -> API Keys -> Sending access, domain `signature.cat`) as a **Secret**. |
+| `confirmation email HTTP 401/403 <name>: <message>` | The key is invalid, restricted to another domain, or belongs to a Resend team where `signature.cat` is not a verified domain. | Use a key from the Resend team that has `signature.cat` verified (the one the app sends `alerts@signature.cat` from). |
+| `confirmation email HTTP 422 validation_error: <message>` | Resend refused the message itself, e.g. the From domain is not verified in that team. | Read the message; verify `signature.cat` in that team or fix the key. |
+| `confirmation skipped (recipient rate limit)` | The same address already got a confirmation in the last 60 s (`CONTACT_RCPT_RL`). | Expected: test with another address or wait a minute. |
+| `confirmation email timeout` / `unreachable` | Resend did not answer within 8 s. | Transient; nothing is retried. |
+| `confirmation email accepted by Resend (id ...)` | Resend took the message. | Check Resend -> Emails for that id: delivered, bounced, complained (spam folder is on the recipient side). |
+
+No line at all for a submission means the request never reached the
+confirmation step (Turnstile, validation or rate limit answered first - the
+page shows that error) or the Worker version on the route predates this log.
+Resend's own dashboard (Logs) lists every API request with its response, so a
+refused request is visible there too.
+
 ## Prerequisites (DevOps)
 
 1. The `signature.cat` zone is on this Cloudflare account and **proxied** (orange

@@ -72,6 +72,19 @@ routes = [
 #                        reaches Resend when the visitor ticked the optional
 #                        marketing opt-in.
 
+# Workers Logs: persist console output, so a skipped or failed confirmation
+# email (and every other form side channel) is visible in the dashboard -
+# Workers -> landingpage -> Observability / Logs (3 days on the Free plan).
+# Without this block console.error lines are only visible in a live
+# `wrangler tail`. Invocation logs (request metadata such as URL and headers)
+# stay off: our own log lines never carry form values, addresses or IPs.
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+  [observability.logs]
+  invocation_logs = false
+
 # Per-IP rate limit for the contact/help endpoints (they email a confirmation
 # to the address in the form, so this caps abuse by anyone who gets past
 # Turnstile). Workers Rate Limiting API (GA 2025-09), wrangler >= 4.36. The
