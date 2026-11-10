@@ -2,6 +2,61 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-11-10 - English home page gets the feature card deck (five graphics)
+
+- **What:**
+  - The English root (`/`) now presents the "Everything you need to manage
+    email signatures across your company" section the way `/pl` does: the
+    interactive six-tile grid is replaced by the fanned card-deck carousel
+    (`.feat-deck`), filled with five English marketing graphics: "Set
+    consistent signatures...", "Match signatures to department, job title,
+    language or location", "Automatically update employee data from Google
+    Workspace", "Delegate management of signatures...", "Signatures attach
+    directly in Gmail". `/pl` keeps its four slides; `/de` and `/fr` keep the
+    interactive grid.
+  - **Locale gate generalized:** each deck carries its own `lang`
+    attribute; `html:not(:lang(xx)) .feat-shots[lang="xx"]` hides a deck
+    outside its locale and the grid is hidden on `pl` and `en`.
+  - **Deck geometry follows the card count:** `--deck-rest` (cards - 1)
+    replaces the hard-coded `3` in the card width; a five-card deck is
+    detected with `:has(> .feat-card:nth-child(5))`. The deck grows wider
+    instead of shrinking its cards (`max-width: 520px + rest * 56px`: 688px
+    for /pl, unchanged; 744px for the English deck), so the active card is
+    520px on both locales. Under 752px the five-card deck uses 24px slivers
+    (four-card deck: 30px, unchanged) so the active card keeps about the same
+    phone width (250px at a 390px viewport, no horizontal scroll).
+  - **JS:** `initFeatDeck()` wires up every `.feat-deck` on the page (was:
+    the first one only); the hidden deck stays inert (zero-width bail-out).
+  - **Build (`build.mjs`):** the Polish-only `data-featsrc -> src` swap is
+    replaced by an ownership rule: an image at
+    `/assets/img/feat/<locale>-*.webp` gets a real `src` only in its own
+    locale's render and `data-featsrc` everywhere else. The swap runs both
+    ways because the en output overwrites the authored source (the English
+    images come back with `src` set and must lose it for pl/de/fr).
+    Idempotency assertion passes; the Polish branding banner
+    (`pl-baner-employer-branding.webp`) follows the same rule, so its
+    behaviour is unchanged.
+  - **Assets:** five 1080x1080 PNGs from PM encoded as WebP q82
+    (`assets/img/feat/en-*.webp`, 30-44 KB each, ~181 KB total).
+  - `node build.mjs` restamped the `?v=` hashes of `style.css` / `app.js`
+    on every page (the wide diff outside `index.html`).
+- **Why:** PM request 2026-11-10 - align the English landing page with the
+  Polish one using the English versions of the graphics.
+- **Scope:** landingpage (English home page; /pl rendering unchanged, /de
+  and /fr unchanged)
+- **Design impact:** same deck component, card size and interactions as
+  /pl (cursor zones now five, wheel, swipe, arrow keys). Graphics are baked
+  light-theme (cream), as on /pl.
+- **Performance impact:** +~181 KB of lazy WebP on `/` only (verified: /pl,
+  /de and /fr request none of the English files; / requests none of the
+  Polish ones). The six interactive tiles' demos stay idle on `/`
+  (display:none never intersects).
+- **A11y:** the deck is a focusable region (`aria-roledescription=
+  "carousel"`, English label naming the five slides and the arrow keys);
+  every slide has a descriptive English alt (headline + pictured UI).
+  Note: slide 2 ("Match signatures...") shows a Polish UI dialog inside the
+  graphic ("Nowy szablon", "Domyślny", "Dalej"...) - flagged to PM.
+
 ## 2026-09-27 - Google Tag Manager (GTM-PD5TQCBR) replaces the direct GA4 loader, same consent gate
 
 - **What:**

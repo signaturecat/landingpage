@@ -245,8 +245,8 @@
     initAdBanner();
   }
 
-  // -------- Polish feature deck: fanned-cards carousel ---------------------
-  // The four /pl marketing graphics behave like a deck of playing cards laid
+  // -------- Feature decks (/pl, English root): fanned-cards carousel -------
+  // Each locale's marketing graphics behave like a deck of playing cards laid
   // flat: the active card is fully visible, the cards before it stack as
   // slivers anchored to the left edge, the cards after it as slivers pinned
   // to the right edge. The cursor's X position over the deck picks the card
@@ -257,10 +257,13 @@
   // deck is focused, and touch devices swipe horizontally (vertical pans
   // stay native via touch-action: pan-y). Cards only ever move with
   // translateX + z-index - one formula, no layout thrash; the global
-  // reduced-motion kill turns the glide into a snap.
+  // reduced-motion kill turns the glide into a snap. Every deck in the page
+  // is wired up; only the current locale's one is rendered (CSS gate), the
+  // hidden ones stay inert (layout() bails on a zero-width box).
   function initFeatDeck() {
-    var deck = document.querySelector('.feat-deck');
-    if (!deck) return;
+    document.querySelectorAll('.feat-deck').forEach(initDeck);
+  }
+  function initDeck(deck) {
     var cards = Array.prototype.slice.call(deck.querySelectorAll('.feat-card'));
     var n = cards.length;
     if (n < 2) return;
@@ -272,7 +275,7 @@
     }
     function layout() {
       var w = deck.clientWidth;
-      if (!w) return; // display:none (the deck only renders on /pl)
+      if (!w) return; // display:none (another locale's deck)
       var p = peek();
       cards.forEach(function (c, j) {
         // Static fan: every card keeps x = j*peek - the fan never slides.

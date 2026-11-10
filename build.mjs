@@ -432,15 +432,21 @@ function render(src, loc, I18N, page) {
     );
   });
 
-  // Polish-only feature shots: the authored markup carries the image URL in
-  // data-featsrc (and no src), so the display:none variant on the other
-  // locales never downloads the files - Chrome fetches loading="lazy" images
-  // even inside display:none subtrees. Only the Polish render materializes
-  // the real src (image SEO needs it in the served HTML). Idempotent: the
-  // pl output has no data-featsrc left to rewrite.
-  if (loc === 'pl') {
-    html = html.replace(/(<img\b[^>]*?)\bdata-featsrc="/g, '$1src="');
-  }
+  // Per-locale feature shots (/pl deck + branding banner, English deck): an
+  // image named /assets/img/feat/<locale>-*.webp belongs to that locale only.
+  // Its render gets a real src (image SEO needs it in the served HTML), every
+  // other render gets data-featsrc instead, so the display:none variants
+  // never download the files - Chrome fetches loading="lazy" images even
+  // inside display:none subtrees. The swap runs BOTH ways because the en
+  // output overwrites the authored source: the English images arrive here
+  // with src already set and must lose it again for pl/de/fr. Deterministic
+  // per locale, hence idempotent.
+  html = html.replace(/<img\b[^>]*>/g, (tag) => {
+    const owner = tag.match(/\s(?:src|data-featsrc)="\/assets\/img\/feat\/([a-z]{2})-/);
+    if (!owner) return tag;
+    const attr = owner[1] === loc ? 'src' : 'data-featsrc';
+    return tag.replace(/\s(?:src|data-featsrc)="(\/assets\/img\/feat\/)/, ` ${attr}="$1`);
+  });
 
   // page-level relative asset refs -> root-absolute so /pl/ resolves them
   html = html.replace(/(\s(?:href|src)=")assets\//g, '$1/assets/');
