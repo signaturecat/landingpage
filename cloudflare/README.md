@@ -108,10 +108,17 @@ Worker change.
 - **Withdrawal:** choosing "necessary only" after a prior opt-in fires
   `gtag('consent','update')` to denied AND deletes the `_ga` / `_ga_*`
   cookies (both host and `.signature.cat` domain variants).
+- **Page language (`content_language`):** right after the consent defaults
+  and before the `gtm.js` start event the script pushes
+  `{content_language: 'en' | 'pl' | 'de' | 'fr'}` - the language of the page
+  being viewed, taken from the first path segment (the same value as the
+  `Content-Language` response header; anything outside the four locales,
+  e.g. `/legal`, is `en`). Being in the data model before the container
+  starts, it is readable by every tag from the first `page_view` on.
 - **Events:** after a successful lead the contact form pushes
-  `{event: 'generate_lead', form_topic}` to `window.dataLayer` (analytics
-  consent only, no personal data); a GA4 Event tag in the container sends it
-  to GA4.
+  `{event: 'generate_lead', form_topic, content_language}` to
+  `window.dataLayer` (analytics consent only, no personal data); a GA4 Event
+  tag in the container sends it to GA4.
 - CSP: see "Security headers / CSP" above (Google's host lists for the
   container, GA4 and Preview Mode).
 
@@ -126,6 +133,13 @@ Worker change.
   `generate_lead` with the parameter `form_topic` = Data Layer Variable
   `form_topic`. Then **Submit / Publish** - only the published version is
   served to visitors.
+- `content_language` reaches GA4 only once the container forwards it:
+  (1) Variables -> New -> **Data Layer Variable** `content_language`
+  (version 2), (2) in the **Google tag** `G-8M16LHQXQP` -> Configuration
+  settings -> parameter `content_language` = `{{DLV - content_language}}`
+  (applies to `page_view` and every GA4 event), (3) in GA4 Admin -> Custom
+  definitions -> **custom dimension**, scope Event, event parameter
+  `content_language`, so it shows up in reports. Submit / Publish.
 - No Custom JavaScript variables (the CSP blocks `eval`; use Custom
   Templates) and no third-party hosts in Custom HTML tags (blocked by the CSP
   until added to `buildCsp()` in a PR).

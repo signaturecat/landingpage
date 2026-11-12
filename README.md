@@ -182,14 +182,40 @@ locales like every landing page). Logic lives in
   Worker in the Cloudflare dashboard. Until then the endpoint answers 503
   (Resend) / skips the Turnstile check, and no leads are stored.
 
+## Header: "Log in" + "Try for free"
+
+Every landing page header (home, `/pricing`, `/banners-generator`, `/form`)
+carries two entry points into the **same** app login screen:
+
+- **Log in** (`nav.login`, ghost button) -> `https://app.signature.cat/login`
+  - the login screen exactly as it is.
+- **Try for free** (`nav.trial`, primary) ->
+  `https://app.signature.cat/login?intent=signup` - the app shows the same
+  screen with sign-up wording and a **Book a demo** button
+  (`/form?topic=demo` in the visitor's language). The trial CTAs in the page
+  body (hero "Get started", "Start free trial" under both pricing tables, the
+  docs band, the /pricing and banner-generator bands) use the same URL; the
+  footer "Open app" keeps the plain app URL.
+
+Layout tiers (measured with system fonts): the header bar may run wider than
+the content column (`.nav` max-width 1280px); the primary links collapse into
+the hamburger menu below 1180px (pl/de/fr) or 980px (en); at 680px and below
+"Log in" and the language switch move into the menu and the button gets
+compact; at 440px and below the button shows its short label
+(`nav.trialShort`: "Try free", "Wypróbuj", "Testen", "Essayer"); 360px and
+below tightens the wordmark and spacing so 320px has no horizontal scroll.
+
 ## Contact form (/form)
 
 One page (x4 locales, `form.html`, `cf.*` keys in `i18n.js`, `.cf-*` styles),
 two modes. Logic: `assets/js/contact-form.js` (loaded only on that page).
 
 - **Lead mode (default)** - behind the **Book a call** band on the home page
-  (`/form?topic=call`) and the **Custom pricing** buttons on both pricing
-  sections (`/form?topic=pricing`): full name, work email, phone, **company
+  (`/form?topic=call`), the **Custom pricing** buttons on both pricing
+  sections (`/form?topic=pricing`) and the **Book a demo** button on the app's
+  sign-up screen (`/form?topic=demo`, the only topic with its own heading
+  and page title: `html[data-cf-topic="demo"]` set before first paint,
+  `.cf-demo-only` / `.cf-nodemo` toggled by CSS): full name, work email, phone, **company
   name**, organization size (estimated headcount, ranges aligned with the
   pricing tiers), optional description and a separate, unticked-by-default
   marketing opt-in. Posts to `POST /api/contact-requests`.
@@ -233,7 +259,7 @@ two modes. Logic: `assets/js/contact-form.js` (loaded only on that page).
   `TURNSTILE_CDATA` in `contact-form.js` - keep in sync), and reset after a
   failed submit (tokens are single-use).
 - **Analytics:** on a successful lead the form pushes the custom event
-  `generate_lead` (`form_topic` only, no personal data) to the Google Tag
+  `generate_lead` (`form_topic` + `content_language`, no personal data) to the Google Tag
   Manager `dataLayer`, and only after the visitor opted into analytics; the
   container's GA4 Event tag sends it to GA4 (setup: `cloudflare/README.md`,
   "Container rules"). Help requests send no event.

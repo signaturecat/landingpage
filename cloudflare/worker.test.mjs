@@ -170,6 +170,7 @@ test('parseContact falls back to safe topic/locale and strict opt-in', () => {
   assert.equal(lead.marketing, false);
   assert.equal(parseContact({ ...VALID, topic: 'toString' }).topic, 'general');
   assert.equal(parseContact({ ...VALID, topic: 'help' }).topic, 'general'); // help is its own endpoint
+  assert.equal(parseContact({ ...VALID, topic: 'demo' }).topic, 'demo'); // app login "Book a demo"
   assert.equal(parseContact({ ...VALID, message: undefined }).message, '');
 });
 
@@ -237,6 +238,23 @@ test('contactSlackMessage: company field, escaping, message cap, Notion note', (
   assert.match(failed.blocks.at(-1).elements[0].text, /Notion: :warning: FAILED \(HTTP 400 validation_error\)/);
   assert.match(contactSlackMessage(lead).blocks.at(-1).elements[0].text, /Notion: not configured/);
   assert.equal(msg.unfurl_links, false);
+  const demo = contactSlackMessage(parseContact({ ...VALID, topic: 'demo' }));
+  assert.equal(demo.blocks[0].text.text, 'New contact request: Book a demo');
+});
+
+test('contact form topics (?topic=) are exactly the ones the Worker accepts', () => {
+  const form = readFileSync(new URL('../assets/js/contact-form.js', import.meta.url), 'utf8');
+  const topics = JSON.parse(form.match(/var TOPICS = (\[[^\]]*\]);/)[1].replace(/'/g, '"'));
+  assert.deepEqual(topics, ['call', 'pricing', 'demo']);
+  for (const topic of topics) assert.equal(parseContact({ ...VALID, topic }).topic, topic, topic);
+  for (const locale of ['en', 'pl', 'de', 'fr']) {
+    for (const topic of topics) {
+      assert.ok(MAIL_COPY[locale].topics[topic], `${locale} topic label ${topic}`);
+      assert.ok(MAIL_COPY[locale].lead.intro[topic], `${locale} intro ${topic}`);
+    }
+    const mail = renderLeadConfirmation({ ...leadFixture(locale), topic: 'demo' }, { year: 2026 });
+    assert.ok(mail.html.includes(MAIL_COPY[locale].topics.demo.replace("'", '&#39;')), `${locale} demo label in the email`);
+  }
 });
 
 test('helpSlackMessage: urgency header, optional phone, docs page, escaping', () => {
@@ -769,8 +787,8 @@ test('CSP allows Google Tag Manager, the GA4 it loads and Preview Mode - still n
 // Runs the injected consent script against a minimal DOM stub: proves that
 // nothing is requested from Google before opt-in, and that GTM starts after
 // the consent defaults with the request nonce on gtm.js.
-function consentPage({ cookie = '', nonce = 'N0nce+/=' } = {}) {
-  const script = bannerHtml('en', nonce).match(/<script nonce="[^"]*">([\s\S]*?)<\/script>/)[1];
+function consentPage({ cookie = '', nonce = 'N0nce+/=', lang = 'en' } = {}) {
+  const script = bannerHtml(lang, nonce).match(/<script nonce="[^"]*">([\s\S]*?)<\/script>/)[1];
   let jar = cookie ? cookie.split('; ') : [];
   const writes = [];
   const appended = [];
@@ -829,12 +847,27 @@ test('consent script: nothing reaches Google before opt-in; "Accept all" starts 
     ['consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' }],
     'consent defaults come first',
   );
-  assert.equal(layer[1].event, 'gtm.js', 'then the container start event');
-  assert.equal(typeof layer[1]['gtm.start'], 'number');
+  assert.deepEqual(layer[1], { content_language: 'en' }, 'then the page language for every tag');
+  assert.equal(layer[2].event, 'gtm.js', 'then the container start event');
+  assert.equal(typeof layer[2]['gtm.start'], 'number');
   assert.deepEqual(layer.at(-1), ['consent', 'update', { analytics_storage: 'granted', ad_storage: 'denied' }]);
 
   page.click('scc-save'); // same choice again
   assert.equal(page.appended.length, 1, 'the container is loaded once');
+});
+
+test('consent script: content_language = the page language (en/pl/de/fr), set before the container starts', () => {
+  for (const lang of ['en', 'pl', 'de', 'fr']) {
+    const page = consentPage({ cookie: 'sigcat_consent=v1:a1', lang });
+    const layer = page.layer();
+    const at = layer.findIndex((e) => e && e.content_language);
+    assert.deepEqual(layer[at], { content_language: lang }, lang);
+    assert.ok(at < layer.findIndex((e) => e && e.event === 'gtm.js'), `${lang}: before gtm.js`);
+  }
+  // Paths outside the 4 locales (e.g. /legal) fall back to English, like the banner copy.
+  assert.deepEqual(consentPage({ cookie: 'sigcat_consent=v1:a1', lang: 'es' }).layer()[1], { content_language: 'en' });
+  // Nothing is pushed before consent, the language included.
+  assert.equal(consentPage({ lang: 'pl' }).window.dataLayer, undefined);
 });
 
 test('consent script: a stored opt-in loads GTM at once, a stored opt-out never does', () => {
@@ -873,7 +906,7 @@ test('contact form sends the lead conversion to the GTM dataLayer, only with ana
   const form = readFileSync(new URL('../assets/js/contact-form.js', import.meta.url), 'utf8');
   assert.match(
     form,
-    /mode === 'lead' && window\.sigcatConsent && window\.sigcatConsent\.analytics === true && Array\.isArray\(window\.dataLayer\)\) \{\s*window\.dataLayer\.push\(\{ event: 'generate_lead', form_topic: topic \}\);/,
+    /mode === 'lead' && window\.sigcatConsent && window\.sigcatConsent\.analytics === true && Array\.isArray\(window\.dataLayer\)\) \{\s*window\.dataLayer\.push\(\{ event: 'generate_lead', form_topic: topic, content_language: locale \}\);/,
   );
   assert.ok(!/gtag\(/.test(form), 'no direct gtag() calls: GA4 is configured in GTM');
 });

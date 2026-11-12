@@ -54,7 +54,11 @@
  *    gtm.js is appended to <head> ONLY once the visitor has opted in (cookie
  *    a1 on load, or the moment they accept), preceded by
  *    gtag('consent','default') with ad signals denied and by the 'gtm.js'
- *    start event. Withdrawing consent fires gtag('consent','update') to
+ *    start event; between the two it pushes `content_language` (the page
+ *    language from the path: en/pl/de/fr, the same value as the
+ *    Content-Language header) so every tag in the container can read it as a
+ *    Data Layer Variable from the first page_view on.
+ *    Withdrawing consent fires gtag('consent','update') to
  *    denied AND removes the _ga / _ga_* cookies. No requests reach Google
  *    before opt-in (we deliberately do NOT use "advanced" consent mode pings,
  *    and there is no <noscript> GTM iframe: it would load without consent).
@@ -68,7 +72,8 @@
  *    by design - the gate must never block the tool).
  *
  * 6. CONTACT FORM, lead mode (POST /api/contact-requests): the "Book a
- *    call" / "Custom pricing" form on /form. Turnstile is REQUIRED (fail
+ *    call" / "Custom pricing" / "Book a demo" (app login screen) form on
+ *    /form. Turnstile is REQUIRED (fail
  *    closed without TURNSTILE_SECRET) and bound to this host + the form's
  *    widget action/cData; per-IP rate limit (CONTACT_RL). The lead goes to
  *    the Notion leads database (notion.js, insert-only token) and to Slack
@@ -213,6 +218,7 @@ function makeNonce() {
 // ---- consent banner ----------------------------------------------------------
 export function bannerHtml(lang, nonce) {
   const loc = SUPPORTED.includes(lang) ? lang : 'en';
+  // `loc` is always one of SUPPORTED, so it is safe to inline into the script.
   const t = BANNER_I18N[loc];
   const policyHref = `/${loc}/policy`;
   return `
@@ -255,6 +261,7 @@ export function bannerHtml(lang, nonce) {
   var toggle = document.getElementById('scc-analytics');
   var GTM_ID = '${GTM_CONTAINER_ID}';
   var NONCE = '${nonce}';
+  var CONTENT_LANGUAGE = '${loc}';
   var gtmLoaded = false;
   function loadGTM() {
     if (gtmLoaded || !GTM_ID) return;
@@ -268,6 +275,10 @@ export function bannerHtml(lang, nonce) {
       ad_user_data: 'denied',
       ad_personalization: 'denied'
     });
+    // Page language for every tag (GTM Data Layer Variable "content_language";
+    // the GA4 Google tag sends it as an event parameter). Pushed before the
+    // start event so it is in the data model from the first page_view on.
+    window.dataLayer.push({ content_language: CONTENT_LANGUAGE });
     window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
     var s = document.createElement('script');
     s.async = true;
@@ -562,7 +573,7 @@ export const CONTACT_SIZES = ['1-50', '51-120', '121-300', '301-1000', '1001-500
 // assets/js/contact-form.js (TURNSTILE_CDATA) - keep the two in sync.
 export const CONTACT_TURNSTILE = { action: 'turnstile-spin-v2', cdata: 'contact-form' };
 export const HELP_TURNSTILE = { action: 'turnstile-spin-v2', cdata: 'help-form' };
-const CONTACT_TOPICS = { call: 'Book a call', pricing: 'Custom pricing', general: 'General enquiry' };
+const CONTACT_TOPICS = { call: 'Book a call', pricing: 'Custom pricing', demo: 'Book a demo', general: 'General enquiry' };
 export const HELP_URGENCIES = ['low', 'normal', 'high', 'critical'];
 const HELP_URGENCY = {
   low: { label: 'Low', emoji: ':white_circle:' },
