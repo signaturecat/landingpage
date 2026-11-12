@@ -11,8 +11,7 @@
     for free** (`nav.trial`: Try for free / Wypróbuj bezpłatnie / Kostenlos
     testen / Essai gratuit, primary) -> `app.signature.cat/login?intent=signup`.
     Both open the same app login screen; `intent=signup` makes the app show
-    the sign-up wording and a "Book a demo" button (app PR on branch
-    `feat/login-signup-intent`). The trial CTAs in the page body (hero "Get
+    the sign-up wording and a "Book a demo" button (signaturecat/app#247). The trial CTAs in the page body (hero "Get
     started", "Start free trial" x2 pricing tables, docs band, /pricing and
     banner-generator bands) point to the same sign-up URL; the footer "Open
     app" stays plain. `nav.cta` removed x4 (no longer used).
