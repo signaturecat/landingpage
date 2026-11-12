@@ -2,6 +2,29 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-11-12 - Navbar: "Try for free" first; app login links carry the page language
+
+- **What:**
+  - **Button order (PM):** "Try for free" (primary) now sits left of "Log in"
+    (ghost) in every landing header, x4 locales. Same markup, swapped; the
+    mobile tiers are unchanged ("Log in" still moves into the menu at 680px
+    and below, so the bar keeps "Try for free").
+  - **`lang=<page locale>` on app login links** (DevSecOps nit 1 from
+    signaturecat/app#247): `build.mjs` appends `lang=en|pl|de|fr` to every
+    `https://app.signature.cat/login` link (navbar, in-menu "Log in", trial
+    CTAs), e.g. `/pl` -> `login?intent=signup&amp;lang=pl`. Idempotent (an
+    existing `lang` is replaced, `&amp;` in the attribute). The app counterpart
+    renders the login screen and its "Book a demo" button in that language;
+    before, both followed the browser language, so a visitor on `/pl` with an
+    English browser got an English screen and the English demo form.
+- **Why:** PM request 2026-11-12 (order) + review nit on app#247 (language).
+- **Scope:** landingpage
+- **Design impact:** none beyond the order (same tokens Light/Dark).
+- **Performance impact:** none (HTML only, no CSS/JS change, no restamp).
+- **A11y:** DOM order = visual order (Tab reaches "Try for free" first).
+  Verified: sweep 16 widths x 7 pages (no header overflow, order correct at
+  every tier), Light + Dark at 1440px.
+
 ## 2026-11-12 - Header "Log in" + "Try for free", docs band below the FAQ, `content_language` for GTM/GA4, `/form?topic=demo`
 
 - **What:**

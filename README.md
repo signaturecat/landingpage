@@ -185,14 +185,22 @@ locales like every landing page). Logic lives in
 ## Header: "Log in" + "Try for free"
 
 Every landing page header (home, `/pricing`, `/banners-generator`, `/form`)
-carries two entry points into the **same** app login screen:
+carries two entry points into the **same** app login screen, "Try for free"
+first (left), "Log in" second (right):
 
-- **Log in** (`nav.login`, ghost button) -> `https://app.signature.cat/login`
-  - the login screen exactly as it is.
 - **Try for free** (`nav.trial`, primary) ->
   `https://app.signature.cat/login?intent=signup` - the app shows the same
   screen with sign-up wording and a **Book a demo** button
-  (`/form?topic=demo` in the visitor's language). The trial CTAs in the page
+  (`/form?topic=demo`).
+- **Log in** (`nav.login`, ghost button) -> `https://app.signature.cat/login`
+  - the login screen exactly as it is.
+- **`lang=<page locale>`**: `build.mjs` appends it to every
+  `https://app.signature.cat/login` link in every locale (en included), so
+  the login screen and its demo button use the language of the page the
+  visitor came from, not the browser's. The en render overwrites the authored
+  source, so `lang=en` shows up in `index.html` & co.; the build replaces the
+  value per locale (never appends), so a new link may be authored with or
+  without it. The trial CTAs in the page
   body (hero "Get started", "Start free trial" under both pricing tables, the
   docs band, the /pricing and banner-generator bands) use the same URL; the
   footer "Open app" keeps the plain app URL.

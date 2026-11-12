@@ -417,6 +417,21 @@ function render(src, loc, I18N, page) {
     }
   }
 
+  // Links into the app login screen (navbar "Log in" / "Try for free", the
+  // trial CTAs) carry the page language: ?lang=<loc>, every locale incl. en.
+  // The app (apps/web/src/lib/login-intent.ts) then renders the login screen
+  // and its "Book a demo" button in the language of the page the visitor came
+  // from instead of the browser's. Written as &amp; in the attribute.
+  // Idempotent: an existing lang= is replaced, other params keep their order.
+  html = html.replace(
+    /(href=")(https:\/\/app\.signature\.cat\/login)(\?[^"]*)?(")/g,
+    (_m, pre, base, query, post) => {
+      const params = new URLSearchParams((query || '').slice(1).replace(/&amp;/g, '&'));
+      params.set('lang', loc);
+      return `${pre}${base}?${params.toString().replace(/&/g, '&amp;')}${post}`;
+    },
+  );
+
   // mailto: links to contact@signature.cat (the email fallbacks on /form):
   // the subject is copy, so it lives in the dictionary as plain text
   // (contact.subject, or the key named by the anchor's data-subject-key - the
