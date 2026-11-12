@@ -14,7 +14,7 @@
     `https://app.signature.cat/login` link (navbar, in-menu "Log in", trial
     CTAs), e.g. `/pl` -> `login?intent=signup&amp;lang=pl`. Idempotent (an
     existing `lang` is replaced, `&amp;` in the attribute). The app counterpart
-    renders the login screen and its "Book a demo" button in that language;
+    (signaturecat/app#248) renders the login screen and its "Book a demo" button in that language;
     before, both followed the browser language, so a visitor on `/pl` with an
     English browser got an English screen and the English demo form.
 - **Why:** PM request 2026-11-12 (order) + review nit on app#247 (language).
