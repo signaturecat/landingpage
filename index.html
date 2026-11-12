@@ -197,7 +197,7 @@ https://signature.cat/docs
         <a href="https://signature.cat/docs" data-i18n="nav.docs">Docs</a>
         <a href="#faq" data-i18n="nav.faq">FAQ</a>
         <!-- Mobile only: the header bar keeps "Try for free", "Log in" moves into the menu -->
-        <a href="https://app.signature.cat/login" class="nav-login-m" data-i18n="nav.login">Log in</a>
+        <a href="https://app.signature.cat/login?lang=en" class="nav-login-m" data-i18n="nav.login">Log in</a>
         <div class="nav-lang" role="group" aria-label="Language">
           <span class="nav-lang-label" data-i18n="nav.language">Language</span>
           <div class="nav-lang-opts">
@@ -221,11 +221,12 @@ https://signature.cat/docs
             <a href="/fr" data-lang="fr" role="menuitem"><span class="lang-code">FR</span> Français</a>
           </div>
         </div>
-        <!-- Two entry points into the same app login screen (app/login): "Log in"
-             opens it as is; "Try for free" adds ?intent=signup, which switches the
-             screen to its sign-up wording and shows the "Book a demo" button. -->
-        <a href="https://app.signature.cat/login" class="btn btn-ghost nav-login" data-i18n="nav.login">Log in</a>
-        <a href="https://app.signature.cat/login?intent=signup" class="btn btn-primary nav-trial"><span class="nav-trial-full" data-i18n="nav.trial">Try for free</span><span class="nav-trial-short" data-i18n="nav.trialShort">Try free</span></a>
+        <!-- Two entry points into the same app login screen (app/login), "Try for
+             free" first (PM 2026-11-12): it adds ?intent=signup, which switches the
+             screen to its sign-up wording and shows the "Book a demo" button;
+             "Log in" opens it as is. build.mjs appends ?lang=<page locale>. -->
+        <a href="https://app.signature.cat/login?intent=signup&amp;lang=en" class="btn btn-primary nav-trial"><span class="nav-trial-full" data-i18n="nav.trial">Try for free</span><span class="nav-trial-short" data-i18n="nav.trialShort">Try free</span></a>
+        <a href="https://app.signature.cat/login?lang=en" class="btn btn-ghost nav-login" data-i18n="nav.login">Log in</a>
         <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
@@ -242,7 +243,7 @@ https://signature.cat/docs
           <h1><span data-i18n="hero.titlePre">Centrally manage</span> <mark class="hl-accent" data-i18n="hero.titleHl">Gmail signatures</mark> <span data-i18n="hero.titlePost">in your Google Workspace.</span></h1>
           <p class="lede" data-i18n="hero.lede">Create consistent email signatures for your employees, assign them by department or role, and update them across the whole organization from one place.</p>
           <div class="hero-cta">
-            <a href="https://app.signature.cat/login?intent=signup" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Get started</a>
+            <a href="https://app.signature.cat/login?intent=signup&amp;lang=en" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Get started</a>
             <a href="https://signature.cat/docs" class="btn btn-ghost btn-lg" data-i18n="hero.cta2">Read the docs</a>
           </div>
           <div class="hero-meta">
@@ -659,7 +660,7 @@ https://signature.cat/docs
               <div class="price">$0.55 <small data-i18n="pricing.perUser">/ user / mo</small></div>
             </div>
             <div class="tiers-cta">
-              <a href="https://app.signature.cat/login?intent=signup" class="btn btn-primary btn-lg" data-i18n="pricing.cta">Start free trial</a>
+              <a href="https://app.signature.cat/login?intent=signup&amp;lang=en" class="btn btn-primary btn-lg" data-i18n="pricing.cta">Start free trial</a>
               <a href="/form?topic=pricing" class="btn btn-ghost btn-lg" data-i18n="pricing.custom">Custom pricing</a>
             </div>
           </div>
@@ -696,7 +697,7 @@ https://signature.cat/docs
           </div>
           <div class="hero-cta" style="margin-top:0">
             <a href="https://signature.cat/docs" class="btn btn-primary btn-lg" data-i18n="docs.cta1">Open docs</a>
-            <a href="https://app.signature.cat/login?intent=signup" class="btn btn-ghost btn-lg" data-i18n="docs.cta2">Get started</a>
+            <a href="https://app.signature.cat/login?intent=signup&amp;lang=en" class="btn btn-ghost btn-lg" data-i18n="docs.cta2">Get started</a>
           </div>
         </div>
       </div>

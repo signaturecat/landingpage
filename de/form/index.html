@@ -119,7 +119,7 @@
         <a href="https://signature.cat/de/docs" data-i18n="nav.docs">Dokumentation</a>
         <a href="/de#faq" data-i18n="nav.faq">FAQ</a>
         <!-- Mobile only: the header bar keeps "Try for free", "Log in" moves into the menu -->
-        <a href="https://app.signature.cat/login" class="nav-login-m" data-i18n="nav.login">Anmelden</a>
+        <a href="https://app.signature.cat/login?lang=de" class="nav-login-m" data-i18n="nav.login">Anmelden</a>
         <div class="nav-lang" role="group" aria-label="Language">
           <span class="nav-lang-label" data-i18n="nav.language">Sprache</span>
           <div class="nav-lang-opts">
@@ -143,11 +143,12 @@
             <a data-lang="fr" href="/fr/form" role="menuitem"><span class="lang-code">FR</span> Français</a>
           </div>
         </div>
-        <!-- Two entry points into the same app login screen (app/login): "Log in"
-             opens it as is; "Try for free" adds ?intent=signup, which switches the
-             screen to its sign-up wording and shows the "Book a demo" button. -->
-        <a href="https://app.signature.cat/login" class="btn btn-ghost nav-login" data-i18n="nav.login">Anmelden</a>
-        <a href="https://app.signature.cat/login?intent=signup" class="btn btn-primary nav-trial"><span class="nav-trial-full" data-i18n="nav.trial">Kostenlos testen</span><span class="nav-trial-short" data-i18n="nav.trialShort">Testen</span></a>
+        <!-- Two entry points into the same app login screen (app/login), "Try for
+             free" first (PM 2026-11-12): it adds ?intent=signup, which switches the
+             screen to its sign-up wording and shows the "Book a demo" button;
+             "Log in" opens it as is. build.mjs appends ?lang=<page locale>. -->
+        <a href="https://app.signature.cat/login?intent=signup&amp;lang=de" class="btn btn-primary nav-trial"><span class="nav-trial-full" data-i18n="nav.trial">Kostenlos testen</span><span class="nav-trial-short" data-i18n="nav.trialShort">Testen</span></a>
+        <a href="https://app.signature.cat/login?lang=de" class="btn btn-ghost nav-login" data-i18n="nav.login">Anmelden</a>
         <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
