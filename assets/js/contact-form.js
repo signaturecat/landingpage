@@ -1,6 +1,7 @@
 /* Signature.Cat - contact form (/form, all locales), two modes.
- * Lead mode (default): the "Book a call" and "Custom pricing" CTAs
- * (?topic=call | pricing) - name, email, phone, company, organization size,
+ * Lead mode (default): the "Book a call" and "Custom pricing" CTAs and the
+ * app login screen's "Book a demo" button (?topic=call | pricing | demo) -
+ * name, email, phone, company, organization size,
  * optional description and marketing opt-in, sent to /api/contact-requests.
  * Help mode (?topic=help, the docs "Help" button): name, email, optional
  * phone, urgency and a required description, sent to /api/help-requests (its
@@ -37,7 +38,7 @@
   // keep in sync), and it fails closed: no verified token, no request.
   var TURNSTILE_ACTION = 'turnstile-spin-v2'; // Spin telemetry marker, keep
   var TURNSTILE_CDATA = { lead: 'contact-form', help: 'help-form' };
-  var TOPICS = ['call', 'pricing'];
+  var TOPICS = ['call', 'pricing', 'demo'];
   var SIZES = ['1-50', '51-120', '121-300', '301-1000', '1001-5000', '5000+'];
   var URGENCIES = ['low', 'normal', 'high', 'critical'];
   // Docs pages the help button lives on (the referrer becomes context in the
@@ -351,10 +352,11 @@
     // GA4 conversion via Google Tag Manager, only when the visitor opted into
     // analytics (the Worker's consent script owns the dataLayer and loads GTM
     // only after opt-in); the container's GA4 Event tag fires on this custom
-    // event. No personal data in the event.
+    // event. No personal data in the event. content_language = the page
+    // language (also set page-wide by the consent script before GTM starts).
     try {
       if (mode === 'lead' && window.sigcatConsent && window.sigcatConsent.analytics === true && Array.isArray(window.dataLayer)) {
-        window.dataLayer.push({ event: 'generate_lead', form_topic: topic });
+        window.dataLayer.push({ event: 'generate_lead', form_topic: topic, content_language: locale });
       }
     } catch (e) { /* ignore */ }
   }

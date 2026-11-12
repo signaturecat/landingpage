@@ -37,12 +37,13 @@
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
-  <link rel="preload" href="/assets/css/style.css?v=ec7bc2e101" as="style" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=ec7bc2e101" />
-  <!-- Help mode (?topic=help) is decided before first paint so the page never
-       flashes the sales variant (see the CONTACT FORM comment in <main>); it
-       also points app.js at the help page title (<html data-i18n-title>). -->
-  <script>(function(){try{if(new URLSearchParams(location.search).get('topic')==='help'){var h=document.documentElement;h.setAttribute('data-cf-mode','help');h.setAttribute('data-i18n-title','cf.help.meta.title')}}catch(e){}})();</script>
+  <link rel="preload" href="/assets/css/style.css?v=e3d12e8b2f" as="style" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=e3d12e8b2f" />
+  <!-- Help mode (?topic=help) and the demo heading (?topic=demo) are decided
+       before first paint so the page never flashes the default variant (see
+       the CONTACT FORM comment in <main>); they also point app.js at the
+       matching page title (<html data-i18n-title>). -->
+  <script>(function(){try{var tp=new URLSearchParams(location.search).get('topic'),h=document.documentElement;if(tp==='help'){h.setAttribute('data-cf-mode','help');h.setAttribute('data-i18n-title','cf.help.meta.title')}else if(tp==='demo'){h.setAttribute('data-cf-topic','demo');h.setAttribute('data-i18n-title','cf.demo.meta.title')}}catch(e){}})();</script>
 
   <!-- SEO structured data (regenerated per locale by build.mjs) -->
   <script type="application/ld+json">
@@ -117,6 +118,8 @@
         <a href="/pricing" data-i18n="nav.pricing">Pricing</a>
         <a href="https://signature.cat/docs" data-i18n="nav.docs">Docs</a>
         <a href="/#faq" data-i18n="nav.faq">FAQ</a>
+        <!-- Mobile only: the header bar keeps "Try for free", "Log in" moves into the menu -->
+        <a href="https://app.signature.cat/login" class="nav-login-m" data-i18n="nav.login">Log in</a>
         <div class="nav-lang" role="group" aria-label="Language">
           <span class="nav-lang-label" data-i18n="nav.language">Language</span>
           <div class="nav-lang-opts">
@@ -140,7 +143,11 @@
             <a data-lang="fr" href="/fr/form" role="menuitem"><span class="lang-code">FR</span> Français</a>
           </div>
         </div>
-        <a href="https://app.signature.cat" class="btn btn-primary" data-i18n="nav.cta">Get started</a>
+        <!-- Two entry points into the same app login screen (app/login): "Log in"
+             opens it as is; "Try for free" adds ?intent=signup, which switches the
+             screen to its sign-up wording and shows the "Book a demo" button. -->
+        <a href="https://app.signature.cat/login" class="btn btn-ghost nav-login" data-i18n="nav.login">Log in</a>
+        <a href="https://app.signature.cat/login?intent=signup" class="btn btn-primary nav-trial"><span class="nav-trial-full" data-i18n="nav.trial">Try for free</span><span class="nav-trial-short" data-i18n="nav.trialShort">Try free</span></a>
         <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
@@ -152,9 +159,11 @@
 
     <!-- ============================ CONTACT FORM ============================
          One page, two modes. Lead mode (default): behind the "Book a call"
-         and "Custom pricing" CTAs (?topic=call|pricing) - step 1 = the form,
-         step 2 = the Google Calendar booking page the Worker returns
-         (BOOKING_URL). Help mode (?topic=help, the docs "Help" button): a
+         and "Custom pricing" CTAs (?topic=call|pricing) and the app login
+         screen's "Book a demo" button (?topic=demo, which only swaps the
+         heading: html[data-cf-topic="demo"] toggles .cf-demo-only /
+         .cf-nodemo) - step 1 = the form, step 2 = the Google Calendar booking
+         page the Worker returns (BOOKING_URL). Help mode (?topic=help, the docs "Help" button): a
          support request with urgency instead of company data, sent to its own
          Slack channel. The inline script in <head> sets
          html[data-cf-mode="help"] before first paint; .cf-lead-only /
@@ -163,9 +172,11 @@
     <section class="section cf-hero">
       <div class="container">
         <div class="section-head center reveal">
-          <h1 class="cf-lead-only" data-i18n="cf.hero.title">Talk to the SignatureCat team</h1>
+          <h1 class="cf-lead-only cf-nodemo" data-i18n="cf.hero.title">Talk to the SignatureCat team</h1>
+          <h1 class="cf-lead-only cf-demo-only" data-i18n="cf.demo.hero.title">Book a SignatureCat demo</h1>
           <h1 class="cf-help-only" data-i18n="cf.help.hero.title">How can we help?</h1>
-          <p class="sub cf-lead-only" data-i18n="cf.hero.sub">Book a call or ask for custom pricing. Tell us a little about your organization and we will take it from there.</p>
+          <p class="sub cf-lead-only cf-nodemo" data-i18n="cf.hero.sub">Book a call or ask for custom pricing. Tell us a little about your organization and we will take it from there.</p>
+          <p class="sub cf-lead-only cf-demo-only" data-i18n="cf.demo.hero.sub">See how SignatureCat manages Gmail signatures in a Google Workspace like yours. Tell us a little about your organization and we will set up a live walkthrough.</p>
           <p class="sub cf-help-only" data-i18n="cf.help.hero.sub">Describe the problem and tell us how urgent it is. Our support team will reply by email.</p>
         </div>
 
@@ -341,9 +352,9 @@
     </div>
   </footer>
 
-  <script src="/assets/js/i18n.js?v=4b637b44f1"></script>
-  <script src="/assets/js/app.js?v=3652f66222"></script>
-  <script src="/assets/js/contact-form.js?v=a48acd144b"></script>
+  <script src="/assets/js/i18n.js?v=8e6dc714aa"></script>
+  <script src="/assets/js/app.js?v=71bd7c3c87"></script>
+  <script src="/assets/js/contact-form.js?v=e53521a14b"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

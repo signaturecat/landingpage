@@ -54,7 +54,7 @@
       if (val !== key) el.textContent = val;
     });
 
-    // attributes: data-i18n-attr="content:meta.desc;aria-label:nav.cta"
+    // attributes: data-i18n-attr="content:meta.desc;aria-label:nav.login"
     document.querySelectorAll('[data-i18n-attr]').forEach(function (el) {
       el.getAttribute('data-i18n-attr').split(';').forEach(function (pair) {
         var parts = pair.split(':');

@@ -2,6 +2,64 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-11-12 - Header "Log in" + "Try for free", docs band below the FAQ, `content_language` for GTM/GA4, `/form?topic=demo`
+
+- **What:**
+  - **Header (all landing pages, x4 locales):** the single "Get started"
+    button is replaced by **Log in** (`nav.login`: Log in / Zaloguj /
+    Anmelden / Se connecter, ghost) -> `app.signature.cat/login` and **Try
+    for free** (`nav.trial`: Try for free / Wypróbuj bezpłatnie / Kostenlos
+    testen / Essai gratuit, primary) -> `app.signature.cat/login?intent=signup`.
+    Both open the same app login screen; `intent=signup` makes the app show
+    the sign-up wording and a "Book a demo" button (signaturecat/app#247). The trial CTAs in the page body (hero "Get
+    started", "Start free trial" x2 pricing tables, docs band, /pricing and
+    banner-generator bands) point to the same sign-up URL; the footer "Open
+    app" stays plain. `nav.cta` removed x4 (no longer used).
+  - **Responsive header:** `.nav` may run wider than the content column
+    (max-width 1280px, PM OK 2026-11-12). The primary links collapse into the
+    hamburger menu below 1180px for pl/de/fr and 980px for en (measured
+    full-bar widths: pl ~1100px, de/fr ~1075px, en ~910px of viewport). At
+    680px and below "Log in" moves into the menu (`.nav-login-m`, next to the
+    language picker); the button gets compact; at 440px and below it shows a
+    short label (`nav.trialShort`: Try free / Wypróbuj / Testen / Essayer);
+    360px and below tightens the wordmark and gaps. The hamburger no longer
+    shrinks (`flex: none`; prod squeezed it to 18px wide at 375px in pl).
+    Sweep over 23 widths (320-1600px) x 10 pages: no horizontal scroll from
+    the header, nothing clipped or wrapped.
+  - **Home page:** the "Take a look at the documentation" band (`#docs`) moves
+    from before the FAQ to the very bottom of `<main>`, below the FAQ. Same
+    ids, so `#docs` / `#faq` deep links keep working.
+  - **`content_language` for GTM / GA4:** the consent script in the Worker
+    pushes `{content_language: 'en'|'pl'|'de'|'fr'}` (page language from the
+    path, same value as `Content-Language`) right before the `gtm.js` start
+    event, so every tag can read it from the first `page_view`;
+    `generate_lead` carries it too. Still nothing before opt-in. **GA4 gets
+    it only after the container forwards it** (Data Layer Variable + Google
+    tag configuration parameter + GA4 custom dimension, steps in
+    `cloudflare/README.md`).
+  - **`/form?topic=demo`:** new lead topic for the app's "Book a demo" button:
+    own H1 / sub / page title (`cf.demo.*` x4, set before first paint like
+    help mode), the language switch keeps the topic, Worker accepts `demo`
+    (Slack header "New contact request: Book a demo"), confirmation email
+    topic label + intro x4. Notion rows unchanged (topic is not a column).
+  - `node build.mjs` + `node build-docs.mjs`: wide `?v=` restamp (`style.css`
+    changed; docs pages only get the new stamp).
+- **Why:** PM request 2026-11-12 (separate log-in and trial entry points,
+  docs band order, page language in analytics, demo booking from the app).
+- **Scope:** landingpage (+ Worker `cloudflare/`)
+- **Design impact:** header buttons use the existing `.btn-ghost` /
+  `.btn-primary` tokens (Light/Dark), nav buttons a bit tighter (10px 18px).
+  New `.nav-login-m`, `.nav-trial-full/short`, `.cf-demo-only/.cf-nodemo`.
+- **Performance impact:** CSS only + ~40 bytes of inline JS on `/form`; no
+  new requests, no layout shift (all variants decided by CSS / before first
+  paint).
+- **A11y:** ink on cream for both buttons and the in-menu "Log in"
+  (AA+); hidden label variants are `display:none`, so the accessible name is
+  the visible label; browser default focus rings (no outline suppression);
+  no new motion. Tests: `node --test cloudflare/worker.test.mjs` 48/48
+  (new: content_language per locale + before gtm.js + not before consent,
+  demo topic parity form <-> Worker <-> emails).
+
 ## 2026-11-10 - English home page gets the feature card deck (five graphics)
 
 - **What:**

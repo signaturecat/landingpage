@@ -46,7 +46,7 @@ export const MAIL_COPY = {
       '1-50': '1-50 employees', '51-120': '51-120 employees', '121-300': '121-300 employees',
       '301-1000': '301-1000 employees', '1001-5000': '1001-5000 employees', '5000+': 'More than 5000 employees',
     },
-    topics: { call: 'Book a call', pricing: 'Custom pricing', general: 'General enquiry' },
+    topics: { call: 'Book a call', pricing: 'Custom pricing', demo: 'Book a demo', general: 'General enquiry' },
     urgency: {
       low: 'Low - a question or a suggestion',
       normal: 'Normal - something does not work as expected',
@@ -68,6 +68,7 @@ export const MAIL_COPY = {
       intro: {
         call: 'Thank you for contacting SignatureCat. Your request is with our team and we will get back to you at {email} shortly to arrange the call.',
         pricing: 'Thank you for contacting SignatureCat. Your request is with our team: we will prepare an offer for your organization and get back to you at {email} shortly.',
+        demo: 'Thank you for contacting SignatureCat. Your request is with our team and we will get back to you at {email} shortly to arrange the demo.',
         general: 'Thank you for contacting SignatureCat. Your request is with our team and we will get back to you at {email} shortly.',
       },
       bookingText: 'Want to pick a time for the call right away? Choose one in our calendar:',
@@ -96,7 +97,7 @@ export const MAIL_COPY = {
       '1-50': '1-50 pracowników', '51-120': '51-120 pracowników', '121-300': '121-300 pracowników',
       '301-1000': '301-1000 pracowników', '1001-5000': '1001-5000 pracowników', '5000+': 'Ponad 5000 pracowników',
     },
-    topics: { call: 'Umów rozmowę', pricing: 'Indywidualna wycena', general: 'Zapytanie ogólne' },
+    topics: { call: 'Umów rozmowę', pricing: 'Indywidualna wycena', demo: 'Zamów demo', general: 'Zapytanie ogólne' },
     urgency: {
       low: 'Niska - pytanie lub sugestia',
       normal: 'Normalna - coś działa inaczej, niż powinno',
@@ -118,6 +119,7 @@ export const MAIL_COPY = {
       intro: {
         call: 'Dziękujemy za kontakt z SignatureCat. Twoje zgłoszenie trafiło do naszego zespołu - wkrótce odezwiemy się na adres {email}, żeby umówić rozmowę.',
         pricing: 'Dziękujemy za kontakt z SignatureCat. Twoje zgłoszenie trafiło do naszego zespołu - przygotujemy ofertę dla Twojej organizacji i wkrótce odezwiemy się na adres {email}.',
+        demo: 'Dziękujemy za kontakt z SignatureCat. Twoje zgłoszenie trafiło do naszego zespołu - wkrótce odezwiemy się na adres {email}, żeby umówić prezentację demo.',
         general: 'Dziękujemy za kontakt z SignatureCat. Twoje zgłoszenie trafiło do naszego zespołu - wkrótce odezwiemy się na adres {email}.',
       },
       bookingText: 'Chcesz od razu wybrać termin rozmowy? Zrobisz to w naszym kalendarzu:',
@@ -146,7 +148,7 @@ export const MAIL_COPY = {
       '1-50': '1-50 Mitarbeitende', '51-120': '51-120 Mitarbeitende', '121-300': '121-300 Mitarbeitende',
       '301-1000': '301-1000 Mitarbeitende', '1001-5000': '1001-5000 Mitarbeitende', '5000+': 'Mehr als 5000 Mitarbeitende',
     },
-    topics: { call: 'Gespräch vereinbaren', pricing: 'Individuelles Angebot', general: 'Allgemeine Anfrage' },
+    topics: { call: 'Gespräch vereinbaren', pricing: 'Individuelles Angebot', demo: 'Demo anfragen', general: 'Allgemeine Anfrage' },
     urgency: {
       low: 'Niedrig - eine Frage oder ein Vorschlag',
       normal: 'Normal - etwas funktioniert nicht wie erwartet',
@@ -168,6 +170,7 @@ export const MAIL_COPY = {
       intro: {
         call: 'Vielen Dank für Ihre Nachricht an SignatureCat. Ihre Anfrage ist bei unserem Team angekommen - wir melden uns in Kürze unter {email}, um das Gespräch zu vereinbaren.',
         pricing: 'Vielen Dank für Ihre Nachricht an SignatureCat. Ihre Anfrage ist bei unserem Team angekommen - wir erstellen ein Angebot für Ihre Organisation und melden uns in Kürze unter {email}.',
+        demo: 'Vielen Dank für Ihre Nachricht an SignatureCat. Ihre Anfrage ist bei unserem Team angekommen - wir melden uns in Kürze unter {email}, um die Demo zu vereinbaren.',
         general: 'Vielen Dank für Ihre Nachricht an SignatureCat. Ihre Anfrage ist bei unserem Team angekommen - wir melden uns in Kürze unter {email}.',
       },
       bookingText: 'Möchten Sie gleich einen Termin für das Gespräch wählen? Das geht in unserem Kalender:',
@@ -196,7 +199,7 @@ export const MAIL_COPY = {
       '1-50': '1-50 collaborateurs', '51-120': '51-120 collaborateurs', '121-300': '121-300 collaborateurs',
       '301-1000': '301-1000 collaborateurs', '1001-5000': '1001-5000 collaborateurs', '5000+': 'Plus de 5000 collaborateurs',
     },
-    topics: { call: 'Planifier un appel', pricing: 'Tarif sur mesure', general: 'Demande générale' },
+    topics: { call: 'Planifier un appel', pricing: 'Tarif sur mesure', demo: 'Demander une démo', general: 'Demande générale' },
     urgency: {
       low: 'Faible - une question ou une suggestion',
       normal: 'Normale - quelque chose ne fonctionne pas comme prévu',
@@ -218,6 +221,7 @@ export const MAIL_COPY = {
       intro: {
         call: "Merci d'avoir contacté SignatureCat. Votre demande est bien arrivée chez notre équipe : nous revenons vers vous très vite à l'adresse {email} pour planifier l'appel.",
         pricing: "Merci d'avoir contacté SignatureCat. Votre demande est bien arrivée chez notre équipe : nous préparons une offre pour votre organisation et revenons vers vous très vite à l'adresse {email}.",
+        demo: "Merci d'avoir contacté SignatureCat. Votre demande est bien arrivée chez notre équipe : nous revenons vers vous très vite à l'adresse {email} pour planifier la démo.",
         general: "Merci d'avoir contacté SignatureCat. Votre demande est bien arrivée chez notre équipe : nous revenons vers vous très vite à l'adresse {email}.",
       },
       bookingText: "Vous souhaitez choisir dès maintenant un créneau pour l'appel ? Rendez-vous dans notre calendrier :",

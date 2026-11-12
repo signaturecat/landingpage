@@ -49,8 +49,8 @@ https://signature.cat/docs
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
-  <link rel="preload" href="/assets/css/style.css?v=ec7bc2e101" as="style" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=ec7bc2e101" />
+  <link rel="preload" href="/assets/css/style.css?v=e3d12e8b2f" as="style" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=e3d12e8b2f" />
 
   <!-- SEO structured data -->
   <script type="application/ld+json">
@@ -196,6 +196,8 @@ https://signature.cat/docs
         <a href="/de/pricing" data-i18n="nav.pricing">Preise</a>
         <a href="https://signature.cat/de/docs" data-i18n="nav.docs">Dokumentation</a>
         <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <!-- Mobile only: the header bar keeps "Try for free", "Log in" moves into the menu -->
+        <a href="https://app.signature.cat/login" class="nav-login-m" data-i18n="nav.login">Anmelden</a>
         <div class="nav-lang" role="group" aria-label="Language">
           <span class="nav-lang-label" data-i18n="nav.language">Sprache</span>
           <div class="nav-lang-opts">
@@ -219,7 +221,11 @@ https://signature.cat/docs
             <a href="/fr" data-lang="fr" role="menuitem"><span class="lang-code">FR</span> Français</a>
           </div>
         </div>
-        <a href="https://app.signature.cat" class="btn btn-primary" data-i18n="nav.cta">Loslegen</a>
+        <!-- Two entry points into the same app login screen (app/login): "Log in"
+             opens it as is; "Try for free" adds ?intent=signup, which switches the
+             screen to its sign-up wording and shows the "Book a demo" button. -->
+        <a href="https://app.signature.cat/login" class="btn btn-ghost nav-login" data-i18n="nav.login">Anmelden</a>
+        <a href="https://app.signature.cat/login?intent=signup" class="btn btn-primary nav-trial"><span class="nav-trial-full" data-i18n="nav.trial">Kostenlos testen</span><span class="nav-trial-short" data-i18n="nav.trialShort">Testen</span></a>
         <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
@@ -236,7 +242,7 @@ https://signature.cat/docs
           <h1><span data-i18n="hero.titlePre">Verwalten Sie</span> <mark class="hl-accent" data-i18n="hero.titleHl">Gmail-Signaturen</mark> <span data-i18n="hero.titlePost">zentral in Ihrem Google Workspace.</span></h1>
           <p class="lede" data-i18n="hero.lede">Erstellen Sie einheitliche E-Mail-Signaturen für Ihre Mitarbeitenden, weisen Sie sie nach Abteilung oder Rolle zu und aktualisieren Sie sie im ganzen Unternehmen von einer Stelle aus.</p>
           <div class="hero-cta">
-            <a href="https://app.signature.cat" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Loslegen</a>
+            <a href="https://app.signature.cat/login?intent=signup" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Loslegen</a>
             <a href="https://signature.cat/de/docs" class="btn btn-ghost btn-lg" data-i18n="hero.cta2">Dokumentation lesen</a>
           </div>
           <div class="hero-meta">
@@ -653,25 +659,9 @@ https://signature.cat/docs
               <div class="price">$0.55 <small data-i18n="pricing.perUser">/ Nutzer / Mon.</small></div>
             </div>
             <div class="tiers-cta">
-              <a href="https://app.signature.cat" class="btn btn-primary btn-lg" data-i18n="pricing.cta">Testphase starten</a>
+              <a href="https://app.signature.cat/login?intent=signup" class="btn btn-primary btn-lg" data-i18n="pricing.cta">Testphase starten</a>
               <a href="/de/form?topic=pricing" class="btn btn-ghost btn-lg" data-i18n="pricing.custom">Individuelles Angebot</a>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================== DOCS BAND ============================== -->
-    <section id="docs" class="section" style="padding-top:0">
-      <div class="container">
-        <div class="band reveal">
-          <div>
-            <h2 data-i18n="docs.title">Sehen Sie sich die Dokumentation an</h2>
-            <p data-i18n="docs.desc">Architektur, Signatur-Engine, Variablen, Sicherheit und Compliance - alles ist dokumentiert und öffentlich verfügbar.</p>
-          </div>
-          <div class="hero-cta" style="margin-top:0">
-            <a href="https://signature.cat/de/docs" class="btn btn-primary btn-lg" data-i18n="docs.cta1">Dokumentation öffnen</a>
-            <a href="https://app.signature.cat" class="btn btn-ghost btn-lg" data-i18n="docs.cta2">Loslegen</a>
           </div>
         </div>
       </div>
@@ -692,6 +682,22 @@ https://signature.cat/docs
           <details name="faq"><summary data-i18n="faq.q5">Was passiert, wenn jemand seinen Titel ändert?</summary><p data-i18n="faq.a5">Da Variablen live aus dem Directory aufgelöst werden, hält ein täglicher Abgleich jede Gmail-Signatur automatisch aktuell. Ändern Sie den Titel einmal im Workspace, und er wird überall übernommen.</p></details>
           <details name="faq"><summary data-i18n="faq.q6">Was ist, wenn ich Signaturen in mehreren Sprachen brauche?</summary><p data-i18n="faq.a6">Für jede ausländische Niederlassung können Sie eine eigene Signatursprache festlegen - eigene Vorlagen und Zuweisungen pro Niederlassung. Das Tool ist dafür ausgelegt.</p></details>
           <details name="faq"><summary data-i18n="faq.q7">Bietet ihr Unterstützung bei der Einführung des Tools im Unternehmen?</summary><p data-i18n="faq.a7">Ja, wir unterstützen Sie professionell bei der Einführung des Tools in Ihrem Unternehmen: von der Anbindung Ihrer Domain bis zur Verwaltung der E-Mail-Signaturen im gesamten Google Workspace. Unsere Erfahrung als Google Workspace-Administratoren ermöglicht eine schnelle und reibungslose Einführung. Wir erstellen auch individuelle Signaturvorlagen auf Kundenwunsch - schreiben Sie einfach an contact@signature.cat.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== DOCS BAND ============================== -->
+    <section id="docs" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="band reveal">
+          <div>
+            <h2 data-i18n="docs.title">Sehen Sie sich die Dokumentation an</h2>
+            <p data-i18n="docs.desc">Architektur, Signatur-Engine, Variablen, Sicherheit und Compliance - alles ist dokumentiert und öffentlich verfügbar.</p>
+          </div>
+          <div class="hero-cta" style="margin-top:0">
+            <a href="https://signature.cat/de/docs" class="btn btn-primary btn-lg" data-i18n="docs.cta1">Dokumentation öffnen</a>
+            <a href="https://app.signature.cat/login?intent=signup" class="btn btn-ghost btn-lg" data-i18n="docs.cta2">Loslegen</a>
+          </div>
         </div>
       </div>
     </section>
@@ -742,8 +748,8 @@ https://signature.cat/docs
     </div>
   </footer>
 
-  <script src="/assets/js/i18n.js?v=4b637b44f1"></script>
-  <script src="/assets/js/app.js?v=3652f66222"></script>
+  <script src="/assets/js/i18n.js?v=8e6dc714aa"></script>
+  <script src="/assets/js/app.js?v=71bd7c3c87"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
