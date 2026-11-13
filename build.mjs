@@ -7,8 +7,8 @@
  * pre-renders one crawlable, self-canonical page per locale so search engines
  * can index each language at its own URL:
  *
- *   /            -> en  (x-default + self-canonical)
- *   /pl/ /de/ /fr/ -> pl/de/fr
+ *   /                    -> en  (x-default + self-canonical)
+ *   /pl /de /fr /cat     -> pl/de/fr/ca  (Catalan lives at /cat - see SEGMENT)
  *
  * It also (re)writes per-page <title>, meta description, canonical, the shared
  * reciprocal hreflang block, og/twitter/JSON-LD, og:locale, and root-absolute
@@ -40,13 +40,26 @@ function assetHash(path) {
   return assetHashes.get(path);
 }
 const BASE = 'https://signature.cat';
-const SUPPORTED = ['en', 'pl', 'de', 'fr'];
-const OG_LOCALE = { en: 'en_US', pl: 'pl_PL', de: 'de_DE', fr: 'fr_FR' };
+const SUPPORTED = ['en', 'pl', 'de', 'fr', 'ca'];
+const OG_LOCALE = { en: 'en_US', pl: 'pl_PL', de: 'de_DE', fr: 'fr_FR', ca: 'ca_ES' };
+// URL path segment per locale. The locale CODE (html lang, hreflang,
+// Content-Language, the sigcat_locale cookie, the i18n dictionary key) is the
+// ISO 639-1 code; the PATH may differ: Catalan is `ca` but lives at /cat
+// (PM 2026-11-13). Keep in sync with app.js (detectLocale) and the Worker
+// (LOCALE_PATH / pageLang).
+const SEGMENT = { en: '', pl: 'pl', de: 'de', fr: 'fr', ca: 'cat' };
+// Locales with their own /docs translation (build-docs.mjs). Anything else
+// (Catalan) links the English docs at /docs.
+const DOCS_LOCALES = ['en', 'pl', 'de', 'fr'];
+// The language the app login screen gets via ?lang= - the app itself is only
+// translated into en/pl/de/fr, so a landing-only locale hands over English
+// (deterministic, instead of the app guessing from Accept-Language).
+const APP_LANG = { ca: 'en' };
 
 /* Landing pages rendered by this generator. Each page is authored ONCE in
    English (src) with its own per-page title/description i18n keys and a
    dedicated JSON-LD graph builder (`graph`). Adding a page = a new source
-   file + an entry here (+ the pp.-style keys in i18n.js x4 locales) + the
+   file + an entry here (+ the pp.-style keys in i18n.js, every locale) + the
    slug in the cross-page link list in render(). `priority` (en, other
    locales) overrides the sitemap default of 0.8/0.7 for subpages. */
 const PAGES = [
@@ -60,7 +73,7 @@ const PAGES = [
 // requests and internally maps /pl -> pl/index.html on the origin). The only
 // exception is the English home page, which is the bare root `/`.
 const pathFor = (loc, slug = '') => {
-  const prefix = loc === 'en' ? '' : `/${loc}`;
+  const prefix = SEGMENT[loc] ? `/${SEGMENT[loc]}` : '';
   if (!slug) return prefix || '/';
   return `${prefix}/${slug}`;
 };
@@ -86,7 +99,7 @@ function loadDict() {
   return I18N;
 }
 
-// ---- the reciprocal hreflang block, identical on a page's four variants -----
+// ---- the reciprocal hreflang block, identical on all of a page's variants ---
 const hreflangBlock = (slug) =>
   [
     ...SUPPORTED.map(
@@ -334,7 +347,7 @@ function render(src, loc, I18N, page) {
   // canonical -> this page variant's own URL (never the root for sub-locales)
   html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${pageUrl}$2`);
 
-  // reciprocal hreflang block (identical on the page's four variants)
+  // reciprocal hreflang block (identical on all of the page's variants)
   html = html.replace(
     /(?:[ \t]*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>\n)+/,
     hreflangBlock(page.slug) + '\n',
@@ -392,11 +405,12 @@ function render(src, loc, I18N, page) {
 
   // Docs links follow the page language (PM 2026-07-23): /pl -> /pl/docs etc.
   // Only anchor hrefs - the JSON-LD SearchAction entrypoint stays canonical.
-  // Idempotent: a /pl/docs href no longer matches the /docs pattern.
-  if (loc !== 'en') {
+  // Idempotent: a /pl/docs href no longer matches the /docs pattern. Locales
+  // without a docs translation (DOCS_LOCALES) keep the English /docs.
+  if (loc !== 'en' && DOCS_LOCALES.includes(loc)) {
     html = html.replace(
       /(href=")https:\/\/signature\.cat\/docs(?=["/#?])/g,
-      `$1https://signature.cat/${loc}/docs`,
+      `$1https://signature.cat/${SEGMENT[loc]}/docs`,
     );
   }
 
@@ -407,7 +421,7 @@ function render(src, loc, I18N, page) {
   // they deliberately point at a SPECIFIC locale's URL. Idempotent: /pl#, /pl
   // and /pl/pricing no longer match the English patterns.
   if (loc !== 'en') {
-    html = html.replace(/href="\/#/g, `href="/${loc}#`);
+    html = html.replace(/href="\/#/g, `href="${pathFor(loc)}#`);
     for (const target of ['/', '/pricing', '/banners-generator', '/form']) {
       const english = new RegExp(`href="${target}(?=["?])`);
       html = html.replace(/<a\b[^>]*>/g, (tag) => {
@@ -423,11 +437,12 @@ function render(src, loc, I18N, page) {
   // and its "Book a demo" button in the language of the page the visitor came
   // from instead of the browser's. Written as &amp; in the attribute.
   // Idempotent: an existing lang= is replaced, other params keep their order.
+  // A landing-only locale (Catalan) hands over English - see APP_LANG.
   html = html.replace(
     /(href=")(https:\/\/app\.signature\.cat\/login)(\?[^"]*)?(")/g,
     (_m, pre, base, query, post) => {
       const params = new URLSearchParams((query || '').slice(1).replace(/&amp;/g, '&'));
-      params.set('lang', loc);
+      params.set('lang', APP_LANG[loc] || loc);
       return `${pre}${base}?${params.toString().replace(/&/g, '&amp;')}${post}`;
     },
   );
@@ -604,7 +619,7 @@ for (const page of PAGES) {
     writeFileSync(join(ROOT, page.slug, 'index.html'), outputs.en);
   }
   for (const loc of SUPPORTED.filter((l) => l !== 'en')) {
-    const dir = page.slug ? join(ROOT, loc, page.slug) : join(ROOT, loc);
+    const dir = page.slug ? join(ROOT, SEGMENT[loc], page.slug) : join(ROOT, SEGMENT[loc]);
     mkdirSync(dir, { recursive: true });
     writeFileSync(join(dir, 'index.html'), outputs[loc]);
   }

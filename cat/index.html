@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<!--
+     _                   _                             _   
+ ___(_) __ _ _ __   __ _| |_ _   _ _ __ ___   ___ __ _| |_ 
+/ __| |/ _` | '_ \ / _` | __| | | | '__/ _ \ / __/ _` | __|
+\__ \ | (_| | | | | (_| | |_| |_| | | |  __/| (_| (_| | |_ 
+|___/_|\__, |_| |_|\__,_|\__|\__,_|_|  \___(_)___\__,_|\__|
+       |___/ 
+  
+Built with ❤️ and too much caffeine.
+  
+https://signature.cat/docs
+-->
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+
+  <title>SignatureCat - Gestió centralitzada de signatures de Gmail a Google Workspace</title>
+  <meta name="description" data-i18n-attr="content:meta.desc" content="Gestiona de manera centralitzada les signatures de Gmail de tot el teu Google Workspace. Signatures personalitzades i sempre al dia, amb variables, blocs condicionals i desplegament automàtic. Allotjat a la UE i preparat per al RGPD." />
+  <link rel="canonical" href="https://signature.cat/cat" />
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="en" href="https://signature.cat/" />
+  <link rel="alternate" hreflang="pl" href="https://signature.cat/pl" />
+  <link rel="alternate" hreflang="de" href="https://signature.cat/de" />
+  <link rel="alternate" hreflang="fr" href="https://signature.cat/fr" />
+  <link rel="alternate" hreflang="ca" href="https://signature.cat/cat" />
+  <link rel="alternate" hreflang="x-default" href="https://signature.cat/" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SignatureCat" />
+  <meta property="og:title" content="SignatureCat - Gestió centralitzada de signatures de Gmail a Google Workspace" />
+  <meta property="og:description" content="Gestiona de manera centralitzada les signatures de Gmail de tot el teu Google Workspace. Signatures personalitzades i sempre al dia, amb variables, blocs condicionals i desplegament automàtic. Allotjat a la UE i preparat per al RGPD." />
+  <meta property="og:url" content="https://signature.cat/cat" />
+  <meta property="og:locale" content="ca_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:image" content="https://signature.cat/assets/img/og-cover.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SignatureCat - Gestió centralitzada de signatures de Gmail a Google Workspace" />
+  <meta name="twitter:description" content="Gestiona de manera centralitzada les signatures de Gmail de tot el teu Google Workspace. Signatures personalitzades i sempre al dia, amb variables, blocs condicionals i desplegament automàtic. Allotjat a la UE i preparat per al RGPD." />
+  <meta name="twitter:image" content="https://signature.cat/assets/img/og-cover.svg" />
+
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <link rel="preload" href="/assets/css/style.css?v=e3d12e8b2f" as="style" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=e3d12e8b2f" />
+
+  <!-- SEO structured data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://signature.cat/#organization",
+      "name": "SignatureCat",
+      "url": "https://signature.cat/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://signature.cat/assets/img/logo-mark.png"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "contact@signature.cat"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://signature.cat/#website",
+      "name": "SignatureCat",
+      "url": "https://signature.cat/",
+      "inLanguage": "ca",
+      "publisher": {
+        "@id": "https://signature.cat/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://signature.cat/docs?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://signature.cat/#software",
+      "name": "SignatureCat",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, Google Workspace",
+      "description": "Gestiona de manera centralitzada les signatures de Gmail de tot el teu Google Workspace. Signatures personalitzades i sempre al dia, amb variables, blocs condicionals i desplegament automàtic. Allotjat a la UE i preparat per al RGPD.",
+      "url": "https://signature.cat/cat",
+      "logo": "https://signature.cat/assets/img/logo-mark.png",
+      "image": "https://signature.cat/assets/img/og-cover.svg",
+      "areaServed": "EU",
+      "publisher": {
+        "@id": "https://signature.cat/#organization"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "0.55",
+        "highPrice": "0.80",
+        "offerCount": "4"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://signature.cat/cat#faq",
+      "inLanguage": "ca",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Com actualitza SignatureCat les signatures de Gmail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L'eina es connecta al teu Google Workspace mitjançant l'API, de manera que la gestió centralitzada de les signatures de correu es fa des d'un sol tauler: cada signatura de Gmail es genera a partir de dades que arriben directament del directori del teu Workspace."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Oferiu una prova gratuïta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Cada Workspace nou comença amb una prova gratuïta de 14 dies amb accés complet. Et demanem una targeta en registrar-te, però no et cobrem res durant la prova: si la cancel·les abans que acabi, no hauràs de pagar res. Després de la prova, la facturació és per usuari actiu, a partir de 0,80 USD / usuari / mes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "On es desen les meves dades?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Totes les dades són en regions de la UE. No desem les dades personals dels usuaris finals: els noms, telèfons i fotos s'obtenen en directe en el moment d'aplicar la signatura i després es descarten."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Puc aplicar la signatura només a alguns usuaris?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. La gestió de signatures de Gmail és tan detallada com la teva estructura: pots assignar-les a usuaris concrets, a grups sencers o a unitats organitzatives. En el moment d'aplicar-les, cada assignació arriba automàticament a les persones a qui correspon."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Què passa quan algú canvia de càrrec?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Com que les variables es resolen en directe a partir del directori, una sincronització diària manté al dia totes les signatures de Gmail automàticament. Actualitza el càrrec una sola vegada a Workspace i el canvi arriba a tot arreu."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "I si necessito signatures en diversos idiomes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pots definir un idioma de signatura diferent per a cada filial a l'estranger, amb plantilles i assignacions pròpies per a cadascuna. L'eina està pensada per a organitzacions multilingües."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Oferiu ajuda per implantar l'eina a la meva empresa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. T'oferim suport professional per implantar l'eina a la teva empresa, des de la connexió del domini fins a la gestió de les signatures de correu a tot el Google Workspace. La nostra experiència com a administradors de Google Workspace fa que el desplegament sigui ràpid i sense complicacions. També creem plantilles de signatura a mida si ens les demanes: només cal que escriguis a contact@signature.cat."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="home">
+
+  <!-- ============================== HEADER ============================== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="SignatureCat home">
+        <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+        SignatureCat
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
+        <a href="#features" data-i18n="nav.features">Funcionalitats</a>
+        <a href="#branding" data-i18n="nav.branding">Marca</a>
+        <a href="#security" data-i18n="nav.security">Seguretat</a>
+        <a href="/cat/pricing" data-i18n="nav.pricing">Preus</a>
+        <a href="https://signature.cat/docs" data-i18n="nav.docs">Documentació</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <!-- Mobile only: the header bar keeps "Try for free", "Log in" moves into the menu -->
+        <a href="https://app.signature.cat/login?lang=en" class="nav-login-m" data-i18n="nav.login">Inicia la sessió</a>
+        <div class="nav-lang" role="group" aria-label="Language">
+          <span class="nav-lang-label" data-i18n="nav.language">Idioma</span>
+          <div class="nav-lang-opts">
+            <a href="/" data-lang="en"><span class="lang-code">EN</span> English</a>
+            <a href="/pl" data-lang="pl"><span class="lang-code">PL</span> Polski</a>
+            <a href="/de" data-lang="de"><span class="lang-code">DE</span> Deutsch</a>
+            <a href="/fr" data-lang="fr"><span class="lang-code">FR</span> Français</a>
+            <a href="/cat" data-lang="ca"><span class="lang-code">CA</span> Català</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="nav-right">
+        <div class="lang">
+          <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-label="Change language">
+            <span id="lang-current">EN</span>
+          </button>
+          <div class="lang-menu" id="lang-menu" role="menu">
+            <a href="/" data-lang="en" role="menuitem"><span class="lang-code">EN</span> English</a>
+            <a href="/pl" data-lang="pl" role="menuitem"><span class="lang-code">PL</span> Polski</a>
+            <a href="/de" data-lang="de" role="menuitem"><span class="lang-code">DE</span> Deutsch</a>
+            <a href="/fr" data-lang="fr" role="menuitem"><span class="lang-code">FR</span> Français</a>
+            <a href="/cat" data-lang="ca" role="menuitem"><span class="lang-code">CA</span> Català</a>
+          </div>
+        </div>
+        <!-- Two entry points into the same app login screen (app/login), "Try for
+             free" first (PM 2026-11-12): it adds ?intent=signup, which switches the
+             screen to its sign-up wording and shows the "Book a demo" button;
+             "Log in" opens it as is. build.mjs appends ?lang=<page locale>. -->
+        <a href="https://app.signature.cat/login?intent=signup&amp;lang=en" class="btn btn-primary nav-trial"><span class="nav-trial-full" data-i18n="nav.trial">Prova-ho gratis</span><span class="nav-trial-short" data-i18n="nav.trialShort">Prova-ho</span></a>
+        <a href="https://app.signature.cat/login?lang=en" class="btn btn-ghost nav-login" data-i18n="nav.login">Inicia la sessió</a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- =============================== HERO =============================== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <h1><span data-i18n="hero.titlePre">Gestiona les</span> <mark class="hl-accent" data-i18n="hero.titleHl">signatures de Gmail</mark> <span data-i18n="hero.titlePost">del teu Google Workspace de manera centralitzada.</span></h1>
+          <p class="lede" data-i18n="hero.lede">Crea signatures de correu coherents per a tot l'equip, assigna-les per departament o per rol i actualitza-les a tota l'organització des d'un sol lloc.</p>
+          <div class="hero-cta">
+            <a href="https://app.signature.cat/login?intent=signup&amp;lang=en" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Comença ara</a>
+            <a href="https://signature.cat/docs" class="btn btn-ghost btn-lg" data-i18n="hero.cta2">Llegeix la documentació</a>
+          </div>
+          <div class="hero-meta">
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta1">Prova gratuïta de 14 dies</span></span>
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.meta3">Servidors a la UE</span></span>
+          </div>
+        </div>
+
+        <!-- Glass UI mock (placeholder for product screenshot) -->
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="glass">
+            <div class="glass-head">
+              <div class="glass-dots"><i></i><i></i><i></i></div>
+              <span class="glass-title" data-i18n="hero.glassTitle">previsualització de la signatura</span>
+            </div>
+            <div class="sig-card" id="sig-demo">
+              <div class="sig-row">
+                <div class="sig-avatar" id="sig-avatar"></div>
+                <div>
+                  <div class="sig-name">
+                    <span class="var" data-var="firstname">{{firstname}}</span>
+                    <span class="var" data-var="lastname">{{lastname}}</span>
+                  </div>
+                  <div class="sig-role"><span class="var" data-var="jobtitle">{{jobtitle}}</span></div>
+                </div>
+              </div>
+              <div class="sig-divider"></div>
+              <div class="sig-lines">
+                <div class="sig-field"><span class="sig-ico ico-mail" aria-hidden="true"></span><span class="var" data-var="email">{{email}}</span><span class="sig-hint" data-i18n="hero.hint.email">adreça electrònica</span></div>
+                <div class="sig-field"><span class="sig-ico ico-phone" aria-hidden="true"></span><span class="var" data-var="phone">{{phone}}</span><span class="sig-hint" data-i18n="hero.hint.phone">número de telèfon</span></div>
+                <div class="sig-field"><span class="sig-ico ico-office" aria-hidden="true"></span><span class="var" data-var="department">{{department}}</span><span class="sig-sep">·</span><span class="var" data-var="domain">{{domain}}</span><span class="sig-hint" data-i18n="hero.hint.dept">departament · domini</span></div>
+              </div>
+            </div>
+            <span class="glass-chip" data-i18n="hero.sigChip">Sincronitzada</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== TRUST ============================== -->
+    <section class="trust">
+      <div class="container">
+        <p data-i18n="trust.label">Creat per a l'entorn de Google Workspace</p>
+        <div class="trust-row">
+          <span class="pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n="trust.t1">Gmail</span></span>
+          <span class="pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg><span data-i18n="trust.t2">Admin Directory</span></span>
+          <span class="pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><path d="M8 12h8"/></svg><span data-i18n="trust.t3">Integració amb Google Workspace</span></span>
+          <span class="pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg><span data-i18n="trust.t4">Mínim privilegi</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FEATURES ============================ -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker" data-i18n="feat.kicker">Funcionalitats</span>
+          <h2 data-i18n="feat.title">Tot el que necessites per gestionar les signatures de correu de tota l'empresa</h2>
+          <p class="sub" data-i18n="feat.sub">Un sol lloc per crear, assignar i actualitzar les signatures de correu de tota l'organització.</p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card card-compact card-personalize reveal" tabindex="0">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
+            <h3 data-i18n="feat.c1.t">Actualitza les signatures amb un clic</h3>
+            <p data-i18n="feat.c1.d">Canvia el text, una imatge o les dades de la plantilla i SignatureCat farà arribar automàticament la nova versió a tot l'equip.</p>
+            <!-- {{firstname}} {{lastname}} auto-fill demo from a created template -->
+            <div class="pers-demo" aria-hidden="true">
+              <div class="pers-line">
+                <span class="pers-var" data-var="firstname">{{firstname}}</span>
+                <span class="pers-var" data-var="lastname">{{lastname}}</span>
+              </div>
+            </div>
+            <div class="tile-veil" aria-hidden="true"><span class="tile-veil-title" data-i18n="feat.c1.t">Actualitza les signatures amb un clic</span></div>
+          </article>
+
+          <article class="card card-compact card-vars reveal" tabindex="0">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v2M16 21h2a2 2 0 0 0 2-2v-2"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg></span>
+            <h3 data-i18n="feat.c2.t">Les dades de cada persona s'actualitzen soles</h3>
+            <p data-i18n="feat.c2.d">Porta les dades de Google Workspace directament a la signatura. Algú canvia de càrrec, de telèfon o de departament? La signatura s'hi adapta.</p>
+            <!-- Carousel: variable tokens that flip to a sample value on hover -->
+            <div class="var-carousel" aria-hidden="true">
+              <div class="var-track">
+                <span class="var-chip"><code>{{firstname}}</code><span class="var-val">Anna</span></span>
+                <span class="var-chip"><code>{{lastname}}</code><span class="var-val">Kowalska</span></span>
+                <span class="var-chip"><code>{{jobtitle}}</code><span class="var-val">Head of Marketing</span></span>
+                <span class="var-chip"><code>{{department}}</code><span class="var-val">Marketing</span></span>
+                <span class="var-chip"><code>{{email}}</code><span class="var-val">anna@signature.cat</span></span>
+                <span class="var-chip"><code>{{phone}}</code><span class="var-val">+48 797 891 447</span></span>
+                <span class="var-chip"><code>{{photo}}</code><span class="var-val">anna.jpg</span></span>
+                <span class="var-chip"><code>{{address}}</code><span class="var-val">Warsaw, PL</span></span>
+                <span class="var-chip"><code>{{domain}}</code><span class="var-val">signature.cat</span></span>
+                <span class="var-chip"><code>{{firstname}}</code><span class="var-val">Anna</span></span>
+                <span class="var-chip"><code>{{lastname}}</code><span class="var-val">Kowalska</span></span>
+                <span class="var-chip"><code>{{jobtitle}}</code><span class="var-val">Head of Marketing</span></span>
+                <span class="var-chip"><code>{{department}}</code><span class="var-val">Marketing</span></span>
+                <span class="var-chip"><code>{{email}}</code><span class="var-val">anna@signature.cat</span></span>
+                <span class="var-chip"><code>{{phone}}</code><span class="var-val">+48 797 891 447</span></span>
+                <span class="var-chip"><code>{{photo}}</code><span class="var-val">anna.jpg</span></span>
+                <span class="var-chip"><code>{{address}}</code><span class="var-val">Warsaw, PL</span></span>
+                <span class="var-chip"><code>{{domain}}</code><span class="var-val">signature.cat</span></span>
+              </div>
+            </div>
+            <div class="tile-veil" aria-hidden="true"><span class="tile-veil-title" data-i18n="feat.c2.t">Les dades de cada persona s'actualitzen soles</span></div>
+          </article>
+
+          <article class="card card-compact card-conditional reveal" tabindex="0">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg></span>
+            <h3 data-i18n="feat.c3.t">Crea diferents versions de la signatura</h3>
+            <p data-i18n="feat.c3.d">Marca les seccions opcionals amb etiquetes condicionals: si una persona té número de telèfon, la secció es manté; si no en té, desapareix. Sense línies buides ni retocs persona per persona.</p>
+            <!-- {{del}} animation: when the value is present only the {{del}}/{{/del}} tags disappear and the section stays -->
+            <div class="cond-demo" aria-hidden="true">
+              <div class="cond-sig" id="cond-block">
+                <div class="cond-row cond-static"><span class="cond-name">Anna Kowalska</span></div>
+                <div class="cond-row cond-line">
+                  <span class="cond-tag cond-open"><code>{{del}}</code></span>
+                  <span class="cond-text" data-i18n="feat.c3.phone">Telèfon: +48 797 891 447</span>
+                  <span class="cond-tag cond-close"><code>{{/del}}</code></span>
+                </div>
+                <div class="cond-row cond-static"><span class="cond-muted">Marketing · signature.cat</span></div>
+              </div>
+              <div class="cond-status" id="cond-status" data-i18n="feat.c3.statusPresent">Hi ha telèfon: la secció es manté</div>
+            </div>
+            <div class="tile-veil" aria-hidden="true"><span class="tile-veil-title" data-i18n="feat.c3.t">Crea diferents versions de la signatura</span></div>
+          </article>
+
+          <article class="card reveal">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m9 14-1.5 7L12 18l4.5 3L15 14"/></svg></span>
+            <h3 data-i18n="feat.c4.t">Mantén una imatge d'empresa coherent</h3>
+            <p data-i18n="feat.c4.d">Un mateix estàndard de signatura en tots els missatges que envia el teu equip.</p>
+          </article>
+
+          <article class="card reveal">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/><path d="m17 11 2 2 4-4"/></svg></span>
+            <h3 data-i18n="feat.c5.t">Adeu a les correccions manuals i a les dades desfasades</h3>
+            <p data-i18n="feat.c5.d">Ja no cal demanar a ningú que actualitzi la signatura ni comprovar qui encara fa servir la signatura antiga.</p>
+          </article>
+
+          <article class="card reveal">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <h3 data-i18n="feat.c6.t">Controla les teves signatures</h3>
+            <p data-i18n="feat.c6.d">Consulta les signatures que has desplegat i tot l'historial de canvis al tauler d'administració.</p>
+          </article>
+        </div>
+
+        <!-- Per-locale tile decks: on /pl (PM 2026-08-11) and on the English
+             root (PM 2026-11-10) the interactive grid above is replaced by a
+             horizontal card-deck carousel of that locale's marketing
+             graphics; /de and /fr keep the grid. The visible card follows
+             the cursor position over the deck (left edge = first card, right
+             edge = last), the remaining cards always peek out like a fanned
+             deck of playing cards; wheel steps through the cards and touch
+             devices swipe. Behaviour lives in initFeatDeck() (app.js), layout
+             in .feat-shots / .feat-card (style.css). The locale swap is pure
+             CSS keyed off the <html lang> the build stamps per locale and
+             the deck's own lang attribute. Each deck's copy lives inline (no
+             data-i18n): a deck is only ever visible on its own locale. The
+             images are named <locale>-*.webp and build.mjs gives them a real
+             src ONLY in that locale's render (data-featsrc everywhere else),
+             so a display:none deck never downloads its images. -->
+        <div class="feat-shots feat-deck reveal" lang="pl" role="region" aria-roledescription="karuzela" aria-label="Podgląd funkcji SignatureCat: 4 plansze, strzałki w lewo i w prawo przełączają" tabindex="0">
+          <figure class="feat-card is-active">
+            <img data-featsrc="/assets/img/feat/pl-ustaw-spojne-podpisy.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Ustaw spójne podpisy w całej organizacji kilkoma kliknięciami - panel SignatureCat stosuje szablon podpisu email do 104 osób z automatyczną synchronizacją" />
+          </figure>
+          <figure class="feat-card">
+            <img data-featsrc="/assets/img/feat/pl-dopasuj-podpisy.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Dopasuj podpisy do działu, stanowiska, języka lub lokalizacji - wybór szablonu podpisu Gmail: ze zdjęciem, z logo firmy albo z banerem reklamowym" />
+          </figure>
+          <figure class="feat-card">
+            <img data-featsrc="/assets/img/feat/pl-aktualizuj-dane.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Automatycznie aktualizuj dane pracowników z Google Workspace - imię, stanowisko i telefon synchronizują się same do podpisu Gmail" />
+          </figure>
+          <figure class="feat-card">
+            <img data-featsrc="/assets/img/feat/pl-deleguj-zarzadzanie.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Deleguj zarządzanie podpisami wybranym osobom lub zespołom - rola Designer edytuje szablony stopek bez dostępu do ustawień organizacji" />
+          </figure>
+        </div>
+        <div class="feat-shots feat-deck reveal" lang="en" role="region" aria-roledescription="carousel" aria-label="SignatureCat feature preview: 5 slides, switch with the left and right arrow keys" tabindex="0">
+          <figure class="feat-card is-active">
+            <img data-featsrc="/assets/img/feat/en-set-consistent-signatures.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Set consistent signatures across your organization in a few clicks - the SignatureCat panel applies an email signature template to 104 people with automatic sync" />
+          </figure>
+          <figure class="feat-card">
+            <img data-featsrc="/assets/img/feat/en-match-signatures.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Match signatures to department, job title, language or location - choosing a Gmail signature template: with a photo, with the company logo or with a promotional banner" />
+          </figure>
+          <figure class="feat-card">
+            <img data-featsrc="/assets/img/feat/en-update-employee-data.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Automatically update employee data from Google Workspace - name, job title and phone number sync into the Gmail signature on their own" />
+          </figure>
+          <figure class="feat-card">
+            <img data-featsrc="/assets/img/feat/en-delegate-management.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Delegate management of signatures to selected people or teams - the Designer role edits signature templates without access to organization settings" />
+          </figure>
+          <figure class="feat-card">
+            <img data-featsrc="/assets/img/feat/en-gmail-signatures.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Signatures attach directly in Gmail - an email signature with photo, contact details and an employer branding banner in the Gmail compose window" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== HOW IT WORKS =========================== -->
+    <section id="how" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="kicker" data-i18n="how.kicker">Com funciona</span>
+          <h2 data-i18n="how.title">Configura les signatures de correu de l'empresa en tres passos</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <h3 data-i18n="how.s1.t">Connecta Google Workspace</h3>
+            <p data-i18n="how.s1.d">Connecta SignatureCat al teu Google Workspace amb Domain-Wide Delegation. Concedeix només els permisos necessaris i comença a gestionar les signatures des d'un sol lloc.</p>
+          </div>
+          <div class="step reveal">
+            <h3 data-i18n="how.s2.t">Crea una plantilla de signatura</h3>
+            <p data-i18n="how.s2.d">Dissenya la signatura i afegeix-hi les dades dels empleats, variables i contingut condicional. Previsualitza-la amb un usuari real abans de desplegar-la a l'organització.</p>
+          </div>
+          <div class="step reveal">
+            <h3 data-i18n="how.s3.t">Tria qui la rep i aplica-la</h3>
+            <p data-i18n="how.s3.d">Selecciona les persones, els grups o les unitats organitzatives a què s'aplica la signatura. SignatureCat l'emplena amb les dades de cada usuari i la manté al dia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CONTACT ============================== -->
+    <!-- The CTA opens the contact form (/form, form.html); ?topic= tells the
+         Slack notification which button the visitor came from. build.mjs
+         localizes the href per locale (/pl/form?topic=call). -->
+    <section id="contact" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="band reveal">
+          <div>
+            <h2 data-i18n="contact.title">Tens preguntes abans de començar?</h2>
+            <p data-i18n="contact.desc">Vols saber com funcionaria SignatureCat a la teva organització? Reserva una trucada amb el nostre equip.</p>
+          </div>
+          <div class="hero-cta" style="margin-top:0">
+            <a href="/cat/form?topic=call" class="btn btn-primary btn-lg" data-i18n="contact.cta">Reserva una trucada</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= EMPLOYER BRANDING ========================= -->
+    <section id="branding" class="section">
+      <div class="container">
+        <div class="brand-grid">
+          <div class="brand-copy reveal">
+            <span class="kicker" data-i18n="brand.kicker">Marca ocupadora</span>
+            <h2 data-i18n="brand.title">La marca ocupadora a cada signatura de correu</h2>
+            <p class="sub" data-i18n="brand.sub">Fes servir les signatures de l'empresa com un canal més de comunicació i de promoció.</p>
+            <ul class="brand-points">
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p1">Promociona campanyes, esdeveniments, informes o ofertes de feina en milers de correus sortints.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p2">Canvia els bàners de tota l'organització sense haver de contactar amb cap empleat.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p3">Adapta el missatge a un departament, a un equip o a un públic concret.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p4">Allotja els bàners al teu propi domini a través de SignatureCat: sempre estaran disponibles i no hauràs de mantenir res.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="brand.p5">Actualitza el contingut promocional des d'un sol lloc i mantén coherent la imatge de l'empresa.</span></li>
+            </ul>
+          </div>
+
+          <!-- Example signature template with a rotating marketing banner -->
+          <div class="brand-visual reveal">
+            <div class="glass brand-glass">
+              <div class="glass-head">
+                <div class="glass-dots"><i></i><i></i><i></i></div>
+                <span class="glass-title" data-i18n="brand.glassTitle">signatura amb bàner de campanya</span>
+              </div>
+              <div class="sig-card brand-sig">
+                <div class="sig-row">
+                  <div class="sig-avatar brand-avatar"></div>
+                  <div>
+                    <div class="sig-name is-value-static">Tomasz Piasecki</div>
+                    <div class="sig-role">SystemAdmin</div>
+                  </div>
+                </div>
+                <div class="sig-divider"></div>
+                <div class="sig-lines">
+                  <div class="sig-field"><span class="sig-ico ico-phone" aria-hidden="true"></span><span>797 891 447</span></div>
+                  <div class="sig-field"><span class="sig-ico ico-mail" aria-hidden="true"></span><span>tomek@signature.cat</span></div>
+                </div>
+                <!-- Rotating campaign banner: changes every 3s with a fade swap (generic examples) -->
+                <div class="ad-banner" id="ad-banner" role="img" aria-label="Marketing campaign banner">
+                  <div class="ad-slide is-active" data-brand="sale">
+                    <span class="ad-eyebrow" data-i18n="brand.ad1.e">Rebaixes d'estiu</span>
+                    <span class="ad-head" data-i18n="brand.ad1.h">-30% en tots els plans anuals</span>
+                    <span class="ad-sub" data-i18n="brand.ad1.s">Només aquesta setmana · acaba diumenge.</span>
+                    <span class="ad-cta" data-i18n="brand.ad1.c">Mira l'oferta</span>
+                  </div>
+                  <div class="ad-slide" data-brand="product">
+                    <span class="ad-eyebrow" data-i18n="brand.ad2.e">Nova versió</span>
+                    <span class="ad-head" data-i18n="brand.ad2.h">Coneix la nostra plataforma 2.0</span>
+                    <span class="ad-sub" data-i18n="brand.ad2.s">Més ràpida, més senzilla, pensada per a equips.</span>
+                    <span class="ad-cta" data-i18n="brand.ad2.c">Descobreix les novetats</span>
+                  </div>
+                  <div class="ad-slide" data-brand="event">
+                    <span class="ad-eyebrow" data-i18n="brand.ad3.e">webinar · gratuït</span>
+                    <span class="ad-head" data-i18n="brand.ad3.h">Demo en directe aquest dijous</span>
+                    <span class="ad-sub" data-i18n="brand.ad3.s">Reserva la teva plaça: n'hi ha poques.</span>
+                    <span class="ad-cta" data-i18n="brand.ad3.c">Inscriu-t'hi</span>
+                  </div>
+                </div>
+                <!-- Polish-only static campaign banner (PM 2026-08-12): on /pl
+                     the rotating demo above is replaced by the real
+                     employer-branding banner. Same locale gate (html:lang in
+                     CSS) + data-featsrc mechanism as the feature deck, so the
+                     other locales neither show nor download it. -->
+                <img class="pl-ad-banner" data-featsrc="/assets/img/feat/pl-baner-employer-branding.webp" width="1000" height="223" loading="lazy" decoding="async" alt="Baner employer branding w podpisie email: Employer branding w każdym wysłanym mailu - sprawdź signature.cat" />
+              </div>
+              <span class="glass-chip" data-i18n="brand.chip">Màrqueting en temps real</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== GOOGLE WORKSPACE ADMIN ====================== -->
+    <section id="admin" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker" data-i18n="admin.kicker">Entorn</span>
+          <h2 data-i18n="admin.title">Dissenyat per un administrador de Google Workspace</h2>
+          <p class="sub" data-i18n="admin.sub">L'eina l'ha creada un administrador que coneix els reptes diaris de gestionar les signatures en una empresa: des de mantenir les dades al dia fins a aconseguir que totes les signatures siguin coherents a tota l'organització.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card reveal">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <h3 data-i18n="admin.c1.t">Gestió de grups</h3>
+            <p data-i18n="admin.c1.d">Assigna una signatura a tot un grup de Google en lloc d'afegir les persones una per una. Quan algú entra al grup o en surt, SignatureCat li actualitza la signatura automàticament.</p>
+          </article>
+          <article class="card reveal">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg></span>
+            <h3 data-i18n="admin.c2.t">Adapta la signatura de Gmail a la ubicació i a l'idioma</h3>
+            <p data-i18n="admin.c2.d">Defineix l'idioma, l'adreça i les dades de contacte adequats per a cada seu. L'equip de Barcelona pot fer servir una signatura en català i el de Berlín, una en alemany.</p>
+          </article>
+          <article class="card reveal">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 8h18"/></svg></span>
+            <h3 data-i18n="admin.c3.t">Aprofita l'estructura que ja tens a Google Workspace</h3>
+            <p data-i18n="admin.c3.d">Assigna signatures a unitats organitzatives (OU) i reutilitza l'estructura que ja té l'empresa. No cal reconstruir res a SignatureCat: l'eina treballa amb la configuració que ja tens a Google Workspace.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= SECURITY ============================= -->
+    <section id="security" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker" data-i18n="sec.kicker">Seguretat</span>
+          <h2 data-i18n="sec.title">Seguretat i privadesa des de la base</h2>
+          <p class="sub" data-i18n="sec.sub">SignatureCat es basa en el principi de mínim privilegi. Les dades es xifren i es desen a la Unió Europea, perquè puguis fer servir l'eina sense patir per les dades de la teva organització.</p>
+        </div>
+
+        <div class="sec-list reveal">
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i1.t">Claus a Secret Manager</h4><p data-i18n="sec.i1.d">Les claus privades dels comptes de servei només es guarden a Secret Manager, mai a la nostra base de dades, als registres ni a les respostes.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i2.t">Xifratge en repòs</h4><p data-i18n="sec.i2.d">Els tokens OAuth es xifren amb AES-256-GCM. La memòria cau de claus caduca al cap de 5 minuts com a màxim i no toca mai el disc.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i3.t">Aïllament de les dades de l'organització</h4><p data-i18n="sec.i3.d">Cada operació està limitada al teu Workspace i totalment aïllada per seguretat.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i4.t">No desem les dades del teu equip</h4><p data-i18n="sec.i4.d">Els noms, telèfons i fotos s'obtenen en directe en el moment d'aplicar la signatura i després s'esborren: només conservem el que cal per a l'historial de tasques i l'auditoria.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i5.t">Dades a la UE</h4><p data-i18n="sec.i5.d">La base de dades, els secrets i l'allotjament funcionen en regions de la UE (Frankfurt / Amsterdam) perquè les teves dades no surtin de la UE.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i6.t">Resistent a la injecció de codi</h4><p data-i18n="sec.i6.d">Les plantilles de signatura se sanegen en desar-les per resistir qualsevol intent d'injectar-hi codi maliciós.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i7.t">Nivells de permisos d'usuari</h4><p data-i18n="sec.i7.d">Gestiona qui pot fer què a signature.cat: nivells d'accés detallats perquè administradors, editors i lectors tinguin només els permisos que necessiten.</p></div></div>
+          <div class="sec-item"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><h4 data-i18n="sec.i8.t">Traçabilitat a punt per a auditories</h4><p data-i18n="sec.i8.d">Cada acció està vinculada a un nivell de permisos i queda anotada en un registre d'auditoria inalterable, de manera que els canvis sempre es poden rastrejar.</p></div></div>
+        </div>
+
+        <div class="sec-badges reveal">
+          <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg><span data-i18n="sec.b1">RODO / GDPR - DPA disponible</span></span>
+          <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span data-i18n="sec.b2">Registre d'auditoria inalterable</span></span>
+          <span class="sec-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg><span data-i18n="sec.b4">Recuperació davant desastres (PITR)</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== PRICING ============================== -->
+    <section id="pricing" class="section">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="kicker" data-i18n="pricing.kicker">Preus</span>
+          <h2 data-i18n="pricing.title">Un sol pla. Totes les funcionalitats. Facturació senzilla.</h2>
+          <p class="sub" data-i18n="pricing.sub">Paga només pels usuaris actius del teu Workspace. Com més llicències, més baix és el preu de cada una.</p>
+        </div>
+
+        <div class="pricing-wrap">
+          <!-- Calculator -->
+          <div class="calc reveal">
+            <label for="seat-count" data-i18n="pricing.calcLabel">Quants usuaris té el teu Workspace?</label>
+            <div class="seat-input">
+              <div class="stepper">
+                <button type="button" id="seat-dec" aria-label="Decrease">−</button>
+                <input type="number" id="seat-count" min="1" max="100000" value="25" inputmode="numeric" aria-label="User count" />
+                <button type="button" id="seat-inc" aria-label="Increase">+</button>
+              </div>
+            </div>
+            <input type="range" id="seat-slider" class="slider" min="1" max="400" value="25" aria-label="User count slider" />
+
+            <div class="calc-result">
+              <div class="calc-total">
+                <span class="amount" id="calc-amount">$20.00</span>
+                <span class="per" data-i18n="pricing.perMonth">/ mes</span>
+              </div>
+              <p class="calc-sub" id="calc-sub">Estimated monthly total for 25 users.</p>
+              <span class="calc-tier" id="calc-tier">Your effective rate: $0.80 / user / mo</span>
+              <p class="calc-note" data-i18n="pricing.note">Preus progressius: cada llicència es factura a la tarifa del seu tram. Els imports són estimacions sense impostos; la facturació final la gestiona Stripe.</p>
+            </div>
+          </div>
+
+          <!-- Tier table -->
+          <div class="tiers reveal" aria-label="Pricing tiers">
+            <div class="tier-row">
+              <div class="range"><span data-i18n="pricing.row1">1 - 50 usuaris</span><small data-i18n="pricing.row1sub">Equips petits</small></div>
+              <div class="price">$0.80 <small data-i18n="pricing.perUser">/ usuari / mes</small></div>
+            </div>
+            <div class="tier-row">
+              <div class="range"><span data-i18n="pricing.row2">51 - 120 usuaris</span><small data-i18n="pricing.row2sub">Empreses en creixement</small></div>
+              <div class="price">$0.70 <small data-i18n="pricing.perUser">/ usuari / mes</small></div>
+            </div>
+            <div class="tier-row">
+              <div class="range"><span data-i18n="pricing.row3">121 - 300 usuaris</span><small data-i18n="pricing.row3sub">Organitzacions grans</small></div>
+              <div class="price">$0.60 <small data-i18n="pricing.perUser">/ usuari / mes</small></div>
+            </div>
+            <div class="tier-row">
+              <div class="range"><span data-i18n="pricing.row4">301+ usuaris</span><small data-i18n="pricing.row4sub">Corporacions</small></div>
+              <div class="price">$0.55 <small data-i18n="pricing.perUser">/ usuari / mes</small></div>
+            </div>
+            <div class="tiers-cta">
+              <a href="https://app.signature.cat/login?intent=signup&amp;lang=en" class="btn btn-primary btn-lg" data-i18n="pricing.cta">Comença la prova gratuïta</a>
+              <a href="/cat/form?topic=pricing" class="btn btn-ghost btn-lg" data-i18n="pricing.custom">Preu a mida</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================ FAQ ================================ -->
+    <section id="faq" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="kicker" data-i18n="faq.kicker">FAQ</span>
+          <h2 data-i18n="faq.title">Preguntes freqüents</h2>
+        </div>
+        <div class="faq reveal">
+          <details name="faq"><summary data-i18n="faq.q1">Com actualitza SignatureCat les signatures de Gmail?</summary><p data-i18n="faq.a1">L'eina es connecta al teu Google Workspace mitjançant l'API, de manera que la gestió centralitzada de les signatures de correu es fa des d'un sol tauler: cada signatura de Gmail es genera a partir de dades que arriben directament del directori del teu Workspace.</p></details>
+          <details name="faq"><summary data-i18n="faq.q2">Oferiu una prova gratuïta?</summary><p data-i18n="faq.a2">Sí. Cada Workspace nou comença amb una prova gratuïta de 14 dies amb accés complet. Et demanem una targeta en registrar-te, però no et cobrem res durant la prova: si la cancel·les abans que acabi, no hauràs de pagar res. Després de la prova, la facturació és per usuari actiu, a partir de 0,80 USD / usuari / mes.</p></details>
+          <details name="faq"><summary data-i18n="faq.q3">On es desen les meves dades?</summary><p data-i18n="faq.a3">Totes les dades són en regions de la UE. No desem les dades personals dels usuaris finals: els noms, telèfons i fotos s'obtenen en directe en el moment d'aplicar la signatura i després es descarten.</p></details>
+          <details name="faq"><summary data-i18n="faq.q4">Puc aplicar la signatura només a alguns usuaris?</summary><p data-i18n="faq.a4">Sí. La gestió de signatures de Gmail és tan detallada com la teva estructura: pots assignar-les a usuaris concrets, a grups sencers o a unitats organitzatives. En el moment d'aplicar-les, cada assignació arriba automàticament a les persones a qui correspon.</p></details>
+          <details name="faq"><summary data-i18n="faq.q5">Què passa quan algú canvia de càrrec?</summary><p data-i18n="faq.a5">Com que les variables es resolen en directe a partir del directori, una sincronització diària manté al dia totes les signatures de Gmail automàticament. Actualitza el càrrec una sola vegada a Workspace i el canvi arriba a tot arreu.</p></details>
+          <details name="faq"><summary data-i18n="faq.q6">I si necessito signatures en diversos idiomes?</summary><p data-i18n="faq.a6">Pots definir un idioma de signatura diferent per a cada filial a l'estranger, amb plantilles i assignacions pròpies per a cadascuna. L'eina està pensada per a organitzacions multilingües.</p></details>
+          <details name="faq"><summary data-i18n="faq.q7">Oferiu ajuda per implantar l'eina a la meva empresa?</summary><p data-i18n="faq.a7">Sí. T'oferim suport professional per implantar l'eina a la teva empresa, des de la connexió del domini fins a la gestió de les signatures de correu a tot el Google Workspace. La nostra experiència com a administradors de Google Workspace fa que el desplegament sigui ràpid i sense complicacions. També creem plantilles de signatura a mida si ens les demanes: només cal que escriguis a contact@signature.cat.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== DOCS BAND ============================== -->
+    <section id="docs" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="band reveal">
+          <div>
+            <h2 data-i18n="docs.title">Fes un cop d'ull a la documentació</h2>
+            <p data-i18n="docs.desc">Arquitectura, motor de signatures, variables, seguretat i compliment normatiu: tot està documentat i és d'accés públic (en anglès).</p>
+          </div>
+          <div class="hero-cta" style="margin-top:0">
+            <a href="https://signature.cat/docs" class="btn btn-primary btn-lg" data-i18n="docs.cta1">Obre la documentació</a>
+            <a href="https://app.signature.cat/login?intent=signup&amp;lang=en" class="btn btn-ghost btn-lg" data-i18n="docs.cta2">Comença ara</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <img class="logo-mark" src="/assets/img/logo-mark.png" width="30" height="30" alt="SignatureCat" />
+          SignatureCat
+        </a>
+        <p data-i18n="footer.tagline">Gestiona de manera centralitzada les signatures de Gmail de tot el teu Google Workspace.</p>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4 data-i18n="footer.product">Producte</h4>
+          <a href="#features" data-i18n="footer.f.features">Funcionalitats</a>
+          <a href="/cat/pricing" data-i18n="footer.f.pricing">Preus</a>
+          <a href="#security" data-i18n="footer.f.security">Seguretat</a>
+          <a href="https://app.signature.cat" data-i18n="footer.f.app">Obre l'aplicació</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.resources">Recursos</h4>
+          <a href="https://signature.cat/docs" data-i18n="footer.f.docs">Documentació</a>
+          <a href="/cat/banners-generator" data-i18n="footer.f.banners">Generador de bàners</a>
+          <a href="#faq" data-i18n="footer.f.faq">FAQ</a>
+          <a href="https://status.signature.cat/" data-i18n="footer.f.status">Estat del servei</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.legal">Informació legal</h4>
+          <a href="/legal#privacy" data-i18n="footer.f.privacy">Privadesa</a>
+          <a href="/legal#terms" data-i18n="footer.f.terms">Condicions</a>
+          <a href="/legal#dpa" data-i18n="footer.f.dpa">DPA</a>
+          <a href="#cookie-settings" class="js-cookie-settings" data-i18n="footer.f.cookies">Configuració de galetes</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year">2026</span> SignatureCat. <span data-i18n="footer.rights">Tots els drets reservats.</span></span>
+      <span class="footer-loc">
+        <span>🇪🇺 <span data-i18n="footer.madeEU">Servidors a la UE</span></span>
+        <span>🇵🇱 <span data-i18n="footer.madePL">Fet a Polònia</span></span>
+      </span>
+    </div>
+  </footer>
+
+  <script src="/assets/js/i18n.js?v=0a12cbe22c"></script>
+  <script src="/assets/js/app.js?v=a429af0535"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

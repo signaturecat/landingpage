@@ -9,6 +9,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/"/>
   </url>
   <url>
@@ -19,6 +20,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/"/>
   </url>
   <url>
@@ -29,6 +31,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/"/>
   </url>
   <url>
@@ -39,6 +42,18 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/cat</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/"/>
   </url>
   <url>
@@ -49,6 +64,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/pricing"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/pricing"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/pricing"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/pricing"/>
   </url>
   <url>
@@ -59,6 +75,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/pricing"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/pricing"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/pricing"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/pricing"/>
   </url>
   <url>
@@ -69,6 +86,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/pricing"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/pricing"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/pricing"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/pricing"/>
   </url>
   <url>
@@ -79,6 +97,18 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/pricing"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/pricing"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/pricing"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/cat/pricing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/pricing"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/pricing"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/pricing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/pricing"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/pricing"/>
   </url>
   <url>
@@ -89,6 +119,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/banners-generator"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/banners-generator"/>
   </url>
   <url>
@@ -99,6 +130,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/banners-generator"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/banners-generator"/>
   </url>
   <url>
@@ -109,6 +141,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/banners-generator"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/banners-generator"/>
   </url>
   <url>
@@ -119,6 +152,18 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/banners-generator"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/banners-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/banners-generator"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/cat/banners-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/banners-generator"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/banners-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/banners-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/banners-generator"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/banners-generator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/banners-generator"/>
   </url>
   <url>
@@ -129,6 +174,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/form"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/form"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/form"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/form"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/form"/>
   </url>
   <url>
@@ -139,6 +185,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/form"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/form"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/form"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/form"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/form"/>
   </url>
   <url>
@@ -149,6 +196,7 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/form"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/form"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/form"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/form"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/form"/>
   </url>
   <url>
@@ -159,6 +207,18 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/form"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/form"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/form"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/form"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/form"/>
+  </url>
+  <url>
+    <loc>https://signature.cat/cat/form</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://signature.cat/form"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://signature.cat/pl/form"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://signature.cat/de/form"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://signature.cat/fr/form"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://signature.cat/cat/form"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://signature.cat/form"/>
   </url>
   <url>

@@ -21,13 +21,18 @@ contact form - see "Contact form" below):
 
 - `GET /` (or `/index.html`):
   - cookie `sigcat_locale` set (manual choice in the on-page switcher) -> redirect to that locale;
-  - else first supported `Accept-Language` subtag -> redirect to `/pl/`, `/de/`, `/fr/`;
+  - else first supported `Accept-Language` subtag -> redirect to `/pl`, `/de`, `/fr`, `/cat`;
+  - **Catalan:** locale code `ca` (cookie value, `Accept-Language` subtag incl.
+    `ca-ES` / `ca-ES-valencia`, `Content-Language`, `content_language`), but the
+    pages live at **`/cat`** (PM 2026-11-13) - `LOCALE_PATH` / `pageLang()` in
+    `worker.js`, mirrored by `SEGMENT` in `build.mjs` and `detectLocale()` in
+    `assets/js/app.js`;
   - English / no match -> stay on `/` (the x-default, canonical English page).
   - Redirect is `302` + `Vary: Cookie, Accept-Language` + `Cache-Control: no-store`.
 - Every other path (`/pl/`, `/de/`, `/assets/*`, `/docs`, ...) passes straight
   through to the origin.
 - HTML responses are tagged with a `Content-Language` header per locale (`/` ->
-  `en`, `/pl/` -> `pl`, ...), since GitHub Pages cannot set it. Assets pass
+  `en`, `/pl` -> `pl`, `/cat` -> `ca`, ...), since GitHub Pages cannot set it. Assets pass
   through with the base security headers only.
 
 ## Security headers / CSP - READ BEFORE ADDING ANY EXTERNAL RESOURCE
@@ -78,8 +83,10 @@ Worker change.
   SameSite=Lax; Secure` and exposes `window.sigcatConsent.analytics`
   (true / false / null=no choice yet) + dispatches a `sigcat-consent`
   CustomEvent on every explicit choice.
-- Banner copy lives in `BANNER_I18N` in `worker.js` (en/pl/de/fr) and links to
-  `/{locale}/policy/` + `/legal/`; keep it in sync with the Privacy Policy.
+- Banner copy lives in `BANNER_I18N` in `worker.js` (en/pl/de/fr/ca) and links to
+  `/{locale}/policy` + `/legal`; keep it in sync with the Privacy Policy. There
+  is no Catalan Privacy Policy, so the `ca` banner links `/en/policy`
+  (`POLICY_LOCALES`).
 
 ## Google Tag Manager -> Google Analytics 4 (built into the injected script)
 
@@ -110,9 +117,9 @@ Worker change.
   cookies (both host and `.signature.cat` domain variants).
 - **Page language (`content_language`):** right after the consent defaults
   and before the `gtm.js` start event the script pushes
-  `{content_language: 'en' | 'pl' | 'de' | 'fr'}` - the language of the page
-  being viewed, taken from the first path segment (the same value as the
-  `Content-Language` response header; anything outside the four locales,
+  `{content_language: 'en' | 'pl' | 'de' | 'fr' | 'ca'}` - the language of the page
+  being viewed, taken from the first path segment (`/cat` -> `ca`; the same value as the
+  `Content-Language` response header; anything outside the five locales,
   e.g. `/legal`, is `en`). Being in the data model before the container
   starts, it is readable by every tag from the first `page_view` on.
 - **Events:** after a successful lead the contact form pushes
@@ -307,7 +314,7 @@ verbatim in the docs.
 ### Confirmation emails
 
 `confirmation-email.js` renders both emails (lead + help) in code - HTML +
-text, 4 locales, the app's email layout, team guidelines in
+text, 5 locales (en/pl/de/fr/ca), the app's email layout, team guidelines in
 `../mailing-wytyczne` - and sends them via `POST https://api.resend.com/emails`
 from `SignatureCat <contact@signature.cat>` (replies land in the contact
 mailbox) with a `User-Agent` (Resend rejects requests without one) and tags
@@ -315,7 +322,7 @@ mailbox) with a `User-Agent` (Resend rejects requests without one) and tags
 domain must be verified in Resend: public DNS shows the apex `signature.cat`
 is the Resend sending domain (`resend._domainkey.signature.cat`,
 `send.signature.cat` MX/SPF, `_dmarc` `p=reject`). Why not Resend Templates:
-the copy is versioned and reviewed with the code, the 4 locales share one
+the copy is versioned and reviewed with the code, the 5 locales share one
 table, all form values are HTML-escaped under our control and the output is
 unit-tested (incl. the no-AI-tell typography rule), with no template ids to
 keep in sync. The email logo is `assets/img/email-logo.png` (80x80, 7.9 KB).
@@ -361,6 +368,8 @@ The route `signature.cat/*` in `wrangler.toml` binds it. Verify:
 curl -sI -H 'Accept-Language: pl-PL,pl;q=0.9' https://signature.cat/ | grep -i '^location\|^HTTP'
 # English browser -> stays on / (200)
 curl -sI -H 'Accept-Language: en-US,en;q=0.9' https://signature.cat/ | grep -i '^HTTP'
+# Catalan browser -> redirected to /cat (locale code ca, path /cat)
+curl -sI -H 'Accept-Language: ca-ES,ca;q=0.9' https://signature.cat/ | grep -i '^location'
 # Manual override cookie wins
 curl -sI -H 'Cookie: sigcat_locale=de' https://signature.cat/ | grep -i '^location'
 # A locale page is never redirected (passes through) + carries Content-Language

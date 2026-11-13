@@ -44,7 +44,7 @@
   // Docs pages the help button lives on (the referrer becomes context in the
   // support ticket): /docs, /docs/<slug>, /pl/docs/<slug> ...
   var DOCS_PATH_RE = /^\/(?:(?:pl|de|fr)\/)?docs(?:\/[a-z0-9-]+)?$/;
-  var FORM_PATH_RE = /^\/(?:(?:pl|de|fr)\/)?form\/?$/;
+  var FORM_PATH_RE = /^\/(?:(?:pl|de|fr|cat)\/)?form\/?$/;
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   var PHONE_RE = /^[+()0-9 .\/-]{6,32}$/;
   var TIMEOUT_MS = 20000;

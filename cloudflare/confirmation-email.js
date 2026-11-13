@@ -5,7 +5,7 @@
  * language of the page the form was filled in.
  *
  * Rendered here rather than as Resend Templates on purpose: the copy is
- * versioned and reviewed with the code, the 4 locales live in one table,
+ * versioned and reviewed with the code, the 5 locales live in one table,
  * every user-supplied value is HTML-escaped under our control and the whole
  * thing is unit-tested (cloudflare/worker.test.mjs - including the
  * no-AI-tell typography rule), with no template ids to keep in sync.
@@ -34,7 +34,7 @@ const LEGAL = {
   tax: 'NIP 1231455439',
 };
 
-// ---- copy (4 locales) ------------------------------------------------------------
+// ---- copy (5 locales) ------------------------------------------------------------
 export const MAIL_COPY = {
   en: {
     labels: {
@@ -238,6 +238,58 @@ export const MAIL_COPY = {
       intro: "Votre demande d'assistance est bien arrivée chez notre équipe. Nous traitons les demandes selon leur urgence et vous répondrons par e-mail à l'adresse {email}.",
       statusText: "Si de nombreux utilisateurs sont touchés en même temps, vérifiez sur la page d'état du service qu'aucun incident n'est en cours :",
       why: "Vous recevez cet e-mail car cette adresse a été saisie dans le formulaire d'aide de signature.cat. Si ce n'était pas vous, ignorez simplement ce message.",
+    },
+  },
+  // Catalan: the /cat landing pages (the app itself has no Catalan version).
+  ca: {
+    labels: {
+      topic: 'Motiu', name: 'Nom i cognoms', company: "Nom de l'empresa", workEmail: 'Correu electrònic de feina',
+      email: 'Correu electrònic', phone: 'Telèfon', size: "Mida de l'organització", message: 'Informació addicional',
+      problem: 'Descripció del problema', urgency: 'Urgència',
+    },
+    sizes: {
+      '1-50': '1-50 empleats', '51-120': '51-120 empleats', '121-300': '121-300 empleats',
+      '301-1000': '301-1000 empleats', '1001-5000': '1001-5000 empleats', '5000+': 'Més de 5000 empleats',
+    },
+    topics: { call: 'Reserva una trucada', pricing: 'Preu a mida', demo: 'Reserva una demo', general: 'Consulta general' },
+    urgency: {
+      low: 'Baixa - una pregunta o un suggeriment',
+      normal: 'Normal - alguna cosa no funciona com cal',
+      high: "Alta - el problema bloqueja part de l'equip",
+      critical: "Crítica - les signatures no funcionen a tota l'organització",
+    },
+    detailsHeading: 'La teva sol·licitud',
+    note: 'Si alguna dada no és correcta, només cal que responguis a aquest correu.',
+    closing: 'Que tinguis un bon dia!',
+    greetingNoName: 'Gràcies!',
+    signoff: "L'equip de SignatureCat",
+    privacy: 'Política de privadesa',
+    objection: "Pots oposar-te en qualsevol moment al tractament d'aquestes dades: només cal que responguis a aquest correu.",
+    tagline: 'SignatureCat - signatures de Gmail gestionades de manera centralitzada per a Google Workspace.',
+    lead: {
+      subject: 'Hem rebut la teva sol·licitud',
+      preheader: 'Aquí tens una còpia de les dades que ens has enviat. Aviat et direm alguna cosa.',
+      greeting: 'Gràcies, {name}!',
+      intro: {
+        call: "Gràcies per contactar amb SignatureCat. La teva sol·licitud ja és a mans del nostre equip i aviat t'escriurem a {email} per concertar la trucada.",
+        pricing: "Gràcies per contactar amb SignatureCat. La teva sol·licitud ja és a mans del nostre equip: prepararem una oferta per a la teva organització i aviat t'escriurem a {email}.",
+        demo: "Gràcies per contactar amb SignatureCat. La teva sol·licitud ja és a mans del nostre equip i aviat t'escriurem a {email} per concertar la demo.",
+        general: "Gràcies per contactar amb SignatureCat. La teva sol·licitud ja és a mans del nostre equip i aviat t'escriurem a {email}.",
+      },
+      bookingText: "Vols triar ara mateix l'hora de la trucada? Pots fer-ho al nostre calendari:",
+      bookingButton: 'Tria una hora',
+      orOpen: 'També pots obrir aquest enllaç:',
+      optIn: 'També hem registrat el teu consentiment per rebre de tant en tant correus de màrqueting de SignatureCat. El pots retirar en qualsevol moment.',
+      why: "Reps aquest correu perquè algú ha indicat aquesta adreça al formulari de contacte de signature.cat. Si no has estat tu, pots ignorar aquest missatge.",
+      whyOptIn: "Reps aquest correu perquè algú ha indicat aquesta adreça al formulari de contacte de signature.cat. Si no has estat tu, respon a aquest correu: eliminarem l'adreça de la nostra llista de distribució i esborrarem aquestes dades.",
+    },
+    help: {
+      subject: "Hem rebut la teva sol·licitud d'assistència",
+      preheader: 'Aquí tens una còpia de la teva sol·licitud. Et respondrem per correu electrònic.',
+      greeting: 'Gràcies, {name}!',
+      intro: "La teva sol·licitud d'assistència ja és a mans del nostre equip. Atenem les sol·licituds segons la urgència i et respondrem per correu electrònic a {email}.",
+      statusText: "Si hi ha molts usuaris afectats alhora, consulta a la pàgina d'estat del servei si hi ha alguna incidència en curs:",
+      why: "Reps aquest correu perquè algú ha indicat aquesta adreça al formulari d'ajuda de signature.cat. Si no has estat tu, pots ignorar aquest missatge.",
     },
   },
 };

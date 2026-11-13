@@ -2,8 +2,12 @@
 (function () {
   'use strict';
 
-  var SUPPORTED = ['en', 'pl', 'de', 'fr'];
+  var SUPPORTED = ['en', 'pl', 'de', 'fr', 'ca'];
   var FALLBACK = 'en';
+  // URL path segment -> locale code. Catalan is `ca` (html lang, cookie,
+  // dictionary) but lives at /cat (PM 2026-11-13) - same map as build.mjs
+  // (SEGMENT) and the Worker (pageLang).
+  var SEGMENT_LOCALE = { pl: 'pl', de: 'de', fr: 'fr', cat: 'ca' };
   // No flag emoji in the language switcher: Windows has no flag glyphs and
   // renders the regional-indicator pair as bare letters (GB EN), which reads
   // as broken. The locale code alone is the label (PM 2026-08-08).
@@ -19,15 +23,14 @@
   ];
 
   // -------- Locale resolution: the URL PATH is the source of truth ----------
-  // Each locale is its own pre-rendered page (/pl, /de, /fr; English at /).
+  // Each locale is its own pre-rendered page (/pl, /de, /fr, /cat; English at /).
   // The client must match the page it was served, so locale is derived from the
   // path - NOT from navigator/cookie. Browser-language routing is a server-side
   // concern (the Cloudflare Worker), so the client never swaps the root to a
   // different language (which would fight the per-URL SEO).
   function detectLocale() {
     var seg = (location.pathname.split('/')[1] || '').toLowerCase();
-    if (seg !== 'en' && SUPPORTED.indexOf(seg) !== -1) return seg;
-    return FALLBACK;
+    return Object.prototype.hasOwnProperty.call(SEGMENT_LOCALE, seg) ? SEGMENT_LOCALE[seg] : FALLBACK;
   }
 
   var currentLocale = detectLocale();
