@@ -2,6 +2,63 @@
 
 > Language: English. Proper names not translated. Every change logged here (Definition of Done).
 
+## 2026-11-13 - Catalan landing pages at `/cat` (locale `ca`)
+
+- **What:**
+  - **New landing locale: Catalan.** All four landing pages are generated in
+    Catalan: `/cat`, `/cat/pricing`, `/cat/banners-generator`, `/cat/form`
+    (all three form modes: lead, `?topic=demo`, `?topic=help`). Copy: a full
+    `ca:` block in `assets/js/i18n.js` (all 394 `en` keys), informal "tu"
+    register, Catalan Gmail UI labels in the how-to answer (Configuració,
+    Mostra tota la configuració, Signatura), "galetes" for cookies.
+  - **Locale code vs path:** the code is the ISO `ca` (`<html lang>`,
+    `hreflang="ca"`, `og:locale` `ca_ES`, JSON-LD `inLanguage`,
+    `Content-Language`, `sigcat_locale=ca`, GTM `content_language: 'ca'`),
+    the URL segment is `cat` (PM 2026-11-13). One map in three places:
+    `SEGMENT` (`build.mjs`), `SEGMENT_LOCALE` (`app.js`), `LOCALE_PATH` /
+    `pageLang()` (`worker.js`).
+  - **Automatic language selection (Worker):** `/` 302s to `/cat` when the
+    `sigcat_locale` cookie is `ca` or the first supported `Accept-Language`
+    subtag is `ca` (`ca-ES`, `ca-ES-valencia`, `es-ES,ca;q=0.8` - there is no
+    Spanish site), exactly like pl/de/fr.
+  - **Language switcher:** `CA Català` added to the desktop menu and the
+    in-menu list on every page (x4 sources); the reciprocal hreflang cluster,
+    `og:locale:alternate` and `sitemap.xml` (4 new URLs, every entry now lists 5
+    language alternates + x-default) cover Catalan on all pages of every locale.
+  - **What Catalan links to instead (no Catalan version exists):** docs ->
+    the English `/docs` (`DOCS_LOCALES`; `docs.desc` says the docs are in
+    English); app login / trial links -> `lang=en` (`APP_LANG`; the app only
+    knows en/pl/de/fr); cookie banner policy link -> `/en/policy`
+    (`POLICY_LOCALES`); footer legal links -> `/legal` as on every locale.
+    The app, the docs and the legal documents are NOT translated (PM scope).
+  - **Worker:** Catalan cookie-banner copy (`BANNER_I18N.ca`) and Catalan
+    confirmation emails for the contact/help form (`MAIL_COPY.ca`). New tests:
+    root redirect to `/cat` (cookie + `Accept-Language` variants),
+    `pageLang()` (`/cat` -> `ca`, `/ca` and `/catalog` -> `en`), Catalan banner
+    + `/en/policy` link; the email suites now run x5. Fixed a latent test bug:
+    the copy-in-HTML assertions escaped apostrophes as `&#39;` (first one
+    only) while `esc()` emits `&#x27;` - invisible until Catalan, whose copy is
+    full of apostrophes.
+  - **Small fixes on the way:** the banner-generator lead sends the page
+    locale from `<html lang>` (it sent the raw path segment, which would have
+    been `cat`); `contact-form.js` `FORM_PATH_RE` knows `/cat/form` (keeps the
+    form mode across a language switch).
+- **Why:** PM request 2026-11-13 - a Catalan landing that opens on its own for
+  Catalan browsers, same structure as the other translations.
+- **Scope:** landingpage (pages, Worker, emails). Not the app, not `/docs`,
+  not legal.
+- **Design impact:** none - same markup and tokens (Light/Dark); Catalan uses
+  the feature tiles like de/fr and the pl/de/fr header tiers (links collapse
+  below 1180px; measured at 1181px: links end at 737px, buttons start at
+  800px). No CSS/JS restamp beyond `app.js`, `contact-form.js`,
+  `banner-generator.js` and `i18n.js` (`?v=` hashes changed on every page).
+- **Performance impact:** `i18n.js` grows by the Catalan block (one more
+  dictionary, same as each existing locale); nothing else.
+- **A11y:** `<html lang="ca">` on every Catalan page (screen readers switch
+  voice); no text clipped (checked for overflow on every `/cat` page at
+  1280px) and no horizontal scroll at 320px on any of the six `/cat` page
+  variants; the form errors and the help-form urgency labels are Catalan.
+
 ## 2026-11-12 - Navbar: "Try for free" first; app login links carry the page language
 
 - **What:**

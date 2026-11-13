@@ -18,6 +18,8 @@ import worker, {
   handleHelpRequest,
   HELP_TURNSTILE,
   helpSlackMessage,
+  LOCALE_PATH,
+  pageLang,
   parseContact,
   parseHelp,
   rateLimitIpKey,
@@ -247,13 +249,13 @@ test('contact form topics (?topic=) are exactly the ones the Worker accepts', ()
   const topics = JSON.parse(form.match(/var TOPICS = (\[[^\]]*\]);/)[1].replace(/'/g, '"'));
   assert.deepEqual(topics, ['call', 'pricing', 'demo']);
   for (const topic of topics) assert.equal(parseContact({ ...VALID, topic }).topic, topic, topic);
-  for (const locale of ['en', 'pl', 'de', 'fr']) {
+  for (const locale of ['en', 'pl', 'de', 'fr', 'ca']) {
     for (const topic of topics) {
       assert.ok(MAIL_COPY[locale].topics[topic], `${locale} topic label ${topic}`);
       assert.ok(MAIL_COPY[locale].lead.intro[topic], `${locale} intro ${topic}`);
     }
     const mail = renderLeadConfirmation({ ...leadFixture(locale), topic: 'demo' }, { year: 2026 });
-    assert.ok(mail.html.includes(MAIL_COPY[locale].topics.demo.replace("'", '&#39;')), `${locale} demo label in the email`);
+    assert.ok(mail.html.includes(MAIL_COPY[locale].topics.demo.replaceAll("'", '&#x27;')), `${locale} demo label in the email`);
   }
 });
 
@@ -675,8 +677,8 @@ test('help: token bound to the help cData, separate webhook required', async () 
 const leadFixture = (locale, extra = {}) => ({ ...parseContact({ ...VALID, locale }), ...extra });
 const helpFixture = (locale, extra = {}) => ({ ...parseHelp({ ...HELP, locale }), ...extra });
 
-test('confirmation emails: structure and localization in all 4 locales', () => {
-  for (const locale of ['en', 'pl', 'de', 'fr']) {
+test('confirmation emails: structure and localization in all 5 locales', () => {
+  for (const locale of ['en', 'pl', 'de', 'fr', 'ca']) {
     for (const [kind, mail] of [
       ['lead', renderLeadConfirmation(leadFixture(locale), { booking: `${SCHEDULE}?gv=true`, year: 2026 })],
       ['help', renderHelpConfirmation(helpFixture(locale), { year: 2026 })],
@@ -691,7 +693,7 @@ test('confirmation emails: structure and localization in all 4 locales', () => {
       assert.ok(mail.html.includes(copy.closing) && mail.text.includes(copy.closing), 'thanks + have a nice day');
       assert.ok(mail.html.includes('https://signature.cat/legal#privacy'));
       // art. 21(4) GDPR: the right to object, in its own paragraph, at the first communication
-      assert.ok(mail.html.includes(`<p style="margin:0 0 6px">${copy.objection.replace("'", '&#39;')}</p>`) && mail.text.includes(copy.objection), `${locale} ${kind} objection`);
+      assert.ok(mail.html.includes(`<p style="margin:0 0 6px">${copy.objection.replaceAll("'", '&#x27;')}</p>`) && mail.text.includes(copy.objection), `${locale} ${kind} objection`);
       assert.ok(mail.html.length < 80 * 1024, 'well under Gmail clipping');
       assert.ok(!/unsubscribe/i.test(mail.html), 'transactional: no unsubscribe link');
       assert.ok(!mail.html.includes('style="font-family:ui-sans-serif,system-ui,-apple-system,"'), 'font stack never breaks style=""');
@@ -729,7 +731,7 @@ test('confirmation email copy passes the no-AI-tell typography rule (copy + rend
     else for (const [k, x] of Object.entries(v)) walk(x, `${path}.${k}`);
   };
   walk(MAIL_COPY, 'MAIL_COPY');
-  for (const locale of ['en', 'pl', 'de', 'fr']) {
+  for (const locale of ['en', 'pl', 'de', 'fr', 'ca']) {
     for (const mail of [
       renderLeadConfirmation(leadFixture(locale), { booking: `${SCHEDULE}?gv=true`, year: 2026 }),
       renderHelpConfirmation(helpFixture(locale), { year: 2026 }),
@@ -739,9 +741,9 @@ test('confirmation email copy passes the no-AI-tell typography rule (copy + rend
       assert.ok(!/&(?:mdash|ndash|nbsp|zwnj|laquo|raquo|ldquo|rdquo|bdquo);/.test(mail.html), `${locale} entities`);
     }
   }
-  assert.deepEqual(Object.keys(MAIL_COPY), ['en', 'pl', 'de', 'fr']);
+  assert.deepEqual(Object.keys(MAIL_COPY), ['en', 'pl', 'de', 'fr', 'ca']);
   const shape = (o) => JSON.stringify(Object.keys(o).sort().map((k) => [k, typeof o[k] === 'object' ? shape(o[k]) : 's']));
-  for (const locale of ['pl', 'de', 'fr']) assert.equal(shape(MAIL_COPY[locale]), shape(MAIL_COPY.en), `${locale} copy has the en keys`);
+  for (const locale of ['pl', 'de', 'fr', 'ca']) assert.equal(shape(MAIL_COPY[locale]), shape(MAIL_COPY.en), `${locale} copy has the en keys`);
 });
 
 // ---- routing + CSP -------------------------------------------------------------------
@@ -757,6 +759,41 @@ test('the Worker routes both form endpoints before canonicalization', async () =
     assert.equal(res.headers.get('Content-Type'), 'application/json');
     assert.equal(res.headers.get('X-Frame-Options'), 'DENY');
   }
+});
+
+test('language router: Catalan (ca) is served at /cat - cookie first, then Accept-Language', async () => {
+  const root = (headers) => worker.fetch(new Request('https://signature.cat/', { headers }), env(), {});
+  for (const [headers, to] of [
+    [{ 'Accept-Language': 'ca-ES,ca;q=0.9,es;q=0.8,en;q=0.7' }, '/cat'],
+    [{ 'Accept-Language': 'ca-ES-valencia' }, '/cat'],
+    [{ 'Accept-Language': 'es-ES,ca;q=0.8' }, '/cat'], // first SUPPORTED subtag (no Spanish site)
+    [{ Cookie: 'sigcat_locale=ca', 'Accept-Language': 'de-DE' }, '/cat'], // the manual choice wins
+    [{ Cookie: 'sigcat_locale=pl', 'Accept-Language': 'ca' }, '/pl'],
+    [{ 'Accept-Language': 'fr-FR' }, '/fr'],
+  ]) {
+    const res = await root(headers);
+    assert.equal(res.status, 302, JSON.stringify(headers));
+    assert.equal(res.headers.get('Location'), to, JSON.stringify(headers));
+    assert.equal(res.headers.get('Cache-Control'), 'no-store');
+  }
+  assert.deepEqual(LOCALE_PATH, { en: '/', pl: '/pl', de: '/de', fr: '/fr', ca: '/cat' });
+});
+
+test('page language comes from the path segment: /cat -> ca, unknown segments -> en', () => {
+  for (const [path, lang] of [
+    ['/', 'en'], ['/pricing', 'en'], ['/legal', 'en'], ['/docs/templates', 'en'], ['/en/policy', 'en'],
+    ['/pl', 'pl'], ['/de/form', 'de'], ['/fr/docs', 'fr'],
+    ['/cat', 'ca'], ['/cat/pricing', 'ca'], ['/cat/banners-generator', 'ca'],
+    ['/ca', 'en'], ['/catalog', 'en'],
+  ]) assert.equal(pageLang(path), lang, path);
+});
+
+test('consent banner: Catalan copy, and the English policy (no Catalan legal pages)', () => {
+  const ca = bannerHtml('ca', 'n');
+  assert.ok(ca.includes('Galetes a signature.cat') && ca.includes('Accepta-les totes'));
+  assert.ok(ca.includes('<a href="/en/policy">Política de privadesa</a>'));
+  assert.ok(ca.includes("var CONTENT_LANGUAGE = 'ca';"));
+  for (const lang of ['en', 'pl', 'de', 'fr']) assert.ok(bannerHtml(lang, 'n').includes(`<a href="/${lang}/policy">`), lang);
 });
 
 test('CSP frames only Turnstile and the Google Calendar booking page', () => {
@@ -856,15 +893,15 @@ test('consent script: nothing reaches Google before opt-in; "Accept all" starts 
   assert.equal(page.appended.length, 1, 'the container is loaded once');
 });
 
-test('consent script: content_language = the page language (en/pl/de/fr), set before the container starts', () => {
-  for (const lang of ['en', 'pl', 'de', 'fr']) {
+test('consent script: content_language = the page language (en/pl/de/fr/ca), set before the container starts', () => {
+  for (const lang of ['en', 'pl', 'de', 'fr', 'ca']) {
     const page = consentPage({ cookie: 'sigcat_consent=v1:a1', lang });
     const layer = page.layer();
     const at = layer.findIndex((e) => e && e.content_language);
     assert.deepEqual(layer[at], { content_language: lang }, lang);
     assert.ok(at < layer.findIndex((e) => e && e.event === 'gtm.js'), `${lang}: before gtm.js`);
   }
-  // Paths outside the 4 locales (e.g. /legal) fall back to English, like the banner copy.
+  // Paths outside the 5 locales (e.g. /legal) fall back to English, like the banner copy.
   assert.deepEqual(consentPage({ cookie: 'sigcat_consent=v1:a1', lang: 'es' }).layer()[1], { content_language: 'en' });
   // Nothing is pushed before consent, the language included.
   assert.equal(consentPage({ lang: 'pl' }).window.dataLayer, undefined);
@@ -894,7 +931,7 @@ test('consent script: withdrawing consent denies analytics and deletes the GA co
 
 test('consent banner ships no pre-consent Google markup (no <noscript> iframe, no direct gtag.js)', () => {
   assert.match(GTM_CONTAINER_ID, /^GTM-[A-Z0-9]+$/);
-  for (const lang of ['en', 'pl', 'de', 'fr']) {
+  for (const lang of ['en', 'pl', 'de', 'fr', 'ca']) {
     const html = bannerHtml(lang, 'n');
     assert.ok(!/<noscript|<iframe|ns\.html/i.test(html), `${lang}: a noscript GTM iframe would load without consent`);
     assert.ok(!html.includes('gtag/js') && !html.includes("gtag('config'"), `${lang}: GA4 is configured in GTM`);
@@ -1077,11 +1114,11 @@ test('confirmation emails: echoed free text cannot become a link or a spoofed gr
   assert.ok(renderLeadConfirmation(leadFixture('en', { company: 'Acme Sp. z o.o.' }), { year: 2026 }).html.includes('Acme Sp. z o.o.'), 'abbreviations stay');
   for (const [name, greeting] of [['Jean-Luc Picard', 'Jean-Luc'], ["Zoë O'Neil", 'Zoë'], ['Łukasz Nowak', 'Łukasz']]) {
     const html = renderLeadConfirmation(leadFixture('en', { name }), { year: 2026 }).html;
-    assert.ok(html.includes(`Thank you, ${greeting.replace("'", '&#39;')}!`), name);
+    assert.ok(html.includes(`Thank you, ${greeting.replaceAll("'", '&#x27;')}!`), name);
   }
-  for (const locale of ['en', 'pl', 'de', 'fr']) {
+  for (const locale of ['en', 'pl', 'de', 'fr', 'ca']) {
     const help = renderHelpConfirmation(helpFixture(locale, { name: 'http://x.example', message: 'see bit.ly/abc for the screenshot' }), { year: 2026 });
-    assert.ok(help.html.includes(`>${MAIL_COPY[locale].greetingNoName.replace("'", '&#39;')}</h1>`), locale);
+    assert.ok(help.html.includes(`>${MAIL_COPY[locale].greetingNoName.replaceAll("'", '&#x27;')}</h1>`), locale);
     assert.ok(!help.html.includes('bit.ly/abc') && help.html.includes('bit[.]ly/abc'), locale);
   }
 });
@@ -1092,7 +1129,7 @@ test('confirmation emails: opt-in footer says how to get removed; long addresses
   assert.ok(optIn.html.includes(MAIL_COPY.en.lead.whyOptIn) && optIn.text.includes(MAIL_COPY.en.lead.whyOptIn));
   assert.ok(!optIn.html.includes(MAIL_COPY.en.lead.why));
   assert.ok(noOptIn.html.includes(MAIL_COPY.en.lead.why) && !noOptIn.html.includes(MAIL_COPY.en.lead.whyOptIn));
-  for (const locale of ['en', 'pl', 'de', 'fr']) assert.ok(MAIL_COPY[locale].lead.whyOptIn.length > MAIL_COPY[locale].lead.why.length, locale);
+  for (const locale of ['en', 'pl', 'de', 'fr', 'ca']) assert.ok(MAIL_COPY[locale].lead.whyOptIn.length > MAIL_COPY[locale].lead.why.length, locale);
   const long = renderLeadConfirmation(leadFixture('en', { email: `${'a'.repeat(60)}@${'b'.repeat(60)}.example.com` }), { year: 2026 });
   const intro = long.html.match(/<p class="sc-text" style="([^"]*)">[^<]*a{60}@/)[1];
   assert.match(intro, /overflow-wrap:break-word;word-break:break-word/);

@@ -6,7 +6,10 @@
  * Responsibilities (in request order):
  *
  * 1. LANGUAGE ROUTER: only the bare ROOT is locale-routed; every other path
- *    (/pl, /de, /fr, /legal, /docs/*, /assets/*, ...) passes to the origin.
+ *    (/pl, /de, /fr, /cat, /legal, /docs/*, /assets/*, ...) passes to the origin.
+ *    Locale code vs path: Catalan is `ca` (cookie, Accept-Language,
+ *    Content-Language, content_language) but lives at /cat (LOCALE_PATH).
+ *    Same map as build.mjs (SEGMENT) and assets/js/app.js.
  *    URL canonicalization (routePath below): trailing-slash and /index.html
  *    requests 301 to the no-slash canonical; extension-less paths are
  *    internally rewritten to the origin's <path>/index.html.
@@ -55,7 +58,7 @@
  *    a1 on load, or the moment they accept), preceded by
  *    gtag('consent','default') with ad signals denied and by the 'gtm.js'
  *    start event; between the two it pushes `content_language` (the page
- *    language from the path: en/pl/de/fr, the same value as the
+ *    language from the path: en/pl/de/fr/ca, the same value as the
  *    Content-Language header) so every tag in the container can read it as a
  *    Data Layer Variable from the first page_view on.
  *    Withdrawing consent fires gtag('consent','update') to
@@ -96,7 +99,17 @@
 import { createNotionLead, notionParent } from './notion.js';
 import { renderHelpConfirmation, renderLeadConfirmation, sendConfirmation } from './confirmation-email.js';
 
-const SUPPORTED = ['en', 'pl', 'de', 'fr'];
+const SUPPORTED = ['en', 'pl', 'de', 'fr', 'ca'];
+// Path of each locale's home page. Every locale lives under its own code
+// except Catalan, which is served at /cat (PM 2026-11-13).
+export const LOCALE_PATH = { en: '/', pl: '/pl', de: '/de', fr: '/fr', ca: '/cat' };
+// First path segment -> page language (Content-Language, banner copy,
+// content_language). Anything else (/legal, /docs, /assets ...) is English.
+const SEGMENT_LOCALE = { pl: 'pl', de: 'de', fr: 'fr', cat: 'ca' };
+export const pageLang = (pathname) => SEGMENT_LOCALE[String(pathname).split('/')[1]] || 'en';
+// Locales with their own Privacy Policy page (build-legal.mjs: /<loc>/policy).
+// Catalan has none, so its banner links the English one.
+const POLICY_LOCALES = ['en', 'pl', 'de', 'fr'];
 const CONSENT_COOKIE = 'sigcat_consent';
 const CONSENT_MAX_AGE = 31536000; // 12 months
 
@@ -157,6 +170,17 @@ export const BANNER_I18N = {
     acceptAll: 'Tout accepter',
     necessaryOnly: 'Nécessaires uniquement',
     save: 'Enregistrer mes choix',
+  },
+  ca: {
+    title: 'Galetes a signature.cat',
+    desc: "Fem servir galetes necessàries perquè el lloc funcioni (elecció d'idioma, seguretat). Amb el teu consentiment, també fem servir galetes analítiques (Google Analytics) per entendre el trànsit del lloc. Detalls:",
+    policy: 'Política de privadesa',
+    legal: 'Documents legals',
+    necessary: 'Necessàries - sempre actives',
+    analytics: 'Analítiques (Google Analytics)',
+    acceptAll: 'Accepta-les totes',
+    necessaryOnly: 'Només les necessàries',
+    save: 'Desa la selecció',
   },
 };
 
@@ -220,7 +244,7 @@ export function bannerHtml(lang, nonce) {
   const loc = SUPPORTED.includes(lang) ? lang : 'en';
   // `loc` is always one of SUPPORTED, so it is safe to inline into the script.
   const t = BANNER_I18N[loc];
-  const policyHref = `/${loc}/policy`;
+  const policyHref = `/${POLICY_LOCALES.includes(loc) ? loc : 'en'}/policy`;
   return `
 <div id="sigcat-cookies" hidden>
 <style>
@@ -989,7 +1013,7 @@ export default {
       const loc = pickLocale(request);
       if (loc !== 'en') {
         const headers = new Headers({
-          Location: `/${loc}`,
+          Location: LOCALE_PATH[loc],
           Vary: 'Cookie, Accept-Language',
           'Cache-Control': 'no-store',
         });
@@ -1038,8 +1062,7 @@ export default {
       return out;
     }
 
-    const seg = url.pathname.split('/')[1];
-    const lang = SUPPORTED.includes(seg) ? seg : 'en';
+    const lang = pageLang(url.pathname);
     const nonce = makeNonce();
 
     const rewritten = new HTMLRewriter()

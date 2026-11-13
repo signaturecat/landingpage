@@ -473,7 +473,9 @@
       var lead = {
         email: email,
         consent: true,
-        locale: (location.pathname.split('/')[1] || 'en'),
+        // the page's <html lang> (en/pl/de/fr/ca) - not the path segment:
+        // Catalan lives at /cat, but its locale code is ca
+        locale: document.documentElement.lang || 'en',
         source: 'banners-generator'
       };
       if (tsToken) lead['cf-turnstile-response'] = tsToken;
