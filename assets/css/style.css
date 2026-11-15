@@ -487,37 +487,42 @@ section[id] { scroll-margin-top: 88px; }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 
-/* Per-locale feature decks --------------------------------------------------
-   /pl (four graphics, PM 2026-08-11) and the English root (five graphics,
-   PM 2026-11-10) swap the interactive feature grid for a horizontal
-   card-deck carousel; /de and /fr keep the grid. The gate is pure CSS keyed
-   off the <html lang> the build stamps per locale plus the deck's own lang
-   attribute - one authored source, no build-time branching. The hidden
-   variants cost nothing: display:none boxes never intersect (demos stay
-   idle) and their images carry data-featsrc, so they never download on the
-   other locales.
+/* Feature tour video -------------------------------------------------------
+   One silent loop per locale (index.html markup comment, initFeatVideo in
+   app.js). The frames carry the light brand look baked in (cream #fff7ed,
+   BT.709-tagged so it decodes to exactly the page cream), so in dark mode
+   the video reads as a light card - same accepted trade-off as the former
+   graphics deck. aspect-ratio + width/height reserve the box (no CLS while
+   the poster/video loads). */
+.feat-video {
+  position: relative; margin: 0 auto; max-width: 1120px;
+  aspect-ratio: 16 / 9; overflow: hidden;
+  border-radius: var(--radius); border: 1px solid var(--border);
+  background: #fff7ed; box-shadow: var(--shadow);
+}
+.feat-video video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.feat-video-toggle {
+  position: absolute; right: 14px; bottom: 14px;
+  width: 40px; height: 40px; border-radius: 50%; border: 0; padding: 0;
+  display: grid; place-items: center; cursor: pointer;
+  color: #faf5ef; background: rgba(41, 37, 36, .72);
+  opacity: .8; transition: opacity .2s var(--ease), transform .2s var(--ease);
+}
+.feat-video-toggle[hidden] { display: none; }
+.feat-video-toggle:hover, .feat-video-toggle:focus-visible { opacity: 1; transform: scale(1.06); }
+.feat-video-toggle:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 3px; }
+.feat-video-toggle svg { width: 18px; height: 18px; fill: currentColor; }
+.feat-video-toggle .i-play,
+.feat-video.is-paused .feat-video-toggle .i-pause { display: none; }
+.feat-video.is-paused .feat-video-toggle .i-play { display: block; }
+@media (max-width: 640px) {
+  .feat-video { border-radius: var(--radius-sm); }
+  .feat-video-toggle { right: 10px; bottom: 10px; width: 34px; height: 34px; }
+  .feat-video-toggle svg { width: 15px; height: 15px; }
+}
 
-   Deck geometry (static fan): every card is (100% - rest*peek) wide, where
-   rest = cards - 1 (--deck-rest, derived from the card count), and sits
-   permanently at x = index*peek - the fan NEVER slides. What changes with
-   the active card is the STACKING ORDER: the active card is pulled to the
-   top (with a small lift animation), and both side piles mirror each other
-   - the closer a card is to the active one, the higher it lies, so a card
-   stepped off the active spot always lands ON TOP of the pile it joins.
-   Visible slivers are therefore the LEFT edges of the left pile and the
-   RIGHT edges of the right pile, like a hand of cards fanned flat on a
-   table. The first card stays in flow (it gives the container its height),
-   the rest are absolute. Cursor position over the deck picks the card
-   (left edge = first, right edge = last), wheel steps, touch swipes
-   (touch-action keeps vertical page scroll native). Motion is a transform
-   keyframe + box-shadow only; the global prefers-reduced-motion kill makes
-   the deck snap instead. */
-html:not(:lang(pl)) .feat-shots[lang="pl"],
-html:not(:lang(en)) .feat-shots[lang="en"] { display: none; }
-html:lang(pl) #features .grid-3,
-html:lang(en) #features .grid-3 { display: none; }
-/* Same gate for the branding mockup's banner slot: /pl shows the real
-   employer-branding banner instead of the rotating text demo (PM
+/* Per-locale branding banner slot (CSS gate keyed off <html lang>): /pl
+   shows the real employer-branding banner instead of the rotating text demo (PM
    2026-08-12). Sized to the slot the demo occupies (full card width,
    same top margin/radius/border). */
 html:not(:lang(pl)) .pl-ad-banner { display: none; }
@@ -527,225 +532,6 @@ html:lang(pl) #ad-banner { display: none; }
   margin-top: 14px; border-radius: 10px;
   border: 1px solid var(--glass-border);
 }
-.feat-deck {
-  --deck-peek: 56px;
-  --deck-rest: 3; /* cards - 1: the active card + `rest` visible slivers */
-  position: relative;
-  /* 520px card + rest desktop slivers (688px for the four-card deck): cards
-     1/4 smaller than the previous 860px deck (PM 2026-08-12); the sliver
-     width stays readable. A longer deck grows wider instead of shrinking
-     its cards, so every locale shows the same card size. */
-  max-width: calc(520px + var(--deck-rest) * 56px);
-  margin-inline: auto;
-  touch-action: pan-y;
-  border-radius: var(--radius);
-  /* Clip box: the top padding gives the pull-up animation headroom, the
-     bottom padding leaves room for the active card's drop shadow. */
-  overflow: hidden;
-  padding-top: 22px;
-  padding-bottom: 26px;
-}
-.feat-deck:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 4px; }
-.feat-card {
-  position: absolute; top: 22px; left: 0; margin: 0;
-  width: calc(100% - var(--deck-rest) * var(--deck-peek));
-  border-radius: var(--radius); overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  box-shadow: var(--shadow);
-  transition: box-shadow .3s var(--ease);
-  will-change: transform;
-}
-/* The first card stays in flow so the deck has intrinsic height (the cards
-   are square 1080x1080 images, so height follows the computed card width). */
-.feat-card:first-child { position: relative; top: 0; }
-.feat-card img { display: block; width: 100%; height: auto; }
-.feat-card.is-active {
-  box-shadow: 0 18px 44px color-mix(in srgb, var(--ink) 16%, transparent);
-  /* "Pull the card out of the fan": a quick lift while it jumps to the top
-     of the stack (z-index switches at the start of the pull). */
-  animation: deckPull .42s var(--ease);
-}
-@keyframes deckPull {
-  0% { transform: translateY(0); }
-  45% { transform: translateY(-16px); }
-  100% { transform: translateY(0); }
-}
-/* Five-card deck (English): one more sliver. On phones the slivers narrow a
-   little so the active card keeps roughly the four-card deck's width. */
-.feat-deck:has(> .feat-card:nth-child(5)) { --deck-rest: 4; }
-@media (max-width: 752px) {
-  .feat-deck { --deck-peek: 30px; }
-  .feat-deck:has(> .feat-card:nth-child(5)) { --deck-peek: 24px; }
-}
-
-/* Feature card interactions (cards 1-3) ----------------------------------- */
-/* Fixed target height so cards never resize when their demo content fills in */
-.card-compact {
-  padding: 20px 22px; min-width: 0;
-  display: flex; flex-direction: column;
-  /* Locked target height so hovering/filling demos never resizes the card */
-  min-height: 372px;
-  /* Anchor + clip for the liquid-glass veil (rounded corners stay clean) */
-  position: relative; overflow: hidden;
-}
-.card-compact h3 { margin-bottom: 6px; }
-/* The demos sit at the card bottom via margin-top: auto; when a locale's copy
-   fills the card the auto gap collapses to zero, so the paragraph's bottom
-   margin guarantees a minimum distance between description and demo. */
-.card-compact > p { font-size: .92rem; margin-bottom: 14px; }
-.card-compact .var-carousel,
-.card-compact .pers-demo,
-.card-compact .cond-demo { margin-top: auto; }
-.varlist-hidden { display: none; }
-/* Keyboard reveal parity: the tiles are focusable (tabindex="0") */
-.card-compact:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
-
-/* Liquid-glass veil: the demo content sits behind a frosted layer showing
-   only the tile title. Hover / focus (desktop) or scrolling the tile into
-   view (touch devices - JS toggles .is-revealed) melts the glass away;
-   leaving the tile freezes its demo and pulls the veil back in. The fade is
-   opacity-only (GPU-cheap; backdrop-filter fades along with the layer). */
-.tile-veil {
-  position: absolute; inset: 0; z-index: 2;
-  display: flex; align-items: center; justify-content: center;
-  text-align: center; padding: 24px;
-  background: color-mix(in srgb, var(--surface) 52%, transparent);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
-  backdrop-filter: blur(14px) saturate(150%);
-  opacity: 1;
-  transition: opacity .32s var(--ease);
-  /* the veil only looks solid - the card below keeps getting the hover */
-  pointer-events: none;
-}
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .tile-veil { background: color-mix(in srgb, var(--surface) 94%, transparent); }
-}
-.tile-veil-title {
-  font-weight: 700; font-size: 1.18rem; line-height: 1.3; letter-spacing: -0.01em;
-  color: var(--ink); max-width: 22ch;
-  transition: opacity .22s var(--ease), transform .32s var(--ease);
-}
-.card-compact.is-revealed .tile-veil { opacity: 0; }
-.card-compact.is-revealed .tile-veil-title { opacity: 0; transform: scale(.94) translateY(-6px); }
-
-/* Card 1 - variable carousel that previews real values on hover */
-.var-carousel {
-  margin-top: 14px; overflow: hidden; position: relative; max-width: 100%;
-  border: 1px solid var(--border); border-radius: 10px;
-  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-}
-.var-track {
-  display: flex; gap: 8px; padding: 12px 10px; width: max-content;
-  align-items: center;
-  animation: varScroll 26s linear infinite;
-  /* The marquee runs only while the tile is revealed (hover / in view) */
-  animation-play-state: paused;
-}
-.card-vars.is-revealed .var-track { animation-play-state: running; }
-@keyframes varScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-/* Each chip shows the {{token}} and, on hover, expands to also show the value */
-.var-chip {
-  display: inline-flex; align-items: stretch; flex: none;
-  border-radius: 8px; overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-}
-.var-chip code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px;
-  color: var(--ink); padding: 6px 10px; white-space: nowrap; background: transparent; border: 0;
-}
-.var-chip .var-val {
-  display: inline-flex; align-items: center; white-space: nowrap;
-  font-size: 12.5px; font-weight: 600; color: var(--ink);
-  max-width: 0; padding: 0; opacity: 0; overflow: hidden;
-  background: var(--surface);
-  transition: max-width .3s var(--ease), opacity .25s var(--ease), padding .3s var(--ease);
-}
-/* Values expand while the tile is revealed (hover on desktop, in-view on
-   touch devices - the same .is-revealed toggle that melts the veil away) */
-.card-vars.is-revealed .var-chip .var-val {
-  max-width: 220px; opacity: 1; padding: 6px 11px;
-  border-left: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-}
-@media (prefers-reduced-motion: reduce){ .var-chip .var-val { transition: none; } }
-
-/* Card 2 - {{firstname}} {{lastname}} auto-filling on hover */
-.pers-demo {
-  margin-top: 14px; padding: 14px 16px; border: 1px solid var(--border);
-  border-radius: 10px; background: var(--surface);
-  min-height: 52px; display: flex; align-items: center;
-}
-.pers-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
-.pers-var {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 600; font-size: 1rem;
-  line-height: 1.3; color: var(--accent-ink); display: inline-block;
-  /* Smooth fade + slide + blur swap, matching the hero signature preview */
-  transition: color .3s var(--ease), opacity .28s var(--ease), transform .28s var(--ease), filter .28s var(--ease);
-}
-
-.pers-var.filled {
-  font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 1rem; color: var(--ink);
-}
-.pers-var.swapping { opacity: 0; transform: translateY(-4px); filter: blur(2px); }
-@media (prefers-reduced-motion: reduce){
-  .pers-var { transition: none; }
-  .pers-var.swapping { opacity: 1; transform: none; filter: none; }
-}
-
-/* Card 3 - conditional {{del}} block animation (tags fade, section stays) */
-.cond-demo { margin-top: 14px; }
-.cond-sig {
-  border: 1px solid var(--border); border-radius: 10px; background: var(--surface);
-  padding: 12px 14px; font-size: .9rem;
-}
-.cond-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 3px 0; }
-/* Conditional line: keep {{del}} + phone + {{/del}} on ONE line so the closing tag never wraps and the card never grows */
-.cond-line { flex-wrap: nowrap; min-width: 0; gap: 4px; }
-.cond-line .cond-text { flex: 0 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cond-name { font-weight: 700; }
-.cond-muted { color: var(--muted); font-size: .85rem; }
-/* Tag chips: padding (incl. vertical) so the rounded border is never clipped; max-width animates to 0 when hidden */
-.cond-tag {
-  display: inline-flex; align-items: center; overflow: hidden;
-  /* flex: none - as a flex item in the nowrap .cond-line the tag would
-     otherwise shrink below its content width and clip the chip's right
-     border; only .cond-text is allowed to shrink (ellipsis). */
-  flex: none;
-  max-width: 84px; opacity: 1; transform: scale(1); padding: 1px 1px;
-  transition: max-width .4s var(--ease), opacity .35s var(--ease), transform .35s var(--ease), margin .4s var(--ease), padding .4s var(--ease);
-}
-.cond-line.tags-hidden .cond-tag { max-width: 0; opacity: 0; transform: scale(.85); margin: 0 -3px; padding: 1px 0; }
-.cond-tag code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; line-height: 1.4; white-space: nowrap;
-  background: color-mix(in srgb, var(--accent) 16%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  color: var(--ink); padding: 2px 5px; border-radius: 6px;
-}
-.cond-text { font-size: .85rem; }
-/* Absent case: the whole conditional line collapses away (section znika) */
-.cond-line {
-  max-height: 32px; opacity: 1;
-  transition: max-height .45s var(--ease), opacity .35s var(--ease), margin .45s var(--ease);
-}
-.cond-line.line-gone { max-height: 0; opacity: 0; margin: 0; padding: 0; overflow: hidden; }
-.cond-status {
-  margin-top: 10px; font-size: 12px; font-weight: 600;
-  display: inline-flex; align-items: center; gap: 6px;
-  color: var(--muted-2); transition: color .3s var(--ease);
-}
-.cond-status::before {
-  content: ""; width: 7px; height: 7px; border-radius: 50%; flex: none;
-  background: var(--accent-soft); transition: background .3s var(--ease), box-shadow .3s var(--ease);
-}
-/* Status dot colors: present -> green, absent -> red */
-.cond-status.present { color: var(--ok, #1f9d57); }
-.cond-status.present::before { background: var(--ok, #1f9d57); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok, #1f9d57) 18%, transparent); }
-.cond-status.absent { color: var(--bad, #d6453d); }
-.cond-status.absent::before { background: var(--bad, #d6453d); box-shadow: 0 0 0 3px color-mix(in srgb, var(--bad, #d6453d) 18%, transparent); }
-@media (prefers-reduced-motion: reduce){ .cond-tag, .cond-line { transition: none; } }
 /* Employer branding section ----------------------------------------------- */
 .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 54px; align-items: center; }
 .brand-copy .kicker { display: block; margin-bottom: 12px; }
@@ -873,7 +659,6 @@ html:lang(pl) #ad-banner { display: none; }
   .plan-points { grid-template-columns: 1fr; }
   .compare th, .compare td { padding-inline: 16px; }
   .compare-tick { width: 30%; }
-  .card-compact { min-height: 0; }
   .band { padding: 32px; }
   .hero { padding: 56px 0 40px; }
   .section { padding: 56px 0; }

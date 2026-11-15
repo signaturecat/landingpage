@@ -241,307 +241,65 @@
     }
 
     initSignatureDemo();
-    initTileVeils();
-    initFeatDeck();
-    initPersonalizeCard();
-    initConditionalCard();
+    initFeatVideo();
     initAdBanner();
   }
 
-  // -------- Feature decks (/pl, English root): fanned-cards carousel -------
-  // Each locale's marketing graphics behave like a deck of playing cards laid
-  // flat: the active card is fully visible, the cards before it stack as
-  // slivers anchored to the left edge, the cards after it as slivers pinned
-  // to the right edge. The cursor's X position over the deck picks the card
-  // (equal zones: far left = first, far right = last - zones do not move
-  // with the cards, so there is no feedback jitter), the wheel steps one
-  // card per gesture (page scroll is only captured when a step actually
-  // happens, so the ends never trap scrolling), arrow keys work when the
-  // deck is focused, and touch devices swipe horizontally (vertical pans
-  // stay native via touch-action: pan-y). Cards only ever move with
-  // translateX + z-index - one formula, no layout thrash; the global
-  // reduced-motion kill turns the glide into a snap. Every deck in the page
-  // is wired up; only the current locale's one is rendered (CSS gate), the
-  // hidden ones stay inert (layout() bails on a zero-width box).
-  function initFeatDeck() {
-    document.querySelectorAll('.feat-deck').forEach(initDeck);
-  }
-  function initDeck(deck) {
-    var cards = Array.prototype.slice.call(deck.querySelectorAll('.feat-card'));
-    var n = cards.length;
-    if (n < 2) return;
-    var active = 0;
+  // -------- Feature tour video (every locale) -----------------------------
+  // One silent 24 s loop in the features section (markup comment in
+  // index.html). Nothing downloads until the video is about a screen away
+  // (preload="none" + the source attached here), the 720p file serves boxes
+  // that do not need 1080p, the loop only plays while at least a third of it
+  // is visible and the tab is shown, and prefers-reduced-motion never
+  // autoplays - the poster stays and the button can still start it. The
+  // button reflects the visitor's own choice; scrolling away only suspends
+  // playback, it does not flip the button.
+  function initFeatVideo() {
+    var fig = document.querySelector('.feat-video');
+    var video = fig && fig.querySelector('video');
+    if (!video) return;
+    var btn = fig.querySelector('.feat-video-toggle');
+    var userPaused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var onscreen = false, loaded = false;
+    function t(key, fallback) { var v = window.I18N_T ? window.I18N_T(key) : key; return v && v !== key ? v : fallback; }
 
-    function peek() {
-      var v = parseFloat(getComputedStyle(deck).getPropertyValue('--deck-peek'));
-      return isNaN(v) ? 56 : v;
+    function load() {
+      if (loaded) return;
+      loaded = true;
+      var px = (fig.clientWidth || 0) * (window.devicePixelRatio || 1);
+      var sm = video.getAttribute('data-src-sm');
+      video.preload = 'auto';
+      video.src = (sm && px && px <= 1400) ? sm : video.getAttribute('data-src');
     }
-    function layout() {
-      var w = deck.clientWidth;
-      if (!w) return; // display:none (another locale's deck)
-      var p = peek();
-      cards.forEach(function (c, j) {
-        // Static fan: every card keeps x = j*peek - the fan never slides.
-        // Only the stacking order follows the active card, with MIRRORED
-        // piles: the closer a card is to the active one, the higher it
-        // lies, so a card leaving the active spot lands ON TOP of the pile
-        // it joins (left pile shows left edges, right pile right edges).
-        // The x position rides the `translate` property so the deckPull
-        // keyframe (transform) can compose with it.
-        c.style.translate = (j * p) + 'px';
-        c.style.zIndex = String(j === active ? n + 1 : j < active ? j + 1 : n + 1 - (j - active));
-        c.classList.toggle('is-active', j === active);
-      });
-    }
-    function setActive(i) {
-      i = Math.max(0, Math.min(n - 1, i));
-      if (i === active) return false;
-      active = i;
-      layout();
-      return true;
-    }
-
-    // Cursor position picks the card (pointer devices only)
-    if (!window.matchMedia('(hover: none)').matches) {
-      deck.addEventListener('mousemove', function (e) {
-        var r = deck.getBoundingClientRect();
-        if (!r.width) return;
-        setActive(Math.floor(((e.clientX - r.left) / r.width) * n));
-      });
-    }
-
-    // Wheel steps through the deck; once at either end the page scrolls on
-    var wheelAcc = 0, wheelLock = 0;
-    deck.addEventListener('wheel', function (e) {
-      var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      var now = Date.now();
-      if (now < wheelLock) { e.preventDefault(); return; }
-      if (wheelAcc * d < 0) wheelAcc = 0; // direction flip resets the gesture
-      wheelAcc += d;
-      if (Math.abs(wheelAcc) < 40) return;
-      var step = wheelAcc > 0 ? 1 : -1;
-      wheelAcc = 0;
-      if (setActive(active + step)) {
-        wheelLock = now + 350; // swallow the same gesture's inertia tail
-        e.preventDefault();
+    function sync() {
+      if (!userPaused && onscreen && !document.hidden) {
+        load();
+        var pr = video.play();
+        if (pr && pr.catch) pr.catch(function () {});
+      } else if (!video.paused) {
+        video.pause();
       }
-    }, { passive: false });
-
-    // Touch swipe: horizontal drags step the deck (multiple cards per drag
-    // when the finger keeps travelling); vertical pans scroll the page
-    var startX = null;
-    deck.addEventListener('pointerdown', function (e) {
-      if (e.pointerType === 'mouse') return;
-      startX = e.clientX;
-    });
-    deck.addEventListener('pointermove', function (e) {
-      if (startX == null || e.pointerType === 'mouse') return;
-      var dx = e.clientX - startX;
-      if (Math.abs(dx) < 42) return;
-      setActive(active + (dx < 0 ? 1 : -1)); // swipe left = next card
-      startX = e.clientX;
-    });
-    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (t) {
-      deck.addEventListener(t, function () { startX = null; });
-    });
-
-    // Keyboard parity: the deck carries tabindex="0"
-    deck.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { if (setActive(active + 1)) e.preventDefault(); }
-      else if (e.key === 'ArrowLeft') { if (setActive(active - 1)) e.preventDefault(); }
-    });
-
-    window.addEventListener('resize', layout);
-    layout();
-  }
-
-  // -------- Feature tiles 1-3: liquid-glass reveal -------------------------
-  // Each .card-compact hides its content behind a frosted veil (.tile-veil,
-  // CSS) showing only the title. This controller owns the single source of
-  // truth for "revealed": hover/focus on pointer devices, IntersectionObserver
-  // on touch devices (the tiles reveal themselves while scrolling past). Demo
-  // animations subscribe via the 'tilereveal' CustomEvent so they run exactly
-  // while their tile is uncovered and freeze the moment it is veiled again.
-  function initTileVeils() {
-    var cards = Array.prototype.slice.call(document.querySelectorAll('.card-compact'));
-    if (!cards.length) return;
-    var noHover = window.matchMedia('(hover: none)').matches;
-
-    cards.forEach(function (card) {
-      function set(on) {
-        if (card.classList.contains('is-revealed') === on) return;
-        card.classList.toggle('is-revealed', on);
-        card.dispatchEvent(new CustomEvent('tilereveal', { detail: { revealed: on } }));
-      }
-      if (noHover && 'IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (e) {
-          set(e[0].isIntersecting);
-        }, { threshold: 0.55 });
-        io.observe(card);
-      } else {
-        card.addEventListener('mouseenter', function () { set(true); });
-        card.addEventListener('mouseleave', function () { set(false); });
-        // Keyboard parity: the tiles carry tabindex="0"
-        card.addEventListener('focusin', function () { set(true); });
-        card.addEventListener('focusout', function (ev) {
-          if (!card.contains(ev.relatedTarget)) set(false);
-        });
-      }
-    });
-  }
-
-  // -------- Card 1: {{firstname}} {{lastname}} auto-fill loop --------------
-  // Runs while the tile is revealed (see initTileVeils): variables fill with
-  // sample data, hold, revert to placeholders, pause, and repeat - a continuous
-  // loop instead of the old one-shot hover fill. Veiling the tile freezes and
-  // resets the demo so every reveal starts from the raw template.
-  function initPersonalizeCard() {
-    var card = document.querySelector('.card-personalize');
-    if (!card) return;
-    var vars = Array.prototype.slice.call(card.querySelectorAll('.pers-var'));
-    if (!vars.length) return;
-    var VALUES = { firstname: 'Anna', lastname: 'Kowalska' };
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var SWAP = 280;        // ms - matches the .pers-var fade/blur transition
-    var STAGGER = 260;     // ms between the two variables filling
-    var HOLD_FILLED = 2400;
-    var HOLD_RAW = 1100;
-
-    var timers = [];
-    var running = false;
-    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
-    function clearTimers() { timers.forEach(clearTimeout); timers = []; }
-
-    function placeholderText(el) { return '{{' + el.getAttribute('data-var') + '}}'; }
-
-    // Smooth swap of one variable's content (fade out -> change text -> fade in).
-    // The inner timeout is tracked so stop() can never leave a stale swap behind.
-    function swapVar(el, text, asValue) {
-      el.classList.add('swapping');
-      later(function () {
-        el.textContent = text;
-        el.classList.toggle('filled', !!asValue);
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () { el.classList.remove('swapping'); });
-        });
-      }, SWAP);
+      fig.classList.toggle('is-paused', userPaused);
+      if (btn) btn.setAttribute('aria-label', userPaused ? t('feat.video.play', 'Play animation') : t('feat.video.pause', 'Pause animation'));
     }
 
-    function snapToRaw() {
-      vars.forEach(function (el) {
-        el.classList.remove('swapping', 'filled');
-        el.textContent = placeholderText(el);
-      });
+    if (btn) {
+      btn.hidden = false;
+      btn.addEventListener('click', function () { userPaused = !userPaused; sync(); });
     }
-
-    function cycle() {
-      if (!running) return;
-      var t = 0;
-      vars.forEach(function (el, i) {
-        later(function () { swapVar(el, VALUES[el.getAttribute('data-var')], true); }, t + i * STAGGER);
-      });
-      t += (vars.length - 1) * STAGGER + SWAP + HOLD_FILLED;
-      later(function () {
-        vars.forEach(function (el) { swapVar(el, placeholderText(el), false); });
-      }, t);
-      t += SWAP + HOLD_RAW;
-      later(cycle, t);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) {
+        if (e[0].isIntersecting && !userPaused) load();
+      }, { rootMargin: '600px 0px' }).observe(fig);
+      new IntersectionObserver(function (e) {
+        onscreen = e[0].isIntersecting;
+        sync();
+      }, { threshold: 0.33 }).observe(fig);
+    } else {
+      onscreen = true;
     }
-
-    function start() {
-      if (running) return;
-      running = true;
-      if (reduce) {
-        // Reduced motion: show the resolved values statically, no looping
-        vars.forEach(function (el) {
-          el.textContent = VALUES[el.getAttribute('data-var')];
-          el.classList.add('filled');
-        });
-        return;
-      }
-      snapToRaw();
-      later(cycle, 320);
-    }
-    function stop() {
-      if (!running) return;
-      running = false;
-      clearTimers();
-      snapToRaw();
-    }
-
-    var revealed = card.classList.contains('is-revealed');
-    function evaluate() { if (revealed && !document.hidden) start(); else stop(); }
-    card.addEventListener('tilereveal', function (e) { revealed = e.detail.revealed; evaluate(); });
-    document.addEventListener('visibilitychange', evaluate);
-    evaluate();
-  }
-
-  // -------- Card 3: {{del}} conditional block animation -------------------
-  // The phone value IS present in Directory, so the {{del}} / {{/del}} tags
-  // are stripped on render and the phone section stays. The loop shows the raw
-  // template tags, then fades only the tags away (section kept) to demonstrate
-  // what {{del}} does when the value exists.
-  function initConditionalCard() {
-    var block = document.getElementById('cond-block');
-    var status = document.getElementById('cond-status');
-    if (!block || !status) return;
-    var line = block.querySelector('.cond-line');
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // state: 'raw' = template with visible tags, 'present' = value exists (tags stripped,
-    // section stays, green dot), 'absent' = value missing (whole section removed, red dot)
-    function t(key, fallback) { return window.I18N_T ? window.I18N_T(key) : fallback; }
-    function setStatus(state) {
-      status.classList.remove('present', 'absent');
-      if (state === 'present') {
-        status.classList.add('present');
-        status.textContent = t('feat.c3.statusPresent', 'Phone present - section kept');
-      } else if (state === 'absent') {
-        status.classList.add('absent');
-        status.textContent = t('feat.c3.statusAbsent', 'Phone missing - section removed');
-      } else {
-        status.textContent = t('feat.c3.statusRaw', 'Template with conditional tags');
-      }
-    }
-    function showRaw() { if (line) line.classList.remove('tags-hidden', 'line-gone'); setStatus('raw'); }
-    function showPresent() { if (line) { line.classList.remove('line-gone'); line.classList.add('tags-hidden'); } setStatus('present'); }
-    function showAbsent() { if (line) line.classList.add('line-gone'); setStatus('absent'); }
-
-    // Pin the demo box to its tallest (raw, all rows visible) height BEFORE
-    // any phase runs: when the "absent" phase collapses the conditional line,
-    // the rows above still slide together but the box - and therefore the
-    // card and the whole grid row - never changes height. Measured at init,
-    // so it is correct for every locale and platform font.
-    if (block.offsetHeight) block.style.height = block.offsetHeight + 'px';
-
-    if (reduce) { showPresent(); return; }
-
-    var card = block.closest('.card-conditional');
-    var timers = [];
-    var running = false;
-    function clearTimers() { timers.forEach(clearTimeout); timers = []; }
-    function later(fn, ms) { var id = setTimeout(fn, ms); timers.push(id); return id; }
-
-    // Four-phase loop:
-    //  0s raw -> 2.5s value present (tags fade, green) -> 5s raw again -> 7.5s value absent (section gone, red) -> 10s repeat
-    function loop() {
-      if (!running) return;
-      showRaw();
-      later(showPresent, 2500);
-      later(showRaw, 5000);
-      later(showAbsent, 7500);
-      later(loop, 10000);
-    }
-    function start() { if (running) return; running = true; loop(); }
-    function stop() { if (!running) return; running = false; clearTimers(); showRaw(); }
-
-    // Runs while the tile is revealed (see initTileVeils) and the tab visible;
-    // veiling the tile freezes the demo back on the raw template.
-    var revealed = card ? card.classList.contains('is-revealed') : true;
-    function evaluate() { if (revealed && !document.hidden) start(); else stop(); }
-    document.addEventListener('visibilitychange', evaluate);
-    if (card) card.addEventListener('tilereveal', function (e) { revealed = e.detail.revealed; evaluate(); });
-    evaluate();
+    document.addEventListener('visibilitychange', sync);
+    sync();
   }
 
   // -------- Rotating marketing banner (employer branding section) ---------

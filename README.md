@@ -31,7 +31,8 @@ Centrally manage Gmail signatures across a Google Workspace.
 │   ├── js/app.js            # locale-from-path, pricing calculator, UI, cookie-setting switcher
 │   ├── js/banner-generator.js # /banners-generator tool (canvas preview, PNG/HTML export, email gate)
 │   ├── js/contact-form.js   # /form: validation, Turnstile, submit to the Worker, booking step
-│   └── img/                 # logo-mark.png, favicon.png, apple-touch-icon.png, anna.jpg, og-cover.svg
+│   ├── img/                 # logo-mark.png, favicon.png, apple-touch-icon.png, anna.jpg, og-cover.svg
+│   └── video/               # feature tour loop per locale: tour-<code>.mp4 (1080p), tour-<code>-720.mp4, tour-<code>.webp (poster)
 ├── cloudflare/             # edge Worker (language router, headers/CSP, consent banner, /api/*)
 │   ├── worker.js
 │   ├── worker.test.mjs      # node --test cloudflare/worker.test.mjs (API handlers, zero deps)
@@ -59,8 +60,8 @@ index every language (the old single-URL setup could not).
   instead: no `/cat/docs` (docs links stay on the English `/docs`, see
   `DOCS_LOCALES`), no Catalan app (login links carry `lang=en`, see
   `APP_LANG`), no Catalan legal pages (footer -> `/legal` like every locale,
-  cookie banner -> `/en/policy`). The home page shows the feature tiles (like
-  de/fr), not a per-locale graphics deck.
+  cookie banner -> `/en/policy`). The home page shows the Catalan render of
+  the feature tour video (`assets/video/tour-ca*`), like every locale.
 - **Adding another landing locale:** a dictionary block in `i18n.js` (all
   `en` keys), `SUPPORTED` + `OG_LOCALE` (+ `SEGMENT`) in `build.mjs`, the
   switcher anchors in the four page sources (`index.html`, `pricing.html`,
@@ -150,6 +151,35 @@ node build-legal.mjs
 
 and commit `legal/src/` + the regenerated page directories. Styling lives in
 `assets/css/legal.css` (uses the tokens from `style.css`, Light/Dark, WCAG AA).
+
+## Feature tour video (#features)
+
+Since 2026-11-15 the features section shows one silent 24 s loop in every
+locale instead of the graphics deck (/, /pl) and the interactive tile grid
+(/de, /fr, /cat). It walks through the product: the template editor with
+"Preview as" any user, applying a template to 104 people, and each person's
+signature in Gmail with a campaign banner swapped for everyone.
+
+- **Files:** `assets/video/tour-<code>.mp4` (1920x1080), `tour-<code>-720.mp4`
+  (1280x720) and `tour-<code>.webp` (poster), H.264 High, yuv420p, BT.709
+  tagged (the cream decodes to exactly `#fff7ed`), no audio track. `<code>`
+  is the locale CODE (`ca`, not `cat`).
+- **Source:** rendered from HTML scenes in the workspace folder
+  `promo-animations/` (outside this repo: `./render-all.sh en pl de fr ca`,
+  copy in `scenes/copy.js`). Re-render there and copy the three files per
+  locale here; never hand-edit the MP4s.
+- **Build:** the authored `index.html` names the English files; `build.mjs`
+  points every render at its own locale and stamps `?v=<content hash>` on
+  the poster and both sources (the file names stay stable across re-renders).
+- **Runtime (`initFeatVideo` in app.js):** the source is attached only about
+  a screen before the video scrolls in (`preload="none"` until then), the
+  720p file serves boxes up to 1400 device pixels, playback runs only while a
+  third of the video is visible and the tab is shown, and
+  `prefers-reduced-motion` never autoplays (poster + the play button). The
+  pause/play button is always there while JS runs (WCAG 2.2.2); its labels
+  come from `feat.video.*`.
+- **Adding a landing locale:** render the tour in that locale and add its
+  three files, otherwise the page points at missing videos.
 
 ## Pricing calculator
 

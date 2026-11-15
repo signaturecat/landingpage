@@ -51,8 +51,8 @@ https://signature.cat/docs
   <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" sizes="96x96" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
-  <link rel="preload" href="/assets/css/style.css?v=e3d12e8b2f" as="style" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=e3d12e8b2f" />
+  <link rel="preload" href="/assets/css/style.css?v=6b73be9e7e" as="style" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=6b73be9e7e" />
 
   <!-- SEO structured data -->
   <script type="application/ld+json">
@@ -309,136 +309,32 @@ https://signature.cat/docs
           <p class="sub" data-i18n="feat.sub">Un seul endroit pour créer, attribuer et mettre à jour les signatures e-mail de toute l'organisation.</p>
         </div>
 
-        <div class="grid grid-3">
-          <article class="card card-compact card-personalize reveal" tabindex="0">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
-            <h3 data-i18n="feat.c1.t">Mettez à jour les signatures en un clic</h3>
-            <p data-i18n="feat.c1.d">Vous modifiez le texte, une image ou les données du modèle, et SignatureCat déploie automatiquement la nouvelle version chez vos collaborateurs.</p>
-            <!-- {{firstname}} {{lastname}} auto-fill demo from a created template -->
-            <div class="pers-demo" aria-hidden="true">
-              <div class="pers-line">
-                <span class="pers-var" data-var="firstname">{{firstname}}</span>
-                <span class="pers-var" data-var="lastname">{{lastname}}</span>
-              </div>
-            </div>
-            <div class="tile-veil" aria-hidden="true"><span class="tile-veil-title" data-i18n="feat.c1.t">Mettez à jour les signatures en un clic</span></div>
-          </article>
-
-          <article class="card card-compact card-vars reveal" tabindex="0">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v2M16 21h2a2 2 0 0 0 2-2v-2"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg></span>
-            <h3 data-i18n="feat.c2.t">Les données des collaborateurs se mettent à jour seules</h3>
-            <p data-i18n="feat.c2.d">Les données de Google Workspace alimentent directement la signature. Un changement de poste, de numéro de téléphone ou de service ? La signature suit.</p>
-            <!-- Carousel: variable tokens that flip to a sample value on hover -->
-            <div class="var-carousel" aria-hidden="true">
-              <div class="var-track">
-                <span class="var-chip"><code>{{firstname}}</code><span class="var-val">Anna</span></span>
-                <span class="var-chip"><code>{{lastname}}</code><span class="var-val">Kowalska</span></span>
-                <span class="var-chip"><code>{{jobtitle}}</code><span class="var-val">Head of Marketing</span></span>
-                <span class="var-chip"><code>{{department}}</code><span class="var-val">Marketing</span></span>
-                <span class="var-chip"><code>{{email}}</code><span class="var-val">anna@signature.cat</span></span>
-                <span class="var-chip"><code>{{phone}}</code><span class="var-val">+48 797 891 447</span></span>
-                <span class="var-chip"><code>{{photo}}</code><span class="var-val">anna.jpg</span></span>
-                <span class="var-chip"><code>{{address}}</code><span class="var-val">Warsaw, PL</span></span>
-                <span class="var-chip"><code>{{domain}}</code><span class="var-val">signature.cat</span></span>
-                <span class="var-chip"><code>{{firstname}}</code><span class="var-val">Anna</span></span>
-                <span class="var-chip"><code>{{lastname}}</code><span class="var-val">Kowalska</span></span>
-                <span class="var-chip"><code>{{jobtitle}}</code><span class="var-val">Head of Marketing</span></span>
-                <span class="var-chip"><code>{{department}}</code><span class="var-val">Marketing</span></span>
-                <span class="var-chip"><code>{{email}}</code><span class="var-val">anna@signature.cat</span></span>
-                <span class="var-chip"><code>{{phone}}</code><span class="var-val">+48 797 891 447</span></span>
-                <span class="var-chip"><code>{{photo}}</code><span class="var-val">anna.jpg</span></span>
-                <span class="var-chip"><code>{{address}}</code><span class="var-val">Warsaw, PL</span></span>
-                <span class="var-chip"><code>{{domain}}</code><span class="var-val">signature.cat</span></span>
-              </div>
-            </div>
-            <div class="tile-veil" aria-hidden="true"><span class="tile-veil-title" data-i18n="feat.c2.t">Les données des collaborateurs se mettent à jour seules</span></div>
-          </article>
-
-          <article class="card card-compact card-conditional reveal" tabindex="0">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg></span>
-            <h3 data-i18n="feat.c3.t">Créez plusieurs versions de signature</h3>
-            <p data-i18n="feat.c3.d">Marquez les sections optionnelles avec des balises conditionnelles : si un collaborateur a un numéro de téléphone, la section reste, sinon elle disparaît. Sans lignes vides ni retouches individuelles.</p>
-            <!-- {{del}} animation: when the value is present only the {{del}}/{{/del}} tags disappear and the section stays -->
-            <div class="cond-demo" aria-hidden="true">
-              <div class="cond-sig" id="cond-block">
-                <div class="cond-row cond-static"><span class="cond-name">Anna Kowalska</span></div>
-                <div class="cond-row cond-line">
-                  <span class="cond-tag cond-open"><code>{{del}}</code></span>
-                  <span class="cond-text" data-i18n="feat.c3.phone">Téléphone : +48 797 891 447</span>
-                  <span class="cond-tag cond-close"><code>{{/del}}</code></span>
-                </div>
-                <div class="cond-row cond-static"><span class="cond-muted">Marketing · signature.cat</span></div>
-              </div>
-              <div class="cond-status" id="cond-status" data-i18n="feat.c3.statusPresent">Téléphone présent - section conservée</div>
-            </div>
-            <div class="tile-veil" aria-hidden="true"><span class="tile-veil-title" data-i18n="feat.c3.t">Créez plusieurs versions de signature</span></div>
-          </article>
-
-          <article class="card reveal">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m9 14-1.5 7L12 18l4.5 3L15 14"/></svg></span>
-            <h3 data-i18n="feat.c4.t">Gardez une image d'entreprise cohérente</h3>
-            <p data-i18n="feat.c4.d">Un seul standard de signature dans tous les messages envoyés par vos collaborateurs.</p>
-          </article>
-
-          <article class="card reveal">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/><path d="m17 11 2 2 4-4"/></svg></span>
-            <h3 data-i18n="feat.c5.t">Fini les corrections manuelles et les données obsolètes</h3>
-            <p data-i18n="feat.c5.d">Vous n'avez plus à demander à vos collaborateurs de changer leur signature, ni à vérifier qui utilise encore l'ancienne.</p>
-          </article>
-
-          <article class="card reveal">
-            <span class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <h3 data-i18n="feat.c6.t">Gardez le contrôle de vos signatures</h3>
-            <p data-i18n="feat.c6.d">Consultez les signatures déployées et tout l'historique des modifications dans le panneau d'administration.</p>
-          </article>
-        </div>
-
-        <!-- Per-locale tile decks: on /pl (PM 2026-08-11) and on the English
-             root (PM 2026-11-10) the interactive grid above is replaced by a
-             horizontal card-deck carousel of that locale's marketing
-             graphics; /de and /fr keep the grid. The visible card follows
-             the cursor position over the deck (left edge = first card, right
-             edge = last), the remaining cards always peek out like a fanned
-             deck of playing cards; wheel steps through the cards and touch
-             devices swipe. Behaviour lives in initFeatDeck() (app.js), layout
-             in .feat-shots / .feat-card (style.css). The locale swap is pure
-             CSS keyed off the <html lang> the build stamps per locale and
-             the deck's own lang attribute. Each deck's copy lives inline (no
-             data-i18n): a deck is only ever visible on its own locale. The
-             images are named <locale>-*.webp and build.mjs gives them a real
-             src ONLY in that locale's render (data-featsrc everywhere else),
-             so a display:none deck never downloads its images. -->
-        <div class="feat-shots feat-deck reveal" lang="pl" role="region" aria-roledescription="karuzela" aria-label="Podgląd funkcji SignatureCat: 4 plansze, strzałki w lewo i w prawo przełączają" tabindex="0">
-          <figure class="feat-card is-active">
-            <img data-featsrc="/assets/img/feat/pl-ustaw-spojne-podpisy.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Ustaw spójne podpisy w całej organizacji kilkoma kliknięciami - panel SignatureCat stosuje szablon podpisu email do 104 osób z automatyczną synchronizacją" />
-          </figure>
-          <figure class="feat-card">
-            <img data-featsrc="/assets/img/feat/pl-dopasuj-podpisy.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Dopasuj podpisy do działu, stanowiska, języka lub lokalizacji - wybór szablonu podpisu Gmail: ze zdjęciem, z logo firmy albo z banerem reklamowym" />
-          </figure>
-          <figure class="feat-card">
-            <img data-featsrc="/assets/img/feat/pl-aktualizuj-dane.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Automatycznie aktualizuj dane pracowników z Google Workspace - imię, stanowisko i telefon synchronizują się same do podpisu Gmail" />
-          </figure>
-          <figure class="feat-card">
-            <img data-featsrc="/assets/img/feat/pl-deleguj-zarzadzanie.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Deleguj zarządzanie podpisami wybranym osobom lub zespołom - rola Designer edytuje szablony stopek bez dostępu do ustawień organizacji" />
-          </figure>
-        </div>
-        <div class="feat-shots feat-deck reveal" lang="en" role="region" aria-roledescription="carousel" aria-label="SignatureCat feature preview: 5 slides, switch with the left and right arrow keys" tabindex="0">
-          <figure class="feat-card is-active">
-            <img data-featsrc="/assets/img/feat/en-set-consistent-signatures.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Set consistent signatures across your organization in a few clicks - the SignatureCat panel applies an email signature template to 104 people with automatic sync" />
-          </figure>
-          <figure class="feat-card">
-            <img data-featsrc="/assets/img/feat/en-match-signatures.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Match signatures to department, job title, language or location - choosing a Gmail signature template: with a photo, with the company logo or with a promotional banner" />
-          </figure>
-          <figure class="feat-card">
-            <img data-featsrc="/assets/img/feat/en-update-employee-data.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Automatically update employee data from Google Workspace - name, job title and phone number sync into the Gmail signature on their own" />
-          </figure>
-          <figure class="feat-card">
-            <img data-featsrc="/assets/img/feat/en-delegate-management.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Delegate management of signatures to selected people or teams - the Designer role edits signature templates without access to organization settings" />
-          </figure>
-          <figure class="feat-card">
-            <img data-featsrc="/assets/img/feat/en-gmail-signatures.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Signatures attach directly in Gmail - an email signature with photo, contact details and an employer branding banner in the Gmail compose window" />
-          </figure>
-        </div>
+        <!-- Feature tour video (PM 2026-11-15): one silent 24 s loop for every
+             locale, replacing the per-locale card decks (/, /pl) and the
+             interactive tile grid (/de, /fr, /cat). Recorded frame by frame
+             from the HTML scenes in the workspace folder promo-animations/
+             (template editor with "Preview as" any user -> apply to 104
+             people -> each person's signature in Gmail), one render per
+             locale: build.mjs points the tour-<code> files at the page's
+             locale code (ca, not the /cat path) and stamps ?v=. app.js
+             (initFeatVideo) attaches the source only when the video nears
+             the viewport (720p when the box is small), plays it while
+             visible, pauses it off-screen and never autoplays under
+             prefers-reduced-motion (the poster stays). The button keeps
+             WCAG 2.2.2 (auto-playing motion longer than 5 s must be
+             pausable); it stays hidden until app.js wires it up. -->
+        <figure class="feat-video reveal">
+          <video muted loop playsinline preload="none" width="1920" height="1080"
+                 poster="/assets/video/tour-fr.webp?v=cf8a4024c9"
+                 data-src="/assets/video/tour-fr.mp4?v=13771a9fc1"
+                 data-src-sm="/assets/video/tour-fr-720.mp4?v=ecbc5d79c8"
+                 aria-label="SignatureCat product tour: create a signature template, preview it as any employee, apply it to the whole organization and see each person's signature in Gmail"
+                 data-i18n-attr="aria-label:feat.video.label"></video>
+          <button type="button" class="feat-video-toggle" hidden aria-label="Pause animation" data-i18n-attr="aria-label:feat.video.pause">
+            <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+            <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+          </button>
+        </figure>
       </div>
     </section>
 
@@ -753,8 +649,8 @@ https://signature.cat/docs
     </div>
   </footer>
 
-  <script src="/assets/js/i18n.js?v=0a12cbe22c"></script>
-  <script src="/assets/js/app.js?v=a429af0535"></script>
+  <script src="/assets/js/i18n.js?v=14b36875cd"></script>
+  <script src="/assets/js/app.js?v=31a7b6730d"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
