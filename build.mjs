@@ -462,15 +462,30 @@ function render(src, loc, I18N, page) {
     );
   });
 
-  // Per-locale feature shots (/pl deck + branding banner, English deck): an
-  // image named /assets/img/feat/<locale>-*.webp belongs to that locale only.
+  // Feature tour video (index.html #features): one render per locale named
+  // /assets/video/tour-<code>[-720].{mp4,webp}. The authored source names
+  // the English files; every render points them at its own locale CODE (ca,
+  // not the /cat path segment) and stamps a content hash (the files keep
+  // their names across re-renders, /assets/* has a 4h browser TTL). Matches
+  // any code and any existing ?v=, so it runs both ways (the en output
+  // overwrites the source) and stays idempotent.
+  html = html.replace(
+    /(\s(?:poster|data-src|data-src-sm)=")\/assets\/video\/tour-[a-z]{2}((?:-720)?\.(?:mp4|webp))(?:\?v=[0-9a-f]+)?(")/g,
+    (_m, pre, rest, post) => {
+      const path = `/assets/video/tour-${loc}${rest}`;
+      return `${pre}${path}?v=${assetHash(path)}${post}`;
+    },
+  );
+
+  // Per-locale branding banner (/pl): an image named
+  // /assets/img/feat/<locale>-*.webp belongs to that locale only.
   // Its render gets a real src (image SEO needs it in the served HTML), every
   // other render gets data-featsrc instead, so the display:none variants
   // never download the files - Chrome fetches loading="lazy" images even
   // inside display:none subtrees. The swap runs BOTH ways because the en
-  // output overwrites the authored source: the English images arrive here
-  // with src already set and must lose it again for pl/de/fr. Deterministic
-  // per locale, hence idempotent.
+  // output overwrites the authored source: images of the locale being
+  // rendered arrive here with src already set and must lose it again for the
+  // others. Deterministic per locale, hence idempotent.
   html = html.replace(/<img\b[^>]*>/g, (tag) => {
     const owner = tag.match(/\s(?:src|data-featsrc)="\/assets\/img\/feat\/([a-z]{2})-/);
     if (!owner) return tag;
